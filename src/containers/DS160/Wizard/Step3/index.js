@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker } from 'antd';
+import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 
 const { Option } = Select;
 
@@ -124,20 +124,103 @@ class MyForm extends Component {
             <DatePicker />
           )}
         </Form.Item>
-        <Form.Item label="City of birth">
-          {getFieldDecorator('s_city_of_birth', {
+        <Row gutter={16}>
+            <Col span={8}>
+              <Form.Item label="City of birth">
+                {getFieldDecorator('s_city_of_birth', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Input/>
+                )}
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Province / State of birth">
+                {getFieldDecorator('s_province_of_birth', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Input/>
+                )}
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Country of birth">
+                {getFieldDecorator('s_country_of_birth', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Select placeholder="Select an Option">
+                    <Option value="AFGHANISTAN-KABUL">AFGHANISTAN, KABUL</Option>
+                    <Option value="ALBANIA-TIRANA">ALBANIA, TIRANA</Option>
+                  </Select>
+                )}
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Country/Region of Origin (Nationality)">
+                {getFieldDecorator('s_country_of_nationality', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Select placeholder="Select an Option">
+                    <Option value="AFGHANISTAN-KABUL">AFGHANISTAN, KABUL</Option>
+                    <Option value="ALBANIA-TIRANA">ALBANIA, TIRANA</Option>
+                  </Select>
+                )}
+              </Form.Item>
+            </Col>
+        </Row>
+        <Form.Item label="Do you hold or have you held any nationality other than the one indicated above on nationality?">
+          {getFieldDecorator('b_more_nationality', {
             rules: [{ required: true, message: 'This field is required' }],
           })(
-            <Input/>
+            <Radio.Group>
+              <Radio value={true}>Yes</Radio>
+              <Radio value={false}>No</Radio>
+            </Radio.Group>
           )}
         </Form.Item>
-        <Form.Item label="Province / State of birth">
-          {getFieldDecorator('s_province_of_birth', {
+        <Form.Item label="Are you a permanent resident of a country/region other than country/region of origin (nationality) indicated above?">
+          {getFieldDecorator('b_permanent_resident', {
             rules: [{ required: true, message: 'This field is required' }],
           })(
-            <Input/>
+            <Radio.Group>
+              <Radio value={true}>Yes</Radio>
+              <Radio value={false}>No</Radio>
+            </Radio.Group>
           )}
         </Form.Item>
+        <div className="visa-global-field visa-global-border-bottom">
+          <h2 className="visa-global-section-title">Document Information</h2>
+          <div className="visa-global-section-description">Your National ID Number is a unique number that your government provides. The U.S Government provides unique numbers to those who seek employment (Social Security Number) or pay taxes (Taxpayer ID). Leave blank if you do not have any of these numbers</div>
+        </div>
+        <Row gutter={16}>
+            <Col span={8}>
+              <Form.Item label="National ID Number" extra="Your National ID Number is a unique number that your government provides. Leave blank if you do not have any of these numbers">
+                {getFieldDecorator('s_national_id_number', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Input/>
+                )}
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="US Social Security Number" extra="Leave blank if you do not have any of these numbers">
+                {getFieldDecorator('s_social_security_number', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Input/>
+                )}
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="US Tax ID Number" extra="Leave blank if you do not have any of these numbers">
+                {getFieldDecorator('s_tax_id_number', {
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <Input/>
+                )}
+              </Form.Item>
+            </Col>
+        </Row>
         <div
           style={{
             width: '100%',
