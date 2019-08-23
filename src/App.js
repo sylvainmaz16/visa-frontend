@@ -4,17 +4,18 @@ import { Router } from 'react-router-dom'
 import Routes from './routes/index'
 import { createBrowserHistory } from 'history'
 import configureStore from './store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const history = createBrowserHistory()
-const store = configureStore()
+const { persistor, store } = configureStore()
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <Router history={history}> */}
-        <Routes />
-        {/* </Router> */}
+        <PersistGate loading={null} persistor={persistor}>
+          <Routes />
+        </PersistGate>
       </Provider>
     )
   }

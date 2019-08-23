@@ -1,0 +1,23 @@
+.visa-ds160-save-and-continue {
+    &__content {
+        margin-top: 30px;
+
+        background: rgba(227,243,243,1);
+        font-weight: 400;
+        font-family: "Open Sans", Arial, sans-serif;
+        padding: 3em 2em;
+
+        .visa-global-section-title-customized-by-ds-160 {
+            font-size: 1em;
+            color: rgba(49,112,143,1);
+            text-align: center;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+    }
+}
+#visa-ds160-save-and-continue-spin {
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 23px);
+}

@@ -4,15 +4,19 @@ import { connect } from 'react-redux'
 import { Button, Icon } from 'antd';
 import VisaBanner from '../../components/VisaBanner';
 import VisaHeader from '../../components/VisaHeader';
+import { DS160 } from '../../actions/types'
 
 import './index.scss'
-class DS160 extends Component {
+class DS160_HOME extends Component {
   constructor(props) {
     super(props)
   }
 
+  componentDidMount() {}
+
   onStartApplication = () => {
     this.props.history.push('/ds-160/application-form');
+    this.props.resetState(DS160.DS160_INIT_STATE);
   }
 
   render() {
@@ -51,30 +55,21 @@ class DS160 extends Component {
   }
 }
 
-/*
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
-const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadGithubProfile: (type, name) => {
-      dispatch({ type, name })
+    resetState: (type) => {
+      dispatch({ type })
     },
   }
 }
 
 const mapStateToProps = state => ({
-  profile: state.mainData.profile,
-  is_loading: state.mainData.is_loading,
 })
-*/
 
 export default withRouter(
   connect(
-    null,
-    null,
-  )(DS160),
+    mapStateToProps,
+    mapDispatchToProps,
+  )(DS160_HOME),
 )
