@@ -13,6 +13,15 @@ import './index.scss'
 import Form_DS160_4_Travel from './Step4_Travel';
 import Form_DS160_5_Travel_Company from './Step5_Travel_Company';
 import Form_DS160_6_Previous_Travel from './Step6_Previous_Travel';
+import Form_DS160_7_Address_Phone from './Step7_Address_Phone';
+import Form_DS160_8_Passport from './Step8_Passport';
+import Form_DS160_9_Contact from './Step9_Contact';
+import Form_DS160_10_Family from './Step10_Family';
+import Form_DS160_11_Previous_Work_Edu from './Step11_Previous_Work_Edu';
+import Form_DS160_12_Additional_Work_Edu from './Step12_Additional_Work_Edu';
+import Form_DS160_13_Security from './Step13_Security';
+import Form_DS160_14_Crew_Job from './Step14_Crew_Job';
+import Form_DS160_15_Preparer from './Step15_Preparer';
 class DS160_Wizard extends Component {
   static defaultProps = {
     token: null
@@ -73,7 +82,22 @@ class DS160_Wizard extends Component {
     }
 
     let form_render = ''
-    let fields_list = [null, "", "", "form_personal_info", "form_travel", "form_travel_company", "form_prev_travel_info"]
+    let fields_list = [
+      null, "", "", 
+      "form_personal_info", 
+      "form_travel", 
+      "form_travel_company", 
+      "form_prev_travel_info", 
+      "form_addr_and_phone",
+      "form_passport",
+      "form_contact",
+      "form_family",
+      "form_prev_work_or_edu",
+      "form_additional_work",
+      "form_security",
+      "form_crew_visa",
+      "form_e_sign"
+    ]
     let field = fields_list[step_index]
     let shared_params = {
       onPrev: (e) => this.onPrev(e, field),
@@ -99,6 +123,33 @@ class DS160_Wizard extends Component {
         break;
       case 6:
         form_render = <Form_DS160_6_Previous_Travel {...shared_params} data={ds160.form_prev_travel_info} />
+        break;
+      case 7:
+        form_render = <Form_DS160_7_Address_Phone {...shared_params} data={ds160.form_addr_and_phone} />
+        break;
+      case 8:
+        form_render = <Form_DS160_8_Passport {...shared_params} data={ds160.form_passport} />
+        break;
+      case 9:
+        form_render = <Form_DS160_9_Contact {...shared_params} data={ds160.form_contact} />
+        break;
+      case 10:
+        form_render = <Form_DS160_10_Family {...shared_params} data={ds160.form_family} />
+        break;
+      case 11:
+        form_render = <Form_DS160_11_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} />
+        break;
+      case 12:
+        form_render = <Form_DS160_12_Additional_Work_Edu {...shared_params} data={ds160.form_additional_work} />
+        break;
+      case 13:
+        form_render = <Form_DS160_13_Security {...shared_params} data={ds160.form_security} />
+        break;
+      case 14:
+        form_render = <Form_DS160_14_Crew_Job {...shared_params} data={ds160.form_crew_visa} />
+        break;
+      case 15:
+        form_render = <Form_DS160_15_Preparer {...shared_params} data={ds160.form_e_sign} />
         break;
     }
 

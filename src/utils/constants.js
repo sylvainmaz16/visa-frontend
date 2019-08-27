@@ -1,7 +1,6 @@
 import React from "react";
 
-
-const export_list = (array) => {
+export const export_list = (array) => {
     return array.map(option => {
         return {
             value: option.props.value,
@@ -10,6 +9,61 @@ const export_list = (array) => {
     })
 }
 
+export const US_Live_Status = [
+	<option value="S">U.S. CITIZEN</option>,
+	<option value="C">U.S. LEGAL PERMANENT RESIDENT (LPR)</option>,
+	<option value="P">NONIMMIGRANT</option>,
+	<option value="O">OTHER/I DON'T KNOW</option>,
+]
+
+export const relative_relationship_options = [
+    <option value="S">SPOUSE</option>,
+    <option value="F">FIANCÉ/FIANCÉE</option>,
+    <option value="C">CHILD</option>,
+    <option value="B">SIBLING</option>,
+]
+
+export const relationship_options = [
+	<option value="R">RELATIVE</option>,
+	<option value="S">SPOUSE</option>,
+	<option value="C">FRIEND</option>,
+	<option value="B">BUSINESS ASSOCIATE</option>,
+	<option value="P">EMPLOYER</option>,
+	<option value="H">SCHOOL OFFICIAL</option>,
+	<option value="O">OTHER</option>
+]
+
+export const passport_type_options = [
+    <option value="R">REGULAR</option>,
+    <option value="O">OFFICIAL</option>,
+    <option value="D">DIPLOMATIC</option>,
+    <option value="L">LAISSEZ-PASSER</option>,
+    <option value="T">OTHER</option>,
+]
+
+export const social_media_options = [
+    <option value="ASKF">ASK.FM</option>,
+    <option value="DUBN">DOUBAN</option>,
+    <option value="FCBK">FACEBOOK</option>,
+    <option value="FLKR">FLICKR</option>,
+    <option value="GOGL">GOOGLE+</option>,
+    <option value="INST">INSTAGRAM</option>,
+    <option value="LINK">LINKEDIN</option>,
+    <option value="MYSP">MYSPACE</option>,
+    <option value="PTST">PINTEREST</option>,
+    <option value="QZNE">QZONE (QQ)</option>,
+    <option value="RDDT">REDDIT</option>,
+    <option value="SWBO">SINA WEIBO</option>,
+    <option value="TWBO">TENCENT WEIBO</option>,
+    <option value="TUMB">TUMBLR</option>,
+    <option value="TWIT">TWITTER</option>,
+    <option value="TWOO">TWOO</option>,
+    <option value="VINE">VINE</option>,
+    <option value="VKON">VKONTAKTE (VK)</option>,
+    <option value="YUKU">YOUKU</option>,
+    <option value="YTUB">YOUTUBE</option>,
+    <option value="NONE">NONE</option>,
+]
 
 export const state_options_list = () => {
     return export_list(state_options)

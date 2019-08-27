@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } fr
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
+import VisaAddress from "../../../../components/VisaAddress";
 
 const { Option } = Select;
 
@@ -33,10 +34,10 @@ class MyForm extends Component {
 
   onSelect = (e, field) => {
     console.log(e, field)
-    if(field == 'purpose_of_trip') {
+    if (field == 'purpose_of_trip') {
       this.props.form.setFieldsValue({ 'data.other_purpose_of_trip': undefined, 'data.purpose_info_type': undefined });
     }
-    else if( field == 'other_purpose_of_trip' ) {
+    else if (field == 'other_purpose_of_trip') {
       const field = {
         purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
         other_purpose_of_trip: this.props.form.getFieldValue('data.other_purpose_of_trip'),
@@ -67,10 +68,10 @@ class MyForm extends Component {
       purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
       other_purpose_of_trip: this.props.form.getFieldValue('data.other_purpose_of_trip'),
       paying_person_for_trip: this.props.form.getFieldValue('data.paying_person_for_trip'),
-      paying_person_info_same_addr: this.props.form.getFieldValue('data.paying_person_info.b_same_address'), 
+      paying_person_info_same_addr: this.props.form.getFieldValue('data.paying_person_info.b_same_address'),
       purpose_info_type: this.props.form.getFieldValue('data.purpose_info_type')
     }
-    
+
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -83,8 +84,8 @@ class MyForm extends Component {
                 initialValue: data.purpose_of_trip,
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <VisaSelect 
-                  combines={constants.purpose_of_trip_advanced_options_func()} 
+                <VisaSelect
+                  combines={constants.purpose_of_trip_advanced_options_func()}
                   onChange={(e) => this.onSelect(e, 'purpose_of_trip')}
                 />
               )}
@@ -100,7 +101,7 @@ class MyForm extends Component {
                   initialValue: data.other_purpose_of_trip,
                   rules: [{ required: true, message: 'This field is required' }],
                 })(
-                  <VisaSelect 
+                  <VisaSelect
                     combines={constants.purpose_of_trip_advanced_specify_options_func(field.purpose_of_trip)}
                     onChange={(e) => this.onSelect(e, 'other_purpose_of_trip')}
                   />
@@ -109,7 +110,7 @@ class MyForm extends Component {
             </Col>
           </Row>
         }
-        <Form.Item style={{display: 'none'}}>
+        <Form.Item style={{ display: 'none' }}>
           {getFieldDecorator('data.purpose_info_type', {
             initialValue: data.purpose_info_type,
           })(
@@ -185,7 +186,7 @@ class MyForm extends Component {
                 initialValue: data.travel_plan.length_of_stay.period,
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <VisaSelect combines={constants.period_unit_options}/>
+                <VisaSelect combines={constants.period_unit_options} />
               )}
             </Form.Item>
           </Col>
@@ -241,7 +242,7 @@ class MyForm extends Component {
             </Col>
           </Row>
         </Form.Item>
-        
+
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 12 }}>
             <Form.Item label="Person/Entity Paying for Your Trip">
@@ -249,7 +250,7 @@ class MyForm extends Component {
                 initialValue: data.paying_person_for_trip,
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <VisaSelect combines={constants.paying_person_for_trip_options}/>
+                <VisaSelect combines={constants.paying_person_for_trip_options} />
               )}
             </Form.Item>
           </Col>
@@ -257,13 +258,13 @@ class MyForm extends Component {
 
         {
           (field.paying_person_for_trip == 'O' || field.paying_person_for_trip == 'C') &&
-            <div className="visa-global-field visa-global-border-bottom">
-              <h2 className="visa-global-section-title">Financial support for your trip</h2>
-            </div>
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">Financial support for your trip</h2>
+          </div>
         }
 
         {
-          field.paying_person_for_trip == 'O' ? 
+          field.paying_person_for_trip == 'O' ?
             <>
               <Row gutter={16}>
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
@@ -317,7 +318,7 @@ class MyForm extends Component {
                       initialValue: data.paying_person_info.relationship,
                       rules: [{ required: true, message: 'This field is required' }],
                     })(
-                      <VisaSelect combines={constants.paying_person_info_relationship_options}/>
+                      <VisaSelect combines={constants.paying_person_info_relationship_options} />
                     )}
                   </Form.Item>
                 </Col>
@@ -338,123 +339,60 @@ class MyForm extends Component {
                 </Col>
               </Row>
             </>
-          : field.paying_person_for_trip == 'C' ? 
-          <>
-            <Row gutter={16}>
-              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                <Form.Item label="Name of Company/Organization Paying for Trip">
-                  {getFieldDecorator('data.paying_org_info.name', {
-                    initialValue: data.paying_org_info.name,
-                    rules: [{ required: true, message: 'This field is required' }],
-                  })(
-                    <Input />
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                <Form.Item label="Telephone Number">
-                  {getFieldDecorator('data.paying_org_info.tel_number', {
-                    initialValue: data.paying_org_info.tel_number,
-                    rules: [{ required: true, message: 'This field is required' }],
-                  })(
-                    <Input />
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                <Form.Item label="Relationship to You">
-                  {getFieldDecorator('data.paying_org_info.relationship', {
-                    initialValue: data.paying_org_info.relationship,
-                    rules: [{ required: true, message: 'This field is required' }],
-                  })(
-                    <Input />
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
-          </>
-            : ''
+            : field.paying_person_for_trip == 'C' ?
+              <>
+                <Row gutter={16}>
+                  <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                    <Form.Item label="Name of Company/Organization Paying for Trip">
+                      {getFieldDecorator('data.paying_org_info.name', {
+                        initialValue: data.paying_org_info.name,
+                        rules: [{ required: true, message: 'This field is required' }],
+                      })(
+                        <Input />
+                      )}
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={16}>
+                  <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                    <Form.Item label="Telephone Number">
+                      {getFieldDecorator('data.paying_org_info.tel_number', {
+                        initialValue: data.paying_org_info.tel_number,
+                        rules: [{ required: true, message: 'This field is required' }],
+                      })(
+                        <Input />
+                      )}
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={16}>
+                  <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                    <Form.Item label="Relationship to You">
+                      {getFieldDecorator('data.paying_org_info.relationship', {
+                        initialValue: data.paying_org_info.relationship,
+                        rules: [{ required: true, message: 'This field is required' }],
+                      })(
+                        <Input />
+                      )}
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </>
+              : ''
         }
         {
           (field.paying_person_for_trip == 'O' && field.paying_person_info_same_addr == false) || field.paying_person_for_trip == 'C' ?
-            <Form.Item label={field.paying_person_for_trip == 'C' ? "Address of Company/Organization Paying" : "Address"}>
-              <Row gutter={16}>
-                <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                  <Form.Item extra="Street Address">
-                    {getFieldDecorator('data.paying_person_info.address.street_addr1', {
-                      initialValue: data.paying_person_info.address.street_addr1,
-                      rules: [{ required: true, message: 'This field is required' }],
-                    })(
-                      <Input />
-                    )}
-                  </Form.Item>
-                </Col>
-              </Row>
-              
-              <Row gutter={16}>
-                <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                  <Form.Item extra="Address Line 2">
-                    {getFieldDecorator('data.paying_person_info.address.street_addr2', {
-                      initialValue: data.paying_person_info.address.street_addr2,
-                      rules: [{ required: true, message: 'This field is required' }],
-                    })(
-                      <Input />
-                    )}
-                  </Form.Item>
-                </Col>
-              </Row>
-              
-              <Row gutter={16}>
-                <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-                  <Form.Item extra="City">
-                    {getFieldDecorator('data.paying_person_info.address.city', {
-                      initialValue: data.paying_person_info.address.city,
-                      rules: [{ required: true, message: 'This field is required' }],
-                    })(
-                      <Input />
-                    )}
-                  </Form.Item>
-                </Col>
-                <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-                  <Form.Item extra="State / Province / Region">
-                    {getFieldDecorator('data.paying_person_info.address.state', {
-                      initialValue: data.paying_person_info.address.state,
-                      rules: [{ required: true, message: 'This field is required' }],
-                    })(
-                      <Input />
-                    )}
-                  </Form.Item>
-                </Col>
-              </Row>
-
-              <Row gutter={16}>
-                <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-                  <Form.Item extra="ZIP / Postal Code">
-                    {getFieldDecorator('data.paying_person_info.address.zip_code', {
-                      initialValue: data.paying_person_info.address.zip_code,
-                      rules: [{ required: true, message: 'This field is required' }],
-                    })(
-                      <Input />
-                    )}
-                  </Form.Item>
-                </Col>
-                <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-                  <Form.Item extra="Country">
-                    {getFieldDecorator('data.paying_person_info.address.country', {
-                      initialValue: data.paying_person_info.address.country,
-                      rules: [{ required: true, message: 'This field is required' }],
-                    })(
-                      <VisaSelect values={constants.countries_only_option_value_list} labels={constants.countries_only_option_label_list} />
-                    )}
-                  </Form.Item>
-                </Col>
-              </Row>
-            </Form.Item>
-          : ''
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                <VisaAddress
+                  label={field.paying_person_for_trip == 'C' ? "Address of Company/Organization Paying" : "Address"}
+                  field="data.paying_person_info.address"
+                  initialValue={data.paying_person_info.address}
+                  getFieldDecorator={getFieldDecorator}
+                />
+              </Col>
+            </Row>
+            : ''
         }
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={this.handlePrev}>Prev</Button>}

@@ -5,11 +5,12 @@ const { TextArea } = Input;
 class VisaExplain extends Component {
   static defaultProps = {
     extra: "",
-    label: ""
+    label: "",
+    textLabel: "If you answered yes, give details below."
   }
   render() {
 
-    const { label, extra, radioInitialValue, radioField, textField, textInitialValue, getFieldDecorator, radioValue, ...rest } = this.props
+    const { label, extra, radioInitialValue, radioField, textField, textInitialValue, getFieldDecorator, radioValue, textLabel, ...rest } = this.props
     return (
       <>
         <Form.Item label={label} extra={extra}>
@@ -23,7 +24,7 @@ class VisaExplain extends Component {
             </Radio.Group>
           )}
         </Form.Item>
-        {radioValue && <Form.Item label="If you answered yes, give details below.">
+        {radioValue && <Form.Item label={textLabel}>
           {getFieldDecorator(textField, {
             initialValue: textInitialValue,
             rules: [{ required: true, message: 'This field is required' }],

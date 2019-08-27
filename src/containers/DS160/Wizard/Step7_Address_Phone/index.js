@@ -6,6 +6,7 @@ import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaDateLength from "../../../../components/VisaDateLength";
+import VisaAddress from "../../../../components/VisaAddress";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -57,6 +58,117 @@ class MyForm extends Component {
           <h2 className="visa-global-section-title">Applicant Contact Information</h2>
         </div>
 
+        <VisaAddress 
+          label="Applicant Home Address"
+          field="data.home_addr"
+          initialValue={data.home_addr}
+          getFieldDecorator={getFieldDecorator}
+        />
+
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            <Form.Item label="Primary Phone number">
+              {getFieldDecorator('data.phone_info.home', {
+                initialValue: data.phone_info.home,
+                rules: [{ required: true, message: 'This field is required' }],
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            <Form.Item label="Secondary Phone number" extra="Leave blank if you do not have a secondary phone number.">
+              {getFieldDecorator('data.phone_info.mobile', {
+                initialValue: data.phone_info.mobile,
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            <Form.Item label="Work Phone number"  extra="Leave blank if you do not have a work phone number.">
+              {getFieldDecorator('data.phone_info.work', {
+                initialValue: data.phone_info.work,
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>
+          <Col xs={{ span: 24 }} md={{ span: 12 }} gutter={16}>
+            <Form.Item label="Email" required extra="Please enter a valid email address. It will be used to contact you about your application.">
+              <Col xs={{ span: 12 }}>
+                <Form.Item extra="Enter Email">
+                  {getFieldDecorator('data.email', {
+                    initialValue: data.email,
+                    rules: [{ required: true, message: 'This field is required' }],
+                  })(
+                    <Input />
+                  )}
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 12 }}>
+                <Form.Item extra="Confirm Email">
+                  {getFieldDecorator('data.email', {
+                    initialValue: data.email,
+                    rules: [{ required: true, message: 'This field is required' }],
+                  })(
+                    <Input />
+                  )}
+                </Form.Item>
+              </Col>
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Form.Item label="Mailing Address">
+          {getFieldDecorator('data.mail_addr.b_same_as_home', {
+            initialValue: data.mail_addr.b_same_as_home,
+          })(
+            <Checkbox>The mailing address is different from the applicant address</Checkbox>
+          )}
+        </Form.Item>
+
+        {
+          this.props.form.getFieldValue('data.mail_addr.b_same_as_home') &&
+          <VisaAddress 
+            label="Mailing Address"
+            field="data.mail_addr.info"
+            initialValue={data.mail_addr.info}
+            getFieldDecorator={getFieldDecorator}
+          />
+        }
+
+        <div className="visa-global-field visa-global-border-bottom">
+          <h2 className="visa-global-section-title">Social Media</h2>
+          <div className="visa-global-section-description">Do you have a social media presence? Select from the list below each social media platform you have used within the last five years. In the space next to the platform’s name, enter the username or handle you have used on that platform. Please do not provide your passwords. If you have used more than one platform or more than one username or handle on a single platform, click the 'Add Another' button to list each one separately. If you have not used any of the listed social media platforms in the last five years, select 'None.'</div>
+        </div>
+
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            <Form.Item label="Social Media Provider/Platform">
+              {getFieldDecorator('data.social_media_info.platform', {
+                initialValue: data.social_media_info.platform,
+              })(
+                <VisaSelect combines={constants.export_list(constants.social_media_options)}/>
+              )}
+            </Form.Item>
+          </Col>
+        </Row>
+
+        {
+          this.props.form.getFieldValue('data.social_media_info.platform') &&
+          <Form.Item label="Social Media Identifier" extra="Enter the username or handle you have used on that platform. Please do not provide your passwords.">
+            {getFieldDecorator('data.social_media_info.identifier', {
+              initialValue: data.social_media_info.identifier,
+              rules: [{ required: true, message: 'This field is required' }],
+            })(
+              <Input />
+            )}
+          </Form.Item>
+        }
+
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={this.handlePrev}>Prev</Button>}
           {showNext && <Button type="primary" htmlType="submit">Next</Button>}
@@ -67,5 +179,5 @@ class MyForm extends Component {
     );
   }
 }
-const Form_DS160_6_Previous_Travel = Form.create()(MyForm)
-export default Form_DS160_6_Previous_Travel;
+const Form_DS160_7_Address_Phone = Form.create()(MyForm)
+export default Form_DS160_7_Address_Phone;
