@@ -47,6 +47,9 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
+    getFieldDecorator('data.b_other_person_travel_with', { initialValue: data.b_other_person_travel_with });
+    getFieldDecorator('data.b_part_of_group', { initialValue: data.b_part_of_group });
+
     const field = {
       b_other_person_travel_with: this.props.form.getFieldValue('data.b_other_person_travel_with'),
       b_part_of_group: this.props.form.getFieldValue('data.b_part_of_group'),
@@ -102,7 +105,7 @@ class MyForm extends Component {
               <Form.Item label="Given Name (First Name)">
                 {getFieldDecorator('data.surname', {
                   initialValue: data.surname,
-                  rules: [{ required: true, message: 'This field is required' }],
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
                 })(
                   <Input />
                 )}
@@ -112,7 +115,7 @@ class MyForm extends Component {
               <Form.Item label="Surname (Last Name)">
                 {getFieldDecorator('data.given_name', {
                   initialValue: data.given_name,
-                  rules: [{ required: true, message: 'This field is required' }],
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
                 })(
                   <Input />
                 )}

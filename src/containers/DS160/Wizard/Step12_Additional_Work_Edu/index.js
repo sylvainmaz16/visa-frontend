@@ -52,7 +52,12 @@ class MyForm extends Component {
       },
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-    
+    getFieldDecorator('data.b_belong_to_clan', { initialValue: data.b_belong_to_clan });
+    getFieldDecorator('data.b_travel_last_five_years', { initialValue: data.b_travel_last_five_years });
+    getFieldDecorator('data.b_belong_to_org', { initialValue: data.b_belong_to_org });
+    getFieldDecorator('data.b_military', { initialValue: data.b_military });
+    getFieldDecorator('data.b_special_skill', { initialValue: data.b_special_skill });
+    getFieldDecorator('data.b_rebel_group', { initialValue: data.b_rebel_group });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -68,6 +73,7 @@ class MyForm extends Component {
           textLabel="If you answer Yes, please give the name of the clan or tribe"
           textInitialValue={data.clan_name}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
         />
 
         <VisaInputArray 
@@ -190,6 +196,7 @@ class MyForm extends Component {
           textField="data.special_skill_explain"
           textInitialValue={data.special_skill_explain}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
         />
 
         <VisaExplain
@@ -200,6 +207,7 @@ class MyForm extends Component {
           textField="data.rebel_group_explain"
           textInitialValue={data.rebel_group_explain}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
         />
 
         <div className="visa-form-bottom-btn-group">

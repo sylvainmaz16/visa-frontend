@@ -35,6 +35,13 @@ class MyForm extends Component {
       }
     });
   };
+  validateEmailConfirm = (rule, value, callback) => {
+    if(value != this.props.form.getFieldValue('data.email')) {
+      callback('Please input correctly');
+      return;
+    }
+    callback();
+  };
 
   render() {
     const { getFieldDecorator, isFieldTouched } = this.props.form;
@@ -52,6 +59,9 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
+    getFieldDecorator('data.b_same_as_home', { initialValue: data.b_same_as_home });
+    getFieldDecorator('data.social_media_info.platform', { initialValue: data.social_media_info.platform });
+    
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -70,7 +80,7 @@ class MyForm extends Component {
             <Form.Item label="Primary Phone number">
               {getFieldDecorator('data.phone_info.home', {
                 initialValue: data.phone_info.home,
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Primary Phone number", true) }],
               })(
                 <Input />
               )}
@@ -80,6 +90,7 @@ class MyForm extends Component {
             <Form.Item label="Secondary Phone number" extra="Leave blank if you do not have a secondary phone number.">
               {getFieldDecorator('data.phone_info.mobile', {
                 initialValue: data.phone_info.mobile,
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Secondary Phone number") }],
               })(
                 <Input />
               )}
@@ -91,6 +102,7 @@ class MyForm extends Component {
             <Form.Item label="Work Phone number"  extra="Leave blank if you do not have a work phone number.">
               {getFieldDecorator('data.phone_info.work', {
                 initialValue: data.phone_info.work,
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Work Phone number") }],
               })(
                 <Input />
               )}
@@ -102,7 +114,7 @@ class MyForm extends Component {
                 <Form.Item extra="Enter Email">
                   {getFieldDecorator('data.email', {
                     initialValue: data.email,
-                    rules: [{ required: true, message: 'This field is required' }],
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }],
                   })(
                     <Input />
                   )}
@@ -110,9 +122,9 @@ class MyForm extends Component {
               </Col>
               <Col xs={{ span: 12 }}>
                 <Form.Item extra="Confirm Email">
-                  {getFieldDecorator('data.email', {
-                    initialValue: data.email,
-                    rules: [{ required: true, message: 'This field is required' }],
+                  {getFieldDecorator('data.email_confirm', {
+                    initialValue: data.email_confirm,
+                    rules: [{ validator: this.validateEmailConfirm }],
                   })(
                     <Input />
                   )}

@@ -65,6 +65,12 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data, validators } = this.props
 
+    getFieldDecorator('data.b_ever_used_other_names', { initialValue: data.b_ever_used_other_names });
+    getFieldDecorator('data.b_has_telecode_of_name', { initialValue: data.b_has_telecode_of_name });
+    getFieldDecorator('data.b_more_nationality', { initialValue: data.b_more_nationality });
+    getFieldDecorator('data.b_has_other_nationality_passport', { initialValue: data.b_has_other_nationality_passport });
+    getFieldDecorator('data.b_permanent_resident_other_than_nationality', { initialValue: data.b_permanent_resident_other_than_nationality });
+    
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">

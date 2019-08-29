@@ -134,7 +134,13 @@ class MyForm extends Component {
         "Have you attended a public elementary school on student (F) status or a public secondary school after November 30,1996 without reimbursing the school?"
       ]
     }
-    
+
+    explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: data.part1[exp.radio] })});
+    explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: data.part2[exp.radio] })});
+    explain.part3.map((exp, index) => { getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: data.part3.array[index].radio })});
+    explain.part4.map((exp, index) => { getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: data.part4.array[index].radio })});
+    explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: data.part5.array[index].radio })});
+
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
 
@@ -153,6 +159,7 @@ class MyForm extends Component {
               textField={`data.part1.${exp.text}`}
               textInitialValue={data.part1[exp.text]}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               key={index}
             />
           )}
@@ -172,6 +179,7 @@ class MyForm extends Component {
               textField={`data.part2.${exp.text}`}
               textInitialValue={data.part2[exp.text]}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               key={index}
             />
           )}
@@ -192,6 +200,7 @@ class MyForm extends Component {
               textField={`data.part3.array[${index}].text`}
               textInitialValue={data.part3.array[index].text}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               key={index}
             />
           )}
@@ -212,6 +221,7 @@ class MyForm extends Component {
               textField={`data.part4.array[${index}].text`}
               textInitialValue={data.part4.array[index].text}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               key={index}
             />
           )}
@@ -232,6 +242,7 @@ class MyForm extends Component {
               textField={`data.part5.array[${index}].text`}
               textInitialValue={data.part5.array[index].text}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               key={index}
             />
           )}

@@ -49,8 +49,18 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
 
+    getFieldDecorator('data.b_ever_been_in_US', { initialValue: data.b_ever_been_in_US });
+    getFieldDecorator('data.b_ever_hold_Driver_License', { initialValue: data.b_ever_hold_Driver_License });
+    getFieldDecorator('data.b_ever_been_issued_US_Visa', { initialValue: data.b_ever_been_issued_US_Visa });
+    getFieldDecorator('data.US_Visa.b_ever_been_lost', { initialValue: data.US_Visa.b_ever_been_lost });
+    getFieldDecorator('data.b_ever_been_refused_US_Visa', { initialValue: data.b_ever_been_refused_US_Visa });
+    getFieldDecorator('data.b_ever_been_denied_travel_auth', { initialValue: data.b_ever_been_denied_travel_auth });
+    getFieldDecorator('data.b_petition', { initialValue: data.b_petition });
+    getFieldDecorator('data.US_Visa.b_ever_been_cancelled', { initialValue: data.US_Visa.b_ever_been_cancelled });
+    
+    console.log(data)
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -68,6 +78,7 @@ class MyForm extends Component {
           this.props.form.getFieldValue('data.b_ever_been_in_US') &&
           <VisaDateLength
             getFieldDecorator={getFieldDecorator}
+            validators={this.props.validators}
             date={{
               label: 'Date of arrival (last visit to the US)',
               field: 'data.prev_visit_info.date',
@@ -136,7 +147,7 @@ class MyForm extends Component {
                 <Form.Item label="Date Last Visa Was Issued" extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
                   {getFieldDecorator('data.US_Visa.date', {
                     initialValue: data.US_Visa.date,
-                    rules: [{ required: true, message: 'This field is required' }],
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, "Date Last Visa Was Issued", date_birth) }],
                   })(
                     <DatePicker />
                   )}
@@ -146,6 +157,7 @@ class MyForm extends Component {
                 <Form.Item label="Visa Number" extra="Leave blank if you do not know">
                   {getFieldDecorator('data.US_Visa.number', {
                     initialValue: data.US_Visa.number,
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaNumber(rule, value, callback, "The Visa Number") }],
                   })(
                     <Input />
                   )}
@@ -184,7 +196,7 @@ class MyForm extends Component {
                     <Form.Item label="Which Year">
                       {getFieldDecorator('data.US_Visa.lost_info.year', {
                         initialValue: data.US_Visa.lost_info.year,
-                        rules: [{ required: true, message: 'This field is required' }],
+                        rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaLostYear(rule, value, callback, "Year", date_birth) }],
                       })(
                         <Input />
                       )}
@@ -209,6 +221,7 @@ class MyForm extends Component {
               textField="data.US_Visa.cancel_info.explain"
               textInitialValue={data.US_Visa.cancel_info.explain}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
             />
           </>
         }
@@ -221,6 +234,7 @@ class MyForm extends Component {
           textField="data.refuse_info.explain"
           textInitialValue={data.refuse_info.explain}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
         />
 
         <VisaExplain
@@ -231,6 +245,7 @@ class MyForm extends Component {
           textField="data.denied_info.explain"
           textInitialValue={data.denied_info.explain}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
         />
 
         <VisaExplain
@@ -241,6 +256,7 @@ class MyForm extends Component {
           textField="data.petition_info.explain"
           textInitialValue={data.petition_info.explain}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
         />
 
         <div className="visa-form-bottom-btn-group">

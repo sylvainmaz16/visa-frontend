@@ -10,7 +10,7 @@ class VisaExplain extends Component {
   }
   render() {
 
-    const { label, extra, radioInitialValue, radioField, textField, textInitialValue, getFieldDecorator, radioValue, textLabel, ...rest } = this.props
+    const { label, extra, radioInitialValue, radioField, textField, textInitialValue, getFieldDecorator, radioValue, textLabel, validators, ...rest } = this.props
     return (
       <>
         <Form.Item label={label} extra={extra}>
@@ -24,12 +24,12 @@ class VisaExplain extends Component {
             </Radio.Group>
           )}
         </Form.Item>
-        {radioValue && <Form.Item label={textLabel}>
+        {radioValue && <Form.Item label={textLabel} required>
           {getFieldDecorator(textField, {
             initialValue: textInitialValue,
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
           })(
-            <TextArea rows={7}/>
+            <TextArea style={{textTransform: 'uppercase'}} rows={7}/>
           )}
         </Form.Item>}
       </>

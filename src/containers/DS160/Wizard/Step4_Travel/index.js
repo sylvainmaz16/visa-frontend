@@ -65,6 +65,13 @@ class MyForm extends Component {
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
     console.log(data)
+
+    getFieldDecorator('data.purpose_of_trip', { initialValue: data.purpose_of_trip });
+    getFieldDecorator('data.other_purpose_of_trip', { initialValue: data.other_purpose_of_trip });
+    getFieldDecorator('data.paying_person_for_trip', { initialValue: data.paying_person_for_trip });
+    getFieldDecorator('data.paying_person_info.b_same_address', { initialValue: data.paying_person_info.b_same_address });
+    getFieldDecorator('data.purpose_info_type', { initialValue: data.purpose_info_type });
+
     const field = {
       purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
       other_purpose_of_trip: this.props.form.getFieldValue('data.other_purpose_of_trip'),
@@ -126,7 +133,7 @@ class MyForm extends Component {
                 <Form.Item label="Surname(s) (Last Name)">
                   {getFieldDecorator('data.purpose_info.surname', {
                     initialValue: data.purpose_info.surname,
-                    rules: [{ required: true, message: 'This field is required' }],
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
                   })(
                     <Input />
                   )}
@@ -136,7 +143,7 @@ class MyForm extends Component {
                 <Form.Item label="Given Name(s) (First Name)">
                   {getFieldDecorator('data.purpose_info.given_name', {
                     initialValue: data.purpose_info.given_name,
-                    rules: [{ required: true, message: 'This field is required' }],
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
                   })(
                     <Input />
                   )}
@@ -150,8 +157,9 @@ class MyForm extends Component {
           <Form.Item label="Application Receipt/Petition Number" extra="If you are applying for a petition-based visa, your application receipt/petition number was given to you by the Department of Homeland Security’s U. S. Citizenship and Immigration Services (USCIS) after you filed your petition application at a USCIS Service Center. The application receipt/petition number is 13 characters long and the first three characters are letters. If Not Applicable please put N/A">
             {getFieldDecorator('data.purpose_info.petition', {
               initialValue: data.purpose_info.petition,
+              rules: [{ validator: (rule, value, callback) => this.props.validators.validatePetitionNumber(rule, value, callback, true) }],
             })(
-              <Input />
+              <Input style={{textTransform: 'uppercase'}}/>
             )}
           </Form.Item>
         }

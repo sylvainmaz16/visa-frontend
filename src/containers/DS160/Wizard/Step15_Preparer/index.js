@@ -52,7 +52,7 @@ class MyForm extends Component {
       },
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-    
+    getFieldDecorator('data.b_assist', { initialValue: data.b_assist });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">

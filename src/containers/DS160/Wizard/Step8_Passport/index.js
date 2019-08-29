@@ -55,6 +55,9 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
+    getFieldDecorator('data.doc_type', { initialValue: data.doc_type });
+    getFieldDecorator('data.b_ever_lost_passport', { initialValue: data.b_ever_lost_passport });
+    
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -161,6 +164,7 @@ class MyForm extends Component {
           field="data.issuance_date"
           initialValue={data.issuance_date}
           getFieldDecorator={getFieldDecorator}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback) }]}
         />
 
         <VisaDatePicker 
@@ -169,6 +173,7 @@ class MyForm extends Component {
           field="data.expiration_date"
           initialValue={data.expiration_date}
           getFieldDecorator={getFieldDecorator}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, 'Expiration Date', this.props.form.getFieldValue('data.issuance_date')) }]}
         />
 
         <VisaRadio

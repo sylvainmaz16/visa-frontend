@@ -54,10 +54,8 @@ class MyForm extends Component {
     const { martial_status_options } = constants
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-
-    const field = {
-      relationship: this.props.form.getFieldValue('data.relationship'),
-    }
+    getFieldDecorator('data.b_previously_employed', { initialValue: data.b_previously_employed });
+    getFieldDecorator('data.b_edu_secondary_level', { initialValue: data.b_edu_secondary_level });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -99,6 +97,7 @@ class MyForm extends Component {
                 field="data.emp_info.address.tel_number"
                 initialValue={data.emp_info.address.tel_number}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -117,6 +116,7 @@ class MyForm extends Component {
                 initialValue={data.emp_info.supervisor.surname}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", false) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -127,6 +127,7 @@ class MyForm extends Component {
                 initialValue={data.emp_info.supervisor.given_name}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", false) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -137,6 +138,7 @@ class MyForm extends Component {
                 initialValue={data.emp_info.date_to}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Employment Date From", false) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -147,6 +149,8 @@ class MyForm extends Component {
                 initialValue={data.emp_info.date_to}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
+                
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Employment Date To", this.props.form.getFieldValue('data.emp_info.date_from'), false) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -155,7 +159,7 @@ class MyForm extends Component {
                   initialValue: data.emp_info.duty_explain,
                   rules: [{ required: true, message: 'This field is required' }],
                 })(
-                  <TextArea rows={3} />
+                  <TextArea style={{textTransform: 'uppercase'}} rows={3} />
                 )}
               </Form.Item>
             </Col>
@@ -191,8 +195,9 @@ class MyForm extends Component {
                 label="Date of Attendance From"
                 extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
                 field="data.edu_info.date_from"
-                initialValue={data.emp_info.date_to}
+                initialValue={data.edu_info.date_from}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Date of Attendance From", false) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -202,6 +207,7 @@ class MyForm extends Component {
                 field="data.edu_info.date_to"
                 initialValue={data.edu_info.date_to}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Date of Attendance To", this.props.form.getFieldValue('data.edu_info.date_from'), false) }]}
               />
             </Col>
           </Row>

@@ -55,6 +55,7 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
+    getFieldDecorator('data.relationship', { initialValue: data.relationship });
     const field = {
       relationship: this.props.form.getFieldValue('data.relationship'),
     }
@@ -83,12 +84,14 @@ class MyForm extends Component {
                   field="data.surname"
                   initialValue={data.surname}
                   getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
                 />
                 <VisaInput
                   label="Given Name(s)"
                   field="data.given_name"
                   initialValue={data.given_name}
                   getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
                 />
               </> :
               <VisaInput
@@ -115,6 +118,7 @@ class MyForm extends Component {
               field="data.tel_number"
               initialValue={data.tel_number}
               getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -123,6 +127,7 @@ class MyForm extends Component {
               field="data.email"
               initialValue={data.email}
               getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email") }]}
             />
           </Col>
         </Row>

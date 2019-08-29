@@ -52,6 +52,8 @@ class MyForm extends Component {
       },
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
+    getFieldDecorator('data.b_position', { initialValue: data.b_position });
+    getFieldDecorator('data.b_vessel', { initialValue: data.b_vessel });
     
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
