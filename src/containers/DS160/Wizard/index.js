@@ -9,7 +9,6 @@ import Form_DS160_2 from './Step2';
 import Form_DS160_3 from './Step3_Personal_Information';
 import { Spin } from 'antd';
 
-import './index.scss'
 import Form_DS160_4_Travel from './Step4_Travel';
 import Form_DS160_5_Travel_Company from './Step5_Travel_Company';
 import Form_DS160_6_Previous_Travel from './Step6_Previous_Travel';
@@ -22,6 +21,10 @@ import Form_DS160_12_Additional_Work_Edu from './Step12_Additional_Work_Edu';
 import Form_DS160_13_Security from './Step13_Security';
 import Form_DS160_14_Crew_Job from './Step14_Crew_Job';
 import Form_DS160_15_Preparer from './Step15_Preparer';
+
+import ds160_validators from '../Validators'
+
+import './index.scss'
 class DS160_Wizard extends Component {
   static defaultProps = {
     token: null
@@ -50,6 +53,7 @@ class DS160_Wizard extends Component {
       this.props.updateValues( DS160.DS160_UPDATE_VALUES, data );
     this.props.onPrevStep(DS160.DS160_PREV_STEP);
     this.props.history.push('/ds-160/application-form');
+    window.scrollTo(0, 0); 
   }
 
   onNext = (data, field) => {
@@ -59,6 +63,7 @@ class DS160_Wizard extends Component {
       this.props.updateValues( DS160.DS160_UPDATE_VALUES, data );
     this.props.onNextStep(DS160.DS160_NEXT_STEP);
     this.props.history.push('/ds-160/application-form');
+    window.scrollTo(0, 0); 
   }
 
   onSaveAndContinue = (data, field) => {
@@ -103,6 +108,7 @@ class DS160_Wizard extends Component {
       onPrev: (e) => this.onPrev(e, field),
       onNext: (e) => this.onNext(e, field),
       onSaveAndContinue: (e) => this.onSaveAndContinue(e, field),
+      validators: ds160_validators
     }
 
     switch(step_index) {

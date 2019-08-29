@@ -24,21 +24,12 @@ class MyForm extends Component {
   }
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
       console.log(err, values)
       if (!err) {
         this.props.onNext(values.data);
       }
     });
-  };
-  handleBirthDateChange = (rule, value, callback) => {
-    if (!value) {
-      callback('This field is required');
-    }
-    if (moment().diff(value) > 0 && !moment(value).isSame(moment(), 'day')) {
-      callback();
-    }
-    callback('Date must be earlier than today');
   };
   handleOtherResidentChange = (rule, value, callback) => {
     if (!value) {
@@ -72,7 +63,7 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, validators } = this.props
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -83,7 +74,7 @@ class MyForm extends Component {
         <Form.Item label="Surname(s) (Last Name)" extra="Last Name (Family Name)">
           {getFieldDecorator('data.surname', {
             initialValue: data.surname,
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname(s) (Last Name)") }],
           })(
             <Input />
           )}
@@ -94,7 +85,7 @@ class MyForm extends Component {
         <Form.Item label="Given Name(s) (First Name(s))" extra="First Name(s)">
           {getFieldDecorator('data.given_name', {
             initialValue: data.given_name,
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name(s) (First Name(s))") }],
           })(
             <Input />
           )}
@@ -119,6 +110,7 @@ class MyForm extends Component {
               <Form.Item label="Other Surnames Used (maiden, religious, professional, aliases, etc.)">
                 {getFieldDecorator('data.used_other_name.surname', {
                   initialValue: data.used_other_name.surname,
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Other Surnames Used (maiden, religious, professional, aliases, etc.)") }],
                 })(
                   <Input />
                 )}
@@ -128,6 +120,7 @@ class MyForm extends Component {
               <Form.Item label="Other Given Names Used">
                 {getFieldDecorator('data.used_other_name.given_name', {
                   initialValue: data.used_other_name.given_name,
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Other Given Names Used") }],
                 })(
                   <Input />
                 )}
@@ -149,18 +142,20 @@ class MyForm extends Component {
         {this.props.form.getFieldValue('data.b_has_telecode_of_name') &&
           <Row gutter={16}>
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item label="Please provide your Telecode Last Name">
+              <Form.Item label="Please provide your Telecode Surname">
                 {getFieldDecorator('data.telecode_of_name.surname', {
                   initialValue: data.telecode_of_name.surname,
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateTelecodeName(rule, value, callback, "Telecode Surname") }],
                 })(
                   <Input />
                 )}
               </Form.Item>
             </Col>
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item label="Please provide your Telecode First Name">
+              <Form.Item label="Please provide your Telecode Given Name">
                 {getFieldDecorator('data.telecode_of_name.given_name', {
                   initialValue: data.telecode_of_name.given_name,
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateTelecodeName(rule, value, callback, "Telecode Given Name") }],
                 })(
                   <Input />
                 )}
@@ -191,7 +186,7 @@ class MyForm extends Component {
         <Form.Item label="Date of birth" extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
           {getFieldDecorator('data.date_birth', {
             initialValue: moment(data.date_birth),
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ validator: this.props.validators.validateEarlierDate }],
           })(
             <DatePicker />
           )}
@@ -322,6 +317,7 @@ class MyForm extends Component {
             <Form.Item label="US Social Security Number" extra="Leave blank if you do not have any of these numbers">
               {getFieldDecorator('data.social_security_number', {
                 initialValue: data.social_security_number,
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateSSN(rule, value, callback, "U.S. Social Security Number") }],
               })(
                 <Input />
               )}
@@ -331,6 +327,7 @@ class MyForm extends Component {
             <Form.Item label="US Tax ID Number" extra="Leave blank if you do not have any of these numbers">
               {getFieldDecorator('data.tax_id_number', {
                 initialValue: data.tax_id_number,
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "U.S. Taxpayer ID Number") }],
               })(
                 <Input />
               )}
