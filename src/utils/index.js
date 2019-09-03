@@ -5,3 +5,7 @@ export const createActionTypes = (base, actions = []) =>
     return acc
   }, {})
 export default createActionTypes
+
+export const getInitialValue = (value) => {
+  return value != null ? value : undefined
+}

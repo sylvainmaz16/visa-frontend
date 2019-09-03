@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon } from 'antd';
+import * as utils from '../../utils'
 
 class VisaInputArray extends Component {
   static defaultProps = {
@@ -36,7 +37,7 @@ class VisaInputArray extends Component {
 
     const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, ...rest } = this.props
 
-    getFieldDecorator(keysField, { initialValue: initialValue });
+    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
     const formItems = languages.map((lang, index) => (
       <Form.Item
@@ -45,7 +46,7 @@ class VisaInputArray extends Component {
       >
         {getFieldDecorator(`${arrayField}[${index}]`, {
           validateTrigger: ['onChange', 'onBlur'],
-          initialValue: initialValue[index],
+          initialValue: utils.getInitialValue(initialValue[index]),
           rules: [
             {
               required: true,

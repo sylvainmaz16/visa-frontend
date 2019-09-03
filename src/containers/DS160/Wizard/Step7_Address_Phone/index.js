@@ -7,6 +7,7 @@ import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -59,8 +60,8 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
-    getFieldDecorator('data.b_same_as_home', { initialValue: data.b_same_as_home });
-    getFieldDecorator('data.social_media_info.platform', { initialValue: data.social_media_info.platform });
+    getFieldDecorator('data.b_same_as_home', { initialValue: utils.getInitialValue(data.b_same_as_home) });
+    getFieldDecorator('data.social_media_info.platform', { initialValue: utils.getInitialValue(data.social_media_info.platform) });
     
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -79,7 +80,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label="Primary Phone number">
               {getFieldDecorator('data.phone_info.home', {
-                initialValue: data.phone_info.home,
+                initialValue: utils.getInitialValue(data.phone_info.home),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Primary Phone number", true) }],
               })(
                 <Input />
@@ -89,7 +90,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label="Secondary Phone number" extra="Leave blank if you do not have a secondary phone number.">
               {getFieldDecorator('data.phone_info.mobile', {
-                initialValue: data.phone_info.mobile,
+                initialValue: utils.getInitialValue(data.phone_info.mobile),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Secondary Phone number") }],
               })(
                 <Input />
@@ -101,7 +102,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label="Work Phone number"  extra="Leave blank if you do not have a work phone number.">
               {getFieldDecorator('data.phone_info.work', {
-                initialValue: data.phone_info.work,
+                initialValue: utils.getInitialValue(data.phone_info.work),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Work Phone number") }],
               })(
                 <Input />
@@ -113,7 +114,7 @@ class MyForm extends Component {
               <Col xs={{ span: 12 }}>
                 <Form.Item extra="Enter Email">
                   {getFieldDecorator('data.email', {
-                    initialValue: data.email,
+                    initialValue: utils.getInitialValue(data.email),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }],
                   })(
                     <Input />
@@ -123,7 +124,7 @@ class MyForm extends Component {
               <Col xs={{ span: 12 }}>
                 <Form.Item extra="Confirm Email">
                   {getFieldDecorator('data.email_confirm', {
-                    initialValue: data.email_confirm,
+                    initialValue: utils.getInitialValue(data.email_confirm),
                     rules: [{ validator: this.validateEmailConfirm }],
                   })(
                     <Input />
@@ -136,7 +137,7 @@ class MyForm extends Component {
 
         <Form.Item label="Mailing Address">
           {getFieldDecorator('data.mail_addr.b_same_as_home', {
-            initialValue: data.mail_addr.b_same_as_home,
+            initialValue: utils.getInitialValue(data.mail_addr.b_same_as_home),
           })(
             <Checkbox>The mailing address is different from the applicant address</Checkbox>
           )}
@@ -161,7 +162,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label="Social Media Provider/Platform">
               {getFieldDecorator('data.social_media_info.platform', {
-                initialValue: data.social_media_info.platform,
+                initialValue: utils.getInitialValue(data.social_media_info.platform),
               })(
                 <VisaSelect combines={constants.export_list(constants.social_media_options)}/>
               )}
@@ -173,7 +174,7 @@ class MyForm extends Component {
           this.props.form.getFieldValue('data.social_media_info.platform') &&
           <Form.Item label="Social Media Identifier" extra="Enter the username or handle you have used on that platform. Please do not provide your passwords.">
             {getFieldDecorator('data.social_media_info.identifier', {
-              initialValue: data.social_media_info.identifier,
+              initialValue: utils.getInitialValue(data.social_media_info.identifier),
               rules: [{ required: true, message: 'This field is required' }],
             })(
               <Input />

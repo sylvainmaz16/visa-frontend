@@ -11,6 +11,7 @@ import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -52,8 +53,8 @@ class MyForm extends Component {
       },
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-    getFieldDecorator('data.b_position', { initialValue: data.b_position });
-    getFieldDecorator('data.b_vessel', { initialValue: data.b_vessel });
+    getFieldDecorator('data.b_position', { initialValue: utils.getInitialValue(data.b_position) });
+    getFieldDecorator('data.b_vessel', { initialValue: utils.getInitialValue(data.b_vessel) });
     
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>

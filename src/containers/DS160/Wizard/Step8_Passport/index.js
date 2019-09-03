@@ -10,6 +10,7 @@ import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -55,8 +56,8 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
-    getFieldDecorator('data.doc_type', { initialValue: data.doc_type });
-    getFieldDecorator('data.b_ever_lost_passport', { initialValue: data.b_ever_lost_passport });
+    getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) });
+    getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) });
     
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -82,7 +83,7 @@ class MyForm extends Component {
           this.props.form.getFieldValue('data.doc_type') == 'T' &&
           <Form.Item label="Explain">
             {getFieldDecorator('data.doc_type_explain', {
-              initialValue: data.doc_type_explain,
+              initialValue: utils.getInitialValue(data.doc_type_explain),
               rules: [{ required: true, message: 'This field is required' }],
             })(
               <TextArea rows={5}/>

@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } fr
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 
@@ -47,8 +48,8 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
-    getFieldDecorator('data.b_other_person_travel_with', { initialValue: data.b_other_person_travel_with });
-    getFieldDecorator('data.b_part_of_group', { initialValue: data.b_part_of_group });
+    getFieldDecorator('data.b_other_person_travel_with', { initialValue: utils.getInitialValue(data.b_other_person_travel_with) });
+    getFieldDecorator('data.b_part_of_group', { initialValue: utils.getInitialValue(data.b_part_of_group) });
 
     const field = {
       b_other_person_travel_with: this.props.form.getFieldValue('data.b_other_person_travel_with'),
@@ -62,7 +63,7 @@ class MyForm extends Component {
 
         <Form.Item label="Are there other persons traveling with you?">
           {getFieldDecorator('data.b_other_person_travel_with', {
-            initialValue: data.b_other_person_travel_with,
+            initialValue: utils.getInitialValue(data.b_other_person_travel_with),
             rules: [{ required: true, message: 'This field is required' }],
           })(
             <Radio.Group>
@@ -74,7 +75,7 @@ class MyForm extends Component {
         {field.b_other_person_travel_with &&
           <Form.Item label="Are you traveling as part of a group or organization?">
             {getFieldDecorator('data.b_part_of_group', {
-              initialValue: data.b_part_of_group,
+              initialValue: utils.getInitialValue(data.b_part_of_group),
               rules: [{ required: true, message: 'This field is required' }],
             })(
               <Radio.Group>
@@ -89,7 +90,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} sm={{ span: 12 }}>
             <Form.Item label="Name of group or organisation if traveling as part of a group or organization">
               {getFieldDecorator('data.company', {
-                initialValue: data.company,
+                initialValue: utils.getInitialValue(data.company),
                 rules: [{ required: true, message: 'This field is required' }],
               })(
                 <Input />
@@ -104,7 +105,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} sm={{ span: 6 }}>
               <Form.Item label="Given Name (First Name)">
                 {getFieldDecorator('data.surname', {
-                  initialValue: data.surname,
+                  initialValue: utils.getInitialValue(data.surname),
                   rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
                 })(
                   <Input />
@@ -114,7 +115,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} sm={{ span: 6 }}>
               <Form.Item label="Surname (Last Name)">
                 {getFieldDecorator('data.given_name', {
-                  initialValue: data.given_name,
+                  initialValue: utils.getInitialValue(data.given_name),
                   rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
                 })(
                   <Input />
@@ -124,7 +125,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
               <Form.Item label="Relationship to you (Parent, Spouse, Child, Other Relative, Friend, Business Associate, Other)">
                 {getFieldDecorator('data.relationship', {
-                  initialValue: data.relationship,
+                  initialValue: utils.getInitialValue(data.relationship),
                   rules: [{ required: true, message: 'This field is required' }],
                 })(
                   <Input />

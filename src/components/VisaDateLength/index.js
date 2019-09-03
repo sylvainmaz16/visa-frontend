@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import VisaSelect from "../VisaSelect";
+import * as utils from '../../utils'
 
 class VisaDateLength extends Component {
   static defaultProps = {
@@ -24,7 +25,7 @@ class VisaDateLength extends Component {
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <Form.Item label={date.label} extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
             {getFieldDecorator(date.field, {
-              initialValue: date.initialValue,
+              initialValue: utils.getInitialValue(date.initialValue),
               rules: [{ validator: (rule, value, callback) => validators.validateEarlierDate(rule, value, callback, "Date Arrived") }],
             })(
               <DatePicker />
@@ -34,7 +35,7 @@ class VisaDateLength extends Component {
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <Form.Item label="Length of stay" extra="0 of 3 max characters">
             {getFieldDecorator(period.field, {
-              initialValue: period.initialValue,
+              initialValue: utils.getInitialValue(period.initialValue),
               rules: [{ validator: (rule, value, callback) => validators.validateLengthOfStay(rule, value, callback, "Length of Stay") }],
             })(
               <Input />
@@ -44,7 +45,7 @@ class VisaDateLength extends Component {
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <Form.Item label="Please Specify">
             {getFieldDecorator(unit.field, {
-              initialValue: unit.initialValue,
+              initialValue: utils.getInitialValue(unit.initialValue),
               rules: [{ required: true, message: 'This field is required' }],
             })(
               <VisaSelect combines={unit_options}/>

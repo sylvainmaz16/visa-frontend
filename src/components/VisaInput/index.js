@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import * as utils from '../../utils'
 
 class VisaInput extends Component {
   static defaultProps = {
@@ -14,7 +15,7 @@ class VisaInput extends Component {
     return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
-          initialValue: initialValue,
+          initialValue: utils.getInitialValue(initialValue),
           rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
         })(
           <Input />

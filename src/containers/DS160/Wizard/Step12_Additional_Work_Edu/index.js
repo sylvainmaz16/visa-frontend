@@ -11,6 +11,7 @@ import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -52,12 +53,12 @@ class MyForm extends Component {
       },
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-    getFieldDecorator('data.b_belong_to_clan', { initialValue: data.b_belong_to_clan });
-    getFieldDecorator('data.b_travel_last_five_years', { initialValue: data.b_travel_last_five_years });
-    getFieldDecorator('data.b_belong_to_org', { initialValue: data.b_belong_to_org });
-    getFieldDecorator('data.b_military', { initialValue: data.b_military });
-    getFieldDecorator('data.b_special_skill', { initialValue: data.b_special_skill });
-    getFieldDecorator('data.b_rebel_group', { initialValue: data.b_rebel_group });
+    getFieldDecorator('data.b_belong_to_clan', { initialValue: utils.getInitialValue(data.b_belong_to_clan) });
+    getFieldDecorator('data.b_travel_last_five_years', { initialValue: utils.getInitialValue(data.b_travel_last_five_years) });
+    getFieldDecorator('data.b_belong_to_org', { initialValue: utils.getInitialValue(data.b_belong_to_org) });
+    getFieldDecorator('data.b_military', { initialValue: utils.getInitialValue(data.b_military) });
+    getFieldDecorator('data.b_special_skill', { initialValue: utils.getInitialValue(data.b_special_skill) });
+    getFieldDecorator('data.b_rebel_group', { initialValue: utils.getInitialValue(data.b_rebel_group) });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">

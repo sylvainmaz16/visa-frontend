@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import * as utils from '../../utils'
 
 class VisaRadio extends Component {
   static defaultProps = {
@@ -12,7 +13,7 @@ class VisaRadio extends Component {
     return (
       <Form.Item label={label} extra={extra}>
         {getFieldDecorator(field, {
-          initialValue: initialValue,
+          initialValue: utils.getInitialValue(initialValue),
           rules: [{ required: true, message: 'This field is required' }],
         })(
           <Radio.Group>

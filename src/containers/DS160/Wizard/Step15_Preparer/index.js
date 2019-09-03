@@ -11,6 +11,7 @@ import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -52,7 +53,7 @@ class MyForm extends Component {
       },
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-    getFieldDecorator('data.b_assist', { initialValue: data.b_assist });
+    getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">

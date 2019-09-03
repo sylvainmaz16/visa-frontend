@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import moment from 'moment'
+import * as utils from '../../utils'
 
 class VisaDatePicker extends Component {
   static defaultProps = {
@@ -15,7 +16,7 @@ class VisaDatePicker extends Component {
     return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
-          initialValue: moment(initialValue),
+          initialValue: moment(utils.getInitialValue(initialValue)),
           rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
         })(
           <DatePicker />

@@ -10,6 +10,7 @@ import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -54,8 +55,8 @@ class MyForm extends Component {
     const { martial_status_options } = constants
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-    getFieldDecorator('data.b_previously_employed', { initialValue: data.b_previously_employed });
-    getFieldDecorator('data.b_edu_secondary_level', { initialValue: data.b_edu_secondary_level });
+    getFieldDecorator('data.b_previously_employed', { initialValue: utils.getInitialValue(data.b_previously_employed) });
+    getFieldDecorator('data.b_edu_secondary_level', { initialValue: utils.getInitialValue(data.b_edu_secondary_level) });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -156,7 +157,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <Form.Item label="Describe your duties IN FEW WORDS (3 lines maximum)" extra="0 of 300 max characters">
                 {getFieldDecorator('data.emp_info.duty_explain', {
-                  initialValue: data.emp_info.duty_explain,
+                  initialValue: utils.getInitialValue(data.emp_info.duty_explain),
                   rules: [{ required: true, message: 'This field is required' }],
                 })(
                   <TextArea style={{textTransform: 'uppercase'}} rows={3} />

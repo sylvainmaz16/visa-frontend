@@ -1,4 +1,5 @@
 import { API_GITHUB, DS160 } from '../actions/types'
+import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {
   loading: false,
@@ -10,511 +11,465 @@ const initialState = {
   step_index: 1,
   ds160: {
     // step-1
-    interview_location: undefined,
+    interview_location: null,
 
     // step-2
     b_agreement_2_1: false,
     b_agreement_2_2: false,
-    purpose_of_trip: undefined,
+    purpose_of_trip: null,
 
     form_personal_info: {
-      surname: undefined,
-      given_name: undefined,
+      surname: null,
+      given_name: null,
 
-      b_ever_used_other_names: undefined,
+      b_ever_used_other_names: null,
       used_other_name: {
-          surname: undefined,
-          given_name: undefined
+          surname: null,
+          given_name: null
       },
-      b_has_telecode_of_name: undefined,
+      b_has_telecode_of_name: null,
       telecode_of_name: {
-          surname: undefined,
-          given_name: undefined
+          surname: null,
+          given_name: null
       },
-      sex: undefined,
-      martial_status: undefined,
-      martial_other_explain: undefined,
-      date_birth: undefined,  //not
+      sex: null,
+      martial_status: null,
+      martial_other_explain: null,
+      date_birth: null,  //not
       place_of_birth: {
-          city: undefined,
-          state: undefined,
-          country: undefined,
+          city: null,
+          state: null,
+          country: null,
       },
-      nationality: undefined,
-      b_more_nationality: undefined,
-      other_nationality: undefined,
-      b_has_other_nationality_passport: undefined,
-      other_nationality_passport: undefined,
-      b_permanent_resident_other_than_nationality: undefined,
-      permanent_resident_country: undefined,
-      national_id_number: undefined,
-      b_national_id_number_NA: undefined,
-      social_security_number: undefined,
-      // social_security_number: {
-      //     ssn1: undefined,
-      //     ssn2: undefined,
-      //     ssn3: undefined
-      // },
-      b_social_security_number_NA: undefined,
-      tax_id_number: undefined,
-      b_tax_id_number_NA: undefined,
+      nationality: null,
+      b_more_nationality: null,
+      other_nationality: null,
+      b_has_other_nationality_passport: null,
+      other_nationality_passport: null,
+      b_permanent_resident_other_than_nationality: null,
+      permanent_resident_country: null,
+      national_id_number: null,
+      social_security_number: null,
+      tax_id_number: null,
     },
 
     form_travel: {
-      purpose_of_trip: undefined,
-      other_purpose_of_trip: undefined,
-      purpose_info_type: undefined,
+      purpose_of_trip: null,
+      other_purpose_of_trip: null,
+      purpose_info_type: null,
       purpose_info: {
-          surname: undefined,
-          given_name: undefined,
-          company: undefined,
-          petition: undefined
+          surname: null,
+          given_name: null,
+          company: null,
+          petition: null
       },
       b_specific_travel_plan: false,
 
       travel_plan: {
-          date_of_arrival: undefined,
+          date_of_arrival: null,
           length_of_stay: {
-              length: undefined,
-              period: undefined
+              length: null,
+              period: null
           },
       },
   
       travel_plan_specific: {
-          date_of_arrival: undefined,
-          arrival_flight: undefined,
-          arrival_city: undefined,
-          date_of_departure: undefined,
-          departure_flight: undefined,
-          departure_city: undefined,
-          visit_location: undefined,
+          date_of_arrival: null,
+          arrival_flight: null,
+          arrival_city: null,
+          date_of_departure: null,
+          departure_flight: null,
+          departure_city: null,
+          visit_location: null,
       },
   
       address_you_will_stay: {
-          street_addr1: undefined,
-          street_addr2: undefined,
-          city: undefined,
-          state: undefined,
-          zip_code: undefined
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null
       },
 
-      paying_person_for_trip: undefined,
+      paying_person_for_trip: null,
       paying_org_info: {
-        name: undefined,
-        tel_number: undefined,
-        relationship: undefined,
+        name: null,
+        tel_number: null,
+        relationship: null,
       },
       paying_person_info: {
-          surname: undefined,
-          given_name: undefined,
-          tel_number: undefined,
-          email: undefined,
-          relationship: undefined, // Child (C), Parent (P), Spouse (S), Other Relative (R), Friend (F), Other (O)
-          b_same_address: undefined,
+          surname: null,
+          given_name: null,
+          tel_number: null,
+          email: null,
+          relationship: null, // Child (C), Parent (P), Spouse (S), Other Relative (R), Friend (F), Other (O)
+          b_same_address: null,
           address: {
-              street_addr1: undefined,
-              street_addr2: undefined,
-              city: undefined,
-              b_state_NA: false,
-              state: undefined,
-              b_zip_code_NA: false,
-              zip_code: undefined,
-              country: undefined
+              street_addr1: null,
+              street_addr2: null,
+              city: null,
+              state: null,
+              zip_code: null,
+              country: null
           },
       },
     },
 
     form_travel_company: {
-      b_other_person_travel_with: undefined,
-      b_part_of_group: undefined,
-      surname: undefined,
-      given_name: undefined,
-      relationship: undefined,
+      b_other_person_travel_with: null,
+      b_part_of_group: null,
+      surname: null,
+      given_name: null,
+      relationship: null,
 
-      company: undefined
+      company: null
     },
 
     form_prev_travel_info: {
-      b_ever_been_in_US: undefined,
+      b_ever_been_in_US: null,
       prev_visit_info: {
-          date: undefined,
+          date: null,
           length_of_stay: {
-              period: undefined,
-              unit: undefined
+              period: null,
+              unit: null
           }
       },
-      b_ever_hold_Driver_License: undefined,
+      b_ever_hold_Driver_License: null,
       prev_DL_info: {
-          number: undefined,
-          b_number_NA: false,
-          state: undefined
+          number: null,
+          state: null
       },
-      b_ever_been_issued_US_Visa: undefined,
+      b_ever_been_issued_US_Visa: null,
       US_Visa: {
-          date: undefined,
-          number: undefined,
-          number_NA: undefined,   // deprecated .. instead of this use number == ''
-          b_same_type_visa: undefined,
-          b_same_cntry_visa: undefined,
-          b_been_ten_printed: undefined,
-          b_ever_been_lost: undefined,
+          date: null,
+          number: null,
+          b_same_type_visa: null,
+          b_same_cntry_visa: null,
+          b_been_ten_printed: null,
+          b_ever_been_lost: null,
           lost_info: {
-              year: undefined,
-              explain: undefined
+              year: null,
+              explain: null
           },
-          b_ever_been_cancelled: undefined,
+          b_ever_been_cancelled: null,
           cancel_info: {
-              explain: undefined
+              explain: null
           }
       },
-      b_ever_been_refused_US_Visa: undefined,
+      b_ever_been_refused_US_Visa: null,
       refuse_info: {
-          explain: undefined
+          explain: null
       },
-      b_ever_been_denied_travel_auth: undefined,
+      b_ever_been_denied_travel_auth: null,
       denied_info: {
-          explain: undefined
+          explain: null
       },
-      b_petition: undefined,
+      b_petition: null,
       petition_info: {
-          explain: undefined
+          explain: null
       }
     },
 
     form_addr_and_phone: {
       home_addr: {
-          street_addr1: undefined,
-          street_addr2: undefined,
-          city: undefined,
-          state: undefined,
-          b_state_NA: undefined,
-          zip_code: undefined,
-          b_zip_code_NA: undefined,
-          country: undefined
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null
       },
       mail_addr: {
-          b_same_as_home: undefined,
+          b_same_as_home: null,
           info: {
-              street_addr1: undefined,
-              street_addr2: undefined,
-              city: undefined,
-              state: undefined,
-              b_state_NA: undefined,
-              zip_code: undefined,
-              b_zip_code_NA: undefined,
-              country: undefined
+              street_addr1: null,
+              street_addr2: null,
+              city: null,
+              state: null,
+              zip_code: null,
+              country: null
           },
       },
       phone_info: {
-          home: undefined,
-          mobile: undefined,
-          mobile_NA: undefined,   // deprecated.. instead of this, use mobile == ''
-          work: undefined,
-          work_NA: undefined
+          home: null,
+          mobile: null,
+          work: null,
       },
-      email: undefined,
+      email: null,
       social_media_info: {
-          platform: undefined,
-          identifier: undefined
+          platform: null,
+          identifier: null
       }
     },
 
     form_passport: {
-      doc_type: undefined,
-      doc_type_explain: undefined,
-      doc_number: undefined,
-      book_number: undefined,
-      book_number_NA: undefined,
-      doc_authority: undefined,
+      doc_type: null,
+      doc_type_explain: null,
+      doc_number: null,
+      book_number: null,
+      doc_authority: null,
       issued_location: {
-          city: undefined,
-          state: undefined,
-          country: undefined
+          city: null,
+          state: null,
+          country: null
       },
-      issuance_date: undefined,
-      expiration_date: undefined,
-      b_expiration_date_NA: undefined,
-      b_ever_lost_passport: undefined,
+      issuance_date: null,
+      expiration_date: null,
+      b_ever_lost_passport: null,
       lost_info: {
-          number: undefined,
-          number_NA: undefined,
-          country: undefined,
-          explain: undefined
+          number: null,
+          country: null,
+          explain: null
       }
     },
 
     form_contact: {
-      surname: undefined,
-      given_name: undefined,
-      name_NA: undefined,
-      organization: undefined,
-      organization_NA: undefined,
-      relationship: undefined,
+      surname: null,
+      given_name: null,
+      organization: null,
+      relationship: null,
       address: {
-          street_addr1: undefined,
-          street_addr2: undefined,
-          city: undefined,
-          state: undefined,
-          zip_code: undefined,
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
       },
-      tel_number: undefined,
-      email: undefined,
-      email_NA: undefined,
-      addr_and_phone_NA: undefined
+      tel_number: null,
+      email: null,
     },
 
     form_family: {
       father: {
-          surname: undefined,
-          surname_NA: undefined,
-          given_name: undefined,
-          given_name_NA: undefined,
-          birthday: undefined,
-          birthday_NA: undefined,
-          b_in_US: undefined,
-          status: undefined
+          surname: null,
+          given_name: null,
+          birthday: null,
+          b_in_US: null,
+          status: null
       },
       mother: {
-          surname: undefined,
-          surname_NA: undefined,
-          given_name: undefined,
-          given_name_NA: undefined,
-          birthday: undefined,
-          birthday_NA: undefined,
-          b_in_US: undefined,
-          status: undefined
+          surname: null,
+          given_name: null,
+          birthday: null,
+          b_in_US: null,
+          status: null
       },
-      b_other_relative: undefined,
+      b_other_relative: null,
       other: {
-          surname: undefined,
-          given_name: undefined,
-          relationship: undefined,
-          status: undefined
+          surname: null,
+          given_name: null,
+          relationship: null,
+          status: null
       },
-      b_more_relatives: undefined,
+      b_more_relatives: null,
 
       spouse: {
-        surname: undefined,
-        given_name: undefined,
-        date_birth: undefined,
+        surname: null,
+        given_name: null,
+        date_birth: null,
         place_of_birth: {
-          city: undefined,
-          country: undefined
+          city: null,
+          country: null
         },
         address: {
-          street_addr1: undefined,
-          street_addr2: undefined,
-          city: undefined,
-          state: undefined,
-          zip_code: undefined,
-          country: undefined
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null
         }
       }
     },
 
     form_work_or_edu: {
-      occupation: undefined,
-      specify_other_explain: undefined,
-      name: undefined,
+      occupation: null,
+      specify_other_explain: null,
+      name: null,
       address: {
-          street_addr1: undefined,
-          street_addr2: undefined,
-          city: undefined,
-          state: undefined,
-          b_state_NA: false,
-          zip_code: undefined,
-          b_zip_code_NA: true,
-          tel_number: undefined,
-          country: undefined
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          tel_number: null,
+          country: null
       },
-      start_date: undefined,
-      monthly_income: undefined,
-      monthly_income_NA: undefined,
-      duty_explain: undefined
+      start_date: null,
+      monthly_income: null,
+      duty_explain: null
     },
 
     form_prev_work_or_edu: {
-      b_previously_employed: undefined,
+      b_previously_employed: null,
       emp_info: {
-          name: undefined,
+          name: null,
           address: {
-            street_addr1: undefined,
-            street_addr2: undefined,
-            city: undefined,
-            state: undefined,
-            b_state_NA: false,
-            zip_code: undefined,
-            b_zip_code_NA: true,
-            tel_number: undefined,
-            country: undefined
+            street_addr1: null,
+            street_addr2: null,
+            city: null,
+            state: null,
+            zip_code: null,
+            tel_number: null,
+            country: null
           },
-          job_title: undefined,
+          job_title: null,
           supervisor: {
-              surname: undefined,
-              surname_NA: false,
-              given_name: undefined,
-              given_name_NA: false
+              surname: null,
+              given_name: null,
           },
-          date_from: undefined,
-          date_to: undefined,
-          duty_explain: undefined
+          date_from: null,
+          date_to: null,
+          duty_explain: null
       },
-      b_edu_secondary_level: undefined,
+      b_edu_secondary_level: null,
       edu_info: {
-          name: undefined,
+          name: null,
           address: {
-            street_addr1: undefined,
-            street_addr2: undefined,
-            city: undefined,
-            state: undefined,
-            b_state_NA: false,
-            zip_code: undefined,
-            b_zip_code_NA: true,
-            tel_number: undefined,
-            country: undefined
+            street_addr1: null,
+            street_addr2: null,
+            city: null,
+            state: null,
+            zip_code: null,
+            tel_number: null,
+            country: null
           },
-          course: undefined,
-          date_from: undefined,
-          date_to: undefined,
+          course: null,
+          date_from: null,
+          date_to: null,
       }
     },
 
     form_additional_work: {
-      b_belong_to_clan: undefined,
-      clan_name: undefined,
+      b_belong_to_clan: null,
+      clan_name: null,
       languages: [""],
-      b_travel_last_five_years: undefined,
+      b_travel_last_five_years: null,
       countries: [""],
-      b_belong_to_org: undefined,
+      b_belong_to_org: null,
       organizations: [""],
-      b_special_skill: undefined,
-      special_skill_explain: undefined,
-      b_military: undefined,
+      b_special_skill: null,
+      special_skill_explain: null,
+      b_military: null,
       militaries: [
           {
-              country: undefined,
-              service: undefined,
-              rank: undefined,
-              speciality: undefined,
-              date_from: undefined,
-              date_to: undefined,
+              country: null,
+              service: null,
+              rank: null,
+              speciality: null,
+              date_from: null,
+              date_to: null,
           },
       ],
-      b_rebel_group: undefined,
-      rebel_group_explain: undefined
+      b_rebel_group: null,
+      rebel_group_explain: null
     },
 
     form_security: {
       part1: {
-          b_disease: undefined,
-          disease_explain: undefined,
-          b_disorder: undefined,
-          disorder_explain: undefined,
-          b_druguser: undefined,
-          druguser_explain: undefined,
+          b_disease: null,
+          disease_explain: null,
+          b_disorder: null,
+          disorder_explain: null,
+          b_druguser: null,
+          druguser_explain: null,
       },
       part2: {
-          b_Arrested: undefined,
-          arrested_explain: undefined,
-          b_ControlledSubstances: undefined,
-          controlled_substances_explain: undefined,
-          b_Prostitution: undefined,
-          prostitution_explain: undefined,
-          b_MoneyLaundering: undefined,
-          money_laundering_explain: undefined,
-          b_HumanTrafficking: undefined,
-          human_trafficking_explain: undefined,
-          b_AssistedSeveral: undefined,
-          assisted_several_explain: undefined,
-          b_human_related: undefined,
-          human_related_explain: undefined,
+          b_Arrested: null,
+          arrested_explain: null,
+          b_ControlledSubstances: null,
+          controlled_substances_explain: null,
+          b_Prostitution: null,
+          prostitution_explain: null,
+          b_MoneyLaundering: null,
+          money_laundering_explain: null,
+          b_HumanTrafficking: null,
+          human_trafficking_explain: null,
+          b_AssistedSeveral: null,
+          assisted_several_explain: null,
+          b_human_related: null,
+          human_related_explain: null,
       },
       part3: {
           array: [
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
           ]
       },
       part4: {
           array: [
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
           ]
       },
       part5: {
           array: [
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
-              { radio: undefined, text: undefined},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
+              { radio: null, text: null},
           ]
       }
     },
     form_crew_visa: {
-      job_title: undefined,
-      company_name: undefined,
-      company_tel: undefined,
+      job_title: null,
+      company_name: null,
+      company_tel: null,
       
-      b_position: undefined,
+      b_position: null,
       position_info: {
-          agency_name: undefined,
-          surname: undefined,
-          given_name: undefined,
+          agency_name: null,
+          surname: null,
+          given_name: null,
           address: {
-              street_addr1: undefined,
-              street_addr2: undefined,
-              city: undefined,
-              state: undefined,
-              b_state_NA: undefined,
-              zip_code: undefined,
-              b_zip_code_NA: undefined,
-              country: undefined,
-              tel_number: undefined
+              street_addr1: null,
+              street_addr2: null,
+              city: null,
+              state: null,
+              zip_code: null,
+              country: null,
+              tel_number: null
           }
       },
 
-      b_vessel: undefined,
+      b_vessel: null,
       vessel_info: {
-          vessel_name: undefined,
-          vessel_id: undefined
+          vessel_name: null,
+          vessel_id: null
       }
     },
     form_e_sign: {
-      b_assist: undefined,
+      b_assist: null,
       assist_info: {
           preparer: {
-              surname: undefined,
-              given_name: undefined,
-              name_NA: undefined
+              surname: null,
+              given_name: null,
           },
           organization: {
-              name: undefined,
-              name_NA: undefined
+              name: null,
           },
           address: {
-              street_addr1: undefined,
-              street_addr2: undefined,
-              city: undefined,
-              state: undefined,
-              b_state_NA: undefined,
-              zip_code: undefined,
-              b_zip_code_NA: undefined,
-              country: undefined
+              street_addr1: null,
+              street_addr2: null,
+              city: null,
+              state: null,
+              zip_code: null,
+              country: null
           },
-          relationship: undefined
+          relationship: null
       },
-      passport_number: undefined
+      passport_number: null
     }
   }
 }
@@ -578,7 +533,7 @@ function mainReducer(state = initialState, action) {
       console.log(action.values)
       return {
         ...state,
-        ds160: { ...state.ds160, ...action.values }
+        ds160: objectAssignDeep(state.ds160, action.values)
       }
     }
     case DS160.DS160_INIT_STATE: {

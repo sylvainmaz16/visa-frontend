@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 const { TextArea } = Input;
+import * as utils from '../../utils'
 
 class VisaExplain extends Component {
   static defaultProps = {
@@ -15,7 +16,7 @@ class VisaExplain extends Component {
       <>
         <Form.Item label={label} extra={extra}>
           {getFieldDecorator(radioField, {
-            initialValue: radioInitialValue,
+            initialValue: utils.getInitialValue(radioInitialValue),
             rules: [{ required: true, message: 'This field is required' }],
           })(
             <Radio.Group>
@@ -26,7 +27,7 @@ class VisaExplain extends Component {
         </Form.Item>
         {radioValue && <Form.Item label={textLabel} required>
           {getFieldDecorator(textField, {
-            initialValue: textInitialValue,
+            initialValue: utils.getInitialValue(textInitialValue),
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
           })(
             <TextArea style={{textTransform: 'uppercase'}} rows={7}/>

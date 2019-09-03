@@ -10,6 +10,7 @@ import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -55,10 +56,10 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
 
-    getFieldDecorator('data.father.b_in_US', { initialValue: data.father.b_in_US });
-    getFieldDecorator('data.mother.b_in_US', { initialValue: data.mother.b_in_US });
-    getFieldDecorator('data.b_other_relative', { initialValue: data.b_other_relative });
-    getFieldDecorator('data.b_more_relatives', { initialValue: data.b_more_relatives });
+    getFieldDecorator('data.father.b_in_US', { initialValue: utils.getInitialValue(data.father.b_in_US) });
+    getFieldDecorator('data.mother.b_in_US', { initialValue: utils.getInitialValue(data.mother.b_in_US) });
+    getFieldDecorator('data.b_other_relative', { initialValue: utils.getInitialValue(data.b_other_relative) });
+    getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) });
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">

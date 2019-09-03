@@ -11,6 +11,7 @@ import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -135,11 +136,11 @@ class MyForm extends Component {
       ]
     }
 
-    explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: data.part1[exp.radio] })});
-    explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: data.part2[exp.radio] })});
-    explain.part3.map((exp, index) => { getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: data.part3.array[index].radio })});
-    explain.part4.map((exp, index) => { getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: data.part4.array[index].radio })});
-    explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: data.part5.array[index].radio })});
+    explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});
+    explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: utils.getInitialValue(data.part2[exp.radio]) })});
+    explain.part3.map((exp, index) => { getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part3.array[index].radio) })});
+    explain.part4.map((exp, index) => { getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part4.array[index].radio) })});
+    explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part5.array[index].radio) })});
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>

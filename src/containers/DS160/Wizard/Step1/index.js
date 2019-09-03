@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Select } from 'antd';
 import * as constants from '../../../../utils/constants'
+import * as utils from '../../../../utils'
 import VisaSelect from "../../../../components/VisaSelect";
 
 const { Option } = Select;
@@ -54,7 +55,7 @@ class MyForm extends Component {
         </div>
         <Form.Item label="Please Choose Your Preferred Interview Location" extra="Select preferred US Consulate for your visa interview.">
           {getFieldDecorator('data.interview_location', {
-            initialValue: data.interview_location,
+            initialValue: utils.getInitialValue(data.interview_location),
             rules: [{ required: true, message: 'This field is required' }],
           })(
             <VisaSelect values={countries_option_value_list} labels={countries_option_label_list} />

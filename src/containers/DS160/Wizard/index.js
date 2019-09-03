@@ -21,6 +21,7 @@ import Form_DS160_12_Additional_Work_Edu from './Step12_Additional_Work_Edu';
 import Form_DS160_13_Security from './Step13_Security';
 import Form_DS160_14_Crew_Job from './Step14_Crew_Job';
 import Form_DS160_15_Preparer from './Step15_Preparer';
+import objectAssignDeep from 'object-assign-deep'
 
 import ds160_validators from '../Validators'
 
@@ -71,7 +72,7 @@ class DS160_Wizard extends Component {
       email: '',
       completed: false,
       step_index: this.props.step_index,
-      data: field != '' ? { ...this.props.ds160, [field]: data } : {...this.props.ds160, data}
+      data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data)
     }
     console.log(field, payload)
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload)
