@@ -16,7 +16,7 @@ class VisaDatePicker extends Component {
     return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
-          initialValue: moment(utils.getInitialValue(initialValue)),
+          initialValue: initialValue ? moment( initialValue, 'DD/MMM/YYYY' ) : null,
           rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
         })(
           <DatePicker />

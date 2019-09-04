@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
 const { TextArea } = Input;
 import * as utils from '../../utils'
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import { Form, Input } from 'antd';
 import * as utils from '../../utils'
 
 class VisaInput extends Component {

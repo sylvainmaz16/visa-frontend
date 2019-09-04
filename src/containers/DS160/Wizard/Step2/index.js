@@ -10,34 +10,6 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  handlePrev = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-    this.props.onPrev(values.data)
-  }
-  handleSave = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-    this.props.onSaveAndContinue(values.data)
-  }
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.onNext(values.data);
-      }
-    });
-  };
-
-  // checkCheckBox = (rule, value, callback) => {
-  //   console.log(value);
-  //   if (!value) {
-  //     callback('Please agree the terms and conditions!');
-  //   } else {
-  //     callback();
-  //   }
-  // };
-
   render() {
     const { getFieldDecorator, isFieldTouched } = this.props.form;
     const formItemLayout = {
@@ -98,9 +70,9 @@ class MyForm extends Component {
           )}
         </Form.Item>
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={this.handlePrev}>Prev</Button>}
-          {showNext && <Button type="primary" htmlType="submit">Next</Button>}
-          <Button type="link" onClick={this.handleSave}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 

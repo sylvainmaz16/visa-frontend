@@ -20,25 +20,17 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  handlePrev = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-
-    this.props.onPrev(values.data)
+  handleDates = (data) => {
+    if(data.emp_info.date_from)
+      data.emp_info.date_from = data.emp_info.date_from.format('DD/MMM/YYYY')
+    if(data.emp_info.date_to)
+      data.emp_info.date_to = data.emp_info.date_to.format('DD/MMM/YYYY')
+    if(data.edu_info.date_from)
+      data.edu_info.date_from = data.edu_info.date_from.format('DD/MMM/YYYY')
+    if(data.edu_info.date_to)
+      data.edu_info.date_to = data.edu_info.date_to.format('DD/MMM/YYYY')
+    return data
   }
-  handleSave = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-    this.props.onSaveAndContinue(values.data)
-  }
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.onNext(values.data);
-      }
-    });
-  };
 
   render() {
     const { getFieldDecorator, isFieldTouched } = this.props.form;
@@ -136,7 +128,7 @@ class MyForm extends Component {
                 label="Employment Date From"
                 extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
                 field="data.emp_info.date_from"
-                initialValue={data.emp_info.date_to}
+                initialValue={data.emp_info.date_from}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Employment Date From", false) }]}
@@ -216,9 +208,9 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={this.handlePrev}>Prev</Button>}
-          {showNext && <Button type="primary" htmlType="submit">Next</Button>}
-          <Button type="link" onClick={this.handleSave}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 

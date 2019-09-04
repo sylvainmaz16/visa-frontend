@@ -79,6 +79,41 @@ class DS160_Wizard extends Component {
     this.props.history.push('/ds-160/application-form-later');
   }
 
+  handlePrev = (e, form, handleDates, field) => {
+    e.preventDefault();
+    const values = form.getFieldsValue();
+    if(handleDates)
+      this.onPrev(handleDates(values.data), field)
+    else
+      this.onPrev(values.data, field)
+  }
+
+  handleSave = (e, form, handleDates, field) => {
+    e.preventDefault();
+    form.validateFieldsAndScroll((err, values) => {
+      console.log(err, values)
+      if (!err) {
+        if( handleDates )
+          this.onSaveAndContinue(handleDates(values.data), field)
+        else
+          this.onSaveAndContinue(values.data, field)
+      }
+    });
+  }
+  handleSubmit = (e, form, handleDates, field) => {
+    e.preventDefault();
+    console.log( e, form, handleDates, field)
+    form.validateFieldsAndScroll((err, values) => {
+      console.log(err, values)
+      if (!err) {
+        if(handleDates)
+          this.onNext(handleDates(values.data), field);
+        else
+          this.onNext(values.data, field);
+      }
+    });
+  };
+
   render() {
     const { step_index, ds160, bWaitLoadFromDB, token } = this.props
 
@@ -106,9 +141,12 @@ class DS160_Wizard extends Component {
     ]
     let field = fields_list[step_index]
     let shared_params = {
-      onPrev: (e) => this.onPrev(e, field),
-      onNext: (e) => this.onNext(e, field),
-      onSaveAndContinue: (e) => this.onSaveAndContinue(e, field),
+      // onPrev: (e) => this.onPrev(e, field),
+      // onNext: (e) => this.onNext(e, field),
+      // onSaveAndContinue: (e) => this.onSaveAndContinue(e, field),
+      handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
+      handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
+      handleSubmit: (e, form, handleDates) => this.handleSubmit(e, form, handleDates, field),
       validators: ds160_validators
     }
 

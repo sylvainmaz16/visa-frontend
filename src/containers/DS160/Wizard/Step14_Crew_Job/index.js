@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon } from 'antd';
+import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'antd';
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
@@ -9,7 +9,6 @@ import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
-import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
 import * as utils from '../../../../utils'
 
@@ -21,26 +20,6 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  handlePrev = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-
-    this.props.onPrev(values.data)
-  }
-  handleSave = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-    this.props.onSaveAndContinue(values.data)
-  }
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.onNext(values.data);
-      }
-    });
-  };
-
   render() {
     const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form;
     const formItemLayout = {
@@ -165,9 +144,9 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={this.handlePrev}>Prev</Button>}
-          {showNext && <Button type="primary" htmlType="submit">Next</Button>}
-          <Button type="link" onClick={this.handleSave}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 

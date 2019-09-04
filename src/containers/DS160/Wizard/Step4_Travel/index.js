@@ -13,30 +13,16 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  handlePrev = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-
-    this.props.onPrev(values.data)
+  handleDates = (data) => {
+    if(data.travel_plan.date_of_arrival)
+      data.travel_plan.date_of_arrival = data.travel_plan.date_of_arrival.format('DD/MMM/YYYY')
+    return data
   }
-  handleSave = e => {
-    e.preventDefault();
-    const values = this.props.form.getFieldsValue();
-    this.props.onSaveAndContinue(values.data)
-  }
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.onNext(values.data);
-      }
-    });
-  };
 
   onSelect = (e, field) => {
     console.log(e, field)
     if (field == 'purpose_of_trip') {
-      this.props.form.setFieldsValue({ 'data.other_purpose_of_trip': undefined, 'data.purpose_info_type': undefined });
+      this.props.form.setFieldsValue({ 'data.other_purpose_of_trip': null, 'data.purpose_info_type': null });
     }
     else if (field == 'other_purpose_of_trip') {
       const field = {
@@ -66,6 +52,7 @@ class MyForm extends Component {
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
     console.log(data)
+    console.log(data.travel_plan.date_of_arrival)
 
     getFieldDecorator('data.purpose_of_trip', { initialValue: utils.getInitialValue(data.purpose_of_trip) });
     getFieldDecorator('data.other_purpose_of_trip', { initialValue: utils.getInitialValue(data.other_purpose_of_trip) });
@@ -172,7 +159,7 @@ class MyForm extends Component {
 
         <Form.Item label="Intended date of arrival in the USA" extra="If you don't know your exact date of travel, please provide an estimate. Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
           {getFieldDecorator('data.travel_plan.date_of_arrival', {
-            initialValue: moment(utils.getInitialValue(data.travel_plan.date_of_arrival)),
+            initialValue: data.travel_plan.date_of_arrival ? moment( data.travel_plan.date_of_arrival, 'DD/MMM/YYYY' ) : null,
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateLaterDate(rule, value, callback, "Intended Date of Arrival") }],
           })(
             <DatePicker />
@@ -236,7 +223,7 @@ class MyForm extends Component {
                   initialValue: utils.getInitialValue(data.address_you_will_stay.state),
                   rules: [{ required: true, message: 'This field is required' }],
                 })(
-                  <Input />
+                  <VisaSelect combines={constants.state_options_list()} />
                 )}
               </Form.Item>
             </Col>
@@ -369,7 +356,7 @@ class MyForm extends Component {
                     <Form.Item label="Telephone Number">
                       {getFieldDecorator('data.paying_org_info.tel_number', {
                         initialValue: utils.getInitialValue(data.paying_org_info.tel_number),
-                        rules: [{ required: true, message: 'This field is required' }],
+                        rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", true) }],
                       })(
                         <Input />
                       )}
@@ -406,9 +393,9 @@ class MyForm extends Component {
             : ''
         }
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={this.handlePrev}>Prev</Button>}
-          {showNext && <Button type="primary" htmlType="submit">Next</Button>}
-          <Button type="link" onClick={this.handleSave}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
