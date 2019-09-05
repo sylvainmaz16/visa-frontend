@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import VisaSelect from "../VisaSelect";
 import * as utils from '../../utils'
+import moment from "moment";
 
 class VisaDateLength extends Component {
   static defaultProps = {
@@ -25,7 +26,7 @@ class VisaDateLength extends Component {
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <Form.Item label={date.label} extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
             {getFieldDecorator(date.field, {
-              initialValue: utils.getInitialValue(date.initialValue),
+              initialValue: date.initialValue ? moment( date.initialValue, 'DD/MMM/YYYY' ) : null,
               rules: [{ validator: (rule, value, callback) => validators.validateEarlierDate(rule, value, callback, "Date Arrived") }],
             })(
               <DatePicker />

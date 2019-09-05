@@ -109,7 +109,7 @@ class MyForm extends Component {
                   initialValue: utils.getInitialValue(data.relationship),
                   rules: [{ required: true, message: 'This field is required' }],
                 })(
-                  <Input />
+                  <VisaSelect combines={constants.person_travel_with_relationship_options} />
                 )}
               </Form.Item>
             </Col>

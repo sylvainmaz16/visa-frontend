@@ -111,6 +111,7 @@ class MyForm extends Component {
                 field="data.position_info.address.tel_number"
                 initialValue={data.position_info.address.tel_number}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
               />
             </Col>
           </Row>
@@ -153,5 +154,5 @@ class MyForm extends Component {
     );
   }
 }
-const Form_DS160_14_Crew_Job = Form.create()(MyForm)
-export default Form_DS160_14_Crew_Job;
+const Form_DS160_15_Crew_Job = Form.create()(MyForm)
+export default Form_DS160_15_Crew_Job;

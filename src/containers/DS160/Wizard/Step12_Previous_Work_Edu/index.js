@@ -217,5 +217,5 @@ class MyForm extends Component {
     );
   }
 }
-const Form_DS160_11_Previous_Work_Edu = Form.create()(MyForm)
-export default Form_DS160_11_Previous_Work_Edu;
+const Form_DS160_12_Previous_Work_Edu = Form.create()(MyForm)
+export default Form_DS160_12_Previous_Work_Edu;

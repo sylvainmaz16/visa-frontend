@@ -24,22 +24,22 @@ const initialState = {
 
       b_ever_used_other_names: null,
       used_other_name: {
-          surname: null,
-          given_name: null
+        surname: null,
+        given_name: null
       },
       b_has_telecode_of_name: null,
       telecode_of_name: {
-          surname: null,
-          given_name: null
+        surname: null,
+        given_name: null
       },
       sex: null,
       martial_status: null,
       martial_other_explain: null,
       date_birth: null,  //not
       place_of_birth: {
-          city: null,
-          state: null,
-          country: null,
+        city: null,
+        state: null,
+        country: null,
       },
       nationality: null,
       b_more_nationality: null,
@@ -58,37 +58,37 @@ const initialState = {
       other_purpose_of_trip: null,
       purpose_info_type: null,
       purpose_info: {
-          surname: null,
-          given_name: null,
-          company: null,
-          petition: null
+        surname: null,
+        given_name: null,
+        company: null,
+        petition: null
       },
       b_specific_travel_plan: false,
 
       travel_plan: {
-          date_of_arrival: null,
-          length_of_stay: {
-              length: null,
-              period: null
-          },
+        date_of_arrival: null,
+        length_of_stay: {
+          length: null,
+          period: null
+        },
       },
-  
+
       travel_plan_specific: {
-          date_of_arrival: null,
-          arrival_flight: null,
-          arrival_city: null,
-          date_of_departure: null,
-          departure_flight: null,
-          departure_city: null,
-          visit_location: null,
+        date_of_arrival: null,
+        arrival_flight: null,
+        arrival_city: null,
+        date_of_departure: null,
+        departure_flight: null,
+        departure_city: null,
+        visit_location: null,
       },
-  
+
       address_you_will_stay: {
-          street_addr1: null,
-          street_addr2: null,
-          city: null,
-          state: null,
-          zip_code: null
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null
       },
 
       paying_person_for_trip: null,
@@ -98,20 +98,20 @@ const initialState = {
         relationship: null,
       },
       paying_person_info: {
-          surname: null,
-          given_name: null,
-          tel_number: null,
-          email: null,
-          relationship: null, // Child (C), Parent (P), Spouse (S), Other Relative (R), Friend (F), Other (O)
-          b_same_address: null,
-          address: {
-              street_addr1: null,
-              street_addr2: null,
-              city: null,
-              state: null,
-              zip_code: null,
-              country: null
-          },
+        surname: null,
+        given_name: null,
+        tel_number: null,
+        email: null,
+        relationship: null, // Child (C), Parent (P), Spouse (S), Other Relative (R), Friend (F), Other (O)
+        b_same_address: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null
+        },
       },
     },
 
@@ -128,77 +128,77 @@ const initialState = {
     form_prev_travel_info: {
       b_ever_been_in_US: null,
       prev_visit_info: {
-          date: null,
-          length_of_stay: {
-              period: null,
-              unit: null
-          }
+        date: null,
+        length_of_stay: {
+          period: null,
+          unit: null
+        }
       },
       b_ever_hold_Driver_License: null,
       prev_DL_info: {
-          number: null,
-          state: null
+        number: null,
+        state: null
       },
       b_ever_been_issued_US_Visa: null,
       US_Visa: {
-          date: null,
-          number: null,
-          b_same_type_visa: null,
-          b_same_cntry_visa: null,
-          b_been_ten_printed: null,
-          b_ever_been_lost: null,
-          lost_info: {
-              year: null,
-              explain: null
-          },
-          b_ever_been_cancelled: null,
-          cancel_info: {
-              explain: null
-          }
+        date: null,
+        number: null,
+        b_same_type_visa: null,
+        b_same_cntry_visa: null,
+        b_been_ten_printed: null,
+        b_ever_been_lost: null,
+        lost_info: {
+          year: null,
+          explain: null
+        },
+        b_ever_been_cancelled: null,
+        cancel_info: {
+          explain: null
+        }
       },
       b_ever_been_refused_US_Visa: null,
       refuse_info: {
-          explain: null
+        explain: null
       },
       b_ever_been_denied_travel_auth: null,
       denied_info: {
-          explain: null
+        explain: null
       },
       b_petition: null,
       petition_info: {
-          explain: null
+        explain: null
       }
     },
 
     form_addr_and_phone: {
       home_addr: {
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null,
+        country: null
+      },
+      mail_addr: {
+        b_same_as_home: null,
+        info: {
           street_addr1: null,
           street_addr2: null,
           city: null,
           state: null,
           zip_code: null,
           country: null
-      },
-      mail_addr: {
-          b_same_as_home: null,
-          info: {
-              street_addr1: null,
-              street_addr2: null,
-              city: null,
-              state: null,
-              zip_code: null,
-              country: null
-          },
+        },
       },
       phone_info: {
-          home: null,
-          mobile: null,
-          work: null,
+        home: null,
+        mobile: null,
+        work: null,
       },
       email: null,
       social_media_info: {
-          platform: null,
-          identifier: null
+        platform: null,
+        identifier: null
       }
     },
 
@@ -209,17 +209,17 @@ const initialState = {
       book_number: null,
       doc_authority: null,
       issued_location: {
-          city: null,
-          state: null,
-          country: null
+        city: null,
+        state: null,
+        country: null
       },
       issuance_date: null,
       expiration_date: null,
       b_ever_lost_passport: null,
       lost_info: {
-          number: null,
-          country: null,
-          explain: null
+        number: null,
+        country: null,
+        explain: null
       }
     },
 
@@ -229,11 +229,11 @@ const initialState = {
       organization: null,
       relationship: null,
       address: {
-          street_addr1: null,
-          street_addr2: null,
-          city: null,
-          state: null,
-          zip_code: null,
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null,
       },
       tel_number: null,
       email: null,
@@ -241,25 +241,25 @@ const initialState = {
 
     form_family: {
       father: {
-          surname: null,
-          given_name: null,
-          birthday: null,
-          b_in_US: null,
-          status: null
+        surname: null,
+        given_name: null,
+        birthday: null,
+        b_in_US: null,
+        status: null
       },
       mother: {
-          surname: null,
-          given_name: null,
-          birthday: null,
-          b_in_US: null,
-          status: null
+        surname: null,
+        given_name: null,
+        birthday: null,
+        b_in_US: null,
+        status: null
       },
       b_other_relative: null,
       other: {
-          surname: null,
-          given_name: null,
-          relationship: null,
-          status: null
+        surname: null,
+        given_name: null,
+        relationship: null,
+        status: null
       },
       b_more_relatives: null,
 
@@ -287,13 +287,13 @@ const initialState = {
       specify_other_explain: null,
       name: null,
       address: {
-          street_addr1: null,
-          street_addr2: null,
-          city: null,
-          state: null,
-          zip_code: null,
-          tel_number: null,
-          country: null
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null,
+        tel_number: null,
+        country: null
       },
       start_date: null,
       monthly_income: null,
@@ -303,40 +303,40 @@ const initialState = {
     form_prev_work_or_edu: {
       b_previously_employed: null,
       emp_info: {
-          name: null,
-          address: {
-            street_addr1: null,
-            street_addr2: null,
-            city: null,
-            state: null,
-            zip_code: null,
-            tel_number: null,
-            country: null
-          },
-          job_title: null,
-          supervisor: {
-              surname: null,
-              given_name: null,
-          },
-          date_from: null,
-          date_to: null,
-          duty_explain: null
+        name: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          tel_number: null,
+          country: null
+        },
+        job_title: null,
+        supervisor: {
+          surname: null,
+          given_name: null,
+        },
+        date_from: null,
+        date_to: null,
+        duty_explain: null
       },
       b_edu_secondary_level: null,
       edu_info: {
-          name: null,
-          address: {
-            street_addr1: null,
-            street_addr2: null,
-            city: null,
-            state: null,
-            zip_code: null,
-            tel_number: null,
-            country: null
-          },
-          course: null,
-          date_from: null,
-          date_to: null,
+        name: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          tel_number: null,
+          country: null
+        },
+        course: null,
+        date_from: null,
+        date_to: null,
       }
     },
 
@@ -352,14 +352,14 @@ const initialState = {
       special_skill_explain: null,
       b_military: null,
       militaries: [
-          {
-              country: null,
-              service: null,
-              rank: null,
-              speciality: null,
-              date_from: null,
-              date_to: null,
-          },
+        {
+          country: null,
+          service: null,
+          rank: null,
+          speciality: null,
+          date_from: null,
+          date_to: null,
+        },
       ],
       b_rebel_group: null,
       rebel_group_explain: null
@@ -367,107 +367,167 @@ const initialState = {
 
     form_security: {
       part1: {
-          b_disease: null,
-          disease_explain: null,
-          b_disorder: null,
-          disorder_explain: null,
-          b_druguser: null,
-          druguser_explain: null,
+        b_disease: null,
+        disease_explain: null,
+        b_disorder: null,
+        disorder_explain: null,
+        b_druguser: null,
+        druguser_explain: null,
       },
       part2: {
-          b_Arrested: null,
-          arrested_explain: null,
-          b_ControlledSubstances: null,
-          controlled_substances_explain: null,
-          b_Prostitution: null,
-          prostitution_explain: null,
-          b_MoneyLaundering: null,
-          money_laundering_explain: null,
-          b_HumanTrafficking: null,
-          human_trafficking_explain: null,
-          b_AssistedSeveral: null,
-          assisted_several_explain: null,
-          b_human_related: null,
-          human_related_explain: null,
+        b_Arrested: null,
+        arrested_explain: null,
+        b_ControlledSubstances: null,
+        controlled_substances_explain: null,
+        b_Prostitution: null,
+        prostitution_explain: null,
+        b_MoneyLaundering: null,
+        money_laundering_explain: null,
+        b_HumanTrafficking: null,
+        human_trafficking_explain: null,
+        b_AssistedSeveral: null,
+        assisted_several_explain: null,
+        b_human_related: null,
+        human_related_explain: null,
       },
       part3: {
-          array: [
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-          ]
+        array: [
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+        ]
       },
       part4: {
-          array: [
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-          ]
+        array: [
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+        ]
       },
       part5: {
-          array: [
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-              { radio: null, text: null},
-          ]
+        array: [
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+          { radio: null, text: null },
+        ]
       }
+    },
+    form_SEVIS: {
+
+      point_of_contact: [{
+        surname: null,
+        given_name: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null
+        },
+        tel_number: null,
+        email: null
+      }, {
+        surname: null,
+        given_name: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null
+        },
+        tel_number: null,
+        email: null
+      }],
+
+      id: null,
+      program_number: null,
+      principal_id: null,
+      b_study_in_US: null,
+      school_info: {
+        name: null,
+        course: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null
+        }
+      }
+    },
+    form_intracompany: {
+      petition: null,
+      name_filed_petition: null,
+      employer: null,
+      address: {
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null,
+        country: null,
+        tel_number: null
+      },
+      tel_number: null,
+      income: null
     },
     form_crew_visa: {
       job_title: null,
       company_name: null,
       company_tel: null,
-      
+
       b_position: null,
       position_info: {
-          agency_name: null,
-          surname: null,
-          given_name: null,
-          address: {
-              street_addr1: null,
-              street_addr2: null,
-              city: null,
-              state: null,
-              zip_code: null,
-              country: null,
-              tel_number: null
-          }
+        agency_name: null,
+        surname: null,
+        given_name: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null,
+          tel_number: null
+        }
       },
 
       b_vessel: null,
       vessel_info: {
-          vessel_name: null,
-          vessel_id: null
+        vessel_name: null,
+        vessel_id: null
       }
     },
     form_e_sign: {
       b_assist: null,
       assist_info: {
-          preparer: {
-              surname: null,
-              given_name: null,
-          },
-          organization: {
-              name: null,
-          },
-          address: {
-              street_addr1: null,
-              street_addr2: null,
-              city: null,
-              state: null,
-              zip_code: null,
-              country: null
-          },
-          relationship: null
+        preparer: {
+          surname: null,
+          given_name: null,
+        },
+        organization: {
+          name: null,
+        },
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null
+        },
+        relationship: null
       },
       passport_number: null
     }

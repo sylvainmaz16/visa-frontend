@@ -19,6 +19,8 @@ class MyForm extends Component {
   handleDates = (data) => {
     if(data.US_Visa.date)
       data.US_Visa.date = data.US_Visa.date.format('DD/MMM/YYYY')
+    if(data.prev_visit_info.date)
+      data.prev_visit_info.date = data.prev_visit_info.date.format('DD/MMM/YYYY')
     return data
   }
 
@@ -204,7 +206,7 @@ class MyForm extends Component {
               label="Have you ever had a US Visa cancelled or revoked?"
               radioField="data.US_Visa.b_ever_been_cancelled"
               radioInitialValue={data.US_Visa.b_ever_been_cancelled}
-              radioValue={this.props.form.getFieldValue('data.b_ever_been_cancelled')}
+              radioValue={this.props.form.getFieldValue('data.US_Visa.b_ever_been_cancelled')}
               textField="data.US_Visa.cancel_info.explain"
               textInitialValue={data.US_Visa.cancel_info.explain}
               getFieldDecorator={getFieldDecorator}

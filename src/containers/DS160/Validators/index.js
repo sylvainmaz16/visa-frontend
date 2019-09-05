@@ -23,7 +23,7 @@ const validateExplain = (rule, value, callback, field, required = false) => {
           callback();
       return;
   }
-  if(/^[A-Za-z0-9#$*%&;!@^?><().', ]*$/.test(value)== false){
+  if(/^[A-Za-z0-9#$*%&;!@^?><().',\- ]*$/.test(value)== false){
       callback(field + " is invalid. Only the following characters are valid for this field: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parens (), period (.), apostrophe ('), comma (,), hyphen (-), and space.");
       return;
   }
@@ -45,7 +45,17 @@ const validateParentBirthDate = (rule, value, callback, field, birthday, require
     }
     callback();
 };
-
+const validateSEVIS = (rule, value, callback, field) => {
+    
+    if (!value) {
+      callback('This field is required');
+    }
+    if( value[0] != 'N' || /^\d{4}$/.test(value.substring(1)) == false) {
+        callback(field + ' is invalid. Verify the format is correct.');
+        return;
+    }
+    callback();
+};
 const validateVisaLostYear = (rule, value, callback, field, birthday) => {
     
     if (!value) {
@@ -106,8 +116,8 @@ const validateExpirationDate = (rule, value, callback, field, issuedDate) => {
       callback('This field is required');
       return;
     }
-    if (moment().diff(value) < 0) {
-      callback(field + ' cannot be later than today.');
+    if (moment().diff(value) > 0) {
+      callback(field + ' cannot be earlier than today.');
       return;
     }
     if(moment(issuedDate).diff(value) > 0){
@@ -251,7 +261,8 @@ const ds160_validators = {
     validateParentBirthDate,
     validateBetweenDate,
     validateExplain,
-    validatePetitionNumber
+    validatePetitionNumber,
+    validateSEVIS
 }
 
 export default ds160_validators

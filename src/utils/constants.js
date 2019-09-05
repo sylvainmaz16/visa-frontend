@@ -9,6 +9,31 @@ export const export_list = (array) => {
     })
 }
 
+export const occupation_options = [
+    <option value="A">AGRICULTURE</option>,
+    <option value="AP">ARTIST/PERFORMER</option>,
+    <option value="B">BUSINESS</option>,
+    <option value="CM">COMMUNICATIONS</option>,
+    <option value="CS">COMPUTER SCIENCE</option>,
+    <option value="C">CULINARY/FOOD SERVICES</option>,
+    <option value="ED">EDUCATION</option>,
+    <option value="EN">ENGINEERING</option>,
+    <option value="G">GOVERNMENT</option>,
+    <option value="H">HOMEMAKER</option>,
+    <option value="LP">LEGAL PROFESSION</option>,
+    <option value="MH">MEDICAL/HEALTH</option>,
+    <option value="M">MILITARY</option>,
+    <option value="NS">NATURAL SCIENCE</option>,
+    <option value="N">NOT EMPLOYED</option>,
+    <option value="PS">PHYSICAL SCIENCES</option>,
+    <option value="RV">RELIGIOUS VOCATION</option>,
+    <option value="R">RESEARCH</option>,
+    <option value="RT">RETIRED</option>,
+    <option value="SS">SOCIAL SCIENCE</option>,
+    <option value="S">STUDENT</option>,
+    <option value="O">OTHER</option>,
+]
+
 export const US_Live_Status = [
 	<option value="S">U.S. CITIZEN</option>,
 	<option value="C">U.S. LEGAL PERMANENT RESIDENT (LPR)</option>,
@@ -126,6 +151,16 @@ export const state_options = [
         <option value="WV">WEST VIRGINIA</option>,
         <option value="WI">WISCONSIN</option>,
         <option value="WY">WYOMING</option>,
+]
+
+export const person_travel_with_relationship_options = [
+    { value: 'P', label: 'PARENT'},
+    { value: 'S', label: 'SPOUSE'},
+    { value: 'C', label: 'CHILD'},
+    { value: 'R', label: 'OTHER RELATIVE'},
+    { value: 'F', label: 'FRIEND'},
+    { value: 'B', label: 'BUSINESS ASSOCIATE'},
+    { value: 'O', label: 'OTHER'},
 ]
 
 export const paying_person_info_relationship_options = [

@@ -16,16 +16,20 @@ import Form_DS160_7_Address_Phone from './Step7_Address_Phone';
 import Form_DS160_8_Passport from './Step8_Passport';
 import Form_DS160_9_Contact from './Step9_Contact';
 import Form_DS160_10_Family from './Step10_Family';
-import Form_DS160_11_Previous_Work_Edu from './Step11_Previous_Work_Edu';
-import Form_DS160_12_Additional_Work_Edu from './Step12_Additional_Work_Edu';
-import Form_DS160_13_Security from './Step13_Security';
-import Form_DS160_14_Crew_Job from './Step14_Crew_Job';
-import Form_DS160_15_Preparer from './Step15_Preparer';
+import Form_DS160_14_SEVIS from './Step15_SEVIS';
+import Form_DS160_14_IntraCompany from './Step15_IntraCompany';
 import objectAssignDeep from 'object-assign-deep'
 
 import ds160_validators from '../Validators'
 
 import './index.scss'
+import Form_DS160_16_Preparer from './Step16_Preparer';
+import Form_DS160_15_IntraCompany from './Step15_IntraCompany';
+import Form_DS160_15_Crew_Job from './Step15_Crew_Job';
+import Form_DS160_14_Security from './Step14_Security';
+import Form_DS160_13_Additional_Work_Edu from './Step13_Additional_Work_Edu';
+import Form_DS160_11_Work_Edu from './Step11_Work_Edu';
+
 class DS160_Wizard extends Component {
   static defaultProps = {
     token: null
@@ -123,6 +127,8 @@ class DS160_Wizard extends Component {
     }
 
     let form_render = ''
+    let intracompany_type = '', sevis_type = '', additional_point_of_contact = false
+
     let fields_list = [
       null, "", "", 
       "form_personal_info", 
@@ -133,17 +139,147 @@ class DS160_Wizard extends Component {
       "form_passport",
       "form_contact",
       "form_family",
+      "form_work_or_edu",
       "form_prev_work_or_edu",
       "form_additional_work",
       "form_security",
-      "form_crew_visa",
+      "",
       "form_e_sign"
     ]
-    let field = fields_list[step_index]
+
+    const {purpose_of_trip, other_purpose_of_trip} = ds160.form_travel
+    if(
+      purpose_of_trip == 'F' || 
+      purpose_of_trip == 'H' || 
+      purpose_of_trip == 'L' || 
+      purpose_of_trip == 'M' || 
+      (purpose_of_trip == 'I' && other_purpose_of_trip == 'I-FR') || 
+      (purpose_of_trip == 'J' && other_purpose_of_trip == 'J1-J1')
+    ) {
+      fields_list = [
+        null, "", "", 
+        "form_personal_info", 
+        "form_travel", 
+        "form_travel_company", 
+        "form_prev_travel_info", 
+        "form_addr_and_phone",
+        "form_passport",
+        "form_contact",
+        "form_family",
+        "form_work_or_edu",
+        "form_prev_work_or_edu",
+        "form_security",
+        "extra",
+        "form_e_sign"
+      ]
+    } else {
+      fields_list = [
+        null, "", "", 
+        "form_personal_info", 
+        "form_travel", 
+        "form_travel_company", 
+        "form_prev_travel_info", 
+        "form_addr_and_phone",
+        "form_passport",
+        "form_contact",
+        "form_family",
+        "form_work_or_edu",
+        "form_security",
+        "extra",
+        "form_e_sign"
+      ]
+    }
+
+    let extra_index = fields_list.findIndex(field => field == 'extra')
+
+    if( step_index > 4 ) {
+
+      switch(purpose_of_trip) {
+        case 'B':
+        case 'I':
+          break;
+        case 'C':
+          if(other_purpose_of_trip == 'C1-D') {
+            fields_list[extra_index] = 'form_crew_visa'
+          }
+          break;
+        case 'D':
+          fields_list[extra_index] = 'form_crew_visa'
+          break;
+        case 'F':
+          fields_list[extra_index] = 'form_SEVIS'
+          switch(other_purpose_of_trip) {
+            case 'F1-F1':
+              additional_point_of_contact = true;
+              sevis_type = 'A'
+              break;
+            case 'F2-CH':
+            case 'F2-SP':
+              sevis_type = 'B'
+              break;
+          }
+          break;
+        case 'H':
+          switch(other_purpose_of_trip) {
+            case "H1B-H1B":
+            case "H1C-NR":
+            case "H2A-AG":
+            case "H2B-NA":
+            case "H3-TR":
+              fields_list[extra_index] = 'form_intracompany'
+              intracompany_type = 'A'
+              break;
+            case "H1B1-CHL":
+            case "H1B1-SGP":
+              fields_list[extra_index] = 'form_intracompany'
+              intracompany_type = 'B'
+              break;
+            case "H4-CH":
+            case "H4-SP":
+              break;
+          }
+          break;
+        case 'J':
+          fields_list[extra_index] = 'form_SEVIS'
+          switch(other_purpose_of_trip) {
+            case 'J1-J1':
+              additional_point_of_contact = true;
+              sevis_type = 'C'
+              break;
+            case 'J2-CH':
+            case 'J2-SP':
+              sevis_type = 'D'
+              break;
+          }
+          break;
+        case 'L':
+          if(other_purpose_of_trip == 'L1-L1'){
+            fields_list[extra_index] = 'form_intracompany'
+            intracompany_type = 'A'
+          }
+          break;
+        case 'M':
+          fields_list[extra_index] = 'form_SEVIS'
+          switch(other_purpose_of_trip) {
+            case 'M1-M1':
+              additional_point_of_contact = true;
+              sevis_type = 'A'
+              break;
+            case 'M2-CH':
+            case 'M2-SP':
+              sevis_type = 'B'
+              break;
+            case 'M3-M3':
+              sevis_type = 'A'
+              break;
+          }
+          break;
+      }
+    }
+
+    let field = fields_list[step_index]    
+    
     let shared_params = {
-      // onPrev: (e) => this.onPrev(e, field),
-      // onNext: (e) => this.onNext(e, field),
-      // onSaveAndContinue: (e) => this.onSaveAndContinue(e, field),
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
       handleSubmit: (e, form, handleDates) => this.handleSubmit(e, form, handleDates, field),
@@ -181,20 +317,36 @@ class DS160_Wizard extends Component {
       case 10:
         form_render = <Form_DS160_10_Family {...shared_params} data={ds160.form_family} date_birth={ds160.form_personal_info.date_birth}/>
         break;
-      case 11:
-        form_render = <Form_DS160_11_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} />
-        break;
-      case 12:
-        form_render = <Form_DS160_12_Additional_Work_Edu {...shared_params} data={ds160.form_additional_work} />
-        break;
-      case 13:
-        form_render = <Form_DS160_13_Security {...shared_params} data={ds160.form_security} />
-        break;
-      case 14:
-        form_render = <Form_DS160_14_Crew_Job {...shared_params} data={ds160.form_crew_visa} />
-        break;
-      case 15:
-        form_render = <Form_DS160_15_Preparer {...shared_params} data={ds160.form_e_sign} />
+      default:
+        switch(field) {
+          case 'form_work_or_edu':
+            form_render = <Form_DS160_11_Work_Edu {...shared_params} data={ds160.form_work_or_edu} />
+            break;
+          case 'form_prev_work_or_edu':
+            form_render = <Form_DS160_12_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} />
+            break;
+          case 'form_additional_work':
+            form_render = <Form_DS160_13_Additional_Work_Edu {...shared_params} data={ds160.form_additional_work} />
+            break;
+          case 'form_security':
+            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} />
+            break;
+          case 'form_crew_visa':
+            form_render = <Form_DS160_15_Crew_Job {...shared_params} data={ds160.form_crew_visa} />
+            break;
+          case 'form_SEVIS':
+            form_render = <Form_DS160_15_SEVIS {...shared_params} data={ds160.form_SEVIS} additional_point_of_contact={additional_point_of_contact} sevis_type={sevis_type}/>
+            break;
+          case 'form_intracompany':
+            form_render = <Form_DS160_15_IntraCompany {...shared_params} data={ds160.form_intracompany} intracompany_type={intracompany_type}/>
+            break;
+          case 'form_e_sign':
+            form_render = <Form_DS160_16_Preparer {...shared_params} data={ds160.form_e_sign} />
+            break;
+          default:
+            console.log('EXCEPTION could not find form')
+            break;
+        }
         break;
     }
 
