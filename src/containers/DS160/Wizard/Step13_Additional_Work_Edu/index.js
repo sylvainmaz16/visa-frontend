@@ -23,9 +23,9 @@ class MyForm extends Component {
   }
   
   handleDates = (data) => {
-    if(data.militaries[0].date_from)
+    if(data.militaries && data.militaries[0] && data.militaries[0].date_from)
       data.militaries[0].date_from = data.militaries[0].date_from.format('DD/MMM/YYYY')
-    if(data.militaries[0].date_to)
+    if(data.militaries && data.militaries[0] && data.militaries[0].date_to)
       data.militaries[0].date_to = data.militaries[0].date_to.format('DD/MMM/YYYY')
     return data
   }

@@ -180,7 +180,7 @@ const initialState = {
         country: null
       },
       mail_addr: {
-        b_same_as_home: null,
+        b_diff_with_home: false,
         info: {
           street_addr1: null,
           street_addr2: null,
@@ -266,7 +266,8 @@ const initialState = {
       spouse: {
         surname: null,
         given_name: null,
-        date_birth: null,
+        birthday: null,
+        nationality: null,
         place_of_birth: {
           city: null,
           country: null

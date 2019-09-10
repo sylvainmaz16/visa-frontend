@@ -41,7 +41,7 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
-    getFieldDecorator('data.b_same_as_home', { initialValue: utils.getInitialValue(data.b_same_as_home) });
+    getFieldDecorator('data.b_diff_with_home', { initialValue: utils.getInitialValue(data.b_diff_with_home) });
     getFieldDecorator('data.social_media_info.platform', { initialValue: utils.getInitialValue(data.social_media_info.platform) });
     
     return (
@@ -117,15 +117,15 @@ class MyForm extends Component {
         </Row>
 
         <Form.Item label="Mailing Address">
-          {getFieldDecorator('data.mail_addr.b_same_as_home', {
-            initialValue: utils.getInitialValue(data.mail_addr.b_same_as_home),
+          {getFieldDecorator('data.mail_addr.b_diff_with_home', {
+            initialValue: utils.getInitialValue(data.mail_addr.b_diff_with_home),
           })(
             <Checkbox>The mailing address is different from the applicant address</Checkbox>
           )}
         </Form.Item>
 
         {
-          this.props.form.getFieldValue('data.mail_addr.b_same_as_home') &&
+          this.props.form.getFieldValue('data.mail_addr.b_diff_with_home') &&
           <VisaAddress 
             label="Mailing Address"
             field="data.mail_addr.info"

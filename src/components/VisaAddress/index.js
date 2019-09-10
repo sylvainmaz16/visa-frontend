@@ -50,7 +50,7 @@ class VisaAddress extends Component {
                 initialValue: utils.getInitialValue(initialValue.state),
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <Input />
+                <VisaSelect combines={constants.state_options_list()} />
               )}
             </Form.Item>
           </Col>

@@ -29,6 +29,7 @@ import Form_DS160_15_Crew_Job from './Step15_Crew_Job';
 import Form_DS160_14_Security from './Step14_Security';
 import Form_DS160_13_Additional_Work_Edu from './Step13_Additional_Work_Edu';
 import Form_DS160_11_Work_Edu from './Step11_Work_Edu';
+import Form_Final from './Final';
 
 class DS160_Wizard extends Component {
   static defaultProps = {
@@ -53,7 +54,7 @@ class DS160_Wizard extends Component {
 
   onPrev = (data, field) => {
     if(field != '')
-      this.props.updateValues( DS160.DS160_UPDATE_VALUES, {...this.props.ds160, [field]: data} );
+      this.props.updateValues( DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, {[field]: data}));
     else
       this.props.updateValues( DS160.DS160_UPDATE_VALUES, data );
     this.props.onPrevStep(DS160.DS160_PREV_STEP);
@@ -63,7 +64,7 @@ class DS160_Wizard extends Component {
 
   onNext = (data, field) => {
     if(field != '')
-      this.props.updateValues( DS160.DS160_UPDATE_VALUES, {...this.props.ds160, [field]: data} );
+      this.props.updateValues( DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, {[field]: data}) );
     else
       this.props.updateValues( DS160.DS160_UPDATE_VALUES, data );
     this.props.onNextStep(DS160.DS160_NEXT_STEP);
@@ -170,7 +171,8 @@ class DS160_Wizard extends Component {
         "form_prev_work_or_edu",
         "form_security",
         "extra",
-        "form_e_sign"
+        "form_e_sign",
+        "form_final"
       ]
     } else {
       fields_list = [
@@ -186,7 +188,8 @@ class DS160_Wizard extends Component {
         "form_work_or_edu",
         "form_security",
         "extra",
-        "form_e_sign"
+        "form_e_sign",
+        "form_final"
       ]
     }
 
@@ -286,6 +289,8 @@ class DS160_Wizard extends Component {
       validators: ds160_validators
     }
 
+    console.log(step_index, field)
+
     switch(step_index) {
       case 1:
         form_render = <Form_DS160_1 showPrev={false} {...shared_params} data={ds160}/>
@@ -342,6 +347,9 @@ class DS160_Wizard extends Component {
             break;
           case 'form_e_sign':
             form_render = <Form_DS160_16_Preparer {...shared_params} data={ds160.form_e_sign} />
+            break;
+          case 'form_final':
+            form_render = <Form_Final {...shared_params} />
             break;
           default:
             console.log('EXCEPTION could not find form')

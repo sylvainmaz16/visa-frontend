@@ -39,7 +39,7 @@ const validateParentBirthDate = (rule, value, callback, field, birthday, require
             callback();
         return;
     }
-    if(moment(birthday).diff(value) < 0){
+    if(moment(birthday, 'DD/MMM/YYYY').diff(value) < 0){
         callback(field + ' must be earlier than your Date of Birth');
         return;
     }
@@ -61,7 +61,7 @@ const validateVisaLostYear = (rule, value, callback, field, birthday) => {
     if (!value) {
       callback('This field is required');
     }
-    if(/^\d{4}$/.test(value)== false || moment().year() < value || value < moment(birthday).year()) {
+    if(/^\d{4}$/.test(value)== false || moment().year() < value || value < moment(birthday, 'DD/MMM/YYYY').year()) {
         callback(field + ' contains an invalid year.');
         return;
     }
@@ -86,7 +86,7 @@ const validateEarlierDate = (rule, value, callback, required = true) => {
             callback()
         return;
     }
-    if (moment().diff(value) > 0 && !moment(value).isSame(moment(), 'day')) {
+    if (moment().diff(value) > 0 && !moment(value, 'DD/MMM/YYYY').isSame(moment(), 'day')) {
       callback();
       return;
     }
@@ -104,7 +104,7 @@ const validateBetweenDate = (rule, value, callback, field, fromDate, required) =
       callback(field + ' cannot be later than today.');
       return;
     }
-    if(moment(fromDate).diff(value) > 0){
+    if(moment(fromDate, 'DD/MMM/YYYY').diff(value) > 0){
         callback(field + ' cannot be earlier than From Date.');
         return;
     }
@@ -120,7 +120,7 @@ const validateExpirationDate = (rule, value, callback, field, issuedDate) => {
       callback(field + ' cannot be earlier than today.');
       return;
     }
-    if(moment(issuedDate).diff(value) > 0){
+    if(moment(issuedDate, 'DD/MMM/YYYY').diff(value) > 0){
         callback(field + ' cannot be earlier than Issued Date.');
         return;
     }
@@ -131,11 +131,11 @@ const validateLastVisaIssuedDate = (rule, value, callback, field, birthday) => {
       callback('This field is required');
       return;
     }
-    if (moment().diff(value) < 0 || moment(value).isSame(moment(), 'day')) {
+    if (moment().diff(value) < 0 || moment(value, 'DD/MMM/YYYY').isSame(moment(), 'day')) {
       callback(field + ' cannot be equal to or later than today.');
       return;
     }
-    if(moment(birthday).diff(value) > 0){
+    if(moment(birthday, 'DD/MMM/YYYY').diff(value) > 0){
         callback(field + ' cannot be earlier than Date of Birth.');
         return;
     }

@@ -16,11 +16,14 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
+
   handleDates = (data) => {
-    if(data.US_Visa.date)
+    console.log('hello')
+    if(data.US_Visa && data.US_Visa.date)
       data.US_Visa.date = data.US_Visa.date.format('DD/MMM/YYYY')
-    if(data.prev_visit_info.date)
+    if(data.prev_visit_info && data.prev_visit_info.date)
       data.prev_visit_info.date = data.prev_visit_info.date.format('DD/MMM/YYYY')
+
     return data
   }
 

@@ -21,13 +21,13 @@ class MyForm extends Component {
     showNext: true,
   }
   handleDates = (data) => {
-    if(data.emp_info.date_from)
+    if(data.emp_info && data.emp_info.date_from)
       data.emp_info.date_from = data.emp_info.date_from.format('DD/MMM/YYYY')
-    if(data.emp_info.date_to)
+    if(data.emp_info && data.emp_info.date_to)
       data.emp_info.date_to = data.emp_info.date_to.format('DD/MMM/YYYY')
-    if(data.edu_info.date_from)
+    if(data.edu_info && data.edu_info.date_from)
       data.edu_info.date_from = data.edu_info.date_from.format('DD/MMM/YYYY')
-    if(data.edu_info.date_to)
+    if(data.edu_info && data.edu_info.date_to)
       data.edu_info.date_to = data.edu_info.date_to.format('DD/MMM/YYYY')
     return data
   }

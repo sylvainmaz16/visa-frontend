@@ -48,7 +48,7 @@ class MyForm extends Component {
           <h2 className="visa-global-section-title">Present Work/Education/Training Information</h2>
         </div>
         <Row gutter={16}>
-          <Col xs={{ span: 24 }} md={{ span: 12 }}>
+          <Col xs={{ span: 24 }} md={{ span: 24 }}>
             <VisaSelectItem
               label="Primary Occupation"
               field="data.occupation"
@@ -58,7 +58,7 @@ class MyForm extends Component {
               }}
               getFieldDecorator={getFieldDecorator}
             />
-            {this.props.getFieldValue('data.occupation') == 'O' &&
+            {this.props.form.getFieldValue('data.occupation') == 'O' &&
               <Form.Item label="Specify Other ">
                 {getFieldDecorator('data.specify_other_explain', {
                   initialValue: utils.getInitialValue(data.specify_other_explain),

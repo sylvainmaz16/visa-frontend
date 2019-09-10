@@ -14,7 +14,7 @@ class MyForm extends Component {
     showNext: true,
   }
   handleDates = (data) => {
-    if(data.travel_plan.date_of_arrival)
+    if(data.travel_plan && data.travel_plan.date_of_arrival)
       data.travel_plan.date_of_arrival = data.travel_plan.date_of_arrival.format('DD/MMM/YYYY')
     return data
   }

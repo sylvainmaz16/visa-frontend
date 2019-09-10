@@ -23,11 +23,11 @@ class MyForm extends Component {
   
   
   handleDates = (data) => {
-    if(data.father.birthday)
+    if(data.father && data.father.birthday)
       data.father.birthday = data.father.birthday.format('DD/MMM/YYYY')
-    if(data.mother.birthday)
+    if(data.mother && data.mother.birthday)
       data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY')
-    if(data.spouse.birthday)
+    if(data.spouse && data.spouse.birthday)
       data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY')
     return data
   }
@@ -268,6 +268,15 @@ class MyForm extends Component {
             required={false}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
           />
+          <VisaSelectItem
+            label="Nationality"
+            field="data.spouse.nationality"
+            initialValue={data.spouse.nationality}
+            content={{
+              combines: constants.nationality_option_list_func()
+            }}
+            getFieldDecorator={getFieldDecorator}
+          />
           <Form.Item label="Place of birth">
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -286,7 +295,8 @@ class MyForm extends Component {
                   field="data.spouse.place_of_birth.country"
                   initialValue={data.spouse.place_of_birth.country}
                   content={{
-                    combines: constants.export_list(constants.relationship_options)
+                    values: constants.countries_regions_option_value_list,
+                    labels: constants.countries_regions_option_label_list,
                   }}
                   getFieldDecorator={getFieldDecorator}
                 />
