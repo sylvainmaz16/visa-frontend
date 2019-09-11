@@ -548,14 +548,14 @@ function mainReducer(state = initialState, action) {
         ...state,
         bWaitLoadFromDB: false,
         step_index: action.data.step_index,
-        applicationId: action.data.applicationId,
+        applicationId: action.applicationId,
         ds160: action.data.data
       };
     }
     case DS160.DS160_GET_FAILURE: {
+      console.log('failed to get')
       return {
-        ...state,
-        bWaitLoadFromDB: false
+        ...initialState
       };
     }
     case DS160.DS160_SAVE_REQUEST: {

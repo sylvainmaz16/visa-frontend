@@ -13,7 +13,7 @@ function* getRequest(action) {
   try {
     const res = yield call(ApiManager.GetDS160Application, headers, action.applicationId);
     const data = res.data;
-    yield put({ type: DS160.DS160_GET_SUCCESS, data });
+    yield put({ type: DS160.DS160_GET_SUCCESS, data, applicationId: action.applicationId });
     console.log('in ds160_saga: ', data);
   } catch (e) {
     console.log(e);
@@ -31,7 +31,7 @@ function* saveRequest(action) {
   console.log(action);
 
   try {
-    const res = yield call(ApiManager.SaveDS160Application, headers, action.payload);
+    const res = action.applicationId ? yield call(ApiManager.UpdateDS160Application, action.applicationId, action.payload) : yield call(ApiManager.SaveDS160Application, headers, action.payload);
     const data = res.data;
     yield put({ type: DS160.DS160_SAVE_SUCCESS, data });
     console.log('in ds160_saga: ', data);

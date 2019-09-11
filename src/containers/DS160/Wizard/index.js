@@ -80,7 +80,19 @@ class DS160_Wizard extends Component {
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data)
     }
     console.log(field, payload)
-    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload)
+    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
+    this.props.history.push('/ds-160/application-form-later');
+  }
+
+  onSubmit = (data, field) => {
+    const payload = {
+      email: '',
+      completed: true,
+      step_index: this.props.step_index,
+      data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
+    }
+    console.log('onSubmit: ', field, payload)
+    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
     this.props.history.push('/ds-160/application-form-later');
   }
 
@@ -93,19 +105,28 @@ class DS160_Wizard extends Component {
       this.onPrev(values.data, field)
   }
 
-  handleSave = (e, form, handleDates, field) => {
+  handleSave = (e, form, handleDates, field, completed = false) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       console.log(err, values)
       if (!err) {
         if( handleDates )
-          this.onSaveAndContinue(handleDates(values.data), field)
-        else
-          this.onSaveAndContinue(values.data, field)
+        {
+          if(completed)
+            this.onSubmit(handleDates(values.data), field)
+          else
+            this.onSaveAndContinue(handleDates(values.data), field)
+        }
+        else {
+          if(completed)
+            this.onSubmit(handleDates(values.data), field)
+          else
+            this.onSubmit(values.data, field)
+        }
       }
     });
   }
-  handleSubmit = (e, form, handleDates, field) => {
+  handleNext = (e, form, handleDates, field) => {
     e.preventDefault();
     console.log( e, form, handleDates, field)
     form.validateFieldsAndScroll((err, values) => {
@@ -285,7 +306,7 @@ class DS160_Wizard extends Component {
     let shared_params = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
-      handleSubmit: (e, form, handleDates) => this.handleSubmit(e, form, handleDates, field),
+      handleSubmit: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       validators: ds160_validators
     }
 
@@ -385,8 +406,8 @@ const mapDispatchToProps = dispatch => {
     updateValues: (type, values) => {
       dispatch({ type, values })
     },
-    onSaveAndContinueLater: (type, payload) => {
-      dispatch({ type, payload })
+    onSaveAndContinueLater: (type, payload, applicationId) => {
+      dispatch({ type, payload, applicationId })
     },
     loadApplicationFromDB: (type, applicationId) => {
       dispatch({ type, applicationId })
@@ -397,7 +418,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => ({
   step_index: state.mainData.step_index,
   ds160: state.mainData.ds160,
-  bWaitLoadFromDB: state.mainData.bWaitLoadFromDB
+  bWaitLoadFromDB: state.mainData.bWaitLoadFromDB,
+  applicationId: state.mainData.applicationId
 })
 
 

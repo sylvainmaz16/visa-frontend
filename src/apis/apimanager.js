@@ -24,7 +24,7 @@ const requests = {
   //       .catch(handleErrors),
   put: (url, data) =>
     axios
-      .put(`${apiUrl}${url}`, data)
+      .put(`${apiUrl}${url}`, data, {headers: {"Content-Type": "application/json"}})
       .then(responseData)
       .catch(handleErrors),
   patch: (url, data) =>
@@ -41,5 +41,6 @@ const requests = {
 
 export const ApiManager = {
   SaveDS160Application: (headers, data) => requests.post(`ds-160`, headers, data),
+  UpdateDS160Application: (applicationId, data) => requests.put(`ds-160/${applicationId}`, data),
   GetDS160Application: (headers, applicationId) => requests.get(`ds-160/${applicationId}`, headers),
 };
