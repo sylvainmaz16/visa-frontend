@@ -31,6 +31,7 @@ import Form_DS160_13_Additional_Work_Edu from './Step13_Additional_Work_Edu';
 import Form_DS160_11_Work_Edu from './Step11_Work_Edu';
 import Form_Final from './Final';
 import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
+import Form_DS160_15_SEVIS from './Step15_SEVIS';
 
 class DS160_Wizard extends Component {
   static defaultProps = {
