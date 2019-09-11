@@ -301,6 +301,10 @@ class DS160_Wizard extends Component {
       }
     }
 
+    if(fields_list[extra_index] == 'extra') {
+      fields_list.splice(extra_index, 1)
+    }
+
     let field = fields_list[step_index]    
     
     let shared_params = {
