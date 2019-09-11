@@ -1,8 +1,9 @@
 //import AuthStore from './stores/AuthStore'
 import axios from "axios";
+import * as constants from '../utils/constants'
 
 //const apiUrl = "http://localhost:4040/api/";
-const apiUrl = 'http://3.16.123.4/v1/api/';
+const apiUrl = constants.apiURL;
 
 const handleErrors = err => {
   throw err;

@@ -1,5 +1,8 @@
 import React from "react";
 
+export const myURL = 'http://3.16.123.4'
+export const apiURL = 'http://3.16.123.4/v1/api/'
+
 export const export_list = (array) => {
     return array.map(option => {
         return {

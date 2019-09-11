@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Input } from 'antd';
+import * as constants from '../../../../utils/constants'
 
 class MyForm extends Component {
   handleSubmit = e => {
@@ -24,7 +25,7 @@ class MyForm extends Component {
 
     const { email, applicationId } = this.props
 
-    let link = `http://localhost:3000/ds-160/application-form/token=${applicationId}`
+    let link = `${constants.myURL}/ds-160/application-form/token=${applicationId}`
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
