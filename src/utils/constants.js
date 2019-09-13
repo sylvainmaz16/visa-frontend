@@ -1,5 +1,7 @@
 import React from "react";
 
+// export const myURL = 'http://localhost:3000'
+// export const apiURL = 'http://localhost:4040/api/'
 export const myURL = 'http://3.16.123.4'
 export const apiURL = 'http://3.16.123.4/v1/api/'
 

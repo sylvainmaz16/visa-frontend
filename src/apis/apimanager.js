@@ -15,7 +15,7 @@ const requests = {
     axios({ url: `${apiUrl}${url}`, method: "get", headers })
       .then(responseData)
       .catch(handleErrors),
-  post: (url, headers, data) =>
+  post: (url, headers, data) => 
     axios({ url: `${apiUrl}${url}`, method: "post", headers, data })
       .then(responseData)
       .catch(handleErrors),
