@@ -42,6 +42,8 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
     getFieldDecorator('data.occupation', { initialValue: utils.getInitialValue(data.occupation) });
+
+    const occupation = this.props.form.getFieldValue('data.occupation')
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -58,7 +60,7 @@ class MyForm extends Component {
               }}
               getFieldDecorator={getFieldDecorator}
             />
-            {this.props.form.getFieldValue('data.occupation') == 'O' &&
+            {occupation == 'O' &&
               <Form.Item label="Specify Other ">
                 {getFieldDecorator('data.specify_other_explain', {
                   initialValue: utils.getInitialValue(data.specify_other_explain),
@@ -68,43 +70,57 @@ class MyForm extends Component {
                 )}
               </Form.Item>
             }
-            <VisaInput
-              label="Present Employer or School Name"
-              field="data.name"
-              initialValue={data.name}
-              getFieldDecorator={getFieldDecorator}
-            />
+            {occupation == 'N' &&
+              <Form.Item label="Explain">
+                {getFieldDecorator('data.specify_other_explain', {
+                  initialValue: utils.getInitialValue(data.specify_other_explain),
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <TextArea rows={3}/>
+                )}
+              </Form.Item>
+            }
+            {(occupation != 'N' && occupation != 'RT') && 
+            <>
+              <VisaInput
+                label="Present Employer or School Name"
+                field="data.name"
+                initialValue={data.name}
+                getFieldDecorator={getFieldDecorator}
+              />
 
-            <VisaAddress 
-              label="Present employer or school address"
-              field="data.address"
-              initialValue={data.address}
-              getFieldDecorator={getFieldDecorator}
-            />
+              <VisaAddress 
+                label="Present employer or school address"
+                field="data.address"
+                initialValue={data.address}
+                getFieldDecorator={getFieldDecorator}
+              />
 
-            <VisaDatePicker 
-              label="Start Date"
-              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
-              field="data.start_date"
-              initialValue={data.start_date}
-              getFieldDecorator={getFieldDecorator}
-            />
+              <VisaDatePicker 
+                label="Start Date"
+                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                field="data.start_date"
+                initialValue={data.start_date}
+                getFieldDecorator={getFieldDecorator}
+              />
 
-            <VisaInput
-              label="Monthly Income in Local Currency (if employed) "
-              field="data.monthly_income"
-              initialValue={data.monthly_income}
-              getFieldDecorator={getFieldDecorator}
-            />
+              <VisaInput
+                label="Monthly Income in Local Currency (if employed) "
+                field="data.monthly_income"
+                initialValue={data.monthly_income}
+                getFieldDecorator={getFieldDecorator}
+              />
 
-            <Form.Item label="Briefly describe your duties:">
-              {getFieldDecorator('data.duty_explain', {
-                initialValue: utils.getInitialValue(data.duty_explain),
-                rules: [{ required: true, message: 'This field is required' }],
-              })(
-                <TextArea rows={3}/>
-              )}
-            </Form.Item>
+              <Form.Item label="Briefly describe your duties:">
+                {getFieldDecorator('data.duty_explain', {
+                  initialValue: utils.getInitialValue(data.duty_explain),
+                  rules: [{ required: true, message: 'This field is required' }],
+                })(
+                  <TextArea rows={3}/>
+                )}
+              </Form.Item>
+            </>
+            }
           </Col>
         </Row>
 

@@ -32,6 +32,7 @@ import Form_DS160_11_Work_Edu from './Step11_Work_Edu';
 import Form_Final from './Final';
 import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
 import Form_DS160_15_SEVIS from './Step15_SEVIS';
+import Form_Photo from './Photo';
 
 class DS160_Wizard extends Component {
   static defaultProps = {
@@ -195,6 +196,7 @@ class DS160_Wizard extends Component {
         "form_security",
         "extra",
         "form_e_sign",
+        "form_photo",
         "form_final"
       ]
     } else {
@@ -212,6 +214,7 @@ class DS160_Wizard extends Component {
         "form_security",
         "extra",
         "form_e_sign",
+        "form_photo",
         "form_final"
       ]
     }
@@ -347,7 +350,7 @@ class DS160_Wizard extends Component {
         form_render = <Form_DS160_9_Contact {...shared_params} data={ds160.form_contact} />
         break;
       case 10:
-        form_render = <Form_DS160_10_Family {...shared_params} data={ds160.form_family} date_birth={ds160.form_personal_info.date_birth}/>
+        form_render = <Form_DS160_10_Family {...shared_params} data={ds160.form_family} date_birth={ds160.form_personal_info.date_birth} martial_status={ds160.form_personal_info.martial_status}/>
         break;
       default:
         switch(field) {
@@ -374,6 +377,9 @@ class DS160_Wizard extends Component {
             break;
           case 'form_e_sign':
             form_render = <Form_DS160_16_Preparer {...shared_params} data={ds160.form_e_sign} />
+            break;
+          case 'form_photo':
+            form_render = <Form_Photo {...shared_params} data={ds160.form_photo} />
             break;
           case 'form_final':
             form_render = <Form_Final {...shared_params} />

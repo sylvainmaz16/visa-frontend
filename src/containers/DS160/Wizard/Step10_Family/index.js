@@ -46,12 +46,22 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status } = this.props
 
     getFieldDecorator('data.father.b_in_US', { initialValue: utils.getInitialValue(data.father.b_in_US) });
     getFieldDecorator('data.mother.b_in_US', { initialValue: utils.getInitialValue(data.mother.b_in_US) });
     getFieldDecorator('data.b_other_relative', { initialValue: utils.getInitialValue(data.b_other_relative) });
     getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) });
+
+    const martial_header = {
+      'M': 'Spouse',
+      'C': 'Spouse',
+      'P': 'Partner',
+      'W': 'Deceased Spouse',
+      'D': 'Former Spouse',
+      'L': 'Spouse',
+    }
+
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -232,84 +242,281 @@ class MyForm extends Component {
           />
         }
 
-        <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Family information : Your Spouse Information</h2>
-        </div>
+        {martial_header[martial_status] && 
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">Family Information: {martial_header[martial_status]}</h2>
+          </div>
+        }
+        {
+          (martial_header[martial_status] == 'Spouse' || martial_header[martial_status] == 'Partner') &&
+            <Form.Item label="List your Spouse/Partner's information here" required>
+              <Row gutter={16}>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <VisaInput
+                    label="Spouse/Partner's First Name"
+                    extra="Leave blank if you do not know"
+                    field="data.spouse.surname"
+                    initialValue={data.spouse.surname}
+                    getFieldDecorator={getFieldDecorator}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                  />
+                </Col>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <VisaInput
+                    label="Spouse/Partner's Last Name"
+                    extra="Leave blank if you do not know"
+                    field="data.spouse.given_name"
+                    initialValue={data.spouse.given_name}
+                    getFieldDecorator={getFieldDecorator}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                  />
+                </Col>
+              </Row>
+              <VisaDatePicker 
+                label="Spouse/Partner's date of birth (If known)"
+                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                field="data.spouse.birthday"
+                initialValue={data.spouse.birthday}
+                getFieldDecorator={getFieldDecorator}
+                required={false}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+              />
+              <VisaSelectItem
+                label="Nationality"
+                field="data.spouse.nationality"
+                initialValue={data.spouse.nationality}
+                content={{
+                  combines: constants.nationality_option_list_func()
+                }}
+                getFieldDecorator={getFieldDecorator}
+              />
+              <Form.Item label="Place of birth">
+                <Row gutter={16}>
+                  <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                    <VisaInput
+                      label="City"
+                      extra="Leave blank if you do not know"
+                      field="data.spouse.place_of_birth.city"
+                      initialValue={data.spouse.place_of_birth.city}
+                      getFieldDecorator={getFieldDecorator}
+                      required={false}
+                    />
+                  </Col>
+                  <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                    <VisaSelectItem
+                      label="Country"
+                      field="data.spouse.place_of_birth.country"
+                      initialValue={data.spouse.place_of_birth.country}
+                      content={{
+                        values: constants.countries_regions_option_value_list,
+                        labels: constants.countries_regions_option_label_list,
+                      }}
+                      getFieldDecorator={getFieldDecorator}
+                    />
+                  </Col>
+                </Row>
+              </Form.Item>
+              <VisaAddress 
+                label="Address"
+                field="data.spouse.address"
+                initialValue={data.spouse.address}
+                getFieldDecorator={getFieldDecorator}
+              />
+            </Form.Item>
+        }
 
-        <Form.Item label="List your Spouse's information here" required>
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label="Spouse's First Name"
-                extra="Leave blank if you do not know"
-                field="data.spouse.surname"
-                initialValue={data.spouse.surname}
+        {
+          (martial_header[martial_status] == 'Spouse' || martial_header[martial_status] == 'Partner' || martial_header[martial_status] == 'Deceased Spouse') &&
+            <Form.Item required>
+              <Row gutter={16}>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <VisaInput
+                    label="First Name"
+                    extra="Leave blank if you do not know"
+                    field="data.spouse.surname"
+                    initialValue={data.spouse.surname}
+                    getFieldDecorator={getFieldDecorator}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                  />
+                </Col>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <VisaInput
+                    label="Last Name"
+                    extra="Leave blank if you do not know"
+                    field="data.spouse.given_name"
+                    initialValue={data.spouse.given_name}
+                    getFieldDecorator={getFieldDecorator}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                  />
+                </Col>
+              </Row>
+              <VisaDatePicker 
+                label="Date of birth (If known)"
+                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                field="data.spouse.birthday"
+                initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                required={false}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
               />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label="Spouse's Last Name"
-                extra="Leave blank if you do not know"
-                field="data.spouse.given_name"
-                initialValue={data.spouse.given_name}
+              <VisaSelectItem
+                label="Nationality"
+                field="data.spouse.nationality"
+                initialValue={data.spouse.nationality}
+                content={{
+                  combines: constants.nationality_option_list_func()
+                }}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
               />
-            </Col>
-          </Row>
-          <VisaDatePicker 
-            label="Spouse's date of birth (If known)"
-            extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
-            field="data.spouse.birthday"
-            initialValue={data.spouse.birthday}
-            getFieldDecorator={getFieldDecorator}
-            required={false}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
-          />
-          <VisaSelectItem
-            label="Nationality"
-            field="data.spouse.nationality"
-            initialValue={data.spouse.nationality}
-            content={{
-              combines: constants.nationality_option_list_func()
-            }}
-            getFieldDecorator={getFieldDecorator}
-          />
-          <Form.Item label="Place of birth">
+              <Form.Item label="Place of birth">
+                <Row gutter={16}>
+                  <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                    <VisaInput
+                      label="City"
+                      extra="Leave blank if you do not know"
+                      field="data.spouse.place_of_birth.city"
+                      initialValue={data.spouse.place_of_birth.city}
+                      getFieldDecorator={getFieldDecorator}
+                      required={false}
+                    />
+                  </Col>
+                  <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                    <VisaSelectItem
+                      label="Country"
+                      field="data.spouse.place_of_birth.country"
+                      initialValue={data.spouse.place_of_birth.country}
+                      content={{
+                        values: constants.countries_regions_option_value_list,
+                        labels: constants.countries_regions_option_label_list,
+                      }}
+                      getFieldDecorator={getFieldDecorator}
+                    />
+                  </Col>
+                </Row>
+              </Form.Item>
+              {martial_header[martial_status] != 'Deceased Spouse' &&
+                <VisaAddress 
+                  label="Address"
+                  field="data.spouse.address"
+                  initialValue={data.spouse.address}
+                  getFieldDecorator={getFieldDecorator}
+                />
+              }            
+            </Form.Item>
+        }
+        {
+          martial_header[martial_status] == 'Former Spouse' &&
+          <Form.Item label="Former Spouse's Information" required>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaInput
-                  label="City"
+                  label="First Name"
                   extra="Leave blank if you do not know"
-                  field="data.spouse.place_of_birth.city"
-                  initialValue={data.spouse.place_of_birth.city}
+                  field="data.former_spouse.surname"
+                  initialValue={data.former_spouse.surname}
                   getFieldDecorator={getFieldDecorator}
-                  required={false}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
                 />
               </Col>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaSelectItem
-                  label="Country"
-                  field="data.spouse.place_of_birth.country"
-                  initialValue={data.spouse.place_of_birth.country}
-                  content={{
-                    values: constants.countries_regions_option_value_list,
-                    labels: constants.countries_regions_option_label_list,
-                  }}
+                <VisaInput
+                  label="Last Name"
+                  extra="Leave blank if you do not know"
+                  field="data.former_spouse.given_name"
+                  initialValue={data.former_spouse.given_name}
                   getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
                 />
               </Col>
             </Row>
+            <VisaDatePicker 
+              label="Date of birth (If known)"
+              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+              field="data.former_spouse.birthday"
+              initialValue={data.former_spouse.birthday}
+              getFieldDecorator={getFieldDecorator}
+              required={false}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+            />
+            <VisaSelectItem
+              label="Nationality"
+              field="data.former_spouse.nationality"
+              initialValue={data.former_spouse.nationality}
+              content={{
+                combines: constants.nationality_option_list_func()
+              }}
+              getFieldDecorator={getFieldDecorator}
+            />
+            <Form.Item label="Place of birth">
+              <Row gutter={16}>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <VisaInput
+                    label="City"
+                    extra="Leave blank if you do not know"
+                    field="data.former_spouse.place_of_birth.city"
+                    initialValue={data.former_spouse.place_of_birth.city}
+                    getFieldDecorator={getFieldDecorator}
+                    required={false}
+                  />
+                </Col>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <VisaSelectItem
+                    label="Country"
+                    field="data.former_spouse.place_of_birth.country"
+                    initialValue={data.former_spouse.place_of_birth.country}
+                    content={{
+                      values: constants.countries_regions_option_value_list,
+                      labels: constants.countries_regions_option_label_list,
+                    }}
+                    getFieldDecorator={getFieldDecorator}
+                  />
+                </Col>
+              </Row>
+            </Form.Item>
+            <VisaAddress 
+              label="Address"
+              field="data.former_spouse.address"
+              initialValue={data.former_spouse.address}
+              getFieldDecorator={getFieldDecorator}
+            />
+            <VisaDatePicker 
+              label="Date of Marriage"
+              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+              field="data.former_spouse.marriage_date"
+              initialValue={data.former_spouse.marriage_date}
+              getFieldDecorator={getFieldDecorator}
+              required={false}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+            />
+            <VisaDatePicker 
+              label="Date Marriage End"
+              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+              field="data.former_spouse.end_date"
+              initialValue={data.former_spouse.end_date}
+              getFieldDecorator={getFieldDecorator}
+              required={false}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+            />
+            <Form.Item label="How the Marriage Ended" required>
+              {getFieldDecorator('data.former_spouse.end_explain', {
+                initialValue: utils.getInitialValue(data.former_spouse.end_explain),
+                rules: [{ required: true, message: 'This field is required' }],
+              })(
+                <TextArea rows={3}/>
+              )}
+            </Form.Item>
+            <VisaSelectItem
+              label="Country/Region Marriage was Terminated"
+              field="data.former_spouse.end_country"
+              initialValue={data.former_spouse.end_country}
+              content={{
+                values: constants.countries_regions_option_value_list,
+                labels: constants.countries_regions_option_label_list,
+              }}
+              getFieldDecorator={getFieldDecorator}
+            />
           </Form.Item>
-          <VisaAddress 
-            label="Address"
-            field="data.spouse.address"
-            initialValue={data.spouse.address}
-            getFieldDecorator={getFieldDecorator}
-          />
-        </Form.Item>
+        }
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}

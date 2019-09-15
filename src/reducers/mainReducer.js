@@ -280,6 +280,20 @@ const initialState = {
           zip_code: null,
           country: null
         }
+      },
+      former_spouse: {
+        surname: null,
+        given_name: null,
+        birthday: null,
+        nationality: null,
+        place_of_birth: {
+          city: null,
+          country: null
+        },
+        marriage_date: null,
+        end_date: null,
+        end_explain: null,
+        end_country: null
       }
     },
 
