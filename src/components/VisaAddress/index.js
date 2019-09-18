@@ -8,11 +8,12 @@ class VisaAddress extends Component {
   static defaultProps = {
     extra: "",
     label: "",
-    hideCountry: false
+    hideCountry: false,
+    us_address: true
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, hideCountry, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, hideCountry, us_address, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required>
         <Form.Item extra="Street Address">
@@ -44,7 +45,7 @@ class VisaAddress extends Component {
               )}
             </Form.Item>
           </Col>
-          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+          {us_address ? <Col xs={{ span: 24 }} sm={{ span: 12 }}>
             <Form.Item extra="State / Province / Region">
               {getFieldDecorator( field + '.state', {
                 initialValue: utils.getInitialValue(initialValue.state),
@@ -53,7 +54,17 @@ class VisaAddress extends Component {
                 <VisaSelect combines={constants.state_options_list()} />
               )}
             </Form.Item>
-          </Col>
+          </Col> : <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+            <Form.Item extra="State / Province / Region">
+              {getFieldDecorator( field + '.state', {
+                initialValue: utils.getInitialValue(initialValue.state),
+                rules: [{ required: true, message: 'This field is required' }],
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>}
+          
         </Row>
 
         <Row gutter={16}>

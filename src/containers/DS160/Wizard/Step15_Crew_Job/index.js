@@ -103,6 +103,7 @@ class MyForm extends Component {
             field="data.position_info.address"
             initialValue={data.position_info.address}
             getFieldDecorator={getFieldDecorator}
+            us_address={false}
           />
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>

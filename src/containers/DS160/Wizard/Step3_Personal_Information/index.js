@@ -26,6 +26,12 @@ class MyForm extends Component {
     }
     callback();
   };
+  handleNationalityChange = (rule, value, callback) => {
+    if (!value) {
+      callback('This field is required');
+    }
+    callback();
+  };
   handleMoreNationalityChange = (rule, value, callback) => {
     if (!value) {
       callback('This field is required');

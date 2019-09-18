@@ -524,6 +524,14 @@ const initialState = {
         vessel_id: null
       }
     },
+    form_photo: {
+      b_photo: null,
+      url: null,
+      b_info_confirm: null,
+      b_certify: null,
+      fullname_sign: null,
+      signature: null
+    },
     form_e_sign: {
       b_assist: null,
       assist_info: {

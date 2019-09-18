@@ -387,6 +387,7 @@ class MyForm extends Component {
                   field="data.paying_person_info.address"
                   initialValue={data.paying_person_info.address}
                   getFieldDecorator={getFieldDecorator}
+                  us_address={false}
                 />
               </Col>
             </Row>

@@ -94,6 +94,7 @@ class MyForm extends Component {
                 field="data.address"
                 initialValue={data.address}
                 getFieldDecorator={getFieldDecorator}
+                us_address={false}
               />
 
               <VisaDatePicker 

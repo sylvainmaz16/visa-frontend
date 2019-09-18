@@ -321,6 +321,7 @@ class MyForm extends Component {
                 field="data.spouse.address"
                 initialValue={data.spouse.address}
                 getFieldDecorator={getFieldDecorator}
+                us_address={false}
               />
             </Form.Item>
         }
@@ -400,6 +401,7 @@ class MyForm extends Component {
                   field="data.spouse.address"
                   initialValue={data.spouse.address}
                   getFieldDecorator={getFieldDecorator}
+                  us_address={false}
                 />
               }            
             </Form.Item>
@@ -478,6 +480,7 @@ class MyForm extends Component {
               field="data.former_spouse.address"
               initialValue={data.former_spouse.address}
               getFieldDecorator={getFieldDecorator}
+              us_address={false}
             />
             <VisaDatePicker 
               label="Date of Marriage"

@@ -79,6 +79,7 @@ class MyForm extends Component {
                 field="data.emp_info.address"
                 initialValue={data.emp_info.address}
                 getFieldDecorator={getFieldDecorator}
+                us_address={false}
               />
             </Col>
           </Row>
@@ -180,6 +181,7 @@ class MyForm extends Component {
             field="data.edu_info.address"
             initialValue={data.edu_info.address}
             getFieldDecorator={getFieldDecorator}
+            us_address={false}
           />
 
           <Row gutter={16}>
