@@ -1,0 +1,51 @@
+.visa-ds160-checkout {
+    &__content {
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        background: rgba(227,243,243,1);
+        font-weight: 400;
+        font-family: "Open Sans", Arial, sans-serif;
+        padding: 3em 2em;
+
+        .visa-global-section-title-customized-by-ds-160 {
+            font-size: 1em;
+            color: rgba(49,112,143,1);
+            text-align: center;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        .payButtonRow {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        #order_review_heading {
+            font-size: 18px;
+        }
+        #order_review {
+            table {
+                width: 100%;
+                border: 1px solid #ddd;
+                margin-bottom: 40px;
+                border-collapse: collapse;
+            }
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            th {
+                border: 1px solid #ddd;
+                border-bottom-width: 2px;
+                padding: 8px;
+            }
+        }
+    }
+}
+#visa-ds160-checkout-spin {
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 23px);
+}

@@ -1,0 +1,96 @@
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import VisaBanner from '../../../components/VisaBanner';
+import VisaHeader from '../../../components/VisaHeader';
+import { DS160 } from '../../../actions/types'
+import { Spin } from 'antd';
+import Form_Checkout from './StripeWrapper';
+import './index.scss'
+import Form_DS160_Checkout_Info from './Info';
+
+class DS160_Checkout extends Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  placeOrder = (e, form) => {
+    e.preventDefault();
+    form.validateFieldsAndScroll((err, values) => {
+      console.log(err, values)
+      if (!err) {
+        const payload = {
+          data: values.data,
+          applicationId: this.props.applicationId
+        }
+        this.props.onPlaceOrder(DS160.DS160_CHECKOUT_REQUEST, payload)
+      }
+    });
+  }
+
+  render() {
+
+    const { email, step_index, loading, applicationId, completed, loading_pay, paid, checkout_result } = this.props
+
+    console.log('loading_pay: ', loading_pay)
+    if(loading) {
+      return <Spin tip="Please wait..." id="visa-ds160-checkout-spin">
+      </Spin>
+    }
+
+    if(!applicationId || !completed) {
+      return (
+        <div className="visa-ds160-checkout">
+          <VisaHeader />
+          <VisaBanner backgroundColor="#428bca">
+            Checkout
+          </VisaBanner>
+          <div className="container visa-ds160-checkout__content">
+            <Form_DS160_Checkout_Info />
+          </div>
+        </div>
+      )  
+    }
+
+    return (
+      <div className="visa-ds160-checkout">
+        <VisaHeader />
+        <VisaBanner backgroundColor="#428bca">
+          Checkout
+        </VisaBanner>
+        <div className="container visa-ds160-checkout__content">
+          <Form_Checkout placeOrder={this.placeOrder} loading_pay={loading_pay} checkout_result={checkout_result}/>
+        </div>
+      </div>
+    )
+  }
+}
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onPlaceOrder: (type, payload) => {
+      dispatch({ type, payload })
+    },
+  }
+}
+
+const mapStateToProps = state => ({
+  email: state.mainData.email,
+  step_index: state.mainData.step_index,
+  loading: state.mainData.loading,
+  completed: state.mainData.completed,
+  applicationId: state.mainData.applicationId,
+  loading_pay: state.mainData.loading_pay,
+  paid: state.mainData.paid,
+  checkout_result: state.mainData.checkout_result,
+})
+
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(DS160_Checkout),
+)

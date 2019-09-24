@@ -96,7 +96,20 @@ class DS160_Wizard extends Component {
     }
     console.log('onSubmit: ', field, payload)
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
-    this.props.history.push('/ds-160/application-form-later');
+    this.props.history.push('/ds-160/checkout');
+  }
+
+  handleSubmit = (e, form, handleDates, field) => {
+    e.preventDefault();
+    form.validateFieldsAndScroll((err, values) => {
+      console.log(err, values)
+      if (!err) {
+        if( handleDates )
+          this.onSubmit(handleDates(values.data), field)
+        else 
+          this.onSubmit(values.data, field)
+      }
+    });
   }
 
   handlePrev = (e, form, handleDates, field) => {
@@ -108,27 +121,19 @@ class DS160_Wizard extends Component {
       this.onPrev(values.data, field)
   }
 
-  handleSave = (e, form, handleDates, field, completed = false) => {
+  handleSave = (e, form, handleDates, field) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       console.log(err, values)
       if (!err) {
         if( handleDates )
-        {
-          if(completed)
-            this.onSubmit(handleDates(values.data), field)
-          else
-            this.onSaveAndContinue(handleDates(values.data), field)
-        }
-        else {
-          if(completed)
-            this.onSubmit(handleDates(values.data), field)
-          else
-            this.onSubmit(values.data, field)
-        }
+          this.onSaveAndContinue(handleDates(values.data), field)
+        else 
+          this.onSaveAndContinue(values.data, field)
       }
     });
   }
+
   handleNext = (e, form, handleDates, field) => {
     e.preventDefault();
     console.log( e, form, handleDates, field)
@@ -169,7 +174,9 @@ class DS160_Wizard extends Component {
       "form_additional_work",
       "form_security",
       "",
-      "form_e_sign"
+      "form_e_sign",
+      "form_photo",
+      "form_final"
     ]
 
     const {purpose_of_trip, other_purpose_of_trip} = ds160.form_travel
@@ -314,8 +321,8 @@ class DS160_Wizard extends Component {
     
     let shared_params = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
+      handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
-      handleSubmit: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       validators: ds160_validators
     }
 
@@ -347,7 +354,7 @@ class DS160_Wizard extends Component {
         form_render = <Form_DS160_8_Passport {...shared_params} data={ds160.form_passport} />
         break;
       case 9:
-        form_render = <Form_DS160_9_Contact {...shared_params} data={ds160.form_contact} />
+        form_render = <Form_DS160_9_Contact {...shared_params} data={ds160.form_contact} martial_status={ds160.form_personal_info.martial_status}/>
         break;
       case 10:
         form_render = <Form_DS160_10_Family {...shared_params} data={ds160.form_family} date_birth={ds160.form_personal_info.date_birth} martial_status={ds160.form_personal_info.martial_status}/>
@@ -382,7 +389,7 @@ class DS160_Wizard extends Component {
             form_render = <Form_Photo {...shared_params} data={ds160.form_photo} />
             break;
           case 'form_final':
-            form_render = <Form_Final {...shared_params} />
+            form_render = <Form_Final {...shared_params} handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}/>
             break;
           default:
             console.log('EXCEPTION could not find form')

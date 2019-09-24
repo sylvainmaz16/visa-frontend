@@ -63,6 +63,15 @@ export const relationship_options = [
 	<option value="O">OTHER</option>
 ]
 
+export const relationship_options_except_Spouse = [
+	<option value="R">RELATIVE</option>,
+	<option value="C">FRIEND</option>,
+	<option value="B">BUSINESS ASSOCIATE</option>,
+	<option value="P">EMPLOYER</option>,
+	<option value="H">SCHOOL OFFICIAL</option>,
+	<option value="O">OTHER</option>
+]
+
 export const passport_type_options = [
     <option value="R">REGULAR</option>,
     <option value="O">OFFICIAL</option>,
@@ -298,7 +307,7 @@ export const martial_status_options = [
     { value: 'W', label: 'WIDOWED' },
     { value: 'D', label: 'DIVORCED' },
     { value: 'L', label: 'LEGALLY SEPARATED' },
-    { value: 'O', label: 'OTHER' },
+    // { value: 'O', label: 'OTHER' },
 ]
 
 export const purpose_of_trip_options = [

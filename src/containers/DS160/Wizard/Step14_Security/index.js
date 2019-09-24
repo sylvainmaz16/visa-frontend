@@ -122,7 +122,7 @@ class MyForm extends Component {
     explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part5.array[index].radio) })});
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form {...formItemLayout}>
 
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Security and Background: Part 1</h2>
@@ -230,7 +230,7 @@ class MyForm extends Component {
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>

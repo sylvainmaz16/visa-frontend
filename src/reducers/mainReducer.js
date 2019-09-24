@@ -9,6 +9,9 @@ const initialState = {
 
   email: '',
   step_index: 1,
+  loading_pay: false,
+  paid: false,
+  checkout_result: null,
   ds160: {
     // step-1
     interview_location: null,
@@ -527,10 +530,19 @@ const initialState = {
     form_photo: {
       b_photo: null,
       url: null,
+      payer: {
+        name: {
+          surname: null,
+          given_name: null
+        },
+        phone: null,
+        passport: null,
+        email: null
+      },
       b_info_confirm: null,
       b_certify: null,
       fullname_sign: null,
-      signature: null
+      signature: null,
     },
     form_e_sign: {
       b_assist: null,
@@ -583,7 +595,8 @@ function mainReducer(state = initialState, action) {
     case DS160.DS160_SAVE_REQUEST: {
       return {
         ...state,
-        loading: true
+        loading: true,
+        completed: action.payload.completed
       };
     }
     case DS160.DS160_SAVE_SUCCESS: {
@@ -623,6 +636,37 @@ function mainReducer(state = initialState, action) {
       console.log('RESET')
       return {
         ...initialState
+      }
+    }
+    case DS160.DS160_CHECKOUT_REQUEST: {
+      return {
+        ...state,
+        loading_pay: true
+      }
+    }
+    case DS160.DS160_CHECKOUT_SUCCESS: {
+      console.log(action.data)
+      
+      return {
+        ...state,
+        loading_pay: false,
+        paid: action.data.response == 1 ? true : false,
+        checkout_result: action.data.response == 1 ? true : false,
+      }
+    }
+    case DS160.DS160_CHECKOUT_FAILURE: {
+      return {
+        ...state,
+        loading_pay: false,
+        paid: false,
+        checkout_result: false
+      }
+    }
+
+    case DS160.RESET_CHECKOUT_RESULT: {
+      return {
+        ...state,
+        checkout_result: null
       }
     }
     /*

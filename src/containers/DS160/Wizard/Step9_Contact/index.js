@@ -34,14 +34,14 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, martial_status } = this.props
 
     getFieldDecorator('data.relationship', { initialValue: data.relationship });
     const field = {
       relationship: this.props.form.getFieldValue('data.relationship'),
     }
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">US Point of contact</h2>
           <div className="visa-global-section-description">Give the name of a contact person or Hotel or organisation in the US. This may be different from the place or person you intend to stay with.</div>
@@ -54,7 +54,7 @@ class MyForm extends Component {
               field="data.relationship"
               initialValue={data.relationship}
               content={{
-                combines: constants.export_list(constants.relationship_options)
+                combines: constants.export_list( (martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? constants.relationship_options : constants.relationship_options_except_Spouse)
               }}
               getFieldDecorator={getFieldDecorator}
             />
@@ -115,7 +115,7 @@ class MyForm extends Component {
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>

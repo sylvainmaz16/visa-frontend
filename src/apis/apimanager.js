@@ -8,6 +8,7 @@ const apiUrl = constants.apiURL;
 const handleErrors = err => {
   throw err;
 };
+
 const responseData = res => res;
 
 const requests = {
@@ -45,4 +46,6 @@ export const ApiManager = {
   SaveDS160Application: (headers, data) => requests.post(`ds-160`, headers, data),
   UpdateDS160Application: (applicationId, data) => requests.put(`ds-160/${applicationId}`, data),
   GetDS160Application: (headers, applicationId) => requests.get(`ds-160/${applicationId}`, headers),
+  CheckoutDS160: (headers, data) => requests.post(`ds-160/checkout/${data.applicationId}`, headers, data),
+  GetCustomersList: (headers, data) => requests.get(`ds-160/smlist`, headers, data),
 };

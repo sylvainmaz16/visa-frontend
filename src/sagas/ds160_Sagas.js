@@ -47,9 +47,28 @@ function* saveRequest(action) {
   }
 }
 
+function* checkoutRequest(action) {
+  let headers = {
+    "Content-Type": "application/json"
+  };
+
+  try {
+    const res = yield call(ApiManager.CheckoutDS160, headers, action.payload);
+    const data = res.data;
+    yield put({ type: DS160.DS160_CHECKOUT_SUCCESS, data });
+    console.log('in ds160_saga: ', data);
+  } catch (e) {
+    console.log(e);
+    const status = e.response.status;
+
+    yield put({ type: DS160.DS160_CHECKOUT_FAILURE, status });
+  }
+}
+
 function* ds160_saga() {
   yield all([takeLatest(DS160.DS160_GET_REQUEST, getRequest)]);
   yield all([takeLatest(DS160.DS160_SAVE_REQUEST, saveRequest)]);
+  yield all([takeLatest(DS160.DS160_CHECKOUT_REQUEST, checkoutRequest)]);
 }
 
 export default ds160_saga;

@@ -28,7 +28,7 @@ class MyForm extends Component {
     const { countries_option_value_list, countries_option_label_list} = constants
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">
             Submit your application
@@ -36,8 +36,7 @@ class MyForm extends Component {
         </div>
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Submit</Button>}
-          {/* <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button> */}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>SUBMIT AND MAKE YOUR PAYMENT</Button>}
         </div>
       </Form>
 

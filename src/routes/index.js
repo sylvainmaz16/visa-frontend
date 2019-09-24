@@ -10,12 +10,15 @@ import DS160_HOME from '../containers/DS160'
 import DS160_Wizard from '../containers/DS160/Wizard'
 import DS160_SaveAndContinue from '../containers/DS160/SaveAndContinue'
 import DS160_AutoOnlineFill from '../containers/DS160/AutoOnlineFill'
+import DS160_Checkout from '../containers/DS160/Checkout'
+import AdminBoard from '../containers/Admin'
 
 class Routes extends Component {
   render() {
     return (
       <Router>
         <Switch>
+          <Route path="/admin" exact component={AdminBoard} />
           <Route
             path="/ds-160/auto-online-form/:link"
             children={({ location }) => {
@@ -42,6 +45,7 @@ class Routes extends Component {
           />
           <Route path="/ds-160/application-form-later" exact component={DS160_SaveAndContinue} />
           <Route path="/ds-160/application-form" exact component={DS160_Wizard} />
+          <Route path="/ds-160/checkout" exact component={DS160_Checkout} />
           <Route path="/ds-160" exact component={DS160_HOME} />
           <Route path="/" exact component={DS160_HOME} />
           

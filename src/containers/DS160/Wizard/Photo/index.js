@@ -114,11 +114,11 @@ class MyForm extends Component {
     );
     const { loading } = this.state;
     getFieldDecorator('data.b_photo', { initialValue: utils.getInitialValue(data.b_photo) });
-    getFieldDecorator('data.url', { initialValue: utils.getInitialValue(data.url), rules: [{ required: true, message: 'Please select your photo' }], });
+    getFieldDecorator('data.url', { initialValue: utils.getInitialValue(data.url) });
     const imageUrl = this.props.form.getFieldValue('data.url')
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form {...formItemLayout}>
         {/* <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">
             Upload your Photo
@@ -177,6 +177,54 @@ class MyForm extends Component {
             }
           </Form.Item>
         }
+
+        <Form.Item label="Payer's Name" extra="Please enter the first and last name of the person who makes the payment." required>
+          <Row gutter={16}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }}>
+              <VisaInput
+                extra="First"
+                field="data.payer.surname"
+                initialValue={data.payer.surname}
+                getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "First Name") }]}
+              />
+            </Col>
+            <Col xs={{ span: 24 }} md={{ span: 12 }}>
+              <VisaInput
+                extra="Last"
+                field="data.payer.given_name"
+                initialValue={data.payer.given_name}
+                getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Last Name") }]}
+              />
+            </Col>
+          </Row>
+        </Form.Item>
+
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
+            <VisaInput
+              label="Payer Phone Number"
+              field="data.payer.phone"
+              initialValue={data.payer.phone}
+              getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]}
+            />
+            <VisaInput
+              label="Payer's Passport Number"
+              field="data.payer.passport"
+              initialValue={data.payer.passport}
+              getFieldDecorator={getFieldDecorator}
+            />
+            <VisaInput
+              label="Payer's Email"
+              field="data.payer.email"
+              initialValue={data.payer.email}
+              getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address") }]}
+            />
+          </Col>
+        </Row>
 
         <Form.Item label="Information Confirmation">
           {getFieldDecorator('data.b_info_confirm', {
@@ -248,7 +296,7 @@ class MyForm extends Component {
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} disabled={loading} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" disabled={loading} onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>Next</Button>}
+          {showNext && <Button type="primary" disabled={loading} onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           {/* <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button> */}
         </div>
       </Form>

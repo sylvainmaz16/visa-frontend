@@ -5,10 +5,9 @@ import VisaBanner from '../../../components/VisaBanner';
 import VisaHeader from '../../../components/VisaHeader';
 import { DS160 } from '../../../actions/types'
 import { Spin } from 'antd';
-import Form_DS160_SaveAndContinue from './EmailForm';
 
 import './index.scss'
-class DS160_SaveAndContinue extends Component {
+class DS160_Checkout extends Component {
 
   constructor(props) {
     super(props)
@@ -62,5 +61,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(DS160_SaveAndContinue),
+  )(DS160_Checkout),
 )
