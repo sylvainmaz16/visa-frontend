@@ -121,8 +121,10 @@ class AdminPageDS160 extends Component {
         loading={loading}
         onChange={this.handleTableChange}
         expandedRowRender={record => {
+          if(!record.checkout_result) {
+            return <p style={{ margin: 0 }}>No transaction</p>
+          }
           return <p style={{ margin: 0 }}>
-            {/* {`transactionid: ${record.checkout_result.transactionid}`}<br/> */}
             {`orderid: ${record.checkout_result.orderid}`}<br />
             {`authcode: ${record.checkout_result.authcode}`}<br />
             {`cvvresponse: ${record.checkout_result.cvvresponse}`}<br />
