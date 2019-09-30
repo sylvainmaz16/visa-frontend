@@ -50,10 +50,10 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-  email: state.mainData.email,
-  step_index: state.mainData.step_index,
-  loading: state.mainData.loading,
-  applicationId: state.mainData.applicationId
+  email: state.main.email,
+  step_index: state.main.step_index,
+  loading: state.main.loading,
+  applicationId: state.main.applicationId
 })
 
 

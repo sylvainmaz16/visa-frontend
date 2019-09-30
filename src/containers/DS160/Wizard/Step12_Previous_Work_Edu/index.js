@@ -127,7 +127,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Employment Date From"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.emp_info.date_from"
                 initialValue={data.emp_info.date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -138,7 +138,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Employment Date To"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.emp_info.date_to"
                 initialValue={data.emp_info.date_to}
                 getFieldDecorator={getFieldDecorator}
@@ -184,11 +184,18 @@ class MyForm extends Component {
             us_address={false}
           />
 
+          <VisaInput
+            label="Course of Study"
+            field="data.edu_info.course"
+            initialValue={data.edu_info.course}
+            getFieldDecorator={getFieldDecorator}
+          />
+
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance From"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.edu_info.date_from"
                 initialValue={data.edu_info.date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -198,7 +205,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance To"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.edu_info.date_to"
                 initialValue={data.edu_info.date_to}
                 getFieldDecorator={getFieldDecorator}

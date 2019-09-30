@@ -77,14 +77,14 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-  email: state.mainData.email,
-  step_index: state.mainData.step_index,
-  loading: state.mainData.loading,
-  completed: state.mainData.completed,
-  applicationId: state.mainData.applicationId,
-  loading_pay: state.mainData.loading_pay,
-  paid: state.mainData.paid,
-  checkout_result: state.mainData.checkout_result,
+  email: state.main.email,
+  step_index: state.main.step_index,
+  loading: state.main.loading,
+  completed: state.main.completed,
+  applicationId: state.main.applicationId,
+  loading_pay: state.main.loading_pay,
+  paid: state.main.paid,
+  checkout_result: state.main.checkout_result,
 })
 
 

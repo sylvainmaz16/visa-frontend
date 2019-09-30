@@ -95,11 +95,13 @@ class MyForm extends Component {
                 initialValue={data.address}
                 getFieldDecorator={getFieldDecorator}
                 us_address={false}
+                hidePhone={false}
+                validators={this.props.validators}
               />
 
               <VisaDatePicker 
                 label="Start Date"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.start_date"
                 initialValue={data.start_date}
                 getFieldDecorator={getFieldDecorator}

@@ -90,6 +90,7 @@ class MyForm extends Component {
           field="data.address"
           initialValue={data.address}
           getFieldDecorator={getFieldDecorator}
+          hideCountry
         />
 
         <Row gutter={16}>

@@ -366,6 +366,8 @@ const initialState = {
       countries: [""],
       b_belong_to_org: null,
       organizations: [""],
+      b_taliban: null,
+      taliban_explain: null,
       b_special_skill: null,
       special_skill_explain: null,
       b_military: null,
@@ -433,6 +435,7 @@ const initialState = {
       },
       part5: {
         array: [
+          { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },

@@ -50,7 +50,18 @@ const validateSEVIS = (rule, value, callback, field) => {
     if (!value) {
       callback('This field is required');
     }
-    if( value[0] != 'N' || /^\d{4}$/.test(value.substring(1)) == false) {
+    if( value[0] != 'N' || /^\d{10}$/.test(value.substring(1)) == false) {
+        callback(field + ' is invalid. Verify the format is correct.');
+        return;
+    }
+    callback();
+};
+const validateProgramNumber = (rule, value, callback, field) => {
+    
+    if (!value) {
+      callback('This field is required');
+    }
+    if( value.length != 9 || /^[a-zA-Z]-\d{1}-\d{5}/.test(value) == false) {
         callback(field + ' is invalid. Verify the format is correct.');
         return;
     }
@@ -166,7 +177,6 @@ const validateName = (rule, value, callback, field, required = true) => {
     }
     callback();
 };
-
 const validateLengthOfStay = (rule, value, callback, field) => {
     if (!value) {
       callback('This field is required');
@@ -262,7 +272,8 @@ const ds160_validators = {
     validateBetweenDate,
     validateExplain,
     validatePetitionNumber,
-    validateSEVIS
+    validateSEVIS,
+    validateProgramNumber
 }
 
 export default ds160_validators

@@ -7,5 +7,30 @@
         margin: 16px 24px 16px 0;
         float: left;
     }
+   
+    .admin-page-wrapper {
+        background: #fff;
+        padding: 24;
+        min-height: 280px;
+        position: relative;
+
+        .admin-page-mail {
+            &__top {
+                text-align: right;
+                margin-bottom: 0.5rem;
+            }
+            .table-mail-templates tr td:nth-child(2) {
+                width: 70%;
+                max-width: 0;
+            }
+        }
+        
+        .admin-page-loading {
+            width: 100%;
+            position: absolute;
+            top: calc(50% - 23px);
+        }
+    }
+    
 }
     

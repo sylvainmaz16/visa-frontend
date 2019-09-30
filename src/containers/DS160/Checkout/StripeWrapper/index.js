@@ -19,7 +19,7 @@ const openNotificationWithIcon = type => {
 
 class MyForm extends Component {
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if(this.props.checkout_result != nextProps.checkout_result) {
       if(nextProps.checkout_result == true)
         openNotificationWithIcon('success')

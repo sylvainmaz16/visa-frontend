@@ -34,56 +34,61 @@ class MyForm extends Component {
     const { showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type } = this.props
 
     getFieldDecorator('data.b_study_in_US', { initialValue: utils.getInitialValue(data.b_study_in_US) });
-    
+
     return (
       <Form {...formItemLayout}>
 
         {additional_point_of_contact &&
-        <>
-          <div className="visa-global-field visa-global-border-bottom">
-            <h2 className="visa-global-section-title">Additional Point of Contact Information</h2>
-            <div className="visa-global-section-description">NOTE: You have indicated that you will be studying in some capacity while in the United States. List at least two contacts in your country of residence who can verify the information that you have provided on this application. Do not list immediate family members or other relatives. Postal office box numbers are unacceptable. </div>
-          </div>
-          {data.point_of_contact.map((contact,index) => 
-            <Row gutter={16}>
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaInput
-                  label="Surnames"
-                  field={`data.point_of_contact[${index}].surname`}
-                  initialValue={data.point_of_contact[index].surname}
-                  getFieldDecorator={getFieldDecorator}
-                />
-                <VisaInput
-                  label="Given Names"
-                  field={`data.point_of_contact[${index}].given_name`}
-                  initialValue={data.point_of_contact[index].given_name}
-                  getFieldDecorator={getFieldDecorator}
-                />
-                <VisaAddress 
-                  label="Address"
-                  field={`data.point_of_contact[${index}].address`}
-                  initialValue={data.point_of_contact[index].address}
-                  getFieldDecorator={getFieldDecorator}
-                />
-                <VisaInput
-                  label="Telephone Number"
-                  field={`data.point_of_contact[${index}].tel_number`}
-                  initialValue={data.point_of_contact[index].tel_number}
-                  getFieldDecorator={getFieldDecorator}
-                  required={false}
-                />
-                <VisaInput
-                  label="Email Address"
-                  extra="(e.g., emailaddress@example.com)"
-                  field={`data.point_of_contact[${index}].email`}
-                  initialValue={data.point_of_contact[index].email}
-                  getFieldDecorator={getFieldDecorator}
-                  required={false}
-                />
-              </Col>
-            </Row>
-          )}
-        </>
+          <>
+            <div className="visa-global-field visa-global-border-bottom">
+              <h2 className="visa-global-section-title">Additional Point of Contact Information</h2>
+              <div className="visa-global-section-description">NOTE: You have indicated that you will be studying in some capacity while in the United States. List at least two contacts in your country of residence who can verify the information that you have provided on this application. Do not list immediate family members or other relatives. Postal office box numbers are unacceptable. </div>
+            </div>
+            {data.point_of_contact.map((contact, index) =>
+              <Row gutter={16} key={index}>
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <Form.Item label="Contact">
+                    <VisaInput
+                      label="Surnames"
+                      field={`data.point_of_contact[${index}].surname`}
+                      initialValue={data.point_of_contact[index].surname}
+                      getFieldDecorator={getFieldDecorator}
+                    />
+                    <VisaInput
+                      label="Given Names"
+                      field={`data.point_of_contact[${index}].given_name`}
+                      initialValue={data.point_of_contact[index].given_name}
+                      getFieldDecorator={getFieldDecorator}
+                    />
+                    <VisaAddress
+                      label="Address"
+                      field={`data.point_of_contact[${index}].address`}
+                      initialValue={data.point_of_contact[index].address}
+                      getFieldDecorator={getFieldDecorator}
+                    />
+                    <VisaInput
+                      label="Telephone Number"
+                      field={`data.point_of_contact[${index}].tel_number`}
+                      initialValue={data.point_of_contact[index].tel_number}
+                      getFieldDecorator={getFieldDecorator}
+                      required={false}
+                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", true) }]}
+                    />
+                    <VisaInput
+                      label="Email Address"
+                      extra="(e.g., emailaddress@example.com)"
+                      field={`data.point_of_contact[${index}].email`}
+                      initialValue={data.point_of_contact[index].email}
+                      getFieldDecorator={getFieldDecorator}
+                      required={false}
+                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address") }]}
+                    />
+                  </Form.Item>
+
+                </Col>
+              </Row>
+            )}
+          </>
         }
 
         <div className="visa-global-field visa-global-border-bottom">
@@ -120,18 +125,19 @@ class MyForm extends Component {
                 field="data.program_number"
                 initialValue={data.program_number}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateProgramNumber(rule, value, callback, "Program Number") }]}
               />
             }
           </Col>
         </Row>
 
-        {sevis_type == 'C' && 
-        <VisaRadio
-          label="Do you intend to study in the U.S.?"
-          field="data.b_study_in_US"
-          initialValue={data.b_study_in_US}
-          getFieldDecorator={getFieldDecorator}
-        />
+        {sevis_type == 'C' &&
+          <VisaRadio
+            label="Do you intend to study in the U.S.?"
+            field="data.b_study_in_US"
+            initialValue={data.b_study_in_US}
+            getFieldDecorator={getFieldDecorator}
+          />
         }
         {((sevis_type == 'C' && this.props.form.getFieldValue('data.b_study_in_US')) || sevis_type == 'A') &&
           <Row gutter={16}>
@@ -148,11 +154,12 @@ class MyForm extends Component {
                 initialValue={data.school_info.course}
                 getFieldDecorator={getFieldDecorator}
               />
-              <VisaAddress 
+              <VisaAddress
                 label="Address"
                 field="data.school_info.address"
                 initialValue={data.school_info.address}
                 getFieldDecorator={getFieldDecorator}
+                hideCountry
               />
             </Col>
           </Row>

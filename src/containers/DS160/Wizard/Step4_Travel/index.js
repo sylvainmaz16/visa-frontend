@@ -27,9 +27,11 @@ class MyForm extends Component {
     else if (field == 'other_purpose_of_trip') {
       const field = {
         purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
-        other_purpose_of_trip: this.props.form.getFieldValue('data.other_purpose_of_trip'),
+        other_purpose_of_trip: e,
       }
+      // console.log(field.purpose_of_trip, field.other_purpose_of_trip)
       if (field.purpose_of_trip && field.other_purpose_of_trip) {
+        
         let purpose_info_type = constants.purpose_of_trip_advanced_specify_extra[field.purpose_of_trip][field.other_purpose_of_trip]
         this.props.form.setFieldsValue({ 'data.purpose_info_type': purpose_info_type });
       }
@@ -157,7 +159,7 @@ class MyForm extends Component {
           <div className="visa-global-section-description">Give details of the address where you will stay in the US. The address may be that of a hotel or private residence.</div>
         </div>
 
-        <Form.Item label="Intended date of arrival in the USA" extra="If you don't know your exact date of travel, please provide an estimate. Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
+        <Form.Item label="Intended date of arrival in the USA" extra="If you don't know your exact date of travel, please provide an estimate. Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013">
           {getFieldDecorator('data.travel_plan.date_of_arrival', {
             initialValue: data.travel_plan.date_of_arrival ? moment( data.travel_plan.date_of_arrival, 'DD/MMM/YYYY' ) : null,
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateLaterDate(rule, value, callback, "Intended Date of Arrival") }],

@@ -93,7 +93,7 @@ class MyForm extends Component {
           </Row>
           <VisaDatePicker 
             label="Father's date of birth (If known)"
-            extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
             field="data.father.birthday"
             initialValue={data.father.birthday}
             getFieldDecorator={getFieldDecorator}
@@ -145,7 +145,7 @@ class MyForm extends Component {
           </Row>
           <VisaDatePicker 
             label="Mother's date of birth (If known)"
-            extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
             field="data.mother.birthday"
             initialValue={data.mother.birthday}
             getFieldDecorator={getFieldDecorator}
@@ -274,7 +274,7 @@ class MyForm extends Component {
               </Row>
               <VisaDatePicker 
                 label="Spouse/Partner's date of birth (If known)"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
@@ -327,7 +327,7 @@ class MyForm extends Component {
         }
 
         {
-          (martial_header[martial_status] == 'Spouse' || martial_header[martial_status] == 'Partner' || martial_header[martial_status] == 'Deceased Spouse') &&
+          (martial_header[martial_status] == 'Deceased Spouse') &&
             <Form.Item required>
               <Row gutter={16}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -353,7 +353,7 @@ class MyForm extends Component {
               </Row>
               <VisaDatePicker 
                 label="Date of birth (If known)"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
@@ -395,15 +395,6 @@ class MyForm extends Component {
                   </Col>
                 </Row>
               </Form.Item>
-              {martial_header[martial_status] != 'Deceased Spouse' &&
-                <VisaAddress 
-                  label="Address"
-                  field="data.spouse.address"
-                  initialValue={data.spouse.address}
-                  getFieldDecorator={getFieldDecorator}
-                  us_address={false}
-                />
-              }            
             </Form.Item>
         }
         {
@@ -433,7 +424,7 @@ class MyForm extends Component {
             </Row>
             <VisaDatePicker 
               label="Date of birth (If known)"
-              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
               field="data.former_spouse.birthday"
               initialValue={data.former_spouse.birthday}
               getFieldDecorator={getFieldDecorator}
@@ -484,7 +475,7 @@ class MyForm extends Component {
             />
             <VisaDatePicker 
               label="Date of Marriage"
-              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
               field="data.former_spouse.marriage_date"
               initialValue={data.former_spouse.marriage_date}
               getFieldDecorator={getFieldDecorator}
@@ -493,7 +484,7 @@ class MyForm extends Component {
             />
             <VisaDatePicker 
               label="Date Marriage End"
-              extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
               field="data.former_spouse.end_date"
               initialValue={data.former_spouse.end_date}
               getFieldDecorator={getFieldDecorator}

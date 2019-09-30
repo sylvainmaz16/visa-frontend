@@ -48,7 +48,7 @@ class DS160_Wizard extends Component {
       this.props.loadApplicationFromDB( DS160.DS160_GET_REQUEST, token )
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if( this.props.token != nextProps.token ) {
       if( nextProps.token )
         this.props.loadApplicationFromDB( DS160.DS160_GET_REQUEST, token )
@@ -156,6 +156,8 @@ class DS160_Wizard extends Component {
       </Spin>
     }
 
+    console.log(step_index)
+
     let form_render = ''
     let intracompany_type = '', sevis_type = '', additional_point_of_contact = false
 
@@ -200,6 +202,7 @@ class DS160_Wizard extends Component {
         "form_family",
         "form_work_or_edu",
         "form_prev_work_or_edu",
+        "form_additional_work",
         "form_security",
         "extra",
         "form_e_sign",
@@ -218,6 +221,8 @@ class DS160_Wizard extends Component {
         "form_contact",
         "form_family",
         "form_work_or_edu",
+        "form_prev_work_or_edu",
+        "form_additional_work",
         "form_security",
         "extra",
         "form_e_sign",
@@ -435,10 +440,10 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-  step_index: state.mainData.step_index,
-  ds160: state.mainData.ds160,
-  bWaitLoadFromDB: state.mainData.bWaitLoadFromDB,
-  applicationId: state.mainData.applicationId
+  step_index: state.main.step_index,
+  ds160: state.main.ds160,
+  bWaitLoadFromDB: state.main.bWaitLoadFromDB,
+  applicationId: state.main.applicationId
 })
 
 

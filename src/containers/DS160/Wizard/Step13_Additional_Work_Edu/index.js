@@ -158,7 +158,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance From"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.militaries[0].date_from"
                 initialValue={data.militaries[0].date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -167,7 +167,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance To"
-                extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
                 field="data.militaries[0].date_to"
                 initialValue={data.militaries[0].date_to}
                 getFieldDecorator={getFieldDecorator}
@@ -176,6 +176,17 @@ class MyForm extends Component {
           </Row>
         </>
         }
+
+        <VisaExplain
+          label="Have you ever been a member of the Taliban?"
+          radioField="data.b_taliban"
+          radioInitialValue={data.b_taliban}
+          radioValue={this.props.form.getFieldValue('data.b_taliban')}
+          textField="data.taliban_explain"
+          textInitialValue={data.taliban_explain}
+          getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
+        />
 
         <VisaExplain
           label="Do you have any specialized skills or training, such as firearms, explosives, nuclear, biological, or chemical experience?"

@@ -136,7 +136,7 @@ class MyForm extends Component {
           <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 8 }}>
-                <Form.Item label="Date Last Visa Was Issued" extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
+                <Form.Item label="Date Last Visa Was Issued" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013">
                   {getFieldDecorator('data.US_Visa.date', {
                     initialValue: data.US_Visa.date ? moment( data.US_Visa.date, 'DD/MMM/YYYY' ) : null,
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, "Date Last Visa Was Issued", date_birth) }],

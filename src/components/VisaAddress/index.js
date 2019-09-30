@@ -9,11 +9,12 @@ class VisaAddress extends Component {
     extra: "",
     label: "",
     hideCountry: false,
-    us_address: true
+    us_address: true,
+    hidePhone: true
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, hideCountry, us_address, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, hideCountry, us_address, hidePhone, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required>
         <Form.Item extra="Street Address">
@@ -28,7 +29,7 @@ class VisaAddress extends Component {
         <Form.Item extra="Address Line 2">
           {getFieldDecorator( field + '.street_addr2', {
             initialValue: utils.getInitialValue(initialValue.street_addr2),
-            rules: [{ required: true, message: 'This field is required' }],
+            // rules: [{ required: true, message: 'This field is required' }],
           })(
             <Input />
           )}
@@ -78,6 +79,18 @@ class VisaAddress extends Component {
               )}
             </Form.Item>
           </Col>
+          {!hidePhone &&
+          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+            <Form.Item extra="Phone">
+              {getFieldDecorator( field + '.tel_number', {
+                initialValue: utils.getInitialValue(initialValue.tel_number),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>
+          }
           {!hideCountry && 
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
               <Form.Item extra="Country">

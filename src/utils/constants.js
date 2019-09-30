@@ -284,7 +284,7 @@ export const purpose_of_trip_advanced_specify_extra = {
     'C': { 'C3-CH': 'N', 'C3-SP': 'N' },
     'D': {},
     'F': { 'F2-CH': 'N', 'F2-SP': 'N'},
-    'H': { 'H1B-H1B': 'P', 'H1C-NR': 'P', 'H2A-AG': 'P', 'H2B-NA': 'P', 'H3-TR': 'P', 'H4-CH': 'NP', 'N4-SP': 'NP'},
+    'H': { 'H1B-H1B': 'P', 'H1C-NR': 'P', 'H2A-AG': 'P', 'H2B-NA': 'P', 'H3-TR': 'P', 'H4-CH': 'NP', 'H4-SP': 'NP'},
     'I': { 'I-CH': 'N', 'I-SP': 'N'},
     'J': { 'J2-CH': 'N', 'J2-SP': 'N'},
     'L': { 'L1-L1': 'P', 'L2-CH': 'NP', 'L2-SP': 'NP'},

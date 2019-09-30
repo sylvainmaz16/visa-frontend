@@ -5,15 +5,15 @@ import createSagaMiddleware, { END } from "redux-saga";
 import rootSaga from "./sagas/index";
 
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+
 
 const sagaMiddleware = createSagaMiddleware();
 
-const persistConfig = {
-  key: `root`,
-  storage: storage
-};
-const persistedReducer = persistReducer(persistConfig, rootReducer());
+// const persistConfig = {
+//   key: `root`,
+//   storage: storage
+// };
+// const persistedReducer = persistReducer(persistConfig, rootReducer());
 
 const configureStore = (initialState = {}) => {
   const composeEnhancers =
@@ -29,8 +29,8 @@ const configureStore = (initialState = {}) => {
   const enhancers = [applyMiddleware(...middlewares)];
 
   let store = createStore(
-    // rootReducer(),
-    persistedReducer,
+    rootReducer(),
+    // persistedReducer,
     initialState,
     composeEnhancers(...enhancers)
   );

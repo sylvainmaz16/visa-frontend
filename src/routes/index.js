@@ -18,7 +18,19 @@ class Routes extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/admin" exact component={AdminBoard} />
+          <Route path="/board" exact children={({ location }) => {
+            return <AdminBoard menu={'ds160'}/>
+          }} />
+          <Route path="/board/:menukey(ds160|mail)" exact children={({ match, location }) => {
+            let params = new URLSearchParams(location.search);
+            let menu = match.params.menukey
+            let current = parseInt(params.get("current"))
+
+            if(!current)
+              current = 1
+
+            return <AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>
+          }} />
           <Route
             path="/ds-160/auto-online-form/:link"
             children={({ location }) => {

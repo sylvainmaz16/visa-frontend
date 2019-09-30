@@ -19,11 +19,6 @@ class DS160_AutoOnlineFill extends Component {
     const { token } = this.props
   }
 
-  componentWillReceiveProps(nextProps) {
-    if( this.props.token != nextProps.token ) {
-    }
-  }
-
   onStart = () => {
     let iframe = document.getElementById('ds-160-online-form');
     let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -56,9 +51,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-  // step_index: state.mainData.step_index,
-  // ds160: state.mainData.ds160,
-  // bWaitLoadFromDB: state.mainData.bWaitLoadFromDB
 })
 
 

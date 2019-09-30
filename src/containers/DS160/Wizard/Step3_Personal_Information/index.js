@@ -41,6 +41,26 @@ class MyForm extends Component {
     }
     callback();
   };
+  handleUsedOtherName = (rule, value, callback) => {
+    if (!value) {
+      callback('This field is required');
+      return;
+    }
+
+    let currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
+    let otherName = this.props.form.getFieldValue('data.used_other_name.surname') + this.props.form.getFieldValue('data.used_other_name.given_name')
+
+    if( currentName === otherName ) {
+      callback('Alias matches Given Name.')
+      return;
+    }
+    
+    if(/^[A-Za-z\s]+$/.test(value)== false) {
+      callback(field + ' is invalid. Valid characters include A-Z and single spaces in between names.');
+      return;
+    }
+    callback();
+  }
   render() {
     const { getFieldDecorator, isFieldTouched } = this.props.form;
     const formItemLayout = {
@@ -62,6 +82,19 @@ class MyForm extends Component {
     getFieldDecorator('data.b_more_nationality', { initialValue: utils.getInitialValue(data.b_more_nationality) });
     getFieldDecorator('data.b_has_other_nationality_passport', { initialValue: utils.getInitialValue(data.b_has_other_nationality_passport) });
     getFieldDecorator('data.b_permanent_resident_other_than_nationality', { initialValue: utils.getInitialValue(data.b_permanent_resident_other_than_nationality) });
+
+    getFieldDecorator('data.surname', { initialValue: utils.getInitialValue(data.surname) });
+    getFieldDecorator('data.given_name', { initialValue: utils.getInitialValue(data.given_name) });
+
+    let currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
+    let otherName = ""
+
+    if(this.props.form.getFieldValue('data.b_ever_used_other_names')) {
+
+      getFieldDecorator('data.used_other_name.surname', { initialValue: utils.getInitialValue(data.used_other_name.surname) });
+      getFieldDecorator('data.used_other_name.given_name', { initialValue: utils.getInitialValue(data.used_other_name.given_name) });
+      otherName = this.props.form.getFieldValue('data.used_other_name.surname') + this.props.form.getFieldValue('data.used_other_name.given_name')
+    }
     
     return (
       <Form {...formItemLayout}>
@@ -108,7 +141,7 @@ class MyForm extends Component {
               <Form.Item label="Other Surnames Used (maiden, religious, professional, aliases, etc.)">
                 {getFieldDecorator('data.used_other_name.surname', {
                   initialValue: utils.getInitialValue(data.used_other_name.surname),
-                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Other Surnames Used (maiden, religious, professional, aliases, etc.)") }],
+                  rules: [{ validator: this.handleUsedOtherName }],
                 })(
                   <Input />
                 )}
@@ -118,7 +151,7 @@ class MyForm extends Component {
               <Form.Item label="Other Given Names Used">
                 {getFieldDecorator('data.used_other_name.given_name', {
                   initialValue: utils.getInitialValue(data.used_other_name.given_name),
-                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Other Given Names Used") }],
+                  rules: [{ validator: this.handleUsedOtherName }],
                 })(
                   <Input />
                 )}
@@ -181,7 +214,7 @@ class MyForm extends Component {
             </Radio.Group>
           )}
         </Form.Item>
-        <Form.Item label="Date of birth" extra="Please enter the Date Format as Day/Month/Year For example January 12 2013 enter 12/01/2013">
+        <Form.Item label="Date of birth" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013">
           {getFieldDecorator('data.date_birth', {
             initialValue: data.date_birth ? moment( data.date_birth, 'DD/MMM/YYYY' ) : null,
             rules: [{ validator: this.props.validators.validateEarlierDate }],

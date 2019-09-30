@@ -13,7 +13,7 @@ class MyForm extends Component {
   static defaultProps = {
     showPrev: true,
     showNext: true,
-  }  
+  }
 
   render() {
     const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form;
@@ -42,49 +42,50 @@ class MyForm extends Component {
         />
 
         {this.props.form.getFieldValue('data.b_assist') &&
-        <>
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label="Surname"
-                field="data.assist_info.preparer.surname"
-                initialValue={data.assist_info.preparer.surname}
-                getFieldDecorator={getFieldDecorator}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label="Given Name"
-                field="data.assist_info.preparer.given_name"
-                initialValue={data.assist_info.preparer.given_name}
-                getFieldDecorator={getFieldDecorator}
-              />
-            </Col>
+          <>
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label="Surname"
+                  field="data.assist_info.preparer.surname"
+                  initialValue={data.assist_info.preparer.surname}
+                  getFieldDecorator={getFieldDecorator}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label="Given Name"
+                  field="data.assist_info.preparer.given_name"
+                  initialValue={data.assist_info.preparer.given_name}
+                  getFieldDecorator={getFieldDecorator}
+                />
+              </Col>
+
+            </Row>
             <VisaInput
               label="Organization"
               field="data.assist_info.organization.name"
               initialValue={data.assist_info.organization.name}
               getFieldDecorator={getFieldDecorator}
             />
-          </Row>
-          <VisaAddress 
-            label="Address"
-            field="data.assist_info.address"
-            initialValue={data.assist_info.address}
-            getFieldDecorator={getFieldDecorator}
-            us_address={false}
-          />
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label="Relationship to you"
-                field="data.assist_info.relationship"
-                initialValue={data.assist_info.relationship}
-                getFieldDecorator={getFieldDecorator}
-              />
-            </Col>
-          </Row>
-        </>
+            <VisaAddress
+              label="Address"
+              field="data.assist_info.address"
+              initialValue={data.assist_info.address}
+              getFieldDecorator={getFieldDecorator}
+              us_address={false}
+            />
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label="Relationship to you"
+                  field="data.assist_info.relationship"
+                  initialValue={data.assist_info.relationship}
+                  getFieldDecorator={getFieldDecorator}
+                />
+              </Col>
+            </Row>
+          </>
         }
 
         <div className="visa-form-bottom-btn-group">
