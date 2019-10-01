@@ -127,24 +127,21 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Employment Date From"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.emp_info.date_from"
                 initialValue={data.emp_info.date_from}
                 getFieldDecorator={getFieldDecorator}
-                required={false}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Employment Date From", false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Employment Date From", true) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Employment Date To"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.emp_info.date_to"
                 initialValue={data.emp_info.date_to}
                 getFieldDecorator={getFieldDecorator}
-                required={false}
-                
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Employment Date To", this.props.form.getFieldValue('data.emp_info.date_from'), false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Employment Date To", this.props.form.getFieldValue('data.emp_info.date_from'), true) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -195,7 +192,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance From"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.edu_info.date_from"
                 initialValue={data.edu_info.date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -205,7 +202,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance To"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.edu_info.date_to"
                 initialValue={data.edu_info.date_to}
                 getFieldDecorator={getFieldDecorator}

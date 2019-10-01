@@ -7,6 +7,7 @@ import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
+import VisaSocialMediaArray from '../../../../components/VisaSocialMediaArray'
 import * as utils from '../../../../utils'
 
 const { Option } = Select;
@@ -26,7 +27,7 @@ class MyForm extends Component {
   };
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, getFieldValue, setFieldsValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -42,7 +43,11 @@ class MyForm extends Component {
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
     getFieldDecorator('data.b_diff_with_home', { initialValue: utils.getInitialValue(data.b_diff_with_home) });
-    getFieldDecorator('data.social_media_info.platform', { initialValue: utils.getInitialValue(data.social_media_info.platform) });
+    // getFieldDecorator('data.social_media_info.platform', { initialValue: utils.getInitialValue(data.social_media_info.platform) });
+    // if( typeof(data.social_media_info) != 'Array' ) {
+    //   let temp = data.social_media_info
+    //   data.social_media_info = []
+    // }
     
     return (
       <Form {...formItemLayout}>
@@ -60,7 +65,7 @@ class MyForm extends Component {
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <Form.Item label="Primary Phone number">
+            <Form.Item label="Primary Phone number" required>
               {getFieldDecorator('data.phone_info.home', {
                 initialValue: utils.getInitialValue(data.phone_info.home),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Primary Phone number", true) }],
@@ -141,29 +146,15 @@ class MyForm extends Component {
           <div className="visa-global-section-description">Do you have a social media presence? Select from the list below each social media platform you have used within the last five years. In the space next to the platform’s name, enter the username or handle you have used on that platform. Please do not provide your passwords. If you have used more than one platform or more than one username or handle on a single platform, click the 'Add Another' button to list each one separately. If you have not used any of the listed social media platforms in the last five years, select 'None.'</div>
         </div>
 
-        <Row gutter={16}>
-          <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <Form.Item label="Social Media Provider/Platform">
-              {getFieldDecorator('data.social_media_info.platform', {
-                initialValue: utils.getInitialValue(data.social_media_info.platform),
-              })(
-                <VisaSelect combines={constants.export_list(constants.social_media_options)}/>
-              )}
-            </Form.Item>
-          </Col>
-        </Row>
-
-        {
-          this.props.form.getFieldValue('data.social_media_info.platform') &&
-          <Form.Item label="Social Media Identifier" extra="Enter the username or handle you have used on that platform. Please do not provide your passwords.">
-            {getFieldDecorator('data.social_media_info.identifier', {
-              initialValue: utils.getInitialValue(data.social_media_info.identifier),
-              rules: [{ required: true, message: 'This field is required' }],
-            })(
-              <Input />
-            )}
-          </Form.Item>
-        }
+        <VisaSocialMediaArray 
+          label="Provide a list of social media platforms"
+          getFieldDecorator={getFieldDecorator}
+          getFieldValue={getFieldValue}
+          setFieldsValue={setFieldsValue}
+          initialValue={data.social_media_info}
+          arrayField="data.social_media_info"
+          keysField="copy.social_media_info"
+        />
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}

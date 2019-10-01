@@ -110,6 +110,7 @@ class MyForm extends Component {
               initialValue={data.email}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email") }]}
+              required={false}
             />
           </Col>
         </Row>

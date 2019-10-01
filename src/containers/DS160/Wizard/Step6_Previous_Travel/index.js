@@ -6,6 +6,7 @@ import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaDateLength from "../../../../components/VisaDateLength";
+import VisaPreviousVisits from '../../../../components/VisaPreviousVisits'
 import * as utils from '../../../../utils'
 
 const { Option } = Select;
@@ -21,14 +22,18 @@ class MyForm extends Component {
     console.log('hello')
     if(data.US_Visa && data.US_Visa.date)
       data.US_Visa.date = data.US_Visa.date.format('DD/MMM/YYYY')
-    if(data.prev_visit_info && data.prev_visit_info.date)
-      data.prev_visit_info.date = data.prev_visit_info.date.format('DD/MMM/YYYY')
+    if(data.prev_visit_info) {
+      for(let i = 0; i < data.prev_visit_info.length; i++) {
+        if(data.prev_visit_info[i].date)
+        data.prev_visit_info[i].date = data.prev_visit_info[i].date.format('DD/MMM/YYYY')
+      }
+    }
 
     return data
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, getFieldValue, setFieldsValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -53,6 +58,9 @@ class MyForm extends Component {
     getFieldDecorator('data.US_Visa.b_ever_been_cancelled', { initialValue: utils.getInitialValue(data.US_Visa.b_ever_been_cancelled) });
     
     console.log(data)
+
+    
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -68,22 +76,15 @@ class MyForm extends Component {
         />
         {
           this.props.form.getFieldValue('data.b_ever_been_in_US') &&
-          <VisaDateLength
+          <VisaPreviousVisits 
+            label="Provide a list of your last 5 visits"
             getFieldDecorator={getFieldDecorator}
+            getFieldValue={getFieldValue}
+            setFieldsValue={setFieldsValue}
+            initialValue={data.prev_visit_info}
+            arrayField="data.prev_visit_info"
+            keysField="copy.prev_visit_info"
             validators={this.props.validators}
-            date={{
-              label: 'Date of arrival (last visit to the US)',
-              field: 'data.prev_visit_info.date',
-              initialValue: data.prev_visit_info.date,
-            }}
-            period={{
-              field: 'data.prev_visit_info.length_of_stay.period',
-              initialValue: data.prev_visit_info.length_of_stay.period
-            }}
-            unit={{
-              field: 'data.prev_visit_info.length_of_stay.unit',
-              initialValue: data.prev_visit_info.length_of_stay.unit
-            }}
           />
         }
 
@@ -102,7 +103,7 @@ class MyForm extends Component {
                 <Form.Item label="Driver's License number" extra="Leave it blank if you do not know">
                   {getFieldDecorator('data.prev_DL_info.number', {
                     initialValue: utils.getInitialValue(data.prev_DL_info.number),
-                    rules: [{ required: true, message: 'This field is required' }],
+                    // rules: [{ required: true, message: 'This field is required' }],
                   })(
                     <Input />
                   )}
@@ -136,7 +137,7 @@ class MyForm extends Component {
           <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 8 }}>
-                <Form.Item label="Date Last Visa Was Issued" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013">
+                <Form.Item label="Date Last Visa Was Issued" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
                   {getFieldDecorator('data.US_Visa.date', {
                     initialValue: data.US_Visa.date ? moment( data.US_Visa.date, 'DD/MMM/YYYY' ) : null,
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, "Date Last Visa Was Issued", date_birth) }],
@@ -185,7 +186,7 @@ class MyForm extends Component {
               <>
                 <Row gutter={16}>
                   <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                    <Form.Item label="Which Year">
+                    <Form.Item label="Which Year" required>
                       {getFieldDecorator('data.US_Visa.lost_info.year', {
                         initialValue: utils.getInitialValue(data.US_Visa.lost_info.year),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaLostYear(rule, value, callback, "Year", date_birth) }],

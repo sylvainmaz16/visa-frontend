@@ -138,7 +138,7 @@ class DS160_Wizard extends Component {
     e.preventDefault();
     console.log( e, form, handleDates, field)
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
+      console.log('has Error', err)
       if (!err) {
         if(handleDates)
           this.onNext(handleDates(values.data), field);

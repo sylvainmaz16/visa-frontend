@@ -80,7 +80,7 @@ class MyForm extends Component {
                 )}
               </Form.Item>
             }
-            {(occupation != 'N' && occupation != 'RT') && 
+            {(occupation != 'N' && occupation != 'RT' && occupation != 'H') && 
             <>
               <VisaInput
                 label="Present Employer or School Name"
@@ -101,7 +101,7 @@ class MyForm extends Component {
 
               <VisaDatePicker 
                 label="Start Date"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.start_date"
                 initialValue={data.start_date}
                 getFieldDecorator={getFieldDecorator}
@@ -112,6 +112,7 @@ class MyForm extends Component {
                 field="data.monthly_income"
                 initialValue={data.monthly_income}
                 getFieldDecorator={getFieldDecorator}
+                required={false}
               />
 
               <Form.Item label="Briefly describe your duties:">

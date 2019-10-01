@@ -26,7 +26,7 @@ class VisaAddress extends Component {
           )}
         </Form.Item>
 
-        <Form.Item extra="Address Line 2">
+        <Form.Item extra="Address Line 2 (Optional)">
           {getFieldDecorator( field + '.street_addr2', {
             initialValue: utils.getInitialValue(initialValue.street_addr2),
             // rules: [{ required: true, message: 'This field is required' }],
@@ -73,7 +73,7 @@ class VisaAddress extends Component {
             <Form.Item extra="ZIP / Postal Code">
               {getFieldDecorator( field + '.zip_code', {
                 initialValue: utils.getInitialValue(initialValue.zip_code),
-                rules: [{ required: true, message: 'This field is required' }],
+                // rules: [{ required: true, message: 'This field is required' }],
               })(
                 <Input />
               )}

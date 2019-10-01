@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
+import VisaTravellers from '../../../../components/VisaTravellers'
 import * as utils from '../../../../utils'
 
 const { Option } = Select;
@@ -14,7 +15,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, getFieldValue, setFieldsValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -81,40 +82,16 @@ class MyForm extends Component {
         </Row>}
 
         {field.b_other_person_travel_with && field.b_part_of_group == false && 
-        <Form.Item label="List of people traveling with you. (EACH TRAVELLER MUST COMPLETE HIS OWN APPLICATION)">
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-              <Form.Item label="Given Name (First Name)">
-                {getFieldDecorator('data.surname', {
-                  initialValue: utils.getInitialValue(data.surname),
-                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
-                })(
-                  <Input />
-                )}
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-              <Form.Item label="Surname (Last Name)">
-                {getFieldDecorator('data.given_name', {
-                  initialValue: utils.getInitialValue(data.given_name),
-                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
-                })(
-                  <Input />
-                )}
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item label="Relationship to you (Parent, Spouse, Child, Other Relative, Friend, Business Associate, Other)">
-                {getFieldDecorator('data.relationship', {
-                  initialValue: utils.getInitialValue(data.relationship),
-                  rules: [{ required: true, message: 'This field is required' }],
-                })(
-                  <VisaSelect combines={constants.person_travel_with_relationship_options} />
-                )}
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form.Item>
+        <VisaTravellers 
+          label="List of people traveling with you. (EACH TRAVELLER MUST COMPLETE HIS OWN APPLICATION)"
+          getFieldDecorator={getFieldDecorator}
+          getFieldValue={getFieldValue}
+          setFieldsValue={setFieldsValue}
+          initialValue={data.people}
+          arrayField="data.people"
+          keysField="copy.people"
+          validators={this.props.validators}
+        />
         }
 
         <div className="visa-form-bottom-btn-group">

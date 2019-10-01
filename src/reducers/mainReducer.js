@@ -121,22 +121,23 @@ const initialState = {
     form_travel_company: {
       b_other_person_travel_with: null,
       b_part_of_group: null,
-      surname: null,
-      given_name: null,
-      relationship: null,
-
+      people: [{
+        surname: null,
+        given_name: null,
+        relationship: null,
+      }],
       company: null
     },
 
     form_prev_travel_info: {
       b_ever_been_in_US: null,
-      prev_visit_info: {
+      prev_visit_info: [{
         date: null,
         length_of_stay: {
           period: null,
           unit: null
         }
-      },
+      }],
       b_ever_hold_Driver_License: null,
       prev_DL_info: {
         number: null,
@@ -199,10 +200,10 @@ const initialState = {
         work: null,
       },
       email: null,
-      social_media_info: {
+      social_media_info: [{
         platform: null,
         identifier: null
-      }
+      }]
     },
 
     form_passport: {
@@ -275,6 +276,7 @@ const initialState = {
           city: null,
           country: null
         },
+        address_type: null,
         address: {
           street_addr1: null,
           street_addr2: null,

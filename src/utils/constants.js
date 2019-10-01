@@ -14,6 +14,14 @@ export const export_list = (array) => {
     })
 }
 
+export const spouse_address_type = [
+	<option value="H">Same as Home Address</option>,
+	<option value="M">Same as Mailing Address</option>,
+	<option value="U">Same as U.S. Contact Address</option>,
+	<option value="D">Do Not Know</option>,
+	<option value="O">Other (Specify Address)</option>
+]
+
 export const occupation_options = [
     <option value="A">AGRICULTURE</option>,
     <option value="AP">ARTIST/PERFORMER</option>,
@@ -197,6 +205,7 @@ export const period_unit_options = [
     { value: 'M', label: 'MONTH(S)' },
     { value: 'W', label: 'WEEK(S)' },
     { value: 'D', label: 'DAY(S)' },
+    // { value: 'H', label: 'Less Than 24 Hours' },
 ]
 
 export const nationality_option_list_func = () => {

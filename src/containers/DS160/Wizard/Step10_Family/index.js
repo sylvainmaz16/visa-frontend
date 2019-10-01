@@ -52,6 +52,7 @@ class MyForm extends Component {
     getFieldDecorator('data.mother.b_in_US', { initialValue: utils.getInitialValue(data.mother.b_in_US) });
     getFieldDecorator('data.b_other_relative', { initialValue: utils.getInitialValue(data.b_other_relative) });
     getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) });
+    getFieldDecorator('data.spouse.address_type', { initialValue: utils.getInitialValue(data.spouse.address_type) });
 
     const martial_header = {
       'M': 'Spouse',
@@ -73,7 +74,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
                 label="Father's First Name"
-                extra="Leave blank if you do not know"
+                // extra="Leave blank if you do not know"
                 field="data.father.surname"
                 initialValue={data.father.surname}
                 getFieldDecorator={getFieldDecorator}
@@ -83,7 +84,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
                 label="Father's Last Name"
-                extra="Leave blank if you do not know"
+                // extra="Leave blank if you do not know"
                 field="data.father.given_name"
                 initialValue={data.father.given_name}
                 getFieldDecorator={getFieldDecorator}
@@ -92,13 +93,12 @@ class MyForm extends Component {
             </Col>
           </Row>
           <VisaDatePicker 
-            label="Father's date of birth (If known)"
-            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+            label="Father's date of birth"
+            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
             field="data.father.birthday"
             initialValue={data.father.birthday}
             getFieldDecorator={getFieldDecorator}
-            required={false}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Father's date of birth", date_birth) }]}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Father's date of birth", date_birth, true) }]}
           />
           <VisaRadio
             label="Is your Father in the US?"
@@ -125,7 +125,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
                 label="Mother's First Name"
-                extra="Leave blank if you do not know"
+                // extra="Leave blank if you do not know"
                 field="data.mother.surname"
                 initialValue={data.mother.surname}
                 getFieldDecorator={getFieldDecorator}
@@ -135,7 +135,7 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
                 label="Mother's Last Name"
-                extra="Leave blank if you do not know"
+                // extra="Leave blank if you do not know"
                 field="data.mother.given_name"
                 initialValue={data.mother.given_name}
                 getFieldDecorator={getFieldDecorator}
@@ -144,13 +144,12 @@ class MyForm extends Component {
             </Col>
           </Row>
           <VisaDatePicker 
-            label="Mother's date of birth (If known)"
-            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+            label="Mother's date of birth"
+            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
             field="data.mother.birthday"
             initialValue={data.mother.birthday}
             getFieldDecorator={getFieldDecorator}
-            required={false}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Mother's date of birth", date_birth) }]}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Mother's date of birth", date_birth, true) }]}
           />
           <VisaRadio
             label="Is your Mother in the US?"
@@ -254,7 +253,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
                     label="Spouse/Partner's First Name"
-                    extra="Leave blank if you do not know"
+                    // extra="Leave blank if you do not know"
                     field="data.spouse.surname"
                     initialValue={data.spouse.surname}
                     getFieldDecorator={getFieldDecorator}
@@ -264,7 +263,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
                     label="Spouse/Partner's Last Name"
-                    extra="Leave blank if you do not know"
+                    // extra="Leave blank if you do not know"
                     field="data.spouse.given_name"
                     initialValue={data.spouse.given_name}
                     getFieldDecorator={getFieldDecorator}
@@ -273,13 +272,12 @@ class MyForm extends Component {
                 </Col>
               </Row>
               <VisaDatePicker 
-                label="Spouse/Partner's date of birth (If known)"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                label="Spouse/Partner's date of birth"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
-                required={false}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, true) }]}
               />
               <VisaSelectItem
                 label="Nationality"
@@ -316,13 +314,25 @@ class MyForm extends Component {
                   </Col>
                 </Row>
               </Form.Item>
-              <VisaAddress 
+              <VisaSelectItem
                 label="Address"
-                field="data.spouse.address"
-                initialValue={data.spouse.address}
+                field="data.spouse.address_type"
+                initialValue={data.spouse.address_type}
+                content={{
+                  combines: constants.export_list(constants.spouse_address_type)
+                }}
                 getFieldDecorator={getFieldDecorator}
-                us_address={false}
               />
+              {
+                this.props.form.getFieldValue('data.spouse.address_type') == 'O' && 
+                <VisaAddress 
+                  label="Specify Address"
+                  field="data.spouse.address"
+                  initialValue={data.spouse.address}
+                  getFieldDecorator={getFieldDecorator}
+                  us_address={false}
+                />
+              }
             </Form.Item>
         }
 
@@ -333,7 +343,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
                     label="First Name"
-                    extra="Leave blank if you do not know"
+                    // extra="Leave blank if you do not know"
                     field="data.spouse.surname"
                     initialValue={data.spouse.surname}
                     getFieldDecorator={getFieldDecorator}
@@ -343,7 +353,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
                     label="Last Name"
-                    extra="Leave blank if you do not know"
+                    // extra="Leave blank if you do not know"
                     field="data.spouse.given_name"
                     initialValue={data.spouse.given_name}
                     getFieldDecorator={getFieldDecorator}
@@ -352,8 +362,8 @@ class MyForm extends Component {
                 </Col>
               </Row>
               <VisaDatePicker 
-                label="Date of birth (If known)"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+                label="Date of birth"
+                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
@@ -404,7 +414,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaInput
                   label="First Name"
-                  extra="Leave blank if you do not know"
+                  // extra="Leave blank if you do not know"
                   field="data.former_spouse.surname"
                   initialValue={data.former_spouse.surname}
                   getFieldDecorator={getFieldDecorator}
@@ -414,7 +424,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaInput
                   label="Last Name"
-                  extra="Leave blank if you do not know"
+                  // extra="Leave blank if you do not know"
                   field="data.former_spouse.given_name"
                   initialValue={data.former_spouse.given_name}
                   getFieldDecorator={getFieldDecorator}
@@ -423,8 +433,8 @@ class MyForm extends Component {
               </Col>
             </Row>
             <VisaDatePicker 
-              label="Date of birth (If known)"
-              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+              label="Date of birth"
+              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
               field="data.former_spouse.birthday"
               initialValue={data.former_spouse.birthday}
               getFieldDecorator={getFieldDecorator}
@@ -475,20 +485,20 @@ class MyForm extends Component {
             />
             <VisaDatePicker 
               label="Date of Marriage"
-              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
               field="data.former_spouse.marriage_date"
               initialValue={data.former_spouse.marriage_date}
               getFieldDecorator={getFieldDecorator}
-              required={false}
+              // required={false}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
             />
             <VisaDatePicker 
               label="Date Marriage End"
-              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
               field="data.former_spouse.end_date"
               initialValue={data.former_spouse.end_date}
               getFieldDecorator={getFieldDecorator}
-              required={false}
+              // required={false}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
             />
             <Form.Item label="How the Marriage Ended" required>

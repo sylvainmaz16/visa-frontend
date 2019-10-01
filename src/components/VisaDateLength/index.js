@@ -24,7 +24,7 @@ class VisaDateLength extends Component {
     return (
       <Row gutter={16}>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
-          <Form.Item label={date.label} extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013">
+          <Form.Item label={date.label} extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12">
             {getFieldDecorator(date.field, {
               initialValue: date.initialValue ? moment( date.initialValue, 'DD/MMM/YYYY' ) : null,
               rules: [{ validator: (rule, value, callback) => validators.validateEarlierDate(rule, value, callback, "Date Arrived") }],

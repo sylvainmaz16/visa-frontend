@@ -149,7 +149,7 @@ class MyForm extends Component {
 
         <VisaDatePicker 
           label="Issuance Date"
-          extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+          extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
           field="data.issuance_date"
           initialValue={data.issuance_date}
           getFieldDecorator={getFieldDecorator}
@@ -158,7 +158,7 @@ class MyForm extends Component {
 
         <VisaDatePicker 
           label="Expiration Date"
-          extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013"
+          extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
           field="data.expiration_date"
           initialValue={data.expiration_date}
           getFieldDecorator={getFieldDecorator}
@@ -186,6 +186,7 @@ class MyForm extends Component {
                   field="data.lost_info.number"
                   initialValue={data.lost_info.number}
                   getFieldDecorator={getFieldDecorator}
+                  required={false}
                 />
               </Col>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>

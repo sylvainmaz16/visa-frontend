@@ -61,13 +61,14 @@ class MyForm extends Component {
     getFieldDecorator('data.paying_person_for_trip', { initialValue: utils.getInitialValue(data.paying_person_for_trip) });
     getFieldDecorator('data.paying_person_info.b_same_address', { initialValue: utils.getInitialValue(data.paying_person_info.b_same_address) });
     getFieldDecorator('data.purpose_info_type', { initialValue: utils.getInitialValue(data.purpose_info_type) });
+    getFieldDecorator('data.travel_plan.length_of_stay.period', { initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.period) });
 
     const field = {
       purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
       other_purpose_of_trip: this.props.form.getFieldValue('data.other_purpose_of_trip'),
       paying_person_for_trip: this.props.form.getFieldValue('data.paying_person_for_trip'),
       paying_person_info_same_addr: this.props.form.getFieldValue('data.paying_person_info.b_same_address'),
-      purpose_info_type: this.props.form.getFieldValue('data.purpose_info_type')
+      purpose_info_type: this.props.form.getFieldValue('data.purpose_info_type'),
     }
 
     return (
@@ -144,7 +145,7 @@ class MyForm extends Component {
         }
         {
           field.purpose_info_type && field.purpose_info_type.includes('P') &&
-          <Form.Item label="Application Receipt/Petition Number" extra="If you are applying for a petition-based visa, your application receipt/petition number was given to you by the Department of Homeland Security’s U. S. Citizenship and Immigration Services (USCIS) after you filed your petition application at a USCIS Service Center. The application receipt/petition number is 13 characters long and the first three characters are letters. If Not Applicable please put N/A">
+          <Form.Item label="Application Receipt/Petition Number" extra="If you are applying for a petition-based visa, your application receipt/petition number was given to you by the Department of Homeland Security’s U. S. Citizenship and Immigration Services (USCIS) after you filed your petition application at a USCIS Service Center. The application receipt/petition number is 13 characters long and the first three characters are letters." required>
             {getFieldDecorator('data.purpose_info.petition', {
               initialValue: utils.getInitialValue(data.purpose_info.petition),
               rules: [{ validator: (rule, value, callback) => this.props.validators.validatePetitionNumber(rule, value, callback, true) }],
@@ -159,7 +160,7 @@ class MyForm extends Component {
           <div className="visa-global-section-description">Give details of the address where you will stay in the US. The address may be that of a hotel or private residence.</div>
         </div>
 
-        <Form.Item label="Intended date of arrival in the USA" extra="If you don't know your exact date of travel, please provide an estimate. Please enter the Date Format as YYYY-MM-DD For example January 12 2013 enter 12/01/2013">
+        <Form.Item label="Intended date of arrival in the USA" extra="If you don't know your exact date of travel, please provide an estimate. Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
           {getFieldDecorator('data.travel_plan.date_of_arrival', {
             initialValue: data.travel_plan.date_of_arrival ? moment( data.travel_plan.date_of_arrival, 'DD/MMM/YYYY' ) : null,
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateLaterDate(rule, value, callback, "Intended Date of Arrival") }],
@@ -170,7 +171,7 @@ class MyForm extends Component {
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 8 }}>
-            <Form.Item label="Intended Length of Stay in the USA" extra="Enter the Number of Day(s), Week(s), Month(s), Year(s) ONLY THE NUMBER.">
+            <Form.Item label="Intended Length of Stay in the USA" extra="Enter the Number of Day(s), Week(s), Month(s), Year(s) ONLY THE NUMBER." required>
               {getFieldDecorator('data.travel_plan.length_of_stay.length', {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.length),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateLengthOfStay(rule, value, callback, "Intended Length of Stay in U.S.") }],
@@ -191,56 +192,57 @@ class MyForm extends Component {
           </Col>
         </Row>
 
+        {this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') != 'H' &&
         <Form.Item label="Address Where You Will Stay in the U.S.">
-          <Form.Item extra="Street Address">
-            {getFieldDecorator('data.address_you_will_stay.street_addr1', {
-              initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
-              rules: [{ required: true, message: 'This field is required' }],
-            })(
-              <Input />
-            )}
-          </Form.Item>
-          <Form.Item extra="Address Line 2">
-            {getFieldDecorator('data.address_you_will_stay.street_addr2', {
-              initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
-              rules: [{ required: true, message: 'This field is required' }],
-            })(
-              <Input />
-            )}
-          </Form.Item>
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item extra="City">
-                {getFieldDecorator('data.address_you_will_stay.city', {
-                  initialValue: utils.getInitialValue(data.address_you_will_stay.city),
-                  rules: [{ required: true, message: 'This field is required' }],
-                })(
-                  <Input />
-                )}
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item extra="State">
-                {getFieldDecorator('data.address_you_will_stay.state', {
-                  initialValue: utils.getInitialValue(data.address_you_will_stay.state),
-                  rules: [{ required: true, message: 'This field is required' }],
-                })(
-                  <VisaSelect combines={constants.state_options_list()} />
-                )}
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item extra="ZIP Code">
-                {getFieldDecorator('data.address_you_will_stay.zip_code', {
-                  initialValue: utils.getInitialValue(data.address_you_will_stay.zip_code),
-                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }],
-                })(
-                  <Input />
-                )}
-              </Form.Item>
-            </Col>
-          </Row>
+        <Form.Item extra="Street Address">
+          {getFieldDecorator('data.address_you_will_stay.street_addr1', {
+            initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
+            rules: [{ required: true, message: 'This field is required' }],
+          })(
+            <Input />
+          )}
         </Form.Item>
+        <Form.Item extra="Address Line 2 (Optional)">
+          {getFieldDecorator('data.address_you_will_stay.street_addr2', {
+            initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
+          })(
+            <Input />
+          )}
+        </Form.Item>
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+            <Form.Item extra="City">
+              {getFieldDecorator('data.address_you_will_stay.city', {
+                initialValue: utils.getInitialValue(data.address_you_will_stay.city),
+                rules: [{ required: true, message: 'This field is required' }],
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>
+          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+            <Form.Item extra="State">
+              {getFieldDecorator('data.address_you_will_stay.state', {
+                initialValue: utils.getInitialValue(data.address_you_will_stay.state),
+                rules: [{ required: true, message: 'This field is required' }],
+              })(
+                <VisaSelect combines={constants.state_options_list()} />
+              )}
+            </Form.Item>
+          </Col>
+          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+            <Form.Item extra="ZIP Code (if known)">
+              {getFieldDecorator('data.address_you_will_stay.zip_code', {
+                initialValue: utils.getInitialValue(data.address_you_will_stay.zip_code),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }],
+              })(
+                <Input />
+              )}
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form.Item>
+        }
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 12 }}>
