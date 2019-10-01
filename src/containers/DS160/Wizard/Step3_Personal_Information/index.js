@@ -214,7 +214,7 @@ class MyForm extends Component {
             </Radio.Group>
           )}
         </Form.Item>
-        <Form.Item label="Date of birth" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12">
+        <Form.Item label="Date of birth" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
           {getFieldDecorator('data.date_birth', {
             initialValue: data.date_birth ? moment( data.date_birth, 'DD/MMM/YYYY' ) : null,
             rules: [{ validator: this.props.validators.validateEarlierDate }],

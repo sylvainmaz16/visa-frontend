@@ -63,11 +63,35 @@ const columns = [
   //   ),
   // },
   {
+    title: 'Checkout',
+    key: 'checkout',
+    render: (text, record) => {
+      if (!record.completed)
+        return <Tag color="red">Not completed</Tag>
+      if (!record.paid)
+        return <Tag color="volcano">Not paid</Tag>
+      return <Tag color="geekblue">Paid</Tag>
+    },
+  },
+  {
+    title: 'Automation Status',
+    key: 'automation_status',
+    render: (text, record) => {
+      if (!record.completed || !record.paid)
+        return "-"
+      if (!record.automation_status)
+        return <Tag color="volcano">Pending</Tag>
+      if(record.automation_status.error)
+        return <Tag color="red">Failed</Tag>
+      return <Tag color="geekblue">Success</Tag>
+    },
+  },
+  {
     title: 'Action',
     key: 'action',
     render: (text, record) => {
-      if (!record.completed || !record.paid)
-        return <Tag color="volcano">Not paid</Tag>
+      if (!record.completed || !record.paid || !record.automation_status || record.automation_status.error)
+        return '-'
       return (<Button type="primary" shape="round" icon="download" size="small">
         <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Download PDF</a>
       </Button>)
@@ -122,9 +146,12 @@ class AdminPageDS160 extends Component {
         onChange={this.handleTableChange}
         expandedRowRender={record => {
           if(!record.checkout_result) {
-            return <p style={{ margin: 0 }}>No transaction</p>
+            return <p style={{ margin: 0 }}>
+              {`_id: ${record._id}`}<br />
+              No transaction</p>
           }
           return <p style={{ margin: 0 }}>
+            {`_id: ${record._id}`}<br />
             {`orderid: ${record.checkout_result.orderid}`}<br />
             {`authcode: ${record.checkout_result.authcode}`}<br />
             {`cvvresponse: ${record.checkout_result.cvvresponse}`}<br />

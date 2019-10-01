@@ -5,6 +5,7 @@ import VisaBanner from '../../../components/VisaBanner';
 import VisaHeader from '../../../components/VisaHeader';
 import { DS160 } from '../../../actions/types'
 import { Spin } from 'antd';
+import Form_DS160_SaveAndContinue from './EmailForm'
 
 import './index.scss'
 class DS160_Checkout extends Component {
