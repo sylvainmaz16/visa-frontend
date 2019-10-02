@@ -205,7 +205,7 @@ export const period_unit_options = [
     { value: 'M', label: 'MONTH(S)' },
     { value: 'W', label: 'WEEK(S)' },
     { value: 'D', label: 'DAY(S)' },
-    // { value: 'H', label: 'Less Than 24 Hours' },
+    { value: 'H', label: 'Less Than 24 Hours' },
 ]
 
 export const nationality_option_list_func = () => {

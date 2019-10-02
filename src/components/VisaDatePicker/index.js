@@ -12,14 +12,14 @@ class VisaDatePicker extends Component {
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, readOnly, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
           initialValue: initialValue ? moment( initialValue, 'DD/MMM/YYYY' ) : null,
           rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
         })(
-          <DatePicker />
+          <DatePicker disabled={readOnly}/>
         )}
       </Form.Item>
     );

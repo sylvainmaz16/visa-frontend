@@ -246,15 +246,21 @@ const initialState = {
     form_family: {
       father: {
         surname: null,
+        surname_NA: false,
         given_name: null,
+        given_name_NA: false,
         birthday: null,
+        birthday_NA: false,
         b_in_US: null,
         status: null
       },
       mother: {
         surname: null,
+        surname_NA: null,
         given_name: null,
+        given_name_NA: null,
         birthday: null,
+        birthday_NA: null,
         b_in_US: null,
         status: null
       },

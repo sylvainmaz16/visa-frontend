@@ -67,6 +67,7 @@ class MyForm extends Component {
               field="data.assist_info.organization.name"
               initialValue={data.assist_info.organization.name}
               getFieldDecorator={getFieldDecorator}
+              required={false}
             />
             <VisaAddress
               label="Address"

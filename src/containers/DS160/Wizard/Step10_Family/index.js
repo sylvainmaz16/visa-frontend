@@ -8,9 +8,11 @@ import VisaExplain from "../../../../components/VisaExplain";
 import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
+import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import * as utils from '../../../../utils'
+import VisaDatePickerWithCheck from "../../../../components/VisaDatePickerWithCheck";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -33,7 +35,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -48,7 +50,14 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status } = this.props
 
+    
+    getFieldDecorator('data.father.surname_NA', { initialValue: utils.getInitialValue(data.father.surname_NA) });
+    getFieldDecorator('data.father.given_name_NA', { initialValue: utils.getInitialValue(data.father.given_name_NA) });
+    getFieldDecorator('data.father.birthday_NA', { initialValue: utils.getInitialValue(data.father.birthday_NA) });
     getFieldDecorator('data.father.b_in_US', { initialValue: utils.getInitialValue(data.father.b_in_US) });
+    getFieldDecorator('data.mother.surname_NA', { initialValue: utils.getInitialValue(data.mother.surname_NA) });
+    getFieldDecorator('data.mother.given_name_NA', { initialValue: utils.getInitialValue(data.mother.given_name_NA) });
+    getFieldDecorator('data.mother.birthday_NA', { initialValue: utils.getInitialValue(data.mother.birthday_NA) });
     getFieldDecorator('data.mother.b_in_US', { initialValue: utils.getInitialValue(data.mother.b_in_US) });
     getFieldDecorator('data.b_other_relative', { initialValue: utils.getInitialValue(data.b_other_relative) });
     getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) });
@@ -72,102 +81,150 @@ class MyForm extends Component {
         <Form.Item label="List your Father's information here" required>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
+              <VisaInputWithCheck
                 label="Father's First Name"
-                // extra="Leave blank if you do not know"
+                extra="Please check if you do not know"
                 field="data.father.surname"
                 initialValue={data.father.surname}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", !this.props.form.getFieldValue('data.father.surname_NA')) }]}
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
+                checkField="data.father.surname_NA"
+                checkValue={data.father.surname_NA}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
+              <VisaInputWithCheck
                 label="Father's Last Name"
-                // extra="Leave blank if you do not know"
+                extra="Please check if you do not know"
                 field="data.father.given_name"
                 initialValue={data.father.given_name}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", !this.props.form.getFieldValue('data.father.given_name_NA')) }]}
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
+                checkField="data.father.given_name_NA"
+                checkValue={data.father.given_name_NA}
               />
             </Col>
           </Row>
-          <VisaDatePicker 
-            label="Father's date of birth"
-            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
-            field="data.father.birthday"
-            initialValue={data.father.birthday}
-            getFieldDecorator={getFieldDecorator}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Father's date of birth", date_birth, true) }]}
-          />
-          <VisaRadio
-            label="Is your Father in the US?"
-            field="data.father.b_in_US"
-            initialValue={data.father.b_in_US}
-            getFieldDecorator={getFieldDecorator}
-          />
           {
-            this.props.form.getFieldValue('data.father.b_in_US') &&
-            <VisaSelectItem
-              label="Father's Status"
-              field="data.father.status"
-              initialValue={data.father.status}
-              content={{
-                combines: constants.export_list(constants.US_Live_Status)
-              }}
+            (!this.props.form.getFieldValue('data.father.surname_NA') || !this.props.form.getFieldValue('data.father.given_name_NA')) &&
+            <>
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaDatePickerWithCheck
+                  label="Father's date of birth"
+                  extra="Please check if you do not know"
+                  field="data.father.birthday"
+                  initialValue={data.father.birthday}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Father's date of birth", date_birth, !this.props.form.getFieldValue('data.father.birthday_NA')) }]}
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                  checkField="data.father.birthday_NA"
+                  checkValue={data.father.birthday_NA}
+                />
+              </Col>
+            </Row>
+            
+            <VisaRadio
+              label="Is your Father in the US?"
+              field="data.father.b_in_US"
+              initialValue={data.father.b_in_US}
               getFieldDecorator={getFieldDecorator}
             />
+            {
+              this.props.form.getFieldValue('data.father.b_in_US') &&
+              <VisaSelectItem
+                label="Father's Status"
+                field="data.father.status"
+                initialValue={data.father.status}
+                content={{
+                  combines: constants.export_list(constants.US_Live_Status)
+                }}
+                getFieldDecorator={getFieldDecorator}
+              />
+            }
+            </>
           }
+          
         </Form.Item>
 
         <Form.Item label="List your Mother's information here" required>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
+              <VisaInputWithCheck
+                extra="Please check if you do not know"
                 label="Mother's First Name"
-                // extra="Leave blank if you do not know"
                 field="data.mother.surname"
                 initialValue={data.mother.surname}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", !this.props.form.getFieldValue('data.mother.surname_NA')) }]}
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
+                checkField="data.mother.surname_NA"
+                checkValue={data.mother.surname_NA}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
+              <VisaInputWithCheck
                 label="Mother's Last Name"
-                // extra="Leave blank if you do not know"
+                extra="Please check if you do not know"
                 field="data.mother.given_name"
                 initialValue={data.mother.given_name}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", !this.props.form.getFieldValue('data.mother.given_name_NA')) }]}
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
+                checkField="data.mother.given_name_NA"
+                checkValue={data.mother.given_name_NA}
               />
             </Col>
           </Row>
-          <VisaDatePicker 
-            label="Mother's date of birth"
-            extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
-            field="data.mother.birthday"
-            initialValue={data.mother.birthday}
-            getFieldDecorator={getFieldDecorator}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Mother's date of birth", date_birth, true) }]}
-          />
-          <VisaRadio
-            label="Is your Mother in the US?"
-            field="data.mother.b_in_US"
-            initialValue={data.mother.b_in_US}
-            getFieldDecorator={getFieldDecorator}
-          />
           {
-            this.props.form.getFieldValue('data.mother.b_in_US') &&
-            <VisaSelectItem
-              label="Mother's Status"
-              field="data.mother.status"
-              initialValue={data.mother.status}
-              content={{
-                combines: constants.export_list(constants.US_Live_Status)
-              }}
+            (!this.props.form.getFieldValue('data.mother.surname_NA') || !this.props.form.getFieldValue('data.mother.given_name_NA')) &&
+            <>
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaDatePickerWithCheck
+                  label="Mother's date of birth"
+                  extra="Please check if you do not know"
+                  field="data.mother.birthday"
+                  initialValue={data.mother.birthday}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Mother's date of birth", date_birth, !this.props.form.getFieldValue('data.mother.birthday_NA')) }]}
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                  checkField="data.mother.birthday_NA"
+                  checkValue={data.mother.birthday_NA}
+                />
+              </Col>
+            </Row>
+            
+            <VisaRadio
+              label="Is your Mother in the US?"
+              field="data.mother.b_in_US"
+              initialValue={data.mother.b_in_US}
               getFieldDecorator={getFieldDecorator}
             />
+            {
+              this.props.form.getFieldValue('data.mother.b_in_US') &&
+              <VisaSelectItem
+                label="Mother's Status"
+                field="data.mother.status"
+                initialValue={data.mother.status}
+                content={{
+                  combines: constants.export_list(constants.US_Live_Status)
+                }}
+                getFieldDecorator={getFieldDecorator}
+              />
+            }
+            </>
           }
         </Form.Item>
 
