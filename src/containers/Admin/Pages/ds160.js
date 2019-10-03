@@ -77,7 +77,7 @@ const columns = [
     title: 'Automation Status',
     key: 'automation_status',
     render: (text, record) => {
-      if (!record.completed || !record.paid)
+      if (!record.completed)
         return "-"
       if (!record.automation_status)
         return <Tag color="volcano">Pending</Tag>
@@ -90,7 +90,7 @@ const columns = [
     title: 'Action',
     key: 'action',
     render: (text, record) => {
-      if (!record.completed || !record.paid || !record.automation_status || record.automation_status.error)
+      if (!record.completed || !record.automation_status || record.automation_status.error)
         return '-'
       return (<Button type="primary" shape="round" icon="download" size="small">
         <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Download PDF</a>
