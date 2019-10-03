@@ -74,7 +74,7 @@ class VisaAddress extends Component {
               {getFieldDecorator( field + '.zip_code', {
                 initialValue: utils.getInitialValue(initialValue.zip_code),
                 // rules: [{ required: true, message: 'This field is required' }],
-                rules: hideCountry ? null : [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }],
+                rules: (hideCountry || us_address) ? [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }] : null,
               })(
                 <Input />
               )}
