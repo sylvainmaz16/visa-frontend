@@ -7,7 +7,7 @@ import { DS160 } from '../../../actions/types'
 import Form_DS160_1 from './Step1';
 import Form_DS160_2 from './Step2';
 import Form_DS160_3 from './Step3_Personal_Information';
-import { Spin } from 'antd';
+import { Spin, notification } from 'antd';
 
 import Form_DS160_4_Travel from './Step4_Travel';
 import Form_DS160_5_Travel_Company from './Step5_Travel_Company';
@@ -22,7 +22,6 @@ import objectAssignDeep from 'object-assign-deep'
 
 import ds160_validators from '../Validators'
 
-import './index.scss'
 import Form_DS160_16_Preparer from './Step16_Preparer';
 import Form_DS160_15_IntraCompany from './Step15_IntraCompany';
 import Form_DS160_15_Crew_Job from './Step15_Crew_Job';
@@ -33,6 +32,15 @@ import Form_Final from './Final';
 import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
 import Form_DS160_15_SEVIS from './Step15_SEVIS';
 import Form_Photo from './Photo';
+import './index.scss'
+
+const openNotificationWithIcon = type => {
+  notification[type]({
+    message: 'Submit without payment',
+    description:
+      type == 'success' ? 'Successfully submitted. It may take few minutes to process' : 'Failed to submit',
+  });
+};
 
 class DS160_Wizard extends Component {
   static defaultProps = {
@@ -109,6 +117,7 @@ class DS160_Wizard extends Component {
     }
     console.log('onSubmitWithoutPayment: ', field, payload)
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
+    openNotificationWithIcon('success')
   }
 
   handleSubmitWithoutPayment = (e, form, handleDates, field) => {

@@ -6,8 +6,8 @@ import VisaHeader from '../../../components/VisaHeader';
 import { DS160 } from '../../../actions/types'
 import { Spin } from 'antd';
 import Form_Checkout from './StripeWrapper';
-import './index.scss'
 import Form_DS160_Checkout_Info from './Info';
+import './index.scss'
 
 class DS160_Checkout extends Component {
 
