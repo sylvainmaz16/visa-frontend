@@ -99,6 +99,31 @@ class DS160_Wizard extends Component {
     this.props.history.push('/ds-160/checkout');
   }
 
+  onSubmitWithoutPayment = (data, field) => {
+    const payload = {
+      email: '',
+      completed: true,
+      step_index: this.props.step_index,
+      withoutPayment: true,
+      data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
+    }
+    console.log('onSubmitWithoutPayment: ', field, payload)
+    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
+  }
+
+  handleSubmitWithoutPayment = (e, form, handleDates, field) => {
+    e.preventDefault();
+    form.validateFieldsAndScroll((err, values) => {
+      console.log(err, values)
+      if (!err) {
+        if( handleDates )
+          this.onSubmitWithoutPayment(handleDates(values.data), field)
+        else 
+          this.onSubmitWithoutPayment(values.data, field)
+      }
+    });
+  }
+
   handleSubmit = (e, form, handleDates, field) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
@@ -394,7 +419,9 @@ class DS160_Wizard extends Component {
             form_render = <Form_Photo {...shared_params} data={ds160.form_photo} />
             break;
           case 'form_final':
-            form_render = <Form_Final {...shared_params} handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}/>
+            form_render = <Form_Final {...shared_params} 
+              handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)} 
+              handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}/>
             break;
           default:
             console.log('EXCEPTION could not find form')

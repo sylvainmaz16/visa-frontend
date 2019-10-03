@@ -37,6 +37,7 @@ class MyForm extends Component {
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>SUBMIT AND MAKE YOUR PAYMENT</Button>}
+          <Button type="danger" style={{marginLeft: '10px'}} onClick={(e) => this.props.handleSubmitWithoutPayment(e, this.props.form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>
         </div>
       </Form>
 
