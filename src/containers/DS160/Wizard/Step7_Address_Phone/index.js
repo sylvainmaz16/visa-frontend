@@ -59,6 +59,7 @@ class MyForm extends Component {
           field="data.home_addr"
           initialValue={data.home_addr}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
           us_address={false}
         />
 
@@ -136,6 +137,7 @@ class MyForm extends Component {
             field="data.mail_addr.info"
             initialValue={data.mail_addr.info}
             getFieldDecorator={getFieldDecorator}
+            validators={this.props.validators}
             us_address={false}
           />
         }

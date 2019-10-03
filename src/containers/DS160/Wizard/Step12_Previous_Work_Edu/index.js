@@ -78,6 +78,7 @@ class MyForm extends Component {
                 field="data.emp_info.address"
                 initialValue={data.emp_info.address}
                 getFieldDecorator={getFieldDecorator}
+                validators={this.props.validators}
                 us_address={false}
               />
             </Col>
@@ -181,6 +182,7 @@ class MyForm extends Component {
             field="data.edu_info.address"
             initialValue={data.edu_info.address}
             getFieldDecorator={getFieldDecorator}
+            validators={this.props.validators}
             us_address={false}
           />
 

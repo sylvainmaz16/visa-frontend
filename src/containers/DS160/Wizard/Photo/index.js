@@ -243,6 +243,7 @@ class MyForm extends Component {
               field="data.payer.address"
               initialValue={data.payer.address}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               us_address={false}
             />
           </Col>

@@ -63,6 +63,7 @@ class MyForm extends Component {
                       label="Address"
                       field={`data.point_of_contact[${index}].address`}
                       initialValue={data.point_of_contact[index].address}
+                      validators={this.props.validators}
                       getFieldDecorator={getFieldDecorator}
                     />
                     <VisaInput
@@ -158,6 +159,7 @@ class MyForm extends Component {
                 field="data.school_info.address"
                 initialValue={data.school_info.address}
                 getFieldDecorator={getFieldDecorator}
+                validators={this.props.validators}
                 hideCountry
               />
             </Col>

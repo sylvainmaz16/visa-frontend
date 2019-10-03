@@ -367,6 +367,7 @@ class MyForm extends Component {
                   field="data.spouse.address"
                   initialValue={data.spouse.address}
                   getFieldDecorator={getFieldDecorator}
+                  validators={this.props.validators}
                   us_address={false}
                 />
               }
@@ -522,6 +523,7 @@ class MyForm extends Component {
               field="data.former_spouse.address"
               initialValue={data.former_spouse.address}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               us_address={false}
             />
             <VisaDatePicker 

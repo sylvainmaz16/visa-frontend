@@ -71,6 +71,7 @@ class MyForm extends Component {
           field="data.address"
           initialValue={data.address}
           getFieldDecorator={getFieldDecorator}
+          validators={this.props.validators}
           hideCountry
         />
 

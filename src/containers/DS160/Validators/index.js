@@ -329,6 +329,7 @@ const validateNumber = (rule, value, callback, field, required = false) => {
 };
 
 const validateUSZipCode = (rule, value, callback, field) => {
+    console.log(value)
     if (!value) {
       callback();
       return;

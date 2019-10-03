@@ -74,6 +74,7 @@ class MyForm extends Component {
               field="data.assist_info.address"
               initialValue={data.assist_info.address}
               getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
               us_address={false}
             />
             <Row gutter={16}>
