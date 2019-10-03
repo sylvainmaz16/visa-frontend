@@ -356,7 +356,7 @@ class DS160_Wizard extends Component {
         form_render = <Form_DS160_7_Address_Phone {...shared_params} data={ds160.form_addr_and_phone} />
         break;
       case 8:
-        form_render = <Form_DS160_8_Passport {...shared_params} data={ds160.form_passport} />
+        form_render = <Form_DS160_8_Passport {...shared_params} data={ds160.form_passport}  date_birth={ds160.form_personal_info.date_birth}/>
         break;
       case 9:
         form_render = <Form_DS160_9_Contact {...shared_params} data={ds160.form_contact} martial_status={ds160.form_personal_info.martial_status}/>
@@ -370,7 +370,7 @@ class DS160_Wizard extends Component {
             form_render = <Form_DS160_11_Work_Edu {...shared_params} data={ds160.form_work_or_edu} />
             break;
           case 'form_prev_work_or_edu':
-            form_render = <Form_DS160_12_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} />
+            form_render = <Form_DS160_12_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} date_birth={ds160.form_personal_info.date_birth}/>
             break;
           case 'form_additional_work':
             form_render = <Form_DS160_13_Additional_Work_Edu {...shared_params} data={ds160.form_additional_work} />

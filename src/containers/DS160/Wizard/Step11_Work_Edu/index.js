@@ -5,7 +5,6 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
@@ -27,7 +26,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -101,10 +100,12 @@ class MyForm extends Component {
 
               <VisaDatePicker 
                 label="Start Date"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.start_date"
                 initialValue={data.start_date}
                 getFieldDecorator={getFieldDecorator}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
 
               <VisaInput

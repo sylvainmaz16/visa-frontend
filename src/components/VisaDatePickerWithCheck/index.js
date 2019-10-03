@@ -13,12 +13,17 @@ class VisaDatePickerWithCheck extends Component {
   }
   handleCheck = (e) => {
     if(e.target.checked) {
-      this.props.setFieldsValue({ [this.props.field]: null })
+      this.props.setFieldsValue({ 
+        [this.props.field]: null, 
+        [this.props.field + '_v2.DD']: null,
+        [this.props.field + '_v2.MMM']: null,
+        [this.props.field + '_v2.YYYY']: null,
+      })
     }
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, getFieldValue, checkValue, checkField, required, customRule, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, getFieldValue, setFieldsValue, checkValue, checkField, required, customRule, ...rest } = this.props
     const readOnly = getFieldValue(checkField)
     return (
       <>
@@ -30,6 +35,8 @@ class VisaDatePickerWithCheck extends Component {
           getFieldDecorator={getFieldDecorator}
           customRule={customRule}
           readOnly={readOnly}
+          setFieldsValue={setFieldsValue}
+          getFieldValue={getFieldValue}
         />
         <Form.Item style={{textAlign: 'right'}}>
           {getFieldDecorator(checkField, {

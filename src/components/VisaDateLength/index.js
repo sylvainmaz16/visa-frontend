@@ -11,7 +11,7 @@ class VisaDateLength extends Component {
   }
   render() {
 
-    const { date, period, unit, getFieldDecorator, validators, ...rest } = this.props
+    const { date, period, unit, getFieldDecorator, setFieldsValue, getFieldValue, validators, ...rest } = this.props
 
     const unit_options = [
       { value: 'Y', label: 'Year(s)' },
@@ -24,14 +24,18 @@ class VisaDateLength extends Component {
     return (
       <Row gutter={16}>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
-          <Form.Item label={date.label} extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12">
-            {getFieldDecorator(date.field, {
-              initialValue: date.initialValue ? moment( date.initialValue, 'DD/MMM/YYYY' ) : null,
-              rules: [{ validator: (rule, value, callback) => validators.validateEarlierDate(rule, value, callback, "Date Arrived") }],
-            })(
-              <DatePicker />
-            )}
-          </Form.Item>
+          <VisaDatePicker 
+            label={date.label}
+            
+            field={date.field}
+            initialValue={date.initialValue}
+            getFieldDecorator={getFieldDecorator}
+            customRule={[{ validator: (rule, value, callback) => validators.validateEarlierDate(rule, value, callback, "Date Arrived") }]}
+            required={true}
+
+            setFieldsValue={setFieldsValue}
+            getFieldValue={getFieldValue}
+          />
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <Form.Item label="Length of stay" extra="0 of 3 max characters">

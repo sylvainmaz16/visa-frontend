@@ -5,7 +5,6 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
@@ -33,7 +32,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -46,7 +45,7 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
     getFieldDecorator('data.b_previously_employed', { initialValue: utils.getInitialValue(data.b_previously_employed) });
     getFieldDecorator('data.b_edu_secondary_level', { initialValue: utils.getInitialValue(data.b_edu_secondary_level) });
     return (
@@ -127,21 +126,25 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Employment Date From"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.emp_info.date_from"
                 initialValue={data.emp_info.date_from}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Employment Date From", true) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, "Employment Date From", date_birth) }]}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Employment Date To"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.emp_info.date_to"
                 initialValue={data.emp_info.date_to}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Employment Date To", this.props.form.getFieldValue('data.emp_info.date_from'), true) }]}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -192,21 +195,25 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance From"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.edu_info.date_from"
                 initialValue={data.edu_info.date_from}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Date of Attendance From", false) }]}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance To"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.edu_info.date_to"
                 initialValue={data.edu_info.date_to}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Date of Attendance To", this.props.form.getFieldValue('data.edu_info.date_from'), false) }]}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
             </Col>
           </Row>

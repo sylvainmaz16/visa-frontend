@@ -5,7 +5,6 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
@@ -13,6 +12,7 @@ import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import * as utils from '../../../../utils'
 import VisaDatePickerWithCheck from "../../../../components/VisaDatePickerWithCheck";
+import VisaOtherRelatives from '../../../../components/VisaOtherRelatives'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -63,6 +63,16 @@ class MyForm extends Component {
     getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) });
     getFieldDecorator('data.spouse.address_type', { initialValue: utils.getInitialValue(data.spouse.address_type) });
 
+    if(!data.others) {
+      data.others = [
+        {
+          surname: null,
+          given_name: null,
+          relationship: null,
+          status: null
+        }
+      ]
+    }
     const martial_header = {
       'M': 'Spouse',
       'C': 'Spouse',
@@ -243,48 +253,16 @@ class MyForm extends Component {
         {   
           this.props.form.getFieldValue('data.b_other_relative') &&
           <Form.Item label="Enter Full Name, Relationship to you, Immigration Status">
-            <Row gutter={16}>
-              <Col xs={{ span: 12 }} sm={{ span: 6 }} md={{ span: 3 }}>
-                <VisaInput
-                  label="First Name"
-                  field="data.other.surname"
-                  initialValue={data.other.surname}
-                  getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
-                />
-              </Col>
-              <Col xs={{ span: 12 }} sm={{ span: 6 }} md={{ span: 3 }}>
-                <VisaInput
-                  label="Last Name"
-                  field="data.other.given_name"
-                  initialValue={data.other.given_name}
-                  getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
-                />
-              </Col>
-              <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 6 }}>
-                <VisaSelectItem
-                  label="Relationship to you"
-                  field="data.other.relationship"
-                  initialValue={data.other.relationship}
-                  content={{
-                    combines: constants.export_list(constants.relative_relationship_options)
-                  }}
-                  getFieldDecorator={getFieldDecorator}
-                />
-              </Col>
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaSelectItem
-                  label="Immigration Status"
-                  field="data.other.status"
-                  initialValue={data.other.status}
-                  content={{
-                    combines: constants.export_list(constants.US_Live_Status)
-                  }}
-                  getFieldDecorator={getFieldDecorator}
-                />
-              </Col>
-            </Row>
+            <VisaOtherRelatives 
+              getFieldDecorator={getFieldDecorator}
+              getFieldValue={getFieldValue}
+              setFieldsValue={setFieldsValue}
+              initialValue={data.others}
+              arrayField="data.others"
+              keysField="copy.others"
+              validators={this.props.validators}
+              martial_status={martial_status}
+            />
           </Form.Item>
         }
 
@@ -330,11 +308,13 @@ class MyForm extends Component {
               </Row>
               <VisaDatePicker 
                 label="Spouse/Partner's date of birth"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, true) }]}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
               <VisaSelectItem
                 label="Nationality"
@@ -420,12 +400,14 @@ class MyForm extends Component {
               </Row>
               <VisaDatePicker 
                 label="Date of birth"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
               <VisaSelectItem
                 label="Nationality"
@@ -491,12 +473,14 @@ class MyForm extends Component {
             </Row>
             <VisaDatePicker 
               label="Date of birth"
-              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
               field="data.former_spouse.birthday"
               initialValue={data.former_spouse.birthday}
               getFieldDecorator={getFieldDecorator}
               required={false}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+
+              setFieldsValue={setFieldsValue}
+              getFieldValue={getFieldValue}
             />
             <VisaSelectItem
               label="Nationality"
@@ -542,21 +526,26 @@ class MyForm extends Component {
             />
             <VisaDatePicker 
               label="Date of Marriage"
-              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
+
               field="data.former_spouse.marriage_date"
               initialValue={data.former_spouse.marriage_date}
               getFieldDecorator={getFieldDecorator}
               // required={false}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+
+              setFieldsValue={setFieldsValue}
+              getFieldValue={getFieldValue}
             />
             <VisaDatePicker 
               label="Date Marriage End"
-              extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
               field="data.former_spouse.end_date"
               initialValue={data.former_spouse.end_date}
               getFieldDecorator={getFieldDecorator}
               // required={false}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+
+              setFieldsValue={setFieldsValue}
+              getFieldValue={getFieldValue}
             />
             <Form.Item label="How the Marriage Ended" required>
               {getFieldDecorator('data.former_spouse.end_explain', {

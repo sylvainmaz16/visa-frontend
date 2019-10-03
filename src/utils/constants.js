@@ -61,6 +61,12 @@ export const relative_relationship_options = [
     <option value="B">SIBLING</option>,
 ]
 
+export const relative_relationship_options_except_Spouse = [
+    <option value="F">FIANCÉ/FIANCÉE</option>,
+    <option value="C">CHILD</option>,
+    <option value="B">SIBLING</option>,
+]
+
 export const relationship_options = [
 	<option value="R">RELATIVE</option>,
 	<option value="S">SPOUSE</option>,
@@ -201,6 +207,12 @@ export const paying_person_for_trip_options = [
 ]
 
 export const period_unit_options = [
+    { value: 'Y', label: 'YEAR(S)' },
+    { value: 'M', label: 'MONTH(S)' },
+    { value: 'W', label: 'WEEK(S)' },
+    { value: 'D', label: 'DAY(S)' },
+]
+export const period_unit_options_v2 = [
     { value: 'Y', label: 'YEAR(S)' },
     { value: 'M', label: 'MONTH(S)' },
     { value: 'W', label: 'WEEK(S)' },

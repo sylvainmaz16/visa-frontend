@@ -265,12 +265,12 @@ const initialState = {
         status: null
       },
       b_other_relative: null,
-      other: {
+      others: [{
         surname: null,
         given_name: null,
         relationship: null,
         status: null
-      },
+      }],
       b_more_relatives: null,
 
       spouse: {

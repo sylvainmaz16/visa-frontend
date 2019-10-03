@@ -5,7 +5,6 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
@@ -29,7 +28,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -42,7 +41,7 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
 
     getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) });
     getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) });
@@ -149,20 +148,25 @@ class MyForm extends Component {
 
         <VisaDatePicker 
           label="Issuance Date"
-          extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
+          
           field="data.issuance_date"
           initialValue={data.issuance_date}
           getFieldDecorator={getFieldDecorator}
-          customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback) }]}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, 'Issued Date', date_birth) }]}
+
+          setFieldsValue={setFieldsValue}
+          getFieldValue={getFieldValue}
         />
 
         <VisaDatePicker 
           label="Expiration Date"
-          extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
           field="data.expiration_date"
           initialValue={data.expiration_date}
           getFieldDecorator={getFieldDecorator}
           customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, 'Expiration Date', this.props.form.getFieldValue('data.issuance_date')) }]}
+
+          setFieldsValue={setFieldsValue}
+          getFieldValue={getFieldValue}
         />
 
         <VisaRadio

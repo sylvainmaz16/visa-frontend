@@ -31,12 +31,17 @@ const validateExplain = (rule, value, callback, field, required = false) => {
 };
 
 const validateParentBirthDate = (rule, value, callback, field, birthday, required = false) => {
-    console.log(value, birthday)
+    
     if (!value) {
         if(required)
             callback('This field is required');
         else
             callback();
+        return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
         return;
     }
     if(moment(birthday, 'DD/MMM/YYYY').diff(value) < 0){
@@ -67,10 +72,26 @@ const validateProgramNumber = (rule, value, callback, field) => {
     }
     callback();
 };
+const validateDateYear = (rule, value, callback) => {
+    
+    if (!value) {
+      callback('This field is required');
+    }
+    if(/^\d{4}$/.test(value)== false || parseInt(value) > 2500 || parseInt(value) < 1900) {
+        callback('Invalid');
+        return;
+    }
+    callback();
+};
 const validateVisaLostYear = (rule, value, callback, field, birthday) => {
     
     if (!value) {
       callback('This field is required');
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
     }
     if(/^\d{4}$/.test(value)== false || moment().year() < value || value < moment(birthday, 'DD/MMM/YYYY').year()) {
         callback(field + ' contains an invalid year.');
@@ -89,12 +110,33 @@ const validateVisaNumber = (rule, value, callback, field) => {
     }
     callback();
 };
+const isValidDate = (value) => {
+    const d = value
+    const MONTH_LIST = { 'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11}
+    if(!d || !d.isValid()) return false
+    
+    const terms = value.format('DD/MMM/YYYY').split('/')
+    
+    const day = terms[0]
+    const month = terms[1]
+    const year = terms[2]
+    
+    if(d.year() == year && d.month() == MONTH_LIST[month] && d.date() == parseInt(day))
+        return true
+    return false
+}
 const validateEarlierDate = (rule, value, callback, required = true) => {
+    
     if (!value) {
         if( required )
             callback('This field is required');
         else
             callback()
+        return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
         return;
     }
     if (moment().diff(value) > 0 && !moment(value, 'DD/MMM/YYYY').isSame(moment(), 'day')) {
@@ -104,11 +146,17 @@ const validateEarlierDate = (rule, value, callback, required = true) => {
     callback('Date must be earlier than today');
 };
 const validateBetweenDate = (rule, value, callback, field, fromDate, required) => {
+    
     if (!value) {
         if(required)
             callback('This field is required');
         else
             callback();
+        return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
         return;
     }
     if (moment().diff(value) < 0) {
@@ -123,9 +171,15 @@ const validateBetweenDate = (rule, value, callback, field, fromDate, required) =
 };
 
 const validateExpirationDate = (rule, value, callback, field, issuedDate) => {
+    
     if (!value) {
       callback('This field is required');
       return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
     }
     if (moment().diff(value) > 0) {
       callback(field + ' cannot be earlier than today.');
@@ -137,10 +191,37 @@ const validateExpirationDate = (rule, value, callback, field, issuedDate) => {
     }
     callback();
 };
+
+const validatePreviousVisitdDate = (rule, value, callback, field, birthday) => {
+    if (!value) {
+      callback('This field is required');
+      return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
+    }
+    if (moment().diff(value) < 0 || moment(value, 'DD/MMM/YYYY').isSame(moment(), 'day')) {
+      callback(field + ' cannot be equal to or later than today.');
+      return;
+    }
+    if(moment(birthday, 'DD/MMM/YYYY').diff(value) > 0){
+        callback(field + ' cannot be earlier than Date of Birth.');
+        return;
+    }
+    callback();
+};
+
 const validateLastVisaIssuedDate = (rule, value, callback, field, birthday) => {
     if (!value) {
       callback('This field is required');
       return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
     }
     if (moment().diff(value) < 0 || moment(value, 'DD/MMM/YYYY').isSame(moment(), 'day')) {
       callback(field + ' cannot be equal to or later than today.');
@@ -156,6 +237,11 @@ const validateLaterDate = (rule, value, callback, field) => {
     if (!value) {
       callback('This field is required');
       return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
     }
     if (moment().diff(value) < 0) {
       callback();
@@ -273,7 +359,9 @@ const ds160_validators = {
     validateExplain,
     validatePetitionNumber,
     validateSEVIS,
-    validateProgramNumber
+    validateProgramNumber,
+    validatePreviousVisitdDate,
+    validateDateYear
 }
 
 export default ds160_validators

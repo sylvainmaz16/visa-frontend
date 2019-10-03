@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
+import VisaDatePicker from '../../../../components/VisaDatePicker'
 import moment from 'moment'
 import * as utils from '../../../../utils'
 
@@ -62,7 +63,7 @@ class MyForm extends Component {
     callback();
   }
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -95,7 +96,7 @@ class MyForm extends Component {
       getFieldDecorator('data.used_other_name.given_name', { initialValue: utils.getInitialValue(data.used_other_name.given_name) });
       otherName = this.props.form.getFieldValue('data.used_other_name.surname') + this.props.form.getFieldValue('data.used_other_name.given_name')
     }
-    
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -214,14 +215,18 @@ class MyForm extends Component {
             </Radio.Group>
           )}
         </Form.Item>
-        <Form.Item label="Date of birth" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
-          {getFieldDecorator('data.date_birth', {
-            initialValue: data.date_birth ? moment( data.date_birth, 'DD/MMM/YYYY' ) : null,
-            rules: [{ validator: this.props.validators.validateEarlierDate }],
-          })(
-            <DatePicker />
-          )}
-        </Form.Item>
+        <VisaDatePicker 
+          label="Date of birth"
+          
+          field="data.date_birth"
+          initialValue={data.date_birth}
+          getFieldDecorator={getFieldDecorator}
+          customRule={[{ validator: this.props.validators.validateEarlierDate }]}
+          required={true}
+
+          setFieldsValue={setFieldsValue}
+          getFieldValue={getFieldValue}
+        />
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
             <Form.Item label="City of birth">

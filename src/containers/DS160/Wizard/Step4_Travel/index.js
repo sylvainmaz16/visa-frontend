@@ -4,6 +4,7 @@ import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaAddress from "../../../../components/VisaAddress";
+import VisaDatePicker from '../../../../components/VisaDatePicker'
 import * as utils from '../../../../utils'
 
 const { Option } = Select;
@@ -22,7 +23,7 @@ class MyForm extends Component {
   onSelect = (e, field) => {
     console.log(e, field)
     if (field == 'purpose_of_trip') {
-      this.props.form.setFieldsValue({ 'data.other_purpose_of_trip': null, 'data.purpose_info_type': null });
+      this.props.form.setFieldsValue({ 'data.other_purpose_of_trip': null, 'data.purpose_info_type': null, 'data.travel_plan.length_of_stay.length': null, 'data.travel_plan.length_of_stay.period': null });
     }
     else if (field == 'other_purpose_of_trip') {
       const field = {
@@ -38,7 +39,7 @@ class MyForm extends Component {
     }
   }
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -121,7 +122,7 @@ class MyForm extends Component {
           <Form.Item label="Principal Applicant Information">
             <Row gutter={16}>
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                <Form.Item label="Surname(s) (Last Name)">
+                <Form.Item label="Surname(s) (Last Name)" required>
                   {getFieldDecorator('data.purpose_info.surname', {
                     initialValue: utils.getInitialValue(data.purpose_info.surname),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
@@ -131,7 +132,7 @@ class MyForm extends Component {
                 </Form.Item>
               </Col>
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-                <Form.Item label="Given Name(s) (First Name)">
+                <Form.Item label="Given Name(s) (First Name)" required>
                   {getFieldDecorator('data.purpose_info.given_name', {
                     initialValue: utils.getInitialValue(data.purpose_info.given_name),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
@@ -160,14 +161,18 @@ class MyForm extends Component {
           <div className="visa-global-section-description">Give details of the address where you will stay in the US. The address may be that of a hotel or private residence.</div>
         </div>
 
-        <Form.Item label="Intended date of arrival in the USA" extra="If you don't know your exact date of travel, please provide an estimate. Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
-          {getFieldDecorator('data.travel_plan.date_of_arrival', {
-            initialValue: data.travel_plan.date_of_arrival ? moment( data.travel_plan.date_of_arrival, 'DD/MMM/YYYY' ) : null,
-            rules: [{ validator: (rule, value, callback) => this.props.validators.validateLaterDate(rule, value, callback, "Intended Date of Arrival") }],
-          })(
-            <DatePicker />
-          )}
-        </Form.Item>
+        <VisaDatePicker 
+          label="Intended date of arrival in the USA"
+          
+          field="data.travel_plan.date_of_arrival"
+          initialValue={data.travel_plan.date_of_arrival}
+          getFieldDecorator={getFieldDecorator}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLaterDate(rule, value, callback, "Intended Date of Arrival") }]}
+          required={true}
+
+          setFieldsValue={setFieldsValue}
+          getFieldValue={getFieldValue}
+        />
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 8 }}>
@@ -186,7 +191,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.period),
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <VisaSelect combines={constants.period_unit_options} />
+                <VisaSelect combines={(field.purpose_of_trip == 'B' || field.purpose_of_trip == 'C' || field.purpose_of_trip == 'D') ? constants.period_unit_options_v2 : constants.period_unit_options} />
               )}
             </Form.Item>
           </Col>

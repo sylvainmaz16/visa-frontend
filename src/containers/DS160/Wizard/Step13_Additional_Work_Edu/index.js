@@ -5,7 +5,6 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
@@ -158,19 +157,23 @@ class MyForm extends Component {
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance From"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.militaries[0].date_from"
                 initialValue={data.militaries[0].date_from}
                 getFieldDecorator={getFieldDecorator}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
                 label="Date of Attendance To"
-                extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12"
                 field="data.militaries[0].date_to"
                 initialValue={data.militaries[0].date_to}
                 getFieldDecorator={getFieldDecorator}
+
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
               />
             </Col>
           </Row>

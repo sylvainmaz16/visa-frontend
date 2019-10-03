@@ -4,12 +4,8 @@ import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
-import VisaSelectItem from "../../../../components/VisaSelectItem";
-import VisaInputArray from "../../../../components/VisaInputArray";
 import * as utils from '../../../../utils'
 
 const { Option } = Select;

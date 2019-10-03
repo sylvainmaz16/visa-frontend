@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker } fro
 import VisaSelect from '../VisaSelect'
 import moment from 'moment'
 import VisaRadio from "../VisaRadio";
+import VisaDatePicker from '../VisaDatePicker'
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
 const unit_options = [
@@ -51,7 +52,7 @@ class VisaPreviousVisits extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, birthday, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const visits = getFieldValue(keysField);
@@ -62,7 +63,19 @@ class VisaPreviousVisits extends Component {
       >
         <Row gutter={16}>
           <Col xs={{ span: 20 }} sm={{ span: 8 }}>
-            <Form.Item label="Date of arrival (last visit to the US)" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
+            <VisaDatePicker 
+              label="Date of arrival (last visit to the US)"
+              
+              field={`${arrayField}[${index}].date`}
+              initialValue={initialValue[index] ? initialValue[index].date : null}
+              getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => validators.validatePreviousVisitdDate(rule, value, callback, "Date Arrived", birthday) }]}
+              required={true}
+
+              setFieldsValue={setFieldsValue}
+              getFieldValue={getFieldValue}
+            />
+            {/* <Form.Item label="Date of arrival (last visit to the US)" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
               {getFieldDecorator(`${arrayField}[${index}].date`, {
                 initialValue: initialValue[index] && initialValue[index].date ? moment( initialValue[index].date, 'DD/MMM/YYYY' ) : null,
                 // validateTrigger: ['onChange', 'onBlur'],
@@ -70,7 +83,7 @@ class VisaPreviousVisits extends Component {
               })(
                 <DatePicker />
               )}
-            </Form.Item>
+            </Form.Item> */}
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 6 }}>
             <Form.Item label="Length of stay" extra="0 of 3 max characters" required>

@@ -5,6 +5,7 @@ import * as utils from '../../../../utils'
 import VisaSelect from "../../../../components/VisaSelect";
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaInput from "../../../../components/VisaInput";
+import VisaAddress from '../../../../components/VisaAddress';
 import { Upload, Icon, message, Checkbox, Row, Col } from 'antd';
 import SignatureCanvas from 'react-signature-canvas'
 import axios from 'axios'
@@ -117,6 +118,16 @@ class MyForm extends Component {
     getFieldDecorator('data.url', { initialValue: utils.getInitialValue(data.url) });
     const imageUrl = this.props.form.getFieldValue('data.url')
 
+    if(!data.payer.address)
+      data.payer.address = {
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null,
+        country: null
+      }
+
     return (
       <Form {...formItemLayout}>
         {/* <div className="visa-global-field visa-global-border-bottom">
@@ -178,6 +189,10 @@ class MyForm extends Component {
           </Form.Item>
         }
 
+        <div className="visa-global-field visa-global-border-bottom">
+          <h2 className="visa-global-section-title">Payment Information</h2>
+        </div>
+
         <Form.Item label="Payer's Name" extra="Please enter the first and last name of the person who makes the payment." required>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -222,6 +237,13 @@ class MyForm extends Component {
               initialValue={data.payer.email}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address") }]}
+            />
+            <VisaAddress
+              label="Address"
+              field="data.payer.address"
+              initialValue={data.payer.address}
+              getFieldDecorator={getFieldDecorator}
+              us_address={false}
             />
           </Col>
         </Row>

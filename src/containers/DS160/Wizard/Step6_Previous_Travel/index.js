@@ -5,7 +5,7 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
-import VisaDateLength from "../../../../components/VisaDateLength";
+import VisaDatePicker from '../../../../components/VisaDatePicker'
 import VisaPreviousVisits from '../../../../components/VisaPreviousVisits'
 import * as utils from '../../../../utils'
 
@@ -85,6 +85,7 @@ class MyForm extends Component {
             arrayField="data.prev_visit_info"
             keysField="copy.prev_visit_info"
             validators={this.props.validators}
+            birthday={date_birth}
           />
         }
 
@@ -137,14 +138,18 @@ class MyForm extends Component {
           <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 8 }}>
-                <Form.Item label="Date Last Visa Was Issued" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
-                  {getFieldDecorator('data.US_Visa.date', {
-                    initialValue: data.US_Visa.date ? moment( data.US_Visa.date, 'DD/MMM/YYYY' ) : null,
-                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, "Date Last Visa Was Issued", date_birth) }],
-                  })(
-                    <DatePicker />
-                  )}
-                </Form.Item>
+                <VisaDatePicker 
+                  label="Date Last Visa Was Issued"
+                  
+                  field="data.US_Visa.date"
+                  initialValue={data.US_Visa.date}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, "Date Last Visa Was Issued", date_birth) }]}
+                  required={true}
+
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                />
               </Col>
               <Col xs={{ span: 16 }} md={{ span: 12 }}>
                 <Form.Item label="Visa Number" extra="Leave blank if you do not know">
