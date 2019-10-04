@@ -81,7 +81,9 @@ const columns = [
         return "-"
       if (!record.automation_status)
         return <Tag color="volcano">Pending</Tag>
-      if(record.automation_status.error)
+      if (record.automation_status.result == 'processing')
+        return <Tag color="green">In progress</Tag>
+      if(record.automation_status.error || record.automation_status.result == 'fail')
         return <Tag color="red">Failed</Tag>
       return <Tag color="geekblue">Success</Tag>
     },

@@ -92,6 +92,7 @@ class MyForm extends Component {
                 initialValue={data.emp_info.address.tel_number}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
+                maxLength={20}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -111,6 +112,7 @@ class MyForm extends Component {
                 getFieldDecorator={getFieldDecorator}
                 required={false}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", false) }]}
+                maxLength={33}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -122,6 +124,7 @@ class MyForm extends Component {
                 getFieldDecorator={getFieldDecorator}
                 required={false}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", false) }]}
+                maxLength={33}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
