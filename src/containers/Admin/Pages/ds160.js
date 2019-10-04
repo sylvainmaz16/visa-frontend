@@ -93,7 +93,7 @@ const columns = [
       if (!record.completed || !record.automation_status)
         return '-'
       if (record.automation_status.error) {
-        return (<Button type="primary" shape="round" icon="download" size="small">
+        return (<Button type="danger" shape="round" icon="warning" size="small">
           <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>Check Errors</a>
         </Button>)  
       }
