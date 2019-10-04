@@ -151,7 +151,7 @@ class MyForm extends Component {
               initialValue: utils.getInitialValue(data.purpose_info.petition),
               rules: [{ validator: (rule, value, callback) => this.props.validators.validatePetitionNumber(rule, value, callback, true) }],
             })(
-              <Input style={{textTransform: 'uppercase'}}/>
+              <Input style={{textTransform: 'uppercase'}} maxLength={13}/>
             )}
           </Form.Item>
         }
@@ -181,7 +181,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.length),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateLengthOfStay(rule, value, callback, "Intended Length of Stay in U.S.") }],
               })(
-                <Input />
+                <Input maxLength={3}/>
               )}
             </Form.Item>
           </Col>
@@ -221,7 +221,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.address_you_will_stay.city),
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -241,7 +241,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.address_you_will_stay.zip_code),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }],
               })(
-                <Input />
+                <Input maxLength={10}/>
               )}
             </Form.Item>
           </Col>
@@ -303,7 +303,7 @@ class MyForm extends Component {
                       initialValue: utils.getInitialValue(data.paying_person_info.tel_number),
                       rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", true) }],
                     })(
-                      <Input />
+                      <Input maxLength={20}/>
                     )}
                   </Form.Item>
                 </Col>
@@ -367,7 +367,7 @@ class MyForm extends Component {
                         initialValue: utils.getInitialValue(data.paying_org_info.tel_number),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", true) }],
                       })(
-                        <Input />
+                        <Input maxLength={20}/>
                       )}
                     </Form.Item>
                   </Col>

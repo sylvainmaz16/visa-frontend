@@ -96,6 +96,7 @@ class MyForm extends Component {
                 us_address={false}
                 hidePhone={false}
                 validators={this.props.validators}
+                maxTelLength={12}
               />
 
               <VisaDatePicker 
@@ -114,6 +115,7 @@ class MyForm extends Component {
                 initialValue={data.monthly_income}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
+                maxLength={15}
               />
 
               <Form.Item label="Briefly describe your duties:">

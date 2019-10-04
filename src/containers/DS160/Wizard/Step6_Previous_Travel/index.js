@@ -106,7 +106,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.prev_DL_info.number),
                     // rules: [{ required: true, message: 'This field is required' }],
                   })(
-                    <Input />
+                    <Input maxLength={20}/>
                   )}
                 </Form.Item>
               </Col>
@@ -157,7 +157,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.US_Visa.number),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaNumber(rule, value, callback, "The Visa Number") }],
                   })(
-                    <Input />
+                    <Input maxLength={12}/>
                   )}
                 </Form.Item>
               </Col>
@@ -196,7 +196,7 @@ class MyForm extends Component {
                         initialValue: utils.getInitialValue(data.US_Visa.lost_info.year),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaLostYear(rule, value, callback, "Year", date_birth) }],
                       })(
-                        <Input />
+                        <Input maxLength={4}/>
                       )}
                     </Form.Item>
                   </Col>

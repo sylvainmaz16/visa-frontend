@@ -65,6 +65,7 @@ class MyForm extends Component {
                   initialValue={data.surname}
                   getFieldDecorator={getFieldDecorator}
                   customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                  maxLength={33}
                 />
                 <VisaInput
                   label="Given Name(s)"
@@ -72,6 +73,7 @@ class MyForm extends Component {
                   initialValue={data.given_name}
                   getFieldDecorator={getFieldDecorator}
                   customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                  maxLength={33}
                 />
               </> :
               <VisaInput
@@ -79,6 +81,7 @@ class MyForm extends Component {
                 field="data.organization"
                 initialValue={data.organization}
                 getFieldDecorator={getFieldDecorator}
+                maxLength={33}
               />) : ''
             }
           </Col>
@@ -101,6 +104,7 @@ class MyForm extends Component {
               initialValue={data.tel_number}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]}
+              maxLength={10}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>

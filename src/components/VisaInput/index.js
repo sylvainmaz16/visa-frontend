@@ -8,18 +8,19 @@ class VisaInput extends Component {
     label: "",
     required: true,
     customRule: null,
-    placeholder: ""
+    placeholder: "",
+    maxLength: 40
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, placeholder, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, maxLength, placeholder, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
           initialValue: utils.getInitialValue(initialValue),
           rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
         })(
-          <Input placeholder={placeholder}/>
+          <Input placeholder={placeholder} maxLength={maxLength}/>
         )}
       </Form.Item>
     );

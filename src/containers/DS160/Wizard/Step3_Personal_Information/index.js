@@ -234,7 +234,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.place_of_birth.city),
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -243,7 +243,7 @@ class MyForm extends Component {
               {getFieldDecorator('data.place_of_birth.state', {
                 initialValue: utils.getInitialValue(data.place_of_birth.state)
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -307,7 +307,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.other_nationality_passport),
                     rules: [{ required: true, message: 'This field is required' }],
                   })(
-                    <Input />
+                    <Input maxLength={20}/>
                   )}
                 </Form.Item>
             }
@@ -345,7 +345,7 @@ class MyForm extends Component {
               {getFieldDecorator('data.national_id_number', {
                 initialValue: utils.getInitialValue(data.national_id_number),
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -355,7 +355,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.social_security_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateSSN(rule, value, callback, "U.S. Social Security Number") }],
               })(
-                <Input />
+                <Input maxLength={9}/>
               )}
             </Form.Item>
           </Col>
@@ -365,7 +365,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.tax_id_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "U.S. Taxpayer ID Number") }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>

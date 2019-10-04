@@ -138,18 +138,21 @@ class MyForm extends Component {
                 field="data.militaries[0].service"
                 initialValue={data.militaries[0].service}
                 getFieldDecorator={getFieldDecorator}
+                maxLength={40}
               />
               <VisaInput
                 label="Rank/Position"
                 field="data.militaries[0].rank"
                 initialValue={data.militaries[0].rank}
                 getFieldDecorator={getFieldDecorator}
+                maxLength={40}
               />
               <VisaInput
                 label="Military Speciality"
                 field="data.militaries[0].speciality"
                 initialValue={data.militaries[0].speciality}
                 getFieldDecorator={getFieldDecorator}
+                maxLength={40}
               />
             </Col>
           </Row>

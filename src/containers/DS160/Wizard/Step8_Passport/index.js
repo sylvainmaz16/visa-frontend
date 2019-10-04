@@ -85,6 +85,7 @@ class MyForm extends Component {
               field="data.doc_number"
               initialValue={data.doc_number}
               getFieldDecorator={getFieldDecorator}
+              maxLength={20}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -95,6 +96,7 @@ class MyForm extends Component {
               initialValue={data.book_number}
               getFieldDecorator={getFieldDecorator}
               required={false}
+              maxLength={20}
             />
           </Col>
         </Row>
@@ -121,6 +123,7 @@ class MyForm extends Component {
               field="data.issued_location.city"
               initialValue={data.issued_location.city}
               getFieldDecorator={getFieldDecorator}
+              maxLength={25}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -130,6 +133,7 @@ class MyForm extends Component {
               initialValue={data.issued_location.state}
               required={false}
               getFieldDecorator={getFieldDecorator}
+              maxLength={25}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -191,6 +195,7 @@ class MyForm extends Component {
                   initialValue={data.lost_info.number}
                   getFieldDecorator={getFieldDecorator}
                   required={false}
+                  maxLength={20}
                 />
               </Col>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>

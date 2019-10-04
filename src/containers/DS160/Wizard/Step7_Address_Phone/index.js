@@ -70,7 +70,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.phone_info.home),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Primary Phone number", true) }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -80,7 +80,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.phone_info.mobile),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Secondary Phone number") }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -92,7 +92,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.phone_info.work),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Work Phone number") }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -104,7 +104,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.email),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }],
                   })(
-                    <Input />
+                    <Input maxLength={50}/>
                   )}
                 </Form.Item>
               </Col>
@@ -114,7 +114,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.email_confirm),
                     rules: [{ validator: this.validateEmailConfirm }],
                   })(
-                    <Input />
+                    <Input maxLength={50}/>
                   )}
                 </Form.Item>
               </Col>

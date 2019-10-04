@@ -52,12 +52,14 @@ class MyForm extends Component {
                       field={`data.point_of_contact[${index}].surname`}
                       initialValue={data.point_of_contact[index].surname}
                       getFieldDecorator={getFieldDecorator}
+                      maxLength={33}
                     />
                     <VisaInput
                       label="Given Names"
                       field={`data.point_of_contact[${index}].given_name`}
                       initialValue={data.point_of_contact[index].given_name}
                       getFieldDecorator={getFieldDecorator}
+                      maxLength={33}
                     />
                     <VisaAddress
                       label="Address"
@@ -105,6 +107,7 @@ class MyForm extends Component {
               initialValue={data.id}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, "SEVIS ID") }]}
+              maxLength={11}
             />
             {
               (sevis_type == 'B' || sevis_type == 'D') &&
@@ -115,6 +118,7 @@ class MyForm extends Component {
                 initialValue={data.principal_id}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, "Principal Applicant SEVIS ID") }]}
+                maxLength={11}
               />
             }
             {
@@ -152,7 +156,7 @@ class MyForm extends Component {
                 label="Course of Study"
                 field="data.school_info.course"
                 initialValue={data.school_info.course}
-                getFieldDecorator={getFieldDecorator}
+                getFieldDecorator={getFieldDecorator} 
               />
               <VisaAddress
                 label="Address"

@@ -10,11 +10,12 @@ class VisaAddress extends Component {
     label: "",
     hideCountry: false,
     us_address: true,
-    hidePhone: true
+    hidePhone: true,
+    maxTelLength: 20
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, hideCountry, us_address, hidePhone, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, maxTelLength, hideCountry, us_address, hidePhone, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required>
         <Form.Item extra="Street Address">
@@ -22,7 +23,7 @@ class VisaAddress extends Component {
             initialValue: utils.getInitialValue(initialValue.street_addr1),
             rules: [{ required: true, message: 'This field is required' }],
           })(
-            <Input />
+            <Input maxLength={40}/>
           )}
         </Form.Item>
 
@@ -31,7 +32,7 @@ class VisaAddress extends Component {
             initialValue: utils.getInitialValue(initialValue.street_addr2),
             // rules: [{ required: true, message: 'This field is required' }],
           })(
-            <Input />
+            <Input maxLength={40}/>
           )}
         </Form.Item>
 
@@ -40,9 +41,9 @@ class VisaAddress extends Component {
             <Form.Item extra="City">
               {getFieldDecorator(field + '.city', {
                 initialValue: utils.getInitialValue(initialValue.city),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ required: true, message: 'This field is required'}],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
@@ -61,7 +62,7 @@ class VisaAddress extends Component {
                 initialValue: utils.getInitialValue(initialValue.state),
                 rules: [{ required: true, message: 'This field is required' }],
               })(
-                <Input />
+                <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>}
@@ -76,7 +77,7 @@ class VisaAddress extends Component {
                 // rules: [{ required: true, message: 'This field is required' }],
                 rules: (hideCountry || us_address) ? [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }] : null,
               })(
-                <Input />
+                <Input maxLength={10}/>
               )}
             </Form.Item>
           </Col>
@@ -87,7 +88,7 @@ class VisaAddress extends Component {
                 initialValue: utils.getInitialValue(initialValue.tel_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]
               })(
-                <Input />
+                <Input maxLength={maxTelLength}/>
               )}
             </Form.Item>
           </Col>

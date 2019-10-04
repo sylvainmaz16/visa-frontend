@@ -110,6 +110,7 @@ class MyForm extends Component {
                 initialValue={data.position_info.address.tel_number}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
+                maxLength={20}
               />
             </Col>
           </Row>

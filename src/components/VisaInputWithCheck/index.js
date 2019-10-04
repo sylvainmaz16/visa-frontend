@@ -29,7 +29,7 @@ class VisaInput extends Component {
             initialValue: utils.getInitialValue(initialValue),
             rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
           })(
-            <Input placeholder={placeholder} disabled={readOnly}/>
+            <Input placeholder={placeholder} disabled={readOnly} maxLength={33}/>
           )}
         </Form.Item>
         <Form.Item style={{textAlign: 'right'}}>

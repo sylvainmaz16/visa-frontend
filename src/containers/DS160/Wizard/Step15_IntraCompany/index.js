@@ -83,6 +83,7 @@ class MyForm extends Component {
               initialValue={data.tel_number}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
+              maxLength={12}
             />
             <VisaInput
               label="Enter Monthly Income (In USD)"
@@ -90,6 +91,7 @@ class MyForm extends Component {
               initialValue={data.income}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Monthly Income", true) }]}
+              maxLength={15}
             />
           </Col>
         </Row>
