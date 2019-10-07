@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import { CookiesProvider } from 'react-cookie';
 import { Router } from 'react-router-dom'
 import Routes from './routes/index'
 import { createBrowserHistory } from 'history'
@@ -12,11 +13,14 @@ const { persistor, store } = configureStore()
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Routes />
-        </PersistGate>
-      </Provider>
+      <CookiesProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Routes />
+          </PersistGate>
+        </Provider>
+      </CookiesProvider>
+
     )
   }
 }

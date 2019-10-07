@@ -52,4 +52,5 @@ export const ApiManager = {
   CreateMailTemplate: (headers, data) => requests.post(`mail`, headers, data),
   DeleteMailTemplate: (country) => requests.del(`mail/${country}`),
   UpdateMailTemplate: (mail) => requests.put(`mail/${mail.country}`, mail),
+  AuthLogin: (headers, data) => requests.post(`auth/login`, headers, data),
 };

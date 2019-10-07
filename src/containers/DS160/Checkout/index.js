@@ -5,9 +5,10 @@ import VisaBanner from '../../../components/VisaBanner';
 import VisaHeader from '../../../components/VisaHeader';
 import { DS160 } from '../../../actions/types'
 import { Spin } from 'antd';
-import Form_Checkout from './StripeWrapper';
 import Form_DS160_Checkout_Info from './Info';
+import Form_AuthorizeNet from './Authorize.net';
 import './index.scss'
+
 
 class DS160_Checkout extends Component {
 
@@ -60,7 +61,8 @@ class DS160_Checkout extends Component {
           Checkout
         </VisaBanner>
         <div className="container visa-ds160-checkout__content">
-          <Form_Checkout placeOrder={this.placeOrder} loading_pay={loading_pay} checkout_result={checkout_result}/>
+          {/* <Form_Checkout placeOrder={this.placeOrder} loading_pay={loading_pay} checkout_result={checkout_result}/> */}
+          <Form_AuthorizeNet placeOrder={this.placeOrder} loading_pay={loading_pay} checkout_result={checkout_result}/>
         </div>
       </div>
     )

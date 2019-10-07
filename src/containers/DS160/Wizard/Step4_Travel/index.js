@@ -181,7 +181,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.length),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateLengthOfStay(rule, value, callback, "Intended Length of Stay in U.S.") }],
               })(
-                <Input maxLength={3}/>
+                <Input maxLength={3} disabled={this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') == 'H'}/>
               )}
             </Form.Item>
           </Col>

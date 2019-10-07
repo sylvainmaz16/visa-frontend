@@ -88,12 +88,30 @@ function* updateMailTemplateRequest(action) {
   }
 }
 
+function* loginRequest(action) {
+  let headers = {
+    "Content-Type": "application/json"
+  };
+  try {
+    const res = yield call(ApiManager.AuthLogin, headers, action.data);
+    const data = res.data;
+    yield put({ type: ADMIN.LOGIN_SUCCESS, data });
+    console.log('in ds160_saga: ', data);
+  } catch (e) {
+    console.log(e);
+    const status = e.response.status;
+
+    yield put({ type: ADMIN.LOGIN_FAILURE, status });
+  }
+}
+
 function* admin_saga() {
   yield all([takeLatest(ADMIN.GET_CUSTOMER_LIST_REQUEST, getRequest)]);
   yield all([takeLatest(ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, getMailTemplatesRequest)]);
   yield all([takeLatest(ADMIN.CREATE_MAIL_TEMPLATE_REQUEST, createMailTemplateRequest)]);
   yield all([takeLatest(ADMIN.DELETE_MAIL_TEMPLATE_REQUEST, deleteMailTemplateRequest)]);
   yield all([takeLatest(ADMIN.UPDATE_MAIL_TEMPLATE_REQUEST, updateMailTemplateRequest)]);
+  yield all([takeLatest(ADMIN.LOGIN_REQUEST, loginRequest)]);
 }
 
 export default admin_saga;

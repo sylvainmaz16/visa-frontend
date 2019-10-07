@@ -236,7 +236,7 @@ class MyForm extends Component {
               field="data.payer.email"
               initialValue={data.payer.email}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address") }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address", true) }]}
             />
             <VisaAddress
               label="Address"

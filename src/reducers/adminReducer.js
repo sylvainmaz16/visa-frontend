@@ -2,6 +2,9 @@ import { ADMIN } from '../actions/types'
 import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {
+
+  user: null,
+
   data: [],
   mailTemplates: [],
   mailTotalCount: 0,
@@ -15,6 +18,25 @@ function adminReducer(state = initialState, action) {
     case ADMIN.RESET: {
       return initialState
     }
+    case ADMIN.LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case ADMIN.LOGIN_SUCCESS:
+      localStorage.setItem("token", action.data.token)
+      return {
+        ...state,
+        user: {
+          username: action.data.username
+        },
+        loading: false
+      };
+    case ADMIN.LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false
+      };
     case ADMIN.SHOW_MODAL: {
       console.log(action.modal)
       return {

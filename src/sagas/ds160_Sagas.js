@@ -1,4 +1,4 @@
-import { call, put, takeLatest, all } from "redux-saga/effects";
+import { call, put, takeLatest, all, retry } from "redux-saga/effects";
 import { types } from "../actions";
 import { ApiManager } from "../apis/apimanager";
 const { DS160 } = types;
@@ -47,12 +47,49 @@ function* saveRequest(action) {
   }
 }
 
+let getNonceFromAuthorizeNet = (secureData) => {
+  return new Promise((resolve, reject) => {
+    Accept.dispatchData(secureData, function(opaqueData, error) {
+      console.log(opaqueData, error)
+      resolve(opaqueData)
+    })
+  })
+}
+
 function* checkoutRequest(action) {
   let headers = {
     "Content-Type": "application/json"
   };
 
   try {
+
+    let authData = {
+      clientKey: process.env.AUTHORIZENET_CLIENTKEY,
+      apiLoginID: process.env.AUTHORIZENET_LOGINID
+    }
+
+    console.log(action.payload)
+
+    const billingData = action.payload.data
+
+    let cardData = {
+      cardNumber: billingData.ccNum,
+      month: billingData.ccExp.substring(0, 2),
+      year: billingData.ccExp.substring(2, 4),
+      cardCode: billingData.cvv,
+      zip: billingData.zip,
+      fullName: billingData.surname + ' ' + billingData.given_name
+    }
+
+    let secureData = {
+      authData: authData,
+      cardData: cardData
+    }
+
+    const nonce = yield call(getNonceFromAuthorizeNet, secureData)
+
+    console.log(nonce)
+
     const res = yield call(ApiManager.CheckoutDS160, headers, action.payload);
     const data = res.data;
     yield put({ type: DS160.DS160_CHECKOUT_SUCCESS, data });

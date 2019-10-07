@@ -12,15 +12,24 @@ import DS160_SaveAndContinue from '../containers/DS160/SaveAndContinue'
 import DS160_AutoOnlineFill from '../containers/DS160/AutoOnlineFill'
 import DS160_Checkout from '../containers/DS160/Checkout'
 import AdminBoard from '../containers/Admin'
+import AuthRequired from '../AuthRequired'
+import AuthPage from '../containers/Auth'
+import { withCookies } from 'react-cookie';
 
 class Routes extends Component {
   render() {
+    const { cookies } = this.props
+    console.log(cookies)
     return (
       <Router>
         <Switch>
-          <Route path="/board" exact children={({ location }) => {
-            return <AdminBoard menu={'ds160'}/>
-          }} />
+          <Route path="/auth" exact component={AuthPage} />
+          <Route path="/board"  exact children={({ location }) => 
+            <AdminBoard menu='ds160'/>
+          }/>
+          {/* <Route path="/board"  exact children={({ location }) => 
+            <AuthRequired cookies={cookies} redirectTo='/board' orRender={<AdminBoard menu='ds160'/>}/>
+          }/> */}
           <Route path="/board/:menukey(ds160|mail)" exact children={({ match, location }) => {
             let params = new URLSearchParams(location.search);
             let menu = match.params.menukey
@@ -31,7 +40,7 @@ class Routes extends Component {
 
             return <AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>
           }} />
-          <Route
+          {/* <Route
             path="/ds-160/auto-online-form/:link"
             children={({ location }) => {
               let params = location.pathname.split('/')
@@ -42,7 +51,7 @@ class Routes extends Component {
 
               return <DS160_AutoOnlineFill token={applicationId} />
             }}
-          />
+          /> */}
           <Route
             path="/ds-160/application-form/:link"
             children={({ location }) => {
@@ -76,4 +85,4 @@ class Routes extends Component {
     )
   }
 }
-export default Routes
+export default withCookies(Routes)
