@@ -304,7 +304,15 @@ const initialState = {
         marriage_date: null,
         end_date: null,
         end_explain: null,
-        end_country: null
+        end_country: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null
+        }
       }
     },
 

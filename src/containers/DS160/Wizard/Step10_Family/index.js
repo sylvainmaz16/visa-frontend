@@ -73,6 +73,17 @@ class MyForm extends Component {
         }
       ]
     }
+
+    if(!data.former_spouse.address) {
+      data.former_spouse.address = {
+        street_addr1: null,
+        street_addr2: null,
+        city: null,
+        state: null,
+        zip_code: null,
+        country: null
+      }
+    }
     const martial_header = {
       'M': 'Spouse',
       'C': 'Spouse',
