@@ -31,6 +31,12 @@ class MyForm extends Component {
       data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY')
     if(data.spouse && data.spouse.birthday)
       data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY')
+    if(data.former_spouse && data.former_spouse.birthday)
+      data.former_spouse.birthday = data.former_spouse.birthday.format('DD/MMM/YYYY')
+    if(data.former_spouse && data.former_spouse.marriage_date)
+      data.former_spouse.marriage_date = data.former_spouse.marriage_date.format('DD/MMM/YYYY')
+    if(data.former_spouse && data.former_spouse.end_date)
+      data.former_spouse.end_date = data.former_spouse.end_date.format('DD/MMM/YYYY')
     return data
   }
 
@@ -83,6 +89,17 @@ class MyForm extends Component {
         zip_code: null,
         country: null
       }
+    }
+    
+    if(data.former_spouse.birthday && (typeof data.former_spouse.birthday != "string")) {
+      data.former_spouse.birthday = data.former_spouse.birthday._i
+    }
+    console.log(data.former_spouse.marriage_date)
+    if(data.former_spouse.marriage_date && (typeof data.former_spouse.marriage_date != "string")) {
+      data.former_spouse.marriage_date = data.former_spouse.marriage_date._i
+    }
+    if(data.former_spouse.end_date && (typeof data.former_spouse.end_date != "string")) {
+      data.former_spouse.end_date = data.former_spouse.end_date._i
     }
     const martial_header = {
       'M': 'Spouse',
