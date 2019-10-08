@@ -10,6 +10,7 @@ import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
 import * as utils from '../../../../utils'
+import VisaSelectArray from "../../../../components/VisaSelectArray";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -82,7 +83,7 @@ class MyForm extends Component {
         />
 
         {this.props.form.getFieldValue('data.b_travel_last_five_years') &&
-          <VisaInputArray 
+          <VisaSelectArray 
             label="List of Countries"
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}

@@ -88,11 +88,6 @@ const validateVisaLostYear = (rule, value, callback, field, birthday) => {
     if (!value) {
       callback('This field is required');
     }
-    if(!isValidDate(value))
-    {
-        callback('Invalid Date')
-        return;
-    }
     if(/^\d{4}$/.test(value)== false || moment().year() < value || value < moment(birthday, 'DD/MMM/YYYY').year()) {
         callback(field + ' contains an invalid year.');
         return;
