@@ -204,14 +204,14 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
             rules: [{ required: true, message: 'This field is required' }],
           })(
-            <Input />
+            <Input maxLength={40}/>
           )}
         </Form.Item>
         <Form.Item extra="Address Line 2 (Optional)">
           {getFieldDecorator('data.address_you_will_stay.street_addr2', {
             initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
           })(
-            <Input />
+            <Input maxLength={40}/>
           )}
         </Form.Item>
         <Row gutter={16}>
