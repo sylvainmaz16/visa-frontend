@@ -67,6 +67,8 @@ class MyForm extends Component {
                       initialValue={data.point_of_contact[index].address}
                       validators={this.props.validators}
                       getFieldDecorator={getFieldDecorator}
+                      us_address={false}
+                      
                     />
                     <VisaInput
                       label="Telephone Number"

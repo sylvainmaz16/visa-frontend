@@ -28,6 +28,11 @@ class MyForm extends Component {
     };
     const { showPrev, showNext, onPrev, onNext, data } = this.props
     getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) });
+    if(!data.assist_info.organization) {
+      data.assist_info.organization = {
+        name: null
+      }
+    }
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">

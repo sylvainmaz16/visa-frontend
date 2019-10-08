@@ -28,9 +28,9 @@ const columns = [
     key: 'email',
   },
   {
-    title: 'State',
-    dataIndex: 'state',
-    key: 'state',
+    title: 'Interview Location',
+    dataIndex: 'location',
+    key: 'location',
   },
   {
     title: 'Created At',
