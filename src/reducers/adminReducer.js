@@ -24,7 +24,7 @@ function adminReducer(state = initialState, action) {
         loading: true
       };
     case ADMIN.LOGIN_SUCCESS:
-      localStorage.setItem("token", action.data.token)
+      
       return {
         ...state,
         user: {

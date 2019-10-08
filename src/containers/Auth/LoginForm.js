@@ -7,6 +7,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 import './LoginForm.scss'
 
+
 class MyForm extends Component {
   handleSubmit = e => {
     e.preventDefault();

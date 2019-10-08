@@ -14,22 +14,16 @@ import DS160_Checkout from '../containers/DS160/Checkout'
 import AdminBoard from '../containers/Admin'
 import AuthRequired from '../AuthRequired'
 import AuthPage from '../containers/Auth'
-import { withCookies } from 'react-cookie';
 
 class Routes extends Component {
   render() {
-    const { cookies } = this.props
-    console.log(cookies)
     return (
       <Router>
         <Switch>
-          <Route path="/auth" exact component={AuthPage} />
+          <Route path="/auth" exact children={() => <AuthPage />} />
           <Route path="/board"  exact children={({ location }) => 
-            <AdminBoard menu='ds160'/>
+            <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu='ds160'/>}/>
           }/>
-          {/* <Route path="/board"  exact children={({ location }) => 
-            <AuthRequired cookies={cookies} redirectTo='/board' orRender={<AdminBoard menu='ds160'/>}/>
-          }/> */}
           <Route path="/board/:menukey(ds160|mail)" exact children={({ match, location }) => {
             let params = new URLSearchParams(location.search);
             let menu = match.params.menukey
@@ -37,8 +31,8 @@ class Routes extends Component {
 
             if(!current)
               current = 1
-
-            return <AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>
+              
+            return <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>}/>
           }} />
           {/* <Route
             path="/ds-160/auto-online-form/:link"
@@ -85,4 +79,4 @@ class Routes extends Component {
     )
   }
 }
-export default withCookies(Routes)
+export default Routes

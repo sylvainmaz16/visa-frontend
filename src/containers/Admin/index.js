@@ -3,11 +3,12 @@ import { withRouter } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { ADMIN } from '../../actions/types'
-import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button } from 'antd';
+import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Icon, Dropdown, Avatar, Badge } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
+import { withCookies } from 'react-cookie';
 
 import './index.scss'
 
@@ -25,9 +26,21 @@ class AdminBoard extends Component {
     }
   }
 
+  constructor(props){
+    super(props)
+    this.logout = this.logout.bind(this)
+  }
+
   componentDidMount() {
     // console.log('ADMIN Reducer RESET')
     // this.props.reset(ADMIN.RESET)
+  }
+
+  logout() {
+    
+    this.props.cookies.remove('immigration4us_authRedirectTo')
+    this.props.cookies.remove('immigration4us_token')
+    this.props.history.push('/auth')
   }
 
   render() {
@@ -49,6 +62,19 @@ class AdminBoard extends Component {
 
     const menuIndex = menus.findIndex(item => item.key == menu)
 
+    const accountMenu = (
+      <Menu>
+        <Menu.Item key="1">
+          <Icon type="setting" />
+          Account Setting
+        </Menu.Item>
+        <Menu.Item key="2" onClick={this.logout}>
+          <Icon type="logout" />
+          Log Out
+        </Menu.Item>
+      </Menu>
+    );
+
     return (
       <Layout className="visa-admin-layout">
         <Header>
@@ -60,7 +86,17 @@ class AdminBoard extends Component {
             style={{ lineHeight: '64px' }}
           >
             {menus.map(item => <Menu.Item key={item.key}><Link to={{ pathname: '/board/' + item.key }}>{item.label}</Link></Menu.Item>)}
+            <div style={{ float: 'right', cursor: 'pointer' }}>
+              <span style={{ marginRight: '10px' }}>Admin</span>
+              <Dropdown
+                overlay={accountMenu} 
+                trigger={['click']}
+              >
+                <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+              </Dropdown>
+            </div>
           </Menu>
+          
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
@@ -92,9 +128,9 @@ const mapStateToProps = state => ({
 })
 
 
-export default withRouter(
+export default withCookies(withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps,
   )(AdminBoard),
-)
+))

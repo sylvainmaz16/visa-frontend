@@ -97,11 +97,13 @@ function* loginRequest(action) {
     const data = res.data;
     yield put({ type: ADMIN.LOGIN_SUCCESS, data });
     console.log('in ds160_saga: ', data);
+    action.cb( { error: null, token: data.token } )
   } catch (e) {
     console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.LOGIN_FAILURE, status });
+    action.cb( { error: status })
   }
 }
 
