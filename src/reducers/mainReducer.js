@@ -292,7 +292,8 @@ const initialState = {
           country: null
         }
       },
-      former_spouse: {
+      former_spouse_number: null,
+      former_spouse: [{
         surname: null,
         given_name: null,
         birthday: null,
@@ -313,7 +314,7 @@ const initialState = {
           zip_code: null,
           country: null
         }
-      }
+      }]
     },
 
     form_work_or_edu: {

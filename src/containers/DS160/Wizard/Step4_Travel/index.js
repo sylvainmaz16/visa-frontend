@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber } from 'antd';
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
@@ -179,9 +179,9 @@ class MyForm extends Component {
             <Form.Item label="Intended Length of Stay in the USA" extra="Enter the Number of Day(s), Week(s), Month(s), Year(s) ONLY THE NUMBER." required>
               {getFieldDecorator('data.travel_plan.length_of_stay.length', {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.length),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateLengthOfStay(rule, value, callback, "Intended Length of Stay in U.S.") }],
+                rules: [{ required: this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') != 'H', message: 'This field is required' }],
               })(
-                <Input maxLength={3} disabled={this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') == 'H'}/>
+                <InputNumber min={1} max={100} maxLength={3} disabled={this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') == 'H'}/>
               )}
             </Form.Item>
           </Col>

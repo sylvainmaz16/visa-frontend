@@ -124,6 +124,11 @@ class MyForm extends Component {
 
         <Form.Item label="Mailing Address">
           {getFieldDecorator('data.mail_addr.b_diff_with_home', {
+            valuePropName: "checked",
+            // rules: [{
+            //   transform: value => (value || undefined),
+            //   type: 'boolean'
+            // }],
             initialValue: utils.getInitialValue(data.mail_addr.b_diff_with_home),
           })(
             <Checkbox>The mailing address is different from the applicant address</Checkbox>

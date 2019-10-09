@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber } from 'antd';
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
@@ -10,9 +10,10 @@ import VisaInput from "../../../../components/VisaInput";
 import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
-import * as utils from '../../../../utils'
 import VisaDatePickerWithCheck from "../../../../components/VisaDatePickerWithCheck";
 import VisaOtherRelatives from '../../../../components/VisaOtherRelatives'
+import VisaFormerSpouses from "../../../../components/VisaFormerSpouses";
+import * as utils from '../../../../utils'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -22,8 +23,7 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  
-  
+    
   handleDates = (data) => {
     if(data.father && data.father.birthday)
       data.father.birthday = data.father.birthday.format('DD/MMM/YYYY')
@@ -31,12 +31,18 @@ class MyForm extends Component {
       data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY')
     if(data.spouse && data.spouse.birthday)
       data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY')
-    if(data.former_spouse && data.former_spouse.birthday)
-      data.former_spouse.birthday = data.former_spouse.birthday.format('DD/MMM/YYYY')
-    if(data.former_spouse && data.former_spouse.marriage_date)
-      data.former_spouse.marriage_date = data.former_spouse.marriage_date.format('DD/MMM/YYYY')
-    if(data.former_spouse && data.former_spouse.end_date)
-      data.former_spouse.end_date = data.former_spouse.end_date.format('DD/MMM/YYYY')
+    if( data.former_spouse ) {
+      for(let i = 0; i < data.former_spouse.length; i++) {
+        if(data.former_spouse[i] && data.former_spouse[i].birthday)
+          data.former_spouse[i].birthday = data.former_spouse[i].birthday.format('DD/MMM/YYYY')
+        if(data.former_spouse[i] && data.former_spouse[i].marriage_date)
+          data.former_spouse[i].marriage_date = data.former_spouse[i].marriage_date.format('DD/MMM/YYYY')
+        if(data.former_spouse[i] && data.former_spouse[i].end_date)
+          data.former_spouse[i].end_date = data.former_spouse[i].end_date.format('DD/MMM/YYYY')
+      }
+    }
+    
+    
     return data
   }
 
@@ -80,27 +86,50 @@ class MyForm extends Component {
       ]
     }
 
-    if(!data.former_spouse.address) {
-      data.former_spouse.address = {
-        street_addr1: null,
-        street_addr2: null,
-        city: null,
-        state: null,
-        zip_code: null,
-        country: null
-      }
-    }
+    // data.former_spouse = [{
+    //   surname: null,
+    //   given_name: null,
+    //   birthday: null,
+    //   nationality: null,
+    //   place_of_birth: {
+    //     city: null,
+    //     country: null
+    //   },
+    //   marriage_date: null,
+    //   end_date: null,
+    //   end_explain: null,
+    //   end_country: null,
+    //   address: {
+    //     street_addr1: null,
+    //     street_addr2: null,
+    //     city: null,
+    //     state: null,
+    //     zip_code: null,
+    //     country: null
+    //   }
+    // }]
+
+    // if(!data.former_spouse.address) {
+    //   data.former_spouse.address = {
+    //     street_addr1: null,
+    //     street_addr2: null,
+    //     city: null,
+    //     state: null,
+    //     zip_code: null,
+    //     country: null
+    //   }
+    // }
     
-    if(data.former_spouse.birthday && (typeof data.former_spouse.birthday != "string")) {
-      data.former_spouse.birthday = data.former_spouse.birthday._i
-    }
-    console.log(data.former_spouse.marriage_date)
-    if(data.former_spouse.marriage_date && (typeof data.former_spouse.marriage_date != "string")) {
-      data.former_spouse.marriage_date = data.former_spouse.marriage_date._i
-    }
-    if(data.former_spouse.end_date && (typeof data.former_spouse.end_date != "string")) {
-      data.former_spouse.end_date = data.former_spouse.end_date._i
-    }
+    // if(data.former_spouse.birthday && (typeof data.former_spouse.birthday != "string")) {
+    //   data.former_spouse.birthday = data.former_spouse.birthday._i
+    // }
+    // if(data.former_spouse.marriage_date && (typeof data.former_spouse.marriage_date != "string")) {
+    //   data.former_spouse.marriage_date = data.former_spouse.marriage_date._i
+    // }
+    // if(data.former_spouse.end_date && (typeof data.former_spouse.end_date != "string")) {
+    //   data.former_spouse.end_date = data.former_spouse.end_date._i
+    // }
+
     const martial_header = {
       'M': 'Spouse',
       'C': 'Spouse',
@@ -480,125 +509,26 @@ class MyForm extends Component {
         }
         {
           martial_header[martial_status] == 'Former Spouse' &&
-          <Form.Item label="Former Spouse's Information" required>
-            <Row gutter={16}>
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaInput
-                  label="First Name"
-                  // extra="Leave blank if you do not know"
-                  field="data.former_spouse.surname"
-                  initialValue={data.former_spouse.surname}
-                  getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
-                />
-              </Col>
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaInput
-                  label="Last Name"
-                  // extra="Leave blank if you do not know"
-                  field="data.former_spouse.given_name"
-                  initialValue={data.former_spouse.given_name}
-                  getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
-                />
-              </Col>
-            </Row>
-            <VisaDatePicker 
-              label="Date of birth"
-              field="data.former_spouse.birthday"
-              initialValue={data.former_spouse.birthday}
-              getFieldDecorator={getFieldDecorator}
-              required={false}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
-
-              setFieldsValue={setFieldsValue}
-              getFieldValue={getFieldValue}
-            />
-            <VisaSelectItem
-              label="Nationality"
-              field="data.former_spouse.nationality"
-              initialValue={data.former_spouse.nationality}
-              content={{
-                combines: constants.nationality_option_list_func()
-              }}
-              getFieldDecorator={getFieldDecorator}
-            />
-            <Form.Item label="Place of birth">
-              <Row gutter={16}>
-                <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                  <VisaInput
-                    label="City"
-                    extra="Leave blank if you do not know"
-                    field="data.former_spouse.place_of_birth.city"
-                    initialValue={data.former_spouse.place_of_birth.city}
-                    getFieldDecorator={getFieldDecorator}
-                    required={false}
-                  />
-                </Col>
-                <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                  <VisaSelectItem
-                    label="Country"
-                    field="data.former_spouse.place_of_birth.country"
-                    initialValue={data.former_spouse.place_of_birth.country}
-                    content={{
-                      values: constants.countries_regions_option_value_list,
-                      labels: constants.countries_regions_option_label_list,
-                    }}
-                    getFieldDecorator={getFieldDecorator}
-                  />
-                </Col>
-              </Row>
-            </Form.Item>
-            <VisaAddress 
-              label="Address"
-              field="data.former_spouse.address"
-              initialValue={data.former_spouse.address}
-              getFieldDecorator={getFieldDecorator}
-              validators={this.props.validators}
-              us_address={false}
-            />
-            <VisaDatePicker 
-              label="Date of Marriage"
-
-              field="data.former_spouse.marriage_date"
-              initialValue={data.former_spouse.marriage_date}
-              getFieldDecorator={getFieldDecorator}
-              // required={false}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
-
-              setFieldsValue={setFieldsValue}
-              getFieldValue={getFieldValue}
-            />
-            <VisaDatePicker 
-              label="Date Marriage End"
-              field="data.former_spouse.end_date"
-              initialValue={data.former_spouse.end_date}
-              getFieldDecorator={getFieldDecorator}
-              // required={false}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
-
-              setFieldsValue={setFieldsValue}
-              getFieldValue={getFieldValue}
-            />
-            <Form.Item label="How the Marriage Ended" required>
-              {getFieldDecorator('data.former_spouse.end_explain', {
-                initialValue: utils.getInitialValue(data.former_spouse.end_explain),
-                rules: [{ required: true, message: 'This field is required' }],
+          <>
+            <Form.Item label="Number of Former Spouses" labelCol={{md: {span: 6}, sm: {span: 12}}} wrapperCol={{md: {span: 6}, sm: {span: 12}}}>
+              {getFieldDecorator('data.former_spouse_number', {
+                initialValue: utils.getInitialValue(data.former_spouse_number),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.formerSpouseNumberValidator(rule, value, callback, this.props.form.getFieldValue('data.former_spouse').length) }],
               })(
-                <TextArea rows={3}/>
+                <InputNumber min={1} max={10} maxLength={1} />
               )}
             </Form.Item>
-            <VisaSelectItem
-              label="Country/Region Marriage was Terminated"
-              field="data.former_spouse.end_country"
-              initialValue={data.former_spouse.end_country}
-              content={{
-                values: constants.countries_regions_option_value_list,
-                labels: constants.countries_regions_option_label_list,
-              }}
+            <VisaFormerSpouses 
+              label="Former Spouse's Information"
               getFieldDecorator={getFieldDecorator}
+              getFieldValue={getFieldValue}
+              setFieldsValue={setFieldsValue}
+              initialValue={data.former_spouse}
+              arrayField="data.former_spouse"
+              keysField="copy.former_spouse"
+              validators={this.props.validators}
             />
-          </Form.Item>
+          </>
         }
 
         <div className="visa-form-bottom-btn-group">

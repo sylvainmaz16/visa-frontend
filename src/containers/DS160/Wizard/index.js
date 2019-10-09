@@ -32,6 +32,8 @@ import Form_Final from './Final';
 import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
 import Form_DS160_15_SEVIS from './Step15_SEVIS';
 import Form_Photo from './Photo';
+
+import moment from 'moment'
 import './index.scss'
 
 const openNotificationWithIcon = type => {
@@ -265,6 +267,15 @@ class DS160_Wizard extends Component {
       ]
     }
 
+    let age = 0
+    if( step_index > 3 ) {
+      age = moment().diff(moment(ds160.form_personal_info.date_birth, 'DD/MMM/YYYY'), 'years', true);
+      console.log(age)
+      if(age <= 14) {
+        fields_list = fields_list.filter(field => field != 'form_work_or_edu' && field != 'form_prev_work_or_edu' && field != 'form_additional_work')
+      }
+    }
+
     let extra_index = fields_list.findIndex(field => field == 'extra')
 
     if( step_index > 4 ) {
@@ -401,7 +412,7 @@ class DS160_Wizard extends Component {
       default:
         switch(field) {
           case 'form_work_or_edu':
-            form_render = <Form_DS160_11_Work_Edu {...shared_params} data={ds160.form_work_or_edu} />
+            form_render = <Form_DS160_11_Work_Edu {...shared_params} data={ds160.form_work_or_edu} date_birth={ds160.form_personal_info.date_birth}/>
             break;
           case 'form_prev_work_or_edu':
             form_render = <Form_DS160_12_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} date_birth={ds160.form_personal_info.date_birth}/>

@@ -39,7 +39,7 @@ class MyForm extends Component {
 
     const { martial_status_options } = constants
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
     getFieldDecorator('data.occupation', { initialValue: utils.getInitialValue(data.occupation) });
 
     const occupation = this.props.form.getFieldValue('data.occupation')
@@ -107,6 +107,7 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, "Start Date", date_birth) }]}
               />
 
               <VisaInput

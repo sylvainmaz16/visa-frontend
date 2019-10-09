@@ -94,6 +94,18 @@ const validateVisaLostYear = (rule, value, callback, field, birthday) => {
     }
     callback();
 };
+const formerSpouseNumberValidator = (rule, value, callback, length) => {
+    console.log('on validator', value , length)
+    if (!value) {
+        callback('This field is required');
+        return;
+    }
+    if(value != length) {
+        callback('Number of former spouse is wrong');
+        return;
+    }
+    callback();
+}
 const validateVisaNumber = (rule, value, callback, field) => {
     if (!value) {
       callback();
@@ -357,7 +369,8 @@ const ds160_validators = {
     validateSEVIS,
     validateProgramNumber,
     validatePreviousVisitdDate,
-    validateDateYear
+    validateDateYear,
+    formerSpouseNumberValidator
 }
 
 export default ds160_validators
