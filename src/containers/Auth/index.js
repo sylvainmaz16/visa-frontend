@@ -35,7 +35,7 @@ class AuthPage extends Component {
         const redirectTo = cookies.get('immigration4us_authRedirectTo')
         openNotificationWithIcon('success')
         if(result.token) {
-          cookies.set('immigration4us_token', result.token, { path: '/', expires: new Date(Date.now() + 60000 * 20) });
+          cookies.set('immigration4us_token', result.token, { path: '/', expires: new Date(Date.now() + 60000 * 40) });
           this.props.history.push(redirectTo ? redirectTo : '/board')
         }
       }
