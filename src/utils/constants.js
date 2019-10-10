@@ -1,9 +1,9 @@
 import React from "react";
 
-export const myURL = 'http://localhost:3000'
-export const apiURL = 'http://localhost:4040/api/'
-// export const myURL = 'https://ds-160.us'
-// export const apiURL = 'https://ds-160.us/v1/api/'
+// export const myURL = 'http://localhost:3000'
+// export const apiURL = 'http://localhost:4040/api/'
+export const myURL = 'https://ds-160.us'
+export const apiURL = 'https://ds-160.us/v1/api/'
 
 export const export_list = (array) => {
     return array.map(option => {
