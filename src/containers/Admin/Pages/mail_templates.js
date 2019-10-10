@@ -82,7 +82,7 @@ class AdminPageMailTemplates extends Component {
     console.log(pagination, filters, sorter)
     if (pagination.current != this.props.pagination.current) {
       this.props.history.push({
-        pathname: 'mail',
+        pathname: '/board/mail',
         search: `?current=${pagination.current}`
       })
     }

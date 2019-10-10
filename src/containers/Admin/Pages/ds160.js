@@ -120,6 +120,7 @@ class AdminPageDS160 extends Component {
     })
   }
   componentDidMount() {
+    console.log('ds160 pagination', this.props.pagination)
     this.loadList(this.props.pagination)
   }
 
@@ -130,10 +131,9 @@ class AdminPageDS160 extends Component {
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    console.log(pagination, filters, sorter)
     if (pagination.current != this.props.pagination.current) {
       this.props.history.push({
-        pathname: 'ds160',
+        pathname: '/board/ds160',
         search: `?current=${pagination.current}`
       })
     }
@@ -141,14 +141,14 @@ class AdminPageDS160 extends Component {
 
   render() {
 
-    const { data, pagination, loading } = this.props
+    const { data, pagination, loading, total } = this.props
 
     return (
       <Table
         columns={columns}
         rowKey={record => record._id}
         dataSource={data}
-        pagination={{ pageSize: pagination.pageSize, current: pagination.current }}
+        pagination={{ pageSize: pagination.pageSize, current: pagination.current, total: total }}
         loading={loading}
         onChange={this.handleTableChange}
         expandedRowRender={record => {
@@ -185,7 +185,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
   data: state.admin.data,
-  pagination: state.admin.pagination,
+  total: state.admin.totalCount,
   loading: state.admin.loading,
 })
 

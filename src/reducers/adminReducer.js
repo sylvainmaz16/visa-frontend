@@ -6,6 +6,7 @@ const initialState = {
   user: null,
 
   data: [],
+  totalCount: 0,
   mailTemplates: [],
   mailTotalCount: 0,
   loading: false,
@@ -60,7 +61,8 @@ function adminReducer(state = initialState, action) {
       console.log('reducer: ', action.data)
       return {
         ...state,
-        data: [...action.data],
+        data: [...action.data.list],
+        totalCount: action.data.total,
         loading: false
       };
     }

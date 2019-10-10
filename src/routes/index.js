@@ -31,7 +31,7 @@ class Routes extends Component {
 
             if(!current)
               current = 1
-              
+
             return <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>}/>
           }} />
           {/* <Route

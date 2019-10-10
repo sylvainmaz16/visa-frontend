@@ -49,8 +49,10 @@ class AdminBoard extends Component {
 
     let renderPage = ""
 
+
     switch (menu) {
       case 'ds160':
+        console.log('admin pagination', pagination)
         renderPage = <AdminPageDS160 pagination={pagination}/>
         break;
       case 'mail':
