@@ -63,7 +63,8 @@ class MyForm extends Component {
               <Form.Item label="Specify Other ">
                 {getFieldDecorator('data.specify_other_explain', {
                   initialValue: utils.getInitialValue(data.specify_other_explain),
-                  rules: [{ required: true, message: 'This field is required' }],
+                  // rules: [{ required: true, message: 'This field is required' }],
+                  rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, 'Specify Other', true) }]
                 })(
                   <TextArea rows={3}/>
                 )}
