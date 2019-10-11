@@ -116,6 +116,7 @@ class MyForm extends Component {
                 initialValue={data.monthly_income}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Monthly Income") }]}
                 maxLength={15}
               />
 

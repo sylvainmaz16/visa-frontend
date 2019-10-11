@@ -9,7 +9,9 @@ class VisaDatePickerWithCheck extends Component {
     extra: "",
     label: "",
     required: true,
-    customRules: null
+    customRules: null,
+    checkLabel: "Do Not Know",
+    inline: false
   }
   handleCheck = (e) => {
     if(e.target.checked) {
@@ -23,7 +25,7 @@ class VisaDatePickerWithCheck extends Component {
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, getFieldValue, setFieldsValue, checkValue, checkField, required, customRule, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, getFieldValue, setFieldsValue, checkValue, checkField, required, customRule, checkLabel, inline, ...rest } = this.props
     const readOnly = getFieldValue(checkField)
     return (
       <>
@@ -47,7 +49,7 @@ class VisaDatePickerWithCheck extends Component {
               type: 'boolean'
             }],
           })(
-            <Checkbox onChange={this.handleCheck}>Do Not Know</Checkbox>
+            <Checkbox onChange={this.handleCheck}>{checkLabel}</Checkbox>
           )}
         </Form.Item>
       </>

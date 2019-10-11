@@ -6,9 +6,12 @@ import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaInput from "../../../../components/VisaInput";
+import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
+import VisaDatePickerWithCheck from '../../../../components/VisaDatePickerWithCheck';
 import * as utils from '../../../../utils'
+import VisaLostPassports from "../../../../components/VisaLostPassports";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -43,8 +46,18 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
 
+    if(data.lost_info.constructor != Array)
+      data.lost_info = [{ 
+        number: null,
+        number_NA: null,
+        country: null,
+        explain: null
+      }]
+
     getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) });
     getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) });
+    getFieldDecorator('data.expiration_date_NA', { initialValue: utils.getInitialValue(data.expiration_date_NA) })
+    // getFieldDecorator('data.lost_info.number_NA', { initialValue: utils.getInitialValue(data.lost_info.number_NA) })
     
     return (
       <Form {...formItemLayout}>
@@ -85,6 +98,7 @@ class MyForm extends Component {
               field="data.doc_number"
               initialValue={data.doc_number}
               getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Passport/Travel Document Number", true) }]}
               maxLength={20}
             />
           </Col>
@@ -96,6 +110,7 @@ class MyForm extends Component {
               initialValue={data.book_number}
               getFieldDecorator={getFieldDecorator}
               required={false}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Passport Book Number", false) }]}
               maxLength={20}
             />
           </Col>
@@ -162,16 +177,24 @@ class MyForm extends Component {
           getFieldValue={getFieldValue}
         />
 
-        <VisaDatePicker 
-          label="Expiration Date"
-          field="data.expiration_date"
-          initialValue={data.expiration_date}
-          getFieldDecorator={getFieldDecorator}
-          customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, 'Expiration Date', this.props.form.getFieldValue('data.issuance_date')) }]}
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ display: 'flex', alignItems: 'center'}}>
+            <VisaDatePickerWithCheck
+              label="Expiration Date"
+              field="data.expiration_date"
+              initialValue={data.expiration_date}
+              getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, 'Expiration Date', this.props.form.getFieldValue('data.issuance_date')) }]}
+              setFieldsValue={setFieldsValue}
+              getFieldValue={getFieldValue}
 
-          setFieldsValue={setFieldsValue}
-          getFieldValue={getFieldValue}
-        />
+              checkField="data.expiration_date_NA"
+              checkValue={data.expiration_date_NA}
+              checkLabel="No Expiration"
+
+            />
+          </Col>
+        </Row>
 
         <VisaRadio
           label="Have you ever lost a passport or had one stolen?"
@@ -186,39 +209,16 @@ class MyForm extends Component {
             <div className="visa-global-field visa-global-border-bottom">
               <h2 className="visa-global-section-title">Lost or Stolen Passport Information</h2>
             </div>
-            <Row gutter={16}>
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaInput 
-                  label="Lost or stolen Passport/Travel Document Number"
-                  extra="Leave blank if you do not know"
-                  field="data.lost_info.number"
-                  initialValue={data.lost_info.number}
-                  getFieldDecorator={getFieldDecorator}
-                  required={false}
-                  maxLength={20}
-                />
-              </Col>
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaSelectItem 
-                  label="Country/Authority that Issued Passport/Travel Document"
-                  field="data.lost_info.country"
-                  initialValue={data.lost_info.country}
-                  content={{
-                    values: constants.countries_regions_option_value_list,
-                    labels: constants.countries_regions_option_label_list,
-                  }}
-                  getFieldDecorator={getFieldDecorator}
-                />
-              </Col>
-              <Col xs={{ span: 24 }} md={{ span: 24 }}>
-                <VisaInput 
-                  label="Explain"
-                  field="data.lost_info.explain"
-                  initialValue={data.lost_info.explain}
-                  getFieldDecorator={getFieldDecorator}
-                />
-              </Col>
-            </Row>
+            <VisaLostPassports 
+              label="List of lost or stolen passports"
+              getFieldDecorator={getFieldDecorator}
+              getFieldValue={getFieldValue}
+              setFieldsValue={setFieldsValue}
+              initialValue={data.lost_info}
+              arrayField="data.lost_info"
+              keysField="copy.lost_info"
+              validators={this.props.validators}
+            />
           </>
         }
 

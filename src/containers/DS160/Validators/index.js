@@ -335,6 +335,21 @@ const validateNumber = (rule, value, callback, field, required = false) => {
     callback();
 };
 
+const validatePassport = (rule, value, callback, field, required = false) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(/^[a-zA-Z0-9 ]+$/.test(value)== false) {
+        callback(field + ' is invalid. Only the following characters are valid for this field: A-Z, 0-9 and single spaces in between letters/numbers');
+        return;
+    }
+    callback();
+};
+
 const validateUSZipCode = (rule, value, callback, field) => {
     console.log(value)
     if (!value) {
@@ -370,6 +385,7 @@ const ds160_validators = {
     validateProgramNumber,
     validatePreviousVisitdDate,
     validateDateYear,
+    validatePassport,
     formerSpouseNumberValidator
 }
 

@@ -21,7 +21,9 @@ class VisaInput extends Component {
 
     const { label, extra, initialValue, field, getFieldDecorator, setFieldsValue, getFieldValue, required, customRule, placeholder, checkField, checkValue, ...rest } = this.props
 
+    getFieldDecorator(checkField, { initialValue: checkValue })
     const readOnly = getFieldValue(checkField)
+
     return (
       <>
         <Form.Item label={label} extra={extra} required={required}>
