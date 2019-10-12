@@ -7,7 +7,6 @@ import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
-import VisaInputArray from "../../../../components/VisaInputArray";
 import * as utils from '../../../../utils'
 
 const { Option } = Select;

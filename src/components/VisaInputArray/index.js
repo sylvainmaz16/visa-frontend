@@ -35,7 +35,7 @@ class VisaInputArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
@@ -48,11 +48,7 @@ class VisaInputArray extends Component {
           validateTrigger: ['onChange', 'onBlur'],
           initialValue: utils.getInitialValue(initialValue[index]),
           rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: "Please input or delete this field.",
-            },
+            { validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Language Name", true) }
           ],
         })(<Input style={{ width: '60%', marginRight: 8 }} />)}
         {languages.length > 1 ? (

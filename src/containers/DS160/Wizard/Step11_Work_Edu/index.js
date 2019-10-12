@@ -87,6 +87,7 @@ class MyForm extends Component {
                 field="data.name"
                 initialValue={data.name}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Employer or School Name") }]}
               />
 
               <VisaAddress 

@@ -350,6 +350,21 @@ const validatePassport = (rule, value, callback, field, required = false) => {
     callback();
 };
 
+const validateSchoolName = (rule, value, callback, field, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(/^[a-zA-Z0-9 -'&]+$/.test(value)== false) {
+        callback(field + ' is invalid. Only the following characters are valid for this field: A-Z, 0-9, hypen(-), apostrophe(\'), ampersand(&) and single spaces in between names');
+        return;
+    }
+    callback();
+};
+
 const validateUSZipCode = (rule, value, callback, field) => {
     console.log(value)
     if (!value) {
@@ -386,7 +401,8 @@ const ds160_validators = {
     validatePreviousVisitdDate,
     validateDateYear,
     validatePassport,
-    formerSpouseNumberValidator
+    formerSpouseNumberValidator,
+    validateSchoolName
 }
 
 export default ds160_validators

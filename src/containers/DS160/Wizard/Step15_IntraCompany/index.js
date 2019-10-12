@@ -8,7 +8,6 @@ import VisaExplain from "../../../../components/VisaExplain";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
-import VisaInputArray from "../../../../components/VisaInputArray";
 import * as utils from '../../../../utils'
 
 const { Option } = Select;

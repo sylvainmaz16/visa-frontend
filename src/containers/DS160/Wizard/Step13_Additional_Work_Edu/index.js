@@ -73,6 +73,7 @@ class MyForm extends Component {
           initialValue={data.languages}
           arrayField="data.languages"
           keysField="copy.languages"
+          validators={this.props.validators}
         />
 
         <VisaRadio
@@ -110,6 +111,7 @@ class MyForm extends Component {
             initialValue={data.organizations}
             arrayField="data.organizations"
             keysField="copy.organizations"
+            validators={this.props.validators}
           />
         }
 
