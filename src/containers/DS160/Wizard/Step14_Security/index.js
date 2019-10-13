@@ -111,12 +111,13 @@ class MyForm extends Component {
         "Have you voted in the US in violation of any law or regulation?",
         "Have you ever renounced US citizenship for the purpose of avoiding taxation?",
         "Have you attended a public elementary school on student (F) status or a public secondary school after November 30,1996 without reimbursing the school?",
-        "Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?"
+        "Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?",
+        "Have you ever been removed or deported from any country?"
       ]
     }
     if( data.part3.array.length == 11 )
       data.part3.array.push({ radio: null, text: null })
-    if( data.part5.array.length == 4 )
+    if( data.part5.array.length == 5 )
       data.part5.array.push({ radio: null, text: null })
     explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});
     explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: utils.getInitialValue(data.part2[exp.radio]) })});

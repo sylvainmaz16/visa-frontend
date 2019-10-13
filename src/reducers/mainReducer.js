@@ -467,6 +467,7 @@ const initialState = {
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
+          { radio: null, text: null },
         ]
       }
     },
