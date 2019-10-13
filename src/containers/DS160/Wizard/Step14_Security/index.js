@@ -115,12 +115,6 @@ class MyForm extends Component {
         "Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?",
       ]
     }
-    if( data.part3.array.length == 11 )
-      data.part3.array.push({ radio: null, text: null })
-    if( data.part5.array.length == 4 )
-      data.part4.array.push({ radio: null, text: null })
-    if( data.part5.array.length == 6 )
-      data.part5.array.slice(5, 1)
     explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});
     explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: utils.getInitialValue(data.part2[exp.radio]) })});
     explain.part3.map((exp, index) => { getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part3.array[index].radio) })});
