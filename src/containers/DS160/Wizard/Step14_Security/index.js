@@ -104,7 +104,8 @@ class MyForm extends Component {
         "Have you ever been the subject of a removal or deportation hearing?",
         "Have you ever sought to obtain or assist others to obtain a visa, entry in the US, or any other US immigration benefit by fraud or willful misrepresentation or other unlawful means?",
         "Have you failed to attend a hearing on removability or inadmissibility within the last five years?",
-        "Have you ever been unlawfully present, overstayed the amount of time granted by an immigration official or otherwise violated the terms of a U.S. visa?"
+        "Have you ever been unlawfully present, overstayed the amount of time granted by an immigration official or otherwise violated the terms of a U.S. visa?",
+        "Have you ever been removed or deported from any country?"
       ],
       part5: [
         "Have you ever withheld custody of a US citizen child outside the US from a person granted legal custody by a US court?",
@@ -112,13 +113,14 @@ class MyForm extends Component {
         "Have you ever renounced US citizenship for the purpose of avoiding taxation?",
         "Have you attended a public elementary school on student (F) status or a public secondary school after November 30,1996 without reimbursing the school?",
         "Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?",
-        "Have you ever been removed or deported from any country?"
       ]
     }
     if( data.part3.array.length == 11 )
       data.part3.array.push({ radio: null, text: null })
-    if( data.part5.array.length == 5 )
-      data.part5.array.push({ radio: null, text: null })
+    if( data.part5.array.length == 4 )
+      data.part4.array.push({ radio: null, text: null })
+    if( data.part5.array.length == 6 )
+      data.part5.array.slice(5, 1)
     explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});
     explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: utils.getInitialValue(data.part2[exp.radio]) })});
     explain.part3.map((exp, index) => { getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part3.array[index].radio) })});
