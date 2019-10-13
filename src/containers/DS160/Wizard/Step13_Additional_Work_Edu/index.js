@@ -74,6 +74,7 @@ class MyForm extends Component {
           arrayField="data.languages"
           keysField="copy.languages"
           validators={this.props.validators}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Language Name", true) }]}
         />
 
         <VisaRadio

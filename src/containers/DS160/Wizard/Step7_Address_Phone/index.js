@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
 import * as constants from '../../../../utils/constants'
-import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
+import VisaInputArray from '../../../../components/VisaInputArray'
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaSocialMediaArray from '../../../../components/VisaSocialMediaArray'
 import * as utils from '../../../../utils'
+import VisaAdditionalSocialMediaArray from "../../../../components/VisaAdditionalSocialMediaArray";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -42,6 +42,10 @@ class MyForm extends Component {
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
     getFieldDecorator('data.b_diff_with_home', { initialValue: utils.getInitialValue(data.b_diff_with_home) });
+    getFieldDecorator('data.b_additional_phones', { initialValue: utils.getInitialValue(data.b_additional_phones) });
+    getFieldDecorator('data.b_additional_emails', { initialValue: utils.getInitialValue(data.b_additional_emails) });
+    getFieldDecorator('data.b_additional_social_media', { initialValue: utils.getInitialValue(data.b_additional_social_media) });
+    
     // getFieldDecorator('data.social_media_info.platform', { initialValue: utils.getInitialValue(data.social_media_info.platform) });
     // if( typeof(data.social_media_info) != 'Array' ) {
     //   let temp = data.social_media_info
@@ -121,6 +125,48 @@ class MyForm extends Component {
             </Form.Item>
           </Col>
         </Row>
+        
+        <VisaRadio
+          label="Have you used any other phone numbers in the last five years?"
+          field="data.b_additional_phones"
+          initialValue={data.b_additional_phones}
+          getFieldDecorator={getFieldDecorator}
+        />
+        {
+          this.props.form.getFieldValue('data.b_additional_phones') &&
+          <VisaInputArray 
+            label="Provide a list of additional phone numbers"
+            getFieldDecorator={getFieldDecorator}
+            getFieldValue={getFieldValue}
+            setFieldsValue={setFieldsValue}
+            initialValue={data.additional_phones}
+            arrayField="data.additional_phones"
+            keysField="copy.additional_phones"
+            validators={this.props.validators}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone number") }]}
+          />
+        }
+
+        <VisaRadio
+          label="Have you used any other email addresses in the last five years?"
+          field="data.b_additional_emails"
+          initialValue={data.b_additional_emails}
+          getFieldDecorator={getFieldDecorator}
+        />
+        {
+          this.props.form.getFieldValue('data.b_additional_emails') &&
+          <VisaInputArray 
+            label="Provide a list of additional emails"
+            getFieldDecorator={getFieldDecorator}
+            getFieldValue={getFieldValue}
+            setFieldsValue={setFieldsValue}
+            initialValue={data.additional_emails}
+            arrayField="data.additional_emails"
+            keysField="copy.additional_emails"
+            validators={this.props.validators}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }]}
+          />
+        }
 
         <Form.Item label="Mailing Address">
           {getFieldDecorator('data.mail_addr.b_diff_with_home', {
@@ -161,6 +207,27 @@ class MyForm extends Component {
           arrayField="data.social_media_info"
           keysField="copy.social_media_info"
         />
+
+        <VisaRadio
+          label="Do you wish to provide information about your presence on any other websites or applications you have used within the last five years to create or share content (photos, videos, status updates, etc.)?"
+          extra="Please provide the name of the platform and the associated unique social media identifier (username or handle) for each social media platform you would like to list. This does not include private messaging on person-to-person messaging services, such as WhatsApp."
+          field="data.b_additional_social_media"
+          initialValue={data.b_additional_social_media}
+          getFieldDecorator={getFieldDecorator}
+        />
+        {
+          this.props.form.getFieldValue('data.b_additional_social_media') &&
+          <VisaAdditionalSocialMediaArray
+            label="Provide a list of additional social media"
+            getFieldDecorator={getFieldDecorator}
+            getFieldValue={getFieldValue}
+            setFieldsValue={setFieldsValue}
+            initialValue={data.additional_social_media}
+            arrayField="data.additional_social_media"
+            keysField="copy.additional_social_media"
+            validators={this.props.validators}
+          />
+        }
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}

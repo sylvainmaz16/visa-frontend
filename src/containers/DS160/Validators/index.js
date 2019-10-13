@@ -365,6 +365,21 @@ const validateSchoolName = (rule, value, callback, field, required = true) => {
     callback();
 };
 
+const validateLeadingSpace = (rule, value, callback, field, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(value[0] == ' ') {
+        callback(field + ' - leading spaces found in your entry.');
+        return;
+    }
+    callback();
+};
+
 const validateUSZipCode = (rule, value, callback, field) => {
     console.log(value)
     if (!value) {
@@ -402,7 +417,8 @@ const ds160_validators = {
     validateDateYear,
     validatePassport,
     formerSpouseNumberValidator,
-    validateSchoolName
+    validateSchoolName,
+    validateLeadingSpace
 }
 
 export default ds160_validators

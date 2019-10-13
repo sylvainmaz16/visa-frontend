@@ -199,8 +199,17 @@ const initialState = {
         mobile: null,
         work: null,
       },
+      b_additional_phones: null,
+      additional_phones: [null],
       email: null,
+      b_additional_emails: null,
+      additional_emails: [null],
       social_media_info: [{
+        platform: null,
+        identifier: null
+      }],
+      b_additional_social_media: null,
+      additional_social_media: [{
         platform: null,
         identifier: null
       }]
@@ -429,6 +438,7 @@ const initialState = {
       },
       part3: {
         array: [
+          { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },

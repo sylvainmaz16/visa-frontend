@@ -91,6 +91,7 @@ class MyForm extends Component {
         "Do you seek to engage in terrorist activities while in the united states or have you ever engaged in terrorist activities?",
         "Have you ever or do you intend to provide financial assistance or other support to terrorists or terrorists organisations?",
         "Are you a member or representative of a terrorist organisation?",
+        "Are you the spouse, son, or daughter of an individual who has engaged in terrorist activity, including providing financial assistance or other support to terrorists or terrorist organizations, in the last five years?",
         "Have you ever ordered, incited, committed, assisted, or otherwise participated in genocide?",
         "Have you ever ordered, incited, committed, assisted, or otherwise participated in torture?",
         "Have you ever ordered, incited, committed, assisted, or otherwise participated in extrajudicial killings, political killings, or other acts of violence?",
@@ -113,6 +114,8 @@ class MyForm extends Component {
         "Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?"
       ]
     }
+    if( data.part3.array.length == 11 )
+      data.part3.array.push({ radio: null, text: null })
     if( data.part5.array.length == 4 )
       data.part5.array.push({ radio: null, text: null })
     explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});

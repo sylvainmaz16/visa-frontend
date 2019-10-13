@@ -35,7 +35,7 @@ class VisaInputArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
@@ -47,9 +47,7 @@ class VisaInputArray extends Component {
         {getFieldDecorator(`${arrayField}[${index}]`, {
           validateTrigger: ['onChange', 'onBlur'],
           initialValue: utils.getInitialValue(initialValue[index]),
-          rules: [
-            { validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Language Name", true) }
-          ],
+          rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
         })(<Input style={{ width: '60%', marginRight: 8 }} />)}
         {languages.length > 1 ? (
           <Icon
