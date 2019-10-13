@@ -458,11 +458,11 @@ const initialState = {
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
+          { radio: null, text: null },
         ]
       },
       part5: {
         array: [
-          { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
