@@ -25,6 +25,31 @@ class MyForm extends Component {
     callback();
   };
 
+  validatePhoneNumbers = (rule, value, callback, field, required) => {
+    if (!value) {
+      if(required)
+          callback('This field is required');
+      else
+          callback();
+      return;
+    }
+    if(/^\d+$/.test(value)== false) {
+        callback(field + ' accepts only numbers (0-9)');
+        return;
+    }
+
+    const numbers = [this.props.form.getFieldValue('data.phone_info.work'),this.props.form.getFieldValue('data.phone_info.home'), this.props.form.getFieldValue('data.phone_info.mobile')]
+    const conflicts = numbers.filter(number => (number != undefined) && (number == value))
+    console.log(numbers, conflicts)
+    if(conflicts && conflicts.length > 1)
+    {
+      callback('The given phone number has already been entered.')
+      return;
+    }
+
+    callback();
+  }
+
   render() {
     const { getFieldDecorator, isFieldTouched, getFieldValue, setFieldsValue } = this.props.form;
     const formItemLayout = {
@@ -72,7 +97,7 @@ class MyForm extends Component {
             <Form.Item label="Primary Phone number" required>
               {getFieldDecorator('data.phone_info.home', {
                 initialValue: utils.getInitialValue(data.phone_info.home),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Primary Phone number", true) }],
+                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, "Primary Phone number", true) }],
               })(
                 <Input maxLength={20}/>
               )}
@@ -82,7 +107,7 @@ class MyForm extends Component {
             <Form.Item label="Secondary Phone number" extra="Leave blank if you do not have a secondary phone number.">
               {getFieldDecorator('data.phone_info.mobile', {
                 initialValue: utils.getInitialValue(data.phone_info.mobile),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Secondary Phone number") }],
+                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, "Secondary Phone number") }],
               })(
                 <Input maxLength={20}/>
               )}
@@ -94,7 +119,7 @@ class MyForm extends Component {
             <Form.Item label="Work Phone number"  extra="Leave blank if you do not have a work phone number.">
               {getFieldDecorator('data.phone_info.work', {
                 initialValue: utils.getInitialValue(data.phone_info.work),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Work Phone number") }],
+                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, "Work Phone number") }],
               })(
                 <Input maxLength={20}/>
               )}

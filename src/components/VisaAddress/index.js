@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import * as constants from '../../utils/constants'
 import VisaSelect from '../VisaSelect'
+import validators from '../../containers/DS160/Validators/index'
 import * as utils from '../../utils'
 
 class VisaAddress extends Component {
@@ -21,7 +22,7 @@ class VisaAddress extends Component {
         <Form.Item extra="Street Address">
           {getFieldDecorator( field + '.street_addr1', {
             initialValue: utils.getInitialValue(initialValue.street_addr1),
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ validator: (rule, value, callback) => validators.validateExplain(rule, value, callback, 'Street Address (Line 1)', true) }]
           })(
             <Input maxLength={40}/>
           )}
@@ -30,6 +31,7 @@ class VisaAddress extends Component {
         <Form.Item extra="Address Line 2 (Optional)">
           {getFieldDecorator( field + '.street_addr2', {
             initialValue: utils.getInitialValue(initialValue.street_addr2),
+            rules: [{ validator: (rule, value, callback) => validators.validateExplain(rule, value, callback, 'Address Line 2', false) }]
             // rules: [{ required: true, message: 'This field is required' }],
           })(
             <Input maxLength={40}/>
@@ -60,7 +62,7 @@ class VisaAddress extends Component {
             <Form.Item extra="State / Province / Region">
               {getFieldDecorator( field + '.state', {
                 initialValue: utils.getInitialValue(initialValue.state),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateLeadingSpace(rule, value, callback, "State / Province", true) }]
               })(
                 <Input maxLength={20}/>
               )}
@@ -75,7 +77,9 @@ class VisaAddress extends Component {
               {getFieldDecorator( field + '.zip_code', {
                 initialValue: utils.getInitialValue(initialValue.zip_code),
                 // rules: [{ required: true, message: 'This field is required' }],
-                rules: (hideCountry || us_address) ? [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }] : null,
+                rules: (hideCountry || us_address) 
+                  ? [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code", true) }] 
+                  : [{ validator: (rule, value, callback) => this.props.validators.validateZipCode(rule, value, callback, "ZIP Code", false) }],
               })(
                 <Input maxLength={10}/>
               )}

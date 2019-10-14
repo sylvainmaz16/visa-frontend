@@ -48,6 +48,13 @@ class MyForm extends Component {
     const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
     getFieldDecorator('data.b_previously_employed', { initialValue: utils.getInitialValue(data.b_previously_employed) });
     getFieldDecorator('data.b_edu_secondary_level', { initialValue: utils.getInitialValue(data.b_edu_secondary_level) });
+
+    if(this.props.form.getFieldValue('data.b_previously_employed') && data.emp_info.supervisor == null )
+      data.emp_info.supervisor = {
+        surname: null,
+        given_name: null
+      }
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">

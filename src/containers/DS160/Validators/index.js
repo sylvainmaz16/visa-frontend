@@ -30,6 +30,8 @@ const validateExplain = (rule, value, callback, field, required = false) => {
   callback();
 };
 
+
+
 const validateParentBirthDate = (rule, value, callback, field, birthday, required = false) => {
     
     if (!value) {
@@ -379,12 +381,33 @@ const validateLeadingSpace = (rule, value, callback, field, required = true) => 
     }
     callback();
 };
-
-const validateUSZipCode = (rule, value, callback, field) => {
+const validateZipCode = (rule, value, callback, field, required) => {
     console.log(value)
     if (!value) {
-      callback();
-      return;
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(value[0] == ' ') {
+        callback(field + '  - leading spaces found in your entry');
+        return;
+    }
+    callback();
+};
+const validateUSZipCode = (rule, value, callback, field, required) => {
+    console.log(value)
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(value[0] == ' ') {
+        callback(field + '  - leading spaces found in your entry');
+        return;
     }
     if(/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value)== false) {
       callback(field + ' is invalid. Verify the format is correct.');
@@ -418,7 +441,8 @@ const ds160_validators = {
     validatePassport,
     formerSpouseNumberValidator,
     validateSchoolName,
-    validateLeadingSpace
+    validateLeadingSpace,
+    validateZipCode
 }
 
 export default ds160_validators
