@@ -105,8 +105,11 @@ class DS160_Wizard extends Component {
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
     }
     console.log('onSubmit: ', field, payload)
-    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
-    this.props.history.push('/ds-160/checkout');
+    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
+      // console.log(result)
+      window.location.href = `https://visasforms.com/checkout/?add-to-cart=111747&application_number=${result.app_id}&token_id=${result._id}`
+    })
+    
   }
 
   onSubmitWithoutPayment = (data, field) => {
@@ -477,8 +480,8 @@ const mapDispatchToProps = dispatch => {
     updateValues: (type, values) => {
       dispatch({ type, values })
     },
-    onSaveAndContinueLater: (type, payload, applicationId) => {
-      dispatch({ type, payload, applicationId })
+    onSaveAndContinueLater: (type, payload, applicationId, cb) => {
+      dispatch({ type, payload, applicationId, cb })
     },
     loadApplicationFromDB: (type, applicationId) => {
       dispatch({ type, applicationId })

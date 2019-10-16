@@ -35,6 +35,8 @@ function* saveRequest(action) {
     const data = res.data;
     yield put({ type: DS160.DS160_SAVE_SUCCESS, data });
     console.log('in ds160_saga: ', data);
+    if(action.cb)
+      action.cb(data)
     // action.subscribe({
     //   EMAIL: action.user.email,
     //   NAME: action.user.fullname
