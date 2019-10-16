@@ -35,7 +35,7 @@ class VisaInputArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, required, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
