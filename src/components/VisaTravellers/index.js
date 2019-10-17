@@ -73,7 +73,7 @@ class VisaTravellers extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 10 }}>
-            <Form.Item label="Relationship to you (Parent, Spouse, Child, Other Relative, Friend, Business Associate, Other)">
+            <Form.Item label="Relationship to you">
               {getFieldDecorator(`${arrayField}[${index}].relationship`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].relationship : null),
                 rules: [{ required: true, message: 'This field is required' }],

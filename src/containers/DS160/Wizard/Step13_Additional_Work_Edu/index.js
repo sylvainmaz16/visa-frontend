@@ -113,6 +113,7 @@ class MyForm extends Component {
             arrayField="data.organizations"
             keysField="copy.organizations"
             validators={this.props.validators}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Organization Name", true) }]}
           />
         }
 
@@ -167,6 +168,7 @@ class MyForm extends Component {
                 field="data.militaries[0].date_from"
                 initialValue={data.militaries[0].date_from}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Date of Attendance From", false) }]}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
@@ -178,6 +180,7 @@ class MyForm extends Component {
                 field="data.militaries[0].date_to"
                 initialValue={data.militaries[0].date_to}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Date of Attendance To", this.props.form.getFieldValue('data.militaries[0].date_from'), false) }]}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}

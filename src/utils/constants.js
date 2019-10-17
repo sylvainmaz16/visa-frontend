@@ -328,7 +328,7 @@ export const martial_status_options = [
     { value: 'W', label: 'WIDOWED' },
     { value: 'D', label: 'DIVORCED' },
     { value: 'L', label: 'LEGALLY SEPARATED' },
-    // { value: 'O', label: 'OTHER' },
+    { value: 'O', label: 'OTHER' },
 ]
 
 export const purpose_of_trip_options = [
@@ -1585,6 +1585,7 @@ export const countries_only_option_label_list = [
     "YEMEN",
     "ZAMBIA",
     "ZIMBABWE",
+    "UNITED STATES"
 ];
 
 export const countries_only_option_value_list = [
@@ -1800,6 +1801,7 @@ export const countries_only_option_value_list = [
     "YEM",
     "ZAMB",
     "ZIMB",
+    "US"
 ]
 
 export const nationality_option_list = [

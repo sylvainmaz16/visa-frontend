@@ -27,7 +27,6 @@ class MyForm extends Component {
     };
 
     const { onCancel, onOk, data, loading } = this.props
-    const { countries_only_option_label_list, countries_only_option_value_list} = constants
 
     return (
       <Form {...formItemLayout}>
@@ -36,7 +35,6 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.country),
             rules: [{ required: true, message: 'This field is required' }],
           })(
-            // <VisaSelect values={countries_only_option_value_list} labels={countries_only_option_label_list} />
             <Input readOnly/>
           )}
         </Form.Item>

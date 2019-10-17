@@ -14,6 +14,7 @@ import VisaDatePickerWithCheck from "../../../../components/VisaDatePickerWithCh
 import VisaOtherRelatives from '../../../../components/VisaOtherRelatives'
 import VisaFormerSpouses from "../../../../components/VisaFormerSpouses";
 import * as utils from '../../../../utils'
+import VisaDatePickerWithCheckInline from "../../../../components/VisaDatePickerWithCheckInline";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -57,8 +58,6 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-
-    const { martial_status_options } = constants
 
     const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status } = this.props
 
@@ -182,9 +181,8 @@ class MyForm extends Component {
             <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaDatePickerWithCheck
+                <VisaDatePickerWithCheckInline
                   label="Father's date of birth"
-                  extra="Please check if you do not know"
                   field="data.father.birthday"
                   initialValue={data.father.birthday}
                   getFieldDecorator={getFieldDecorator}
@@ -258,9 +256,8 @@ class MyForm extends Component {
             <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <VisaDatePickerWithCheck
+                <VisaDatePickerWithCheckInline
                   label="Mother's date of birth"
-                  extra="Please check if you do not know"
                   field="data.mother.birthday"
                   initialValue={data.mother.birthday}
                   getFieldDecorator={getFieldDecorator}

@@ -42,8 +42,6 @@ class MyForm extends Component {
       },
     };
 
-    const { martial_status_options } = constants
-
     const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
 
     if(data.lost_info.constructor != Array)
@@ -178,7 +176,7 @@ class MyForm extends Component {
         />
 
         <Row gutter={16}>
-          <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ display: 'flex', alignItems: 'center'}}>
+          <Col xs={{ span: 24 }} md={{ span: 24 }} style={{ display: 'flex', alignItems: 'center'}}>
             <VisaDatePickerWithCheck
               label="Expiration Date"
               field="data.expiration_date"

@@ -43,8 +43,6 @@ class MyForm extends Component {
       },
     };
 
-    const { martial_status_options } = constants
-
     const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
     getFieldDecorator('data.b_previously_employed', { initialValue: utils.getInitialValue(data.b_previously_employed) });
     getFieldDecorator('data.b_edu_secondary_level', { initialValue: utils.getInitialValue(data.b_edu_secondary_level) });

@@ -50,7 +50,6 @@ class MyForm extends Component {
       },
     };
 
-    const { martial_status_options } = constants
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 

@@ -45,9 +45,6 @@ class VisaSelectArray extends Component {
     let countryValues = constants.countries_only_option_value_list
     let countryLabels = constants.countries_only_option_label_list
 
-    countryValues.push("US")
-    countryLabels.push("UNITED STATES")
-
     const formItems = languages.map((lang, index) => (
       <Form.Item
         label={index === 0 ? label : ''}

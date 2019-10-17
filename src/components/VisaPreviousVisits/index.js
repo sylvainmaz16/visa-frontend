@@ -11,7 +11,7 @@ const unit_options = [
   { value: 'M', label: 'Month(s)' },
   { value: 'D', label: 'Week(s)' },
   { value: 'W', label: 'Day(s)' },
-  // { value: 'H', label: 'Less Than 24 Hours' },
+  { value: 'H', label: 'Less Than 24 Hours' },
 ]
 class VisaPreviousVisits extends Component {
   static defaultProps = {

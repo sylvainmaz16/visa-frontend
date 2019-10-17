@@ -62,8 +62,6 @@ class MyForm extends Component {
       },
     };
 
-    const { martial_status_options } = constants
-
     const { showPrev, showNext, onPrev, onNext, data } = this.props
 
     getFieldDecorator('data.b_diff_with_home', { initialValue: utils.getInitialValue(data.b_diff_with_home) });

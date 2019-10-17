@@ -7,6 +7,7 @@ import moment from 'moment'
 import * as utils from '../../../../utils'
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 class MyForm extends Component {
   static defaultProps = {
@@ -42,7 +43,7 @@ class MyForm extends Component {
     }
     callback();
   };
-  handleUsedOtherName = (rule, value, callback) => {
+  handleUsedOtherName = (rule, value, callback, field) => {
     if (!value) {
       callback('This field is required');
       return;
@@ -50,13 +51,14 @@ class MyForm extends Component {
 
     let currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
     let otherName = this.props.form.getFieldValue('data.used_other_name.surname') + this.props.form.getFieldValue('data.used_other_name.given_name')
+    console.log(currentName, otherName)
 
     if( currentName === otherName ) {
       callback('Alias matches Given Name.')
       return;
     }
-    
-    if(/^[A-Za-z\s]+$/.test(value)== false) {
+
+    if(/^[A-Za-z\s]+$/.test(value) == false) {
       callback(field + ' is invalid. Valid characters include A-Z and single spaces in between names.');
       return;
     }
@@ -108,7 +110,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.surname),
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname(s) (Last Name)") }],
           })(
-            <Input />
+            <Input maxLength={33}/>
           )}
         </Form.Item>
         <div className="visa-global-field">
@@ -119,7 +121,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.given_name),
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name(s) (First Name(s))") }],
           })(
-            <Input />
+            <Input maxLength={33}/>
           )}
         </Form.Item>
         <div className="visa-global-field">
@@ -139,22 +141,22 @@ class MyForm extends Component {
         {this.props.form.getFieldValue('data.b_ever_used_other_names') &&
           <Row gutter={16}>
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item label="Other Surnames Used (maiden, religious, professional, aliases, etc.)">
+              <Form.Item label="Other Surnames Used (maiden, religious, professional, aliases, etc.)" required>
                 {getFieldDecorator('data.used_other_name.surname', {
                   initialValue: utils.getInitialValue(data.used_other_name.surname),
-                  rules: [{ validator: this.handleUsedOtherName }],
+                  rules: [{ validator: (rule, value, callback) => this.handleUsedOtherName(rule, value, callback, "Surname") }],
                 })(
-                  <Input />
+                  <Input maxLength={33}/>
                 )}
               </Form.Item>
             </Col>
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-              <Form.Item label="Other Given Names Used">
+              <Form.Item label="Other Given Names Used" required>
                 {getFieldDecorator('data.used_other_name.given_name', {
                   initialValue: utils.getInitialValue(data.used_other_name.given_name),
-                  rules: [{ validator: this.handleUsedOtherName }],
+                  rules: [{ validator: (rule, value, callback) => this.handleUsedOtherName(rule, value, callback, "Given Name") }],
                 })(
-                  <Input />
+                  <Input maxLength={33}/>
                 )}
               </Form.Item>
             </Col>
@@ -215,6 +217,14 @@ class MyForm extends Component {
             </Radio.Group>
           )}
         </Form.Item>
+        {this.props.form.getFieldValue('data.martial_status') == 'O' && <Form.Item label="Martial Status Explain" required>
+          {getFieldDecorator('data.martial_other_explain', {
+            initialValue: utils.getInitialValue(data.martial_other_explain),
+            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, 'Martial Status Explain', true) }]
+          })(
+            <TextArea style={{textTransform: 'uppercase'}} rows={4}/>
+          )}
+        </Form.Item>}
         <VisaDatePicker 
           label="Date of birth"
           
@@ -344,6 +354,7 @@ class MyForm extends Component {
             <Form.Item label="National ID Number" extra="Your National ID Number is a unique number that your government provides. Leave blank if you do not have any of these numbers">
               {getFieldDecorator('data.national_id_number', {
                 initialValue: utils.getInitialValue(data.national_id_number),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "National ID Number", false) }],
               })(
                 <Input maxLength={20}/>
               )}
