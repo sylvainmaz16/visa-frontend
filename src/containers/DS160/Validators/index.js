@@ -367,6 +367,21 @@ const validateSchoolName = (rule, value, callback, field, required = true) => {
     callback();
 };
 
+const validateStudyCourse = (rule, value, callback, field, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[a-zA-Z0-9$?., '&-]+$/.test(value)== false) {
+        callback(field + ` is invalid. Only the following characters are valid for this field: A-Z, 0-9, $, ?, period(.), apostrophe ('), comma (,), hyphen (-), and space.`);
+        return;
+    }
+    callback();
+};
+
 const validateLeadingSpace = (rule, value, callback, field, required = true) => {
     if (!value) {
         if(required)
@@ -442,7 +457,8 @@ const ds160_validators = {
     formerSpouseNumberValidator,
     validateSchoolName,
     validateLeadingSpace,
-    validateZipCode
+    validateZipCode,
+    validateStudyCourse
 }
 
 export default ds160_validators
