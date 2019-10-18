@@ -104,8 +104,16 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, data } = this.props
+    const { showPrev, showNext, data, interview_location, country_of_birth, purpose_of_trip, other_purpose_of_trip, sex } = this.props
     const { countries_option_value_list, countries_option_label_list } = constants
+
+    const interview_location_label_index = countries_option_value_list.findIndex(value => value == interview_location)
+    const interview_location_label = interview_location_label_index >= 0 ? countries_option_label_list[interview_location_label_index] : ""
+
+    const country_of_birth_label_index = constants.countries_regions_option_value_list.findIndex(value => value == country_of_birth)
+    const country_of_birth_label = country_of_birth_label_index >= 0 ? constants.countries_regions_option_label_list[country_of_birth_label_index] : ""
+
+    const b_FGMC = (sex == 'F') && (constants.FGMC_countries_list.findIndex(country => country == country_of_birth_label) >= 0)
 
     const uploadButton = (
       <div>
@@ -116,6 +124,9 @@ class MyForm extends Component {
     const { loading } = this.state;
     getFieldDecorator('data.b_photo', { initialValue: utils.getInitialValue(data.b_photo) });
     getFieldDecorator('data.url', { initialValue: utils.getInitialValue(data.url) });
+    getFieldDecorator('data.FGMC', { initialValue: utils.getInitialValue(data.FGMC) });
+    getFieldDecorator('data.HTP', { initialValue: utils.getInitialValue(data.HTP) });
+    
     const imageUrl = this.props.form.getFieldValue('data.url')
 
     if(!data.payer.address)
@@ -130,64 +141,97 @@ class MyForm extends Component {
 
     return (
       <Form {...formItemLayout}>
-        {/* <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">
-            Upload your Photo
-          </h2>
-        </div> */}
 
-        <div className="visa-global-heading-1">
-          A digital photo is required for each applicant while applying for a US visitor visa.<br/>
-          The photo must meet certain criteria:
-        </div>
-        <ul className="visa-global-ul-1">
-          <li><p><span>Eyes glasses will no longer be allowed in new visa photo.</span></p></li>
-          <li><p><span>Size of photo: 2 x 2 inches (51 x 51 mm)</span></p></li>
-          <li><p><span>Head must be between 1 -1 3/8 inches (25 - 35 mm) from the bottom of the chin to the top of the head.</span></p></li>
-          <li><p><span>Recent, taken in the last 6 months to reflect current appearance</span></p></li>
-          <li><p><span>Plain white or off-white background</span></p></li>
-          <li><p><span>Head must face the camera directly with full face in view</span></p></li>
-          <li><p><span>Taken with a neutral facial expression or a natural smile, with both eyes open</span></p></li>
-          <li><p><span>Photo in color</span></p></li>
-          <li><p><span>Taken in clothing normally worn on a daily basis</span></p></li>
-          <li><p><span>No hats or head coverings (Unless worn daily for religious or medical purposes. Submit a signed statement that verifies that the hat or head covering is part of recognized, traditional religious attire that is customarily or required to be worn continuously in public or a signed doctor's statement verifying the item is used daily for medical purposes. Your full face must be visible and your hat or head covering cannot obscure your hairline or cast shadows on your face.)</span></p></li>
-          <li><p><span>No headphones or wireless hands-free devices.</span></p></li>
-        </ul>
+        {!interview_location_label.startsWith('MEXICO') && !interview_location_label.startsWith('INDIA') &&
+        <>
+          <div className="visa-global-heading-1">
+            A digital photo is required for each applicant while applying for a US visitor visa.<br/>
+            The photo must meet certain criteria:
+          </div>
+          <ul className="visa-global-ul-1">
+            <li><p><span>Eyes glasses will no longer be allowed in new visa photo.</span></p></li>
+            <li><p><span>Size of photo: 2 x 2 inches (51 x 51 mm)</span></p></li>
+            <li><p><span>Head must be between 1 -1 3/8 inches (25 - 35 mm) from the bottom of the chin to the top of the head.</span></p></li>
+            <li><p><span>Recent, taken in the last 6 months to reflect current appearance</span></p></li>
+            <li><p><span>Plain white or off-white background</span></p></li>
+            <li><p><span>Head must face the camera directly with full face in view</span></p></li>
+            <li><p><span>Taken with a neutral facial expression or a natural smile, with both eyes open</span></p></li>
+            <li><p><span>Photo in color</span></p></li>
+            <li><p><span>Taken in clothing normally worn on a daily basis</span></p></li>
+            <li><p><span>No hats or head coverings (Unless worn daily for religious or medical purposes. Submit a signed statement that verifies that the hat or head covering is part of recognized, traditional religious attire that is customarily or required to be worn continuously in public or a signed doctor's statement verifying the item is used daily for medical purposes. Your full face must be visible and your hat or head covering cannot obscure your hairline or cast shadows on your face.)</span></p></li>
+            <li><p><span>No headphones or wireless hands-free devices.</span></p></li>
+          </ul>
 
-        <VisaRadio
-          label="Are you ready to Upload your Photo?"
-          extra="RECOMMENDED YES. If NO, you should bring your photo during the interview"
-          field="data.b_photo"
-          initialValue={data.b_photo}
-          getFieldDecorator={getFieldDecorator}
-        />
+          <VisaRadio
+            label="Are you ready to Upload your Photo?"
+            extra="RECOMMENDED YES. If NO, you should bring your photo during the interview"
+            field="data.b_photo"
+            initialValue={data.b_photo}
+            getFieldDecorator={getFieldDecorator}
+          />
 
-        {
-          this.props.form.getFieldValue('data.b_photo') &&
-          <Form.Item label="US Passport type photo ID" extra="Upload your US passport type photo here, must be at least 600x600px. It must be a US passport type photo ID." required>
-            <Upload
-              name="avatar"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={false}
-              beforeUpload={beforeUpload}
-              onChange={this.handleChange}
-              multiple={false}
-              name="file"
-            >
-              {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-            </Upload>
-            {
-              getFieldDecorator('data.url', {
-                initialValue: utils.getInitialValue(data.url),
-                rules: [{ required: true, message: 'Please select your photo' }]
-              })(
-                <>
-                </>
-              )
-            }
-          </Form.Item>
+          {
+            this.props.form.getFieldValue('data.b_photo') &&
+            <Form.Item label="US Passport type photo ID" extra="Upload your US passport type photo here, must be at least 600x600px. It must be a US passport type photo ID." required>
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader"
+                showUploadList={false}
+                beforeUpload={beforeUpload}
+                onChange={this.handleChange}
+                multiple={false}
+                name="file"
+              >
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+              </Upload>
+              {
+                getFieldDecorator('data.url', {
+                  initialValue: utils.getInitialValue(data.url),
+                  rules: [{ required: true, message: 'Please select your photo' }]
+                })(
+                  <>
+                  </>
+                )
+              }
+            </Form.Item>
+          }
+        </>
         }
+
+        {b_FGMC && <Form.Item label="Female Genital Mutilation/Cutting (FGM/C) Prevention">
+          {getFieldDecorator('data.FGMC', {
+            initialValue: utils.getInitialValue(data.FGMC),
+            valuePropName: "checked",
+            rules: [{
+              required: true, 
+              message: 'This field is required', 
+              transform: value => (value || undefined),  // Those two lines
+              type: 'boolean'
+            }],
+          })(
+            <Checkbox>
+              Pursuant to Section 644 the Illegal Immigration Reform and Immigrant Responsibility Act (IIRIRA), Public Law 104-208 (8 U.S.C. 1374), the Department of State is required to provide you with access to copy the information sheet on the severe harm to physical and psychological health caused by female genital mutilation/cutting (FGM/C). Here is the access to the Female Genital Mutilation or Cutting Government Fact Sheet: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital-mutilation-or-cutting.html. I certify that I have received the U.S. Government Fact Sheet on Female Genital Mutilation or Cutting (FGM/C).
+            </Checkbox>,
+          )}
+        </Form.Item>}
+
+        {purpose_of_trip == 'J' && other_purpose_of_trip == 'J1-J1' && <Form.Item label="Human Trafficking Prevention">
+          {getFieldDecorator('data.HTP', {
+            initialValue: utils.getInitialValue(data.HTP),
+            valuePropName: "checked",
+            rules: [{
+              required: true, 
+              message: 'This field is required', 
+              transform: value => (value || undefined),  // Those two lines
+              type: 'boolean'
+            }],
+          })(
+            <Checkbox>
+              Your application indicates that you are applying for an employment- or education-based nonimmigrant visa. Pursuant to Section 202 of the William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 you are required to receive a copy of an informational pamphlet on the legal rights and resources of aliens applying for employment- or education-based nonimmigrants visas. Please read the pamphlet carefully. We strongly encourage you to print a copy of a pamphlet and keep it with you if your visa is granted and you travel to the United States. William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Pamphlet I certify that I have received, read, and understand the William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Pamphlet.
+            </Checkbox>,
+          )}
+        </Form.Item>}
 
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Payment Information</h2>

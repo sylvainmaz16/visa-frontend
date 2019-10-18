@@ -439,7 +439,14 @@ class DS160_Wizard extends Component {
             form_render = <Form_DS160_16_Preparer {...shared_params} data={ds160.form_e_sign} />
             break;
           case 'form_photo':
-            form_render = <Form_Photo {...shared_params} data={ds160.form_photo} />
+            form_render = <Form_Photo {...shared_params} 
+                            data={ds160.form_photo} 
+                            
+                            interview_location={ds160.interview_location} 
+                            sex={ds160.form_personal_info.sex}
+                            country_of_birth={ds160.form_personal_info.place_of_birth.country}
+                            purpose_of_trip={ds160.form_travel.purpose_of_trip}
+                            other_purpose_of_trip={ds160.form_travel.other_purpose_of_trip}/>
             break;
           case 'form_final':
             form_render = <Form_Final {...shared_params} 

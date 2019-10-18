@@ -14,6 +14,38 @@ export const export_list = (array) => {
     })
 }
 
+export const FGMC_countries_list = [
+    "SOMALIA", 
+    "GUINEA", 
+    "DJIBOUTI", 
+    "EGYPT", 
+    "ERITREA", 
+    "MALI", 
+    "SIERRA LEONE", 
+    "SUDAN", 
+    "GAMBIA, THE", 
+    "BURKINA FASO", 
+    "ETHIOPIA",
+    "MAURITANIA",
+    "LIBERIA",
+    "GUINEA - BISSAU",
+    "CHAD",
+    "COTE D`IVOIRE",
+    "KENYA",
+    "NIGERIA",
+    "SENEGAL",
+    "CENTRAL AFRICAN REPUBLIC",
+    "YEMEN",
+    "TANZANIA",
+    "BENIN",
+    "IRAQ",
+    "GHANA",
+    "TOGO",
+    "NIGER",
+    "CAMEROON",
+    "UGANDA"
+]
+
 export const past_travel_countries_options = [
     <option value="AFGH">AFGHANISTAN</option>,
     <option value="ALB">ALBANIA</option>,
