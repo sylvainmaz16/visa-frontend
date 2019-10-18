@@ -10,7 +10,7 @@ const columns = [
     title: 'ID',
     dataIndex: 'app_id',
     key: 'app_id',
-    render: text => <a>{text}</a>,
+    render: (text, record) => <a href={`http://ds-160.us/ds-160/application-form/token=${record._id}`} target="blank">{text}</a>,
   },
   {
     title: 'First Name',

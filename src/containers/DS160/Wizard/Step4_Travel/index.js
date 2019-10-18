@@ -201,7 +201,7 @@ class MyForm extends Component {
         <Form.Item extra="Street Address">
           {getFieldDecorator('data.address_you_will_stay.street_addr1', {
             initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, "Street Address", true) }]
           })(
             <Input maxLength={40}/>
           )}
@@ -209,6 +209,7 @@ class MyForm extends Component {
         <Form.Item extra="Address Line 2 (Optional)">
           {getFieldDecorator('data.address_you_will_stay.street_addr2', {
             initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
+            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, "Address Line 2", false) }]
           })(
             <Input maxLength={40}/>
           )}

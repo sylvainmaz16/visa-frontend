@@ -266,7 +266,7 @@ const validateName = (rule, value, callback, field, required = true) => {
             callback();
         return;
     }
-    if(/^[A-Za-z\s]+$/.test(value)== false) {
+    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[A-Za-z\s]+$/.test(value)== false) {
       callback(field + ' is invalid. Valid characters include A-Z and single spaces in between names.');
       return;
     }
@@ -360,7 +360,7 @@ const validateSchoolName = (rule, value, callback, field, required = true) => {
             callback();
         return;
     }
-    if(/^[a-zA-Z0-9 '&-]+$/.test(value)== false) {
+    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[a-zA-Z0-9 '&-]+$/.test(value)== false) {
         callback(field + ' is invalid. Only the following characters are valid for this field: A-Z, 0-9, hypen(-), apostrophe(\'), ampersand(&) and single spaces in between names');
         return;
     }

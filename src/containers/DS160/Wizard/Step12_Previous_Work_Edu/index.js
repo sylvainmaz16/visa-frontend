@@ -107,6 +107,7 @@ class MyForm extends Component {
                 field="data.emp_info.job_title"
                 initialValue={data.emp_info.job_title}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Job Title", true) }]}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
