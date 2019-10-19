@@ -39,8 +39,8 @@ const columns = [
   },
   {
     title: 'Transaction ID',
-    dataIndex: 'checkout_result.transactionid',
-    key: 'checkout_result.transactionid',
+    dataIndex: 'transaction.transaction_id',
+    key: 'transaction.transaction_id',
   },
   // {
   //   title: 'Tags',
@@ -159,7 +159,6 @@ class AdminPageDS160 extends Component {
           }
           return <p style={{ margin: 0 }}>
             {`_id: ${record._id}`}<br />
-            {`transactionid: ${record.transaction.transaction_id}`}<br />
             {`total: ${record.transaction.total}`}<br />
             {`order_key: ${record.transaction.order_key}`}<br />
             {`customer_id: ${record.transaction.customer_id}`}<br />
