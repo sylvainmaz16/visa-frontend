@@ -1872,7 +1872,7 @@ export const countries_only_option_label_list = [
     "YEMEN",
     "ZAMBIA",
     "ZIMBABWE",
-    "UNITED STATES"
+    "UNITED STATES OF AMERICA"
 ];
 
 export const countries_only_option_value_list = [
@@ -2088,7 +2088,7 @@ export const countries_only_option_value_list = [
     "YEM",
     "ZAMB",
     "ZIMB",
-    "US"
+    "USA"
 ]
 
 export const nationality_option_list = [
@@ -2293,6 +2293,7 @@ export const nationality_option_list = [
     <option value="UKR">UKRAINE</option>,
     <option value="UAE">UNITED ARAB EMIRATES</option>,
     <option value="GRBR">UNITED KINGDOM</option>,
+    <option value="USA">UNITED STATES OF AMERICA</option>,
     <option value="URU">URUGUAY</option>,
     <option value="UZB">UZBEKISTAN</option>,
     <option value="VANU">VANUATU</option>,

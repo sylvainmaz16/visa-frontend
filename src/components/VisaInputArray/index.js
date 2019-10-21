@@ -7,6 +7,7 @@ class VisaInputArray extends Component {
     extra: "",
     label: "",
     required: true,
+    maxLength: 40
   }
 
   remove = (k, keysField, dataField) => {
@@ -35,7 +36,7 @@ class VisaInputArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, required, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, maxLength, required, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
@@ -48,7 +49,7 @@ class VisaInputArray extends Component {
           validateTrigger: ['onChange', 'onBlur'],
           initialValue: utils.getInitialValue(initialValue[index]),
           rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
-        })(<Input style={{ width: '60%', marginRight: 8 }} />)}
+        })(<Input style={{ width: '60%', marginRight: 8 }} maxLength={maxLength}/>)}
         {languages.length > 1 ? (
           <Icon
             className="dynamic-delete-button"

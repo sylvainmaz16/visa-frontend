@@ -56,7 +56,7 @@ class VisaTravellers extends Component {
             <Form.Item label="Given Name (First Name)" required>
               {getFieldDecorator(`${arrayField}[${index}].surname`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].surname : null),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }],
               })(
                 <Input />
               )}

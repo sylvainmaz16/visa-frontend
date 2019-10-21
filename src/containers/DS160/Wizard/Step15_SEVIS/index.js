@@ -75,7 +75,7 @@ class MyForm extends Component {
                       initialValue={data.point_of_contact[index].tel_number}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
-                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", true) }]}
+                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", false) }]}
                     />
                     <VisaInput
                       label="Email Address"

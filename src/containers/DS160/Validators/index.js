@@ -266,7 +266,7 @@ const validateName = (rule, value, callback, field, required = true) => {
             callback();
         return;
     }
-    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[A-Za-z\s]+$/.test(value)== false) {
+    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[A-Za-z ]+$/.test(value)== false) {
       callback(field + ' is invalid. Valid characters include A-Z and single spaces in between names.');
       return;
     }
@@ -405,8 +405,8 @@ const validateZipCode = (rule, value, callback, field, required) => {
             callback();
         return;
     }
-    if(value[0] == ' ') {
-        callback(field + '  - leading spaces found in your entry');
+    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[a-zA-Z0-9 -]+$/.test(value)== false) {
+        callback(field + ' is invalid. Only the following characters are valid for this field: A-Z, 0-9, hypen(-) and single spaces in between names');
         return;
     }
     callback();

@@ -351,7 +351,7 @@ class MyForm extends Component {
         </div>
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 8 }}>
-            <Form.Item label="National ID Number" extra="Your National ID Number is a unique number that your government provides. Leave blank if you do not have any of these numbers">
+            <Form.Item label="National ID Number" extra="Your National ID Number is a unique number that your government provides. The U.S. Government provides unique numbers to those who seek employment (Social Security Number) or pay taxes (Taxpayer ID). Leave blank if you do not have any of these numbers">
               {getFieldDecorator('data.national_id_number', {
                 initialValue: utils.getInitialValue(data.national_id_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "National ID Number", false) }],

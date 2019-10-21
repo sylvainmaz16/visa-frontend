@@ -83,7 +83,7 @@ class VisaSocialMediaArray extends Component {
                     }
                   ],
                 })(
-                  <Input />
+                  <Input maxLength={50}/>
                 )}
               </Form.Item>
             </Col>

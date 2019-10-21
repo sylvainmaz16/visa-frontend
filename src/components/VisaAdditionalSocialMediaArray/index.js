@@ -68,7 +68,7 @@ class VisaAdditionalSocialMediaArray extends Component {
               initialValue={initialValue[index] ? initialValue[index].identifier : null}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLeadingSpace(rule, value, callback, "Additional Social Media Handle", true) }]}
-              maxLength={20}
+              maxLength={40}
             />
           </Col>
           

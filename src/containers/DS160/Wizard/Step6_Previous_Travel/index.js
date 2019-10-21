@@ -150,7 +150,7 @@ class MyForm extends Component {
                 />
               </Col>
               <Col xs={{ span: 16 }} md={{ span: 12 }}>
-                <Form.Item label="Visa Number" extra="Leave blank if you do not know">
+                <Form.Item label="Visa Number" extra="Enter the 8-digit number that is displayed in red on the lower right hand side of your visa. If your previous visa was a Border Crossing Card enter the last 12-digit number of the first line of the machine readable zone. Leave blank if you do not know">
                   {getFieldDecorator('data.US_Visa.number', {
                     initialValue: utils.getInitialValue(data.US_Visa.number),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaNumber(rule, value, callback, "The Visa Number") }],

@@ -166,6 +166,7 @@ class MyForm extends Component {
             arrayField="data.additional_phones"
             keysField="copy.additional_phones"
             validators={this.props.validators}
+            maxLength={40}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone number") }]}
           />
         }
@@ -187,6 +188,7 @@ class MyForm extends Component {
             arrayField="data.additional_emails"
             keysField="copy.additional_emails"
             validators={this.props.validators}
+            maxLength={40}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }]}
           />
         }
