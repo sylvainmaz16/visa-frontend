@@ -3,6 +3,7 @@ import { Form, Button, Select } from 'antd';
 import * as constants from '../../../../utils/constants'
 import * as utils from '../../../../utils'
 import VisaSelect from "../../../../components/VisaSelect";
+import { withCookies } from 'react-cookie';
 
 const { Option } = Select;
 
@@ -27,6 +28,8 @@ class MyForm extends Component {
     const { showPrev, showNext, data } = this.props
     const { countries_option_value_list, countries_option_label_list} = constants
 
+    const token = this.props.cookies.get('immigration4us_token')
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -37,12 +40,12 @@ class MyForm extends Component {
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>SUBMIT AND MAKE YOUR PAYMENT</Button>}
-          <Button type="danger" style={{marginLeft: '10px'}} onClick={(e) => this.props.handleSubmitWithoutPayment(e, this.props.form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>
+          {token && <Button type="danger" style={{marginLeft: '10px'}} onClick={(e) => this.props.handleSubmitWithoutPayment(e, this.props.form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>}
         </div>
       </Form>
 
     );
   }
 }
-const Form_Final = Form.create()(MyForm)
+const Form_Final = withCookies(Form.create()(MyForm))
 export default Form_Final;

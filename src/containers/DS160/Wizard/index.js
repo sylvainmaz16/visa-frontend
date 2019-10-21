@@ -32,6 +32,7 @@ import Form_Final from './Final';
 import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
 import Form_DS160_15_SEVIS from './Step15_SEVIS';
 import Form_Photo from './Photo';
+import { withCookies } from 'react-cookie';
 
 import moment from 'moment'
 import './index.scss'
@@ -500,13 +501,13 @@ const mapStateToProps = state => ({
   step_index: state.main.step_index,
   ds160: state.main.ds160,
   bWaitLoadFromDB: state.main.bWaitLoadFromDB,
-  applicationId: state.main.applicationId
+  applicationId: state.main.applicationId,  
 })
 
 
-export default withRouter(
+export default withCookies(withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps,
   )(DS160_Wizard),
-)
+))
