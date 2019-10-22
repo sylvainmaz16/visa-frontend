@@ -25,7 +25,7 @@
     "react-dom": "^16.8.3",
     "react-loading": "^2.0.3",
     "react-redux": "^6.0.1",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.0",
     "react-signature-canvas": "^1.0.3",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",

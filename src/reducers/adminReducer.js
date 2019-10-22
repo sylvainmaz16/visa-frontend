@@ -19,6 +19,18 @@ function adminReducer(state = initialState, action) {
     case ADMIN.RESET: {
       return initialState
     }
+    case ADMIN.RESEND_EMAIL_REQUEST:
+      return {
+        ...state,
+      };
+    case ADMIN.RESEND_EMAIL_SUCCESS:
+      return {
+        ...state,
+      };
+    case ADMIN.RESEND_EMAIL_FAILURE:
+      return {
+        ...state,
+      };
     case ADMIN.LOGIN_REQUEST:
       return {
         ...state,

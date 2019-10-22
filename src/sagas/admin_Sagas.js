@@ -107,6 +107,23 @@ function* loginRequest(action) {
   }
 }
 
+function* resendEmailRequest(action) {
+  let headers = {
+    "Content-Type": "application/json"
+  };
+  try {
+    const res = yield call(ApiManager.ResendEmail, headers, action._id);
+    const data = res.data;
+    yield put({ type: ADMIN.RESEND_EMAIL_SUCCESS, data });
+    console.log('in ds160_saga: ', data);
+    action.cb( { error: null, data: data } )
+  } catch (e) {
+    console.log(e);
+    yield put({ type: ADMIN.RESEND_EMAIL_FAILURE });
+    action.cb( { error: 'error' })
+  }
+}
+
 function* admin_saga() {
   yield all([takeLatest(ADMIN.GET_CUSTOMER_LIST_REQUEST, getRequest)]);
   yield all([takeLatest(ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, getMailTemplatesRequest)]);
@@ -114,6 +131,7 @@ function* admin_saga() {
   yield all([takeLatest(ADMIN.DELETE_MAIL_TEMPLATE_REQUEST, deleteMailTemplateRequest)]);
   yield all([takeLatest(ADMIN.UPDATE_MAIL_TEMPLATE_REQUEST, updateMailTemplateRequest)]);
   yield all([takeLatest(ADMIN.LOGIN_REQUEST, loginRequest)]);
+  yield all([takeLatest(ADMIN.RESEND_EMAIL_REQUEST, resendEmailRequest)]);
 }
 
 export default admin_saga;
