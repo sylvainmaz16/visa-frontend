@@ -1861,6 +1861,7 @@ export const countries_only_option_label_list = [
     "UKRAINE",
     "UNITED ARAB EMIRATES",
     "UNITED KINGDOM",
+    "UNITED STATES OF AMERICA",
     "URUGUAY",
     "UZBEKISTAN",
     "VANUATU",
@@ -1872,7 +1873,6 @@ export const countries_only_option_label_list = [
     "YEMEN",
     "ZAMBIA",
     "ZIMBABWE",
-    "UNITED STATES OF AMERICA"
 ];
 
 export const countries_only_option_value_list = [
@@ -2077,6 +2077,7 @@ export const countries_only_option_value_list = [
     "UKR",
     "UAE",
     "GRBR",
+    "USA",
     "URU",
     "UZB",
     "VANU",
@@ -2088,7 +2089,6 @@ export const countries_only_option_value_list = [
     "YEM",
     "ZAMB",
     "ZIMB",
-    "USA"
 ]
 
 export const nationality_option_list = [

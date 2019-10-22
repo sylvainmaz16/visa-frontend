@@ -258,6 +258,20 @@ const validateLaterDate = (rule, value, callback, field) => {
     }
     callback(field + " cannot be equal to or earlier than today.");
 };
+const validateNationalID = (rule, value, callback, field, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[A-Za-z0-9 ]+$/.test(value)== false) {
+      callback(field + ' is invalid. Valid characters include A-Z, 0-9 and single spaces in between names.');
+      return;
+    }
+    callback();
+};
 const validateName = (rule, value, callback, field, required = true) => {
     if (!value) {
         if(required)
@@ -458,7 +472,8 @@ const ds160_validators = {
     validateSchoolName,
     validateLeadingSpace,
     validateZipCode,
-    validateStudyCourse
+    validateStudyCourse,
+    validateNationalID
 }
 
 export default ds160_validators
