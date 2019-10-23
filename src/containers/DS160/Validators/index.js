@@ -113,7 +113,7 @@ const validateVisaNumber = (rule, value, callback, field) => {
       callback();
       return;
     }
-    if(/^\d{8}$|^\d{12}$/.test(value)== false) {
+    if(/^[a-zA-Z]\d{7}$|^\d{8}$|^\d{12}$/.test(value)== false) {
       callback(field + ' that you have entered is invalid.');
       return;
     }
@@ -286,10 +286,14 @@ const validateName = (rule, value, callback, field, required = true) => {
     }
     callback();
 };
-const validateLengthOfStay = (rule, value, callback, field) => {
+const validateLengthOfStay = (rule, value, callback, field, required = true) => {
     if (!value) {
-      callback('This field is required');
-      return;
+        if(required) {
+            callback('This field is required');
+        } else {
+            callback();
+        }
+        return;
     }
     if(/^\d{0,3}$/.test(value)== false) {
       callback(field + ' is invalid.');

@@ -56,7 +56,9 @@ class VisaPreviousVisits extends Component {
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const visits = getFieldValue(keysField);
-    const formItems = visits.map((visit, index) => (
+    const formItems = visits.map((visit, index) => {
+      getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, {initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.unit : null)})
+      return (
       <Form.Item
         label={index === 0 ? label : ''}
         key={index}
@@ -89,10 +91,10 @@ class VisaPreviousVisits extends Component {
             <Form.Item label="Length of stay" extra="0 of 3 max characters" required>
               {getFieldDecorator(`${arrayField}[${index}].length_of_stay.period`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.period : null),
-                validateTrigger: ['onChange', 'onBlur'],
-                rules: [{ validator: (rule, value, callback) => validators.validateLengthOfStay(rule, value, callback, "Length of Stay") }],
+                // validateTrigger: ['onChange', 'onBlur'],
+                rules: [{ validator: (rule, value, callback) => validators.validateLengthOfStay(rule, value, callback, "Length of Stay", getFieldValue(`${arrayField}[${index}].length_of_stay.unit`) != 'H') }],
               })(
-                <Input />
+                <Input maxLength={3} disabled={getFieldValue(`${arrayField}[${index}].length_of_stay.unit`) == 'H'}/>
               )}
             </Form.Item>
           </Col>
@@ -118,7 +120,7 @@ class VisaPreviousVisits extends Component {
         </Row>
         
       </Form.Item>
-    ));
+    )});
 
     return (
       <>
