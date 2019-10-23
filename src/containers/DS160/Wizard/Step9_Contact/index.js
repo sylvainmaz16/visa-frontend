@@ -79,6 +79,7 @@ class MyForm extends Component {
                 field="data.organization"
                 initialValue={data.organization}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Organisation Name") }]}
                 maxLength={33}
               />) : ''
             }

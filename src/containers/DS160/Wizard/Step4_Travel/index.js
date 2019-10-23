@@ -377,7 +377,7 @@ class MyForm extends Component {
                     <Form.Item label="Relationship to You">
                       {getFieldDecorator('data.paying_org_info.relationship', {
                         initialValue: utils.getInitialValue(data.paying_org_info.relationship),
-                        rules: [{ required: true, message: 'This field is required' }],
+                        rules: [{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Relationship to You", true) }],
                       })(
                         <Input />
                       )}
