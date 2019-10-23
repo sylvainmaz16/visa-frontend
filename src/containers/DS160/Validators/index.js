@@ -8,7 +8,7 @@ const validatePetitionNumber = (rule, value, callback, required = false) => {
           callback();
       return;
   }
-  let prefix = value.substring(0, 3)
+  let prefix = value.substring(0, 3).toUpperCase();
   if( value.length != 13 || (prefix != 'WAC' && prefix != 'EAC' && prefix != 'SRC' && prefix != 'LIN') || /^\d{10}$/.test(value.substring(3)) == false){
       callback("The USCIS assigns a unique 13 digit alphanumeric number. There are 4 USCIS service centers to handle H1B applications. The first 3 character of your receipt signifies the particular service center, where the application is being processed. They can be any one of WAC, EAC, SRC, and LIN.");
       return;
