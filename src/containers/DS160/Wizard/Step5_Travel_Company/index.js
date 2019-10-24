@@ -72,7 +72,7 @@ class MyForm extends Component {
             <Form.Item label="Name of group or organisation if traveling as part of a group or organization">
               {getFieldDecorator('data.company', {
                 initialValue: utils.getInitialValue(data.company),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, "Group Name", true) }],
               })(
                 <Input />
               )}

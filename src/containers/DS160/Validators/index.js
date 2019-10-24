@@ -280,6 +280,14 @@ const validateName = (rule, value, callback, field, required = true) => {
             callback();
         return;
     }
+
+    let tripped = value.replace(/ {1,}/g," ");
+
+    if( tripped != value ) {
+        callback(field + ' is invalid because it contains two or more spaces in between names.');
+        return;  
+    }
+
     if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[A-Za-z ]+$/.test(value)== false) {
       callback(field + ' is invalid. Valid characters include A-Z and single spaces in between names.');
       return;

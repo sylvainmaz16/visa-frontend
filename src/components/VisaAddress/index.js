@@ -43,7 +43,7 @@ class VisaAddress extends Component {
             <Form.Item extra="City">
               {getFieldDecorator(field + '.city', {
                 initialValue: utils.getInitialValue(initialValue.city),
-                rules: [{ required: true, message: 'This field is required'}],
+                rules: [{ validator: (rule, value, callback) => validators.validateStudyCourse(rule, value, callback, 'City', true)}],
               })(
                 <Input maxLength={20}/>
               )}
