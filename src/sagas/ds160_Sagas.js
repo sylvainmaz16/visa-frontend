@@ -103,11 +103,36 @@ function* checkoutRequest(action) {
     yield put({ type: DS160.DS160_CHECKOUT_FAILURE, status });
   }
 }
+function* sendLinkEmailRequest(action) {
+  let headers = {
+    "Content-Type": "application/json"
+  };
+
+  console.log(action);
+
+  try {
+    const res = yield call(ApiManager.SendLinkEmail, headers, action.payload);
+    const data = res.data;
+    yield put({ type: DS160.SEND_LINK_EMAIL_SUCCESS, data });
+    console.log('in ds160_saga: ', data);
+    if(action.cb)
+      action.cb(data)
+  } catch (e) {
+    console.log(e);
+    const status = e.response.status;
+    if(action.cb)
+      action.cb({ status: 'failed' })
+
+    yield put({ type: DS160.SEND_LINK_EMAIL_FAILURE, status });
+  }
+}
 
 function* ds160_saga() {
   yield all([takeLatest(DS160.DS160_GET_REQUEST, getRequest)]);
   yield all([takeLatest(DS160.DS160_SAVE_REQUEST, saveRequest)]);
   yield all([takeLatest(DS160.DS160_CHECKOUT_REQUEST, checkoutRequest)]);
+  yield all([takeLatest(DS160.SEND_LINK_EMAIL_REQUEST, sendLinkEmailRequest)]);
+  
 }
 
 export default ds160_saga;

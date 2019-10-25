@@ -4,28 +4,55 @@ import { connect } from 'react-redux'
 import VisaBanner from '../../../components/VisaBanner';
 import VisaHeader from '../../../components/VisaHeader';
 import { DS160 } from '../../../actions/types'
-import { Spin } from 'antd';
+import { withCookies } from 'react-cookie';
+import { Spin, notification } from 'antd';
 import Form_DS160_SaveAndContinue from './EmailForm'
 
 import './index.scss'
+
+const openNotificationWithIcon = type => {
+  notification[type]({
+    message: type == 'success' ? 'Successfully sent!' : 'Failed to send an email!',
+    description:
+      type == 'success' ? 'Thank you for saving DS-160 Non-Immigrant US Visa Application' : `Please try again to save your application`,
+  });
+};
+
 class DS160_Checkout extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      sending: false
+    }
   }
 
   onSendLink = ( data ) => {
     console.log('Email sending: ', data);
+    const { applicationId, cookies } = this.props
+    this.setState({ sending: true })
+    this.props.sendLinkEmail( DS160.SEND_LINK_EMAIL_REQUEST, { ...data, applicationId }, (res) => {
+      this.setState({ sending: false })
+      if(res && res.status == 'success') {
+        openNotificationWithIcon('success')
+        cookies.set('sendLinkEmailSuccess', data.email, { path: '/', maxAge: 3600 });
+      } else {
+        openNotificationWithIcon('error')
+      }
+    })
   }
 
   render() {
 
-    const { email, step_index, loading, applicationId } = this.props
+    const { loading, applicationId, cookies } = this.props
+    const { sending } = this.state
 
     if(loading) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin">
       </Spin>
     }
+
+    const sentAddr = cookies.get('sendLinkEmailSuccess')
 
     return (
       <div className="visa-ds160-save-and-continue">
@@ -34,7 +61,12 @@ class DS160_Checkout extends Component {
           DS 160 US Visa Online Application
         </VisaBanner>
         <div className="container visa-ds160-save-and-continue__content">
-          <Form_DS160_SaveAndContinue email={email} onSendLink={this.onSendLink} applicationId={applicationId}/>
+          {sentAddr && <div className="visa-global-field">
+          <h2 className="visa-global-section-title-customized-by-ds-160" style={{fontSize: '1.5em'}}> 
+            The link was sent to the following email address: {sentAddr}
+          </h2>
+        </div>}
+          {!sentAddr && <Form_DS160_SaveAndContinue onSendLink={this.onSendLink} applicationId={applicationId} sending={sending}/>}
         </div>
       </div>
     )
@@ -44,23 +76,21 @@ class DS160_Checkout extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // onNextStep: (type) => {
-    //   dispatch({ type })
-    // },
+    sendLinkEmail: (type, payload, cb) => {
+      dispatch({ type, payload, cb })
+    },
   }
 }
 
 const mapStateToProps = state => ({
-  email: state.main.email,
-  step_index: state.main.step_index,
   loading: state.main.loading,
   applicationId: state.main.applicationId
 })
 
 
-export default withRouter(
+export default withCookies(withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps,
   )(DS160_Checkout),
-)
+))

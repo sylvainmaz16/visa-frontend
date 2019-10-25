@@ -23,7 +23,7 @@ class MyForm extends Component {
       },
     };
 
-    const { email, applicationId } = this.props
+    const { applicationId, sending } = this.props
 
     let link = `${constants.myURL}/ds-160/application-form/token=${applicationId}`
 
@@ -40,13 +40,14 @@ class MyForm extends Component {
         </div>
         <Form.Item>
           {getFieldDecorator('email', {
-            initialValue: email,
+            initialValue: '',
+            rules: [{ type: 'email', required: true, message: 'Please input valid email address' }]
           })(
-            <Input type="email"/>
+            <Input disabled={sending}/>
           )}
         </Form.Item>
         <div style={{textAlign: 'center'}}>
-          <Button type="primary" htmlType="submit">SEND LINK</Button>
+          <Button type="primary" htmlType="submit" loading={sending}>SEND LINK</Button>
         </div>
       </Form>
 

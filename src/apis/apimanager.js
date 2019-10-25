@@ -54,4 +54,5 @@ export const ApiManager = {
   UpdateMailTemplate: (mail) => requests.put(`mail/${mail.country}`, mail),
   AuthLogin: (headers, data) => requests.post(`auth/login`, headers, data),
   ResendEmail: (headers, applicationId) => requests.get(`ds-160/sendEmail/${applicationId}`, headers),
+  SendLinkEmail: (headers, data) => requests.post(`ds-160/sendEmail/sendLink/${data.applicationId}`, headers, data),
 };
