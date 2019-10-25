@@ -29,7 +29,7 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, SQIndex } = this.props
 
     const explain = {
       part1: [
@@ -121,10 +121,12 @@ class MyForm extends Component {
     explain.part4.map((exp, index) => { getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part4.array[index].radio) })});
     explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part5.array[index].radio) })});
 
+    console.log(SQIndex)
   
     return (
       <Form {...formItemLayout}>
 
+        {SQIndex == 0 && <>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Security and Background: Part 1</h2>
           <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
@@ -145,8 +147,10 @@ class MyForm extends Component {
             />
           )}
         </>
+        </>}
+        
 
-        <div className="visa-global-field visa-global-border-bottom">
+        {SQIndex == 1 && <><div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Security and Background: Part 2</h2>
           <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
         </div>
@@ -164,9 +168,9 @@ class MyForm extends Component {
               key={index}
             />
           )}
-        </>
+        </></>}
 
-        <div className="visa-global-field visa-global-border-bottom">
+        {SQIndex == 2 && <><div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Security and Background: Part 3</h2>
           <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
         </div>
@@ -185,9 +189,9 @@ class MyForm extends Component {
               key={index}
             />
           )}
-        </>
+        </></>}
 
-        <div className="visa-global-field visa-global-border-bottom">
+        {SQIndex == 3 && <><div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Security and Background: Part 4</h2>
           <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
         </div>
@@ -206,9 +210,9 @@ class MyForm extends Component {
               key={index}
             />
           )}
-        </>
+        </></>}
 
-        <div className="visa-global-field visa-global-border-bottom">
+        {SQIndex == 4 && <><div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Security and Background: Part 5</h2>
           <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
         </div>
@@ -227,7 +231,7 @@ class MyForm extends Component {
               key={index}
             />
           )}
-        </>
+        </></>}
 
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}

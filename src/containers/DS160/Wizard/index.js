@@ -214,7 +214,11 @@ class DS160_Wizard extends Component {
       "form_work_or_edu",
       "form_prev_work_or_edu",
       "form_additional_work",
-      "form_security",
+      "form_security_0",
+      "form_security_1",
+      "form_security_2",
+      "form_security_3",
+      "form_security_4",
       "",
       "form_e_sign",
       "form_photo",
@@ -243,7 +247,11 @@ class DS160_Wizard extends Component {
         "form_work_or_edu",
         "form_prev_work_or_edu",
         "form_additional_work",
-        "form_security",
+        "form_security_0",
+        "form_security_1",
+        "form_security_2",
+        "form_security_3",
+        "form_security_4",
         "extra",
         "form_e_sign",
         "form_photo",
@@ -263,7 +271,11 @@ class DS160_Wizard extends Component {
         "form_work_or_edu",
         "form_prev_work_or_edu",
         "form_additional_work",
-        "form_security",
+        "form_security_0",
+        "form_security_1",
+        "form_security_2",
+        "form_security_3",
+        "form_security_4",
         "extra",
         "form_e_sign",
         "form_photo",
@@ -424,8 +436,20 @@ class DS160_Wizard extends Component {
           case 'form_additional_work':
             form_render = <Form_DS160_13_Additional_Work_Edu {...shared_params} data={ds160.form_additional_work} />
             break;
-          case 'form_security':
-            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} />
+          case 'form_security_0':
+            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={0}/>
+            break;
+          case 'form_security_1':
+            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={1}/>
+            break;
+          case 'form_security_2':
+            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={2}/>
+            break;
+          case 'form_security_3':
+            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={3}/>
+            break;
+          case 'form_security_4':
+            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={4}/>
             break;
           case 'form_crew_visa':
             form_render = <Form_DS160_15_Crew_Job {...shared_params} data={ds160.form_crew_visa} />
