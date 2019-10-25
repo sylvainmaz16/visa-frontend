@@ -9,8 +9,8 @@ import * as constants from '../../utils/constants'
 const unit_options = [
   { value: 'Y', label: 'Year(s)' },
   { value: 'M', label: 'Month(s)' },
-  { value: 'D', label: 'Week(s)' },
-  { value: 'W', label: 'Day(s)' },
+  { value: 'W', label: 'Week(s)' },
+  { value: 'D', label: 'Day(s)' },
   { value: 'H', label: 'Less Than 24 Hours' },
 ]
 class VisaPreviousVisits extends Component {
