@@ -166,7 +166,7 @@ class MyForm extends Component {
             keysField="copy.additional_phones"
             validators={this.props.validators}
             maxLength={40}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone number") }]}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone number", true) }]}
           />
         }
 
