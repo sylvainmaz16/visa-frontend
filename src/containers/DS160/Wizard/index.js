@@ -400,7 +400,7 @@ class DS160_Wizard extends Component {
         form_render = <Form_DS160_3 {...shared_params} data={ds160.form_personal_info}/>
         break;
       case 4:
-        form_render = <Form_DS160_4_Travel {...shared_params} data={ds160.form_travel} />
+        form_render = <Form_DS160_4_Travel {...shared_params} data={ds160.form_travel} martial_status={ds160.form_personal_info.martial_status}/>
         break;
       case 5:
         form_render = <Form_DS160_5_Travel_Company {...shared_params} data={ds160.form_travel_company} />

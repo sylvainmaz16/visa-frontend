@@ -487,6 +487,14 @@ export const paying_person_info_relationship_options = [
     { value: 'O', label: 'OTHER'},
 ]
 
+export const paying_person_info_relationship_without_spouse_options = [
+    { value: 'C', label: 'CHILD'},
+    { value: 'P', label: 'PARENT'},
+    { value: 'R', label: 'OTHER RELATIVE'},
+    { value: 'F', label: 'FRIEND'},
+    { value: 'O', label: 'OTHER'},
+]
+
 export const paying_person_for_trip_options = [
     { value: 'S', label: 'Self' },
     { value: 'O', label: 'Other Person' },

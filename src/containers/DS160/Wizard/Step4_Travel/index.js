@@ -49,7 +49,7 @@ class MyForm extends Component {
     };
 
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, martial_status } = this.props
 
     getFieldDecorator('data.purpose_of_trip', { initialValue: utils.getInitialValue(data.purpose_of_trip) });
     getFieldDecorator('data.other_purpose_of_trip', { initialValue: utils.getInitialValue(data.other_purpose_of_trip) });
@@ -320,7 +320,7 @@ class MyForm extends Component {
                       initialValue: utils.getInitialValue(data.paying_person_info.relationship),
                       rules: [{ required: true, message: 'This field is required' }],
                     })(
-                      <VisaSelect combines={constants.paying_person_info_relationship_options} />
+                      <VisaSelect combines={martial_status == 'M' || martial_status == 'L' ? constants.paying_person_info_relationship_options : constants.paying_person_info_relationship_without_spouse_options} />
                     )}
                   </Form.Item>
                 </Col>
