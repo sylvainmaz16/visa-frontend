@@ -8,15 +8,12 @@ function* getRequest(action) {
     "Content-Type": "application/json"
   };
 
-  console.log(action);
 
   try {
     const res = yield call(ApiManager.GetDS160Application, headers, action.applicationId);
     const data = res.data;
     yield put({ type: DS160.DS160_GET_SUCCESS, data, applicationId: action.applicationId });
-    console.log('in ds160_saga: ', data);
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: DS160.DS160_GET_FAILURE, status });
@@ -28,13 +25,11 @@ function* saveRequest(action) {
     "Content-Type": "application/json"
   };
 
-  console.log(action);
 
   try {
     const res = action.applicationId ? yield call(ApiManager.UpdateDS160Application, action.applicationId, action.payload) : yield call(ApiManager.SaveDS160Application, headers, action.payload);
     const data = res.data;
     yield put({ type: DS160.DS160_SAVE_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     if(action.cb)
       action.cb(data)
     // action.subscribe({
@@ -42,7 +37,6 @@ function* saveRequest(action) {
     //   NAME: action.user.fullname
     // });
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: DS160.DS160_SAVE_FAILURE, status });
@@ -52,7 +46,6 @@ function* saveRequest(action) {
 let getNonceFromAuthorizeNet = (secureData) => {
   return new Promise((resolve, reject) => {
     Accept.dispatchData(secureData, function(opaqueData, error) {
-      console.log(opaqueData, error)
       resolve(opaqueData)
     })
   })
@@ -69,8 +62,6 @@ function* checkoutRequest(action) {
       clientKey: process.env.AUTHORIZENET_CLIENTKEY,
       apiLoginID: process.env.AUTHORIZENET_LOGINID
     }
-
-    console.log(action.payload)
 
     const billingData = action.payload.data
 
@@ -90,14 +81,11 @@ function* checkoutRequest(action) {
 
     const nonce = yield call(getNonceFromAuthorizeNet, secureData)
 
-    console.log(nonce)
 
     const res = yield call(ApiManager.CheckoutDS160, headers, action.payload);
     const data = res.data;
     yield put({ type: DS160.DS160_CHECKOUT_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: DS160.DS160_CHECKOUT_FAILURE, status });
@@ -108,17 +96,13 @@ function* sendLinkEmailRequest(action) {
     "Content-Type": "application/json"
   };
 
-  console.log(action);
-
   try {
     const res = yield call(ApiManager.SendLinkEmail, headers, action.payload);
     const data = res.data;
     yield put({ type: DS160.SEND_LINK_EMAIL_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     if(action.cb)
       action.cb(data)
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
     if(action.cb)
       action.cb({ status: 'failed' })

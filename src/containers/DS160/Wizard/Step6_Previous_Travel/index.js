@@ -19,7 +19,6 @@ class MyForm extends Component {
   }
 
   handleDates = (data) => {
-    console.log('hello')
     if(data.US_Visa && data.US_Visa.date)
       data.US_Visa.date = data.US_Visa.date.format('DD/MMM/YYYY')
     if(data.prev_visit_info) {
@@ -55,10 +54,6 @@ class MyForm extends Component {
     getFieldDecorator('data.b_petition', { initialValue: utils.getInitialValue(data.b_petition) });
     getFieldDecorator('data.US_Visa.b_ever_been_cancelled', { initialValue: utils.getInitialValue(data.US_Visa.b_ever_been_cancelled) });
     
-    console.log(data)
-
-    
-
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">

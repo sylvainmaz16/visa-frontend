@@ -23,7 +23,15 @@ const validateExplain = (rule, value, callback, field, required = false) => {
           callback();
       return;
   }
-  if(/^[A-Za-z0-9#$*%&;!@^?><().',\- ]*$/.test(value)== false){
+  if(value[0] == ' ') {
+      callback(field + " - leading spaces found in your entry.")
+      return;
+  }
+  if(value[value.length - 1] == ' ') {
+    callback(field + " - trailing spaces found in your entry.")
+    return;
+    }
+  if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[A-Za-z0-9#$*%&;!@^?><().',\- ]*$/.test(value)== false){
       callback(field + " is invalid. Only the following characters are valid for this field: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parens (), period (.), apostrophe ('), comma (,), hyphen (-), and space.");
       return;
   }
@@ -97,7 +105,6 @@ const validateVisaLostYear = (rule, value, callback, field, birthday) => {
     callback();
 };
 const formerSpouseNumberValidator = (rule, value, callback, length) => {
-    console.log('on validator', value , length)
     if (!value) {
         callback('This field is required');
         return;
@@ -423,7 +430,6 @@ const validateLeadingSpace = (rule, value, callback, field, required = true) => 
     callback();
 };
 const validateZipCode = (rule, value, callback, field, required) => {
-    console.log(value)
     if (!value) {
         if(required)
             callback('This field is required');
@@ -438,7 +444,6 @@ const validateZipCode = (rule, value, callback, field, required) => {
     callback();
 };
 const validateUSZipCode = (rule, value, callback, field, required) => {
-    console.log(value)
     if (!value) {
         if(required)
             callback('This field is required');

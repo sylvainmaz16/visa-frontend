@@ -121,8 +121,6 @@ class MyForm extends Component {
     explain.part4.map((exp, index) => { getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part4.array[index].radio) })});
     explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part5.array[index].radio) })});
 
-    console.log(SQIndex)
-  
     return (
       <Form {...formItemLayout}>
 

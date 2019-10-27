@@ -93,7 +93,6 @@ class DS160_Wizard extends Component {
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data)
     }
-    console.log(field, payload)
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
     this.props.history.push('/ds-160/application-form-later');
   }
@@ -105,9 +104,7 @@ class DS160_Wizard extends Component {
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
     }
-    console.log('onSubmit: ', field, payload)
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
-      // console.log(result)
       window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
     })
     
@@ -121,7 +118,6 @@ class DS160_Wizard extends Component {
       withoutPayment: true,
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
     }
-    console.log('onSubmitWithoutPayment: ', field, payload)
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
     openNotificationWithIcon('success')
   }
@@ -129,7 +125,6 @@ class DS160_Wizard extends Component {
   handleSubmitWithoutPayment = (e, form, handleDates, field) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
       if (!err) {
         if( handleDates )
           this.onSubmitWithoutPayment(handleDates(values.data), field)
@@ -142,7 +137,6 @@ class DS160_Wizard extends Component {
   handleSubmit = (e, form, handleDates, field) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
       if (!err) {
         if( handleDates )
           this.onSubmit(handleDates(values.data), field)
@@ -164,7 +158,6 @@ class DS160_Wizard extends Component {
   handleSave = (e, form, handleDates, field) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
       if (!err) {
         if( handleDates )
           this.onSaveAndContinue(handleDates(values.data), field)
@@ -176,9 +169,7 @@ class DS160_Wizard extends Component {
 
   handleNext = (e, form, handleDates, field) => {
     e.preventDefault();
-    console.log( e, form, handleDates, field)
     form.validateFieldsAndScroll((err, values) => {
-      console.log('has Error', err)
       if (!err) {
         if(handleDates)
           this.onNext(handleDates(values.data), field);
@@ -195,8 +186,6 @@ class DS160_Wizard extends Component {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin">
       </Spin>
     }
-
-    console.log(step_index)
 
     let form_render = ''
     let intracompany_type = '', sevis_type = '', additional_point_of_contact = false
@@ -286,7 +275,6 @@ class DS160_Wizard extends Component {
     let age = 0
     if( step_index > 3 ) {
       age = moment().diff(moment(ds160.form_personal_info.date_birth, 'DD/MMM/YYYY'), 'years', true);
-      console.log(age)
       if(age <= 14) {
         fields_list = fields_list.filter(field => field != 'form_work_or_edu' && field != 'form_prev_work_or_edu' && field != 'form_additional_work')
       }
@@ -383,7 +371,7 @@ class DS160_Wizard extends Component {
       fields_list.splice(extra_index, 1)
     }
 
-    let field = fields_list[step_index]    
+    let field = fields_list[step_index]
     
     let shared_params = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
@@ -392,7 +380,14 @@ class DS160_Wizard extends Component {
       validators: ds160_validators
     }
 
-    console.log(step_index, field)
+    if(field.startsWith("form_security")) {
+      shared_params = {
+        handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, "form_security"),
+        handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, "form_security"),
+        handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, "form_security"),
+        validators: ds160_validators
+      }
+    }
 
     switch(step_index) {
       case 1:
@@ -479,7 +474,6 @@ class DS160_Wizard extends Component {
               handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}/>
             break;
           default:
-            console.log('EXCEPTION could not find form')
             break;
         }
         break;

@@ -18,8 +18,6 @@ export class AuthRequired extends React.Component {
 
         const token = this.props.cookies.get('immigration4us_token')
 
-        console.log('cookies: ', this.props.cookies)
-
         if (!token) {
             return (<Redirect to='/auth' />);
         } else {

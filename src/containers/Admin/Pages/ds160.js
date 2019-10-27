@@ -54,7 +54,6 @@ class AdminPageDS160 extends Component {
   };
 
   onClickSendEmail = (record) => {
-    console.log(record)
     this.setState({
       visible_send_email_modal: true,
       selected_record: record
@@ -74,7 +73,6 @@ class AdminPageDS160 extends Component {
       loading_send_email: true
     })
     this.props.resendEmail(ADMIN.RESEND_EMAIL_REQUEST, selected_record._id, (result) => {
-      console.log(result)
       if(result.error) {
         openNotificationWithIcon('error')
       } else if( result.data && result.data.status == 404 ) {

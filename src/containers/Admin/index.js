@@ -32,8 +32,6 @@ class AdminBoard extends Component {
   }
 
   componentDidMount() {
-    // console.log('ADMIN Reducer RESET')
-    // this.props.reset(ADMIN.RESET)
   }
 
   logout() {
@@ -52,7 +50,6 @@ class AdminBoard extends Component {
 
     switch (menu) {
       case 'ds160':
-        console.log('admin pagination', pagination)
         renderPage = <AdminPageDS160 pagination={pagination}/>
         break;
       case 'mail':

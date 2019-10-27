@@ -51,7 +51,6 @@ function adminReducer(state = initialState, action) {
         loading: false
       };
     case ADMIN.SHOW_MODAL: {
-      console.log(action.modal)
       return {
         ...state,
         [action.modal]: true
@@ -70,7 +69,6 @@ function adminReducer(state = initialState, action) {
       };
     }
     case ADMIN.GET_CUSTOMER_LIST_SUCCESS: {
-      console.log('reducer: ', action.data)
       return {
         ...state,
         data: [...action.data.list],
@@ -79,7 +77,6 @@ function adminReducer(state = initialState, action) {
       };
     }
     case ADMIN.GET_CUSTOMER_LIST_FAILURE: {
-      console.log('failed to get')
       return {
         ...state,
         loading: false
@@ -92,7 +89,6 @@ function adminReducer(state = initialState, action) {
       };
     }
     case ADMIN.GET_MAIL_TEMPATES_LIST_SUCCESS: {
-      console.log('reducer: ', action.data)
       return {
         ...state,
         mailTemplates: [...action.data.list],
@@ -101,7 +97,6 @@ function adminReducer(state = initialState, action) {
       };
     }
     case ADMIN.GET_MAIL_TEMPATES_LIST_FAILURE: {
-      console.log('failed to get')
       return {
         ...state,
         loading: false

@@ -12,9 +12,7 @@ function* getRequest(action) {
     const res = yield call(ApiManager.GetCustomersList, headers, action.options);
     const data = res.data;
     yield put({ type: ADMIN.GET_CUSTOMER_LIST_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.GET_CUSTOMER_LIST_FAILURE, status });
@@ -30,9 +28,7 @@ function* getMailTemplatesRequest(action) {
     const res = yield call(ApiManager.GetMailTemplatesList, headers, action.options);
     const data = res.data;
     yield put({ type: ADMIN.GET_MAIL_TEMPATES_LIST_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.GET_MAIL_TEMPATES_LIST_FAILURE, status });
@@ -48,10 +44,8 @@ function* createMailTemplateRequest(action) {
     const res = yield call(ApiManager.CreateMailTemplate, headers, action.data);
     const data = res.data;
     yield put({ type: ADMIN.CREATE_MAIL_TEMPLATE_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     yield put({ type: ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, options: action.options })
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.CREATE_MAIL_TEMPLATE_FAILURE, status });
@@ -63,10 +57,8 @@ function* deleteMailTemplateRequest(action) {
     const res = yield call(ApiManager.DeleteMailTemplate, action.country);
     const data = res.data;
     yield put({ type: ADMIN.DELETE_MAIL_TEMPLATE_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     yield put({ type: ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, options: action.options })
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.DELETE_MAIL_TEMPLATE_FAILURE, status });
@@ -78,10 +70,8 @@ function* updateMailTemplateRequest(action) {
     const res = yield call(ApiManager.UpdateMailTemplate, action.mail);
     const data = res.data;
     yield put({ type: ADMIN.UPDATE_MAIL_TEMPLATE_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     yield put({ type: ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, options: action.options })
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.UPDATE_MAIL_TEMPLATE_FAILURE, status });
@@ -96,10 +86,8 @@ function* loginRequest(action) {
     const res = yield call(ApiManager.AuthLogin, headers, action.data);
     const data = res.data;
     yield put({ type: ADMIN.LOGIN_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     action.cb( { error: null, token: data.token } )
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.LOGIN_FAILURE, status });
@@ -115,10 +103,8 @@ function* resendEmailRequest(action) {
     const res = yield call(ApiManager.ResendEmail, headers, action._id);
     const data = res.data;
     yield put({ type: ADMIN.RESEND_EMAIL_SUCCESS, data });
-    console.log('in ds160_saga: ', data);
     action.cb( { error: null, data: data } )
   } catch (e) {
-    console.log(e);
     yield put({ type: ADMIN.RESEND_EMAIL_FAILURE });
     action.cb( { error: 'error' })
   }

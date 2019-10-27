@@ -40,7 +40,6 @@ class MyForm extends Component {
 
     const numbers = [this.props.form.getFieldValue('data.phone_info.work'),this.props.form.getFieldValue('data.phone_info.home'), this.props.form.getFieldValue('data.phone_info.mobile')]
     const conflicts = numbers.filter(number => (number != undefined) && (number == value))
-    console.log(numbers, conflicts)
     if(conflicts && conflicts.length > 1)
     {
       callback('The given phone number has already been entered.')

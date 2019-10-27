@@ -44,7 +44,6 @@ class VisaAdditionalSocialMediaArray extends Component {
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const platforms = getFieldValue(keysField);
-    console.log(platforms, initialValue)
     const formItems = platforms.map((platform, index) => (
       <Form.Item
         label={index === 0 ? label : ''}

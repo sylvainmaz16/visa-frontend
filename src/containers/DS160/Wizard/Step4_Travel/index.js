@@ -21,7 +21,6 @@ class MyForm extends Component {
   }
 
   onSelect = (e, field) => {
-    console.log(e, field)
     if (field == 'purpose_of_trip') {
       this.props.form.setFieldsValue({ 'data.other_purpose_of_trip': null, 'data.purpose_info_type': null, 'data.travel_plan.length_of_stay.length': null, 'data.travel_plan.length_of_stay.period': null });
     }
@@ -30,7 +29,6 @@ class MyForm extends Component {
         purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
         other_purpose_of_trip: e,
       }
-      // console.log(field.purpose_of_trip, field.other_purpose_of_trip)
       if (field.purpose_of_trip && field.other_purpose_of_trip) {
         
         let purpose_info_type = constants.purpose_of_trip_advanced_specify_extra[field.purpose_of_trip][field.other_purpose_of_trip]
@@ -52,9 +50,6 @@ class MyForm extends Component {
 
 
     const { showPrev, showNext, onPrev, onNext, data } = this.props
-
-    console.log(data)
-    console.log(data.travel_plan.date_of_arrival)
 
     getFieldDecorator('data.purpose_of_trip', { initialValue: utils.getInitialValue(data.purpose_of_trip) });
     getFieldDecorator('data.other_purpose_of_trip', { initialValue: utils.getInitialValue(data.other_purpose_of_trip) });

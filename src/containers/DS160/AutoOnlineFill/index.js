@@ -22,7 +22,6 @@ class DS160_AutoOnlineFill extends Component {
   onStart = () => {
     let iframe = document.getElementById('ds-160-online-form');
     let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-    console.log(innerDoc)
   }
 
   render() {

@@ -19,7 +19,6 @@ class DS160_Checkout extends Component {
   placeOrder = (e, form) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
       if (!err) {
         const payload = {
           data: values.data,
@@ -34,7 +33,6 @@ class DS160_Checkout extends Component {
 
     const { email, step_index, loading, applicationId, completed, loading_pay, paid, checkout_result } = this.props
 
-    console.log('loading_pay: ', loading_pay)
     if(loading) {
       return <Spin tip="Please wait..." id="visa-ds160-checkout-spin">
       </Spin>

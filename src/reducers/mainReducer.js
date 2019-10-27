@@ -608,7 +608,6 @@ function mainReducer(state = initialState, action) {
       };
     }
     case DS160.DS160_GET_SUCCESS: {
-      console.log('reducer: ', action.data)
       return {
         ...state,
         bWaitLoadFromDB: false,
@@ -618,7 +617,6 @@ function mainReducer(state = initialState, action) {
       };
     }
     case DS160.DS160_GET_FAILURE: {
-      console.log('failed to get')
       return {
         ...initialState
       };
@@ -631,7 +629,6 @@ function mainReducer(state = initialState, action) {
       };
     }
     case DS160.DS160_SAVE_SUCCESS: {
-      console.log('reducer: ', action.data)
       return {
         ...state,
         loading: false,
@@ -657,14 +654,12 @@ function mainReducer(state = initialState, action) {
       }
     }
     case DS160.DS160_UPDATE_VALUES: {
-      console.log(action.values)
       return {
         ...state,
         ds160: objectAssignDeep(state.ds160, action.values)
       }
     }
     case DS160.DS160_INIT_STATE: {
-      console.log('RESET')
       return {
         ...initialState
       }
@@ -676,7 +671,6 @@ function mainReducer(state = initialState, action) {
       }
     }
     case DS160.DS160_CHECKOUT_SUCCESS: {
-      console.log(action.data)
       
       return {
         ...state,

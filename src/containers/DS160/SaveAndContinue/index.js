@@ -28,7 +28,6 @@ class DS160_Checkout extends Component {
   }
 
   onSendLink = ( data ) => {
-    console.log('Email sending: ', data);
     const { applicationId, cookies } = this.props
     this.setState({ sending: true })
     this.props.sendLinkEmail( DS160.SEND_LINK_EMAIL_REQUEST, { ...data, applicationId }, (res) => {

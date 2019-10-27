@@ -55,7 +55,6 @@ class VisaLostPassports extends Component {
     const people = getFieldValue(keysField);
 
     const formItems = people.map((person, index) => { 
-      console.log(initialValue[index])
       return (
       <Form.Item
         label={index === 0 ? label : ''}

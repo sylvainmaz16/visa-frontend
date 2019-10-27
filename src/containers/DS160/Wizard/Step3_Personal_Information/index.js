@@ -51,7 +51,6 @@ class MyForm extends Component {
 
     let currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
     let otherName = this.props.form.getFieldValue('data.used_other_name.surname') + this.props.form.getFieldValue('data.used_other_name.given_name')
-    console.log(currentName, otherName)
 
     if( currentName === otherName ) {
       callback('Alias matches Given Name.')

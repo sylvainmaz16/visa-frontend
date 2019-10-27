@@ -61,12 +61,10 @@ class MyForm extends Component {
     })
   }
   handleChange = info => {
-    console.log(info)
     if (status !== 'uploading') {
       this.setState({ loading: true })
       this.uploadFileToS3(info.file)
           .then(imageUrl => {
-              console.log('successed', imageUrl)
               this.props.form.setFieldsValue( { data: { url: imageUrl } })
               this.setState({ loading: false })
           })

@@ -79,7 +79,6 @@ class AdminPageMailTemplates extends Component {
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    console.log(pagination, filters, sorter)
     if (pagination.current != this.props.pagination.current) {
       this.props.history.push({
         pathname: '/board/mail',
@@ -112,7 +111,6 @@ class AdminPageMailTemplates extends Component {
 
   handleAdd = (form) => {
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
       if (!err) {
         const { pagination } = this.props
         const options = {
@@ -126,7 +124,6 @@ class AdminPageMailTemplates extends Component {
 
   handleEdit = (form) => {
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err, values)
       if (!err) {
         const { pagination } = this.props
         const options = {
