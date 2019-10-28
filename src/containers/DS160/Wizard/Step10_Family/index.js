@@ -461,8 +461,7 @@ class MyForm extends Component {
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
-                required={false}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, true) }]}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
