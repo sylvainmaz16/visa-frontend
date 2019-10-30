@@ -136,6 +136,7 @@ class MyForm extends Component {
               field="data.issued_location.city"
               initialValue={data.issued_location.city}
               getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'City of Issue', true) }]}
               maxLength={25}
             />
           </Col>

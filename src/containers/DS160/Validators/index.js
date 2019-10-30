@@ -394,7 +394,7 @@ const validateSchoolName = (rule, value, callback, field, required = true) => {
         return;
     }
     if(value[0] == ' ' || value[value.length - 1] == ' ' || /^[a-zA-Z0-9 '&-]+$/.test(value)== false) {
-        callback(field + ' is invalid. Only the following characters are valid for this field: A-Z, 0-9, hypen(-), apostrophe(\'), ampersand(&) and single spaces in between names');
+        callback(field + ' is invalid. Only the following characters are valid for this field: A-Z, 0-9, hyphen(-), apostrophe(\'), ampersand(&) and single spaces in between names');
         return;
     }
     callback();
