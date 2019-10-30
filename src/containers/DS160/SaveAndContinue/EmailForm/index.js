@@ -23,9 +23,12 @@ class MyForm extends Component {
       },
     };
 
-    const { applicationId, sending } = this.props
+    const { applicationId, sending, agency } = this.props
 
     let link = `${constants.myURL}/ds-160/application-form/token=${applicationId}`
+
+    if(agency)
+      link = link + `?agency=${agency}`
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>

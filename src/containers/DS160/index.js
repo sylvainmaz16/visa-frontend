@@ -15,7 +15,15 @@ class DS160_HOME extends Component {
   componentDidMount() {}
 
   onStartApplication = () => {
-    this.props.history.push('/ds-160/application-form');
+    const { agency } = this.props
+    if(agency) {
+      this.props.history.push({
+        pathname: '/ds-160/application-form', 
+        search: `?agency=${agency}`
+      });  
+    } else {
+      this.props.history.push('/ds-160/application-form')
+    }
     this.props.resetState(DS160.DS160_INIT_STATE);
   }
 

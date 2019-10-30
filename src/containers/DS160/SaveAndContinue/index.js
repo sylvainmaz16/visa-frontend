@@ -43,7 +43,7 @@ class DS160_Checkout extends Component {
 
   render() {
 
-    const { loading, applicationId, cookies } = this.props
+    const { loading, applicationId, cookies, agency } = this.props
     const { sending } = this.state
 
     if(loading) {
@@ -65,7 +65,7 @@ class DS160_Checkout extends Component {
             The link was sent to the following email address: {sentAddr}
           </h2>
         </div>}
-          {!sentAddr && <Form_DS160_SaveAndContinue onSendLink={this.onSendLink} applicationId={applicationId} sending={sending}/>}
+          {!sentAddr && <Form_DS160_SaveAndContinue onSendLink={this.onSendLink} applicationId={applicationId} sending={sending} agency={agency}/>}
         </div>
       </div>
     )

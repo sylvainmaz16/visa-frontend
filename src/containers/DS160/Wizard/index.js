@@ -72,7 +72,17 @@ class DS160_Wizard extends Component {
     else
       this.props.updateValues( DS160.DS160_UPDATE_VALUES, data );
     this.props.onPrevStep(DS160.DS160_PREV_STEP);
-    this.props.history.push('/ds-160/application-form');
+
+    const { agency } = this.props
+    if(agency) {
+      this.props.history.push({
+        pathname: '/ds-160/application-form', 
+        search: `?agency=${agency}`
+      });  
+    } else {
+      this.props.history.push('/ds-160/application-form')
+    }
+
     window.scrollTo(0, 0); 
   }
 
@@ -82,27 +92,49 @@ class DS160_Wizard extends Component {
     else
       this.props.updateValues( DS160.DS160_UPDATE_VALUES, data );
     this.props.onNextStep(DS160.DS160_NEXT_STEP);
-    this.props.history.push('/ds-160/application-form');
+
+    const { agency } = this.props
+    if(agency) {
+      this.props.history.push({
+        pathname: '/ds-160/application-form', 
+        search: `?agency=${agency}`
+      });  
+    } else {
+      this.props.history.push('/ds-160/application-form')
+    }
+
     window.scrollTo(0, 0); 
   }
 
   onSaveAndContinue = (data, field) => {
+    const { agency } = this.props
     const payload = {
       email: '',
       completed: false,
       step_index: this.props.step_index,
-      data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data)
+      data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
+      agency: agency
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
-    this.props.history.push('/ds-160/application-form-later');
+    
+    if(agency) {
+      this.props.history.push({
+        pathname: '/ds-160/application-form-later', 
+        search: `?agency=${agency}`
+      });  
+    } else {
+      this.props.history.push('/ds-160/application-form-later')
+    }
   }
 
   onSubmit = (data, field) => {
+    const { agency } = this.props
     const payload = {
       email: '',
       completed: true,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
+      agency: agency
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
       window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
@@ -111,12 +143,14 @@ class DS160_Wizard extends Component {
   }
 
   onSubmitWithoutPayment = (data, field) => {
+    const { agency } = this.props
     const payload = {
       email: '',
       completed: true,
       step_index: this.props.step_index,
       withoutPayment: true,
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
+      agency: agency
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
     openNotificationWithIcon('success')
@@ -180,7 +214,7 @@ class DS160_Wizard extends Component {
   };
 
   render() {
-    const { step_index, ds160, bWaitLoadFromDB, token } = this.props
+    const { step_index, ds160, bWaitLoadFromDB, token, agency } = this.props
 
     if(token && bWaitLoadFromDB) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin">

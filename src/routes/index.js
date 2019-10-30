@@ -34,46 +34,42 @@ class Routes extends Component {
 
             return <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>}/>
           }} />
-          {/* <Route
-            path="/ds-160/auto-online-form/:link"
-            children={({ location }) => {
-              let params = location.pathname.split('/')
-              let link = params[3]
-              
-              let terms = link.split('=');
-              let applicationId = terms[terms.length - 1]
-
-              return <DS160_AutoOnlineFill token={applicationId} />
-            }}
-          /> */}
           <Route
             path="/ds-160/application-form/:link"
-            children={({ location }) => {
+            children={({ match, location }) => {
               let params = location.pathname.split('/')
               let link = params[3]
+
+              let agency = new URLSearchParams(location.search).get("agency")
               
               let terms = link.split('=');
               let applicationId = terms[terms.length - 1]
 
-              return <DS160_Wizard token={applicationId} />
+              return <DS160_Wizard token={applicationId} agency={agency}/>
             }}
           />
-          <Route path="/ds-160/application-form-later" exact component={DS160_SaveAndContinue} />
-          <Route path="/ds-160/application-form" exact component={DS160_Wizard} />
-          <Route path="/ds-160/checkout" exact component={DS160_Checkout} />
-          <Route path="/ds-160" exact component={DS160_HOME} />
-          <Route path="/" exact component={DS160_HOME} />
-          
-          {/* <Route
-            path="/person/:name"
-            children={({ location }) => {
-              let params = location.pathname.split('/')
-              let name = params[2]
 
-              return <Person name={name} />
-            }}
-          /> */}
-          {/* <Route render={() => <Redirect to="/" />} /> */}
+          <Route path="/ds-160/application-form-later" exact children={({ location }) => {
+            let agency = new URLSearchParams(location.search).get("agency")
+            return <DS160_SaveAndContinue agency={agency} />
+          }} />
+
+          <Route path="/ds-160/application-form" exact children={({ location }) => {
+            let agency = new URLSearchParams(location.search).get("agency")
+            return <DS160_Wizard agency={agency} />
+          }} />
+
+          <Route path="/ds-160" exact children={({ location }) => {
+            let agency = new URLSearchParams(location.search).get("agency")
+            return <DS160_HOME agency={agency} />
+          }}/>
+
+          <Route path="/" exact children={({ location }) => {
+            let agency = new URLSearchParams(location.search).get("agency")
+            return <DS160_HOME agency={agency} />
+          }}/>
+          
+          <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Router>
     )
