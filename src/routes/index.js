@@ -22,17 +22,29 @@ class Routes extends Component {
         <Switch>
           <Route path="/auth" exact children={() => <AuthPage />} />
           <Route path="/board"  exact children={({ location }) => 
-            <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu='ds160'/>}/>
+            <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu='ds160' pattern="" pagination={{ pageSize: 10, current: 1, filters: {}, serach: null}}/>}/>
           }/>
           <Route path="/board/:menukey(ds160|mail)" exact children={({ match, location }) => {
             let params = new URLSearchParams(location.search);
-            let menu = match.params.menukey
+            
+            let filters = {}
             let current = parseInt(params.get("current"))
-
             if(!current)
               current = 1
+            let search = params.get("search")
 
-            return <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu={menu} pagination={{ pageSize: 10, current: current }}/>}/>
+            const filterParams = ["checkout", "automation_status"]
+
+            filterParams.forEach(param => {
+              let pvalue = params.get(param)
+              if(pvalue) {
+                filters[param] = pvalue.split(",")
+              }
+            })
+
+            let menu = match.params.menukey
+
+            return <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu={menu} pattern={location.search} pagination={{ pageSize: 10, current, filters, search }}/>}/>
           }} />
           <Route
             path="/ds-160/application-form/:link"

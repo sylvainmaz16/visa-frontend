@@ -43,17 +43,17 @@ class AdminBoard extends Component {
 
   render() {
 
-    const { pagination, menu } = this.props
+    const { pagination, menu, pattern } = this.props
 
     let renderPage = ""
 
 
     switch (menu) {
       case 'ds160':
-        renderPage = <AdminPageDS160 pagination={pagination}/>
+        renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern}/>
         break;
       case 'mail':
-        renderPage = <AdminPageMailTemplates pagination={pagination}/>
+        renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern}/>
         break;
       default:
         break;

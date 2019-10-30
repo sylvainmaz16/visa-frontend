@@ -241,7 +241,7 @@ class MyForm extends Component {
             <Form.Item label="City of birth">
               {getFieldDecorator('data.place_of_birth.city', {
                 initialValue: utils.getInitialValue(data.place_of_birth.city),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'City of birth', true) }],
               })(
                 <Input maxLength={20}/>
               )}

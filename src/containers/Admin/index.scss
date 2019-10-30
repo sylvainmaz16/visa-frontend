@@ -18,10 +18,17 @@
             &__top {
                 text-align: right;
                 margin-bottom: 0.5rem;
+                background: #f0f2f5;
             }
             .table-mail-templates tr td:nth-child(2) {
                 width: 70%;
                 max-width: 0;
+            }
+        }
+
+        .admin-page-ds160 {
+            &__top {
+                background: #f0f2f5;
             }
         }
         

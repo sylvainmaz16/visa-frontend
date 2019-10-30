@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADMIN } from '../../../actions/types'
-import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification } from 'antd';
+import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 const openNotificationWithIcon = type => {
@@ -12,6 +12,8 @@ const openNotificationWithIcon = type => {
       type == 'success' ? 'The email has been sent' : `There isn't such email template based on the interview location.`,
   });
 };
+
+import * as utils from '../../../utils/index'
 
 class AdminPageDS160 extends Component {
   static defaultProps = {
@@ -32,6 +34,8 @@ class AdminPageDS160 extends Component {
     this.props.getCustomersList(ADMIN.GET_CUSTOMER_LIST_REQUEST, {
       limit: pagination.pageSize,
       skip: pagination.pageSize * (pagination.current - 1),
+      search: pagination.search,
+      filters: utils.getFilterString(pagination.filters),
     })
   }
   componentDidMount() {
@@ -39,18 +43,21 @@ class AdminPageDS160 extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if ((nextProps.pagination.current != this.props.pagination.current)) {
+    if ((nextProps.pattern != this.props.pattern)) {
       this.loadList(nextProps.pagination)
     }
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    if (pagination.current != this.props.pagination.current) {
-      this.props.history.push({
-        pathname: '/board/ds160',
-        search: `?current=${pagination.current}`
-      })
-    }
+    console.log(filters)
+
+    let filterString = utils.getFilterString(filters)
+
+    console.log(filterString)
+    this.props.history.push({
+      pathname: '/board/ds160',
+      search: `?current=${pagination.current}` + (pagination.search ? `&search=${pagination.search}` : '') + filterString
+    })
   };
 
   onClickSendEmail = (record) => {
@@ -90,6 +97,24 @@ class AdminPageDS160 extends Component {
     })
   }
 
+  handleSearchKeyDown = (event) => {
+    if(event.keyCode == 13)
+      this.searchString();
+  }
+
+  searchString = () => {
+    const search = this.refs.search_input.state.value
+
+    const {pagination} = this.props
+    let filterString = utils.getFilterString(pagination.filters)
+
+    if(pagination.search != search)
+      this.props.history.push({
+        pathname: '/board/ds160',
+        search: `?current=${pagination.current}` + (search && search.length ? `&search=${search}` : '') + filterString
+      })
+  }
+
   render() {
 
     const { data, pagination, loading, total } = this.props
@@ -126,6 +151,7 @@ class AdminPageDS160 extends Component {
         title: 'Created At',
         dataIndex: 'createdAt',
         key: 'createdAt',
+        ellipsis: true
       },
       {
         title: 'Agency',
@@ -147,6 +173,13 @@ class AdminPageDS160 extends Component {
             return <Tag color="volcano">Not paid</Tag>
           return <Tag color="geekblue">Paid</Tag>
         },
+        filters: [{ text: 'Paid', value: 'paid' }, { text: 'Not paid', value: 'not_paid' }, { text: 'Not completed', value: 'not_completed' }],
+        filteredValue: pagination.filters.checkout,
+        onFilter: (value, record) => {
+          if(value == 'paid') return record.completed && record.paid
+          if(value == 'not_paid') return record.completed && !record.paid
+          return !record.completed
+        }
       },
       {
         title: 'Automation Status',
@@ -164,6 +197,16 @@ class AdminPageDS160 extends Component {
             return <><Tag color="geekblue">Success</Tag><Tag color="magenta">Email not sent</Tag></>
           return <Tag color="geekblue">Success</Tag>
         },
+        filters: [{ text: '-', value: 'not_completed' }, { text: 'Pending', value: 'pending' }, { text: 'In progress', value: 'in_progress' }, { text: 'Failed', value: 'failed' }, { text: 'Incident', value: 'not_sent'}, { text: 'Success', value: 'success'}],
+        filteredValue: pagination.filters.automation_status,
+        onFilter: (value, record) => {
+          if(value == 'not_completed') return !record.completed
+          if(value == 'pending') return record.completed && !record.automation_status
+          if(value == 'in_progress') return record.completed && record.automation_status && record.automation_status.result == 'processing'
+          if(value == 'failed') return record.completed && record.automation_status && (record.automation_status.result == 'fail' || record.automation_status.error)
+          if(value == 'not_sent') return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status == false)
+          return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status != false)
+        }
       },
       {
         title: 'Action',
@@ -188,7 +231,13 @@ class AdminPageDS160 extends Component {
       },
     ];
     return (
-      <>
+      <div className="admin-page-ds160">
+        <div className="admin-page-ds160__top">
+          <Input placeholder="Search (ID, Name, Email Address) here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown}/>
+          <Button type="primary" icon="search" onClick={this.searchString}>
+            Search
+          </Button>
+        </div>
         <Table
           columns={columns}
           rowKey={record => record._id}
@@ -232,7 +281,7 @@ class AdminPageDS160 extends Component {
             There was no such email template based on <Tag color="geekblue">{`${selected_record.location.split(',')[0]}`}</Tag>
           </div>
         </Modal>}
-      </>
+      </div>
     )
   }
 }
