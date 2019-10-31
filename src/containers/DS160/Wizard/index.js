@@ -137,7 +137,11 @@ class DS160_Wizard extends Component {
       agency: agency
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
-      window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+      if(agency) {
+        window.location.href = `https://apply.usvisaappointments.com/us-visa-interview/`
+      } else {
+        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+      }
     })
     
   }

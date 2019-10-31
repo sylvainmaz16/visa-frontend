@@ -19,6 +19,8 @@ const initialState = {
     // step-2
     b_agreement_2_1: false,
     b_agreement_2_2: false,
+    sq_type: null,
+    sq_answer: null,
     purpose_of_trip: null,
 
     form_personal_info: {

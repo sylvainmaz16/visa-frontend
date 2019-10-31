@@ -45,7 +45,28 @@ export const FGMC_countries_list = [
     "CAMEROON",
     "UGANDA"
 ]
-
+export const security_question_options = [
+	<option value="1">What is the given name of your mother's mother?</option>,
+	<option value="2">What is the given name of your father's father?</option>,
+	<option value="3">What is your maternal grandmother's maiden name?</option>,
+	<option value="4">What name did your family used to call you when you were a child?</option>,
+	<option value="5">In what city did you meet your spouse/significant other?</option>,
+	<option value="6">What is the name of your favorite childhood friend?</option>,
+	<option value="7">What street did you live on when you were 8 years old?</option>,
+	<option value="8">What is your oldest sibling’s birthday month and year? (e.g., January 1900)</option>,
+	<option value="9">What is the middle name of your youngest child?</option>,
+	<option value="10">What is your oldest sibling's middle name?</option>,
+	<option value="11">What school did you attend when you were 11 years old?</option>,
+	<option value="12">What was your home phone number when you were a child?</option>,
+	<option value="13">What is your oldest cousin's first and last name?</option>,
+	<option value="14">What was the name of your favorite stuffed animal or toy? </option>,
+	<option value="15">In what city or town did your mother and father meet?</option>,
+	<option value="16">What was the last name of your favorite teacher?</option>,
+	<option value="17">In what city does your nearest sibling live?</option>,
+	<option value="18">What is your youngest sibling’s birthday month and year? (e.g., January 1900)</option>,
+	<option value="19">In what city or town was your first job?</option>,
+	<option value="20">What was the name of your first boyfriend or girlfriend?</option>
+]
 export const past_travel_countries_options = [
     <option value="AFGH">AFGHANISTAN</option>,
     <option value="ALB">ALBANIA</option>,

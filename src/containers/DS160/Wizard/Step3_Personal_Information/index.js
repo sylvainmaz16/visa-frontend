@@ -250,7 +250,8 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
             <Form.Item label="Province / State of birth">
               {getFieldDecorator('data.place_of_birth.state', {
-                initialValue: utils.getInitialValue(data.place_of_birth.state)
+                initialValue: utils.getInitialValue(data.place_of_birth.state),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'State/Province', true) }],
               })(
                 <Input maxLength={20}/>
               )}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Checkbox } from 'antd';
 import * as utils from '../../utils'
 
-class VisaInput extends Component {
+class VisaInputWithCheck extends Component {
   static defaultProps = {
     extra: "",
     label: "",
@@ -50,4 +50,4 @@ class VisaInput extends Component {
     );
   }
 }
-export default VisaInput;
+export default VisaInputWithCheck;
