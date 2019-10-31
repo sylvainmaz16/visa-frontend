@@ -28,6 +28,7 @@ class DS160_HOME extends Component {
   }
 
   render() {
+    const { agency } = this.props
     return (
       <div className="visa-ds160">
         <VisaHeader />
@@ -42,7 +43,11 @@ class DS160_HOME extends Component {
             <li><p><span>Dates of your last five visits or trips to the United States, if you have previously travelled to the United States. You may also be asked for your international travel history for the past five years. </span></p></li>
             <li><p><span>Résumé or Curriculum Vitae - You may be required to provide information about your current and previous education and work history. </span></p></li>
             <li><p><span>Other Information - Some applicants, depending on the intended purpose of travel, will be asked to provide additional information when completing the DS-160.</span></p></li>
-            <li><p><span>This Us Visa Appointment Premium Service will cost you $280. This includes the MRV Fee that needs to be paid the Department of State and the DS-160 Application Review.</span></p></li>
+            {agency ? 
+              <li><p><span>This Us Visa Appointment Premium Service will cost you $280. This includes the MRV Fee that needs to be paid the Department of State and the DS-160 Application Review.</span></p></li>
+              :
+              <li><p><span>Our agency charges $165 + Government fee (from $160 to $265 depending on the type of Visa).</span></p></li>
+            }
           </ul>
           <div className="visa-global-heading-1">Some applicants will need to have additional information and documents handy while completing the DS-160:</div>
           <ul className="visa-global-ul-1">
