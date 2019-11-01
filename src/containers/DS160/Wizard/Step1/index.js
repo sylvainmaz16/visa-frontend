@@ -24,8 +24,23 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, data } = this.props
-    const { countries_option_value_list, countries_option_label_list} = constants
+    const { showPrev, showNext, data, agency } = this.props
+    const { countries_option_value_list, countries_option_label_list, agency_support_countries_list} = constants
+
+    let values = [], labels = []
+
+    if(agency) {
+      countries_option_label_list.map((label, cntry_index) => {
+        const index = agency_support_countries_list.findIndex(support => label.toLowerCase().startsWith(support.toLowerCase()))
+        if(index >= 0) {
+          values.push(countries_option_value_list[cntry_index])
+          labels.push(countries_option_label_list[cntry_index])
+        }
+      })
+    } else {
+      values = countries_option_value_list
+      labels = countries_option_label_list
+    }
 
     return (
       <Form {...formItemLayout}>
@@ -39,7 +54,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.interview_location),
             rules: [{ required: true, message: 'This field is required' }],
           })(
-            <VisaSelect values={countries_option_value_list} labels={countries_option_label_list} />
+            <VisaSelect values={values} labels={labels} />
           )}
         </Form.Item>
         <div className="visa-form-bottom-btn-group">

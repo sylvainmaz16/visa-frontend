@@ -14,6 +14,7 @@ import DS160_Checkout from '../containers/DS160/Checkout'
 import AdminBoard from '../containers/Admin'
 import AuthRequired from '../AuthRequired'
 import AuthPage from '../containers/Auth'
+import SignupPage from '../containers/Signup'
 
 class Routes extends Component {
   render() {
@@ -21,10 +22,11 @@ class Routes extends Component {
       <Router>
         <Switch>
           <Route path="/auth" exact children={() => <AuthPage />} />
+          <Route path="/signup" exact children={() => <SignupPage />} />
           <Route path="/board"  exact children={({ location }) => 
             <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu='ds160' pattern="" pagination={{ pageSize: 10, current: 1, filters: {}, serach: null}}/>}/>
           }/>
-          <Route path="/board/:menukey(ds160|mail)" exact children={({ match, location }) => {
+          <Route path="/board/:menukey(ds160|mail|users)" exact children={({ match, location }) => {
             let params = new URLSearchParams(location.search);
             
             let filters = {}

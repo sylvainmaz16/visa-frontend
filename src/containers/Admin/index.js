@@ -8,13 +8,15 @@ const { Header, Content, Footer } = Layout;
 
 import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
+import AdminPageUsers from './Pages/users'
 import { withCookies } from 'react-cookie';
 
 import './index.scss'
 
 const menus = [
   { key: "ds160", label: 'DS-160' },
-  { key: "mail", label: 'Mail Templates'}
+  { key: "mail", label: 'Mail Templates'},
+  { key: "users", label: 'Agencies'},
 ]
 
 class AdminBoard extends Component {
@@ -54,6 +56,9 @@ class AdminBoard extends Component {
         break;
       case 'mail':
         renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern}/>
+        break;
+      case 'users':
+        renderPage = <AdminPageUsers pagination={pagination} pattern={pattern}/>
         break;
       default:
         break;

@@ -429,7 +429,7 @@ class DS160_Wizard extends Component {
 
     switch(step_index) {
       case 1:
-        form_render = <Form_DS160_1 showPrev={false} {...shared_params} data={ds160}/>
+        form_render = <Form_DS160_1 showPrev={false} {...shared_params} data={ds160} agency={agency}/>
         break;
       case 2:
         form_render = <Form_DS160_2 {...shared_params} data={ds160}/>

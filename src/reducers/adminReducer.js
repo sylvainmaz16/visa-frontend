@@ -50,6 +50,22 @@ function adminReducer(state = initialState, action) {
         ...state,
         loading: false
       };
+    case ADMIN.SIGNUP_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case ADMIN.SIGNUP_SUCCESS:
+      
+      return {
+        ...state,
+        loading: false
+      };
+    case ADMIN.SIGNUP_FAILURE:
+      return {
+        ...state,
+        loading: false
+      };
     case ADMIN.SHOW_MODAL: {
       return {
         ...state,
@@ -61,6 +77,47 @@ function adminReducer(state = initialState, action) {
         ...state,
         [action.modal]: false
       }
+    }
+    case ADMIN.DELETE_USER_REQUEST: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case ADMIN.DELETE_USER_SUCCESS: {
+      return {
+        ...state,
+        loading: false
+      };
+    }
+    case ADMIN.DELETE_USER_FAILURE: {
+      return {
+        ...state,
+        loading: false
+      };
+    }
+    case ADMIN.APPROVE_USER_REQUEST: { return { ...state, loading: true } }
+    case ADMIN.APPROVE_USER_SUCCESS: { return { ...state, loading: false} }
+    case ADMIN.APPROVE_USER_FAILURE: { return { ...state, loading: false} }
+    case ADMIN.GET_USERS_LIST_REQUEST: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case ADMIN.GET_USERS_LIST_SUCCESS: {
+      return {
+        ...state,
+        data: [...action.data],
+        totalCount: action.data.total,
+        loading: false
+      };
+    }
+    case ADMIN.GET_USERS_LIST_FAILURE: {
+      return {
+        ...state,
+        loading: false
+      };
     }
     case ADMIN.GET_CUSTOMER_LIST_REQUEST: {
       return {

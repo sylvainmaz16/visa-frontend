@@ -881,6 +881,39 @@ export const countries_option_value_list = ["KBL", "TIA"
     , "HCM"
     , "LUS"
     , "HRE"];
+export const agency_support_countries_list = [
+    "Albania",
+    "Armenia",
+    "Azerbaijan",
+    "Bahamas",
+    "Barbados",
+    "Belgium",
+    "Bosnia",
+    "Canada",
+    "Croatia",
+    "Cyprus",
+    "France",
+    "Greece",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Macedonia",
+    "Kosovo",
+    "Netherlands",
+    "Jamaica",
+    "Turkey",
+    'United Arab Emirates',
+    "England",
+    "Serbia",
+    "South Africa",
+    "Spain",
+    "Argentina",
+    "Colombia",
+    "Chile",
+    "Ecuador",
+    "Peru",
+    "Uruguay"
+]
 export const countries_option_label_list = [
     "AFGHANISTAN, KABUL",
     "ALBANIA, TIRANA",
