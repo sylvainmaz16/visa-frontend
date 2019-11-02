@@ -25,7 +25,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, data } = this.props
+    const { showPrev, showNext, data, agency } = this.props
     const { countries_option_value_list, countries_option_label_list} = constants
 
     const token = this.props.cookies.get('immigration4us_token')
@@ -39,7 +39,7 @@ class MyForm extends Component {
         </div>
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>SUBMIT AND MAKE YOUR PAYMENT</Button>}
+          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>{agency ? 'Continue to Your Appointment Information': 'SUBMIT AND MAKE YOUR PAYMENT'}</Button>}
           {token && <Button type="danger" style={{marginLeft: '10px'}} onClick={(e) => this.props.handleSubmitWithoutPayment(e, this.props.form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>}
         </div>
       </Form>

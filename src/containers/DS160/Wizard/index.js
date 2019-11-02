@@ -415,7 +415,8 @@ class DS160_Wizard extends Component {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
       handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
-      validators: ds160_validators
+      validators: ds160_validators,
+      agency: agency
     }
 
     if(field.startsWith("form_security")) {
@@ -423,13 +424,14 @@ class DS160_Wizard extends Component {
         handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, "form_security"),
         handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, "form_security"),
         handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, "form_security"),
-        validators: ds160_validators
+        validators: ds160_validators,
+        agency: agency
       }
     }
 
     switch(step_index) {
       case 1:
-        form_render = <Form_DS160_1 showPrev={false} {...shared_params} data={ds160} agency={agency}/>
+        form_render = <Form_DS160_1 showPrev={false} {...shared_params} data={ds160}/>
         break;
       case 2:
         form_render = <Form_DS160_2 {...shared_params} data={ds160}/>
