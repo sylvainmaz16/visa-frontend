@@ -63,7 +63,7 @@ class MyForm extends Component {
             </Checkbox>
           )}
         </Form.Item>
-        <Form.Item label="Indicate the Purpose of Trip to the U.S." extra="PLEASE SELECT A VISA CLASS">
+        {/* <Form.Item label="Indicate the Purpose of Trip to the U.S." extra="PLEASE SELECT A VISA CLASS">
           {getFieldDecorator('data.purpose_of_trip', {
             initialValue: utils.getInitialValue(data.purpose_of_trip),
             rules: [{ required: true, message: 'This field is required' }],
@@ -72,7 +72,7 @@ class MyForm extends Component {
               {constants.purpose_of_trip_options.map((p, index) => <Option value={p.value} key={index}>{p.label}</Option>)}
             </Select>,
           )}
-        </Form.Item>
+        </Form.Item> */}
 
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Application Information</h2>
