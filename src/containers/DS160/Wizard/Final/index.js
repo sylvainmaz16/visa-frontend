@@ -28,7 +28,8 @@ class MyForm extends Component {
     const { showPrev, showNext, data, agency } = this.props
     const { countries_option_value_list, countries_option_label_list} = constants
 
-    const token = this.props.cookies.get('immigration4us_token')
+    // const token = this.props.cookies.get('immigration4us_token')
+    const token = localStorage.getItem('immigration4us_token')
 
     return (
       <Form {...formItemLayout}>

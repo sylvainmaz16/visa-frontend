@@ -13,11 +13,11 @@ const responseData = res => res;
 
 const requests = {
   get: (url, headers) =>
-    axios({ url: `${apiUrl}${url}`, method: "get", headers })
+    axios({ url: `${apiUrl}${url}`, method: "get", headers: {...headers, 'Authorization': 'Bearer ' + localStorage.getItem('immigration4us_token')} })
       .then(responseData)
       .catch(handleErrors),
   post: (url, headers, data) => 
-    axios({ url: `${apiUrl}${url}`, method: "post", headers, data })
+    axios({ url: `${apiUrl}${url}`, method: "post", headers: {...headers, 'Authorization': 'Bearer ' + localStorage.getItem('immigration4us_token')}, data })
       .then(responseData)
       .catch(handleErrors),
   //   getAddress: data =>
@@ -27,7 +27,7 @@ const requests = {
   //       .catch(handleErrors),
   put: (url, data) =>
     axios
-      .put(`${apiUrl}${url}`, data, {headers: {"Content-Type": "application/json"}})
+      .put(`${apiUrl}${url}`, data, {headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + localStorage.getItem('immigration4us_token')}})
       .then(responseData)
       .catch(handleErrors),
   patch: (url, data) =>
@@ -47,12 +47,17 @@ export const ApiManager = {
   UpdateDS160Application: (applicationId, data) => requests.put(`ds-160/${applicationId}`, data),
   GetDS160Application: (headers, applicationId) => requests.get(`ds-160/${applicationId}`, headers),
   CheckoutDS160: (headers, data) => requests.post(`ds-160/checkout/${data.applicationId}`, headers, data),
-  GetCustomersList: (headers, options) => requests.get(`ds-160/smlist?limit=${options.limit}&skip=${options.skip}${options.search ? `&search=${options.search}` : ""}${options.filters}`, headers),
+  GetCustomersList: (headers, options) => { 
+    const token = localStorage.getItem('immigration4us_token')
+    console.log(token)
+    return requests.get(`ds-160/smlist?limit=${options.limit}&skip=${options.skip}${options.search ? `&search=${options.search}` : ""}${options.filters}`, headers)
+  },
   GetMailTemplatesList: (headers, options) => requests.get(`mail?limit=${options.limit}&skip=${options.skip}`, headers),
   CreateMailTemplate: (headers, data) => requests.post(`mail`, headers, data),
   DeleteMailTemplate: (country) => requests.del(`mail/${country}`),
   UpdateMailTemplate: (mail) => requests.put(`mail/${mail.country}`, mail),
-  AuthLogin: (headers, data) => requests.post(`auth/login`, headers, data),
+  AuthLogin: (headers, data) => requests.post(`users/authenticate`, headers, data),
+  // AuthLogout: (headers, data) => requests.post(`users/logout`, headers, data),
   UserRegister: (headers, data) => requests.post(`users/register`, headers, data),
   GetUsersList: (headers, options) => requests.get(`users/?limit=${options.limit}&skip=${options.skip}${options.search ? `&search=${options.search}` : ""}${options.filters}`, headers),
   DeleteUser: (_id) => requests.del(`users/${_id}`),

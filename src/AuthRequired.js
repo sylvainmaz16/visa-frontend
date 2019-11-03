@@ -16,7 +16,9 @@ export class AuthRequired extends React.Component {
 
     render() {
 
-        const token = this.props.cookies.get('immigration4us_token')
+        // const token = this.props.cookies.get('immigration4us_token')
+        const token = localStorage.getItem('immigration4us_token')
+        const user = JSON.parse(localStorage.getItem('user'))
 
         if (!token) {
             return (<Redirect to='/auth' />);

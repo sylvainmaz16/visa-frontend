@@ -15,6 +15,7 @@ const openNotificationWithIcon = type => {
 };
 
 import * as utils from '../../../utils/index'
+import * as constants from '../../../utils/constants'
 
 class AdminPageUsers extends Component {
   static defaultProps = {
@@ -138,6 +139,16 @@ class AdminPageUsers extends Component {
         dataIndex: 'createdAt',
         key: 'createdAt',
         ellipsis: true
+      },
+      {
+        title: 'Role',
+        dataIndex: 'role',
+        key: 'role',
+        render: (value, record) => {
+          if(value == constants.USER_ROLE.AGENCY)
+            return <Tag color="green">Agency</Tag>
+          return <Tag color="geekblue">Administrator</Tag>
+        }
       },
       {
         title: 'Approved',

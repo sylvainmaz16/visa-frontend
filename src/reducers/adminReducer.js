@@ -3,8 +3,6 @@ import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {
 
-  user: null,
-
   data: [],
   totalCount: 0,
   mailTemplates: [],
@@ -31,6 +29,19 @@ function adminReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case ADMIN.LOGOUT_REQUEST:
+      localStorage.removeItem('user')
+      return {
+        ...state,
+      };
+    case ADMIN.LOGOUT_SUCCESS:
+      return {
+        ...state,
+      };
+    case ADMIN.LOGOUT_FAILURE:
+      return {
+        ...state,
+      };
     case ADMIN.LOGIN_REQUEST:
       return {
         ...state,
@@ -40,12 +51,10 @@ function adminReducer(state = initialState, action) {
       
       return {
         ...state,
-        user: {
-          username: action.data.username
-        },
         loading: false
       };
     case ADMIN.LOGIN_FAILURE:
+      
       return {
         ...state,
         loading: false

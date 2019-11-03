@@ -10,14 +10,11 @@ import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
 import AdminPageUsers from './Pages/users'
 import { withCookies } from 'react-cookie';
+import * as constants from '../../utils/constants'
 
 import './index.scss'
 
-const menus = [
-  { key: "ds160", label: 'DS-160' },
-  { key: "mail", label: 'Mail Templates'},
-  { key: "users", label: 'Agencies'},
-]
+
 
 class AdminBoard extends Component {
   static defaultProps = {
@@ -39,26 +36,49 @@ class AdminBoard extends Component {
   logout() {
     
     this.props.cookies.remove('immigration4us_authRedirectTo')
-    this.props.cookies.remove('immigration4us_token')
+    // this.props.cookies.remove('immigration4us_token')
+    localStorage.removeItem('immigration4us_token')
+    localStorage.removeItem('user')
     this.props.history.push('/auth')
   }
 
   render() {
 
     const { pagination, menu, pattern } = this.props
+    const user = JSON.parse(localStorage.getItem('user'))
 
     let renderPage = ""
 
+    let menus = []
+
+    if(user.role == constants.USER_ROLE.ADMIN) {
+      menus = [
+        { key: "ds160", label: 'DS-160' },
+        { key: "mail", label: 'Mail Templates'},
+        { key: "users", label: 'Agencies'},
+      ]
+    } else if (user.role == constants.USER_ROLE.AGENCY) {
+      menus = [
+        { key: "ds160", label: 'DS-160' },
+      ]
+    } else if (user.role == constants.USER_ROLE.NOT) {
+      menus = [
+        { key: "ds160", label: 'DS-160' },
+      ]
+    }
 
     switch (menu) {
       case 'ds160':
-        renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern}/>
+        if(user.role == constants.USER_ROLE.ADMIN || user.role == constants.USER_ROLE.AGENCY)
+          renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern}/>
         break;
       case 'mail':
-        renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern}/>
+        if(user.role == constants.USER_ROLE.ADMIN)
+          renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern}/>
         break;
       case 'users':
-        renderPage = <AdminPageUsers pagination={pagination} pattern={pattern}/>
+        if(user.role == constants.USER_ROLE.ADMIN)
+          renderPage = <AdminPageUsers pagination={pagination} pattern={pattern}/>
         break;
       default:
         break;
@@ -91,7 +111,7 @@ class AdminBoard extends Component {
           >
             {menus.map(item => <Menu.Item key={item.key}><Link to={{ pathname: '/board/' + item.key }}>{item.label}</Link></Menu.Item>)}
             <div style={{ float: 'right', cursor: 'pointer' }}>
-              <span style={{ marginRight: '10px' }}>Admin</span>
+              <span style={{ marginRight: '10px' }}>{user ? user.username : 'Your username'}</span>
               <Dropdown
                 overlay={accountMenu} 
                 trigger={['click']}
@@ -127,6 +147,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
+  // user: state.admin.user,
   data: state.admin.data,
   loading: state.admin.loading,
 })

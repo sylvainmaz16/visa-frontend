@@ -9,11 +9,11 @@ import { Button, notification } from 'antd';
 
 import './index.scss'
 
-const openNotificationWithIcon = type => {
+const openNotificationWithIcon = (type, descr, username = 'Customer') => {
   notification[type]({
-    message: 'Hello, Admin!',
+    message: `Hello, ${username}!`,
     description:
-      type == 'success' ? 'Successfully logged in. Please remember to log out after your work!' : 'Failed to log in. Please input your username or password correctly.',
+      type == 'success' ? 'Successfully logged in. Please remember to log out after your work!' : descr ? descr : 'Failed to log in. Please input your username or password correctly.',
   });
 };
 
@@ -29,14 +29,26 @@ class AuthPage extends Component {
   onLogin = (values) => {
     this.props.login(ADMIN.LOGIN_REQUEST, values, (result) => {
       if(result.error) {
-        openNotificationWithIcon('error')
+        localStorage.removeItem('immigration4us_token')
+        localStorage.removeItem('user')
+        openNotificationWithIcon('error', result.error)
       } else {
         const {cookies} = this.props
         const redirectTo = cookies.get('immigration4us_authRedirectTo')
-        openNotificationWithIcon('success')
+        openNotificationWithIcon('success', null, result.user.username)
         if(result.token) {
-          cookies.set('immigration4us_token', result.token, { path: '/', maxAge: 3600 });
+          const user = {
+            username: result.user.username,
+            email: result.user.email,
+            role: result.user.role
+          }
+          localStorage.setItem('immigration4us_token', result.token)
+          localStorage.setItem('user', JSON.stringify(user))
+          // cookies.set('immigration4us_token', result.token, { path: '/', maxAge: 3600 });
           this.props.history.push(redirectTo ? redirectTo : '/board')
+        } else {
+          localStorage.removeItem('immigration4us_token')
+          localStorage.removeItem('user')
         }
       }
       
