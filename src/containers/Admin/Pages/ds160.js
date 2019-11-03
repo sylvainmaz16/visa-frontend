@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADMIN } from '../../../actions/types'
+import * as constants from '../../../utils/constants'
 import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd';
 const { Header, Content, Footer } = Layout;
 
@@ -117,7 +118,7 @@ class AdminPageDS160 extends Component {
 
   render() {
 
-    const { data, pagination, loading, total } = this.props
+    const { data, pagination, loading, total, user } = this.props
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     const columns = [
@@ -212,11 +213,23 @@ class AdminPageDS160 extends Component {
         title: 'Action',
         key: 'action',
         render: (text, record) => {
-          if (!record.completed || !record.automation_status)
+          if (!record.completed)
+            return '-'
+          if (!record.paid) {
+            if(!user.role == constants.USER_ROLE.ADMIN) {
+              return <Button type="primary" shape="round" icon="credit-card" size="small">
+                <a href={`https://evisa-forms.com/checkout/?add-to-cart=1471&application_number=${record.app_id}&token=${record._id}`} style={{ textDecoration: 'none', color: 'white' }} > Submit with Payment</a>
+              </Button>
+            }
+          }
+          if (!record.automation_status)
             return '-'
           if (record.automation_status.error) {
             return (<Button type="danger" shape="round" icon="warning" size="small">
-              <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
+              { user.role == constants.USER_ROLE.ADMIN 
+                ? <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
+                : <a style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
+              }
             </Button>)  
           }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == false) {

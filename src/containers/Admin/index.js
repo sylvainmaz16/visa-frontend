@@ -70,15 +70,15 @@ class AdminBoard extends Component {
     switch (menu) {
       case 'ds160':
         if(user.role == constants.USER_ROLE.ADMIN || user.role == constants.USER_ROLE.AGENCY)
-          renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern}/>
+          renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern} user={user}/>
         break;
       case 'mail':
         if(user.role == constants.USER_ROLE.ADMIN)
-          renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern}/>
+          renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern} user={user}/>
         break;
       case 'users':
         if(user.role == constants.USER_ROLE.ADMIN)
-          renderPage = <AdminPageUsers pagination={pagination} pattern={pattern}/>
+          renderPage = <AdminPageUsers pagination={pagination} pattern={pattern} user={user}/>
         break;
       default:
         break;
