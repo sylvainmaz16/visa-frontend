@@ -9,9 +9,15 @@ function* getRequest(action) {
   };
 
   try {
+    let users = []
+    if(action.isAdmin) {
+      const resUsers = yield call(ApiManager.GetUsersList, headers, action.options);
+      users = resUsers.data;
+    }
+    
     const res = yield call(ApiManager.GetCustomersList, headers, action.options);
     const data = res.data;
-    yield put({ type: ADMIN.GET_CUSTOMER_LIST_SUCCESS, data });
+    yield put({ type: ADMIN.GET_CUSTOMER_LIST_SUCCESS, data, users });
   } catch (e) {
     const status = e.response.status;
 

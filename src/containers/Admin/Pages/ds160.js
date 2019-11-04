@@ -31,21 +31,21 @@ class AdminPageDS160 extends Component {
       selected_record: null
     }
   }
-  loadList = (pagination) => {
+  loadList = (pagination, isAdmin) => {
     this.props.getCustomersList(ADMIN.GET_CUSTOMER_LIST_REQUEST, {
       limit: pagination.pageSize,
       skip: pagination.pageSize * (pagination.current - 1),
       search: pagination.search,
       filters: utils.getFilterString(pagination.filters),
-    })
+    }, isAdmin)
   }
   componentDidMount() {
-    this.loadList(this.props.pagination)
+    this.loadList(this.props.pagination, this.props.user && this.props.user.role == constants.USER_ROLE.ADMIN)
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if ((nextProps.pattern != this.props.pattern)) {
-      this.loadList(nextProps.pagination)
+      this.loadList(nextProps.pagination, false)
     }
   }
 
@@ -119,6 +119,15 @@ class AdminPageDS160 extends Component {
     const { data, pagination, loading, total, user } = this.props
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
+    let agencyFilter = []
+    if(this.props.users) {
+      this.props.users.forEach(user => {
+        if( user.approved && user.role == constants.USER_ROLE.AGENCY)
+          agencyFilter.push({ text: user.username, value: user.username })
+      })
+      agencyFilter.push({ text: 'none', value: 'none' })
+    }
+
     const columns = [
       {
         title: 'ID',
@@ -156,6 +165,11 @@ class AdminPageDS160 extends Component {
         title: 'Agency',
         dataIndex: 'agency',
         key: 'agency',
+        filters: agencyFilter,
+        filteredValue: pagination.filters.agency,
+        // onFilter: (value, record) => {
+        //   return value == record.agency
+        // }
       },
       {
         title: 'Transaction ID',
@@ -300,8 +314,8 @@ class AdminPageDS160 extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCustomersList: (type, options) => {
-      dispatch({ type, options })
+    getCustomersList: (type, options, isAdmin) => {
+      dispatch({ type, options, isAdmin })
     },
     setPagination: (type, pagination) => {
       dispatch({ type, pagination })
@@ -316,6 +330,8 @@ const mapStateToProps = state => ({
   data: state.admin.data,
   total: state.admin.totalCount,
   loading: state.admin.loading,
+  users: state.admin.users,
+  totalUserCnt: state.admin.totalUserCnt
 })
 
 

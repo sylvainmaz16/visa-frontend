@@ -245,8 +245,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-  data: state.admin.data,
-  total: state.admin.totalCount,
+  data: state.admin.users,
+  total: state.admin.totalUserCnt,
   loading: state.admin.loading,
 })
 

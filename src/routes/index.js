@@ -35,7 +35,7 @@ class Routes extends Component {
               current = 1
             let search = params.get("search")
 
-            const filterParams = ["checkout", "automation_status"]
+            const filterParams = ["checkout", "automation_status", "agency"]
 
             filterParams.forEach(param => {
               let pvalue = params.get(param)

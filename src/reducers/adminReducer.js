@@ -4,7 +4,9 @@ import objectAssignDeep from 'object-assign-deep'
 const initialState = {
 
   data: [],
+  users: [],
   totalCount: 0,
+  totalUserCnt: 0,
   mailTemplates: [],
   mailTotalCount: 0,
   loading: false,
@@ -117,8 +119,8 @@ function adminReducer(state = initialState, action) {
     case ADMIN.GET_USERS_LIST_SUCCESS: {
       return {
         ...state,
-        data: [...action.data],
-        totalCount: action.data.total,
+        users: [...action.data],
+        totalUserCnt: action.data.length,
         loading: false
       };
     }
@@ -139,6 +141,8 @@ function adminReducer(state = initialState, action) {
         ...state,
         data: [...action.data.list],
         totalCount: action.data.total,
+        users: action.users.length ? [...action.users] : [...state.users],
+        totalUserCnt: action.users.length ? action.users.length : state.totalUserCnt,
         loading: false
       };
     }
