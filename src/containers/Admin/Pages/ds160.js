@@ -50,11 +50,9 @@ class AdminPageDS160 extends Component {
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    console.log(filters)
 
     let filterString = utils.getFilterString(filters)
 
-    console.log(filterString)
     this.props.history.push({
       pathname: '/board/ds160',
       search: `?current=${pagination.current}` + (pagination.search ? `&search=${pagination.search}` : '') + filterString
