@@ -29,7 +29,6 @@ function* getUsersRequest(action) {
     const data = res.data;
     yield put({ type: ADMIN.GET_USERS_LIST_SUCCESS, data });
   } catch (e) {
-    console.log(e);
     const status = e.response.status;
 
     yield put({ type: ADMIN.GET_USERS_LIST_FAILURE, status });
@@ -56,7 +55,6 @@ function* approveUserRequest(action) {
     yield put({ type: ADMIN.APPROVE_USER_SUCCESS, data });
     yield put({ type: ADMIN.GET_USERS_LIST_REQUEST, options: action.options })
   } catch (e) {
-    console.log(e)
     const status = e.response.status;
 
     yield put({ type: ADMIN.APPROVE_USER_FAILURE, status });
@@ -129,11 +127,9 @@ function* loginRequest(action) {
   try {
     const res = yield call(ApiManager.AuthLogin, headers, action.data);
     const data = res.data;
-    console.log(data)
     yield put({ type: ADMIN.LOGIN_SUCCESS, data });
     action.cb( { error: null, token: data.token, user: data } )
   } catch (e) {
-    console.log(e)
     const status = e.response.status;
 
     yield put({ type: ADMIN.LOGIN_FAILURE, status });

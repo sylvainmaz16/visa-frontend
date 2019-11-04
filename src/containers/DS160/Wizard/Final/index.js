@@ -32,6 +32,8 @@ class MyForm extends Component {
     const token = localStorage.getItem('immigration4us_token')
     const user = JSON.parse(localStorage.getItem('user'))
 
+    console.log(token)
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
