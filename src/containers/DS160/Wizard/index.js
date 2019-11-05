@@ -7,7 +7,7 @@ import { DS160 } from '../../../actions/types'
 import Form_DS160_1 from './Step1';
 import Form_DS160_2 from './Step2';
 import Form_DS160_3 from './Step3_Personal_Information';
-import { Spin, notification } from 'antd';
+import { Spin, notification, Progress } from 'antd';
 
 import Form_DS160_4_Travel from './Step4_Travel';
 import Form_DS160_5_Travel_Company from './Step5_Travel_Company';
@@ -525,6 +525,7 @@ class DS160_Wizard extends Component {
         <VisaBanner backgroundColor="#428bca">
           DS 160 US Visa Online Application
         </VisaBanner>
+        <Progress strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }} percent={parseInt(step_index * 100.0 / (fields_list.length - 1))} status="active" style={{ width: '80%', left: '10%'}}/>
         <div className="visa-ds160__content container">
           {form_render}
         </div>
