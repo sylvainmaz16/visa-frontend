@@ -115,11 +115,32 @@ class MyForm extends Component {
         "Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?",
       ]
     }
-    explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});
-    explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: utils.getInitialValue(data.part2[exp.radio]) })});
-    explain.part3.map((exp, index) => { getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part3.array[index].radio) })});
-    explain.part4.map((exp, index) => { getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part4.array[index].radio) })});
-    explain.part5.map((exp, index) => { getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part5.array[index].radio) })});
+    if(SQIndex == 0) {
+      explain.part1.map((exp, index) => { getFieldDecorator(`data.part1.${exp.radio}`, { initialValue: utils.getInitialValue(data.part1[exp.radio]) })});
+    }
+      
+    if(SQIndex == 1) {
+      explain.part2.map((exp, index) => { getFieldDecorator(`data.part2.${exp.radio}`, { initialValue: utils.getInitialValue(data.part2[exp.radio]) })});
+    }
+    
+    if(SQIndex == 2) {
+      explain.part3.map((exp, index) => { 
+        getFieldDecorator(`data.part3.array[${index}].text`, { initialValue: utils.getInitialValue(data.part3.array[index].text) })
+        getFieldDecorator(`data.part3.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part3.array[index].radio) })
+      });
+    }
+    if(SQIndex == 3) {
+      explain.part4.map((exp, index) => { 
+        getFieldDecorator(`data.part4.array[${index}].text`, { initialValue: utils.getInitialValue(data.part4.array[index].text) })
+        getFieldDecorator(`data.part4.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part4.array[index].radio) })
+      });
+    }
+    if(SQIndex == 4) {
+      explain.part5.map((exp, index) => { 
+        getFieldDecorator(`data.part5.array[${index}].text`, { initialValue: utils.getInitialValue(data.part5.array[index].text) })
+        getFieldDecorator(`data.part5.array[${index}].radio`, { initialValue: utils.getInitialValue(data.part5.array[index].radio) })
+      });
+    }
 
     return (
       <Form {...formItemLayout}>
