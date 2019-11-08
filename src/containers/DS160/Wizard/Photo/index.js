@@ -41,6 +41,7 @@ class MyForm extends Component {
     return new Promise(async (resolve, reject) => {
       const formData = new FormData()
       formData.append('file', file)
+      formData.append('fileType', 'jpeg')
       await axios
         .post(
           constants.apiURL + "assets",
