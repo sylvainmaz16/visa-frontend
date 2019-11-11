@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Form, Button, Select, Checkbox } from 'antd';
 import * as constants from '../../../../utils/constants'
 import * as utils from '../../../../utils'
-import VisaInput from "../../../../components/VisaInput";
-import VisaSelectItem from "../../../../components/VisaSelectItem";
 
 const { Option } = Select;
 
@@ -76,27 +74,7 @@ class MyForm extends Component {
           )}
         </Form.Item> */}
 
-        <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Application Information</h2>
-        </div>
-
-        <VisaSelectItem
-          label="Security Question"
-          field="data.sq_type"
-          initialValue={data.sq_type}
-          extra="In order to access your application later, however, you will need: (1) your Application ID, and (2) the answer to the security question that you will choose on this page."
-          content={{
-            combines: constants.export_list(constants.security_question_options)
-          }}
-          getFieldDecorator={getFieldDecorator}
-        />
-        <VisaInput 
-          label="Answer"
-          field="data.sq_answer"
-          initialValue={data.sq_answer}
-          getFieldDecorator={getFieldDecorator}
-          
-        />
+        
         <div className="visa-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
