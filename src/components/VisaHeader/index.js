@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import './index.scss'
 
 class VisaHeader extends Component {
-  constructor(props) {
-    super(props)
+  static defaultProps = {
+    backgroundColor: 'rgba(81, 156, 255, 1)',
+    className: ''
   }
 
   render() {
+    const { className } = this.props
     return (
-      <div className="visa-com-header">
+      <div className={"visa-com-header " + className}>
       </div>
     )
   }

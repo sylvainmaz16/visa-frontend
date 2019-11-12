@@ -91,4 +91,22 @@ body {
     vertical-align: text-bottom;
 }
 @media print {
+    .visa-com-header {
+        display: none;
+    }
+    .visa-com-banner {
+        display: none;
+    }
+    .ant-progress {
+        display: none;
+    }
+    .visa-com-header-first {
+        display: block;
+    }
+    .visa-com-banner-first {
+        display: block;
+    }
+    .visa-form-bottom-btn-group {
+        display: none;
+    }
 }

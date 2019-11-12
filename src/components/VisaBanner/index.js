@@ -16,16 +16,17 @@ export const ControlTopRight = styled.div`
 
 class VisaBanner extends Component {
   static defaultProps = {
-    backgroundColor: 'rgba(81, 156, 255, 1)'
+    backgroundColor: 'rgba(81, 156, 255, 1)',
+    className: ''
   }
   constructor(props) {
     super(props)
   }
 
   render() {
-    const { backgroundColor } = this.props
+    const { backgroundColor, className } = this.props
     return (
-      <div className="visa-com-banner" style={{backgroundColor}}>
+      <div className={"visa-com-banner " + className} style={{backgroundColor}}>
         <h2>{this.props.children}</h2>
       </div>
     )
