@@ -72,6 +72,9 @@ export const ADMIN = createActionTypes('ADMIN', [
   'APPROVE_USER_REQUEST',
   'APPROVE_USER_SUCCESS',
   'APPROVE_USER_FAILURE',
+  'AUTOMATE_REQUEST',
+  'AUTOMATE_SUCCESS',
+  'AUTOMATE_FAILURE',
 ])
 
 export default {

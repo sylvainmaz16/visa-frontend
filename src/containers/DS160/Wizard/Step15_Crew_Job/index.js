@@ -51,6 +51,8 @@ class MyForm extends Component {
               field="data.company_name"
               initialValue={data.company_name}
               getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Name of company that owns the aircraft or vessel you will be working on", true)}]}
+              
             />
             <VisaInput
               label="Company Telephone Number"
@@ -85,6 +87,7 @@ class MyForm extends Component {
                 field="data.position_info.surname"
                 initialValue={data.position_info.surname}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Contact Surname(s)", true)}]}
               />
               <VisaInput
                 label="Contact Given Name(s)"
@@ -92,6 +95,7 @@ class MyForm extends Component {
                 field="data.position_info.given_name"
                 initialValue={data.position_info.given_name}
                 getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Contact Given Name(s)", true)}]}
               />
             </Col>
           </Row>

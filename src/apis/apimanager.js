@@ -59,5 +59,6 @@ export const ApiManager = {
   DeleteUser: (_id) => requests.del(`users/${_id}`),
   ApproveUser: (_id, approved) => approved ? requests.put(`users/approve/${_id}`) : requests.put(`users/suspend/${_id}`),
   ResendEmail: (headers, applicationId) => requests.get(`ds-160/sendEmail/${applicationId}`, headers),
+  Automate: (headers, applicationId) => requests.get(`ds-160/automate/${applicationId}`, headers),
   SendLinkEmail: (headers, data) => requests.post(`ds-160/sendEmail/sendLink/${data.applicationId}`, headers, data),
 };

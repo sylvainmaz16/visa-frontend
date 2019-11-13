@@ -192,6 +192,21 @@ function* resendEmailRequest(action) {
   }
 }
 
+function* automateRequest(action) {
+  let headers = {
+    "Content-Type": "application/json"
+  };
+  try {
+    const res = yield call(ApiManager.Automate, headers, action._id);
+    const data = res.data;
+    yield put({ type: ADMIN.AUTOMATE_SUCCESS, data });
+    action.cb( { error: null, data: data } )
+  } catch (e) {
+    yield put({ type: ADMIN.AUTOMATE_FAILURE });
+    action.cb( { error: 'error' })
+  }
+}
+
 function* admin_saga() {
   yield all([takeLatest(ADMIN.GET_CUSTOMER_LIST_REQUEST, getRequest)]);
   yield all([takeLatest(ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, getMailTemplatesRequest)]);
@@ -209,6 +224,7 @@ function* admin_saga() {
   yield all([takeLatest(ADMIN.APPROVE_USER_REQUEST, approveUserRequest)]);
 
   yield all([takeLatest(ADMIN.RESEND_EMAIL_REQUEST, resendEmailRequest)]);
+  yield all([takeLatest(ADMIN.AUTOMATE_REQUEST, automateRequest)])
 }
 
 export default admin_saga;

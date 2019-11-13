@@ -6,11 +6,10 @@ import * as constants from '../../../utils/constants'
 import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd';
 const { Header, Content, Footer } = Layout;
 
-const openNotificationWithIcon = type => {
+const openNotificationWithIcon = (type, message, description) => {
   notification[type]({
-    message: type == 'success' ? 'Successfully sent!' : 'Failed to send an email!',
-    description:
-      type == 'success' ? 'The email has been sent' : `There isn't such email template based on the interview location.`,
+    message: message,
+    description: description
   });
 };
 
@@ -80,13 +79,13 @@ class AdminPageDS160 extends Component {
     })
     this.props.resendEmail(ADMIN.RESEND_EMAIL_REQUEST, selected_record._id, (result) => {
       if(result.error) {
-        openNotificationWithIcon('error')
+        openNotificationWithIcon('error', 'Failed to send an email!', `There isn't such email template based on the interview location.`)
       } else if( result.data && result.data.status == 404 ) {
-        openNotificationWithIcon('error')
+        openNotificationWithIcon('error', 'Failed to send an email!', `There isn't such email template based on the interview location.`)
       } else if( result.data && result.data.status == 500 ) {
-        openNotificationWithIcon('error')
+        openNotificationWithIcon('error', 'Failed to send an email!', `There isn't such email template based on the interview location.`)
       } else {
-        openNotificationWithIcon('success')
+        openNotificationWithIcon('success', 'Successfully sent!', 'The email has been sent')
         this.loadList(this.props.pagination)
       }
       this.setState({
@@ -112,6 +111,19 @@ class AdminPageDS160 extends Component {
         pathname: '/board/ds160',
         search: `?current=${pagination.current}` + (search && search.length ? `&search=${search}` : '') + filterString
       })
+  }
+
+  onSubmitWithoutPayment = (record) => {
+    this.props.automate(ADMIN.AUTOMATE_REQUEST, record._id, (result) => {
+      // openNotificationWithIcon
+      if(result.error) {
+        openNotificationWithIcon('error', 'Failed', 'Failed to submit without payment')
+      } else {
+        openNotificationWithIcon('error', 'Success', 'Successed to submit without payment. Please wait few mins to complete')
+        this.loadList(this.props.pagination)
+      }
+      console.log('automated')
+    })
   }
 
   render() {
@@ -237,21 +249,28 @@ class AdminPageDS160 extends Component {
           if (!record.automation_status)
             return '-'
           if (record.automation_status.error) {
-            return (<Button type="danger" shape="round" icon="warning" size="small">
+            return (<><Button type="danger" shape="round" icon="warning" size="small">
               { user.role == constants.USER_ROLE.ADMIN 
-                ? <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
+                ?<a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
                 : <a style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
               }
-            </Button>)  
+            </Button>
+            {user.role == constants.USER_ROLE.ADMIN && <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
+              Submit without payment
+            </Button>}
+            </>)
           }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == false) {
             return (<Button type="default" shape="round" icon="mail" size="small" style={{ background: 'blueviolet', color: 'white' }} onClick={() => this.onClickSendEmail(record)}>
               Send Email
             </Button>)  
           }
-          return (<Button type="primary" shape="round" icon="download" size="small">
-            <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Download PDF</a>
-          </Button>)
+          if (record.automation_status.result == 'success' && record.automation_status.email_status == true) {
+            return (<Button type="primary" shape="round" icon="download" size="small">
+              <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Download PDF</a>
+            </Button>)
+          }
+          return "-"
         },
       },
     ];
@@ -321,6 +340,9 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type, pagination })
     },
     resendEmail: (type, _id, cb) => {
+      dispatch({ type, _id, cb })
+    },
+    automate: (type, _id, cb) => {
       dispatch({ type, _id, cb })
     }
   }
