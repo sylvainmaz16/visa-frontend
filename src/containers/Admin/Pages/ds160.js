@@ -119,7 +119,7 @@ class AdminPageDS160 extends Component {
       if(result.error) {
         openNotificationWithIcon('error', 'Failed', 'Failed to submit without payment')
       } else {
-        openNotificationWithIcon('error', 'Success', 'Successed to submit without payment. Please wait few mins to complete')
+        openNotificationWithIcon('success', 'Success', 'Successed to submit without payment. Please wait few mins to complete')
         this.loadList(this.props.pagination)
       }
       console.log('automated')
