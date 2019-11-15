@@ -239,15 +239,13 @@ class AdminPageDS160 extends Component {
         render: (text, record) => {
           if (!record.completed)
             return '-'
-          if (!record.paid) {
-            if(!user.role == constants.USER_ROLE.ADMIN) {
-              // return <Button type="primary" shape="round" icon="credit-card" size="small">
-              //   <a href={`https://evisa-forms.com/checkout/?add-to-cart=1471&application_number=${record.app_id}&token=${record._id}`} style={{ textDecoration: 'none', color: 'white' }} > Submit with Payment</a>
-              // </Button>
+          if(user.role != constants.USER_ROLE.ADMIN) {
+            if(!record.automation_status) {
               return <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
                 Submit without payment
               </Button>
             }
+            return '-'
           }
           if (!record.automation_status)
             return '-'
