@@ -241,8 +241,11 @@ class AdminPageDS160 extends Component {
             return '-'
           if (!record.paid) {
             if(!user.role == constants.USER_ROLE.ADMIN) {
-              return <Button type="primary" shape="round" icon="credit-card" size="small">
-                <a href={`https://evisa-forms.com/checkout/?add-to-cart=1471&application_number=${record.app_id}&token=${record._id}`} style={{ textDecoration: 'none', color: 'white' }} > Submit with Payment</a>
+              // return <Button type="primary" shape="round" icon="credit-card" size="small">
+              //   <a href={`https://evisa-forms.com/checkout/?add-to-cart=1471&application_number=${record.app_id}&token=${record._id}`} style={{ textDecoration: 'none', color: 'white' }} > Submit with Payment</a>
+              // </Button>
+              return <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
+                Submit without payment
               </Button>
             }
           }
