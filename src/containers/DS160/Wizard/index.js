@@ -115,16 +115,16 @@ class DS160_Wizard extends Component {
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency: agency
     }
-    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
-    
-    if(agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form-later', 
-        search: `?agency=${agency}`
-      });  
-    } else {
-      this.props.history.push('/ds-160/application-form-later')
-    }
+    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
+      if(agency) {
+        this.props.history.push({
+          pathname: '/ds-160/application-form-later', 
+          search: `?agency=${agency}`
+        });  
+      } else {
+        this.props.history.push('/ds-160/application-form-later')
+      }
+    })
   }
 
   onSubmit = (data, field) => {
@@ -156,8 +156,9 @@ class DS160_Wizard extends Component {
       data: field != '' ? objectAssignDeep(this.props.ds160, {[field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency: agency
     }
-    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId)
-    openNotificationWithIcon('success')
+    this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
+      openNotificationWithIcon('success')
+    })
   }
 
   handleSubmitWithoutPayment = (e, form, handleDates, field) => {
@@ -218,9 +219,9 @@ class DS160_Wizard extends Component {
   };
 
   render() {
-    const { step_index, ds160, bWaitLoadFromDB, token, agency } = this.props
+    const { step_index, ds160, loading, token, agency } = this.props
 
-    if(token && bWaitLoadFromDB) {
+    if(loading) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin">
       </Spin>
     }
@@ -559,7 +560,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => ({
   step_index: state.main.step_index,
   ds160: state.main.ds160,
-  bWaitLoadFromDB: state.main.bWaitLoadFromDB,
+  loading: state.main.loading,
   applicationId: state.main.applicationId,  
 })
 

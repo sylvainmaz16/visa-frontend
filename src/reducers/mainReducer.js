@@ -3,7 +3,6 @@ import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {
   loading: false,
-  bWaitLoadFromDB: false,
 
   applicationId: null,
 
@@ -606,13 +605,13 @@ function mainReducer(state = initialState, action) {
     case DS160.DS160_GET_REQUEST: {
       return {
         ...state,
-        bWaitLoadFromDB: true
+        loading: true
       };
     }
     case DS160.DS160_GET_SUCCESS: {
       return {
         ...state,
-        bWaitLoadFromDB: false,
+        loading: false,
         step_index: action.data.step_index,
         applicationId: action.applicationId,
         ds160: action.data.data
@@ -620,7 +619,8 @@ function mainReducer(state = initialState, action) {
     }
     case DS160.DS160_GET_FAILURE: {
       return {
-        ...initialState
+        ...initialState,
+        loading: false
       };
     }
     case DS160.DS160_SAVE_REQUEST: {
@@ -696,25 +696,6 @@ function mainReducer(state = initialState, action) {
         checkout_result: null
       }
     }
-    /*
-    case API_GITHUB.PROFILE_GET_REQUEST: {
-      return {
-        ...state,
-        is_loading: true,
-      }
-    }
-    case API_GITHUB.PROFILE_GET_SUCCESS: {
-      return Object.assign({}, state, {
-        profile: { ...action.data },
-        is_loading: false,
-      })
-    }
-    case API_GITHUB.PROFILE_GET_FAILURE: {
-      return {
-        ...state,
-        is_loading: false,
-      }
-    }*/
     default: {
       return state
     }
