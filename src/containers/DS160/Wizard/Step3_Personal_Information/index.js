@@ -23,7 +23,7 @@ class MyForm extends Component {
     if (!value) {
       callback('This field is required');
     }
-    if (this.props.form.getFieldValue('data.nationality') == value) {
+    if (this.props.form.getFieldValue('data.nationality') == value || this.props.form.getFieldValue('data.other_nationality') == value) {
       callback('The Other Country/Region of Origin (Nationality) listed has already been (entered or selected).');
     }
     callback();

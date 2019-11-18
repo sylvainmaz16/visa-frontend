@@ -21,7 +21,7 @@ class Routes extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/auth" exact children={() => <AuthPage />} />
+          {/* <Route path="/auth" exact children={() => <AuthPage />} />
           <Route path="/signup" exact children={() => <SignupPage />} />
           <Route path="/board"  exact children={({ location }) => 
             <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu='ds160' pattern="" pagination={{ pageSize: 10, current: 1, filters: {}, serach: null}}/>}/>
@@ -76,7 +76,7 @@ class Routes extends Component {
           <Route path="/ds-160" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
             return <DS160_HOME agency={agency} />
-          }}/>
+          }}/> */}
 
           <Route path="/" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
