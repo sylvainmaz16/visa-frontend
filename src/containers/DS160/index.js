@@ -31,11 +31,6 @@ class DS160_HOME extends Component {
     const { agency } = this.props
     return (
       <div className="visa-ds160">
-        Sorry, we're down for scheduled maintenance right now
-      </div>
-    )
-    return (
-      <div className="visa-ds160">
         <VisaHeader />
         <VisaBanner>
           Important: Before You Start
