@@ -20,10 +20,12 @@ function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg';
   if (!isJpgOrPng) {
     message.error('You can only upload JPEG file!');
+    return true;
   }
   const isLt2M = file.size / 1024 / 1024 < 0.24;
   if (!isLt2M) {
     message.error('Image must smaller than 240KB!');
+    return true;
   }
   return false
 }
