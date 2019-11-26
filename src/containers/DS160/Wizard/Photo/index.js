@@ -236,13 +236,14 @@ class MyForm extends Component {
 
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">Payment Information</h2>
+          <div className="visa-global-section-description">Note: Please enter the first and last name of the person who makes the payment.</div>
         </div>
 
-        <Form.Item label="Payer's Name" extra="Please enter the first and last name of the person who makes the payment." required>
-          <Row gutter={16}>
+        <Form.Item label="Payer's Name" required style={{margin: '0px'}}>
+          <Row gutter={16} style={{margin: '0px'}}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                extra="First"
+                extra="First Name"
                 field="data.payer.surname"
                 initialValue={data.payer.surname}
                 getFieldDecorator={getFieldDecorator}
@@ -251,7 +252,7 @@ class MyForm extends Component {
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                extra="Last"
+                extra="Last Name"
                 field="data.payer.given_name"
                 initialValue={data.payer.given_name}
                 getFieldDecorator={getFieldDecorator}
@@ -270,12 +271,18 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]}
             />
+          </Col>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
               label="Payer's Passport Number"
               field="data.payer.passport"
               initialValue={data.payer.passport}
               getFieldDecorator={getFieldDecorator}
             />
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
               label="Payer's Email"
               field="data.payer.email"
@@ -283,6 +290,8 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address", true) }]}
             />
+          </Col>
+          <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaAddress
               label="Address"
               field="data.payer.address"
