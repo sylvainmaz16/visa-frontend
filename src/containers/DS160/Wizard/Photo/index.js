@@ -354,6 +354,8 @@ class MyForm extends Component {
           </Col>
         </Row>
 
+        <strong id="customer-ip-addr" style={{ display: 'none', marginBottom: '20px' }}></strong>
+
         <Form.Item label="Digital Signature Acknowledgment">
           {getFieldDecorator('data.b_certify', {
             initialValue: utils.getInitialValue(data.b_certify),
