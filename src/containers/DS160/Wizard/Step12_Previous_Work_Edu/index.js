@@ -223,7 +223,7 @@ class MyForm extends Component {
                 field="data.edu_info.date_to"
                 initialValue={data.edu_info.date_to}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Date of Attendance To", this.props.form.getFieldValue('data.edu_info.date_from'), false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateAttendanceTo(rule, value, callback, "Date of Attendance To", this.props.form.getFieldValue('data.edu_info.date_from'), false) }]}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}

@@ -161,6 +161,30 @@ const validateEarlierDate = (rule, value, callback, required = true) => {
     }
     callback('Date must be earlier than today');
 };
+const validateAttendanceTo = (rule, value, callback, field, fromDate, required) => {
+    
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if(!isValidDate(value) )
+    {
+        callback('Invalid Date')
+        return;
+    }
+    if (moment().diff(value) < 0 || moment(value, 'DD/MMM/YYYY').isSame(moment(), 'day')) {
+      callback(field + ' cannot be equal or later than today.');
+      return;
+    }
+    if(moment(fromDate, 'DD/MMM/YYYY').diff(value) > 0){
+        callback(field + ' cannot be earlier than From Date.');
+        return;
+    }
+    callback();
+};
 const validateBetweenDate = (rule, value, callback, field, fromDate, required) => {
     
     if (!value) {
@@ -496,7 +520,8 @@ const ds160_validators = {
     validateLeadingSpace,
     validateZipCode,
     validateStudyCourse,
-    validateNationalID
+    validateNationalID,
+    validateAttendanceTo
 }
 
 export default ds160_validators
