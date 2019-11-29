@@ -185,8 +185,8 @@ class VisaFormerSpouses extends Component {
           field={`${arrayField}[${index}].end_country`}
           initialValue={initialValue[index] ? initialValue[index].end_country : null}
           content={{
-            values: constants.countries_regions_option_value_list,
-            labels: constants.countries_regions_option_label_list,
+            values: constants.countries_only_option_value_list,
+            labels: constants.countries_only_option_label_list,
           }}
           getFieldDecorator={getFieldDecorator}
         />
