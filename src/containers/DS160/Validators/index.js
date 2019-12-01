@@ -346,7 +346,20 @@ const validateTelecodeName = (rule, value, callback, field) => {
       callback('This field is required');
       return;
     }
-    if(/^\d{4}$/.test(value)== false) {
+    const terms = value.split(' ')
+    let match = true
+    for(let i in terms) {
+        const term = terms[i]
+        if(!term || term.length != 4) {
+            match = false
+            break
+        }
+        if(/^\d{4}$/.test(term) == false) {
+            match = false
+            break
+        }
+    }
+    if(match == false) {
       callback(field + ' must only contain sets of four numbers separated by spaces');
       return;
     }
