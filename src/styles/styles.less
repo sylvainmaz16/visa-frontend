@@ -1,0 +1,109 @@
+@import "./variables.less";
+
+body {
+    font-size: 10px;
+    font-family: normal normal normal 12px/1.3em Tahoma,tahoma-w01-regular,tahoma-w02-regular,tahoma-w10-regular,tahoma-w15--regular,tahoma-w99-regular,sans-serif;
+}
+
+#root {
+    height: 100%;
+}
+
+.anticon {
+    vertical-align: 0px;
+}
+
+.ant-form-item-label > label {
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.visa-global-heading-1 {
+    font-weight: bold;
+    font-size: 14px;
+    // color: #3668A9;
+
+    line-height: normal;
+    letter-spacing: normal;
+    margin: 10px 0px;
+}
+
+.visa-global-field {
+    margin: 10px 16px 10px 0;
+    padding: 0 16px 8px 0;
+    font-family: "Open Sans", Arial, sans-serif;
+
+    .visa-global-section-title {
+        font-weight: 700;
+        font-size: 1.25em;
+    }
+    .visa-global-section-description {
+        font-weight: bold;
+        font-size: .813em;
+        letter-spacing: normal;
+        margin-bottom: 9px;
+    }
+}
+
+.visa-global-border-bottom {
+    border-bottom: 1px solid #CCC;
+}
+
+
+
+.visa-global-ul-1 {
+    font-size: 14px;
+    list-style-type: disc;
+
+    padding-left: 1.3em;
+    padding-right: 0;
+    margin-left: 0.5em;
+    margin-right: 0;
+    line-height: normal;
+    letter-spacing: normal;
+
+    li {
+        letter-spacing: normal;
+        p {
+            color: #545658;
+            margin: 0;
+        }
+    }
+}
+
+.visa-global-btn-group {
+    button {
+        margin-right: 20px;
+    }
+}
+
+.visa-global-form-bottom-btn-group {
+    width: 100%;
+    border-top: 1px solid #e9e9e9;
+    padding: 10px 16px;
+    margin-bottom: 100px;
+}
+
+.sigCanvas {
+    border: 2px dashed lightgray;
+    cursor: url(https://visasforms.com/wp-content/plugins/gravityformssignature/includes/super_signature/pen.cur), pointer;
+}
+.anticon {
+    vertical-align: text-bottom;
+}
+
+// @default-theme-color: rgb(66, 139, 202);
+// @agency-theme-color: #239aac;
+
+.visa-ds160 {
+    &__content {
+        margin-top: 30px;
+        margin-bottom: 100px;
+    }
+    .visa-com-banner {
+        background-color: @primary-color;
+    }
+    .visa-global-heading-1 {
+        color: @primary-color;
+    }
+}

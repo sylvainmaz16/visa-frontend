@@ -5,7 +5,7 @@ import {
   Redirect,
   BrowserRouter as Router,
 } from 'react-router-dom'
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.less'
 import DS160_HOME from '../containers/DS160'
 import DS160_Wizard from '../containers/DS160/Wizard'
 import DS160_SaveAndContinue from '../containers/DS160/SaveAndContinue'
@@ -18,6 +18,15 @@ import SignupPage from '../containers/Signup'
 
 class Routes extends Component {
   render() {
+
+    const defaultVars = {
+      '@primary-color': '#3668A9' //rgb(66, 139, 202)
+    }
+
+    const agencyVars = {
+      '@primary-color': '#239aac'
+    }
+
     return (
       <Router>
         <Switch>
@@ -80,6 +89,11 @@ class Routes extends Component {
 
           <Route path="/" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
+            // console.log(window.less)
+            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+              console.log('Theme updated successfully');
+            });
+
             return <DS160_HOME agency={agency} />
           }}/>
           

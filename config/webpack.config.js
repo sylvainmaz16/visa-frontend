@@ -23,7 +23,6 @@ const getClientEnvironment = require('./env')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
-
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -38,6 +37,20 @@ const cssRegex = /\.css$/
 const cssModuleRegex = /\.module\.css$/
 const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
+
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
+
+const options = {
+  antDir: path.join(__dirname, '../node_modules/antd'),
+  stylesDir: path.join(__dirname, '../src/styles'),
+  varFile: path.join(__dirname, '../src/styles/variables.less'),
+  mainLessFile: path.join(__dirname, '../src/styles/styles.less'),
+  themeVariables: ['@primary-color'],
+  indexFileName: 'index.html',
+  generateOnce: false,
+  lessUrl: "https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js",
+  publicPath: ""
+}
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -416,7 +429,19 @@ module.exports = function(webpackEnv) {
               test: /\.less$/,
               use: [
                 {
+                  loader: 'style-loader', // creates style nodes from JS strings
+                },
+                {
+                  loader: 'css-loader', // translates CSS into CommonJS
+                },
+                {
                   loader: 'less-loader',
+                  options: {
+                    modifyVars: {
+                      // 'primary-color': '#AA6E56',
+                    },
+                    javascriptEnabled: true
+                  },
                 },
               ],
             },
@@ -600,6 +625,7 @@ module.exports = function(webpackEnv) {
           silent: true,
           formatter: typescriptFormatter,
         }),
+        new AntDesignThemePlugin(options)
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

@@ -16,8 +16,6 @@ import Form_DS160_7_Address_Phone from './Step7_Address_Phone';
 import Form_DS160_8_Passport from './Step8_Passport';
 import Form_DS160_9_Contact from './Step9_Contact';
 import Form_DS160_10_Family from './Step10_Family';
-import Form_DS160_14_SEVIS from './Step15_SEVIS';
-import Form_DS160_14_IntraCompany from './Step15_IntraCompany';
 import objectAssignDeep from 'object-assign-deep'
 
 import ds160_validators from '../Validators'
@@ -521,9 +519,9 @@ class DS160_Wizard extends Component {
     }
 
     return (
-      <div className="visa-ds160">
+      <div className={agency ? `visa-ds160 visa-ds160-agency` : `visa-ds160`}>
         <VisaHeader className={ step_index == 1 ? "visa-com-header-first" : "visa-com-header-not-first" }/>
-        <VisaBanner backgroundColor="#428bca" className={ step_index == 1 ? "visa-com-banner-first" : "visa-com-banner-not-first" }>
+        <VisaBanner className={ step_index == 1 ? "visa-com-banner-first" : "visa-com-banner-not-first" }>
           DS 160 US Visa Online Application
         </VisaBanner>
         <Progress strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }} percent={parseInt(step_index * 100.0 / (fields_list.length - 1))} status="active" style={{ width: '80%', left: '10%'}}/>

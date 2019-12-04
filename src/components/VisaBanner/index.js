@@ -26,7 +26,7 @@ class VisaBanner extends Component {
   render() {
     const { backgroundColor, className } = this.props
     return (
-      <div className={"visa-com-banner " + className} style={{backgroundColor}}>
+      <div className={"visa-com-banner " + className}>
         <h2>{this.props.children}</h2>
       </div>
     )

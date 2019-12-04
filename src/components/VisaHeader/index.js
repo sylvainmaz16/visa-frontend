@@ -3,14 +3,14 @@ import './index.scss'
 
 class VisaHeader extends Component {
   static defaultProps = {
-    backgroundColor: 'rgba(81, 156, 255, 1)',
+    backgroundColor: 'white',
     className: ''
   }
 
   render() {
-    const { className } = this.props
+    const { className, backgroundColor } = this.props
     return (
-      <div className={"visa-com-header " + className}>
+      <div className={"visa-com-header " + className} style={{ backgroundColor }}>
       </div>
     )
   }

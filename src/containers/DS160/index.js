@@ -12,7 +12,8 @@ class DS160_HOME extends Component {
     super(props)
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 
   onStartApplication = () => {
     const { agency } = this.props
@@ -30,8 +31,8 @@ class DS160_HOME extends Component {
   render() {
     const { agency } = this.props
     return (
-      <div className="visa-ds160">
-        <VisaHeader />
+      <div className={agency ? `visa-ds160 visa-ds160-agency` : `visa-ds160`}>
+        <VisaHeader/>
         <VisaBanner>
           Important: Before You Start
         </VisaBanner>
