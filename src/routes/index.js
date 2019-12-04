@@ -68,28 +68,40 @@ class Routes extends Component {
               let terms = link.split('=');
               let applicationId = terms[terms.length - 1]
 
+              window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+                console.log('Theme updated successfully');
+              });
+
               return <DS160_Wizard token={applicationId} agency={agency}/>
             }}
           />
 
           <Route path="/ds-160/application-form-later" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
+            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+              console.log('Theme updated successfully');
+            });
             return <DS160_SaveAndContinue agency={agency} />
           }} />
 
           <Route path="/ds-160/application-form" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
+            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+              console.log('Theme updated successfully');
+            });
             return <DS160_Wizard agency={agency} />
           }} />
 
           <Route path="/ds-160" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
+            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+              console.log('Theme updated successfully');
+            });
             return <DS160_HOME agency={agency} />
           }}/>
 
           <Route path="/" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
-            // console.log(window.less)
             window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
               console.log('Theme updated successfully');
             });
