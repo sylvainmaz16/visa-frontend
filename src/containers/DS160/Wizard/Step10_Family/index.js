@@ -148,7 +148,7 @@ class MyForm extends Component {
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Father's Given Name (First Name)"
+                label="Father's Surname (Last Name)"
                 extra="Please check if you do not know"
                 field="data.father.surname"
                 initialValue={data.father.surname}
@@ -163,7 +163,7 @@ class MyForm extends Component {
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Father's Surname (Last Name)"
+                label="Father's Given Name (First Name)"
                 extra="Please check if you do not know"
                 field="data.father.given_name"
                 initialValue={data.father.given_name}
@@ -222,8 +222,8 @@ class MyForm extends Component {
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
+                label="Mother's Surname (Last Name)"
                 extra="Please check if you do not know"
-                label="Mother's Given Name (First Name)"
                 field="data.mother.surname"
                 initialValue={data.mother.surname}
                 getFieldDecorator={getFieldDecorator}
@@ -237,7 +237,7 @@ class MyForm extends Component {
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Mother's Surname (Last Name)"
+                label="Mother's Given Name (First Name)"
                 extra="Please check if you do not know"
                 field="data.mother.given_name"
                 initialValue={data.mother.given_name}
