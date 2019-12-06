@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "description": "OE-NPG-PROPOSAL",
+  "description": "Immigration4US",
   "main": "index.js",
-  "author": "Azita",
+  "author": "",
   "license": "MIT",
   "private": true,
   "dependencies": {
