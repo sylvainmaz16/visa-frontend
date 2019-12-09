@@ -167,12 +167,12 @@ class AdminPageDS160 extends Component {
         dataIndex: 'location',
         key: 'location',
       },
-      // {
-      //   title: 'Created At',
-      //   dataIndex: 'createdAt',
-      //   key: 'createdAt',
-      //   ellipsis: true
-      // },
+      {
+        title: 'Created At',
+        dataIndex: 'createdAt',
+        key: 'createdAt',
+        // ellipsis: true
+      },
       {
         title: 'Agency',
         dataIndex: 'agency',
