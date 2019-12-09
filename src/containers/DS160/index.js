@@ -6,7 +6,7 @@ import VisaBanner from '../../components/VisaBanner';
 import VisaHeader from '../../components/VisaHeader';
 import { DS160 } from '../../actions/types'
 
-import './index.scss'
+import './index.less'
 class DS160_HOME extends Component {
   constructor(props) {
     super(props)

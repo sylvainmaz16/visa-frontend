@@ -7,7 +7,7 @@ import { withCookies } from 'react-cookie';
 import SignupForm from './SignupForm';
 import { Button, notification } from 'antd';
 
-import './index.scss'
+import './index.less'
 
 const openNotificationWithIcon = type => {
   notification[type]({

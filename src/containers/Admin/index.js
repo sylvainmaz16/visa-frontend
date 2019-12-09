@@ -12,7 +12,7 @@ import AdminPageUsers from './Pages/users'
 import { withCookies } from 'react-cookie';
 import * as constants from '../../utils/constants'
 
-import './index.scss'
+import './index.less'
 
 
 

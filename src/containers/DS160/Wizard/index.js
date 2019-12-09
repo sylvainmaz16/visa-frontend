@@ -33,7 +33,7 @@ import Form_Photo from './Photo';
 import { withCookies } from 'react-cookie';
 
 import moment from 'moment'
-import './index.scss'
+import './index.less'
 
 const openNotificationWithIcon = type => {
   notification[type]({

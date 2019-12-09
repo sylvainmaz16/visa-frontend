@@ -8,7 +8,7 @@ import { withCookies } from 'react-cookie';
 import { Spin, notification } from 'antd';
 import Form_DS160_SaveAndContinue from './EmailForm'
 
-import './index.scss'
+import './index.less'
 
 const openNotificationWithIcon = type => {
   notification[type]({

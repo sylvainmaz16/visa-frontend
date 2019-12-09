@@ -6,7 +6,7 @@ import VisaHeader from '../../../components/VisaHeader';
 import { DS160 } from '../../../actions/types'
 import { Spin, Button, Icon } from 'antd';
 
-import './index.scss'
+import './index.less'
 class DS160_AutoOnlineFill extends Component {
   static defaultProps = {
     token: null

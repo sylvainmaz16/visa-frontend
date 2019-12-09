@@ -7,7 +7,7 @@ import { DS160 } from '../../../actions/types'
 import { Spin } from 'antd';
 import Form_DS160_Checkout_Info from './Info';
 import Form_AuthorizeNet from './Authorize.net';
-import './index.scss'
+import './index.less'
 
 
 class DS160_Checkout extends Component {

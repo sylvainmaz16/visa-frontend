@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import styled from "styled-components";
-import './index.scss'
+import './index.less'
 
 /* 
 export const ControlTopRight = styled.div`

@@ -19,7 +19,7 @@ import { Form,
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
-import './Signup.scss'
+import './Signup.less'
 
 class MyForm extends Component {
 
