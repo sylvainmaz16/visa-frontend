@@ -225,8 +225,8 @@ class AdminPageDS160 extends Component {
         filters: [{ text: '-', value: 'not_completed' }, { text: 'Pending', value: 'pending' }, { text: 'In progress', value: 'in_progress' }, { text: 'Failed', value: 'failed' }, { text: 'Incident', value: 'not_sent'}, { text: 'Success', value: 'success'}],
         filteredValue: pagination.filters.automation_status,
         onFilter: (value, record) => {
-          if(value == 'not_completed') return !record.completed
-          if(value == 'pending') return record.completed && !record.automation_status
+          if(value == 'not_completed') return !record.completed || !record.automation_status
+          if(value == 'pending') return record.completed && record.automation_status == 'pending'
           if(value == 'in_progress') return record.completed && record.automation_status && record.automation_status.result == 'processing'
           if(value == 'failed') return record.completed && record.automation_status && (record.automation_status.result == 'fail' || record.automation_status.error)
           if(value == 'not_sent') return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status == false)
