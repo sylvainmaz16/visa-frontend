@@ -210,9 +210,9 @@ class AdminPageDS160 extends Component {
         title: 'Automation Status',
         key: 'automation_status',
         render: (text, record) => {
-          if (!record.completed)
+          if (!record.completed || !record.automation_status)
             return "-"
-          if (!record.automation_status)
+          if (record.automation_status.result == 'pending')
             return <Tag color="volcano">Pending</Tag>
           if (record.automation_status.result == 'processing')
             return <Tag color="green">In progress</Tag>
