@@ -245,7 +245,7 @@ class MyForm extends Component {
           radioInitialValue={data.b_petition}
           radioValue={this.props.form.getFieldValue('data.b_petition')}
           textField="data.petition_info.explain"
-          textInitialValue={data.petition_info.explain}
+          textInitialValue={data.petition_info ? data.petition_info.explain : null}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
         />
