@@ -31,6 +31,7 @@ import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
 import Form_DS160_15_SEVIS from './Step15_SEVIS';
 import Form_Photo from './Photo';
 import { withCookies } from 'react-cookie';
+import { translate } from '../../../utils/resources'
 
 import moment from 'moment'
 import './index.less'
@@ -215,6 +216,10 @@ class DS160_Wizard extends Component {
       }
     });
   };
+
+  handleLanguageChange = lang => {
+    this.props.changeLanguage(DS160.DS160_CHANGE_LANGUAGE, lang)
+  }
 
   render() {
     const { step_index, ds160, loading, token, agency } = this.props
@@ -415,7 +420,9 @@ class DS160_Wizard extends Component {
       handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
       validators: ds160_validators,
-      agency: agency
+      agency: agency,
+      handleLanguageChange: this.handleLanguageChange,
+      tr: (r) => translate(r, ds160.language)
     }
 
     if(field.startsWith("form_security")) {
@@ -424,7 +431,9 @@ class DS160_Wizard extends Component {
         handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, "form_security"),
         handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, "form_security"),
         validators: ds160_validators,
-        agency: agency
+        agency: agency,
+        handleLanguageChange: this.handleLanguageChange,
+        tr: (r) => translate(r, ds160.language)
       }
     }
 
@@ -551,6 +560,9 @@ const mapDispatchToProps = dispatch => {
     },
     loadApplicationFromDB: (type, applicationId) => {
       dispatch({ type, applicationId })
+    },
+    changeLanguage: (type, lang) => {
+      dispatch({ type, lang })
     }
   }
 }

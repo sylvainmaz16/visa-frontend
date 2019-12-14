@@ -14,11 +14,18 @@ export const export_list = (array) => {
     })
 }
 
+export const hints_and_help_language = [
+    <option value="en-US">ENGLISH</option>,
+    <option value="fr-FR">FRANÇAIS (FRENCH)</option>,
+    <option value="es-ES">ESPAÑOL (SPANISH)</option>,
+    <option value="de-DE">DEUTSCH (GERMAN)</option>,
+    <option value="it-IT">ITALIANO (ITALIAN)</option>
+]
+
 export const USER_ROLE = {
     NOT: -1,
     ADMIN: 0,
     AGENCY: 1,
-    
 }
 
 export const FGMC_countries_list = [

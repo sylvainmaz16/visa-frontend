@@ -5,6 +5,7 @@ import * as utils from '../../../../utils'
 import VisaSelect from "../../../../components/VisaSelect";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 
@@ -13,6 +14,7 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
+
   render() {
     const { getFieldDecorator, isFieldTouched } = this.props.form;
     const formItemLayout = {
@@ -26,7 +28,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, data, agency } = this.props
+    const { showPrev, showNext, data, agency, tr } = this.props
     const { countries_option_value_list, countries_option_label_list, agency_support_countries_list} = constants
 
     let values = [], labels = []
@@ -48,33 +50,39 @@ class MyForm extends Component {
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">
-            On this website, you can apply through our agency for a U.S. Non-Immigrant Visa. EACH TRAVELER MUST COMPLETE HIS/HER OWN FORM IN ORDER TO GET HIS/HER VISA. The estimated average time to complete this submission is 35 minutes per respondent.
+            {tr(resources.step_1.section_title)}
           </h2>
         </div>
-        <Form.Item label="Please Choose Your Preferred Interview Location" extra="Select preferred US Consulate for your visa interview.">
+        <Form.Item label={tr(resources.language.label)} extra={tr(resources.language.extra)}>
+          {getFieldDecorator('data.language', {
+            initialValue: utils.getInitialValue(data.language),
+            rules: [{ required: true, message: tr(resources.validations.required) }],
+          })(
+            <VisaSelect combines={constants.export_list(constants.hints_and_help_language)} onChange={this.props.handleLanguageChange}/>
+          )}
+        </Form.Item>
+
+        <Form.Item label={tr(resources.step_1.interview_location.label)} extra={tr(resources.step_1.interview_location.extra)}>
           {getFieldDecorator('data.interview_location', {
             initialValue: utils.getInitialValue(data.interview_location),
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
             <VisaSelect values={values} labels={labels} />
           )}
         </Form.Item>
-        {/* <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Application Information</h2>
-        </div> */}
         
         <VisaSelectItem
-          label="Security Question"
+          label={tr(resources.step_1.sq_type.label)}
+          extra={tr(resources.step_1.sq_type.extra)}
           field="data.sq_type"
           initialValue={data.sq_type}
-          extra="In order to access your application later, however, you will need: (1) your Application ID, and (2) the answer to the security question that you will choose on this page."
           content={{
             combines: constants.export_list(constants.security_question_options)
           }}
           getFieldDecorator={getFieldDecorator}
         />
         <VisaInput 
-          label="Answer"
+          label={tr(resources.step_1.sq_answer.label)}
           field="data.sq_answer"
           initialValue={data.sq_answer}
           getFieldDecorator={getFieldDecorator}

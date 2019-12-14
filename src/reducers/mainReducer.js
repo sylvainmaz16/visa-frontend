@@ -12,6 +12,7 @@ const initialState = {
   paid: false,
   checkout_result: null,
   ds160: {
+    language: 'en-US',
     // step-1
     interview_location: null,
 
@@ -661,9 +662,24 @@ function mainReducer(state = initialState, action) {
         ds160: objectAssignDeep(state.ds160, action.values)
       }
     }
-    case DS160.DS160_INIT_STATE: {
+    case DS160.DS160_CHANGE_LANGUAGE: {
       return {
-        ...initialState
+        ...state,
+        ds160: {
+          ...state.ds160,
+          language: action.lang
+        }
+      }
+    }
+    case DS160.DS160_INIT_STATE: {
+      console.log(action.initValue)
+      return {
+        ...initialState,
+        ...action.initValue,
+        ds160: {
+          ...initialState.ds160,
+          ...action.initValue.ds160
+        }
       }
     }
     case DS160.DS160_CHECKOUT_REQUEST: {

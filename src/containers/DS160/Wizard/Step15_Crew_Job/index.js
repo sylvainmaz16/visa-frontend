@@ -137,12 +137,14 @@ class MyForm extends Component {
               field="data.vessel_info.vessel_name"
               initialValue={data.vessel_info.vessel_name}
               getFieldDecorator={getFieldDecorator}
+              maxLength={40}
             />
             <VisaInput
               label="Seagoing Ship/Vessel Identification Number"
               field="data.vessel_info.vessel_id"
               initialValue={data.vessel_info.vessel_id}
               getFieldDecorator={getFieldDecorator}
+              maxLength={20}
             />
           </Col>
         </Row>
