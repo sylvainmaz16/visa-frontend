@@ -80,12 +80,14 @@ class MyForm extends Component {
             combines: constants.export_list(constants.security_question_options)
           }}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
         <VisaInput 
           label={tr(resources.step_1.sq_answer.label)}
           field="data.sq_answer"
           initialValue={data.sq_answer}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
           
         />
         <div className="visa-form-bottom-btn-group">

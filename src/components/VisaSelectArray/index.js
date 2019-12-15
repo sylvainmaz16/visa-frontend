@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Icon } from 'antd';
 import VisaSelect from '../VisaSelect'
 import * as constants from '../../utils/constants'
 import * as utils from '../../utils'
+import resources from "../../utils/resources";
 
 class VisaSelectArray extends Component {
   static defaultProps = {
@@ -37,7 +38,7 @@ class VisaSelectArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
@@ -54,10 +55,10 @@ class VisaSelectArray extends Component {
             {
               required: true,
               whitespace: true,
-              message: "Please input or delete this field.",
+              message: tr(resources.validations.required_input_or_delete),
             },
           ],
-        })(<VisaSelect combines={constants.export_list(constants.past_travel_countries_options)} style={{ width: '60%', marginRight: 8 }}/>)}
+        })(<VisaSelect combines={constants.export_list(constants.past_travel_countries_options)} style={{ width: '60%', marginRight: 8 }} tr={tr}/>)}
         {languages.length > 1 ? (
           <Icon
             className="dynamic-delete-button"
@@ -73,7 +74,7 @@ class VisaSelectArray extends Component {
         {formItems}
         <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>
       </>

@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import * as constants from '../../../../utils/constants'
-import VisaSelect from "../../../../components/VisaSelect";
-import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
-import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
-import * as utils from '../../../../utils'
+import * as utils from '../../../../utils';
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -43,7 +40,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
     getFieldDecorator('data.b_previously_employed', { initialValue: utils.getInitialValue(data.b_previously_employed) });
     getFieldDecorator('data.b_edu_secondary_level', { initialValue: utils.getInitialValue(data.b_edu_secondary_level) });
 
@@ -56,14 +53,15 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Previous Work / Education / Training Information</h2>
+          <h2 className="visa-global-section-title">{tr(resources.prev_work_or_edu.section_title)}</h2>
         </div>
 
         <VisaRadio
-          label="Were you previously employed?"
+          label={tr(resources.prev_work_or_edu.b_previously_employed.label)}
           field="data.b_previously_employed"
           initialValue={data.b_previously_employed}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {this.props.form.getFieldValue('data.b_previously_employed') &&
@@ -71,21 +69,23 @@ class MyForm extends Component {
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                label="Previous Employer Name"
+                label={tr(resources.prev_work_or_edu.emp_info.name.label)}
                 field="data.emp_info.name"
                 initialValue={data.emp_info.name}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Employer Name", true) }]}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaAddress 
-                label="Previous Employer Address"
+                label={tr(resources.prev_work_or_edu.emp_info.address.label)}
                 field="data.emp_info.address"
                 initialValue={data.emp_info.address}
                 getFieldDecorator={getFieldDecorator}
                 validators={this.props.validators}
                 us_address={false}
+                tr={tr}
               />
             </Col>
           </Row>
@@ -93,50 +93,54 @@ class MyForm extends Component {
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                label="Telephone number"
+                label={tr(resources.prev_work_or_edu.emp_info.address.tel_number)}
                 field="data.emp_info.address.tel_number"
                 initialValue={data.emp_info.address.tel_number}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
                 maxLength={20}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                label="Job Title"
+                label={tr(resources.prev_work_or_edu.emp_info.job_title.label)}
                 field="data.emp_info.job_title"
                 initialValue={data.emp_info.job_title}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Job Title", true) }]}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                label="Supervisor's Surname(s) (Last Name)"
-                extra="Leave blank if you do not know"
+                label={tr(resources.prev_work_or_edu.emp_info.supervisor.surname.label)}
+                extra={tr(resources.prev_work_or_edu.emp_info.supervisor.surname.extra)}
                 field="data.emp_info.supervisor.surname"
                 initialValue={data.emp_info.supervisor.surname}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", false) }]}
                 maxLength={33}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                label="Supervisor's Given Name(s) (First Name)"
-                extra="Leave blank if you do not know"
+                label={tr(resources.prev_work_or_edu.emp_info.supervisor.given_name.label)}
+                extra={tr(resources.prev_work_or_edu.emp_info.supervisor.given_name.extra)}
                 field="data.emp_info.supervisor.given_name"
                 initialValue={data.emp_info.supervisor.given_name}
                 getFieldDecorator={getFieldDecorator}
                 required={false}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", false) }]}
                 maxLength={33}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
-                label="Employment Date From"
+                label={tr(resources.prev_work_or_edu.emp_info.date_from.label)}
                 field="data.emp_info.date_from"
                 initialValue={data.emp_info.date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -144,11 +148,12 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
-                label="Employment Date To"
+                label={tr(resources.prev_work_or_edu.emp_info.date_to.label)}
                 field="data.emp_info.date_to"
                 initialValue={data.emp_info.date_to}
                 getFieldDecorator={getFieldDecorator}
@@ -156,13 +161,14 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <Form.Item label="Describe your duties IN FEW WORDS (3 lines maximum)" extra="0 of 300 max characters">
+              <Form.Item label={tr(resources.prev_work_or_edu.emp_info.duty_explain.label)} extra={tr(resources.prev_work_or_edu.emp_info.duty_explain.extra)}>
                 {getFieldDecorator('data.emp_info.duty_explain', {
                   initialValue: utils.getInitialValue(data.emp_info.duty_explain),
-                  rules: [{ required: true, message: 'This field is required' }],
+                  rules: [{ required: true, message: tr(resources.validations.required) }],
                 })(
                   <TextArea style={{textTransform: 'uppercase'}} rows={3} />
                 )}
@@ -173,41 +179,45 @@ class MyForm extends Component {
         }
 
         <VisaRadio
-          label="Have you attended any educational institutions at a secondary level or above?"
+          label={tr(resources.prev_work_or_edu.b_edu_secondary_level.label)}
           field="data.b_edu_secondary_level"
           initialValue={data.b_edu_secondary_level}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
         {this.props.form.getFieldValue('data.b_edu_secondary_level') &&
         <>
           <VisaInput
-            label="Name of Institution"
+            label={tr(resources.prev_work_or_edu.edu_info.name.label)}
             field="data.edu_info.name"
             initialValue={data.edu_info.name}
             getFieldDecorator={getFieldDecorator}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Name of Institution", true) }]}
+            tr={tr}
           />
 
           <VisaAddress 
-            label="Institution's Address"
+            label={tr(resources.prev_work_or_edu.edu_info.address.label)}
             field="data.edu_info.address"
             initialValue={data.edu_info.address}
             getFieldDecorator={getFieldDecorator}
             validators={this.props.validators}
             us_address={false}
+            tr={tr}
           />
 
           <VisaInput
-            label="Course of Study"
+            label={tr(resources.prev_work_or_edu.edu_info.course.label)}
             field="data.edu_info.course"
             initialValue={data.edu_info.course}
             getFieldDecorator={getFieldDecorator}
+            tr={tr}
           />
 
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
-                label="Date of Attendance From"
+                label={tr(resources.prev_work_or_edu.edu_info.date_from.label)}
                 field="data.edu_info.date_from"
                 initialValue={data.edu_info.date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -215,11 +225,12 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
-                label="Date of Attendance To"
+                label={tr(resources.prev_work_or_edu.edu_info.date_to.label)}
                 field="data.edu_info.date_to"
                 initialValue={data.edu_info.date_to}
                 getFieldDecorator={getFieldDecorator}
@@ -227,6 +238,7 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
             </Col>
           </Row>

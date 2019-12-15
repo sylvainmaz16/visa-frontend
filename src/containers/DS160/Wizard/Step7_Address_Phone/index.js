@@ -8,6 +8,7 @@ import VisaAddress from "../../../../components/VisaAddress";
 import VisaSocialMediaArray from '../../../../components/VisaSocialMediaArray'
 import * as utils from '../../../../utils'
 import VisaAdditionalSocialMediaArray from "../../../../components/VisaAdditionalSocialMediaArray";
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -61,7 +62,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
 
     getFieldDecorator('data.b_diff_with_home', { initialValue: utils.getInitialValue(data.b_diff_with_home) });
     getFieldDecorator('data.b_additional_phones', { initialValue: utils.getInitialValue(data.b_additional_phones) });
@@ -77,34 +78,35 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Applicant Contact Information</h2>
+          <h2 className="visa-global-section-title">{tr(resources.address_and_phone.section_title)}</h2>
         </div>
 
         <VisaAddress 
-          label="Applicant Home Address"
+          label={tr(resources.address_and_phone.home_addr.label)}
           field="data.home_addr"
           initialValue={data.home_addr}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
           us_address={false}
+          tr={tr}
         />
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <Form.Item label="Primary Phone number" required>
+            <Form.Item label={tr(resources.address_and_phone.phone_info.home.label)} required>
               {getFieldDecorator('data.phone_info.home', {
                 initialValue: utils.getInitialValue(data.phone_info.home),
-                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, "Primary Phone number", true) }],
+                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.home.label), true) }],
               })(
                 <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <Form.Item label="Secondary Phone number" extra="Leave blank if you do not have a secondary phone number.">
+            <Form.Item label={tr(resources.address_and_phone.phone_info.mobile.label)} extra={tr(resources.address_and_phone.phone_info.mobile.extra)}>
               {getFieldDecorator('data.phone_info.mobile', {
                 initialValue: utils.getInitialValue(data.phone_info.mobile),
-                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, "Secondary Phone number") }],
+                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.mobile.label)) }],
               })(
                 <Input maxLength={20}/>
               )}
@@ -113,29 +115,29 @@ class MyForm extends Component {
         </Row>
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <Form.Item label="Work Phone number"  extra="Leave blank if you do not have a work phone number.">
+            <Form.Item label={tr(resources.address_and_phone.phone_info.work.label)} extra={tr(resources.address_and_phone.phone_info.work.extra)}>
               {getFieldDecorator('data.phone_info.work', {
                 initialValue: utils.getInitialValue(data.phone_info.work),
-                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, "Work Phone number") }],
+                rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.work.label)) }],
               })(
                 <Input maxLength={20}/>
               )}
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }} gutter={16}>
-            <Form.Item label="Email" required extra="Please enter a valid email address. It will be used to contact you about your application.">
+            <Form.Item label={tr(resources.address_and_phone.email.label)} required extra={tr(resources.address_and_phone.email.extra)}>
               <Col xs={{ span: 12 }}>
-                <Form.Item extra="Enter Email">
+                <Form.Item extra={tr(resources.address_and_phone.enter_email.extra)}>
                   {getFieldDecorator('data.email', {
                     initialValue: utils.getInitialValue(data.email),
-                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }],
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, tr(resources.address_and_phone.email.label), true) }],
                   })(
                     <Input maxLength={50}/>
                   )}
                 </Form.Item>
               </Col>
               <Col xs={{ span: 12 }}>
-                <Form.Item extra="Confirm Email">
+                <Form.Item extra={tr(resources.address_and_phone.email_confirm.extra)}>
                   {getFieldDecorator('data.email_confirm', {
                     initialValue: utils.getInitialValue(data.email_confirm),
                     rules: [{ validator: this.validateEmailConfirm }],
@@ -149,15 +151,16 @@ class MyForm extends Component {
         </Row>
         
         <VisaRadio
-          label="Have you used any other phone numbers in the last five years?"
+          label={tr(resources.address_and_phone.b_additional_phones.label)}
           field="data.b_additional_phones"
           initialValue={data.b_additional_phones}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
         {
           this.props.form.getFieldValue('data.b_additional_phones') &&
           <VisaInputArray 
-            label="Provide a list of additional phone numbers"
+            label={tr(resources.address_and_phone.additional_phones.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
             setFieldsValue={setFieldsValue}
@@ -167,19 +170,21 @@ class MyForm extends Component {
             validators={this.props.validators}
             maxLength={40}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone number", true) }]}
+            tr={tr}
           />
         }
 
         <VisaRadio
-          label="Have you used any other email addresses in the last five years?"
+          label={tr(resources.address_and_phone.b_additional_emails.label)}
           field="data.b_additional_emails"
           initialValue={data.b_additional_emails}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
         {
           this.props.form.getFieldValue('data.b_additional_emails') &&
           <VisaInputArray 
-            label="Provide a list of additional emails"
+            label={tr(resources.address_and_phone.additional_emails.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
             setFieldsValue={setFieldsValue}
@@ -189,10 +194,11 @@ class MyForm extends Component {
             validators={this.props.validators}
             maxLength={40}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email", true) }]}
+            tr={tr}
           />
         }
 
-        <Form.Item label="Mailing Address">
+        <Form.Item label={tr(resources.address_and_phone.mail_addr.b_diff_with_home.label)}>
           {getFieldDecorator('data.mail_addr.b_diff_with_home', {
             valuePropName: "checked",
             // rules: [{
@@ -201,48 +207,51 @@ class MyForm extends Component {
             // }],
             initialValue: utils.getInitialValue(data.mail_addr.b_diff_with_home),
           })(
-            <Checkbox>The mailing address is different from the applicant address</Checkbox>
+            <Checkbox>{tr(resources.address_and_phone.mail_addr.b_diff_with_home.check)}</Checkbox>
           )}
         </Form.Item>
 
         {
           this.props.form.getFieldValue('data.mail_addr.b_diff_with_home') &&
           <VisaAddress 
-            label="Mailing Address"
+            label={tr(resources.address_and_phone.mail_addr.info.label)}
             field="data.mail_addr.info"
             initialValue={data.mail_addr.info}
             getFieldDecorator={getFieldDecorator}
             validators={this.props.validators}
             us_address={false}
+            tr={tr}
           />
         }
 
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Social Media</h2>
-          <div className="visa-global-section-description">Do you have a social media presence? Select from the list below each social media platform you have used within the last five years. In the space next to the platform’s name, enter the username or handle you have used on that platform. Please do not provide your passwords. If you have used more than one platform or more than one username or handle on a single platform, click the 'Add Another' button to list each one separately. If you have not used any of the listed social media platforms in the last five years, select 'None.'</div>
+          <h2 className="visa-global-section-title">{tr(resources.address_and_phone.section_title_social_media)}</h2>
+          <div className="visa-global-section-description">{tr(resources.address_and_phone.section_descr_social_media)}</div>
         </div>
 
         <VisaSocialMediaArray 
-          label="Provide a list of social media platforms"
+          label={tr(resources.address_and_phone.social_media_info.label)}
           getFieldDecorator={getFieldDecorator}
           getFieldValue={getFieldValue}
           setFieldsValue={setFieldsValue}
           initialValue={data.social_media_info}
           arrayField="data.social_media_info"
           keysField="copy.social_media_info"
+          tr={tr}
         />
 
         <VisaRadio
-          label="Do you wish to provide information about your presence on any other websites or applications you have used within the last five years to create or share content (photos, videos, status updates, etc.)?"
-          extra="Please provide the name of the platform and the associated unique social media identifier (username or handle) for each social media platform you would like to list. This does not include private messaging on person-to-person messaging services, such as WhatsApp."
+          label={tr(resources.address_and_phone.b_additional_social_media.label)}
+          extra={tr(resources.address_and_phone.b_additional_social_media.extra)}
           field="data.b_additional_social_media"
           initialValue={data.b_additional_social_media}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
         {
           this.props.form.getFieldValue('data.b_additional_social_media') &&
           <VisaAdditionalSocialMediaArray
-            label="Provide a list of additional social media"
+            label={tr(resources.address_and_phone.additional_social_media.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
             setFieldsValue={setFieldsValue}
@@ -250,6 +259,7 @@ class MyForm extends Component {
             arrayField="data.additional_social_media"
             keysField="copy.additional_social_media"
             validators={this.props.validators}
+            tr={tr}
           />
         }
 

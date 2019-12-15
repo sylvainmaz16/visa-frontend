@@ -5,6 +5,7 @@ import VisaRadio from "../../../../components/VisaRadio";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -26,7 +27,7 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
     getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) });
     if(!data.assist_info.organization) {
       data.assist_info.organization = {
@@ -36,14 +37,15 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Preparer of Application</h2>
+          <h2 className="visa-global-section-title">{tr(resources.e_sign.section_title)}</h2>
         </div>
 
         <VisaRadio
-          label="Did anyone assist you in filling out this application?"
+          label={tr(resources.e_sign.b_assist)}
           field="data.b_assist"
           initialValue={data.b_assist}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {this.props.form.getFieldValue('data.b_assist') &&
@@ -51,46 +53,51 @@ class MyForm extends Component {
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaInput
-                  label="Surname"
+                  label={tr(resources.e_sign.assist_info.preparer.surname)}
                   field="data.assist_info.preparer.surname"
                   initialValue={data.assist_info.preparer.surname}
                   getFieldDecorator={getFieldDecorator}
+                  tr={tr}
                 />
               </Col>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaInput
-                  label="Given Name"
+                  label={tr(resources.e_sign.assist_info.preparer.given_name)}
                   field="data.assist_info.preparer.given_name"
                   initialValue={data.assist_info.preparer.given_name}
                   getFieldDecorator={getFieldDecorator}
+                  tr={tr}
                 />
               </Col>
 
             </Row>
             <VisaInput
-              label="Organization"
+              label={tr(resources.e_sign.assist_info.organization.name)}
               field="data.assist_info.organization.name"
               initialValue={data.assist_info.organization.name}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Organization Name', true) }]}
               required={false}
+              tr={tr}
             />
             <VisaAddress
-              label="Address"
+              label={tr(resources.e_sign.assist_info.address)}
               field="data.assist_info.address"
               initialValue={data.assist_info.address}
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
               us_address={false}
+              tr={tr}
             />
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaInput
-                  label="Relationship to you"
+                  label={tr(resources.e_sign.assist_info.relationship)}
                   field="data.assist_info.relationship"
                   initialValue={data.assist_info.relationship}
                   getFieldDecorator={getFieldDecorator}
                   customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'Relationship to you', true) }]}
+                  tr={tr}
                 />
               </Col>
             </Row>

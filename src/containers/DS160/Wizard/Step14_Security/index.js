@@ -3,11 +3,11 @@ import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'an
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
-import VisaRadio from "../../../../components/VisaRadio";
 import VisaExplain from "../../../../components/VisaExplain";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -29,7 +29,7 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-    const { showPrev, showNext, onPrev, onNext, data, SQIndex } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, SQIndex, tr } = this.props
 
     const explain = {
       part1: [
@@ -147,14 +147,14 @@ class MyForm extends Component {
 
         {SQIndex == 0 && <>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Security and Background: Part 1</h2>
-          <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
+          <h2 className="visa-global-section-title">{tr(resources.security.part1.section_title)}</h2>
+          <div className="visa-global-section-description">{tr(resources.security.part1.section_descr)}</div>
         </div>
 
         <>
           {explain.part1.map((exp, index) => 
             <VisaExplain
-              label={exp.label}
+              label={tr(resources.security.part1[index])}
               radioField={`data.part1.${exp.radio}`}
               radioInitialValue={data.part1[exp.radio]}
               radioValue={getFieldValue(`data.part1.${exp.radio}`)}
@@ -163,6 +163,7 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
               key={index}
+              tr={tr}
             />
           )}
         </>
@@ -170,13 +171,13 @@ class MyForm extends Component {
         
 
         {SQIndex == 1 && <><div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Security and Background: Part 2</h2>
-          <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
+          <h2 className="visa-global-section-title">{tr(resources.security.part2.section_title)}</h2>
+          <div className="visa-global-section-description">{tr(resources.security.part2.section_descr)}</div>
         </div>
         <>
           {explain.part2.map((exp, index) => 
             <VisaExplain
-              label={exp.label}
+              label={tr(resources.security.part2[index])}
               radioField={`data.part2.${exp.radio}`}
               radioInitialValue={data.part2[exp.radio]}
               radioValue={getFieldValue(`data.part2.${exp.radio}`)}
@@ -185,19 +186,20 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
               key={index}
+              tr={tr}
             />
           )}
         </></>}
 
         {SQIndex == 2 && <><div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Security and Background: Part 3</h2>
-          <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
+          <h2 className="visa-global-section-title">{tr(resources.security.part3.section_title)}</h2>
+          <div className="visa-global-section-description">{tr(resources.security.part3.section_descr)}</div>
         </div>
 
         <>
           {explain.part3.map((exp, index) => 
             <VisaExplain
-              label={exp}
+              label={tr(resources.security.part3[index])}
               radioField={`data.part3.array[${index}].radio`}
               radioInitialValue={data.part3.array[index].radio}
               radioValue={getFieldValue(`data.part3.array[${index}].radio`)}
@@ -206,19 +208,20 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
               key={index}
+              tr={tr}
             />
           )}
         </></>}
 
         {SQIndex == 3 && <><div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Security and Background: Part 4</h2>
-          <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
+          <h2 className="visa-global-section-title">{tr(resources.security.part4.section_title)}</h2>
+          <div className="visa-global-section-description">{tr(resources.security.part4.section_descr)}</div>
         </div>
 
         <>
           {explain.part4.map((exp, index) => 
             <VisaExplain
-              label={exp}
+              label={tr(resources.security.part4[index])}
               radioField={`data.part4.array[${index}].radio`}
               radioInitialValue={data.part4.array[index].radio}
               radioValue={getFieldValue(`data.part4.array[${index}].radio`)}
@@ -227,19 +230,20 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
               key={index}
+              tr={tr}
             />
           )}
         </></>}
 
         {SQIndex == 4 && <><div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Security and Background: Part 5</h2>
-          <div className="visa-global-section-description">NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.</div>
+          <h2 className="visa-global-section-title">{tr(resources.security.part5.section_title)}</h2>
+          <div className="visa-global-section-description">{tr(resources.security.part5.section_descr)}</div>
         </div>
 
         <>
           {explain.part5.map((exp, index) => 
             <VisaExplain
-              label={exp}
+              label={tr(resources.security.part5[index])}
               radioField={`data.part5.array[${index}].radio`}
               radioInitialValue={data.part5.array[index].radio}
               radioValue={getFieldValue(`data.part5.array[${index}].radio`)}
@@ -248,6 +252,7 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
               key={index}
+              tr={tr}
             />
           )}
         </></>}

@@ -91,6 +91,7 @@ class MyForm extends Component {
           arrayField="data.people"
           keysField="copy.people"
           validators={this.props.validators}
+          tr={tr}
         />
         }
 

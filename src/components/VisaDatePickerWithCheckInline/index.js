@@ -25,7 +25,7 @@ class VisaDatePickerWithCheckInline extends Component {
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, getFieldValue, setFieldsValue, checkValue, checkField, required, customRule, checkLabel, inline, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, getFieldValue, setFieldsValue, checkValue, checkField, required, customRule, checkLabel, inline, tr, ...rest } = this.props
     const readOnly = getFieldValue(checkField)
     return (
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -39,6 +39,7 @@ class VisaDatePickerWithCheckInline extends Component {
           readOnly={readOnly}
           setFieldsValue={setFieldsValue}
           getFieldValue={getFieldValue}
+          tr={tr}
         />
         <Form.Item style={{textAlign: 'right'}}>
           {getFieldDecorator(checkField, {

@@ -6,6 +6,7 @@ import VisaRadio from "../VisaRadio";
 import VisaDatePicker from '../VisaDatePicker'
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
+import resources from "../../utils/resources";
 const unit_options = [
   { value: 'Y', label: 'Year(s)' },
   { value: 'M', label: 'Month(s)' },
@@ -52,7 +53,7 @@ class VisaPreviousVisits extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, birthday, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, birthday, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const visits = getFieldValue(keysField);
@@ -66,7 +67,7 @@ class VisaPreviousVisits extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 20 }} sm={{ span: 8 }}>
             <VisaDatePicker 
-              label="Date of arrival (last visit to the US)"
+              label={tr(resources.components.previous_visits.date)}
               
               field={`${arrayField}[${index}].date`}
               initialValue={initialValue[index] ? initialValue[index].date : null}
@@ -76,19 +77,15 @@ class VisaPreviousVisits extends Component {
 
               setFieldsValue={setFieldsValue}
               getFieldValue={getFieldValue}
+              tr={tr}
             />
-            {/* <Form.Item label="Date of arrival (last visit to the US)" extra="Please enter the Date Format as YYYY-MM-DD For example January 12 2013 select 2013-01-12" required>
-              {getFieldDecorator(`${arrayField}[${index}].date`, {
-                initialValue: initialValue[index] && initialValue[index].date ? moment( initialValue[index].date, 'DD/MMM/YYYY' ) : null,
-                // validateTrigger: ['onChange', 'onBlur'],
-                rules: [{ validator: (rule, value, callback) => validators.validateEarlierDate(rule, value, callback, "Date Arrived") }],
-              })(
-                <DatePicker />
-              )}
-            </Form.Item> */}
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 6 }}>
-            <Form.Item label="Length of stay" extra="0 of 3 max characters" required>
+            <Form.Item 
+              label={tr(resources.components.previous_visits.length_of_stay.period.label)} 
+              extra={tr(resources.components.previous_visits.length_of_stay.period.extra)} 
+              required
+            >
               {getFieldDecorator(`${arrayField}[${index}].length_of_stay.period`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.period : null),
                 // validateTrigger: ['onChange', 'onBlur'],
@@ -99,13 +96,13 @@ class VisaPreviousVisits extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 6 }}>
-            <Form.Item label="Please Specify">
+            <Form.Item label={tr(resources.components.previous_visits.length_of_stay.unit)}>
               {getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.unit : null),
                 validateTrigger: ['onChange', 'onBlur'],
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={unit_options}/>
+                <VisaSelect combines={unit_options} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -127,7 +124,7 @@ class VisaPreviousVisits extends Component {
         {formItems}
         {(visits.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>}
       </>

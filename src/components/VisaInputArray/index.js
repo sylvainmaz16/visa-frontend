@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Icon } from 'antd';
 import * as utils from '../../utils'
+import resources from "../../utils/resources";
 
 class VisaInputArray extends Component {
   static defaultProps = {
@@ -36,7 +37,7 @@ class VisaInputArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, maxLength, required, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, validators, keysField, arrayField, customRule, maxLength, required, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const languages = getFieldValue(keysField);
@@ -48,7 +49,7 @@ class VisaInputArray extends Component {
         {getFieldDecorator(`${arrayField}[${index}]`, {
           validateTrigger: ['onChange', 'onBlur'],
           initialValue: utils.getInitialValue(initialValue[index]),
-          rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
+          rules: customRule ? customRule : [{ required: required, message: tr(resources.validations.required) }],
         })(<Input style={{ width: '60%', marginRight: 8 }} maxLength={maxLength}/>)}
         {languages.length > 1 ? (
           <Icon
@@ -65,7 +66,7 @@ class VisaInputArray extends Component {
         {formItems}
         <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>
       </>

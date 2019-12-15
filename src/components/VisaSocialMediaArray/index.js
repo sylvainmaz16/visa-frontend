@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Icon, Row, Col } from 'antd';
 import VisaSelect from '../VisaSelect'
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
+import resources from "../../utils/resources";
 
 class VisaSocialMediaArray extends Component {
   static defaultProps = {
@@ -40,7 +41,7 @@ class VisaSocialMediaArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const platforms = getFieldValue(keysField);
@@ -51,18 +52,18 @@ class VisaSocialMediaArray extends Component {
       >
         <Row gutter={16}>
           <Col xs={{ span: 20 }} sm={{ span: 8 }}>
-            <Form.Item label="Social Media Provider/Platform">
+            <Form.Item label={tr(resources.components.social_media_array.platform)}>
               {getFieldDecorator(`${arrayField}[${index}].platform`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].platform : null),
                 validateTrigger: ['onChange', 'onBlur'],
                 rules: [
                   {
                     required: true,
-                    message: "Please input or delete this field.",
+                    message: tr(resources.validations.required_input_or_delete)
                   }
                 ]
               })(
-                <VisaSelect combines={constants.export_list(constants.social_media_options)}/>
+                <VisaSelect combines={constants.export_list(constants.social_media_options)} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -70,7 +71,10 @@ class VisaSocialMediaArray extends Component {
           {
             getFieldValue(`${arrayField}[${index}].platform`) && (getFieldValue(`${arrayField}[${index}].platform`) != 'NONE') &&
             <Col xs={{ span: 20 }} sm={{ span: 12 }}>
-              <Form.Item label="Social Media Identifier" extra="Enter the username or handle you have used on that platform. Please do not provide your passwords.">
+              <Form.Item 
+                label={tr(resources.components.social_media_array.identifier.label)} 
+                extra={tr(resources.components.social_media_array.identifier.extra)} 
+              >
                 {getFieldDecorator(`${arrayField}[${index}].identifier`, {
                   initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].identifier : null),
                   validateTrigger: ['onChange', 'onBlur'],
@@ -78,7 +82,7 @@ class VisaSocialMediaArray extends Component {
                     { 
                       required: true,
                       whitespace: true,
-                      message: 'Please input or delete this field.' 
+                      message: tr(resources.validations.required_input_or_delete)
                     }
                   ],
                 })(
@@ -105,7 +109,7 @@ class VisaSocialMediaArray extends Component {
         {formItems}
         <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>
       </>

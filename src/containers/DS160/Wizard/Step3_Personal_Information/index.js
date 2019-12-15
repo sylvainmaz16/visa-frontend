@@ -234,6 +234,7 @@ class MyForm extends Component {
 
           setFieldsValue={setFieldsValue}
           getFieldValue={getFieldValue}
+          tr={tr}
         />
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
@@ -262,7 +263,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.place_of_birth.country),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} />
+                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -272,7 +273,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.nationality),
                 rules: [{ validator: this.handleNationalityChange }],
               })(
-                <VisaSelect combines={constants.nationality_option_list_func()}/>
+                <VisaSelect combines={constants.nationality_option_list_func()} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -295,7 +296,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.other_nationality),
                 rules: [{ validator: this.handleMoreNationalityChange }],
               })(
-                <VisaSelect combines={constants.nationality_option_list_func()}/>
+                <VisaSelect combines={constants.nationality_option_list_func()} tr={tr}/>
               )}
             </Form.Item>
             <Form.Item label={tr(resources.personal.b_has_other_nationality_passport.label)}>
@@ -340,7 +341,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.permanent_resident_country),
                 rules: [{ validator: this.handleOtherResidentChange }],
               })(
-                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} />
+                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} tr={tr}/>
               )}
             </Form.Item>
         }

@@ -4,7 +4,6 @@ import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
 import VisaInput from "../../../../components/VisaInput";
 import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
 import VisaSelectItem from "../../../../components/VisaSelectItem";
@@ -12,6 +11,7 @@ import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaDatePickerWithCheck from '../../../../components/VisaDatePickerWithCheck';
 import * as utils from '../../../../utils'
 import VisaLostPassports from "../../../../components/VisaLostPassports";
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -42,7 +42,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
 
     if(data.lost_info.constructor != Array)
       data.lost_info = [{ 
@@ -60,29 +60,30 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Passport Information</h2>
+          <h2 className="visa-global-section-title">{tr(resources.passport.section_title)}</h2>
         </div>
         
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaSelectItem 
-              label="Passport/Travel Document Type"
+              label={tr(resources.passport.doc_type.label)}
               field="data.doc_type"
               initialValue={data.doc_type}
               content={{
                 combines: constants.export_list(constants.passport_type_options)
               }}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
           </Col>
         </Row>
 
         {
           this.props.form.getFieldValue('data.doc_type') == 'T' &&
-          <Form.Item label="Explain">
+          <Form.Item label={tr(resources.passport.doc_type_explain.label)}>
             {getFieldDecorator('data.doc_type_explain', {
               initialValue: utils.getInitialValue(data.doc_type_explain),
-              rules: [{ required: true, message: 'This field is required' }],
+              rules: [{ required: true, message: tr(resources.validations.required) }],
             })(
               <TextArea rows={5}/>
             )}
@@ -92,24 +93,26 @@ class MyForm extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput 
-              label="Passport/Travel Document Number"
+              label={tr(resources.passport.doc_number.label)}
               field="data.doc_number"
               initialValue={data.doc_number}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Passport/Travel Document Number", true) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, tr(resources.passport.doc_number.label), true) }]}
               maxLength={20}
+              tr={tr}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput 
-              label="Passport Book Number"
-              extra="Leave blank if does not apply"
+              label={tr(resources.passport.book_number.label)}
+              extra={tr(resources.passport.book_number.extra)}
               field="data.book_number"
               initialValue={data.book_number}
               getFieldDecorator={getFieldDecorator}
               required={false}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Passport Book Number", false) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, tr(resources.passport.book_number.label), false) }]}
               maxLength={20}
+              tr={tr}
             />
           </Col>
         </Row>
@@ -117,7 +120,7 @@ class MyForm extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaSelectItem 
-              label="Country/Authority that Issued Passport/Travel Document"
+              label={tr(resources.passport.doc_authority.label)}
               field="data.doc_authority"
               initialValue={data.doc_authority}
               content={{
@@ -125,6 +128,7 @@ class MyForm extends Component {
                 labels: constants.countries_regions_option_label_list,
               }}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
           </Col>
         </Row>
@@ -132,27 +136,29 @@ class MyForm extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput 
-              label="City of Issue"
+              label={tr(resources.passport.issued_location.city)}
               field="data.issued_location.city"
               initialValue={data.issued_location.city}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'City of Issue', true) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.passport.issued_location.city), true) }]}
               maxLength={25}
+              tr={tr}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput 
-              label="State/Province *If shown on passport"
+              label={tr(resources.passport.issued_location.state)}
               field="data.issued_location.state"
               initialValue={data.issued_location.state}
               required={false}
               getFieldDecorator={getFieldDecorator}
               maxLength={25}
+              tr={tr}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaSelectItem 
-              label="Country/Region"
+              label={tr(resources.passport.issued_location.country)}
               field="data.issued_location.country"
               initialValue={data.issued_location.country}
               content={{
@@ -160,56 +166,60 @@ class MyForm extends Component {
                 labels: constants.countries_regions_option_label_list,
               }}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
           </Col>
         </Row>
 
         <VisaDatePicker 
-          label="Issuance Date"
+          label={tr(resources.passport.issuance_date.label)}
           
           field="data.issuance_date"
           initialValue={data.issuance_date}
           getFieldDecorator={getFieldDecorator}
-          customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, 'Issued Date', date_birth) }]}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, tr(resources.passport.issuance_date.label), date_birth) }]}
 
           setFieldsValue={setFieldsValue}
           getFieldValue={getFieldValue}
+          tr={tr}
         />
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 24 }} style={{ display: 'flex', alignItems: 'center'}}>
             <VisaDatePickerWithCheck
-              label="Expiration Date"
+              label={tr(resources.passport.expiration_date.label)}
               field="data.expiration_date"
               initialValue={data.expiration_date}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, 'Expiration Date', this.props.form.getFieldValue('data.issuance_date')) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, tr(resources.passport.expiration_date.label), this.props.form.getFieldValue('data.issuance_date')) }]}
               setFieldsValue={setFieldsValue}
               getFieldValue={getFieldValue}
 
               checkField="data.expiration_date_NA"
               checkValue={data.expiration_date_NA}
-              checkLabel="No Expiration"
+              checkLabel={tr(resources.passport.expiration_date.check)}
+              tr={tr}
 
             />
           </Col>
         </Row>
 
         <VisaRadio
-          label="Have you ever lost a passport or had one stolen?"
+          label={tr(resources.passport.b_ever_lost_passport.label)}
           field="data.b_ever_lost_passport"
           initialValue={data.b_ever_lost_passport}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {
           this.props.form.getFieldValue('data.b_ever_lost_passport') && 
           <>
             <div className="visa-global-field visa-global-border-bottom">
-              <h2 className="visa-global-section-title">Lost or Stolen Passport Information</h2>
+              <h2 className="visa-global-section-title">{tr(resources.passport.section_title_lost_passport)}</h2>
             </div>
             <VisaLostPassports 
-              label="List of lost or stolen passports"
+              label={tr(resources.passport.lost_info.label)}
               getFieldDecorator={getFieldDecorator}
               getFieldValue={getFieldValue}
               setFieldsValue={setFieldsValue}
@@ -217,6 +227,7 @@ class MyForm extends Component {
               arrayField="data.lost_info"
               keysField="copy.lost_info"
               validators={this.props.validators}
+              tr={tr}
             />
           </>
         }

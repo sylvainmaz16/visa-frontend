@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Icon, Row, Col } from 'antd';
 import VisaInput from '../VisaInput'
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
+import resources from "../../utils/resources";
 
 class VisaAdditionalSocialMediaArray extends Component {
   static defaultProps = {
@@ -40,7 +41,7 @@ class VisaAdditionalSocialMediaArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const platforms = getFieldValue(keysField);
@@ -52,22 +53,24 @@ class VisaAdditionalSocialMediaArray extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 20 }} sm={{ span: 8 }}>
             <VisaInput 
-              label="Additional Social Media Platform"
+              label={tr(resources.components.additional_social_media.platform)}
               field={`${arrayField}[${index}].platform`}
               initialValue={initialValue[index] ? initialValue[index].platform : null}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLeadingSpace(rule, value, callback, "Additional Social Media Platform", true) }]}
               maxLength={20}
+              tr={tr}
             />
           </Col>
           <Col xs={{ span: 20 }} sm={{ span: 8 }}>
             <VisaInput 
-              label="Additional Social Media Handle"
+              label={tr(resources.components.additional_social_media.identifier)}
               field={`${arrayField}[${index}].identifier`}
               initialValue={initialValue[index] ? initialValue[index].identifier : null}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLeadingSpace(rule, value, callback, "Additional Social Media Handle", true) }]}
               maxLength={40}
+              tr={tr}
             />
           </Col>
           
@@ -89,7 +92,7 @@ class VisaAdditionalSocialMediaArray extends Component {
         {formItems}
         <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>
       </>

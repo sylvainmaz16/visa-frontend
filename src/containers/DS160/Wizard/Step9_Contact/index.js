@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
 import * as constants from '../../../../utils/constants'
-import VisaSelect from "../../../../components/VisaSelect";
-import moment from 'moment'
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -31,7 +28,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, martial_status } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, martial_status, tr } = this.props
 
     getFieldDecorator('data.relationship', { initialValue: data.relationship });
     const field = {
@@ -40,80 +37,87 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">US Point of contact</h2>
-          <div className="visa-global-section-description">Give the name of a contact person or Hotel or organisation in the US. This may be different from the place or person you intend to stay with.</div>
+          <h2 className="visa-global-section-title">{tr(resources.contact.section_title)}</h2>
+          <div className="visa-global-section-description">{tr(resources.contact.section_descr)}</div>
         </div>
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaSelectItem
-              label="Relationship to you"
+              label={tr(resources.contact.relationship)}
               field="data.relationship"
               initialValue={data.relationship}
               content={{
                 combines: constants.export_list( (martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? constants.relationship_options : constants.relationship_options_except_Spouse)
               }}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             {field.relationship ? ((field.relationship == 'R' || field.relationship == 'S' || field.relationship == 'C') ?
               <>
                 <VisaInput
-                  label="Surname(s)"
+                  label={tr(resources.contact.surname)}
                   field="data.surname"
                   initialValue={data.surname}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.contact.surname)) }]}
                   maxLength={33}
+                  tr={tr}
                 />
                 <VisaInput
-                  label="Given Name(s)"
+                  label={tr(resources.contact.given_name)}
                   field="data.given_name"
                   initialValue={data.given_name}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.contact.given_name)) }]}
                   maxLength={33}
+                  tr={tr}
                 />
               </> :
               <VisaInput
-                label="Hotel or Organisation Name"
+                label={tr(resources.contact.organization)}
                 field="data.organization"
                 initialValue={data.organization}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Organisation Name") }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, tr(resources.contact.organization)) }]}
                 maxLength={33}
+                tr={tr}
               />) : ''
             }
           </Col>
         </Row>
 
         <VisaAddress 
-          label="Address"
+          label={tr(resources.contact.address)}
           field="data.address"
           initialValue={data.address}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
           hideCountry
+          tr={tr}
         />
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
-              label="Phone Number"
+              label={tr(resources.contact.tel_number)}
               field="data.tel_number"
               initialValue={data.tel_number}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Phone Number", true) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, tr(resources.contact.tel_number), true) }]}
               maxLength={10}
+              tr={tr}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
-              label="Email if known"
+              label={tr(resources.contact.email)}
               field="data.email"
               initialValue={data.email}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email") }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, tr(resources.contact.email)) }]}
               required={false}
+              tr={tr}
             />
           </Col>
         </Row>

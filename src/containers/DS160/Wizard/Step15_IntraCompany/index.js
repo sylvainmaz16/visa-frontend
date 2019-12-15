@@ -3,12 +3,10 @@ import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'an
 import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
-import VisaSelectItem from "../../../../components/VisaSelectItem";
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -29,13 +27,12 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-    const { showPrev, showNext, onPrev, onNext, data, intracompany_type } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, intracompany_type, tr } = this.props
     
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Intracompany Transferee Information</h2>
-          {/* <div className="visa-global-section-description">NOTE: You have indicated that you are a crew member.</div> */}
+          <h2 className="visa-global-section-title">{tr(resources.intracompany.section_title)}</h2>
         </div>
 
         <Row gutter={16}>
@@ -43,54 +40,60 @@ class MyForm extends Component {
             {intracompany_type == 'A' &&
             <>
               <VisaInput
-                label="Application Receipt/Petition Number"
+                label={tr(resources.intracompany.petition)}
                 field="data.petition"
                 initialValue={data.petition}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
               <VisaInput
-                label="Name of Person/Company who Filed your Petition"
+                label={tr(resources.intracompany.name_filed_petition)}
                 field="data.name_filed_petition"
                 initialValue={data.name_filed_petition}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
             </>
             }
             <VisaInput
-              label="Name of Employer where you intend to Work"
+              label={tr(resources.intracompany.employer)}
               field="data.employer"
               initialValue={data.employer}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
           </Col>
         </Row>
 
         <VisaAddress 
-          label="Address"
+          label={tr(resources.intracompany.address.label)}
           field="data.address"
           initialValue={data.address}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
           hideCountry
+          tr={tr}
         />
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
-              label="Phone Number"
+              label={tr(resources.intracompany.tel_number)}
               field="data.tel_number"
               initialValue={data.tel_number}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
               maxLength={12}
+              tr={tr}
             />
             <VisaInput
-              label="Enter Monthly Income (In USD)"
+              label={tr(resources.intracompany.income)}
               field="data.income"
               initialValue={data.income}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Monthly Income", true) }]}
               maxLength={15}
+              tr={tr}
             />
           </Col>
         </Row>

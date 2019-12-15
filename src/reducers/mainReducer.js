@@ -563,14 +563,23 @@ const initialState = {
     form_photo: {
       b_photo: null,
       url: null,
+      FGMC: null,
+      HTP: null,
       payer: {
-        name: {
-          surname: null,
-          given_name: null
-        },
+        surname: null,
+        given_name: null,
         phone: null,
         passport: null,
-        email: null
+        email: null,
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          tel_number: null,
+          country: null
+        }
       },
       b_info_confirm: null,
       b_certify: null,

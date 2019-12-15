@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input } from 'antd';
 import * as utils from '../../utils'
+import resources from "../../utils/resources";
 
 class VisaInput extends Component {
   static defaultProps = {
@@ -13,12 +14,12 @@ class VisaInput extends Component {
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, maxLength, placeholder, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, maxLength, placeholder, tr, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
           initialValue: utils.getInitialValue(initialValue),
-          rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
+          rules: customRule ? customRule : [{ required: required, message: tr(resources.validations.required) }],
         })(
           <Input placeholder={placeholder} maxLength={maxLength}/>
         )}

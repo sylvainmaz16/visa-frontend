@@ -5,6 +5,7 @@ import moment from 'moment'
 import VisaRadio from "../VisaRadio";
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
+import resources from "../../utils/resources";
 class VisaTravellers extends Component {
   static defaultProps = {
     extra: "",
@@ -42,7 +43,7 @@ class VisaTravellers extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const people = getFieldValue(keysField);
@@ -53,7 +54,7 @@ class VisaTravellers extends Component {
       >
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-            <Form.Item label="Given Name (First Name)" required>
+            <Form.Item label={tr(resources.components.travellers.surname)} required>
               {getFieldDecorator(`${arrayField}[${index}].surname`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].surname : null),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }],
@@ -63,7 +64,7 @@ class VisaTravellers extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 6 }}>
-            <Form.Item label="Surname (Last Name)">
+            <Form.Item label={tr(resources.components.travellers.given_name)}>
               {getFieldDecorator(`${arrayField}[${index}].given_name`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].given_name : null),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
@@ -73,12 +74,12 @@ class VisaTravellers extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 10 }}>
-            <Form.Item label="Relationship to you">
+            <Form.Item label={tr(resources.components.travellers.relationship)}>
               {getFieldDecorator(`${arrayField}[${index}].relationship`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].relationship : null),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.person_travel_with_relationship_options} />
+                <VisaSelect combines={constants.person_travel_with_relationship_options} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -100,7 +101,7 @@ class VisaTravellers extends Component {
         {formItems}
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>}
       </>

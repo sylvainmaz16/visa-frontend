@@ -5,6 +5,7 @@ import moment from 'moment'
 import VisaRadio from "../VisaRadio";
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
+import resources from "../../utils/resources";
 class VisaOtherRelatives extends Component {
   static defaultProps = {
     extra: "",
@@ -43,7 +44,7 @@ class VisaOtherRelatives extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const people = getFieldValue(keysField);
@@ -54,7 +55,7 @@ class VisaOtherRelatives extends Component {
       >
         <Row gutter={16}>
           <Col xs={{ span: 20 }} sm={{ span: 10 }} md={{ span: 3 }}>
-            <Form.Item label="First Name" required>
+            <Form.Item label={tr(resources.components.other_relatives.surname)} required>
               {getFieldDecorator(`${arrayField}[${index}].surname`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].surname : null),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surnames") }],
@@ -64,7 +65,7 @@ class VisaOtherRelatives extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 20 }} sm={{ span: 10 }} md={{ span: 3 }}>
-            <Form.Item label="Last Name">
+            <Form.Item label={tr(resources.components.other_relatives.given_name)}>
               {getFieldDecorator(`${arrayField}[${index}].given_name`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].given_name : null),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
@@ -74,22 +75,22 @@ class VisaOtherRelatives extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 20 }} sm={{ span: 10 }} md={{ span: 8 }}>
-            <Form.Item label="Relationship to you">
+            <Form.Item label={tr(resources.components.other_relatives.relationship)}>
               {getFieldDecorator(`${arrayField}[${index}].relationship`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].relationship : null),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.export_list( (martial_status == 'M' || martial_status == 'L') ? constants.relative_relationship_options : constants.relative_relationship_options_except_Spouse)} />
+                <VisaSelect combines={constants.export_list( (martial_status == 'M' || martial_status == 'L') ? constants.relative_relationship_options : constants.relative_relationship_options_except_Spouse)} tr={tr}/>
               )}
             </Form.Item>
           </Col>
           <Col xs={{ span: 20 }} sm={{ span: 10 }} md={{ span: 8 }}>
-            <Form.Item label="Immigration Status">
+            <Form.Item label={tr(resources.components.other_relatives.status)}>
               {getFieldDecorator(`${arrayField}[${index}].status`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].status : null),
-                rules: [{ required: true, message: 'This field is required' }],
+                rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.export_list(constants.US_Live_Status)} />
+                <VisaSelect combines={constants.export_list(constants.US_Live_Status)} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -111,7 +112,7 @@ class VisaOtherRelatives extends Component {
         {formItems}
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>}
       </>

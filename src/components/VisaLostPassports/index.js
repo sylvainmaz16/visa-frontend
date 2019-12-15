@@ -5,11 +5,11 @@ import moment from 'moment'
 import VisaRadio from "../VisaRadio";
 import VisaInput from '../VisaInput';
 import VisaInputWithCheck from '../VisaInputWithCheck';
-import VisaAddress from "../VisaAddress";
 import VisaSelectItem from "../VisaSelectItem";
 import VisaDatePicker from "../VisaDatePicker";
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
+import resources from "../../utils/resources";
 const { TextArea } = Input;
 class VisaLostPassports extends Component {
   static defaultProps = {
@@ -49,7 +49,7 @@ class VisaLostPassports extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
     const people = getFieldValue(keysField);
@@ -64,8 +64,8 @@ class VisaLostPassports extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInputWithCheck
-              label="Lost or stolen Passport/Travel Document Number"
-              extra="Please check if you do not know"
+              label={tr(resources.components.lost_pssports.number.label)}
+              extra={tr(resources.components.lost_pssports.number.extra)}
               field={`${arrayField}[${index}].number`}
               initialValue={initialValue[index] ? initialValue[index].number : null}
               getFieldDecorator={getFieldDecorator}
@@ -76,13 +76,14 @@ class VisaLostPassports extends Component {
               checkField={`${arrayField}[${index}].number_NA`}
               checkValue={initialValue[index] ? initialValue[index].number_NA : null}
               maxLength={20}
+              tr={tr}
             />
           </Col>
         </Row>
         <Row>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaSelectItem 
-              label="Country/Authority that Issued Passport/Travel Document"
+              label={tr(resources.components.lost_pssports.country)}
               field={`${arrayField}[${index}].country`}
               initialValue={initialValue[index] ? initialValue[index].country : null}
               content={{
@@ -90,10 +91,11 @@ class VisaLostPassports extends Component {
                 labels: constants.countries_regions_option_label_list,
               }}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 24 }}>
-            <Form.Item label="Explain" required>
+            <Form.Item label={tr(resources.components.lost_pssports.explain)} required>
               {getFieldDecorator(`${arrayField}[${index}].explain`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].explain : null),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
@@ -106,7 +108,7 @@ class VisaLostPassports extends Component {
         <Row>
           {people.length > 1 ? (
             <Button type="danger" onClick={() => this.remove(index, keysField, arrayField)} >
-              <Icon type="minus-circle-o" /> Remove
+              <Icon type="minus-circle-o" /> {tr(resources.remove)}
             </Button>
           ) : null}
         </Row>
@@ -119,7 +121,7 @@ class VisaLostPassports extends Component {
         {formItems}
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%', marginLeft: '15%' }}>
-            <Icon type="plus" /> Add another
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>}
       </>

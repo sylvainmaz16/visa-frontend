@@ -30,7 +30,7 @@ class VisaDatePicker extends Component {
   }
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, readOnly, validators, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, readOnly, validators, tr, ...rest } = this.props
     return (
       <Form.Item label={label} extra={extra} required={required} >
         <div style={{ display: 'flex', flexDirection: 'row'}}>
@@ -39,7 +39,7 @@ class VisaDatePicker extends Component {
               initialValue: utils.getInitialValue( initialValue ? initialValue.split('/')[0] : null ),
               rules: readOnly ? null : [{ required: required, message: 'Required' }],
             })(
-              <VisaSelect values={DAYS_LIST} labels={DAYS_LIST} disabled={readOnly} style={{width: '75px', marginRight: '10px'}} placeholder="DAY" onChange={(value) => this.onChange('DD', value)}/>
+              <VisaSelect values={DAYS_LIST} labels={DAYS_LIST} disabled={readOnly} style={{width: '75px', marginRight: '10px'}} placeholder="DAY" onChange={(value) => this.onChange('DD', value)} tr={tr}/>
             )}
           </Form.Item>
           <Form.Item>
@@ -47,7 +47,7 @@ class VisaDatePicker extends Component {
               initialValue: utils.getInitialValue( initialValue ? initialValue.split('/')[1] : null ),
               rules: readOnly ? null : [{ required: required, message: 'Required' }],
             })(
-              <VisaSelect values={MONTH_LIST} labels={MONTH_LIST} disabled={readOnly} style={{width: '100px', marginRight: '10px'}} placeholder="MONTH" onChange={(value) => this.onChange('MMM', value)}/>
+              <VisaSelect values={MONTH_LIST} labels={MONTH_LIST} disabled={readOnly} style={{width: '100px', marginRight: '10px'}} placeholder="MONTH" onChange={(value) => this.onChange('MMM', value)} tr={tr}/>
             )}
           </Form.Item>
           <Form.Item>

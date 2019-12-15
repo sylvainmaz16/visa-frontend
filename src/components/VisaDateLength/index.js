@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } fr
 import VisaSelect from "../VisaSelect";
 import * as utils from '../../utils'
 import moment from "moment";
+import resources from "../../utils/resources";
 
 class VisaDateLength extends Component {
   static defaultProps = {
@@ -35,10 +36,11 @@ class VisaDateLength extends Component {
 
             setFieldsValue={setFieldsValue}
             getFieldValue={getFieldValue}
+            tr={tr}
           />
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
-          <Form.Item label="Length of stay" extra="0 of 3 max characters">
+          <Form.Item label={tr(resources.components.date_length.period.label)} extra={tr(resources.components.date_length.period.extra)}>
             {getFieldDecorator(period.field, {
               initialValue: utils.getInitialValue(period.initialValue),
               rules: [{ validator: (rule, value, callback) => validators.validateLengthOfStay(rule, value, callback, "Length of Stay") }],
@@ -48,12 +50,12 @@ class VisaDateLength extends Component {
           </Form.Item>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
-          <Form.Item label="Please Specify">
+          <Form.Item label={tr(resources.components.date_length.unit.label)}>
             {getFieldDecorator(unit.field, {
               initialValue: utils.getInitialValue(unit.initialValue),
-              rules: [{ required: true, message: 'This field is required' }],
+              rules: [{ required: true, message: tr(resources.validations.required) }],
             })(
-              <VisaSelect combines={unit_options}/>
+              <VisaSelect combines={unit_options} tr={tr}/>
             )}
           </Form.Item>
         </Col>

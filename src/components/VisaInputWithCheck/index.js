@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Checkbox } from 'antd';
 import * as utils from '../../utils'
+import resources from "../../utils/resources";
 
 class VisaInputWithCheck extends Component {
   static defaultProps = {
@@ -19,7 +20,7 @@ class VisaInputWithCheck extends Component {
 
   render() {
 
-    const { label, extra, initialValue, field, getFieldDecorator, setFieldsValue, getFieldValue, required, customRule, placeholder, checkField, checkValue, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, setFieldsValue, getFieldValue, required, customRule, placeholder, checkField, checkValue, tr, ...rest } = this.props
 
     getFieldDecorator(checkField, { initialValue: checkValue })
     const readOnly = getFieldValue(checkField)
@@ -29,7 +30,7 @@ class VisaInputWithCheck extends Component {
         <Form.Item label={label} extra={extra} required={required}>
           {getFieldDecorator(field, {
             initialValue: utils.getInitialValue(initialValue),
-            rules: customRule ? customRule : [{ required: required, message: 'This field is required' }],
+            rules: customRule ? customRule : [{ required: required, message: tr(resources.validations.required) }],
           })(
             <Input placeholder={placeholder} disabled={readOnly} maxLength={33}/>
           )}
@@ -43,7 +44,7 @@ class VisaInputWithCheck extends Component {
               type: 'boolean'
             }],
           })(
-            <Checkbox onChange={this.handleCheck}>Do Not Know</Checkbox>
+            <Checkbox onChange={this.handleCheck}>{tr(resources.do_not_know)}</Checkbox>
           )}
         </Form.Item>
       </>

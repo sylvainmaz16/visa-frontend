@@ -4,11 +4,11 @@ import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -29,7 +29,7 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-    const { showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type, tr } = this.props
 
     getFieldDecorator('data.b_study_in_US', { initialValue: utils.getInitialValue(data.b_study_in_US) });
 
@@ -39,52 +39,56 @@ class MyForm extends Component {
         {additional_point_of_contact &&
           <>
             <div className="visa-global-field visa-global-border-bottom">
-              <h2 className="visa-global-section-title">Additional Point of Contact Information</h2>
-              <div className="visa-global-section-description">NOTE: You have indicated that you will be studying in some capacity while in the United States. List at least two contacts in your country of residence who can verify the information that you have provided on this application. Do not list immediate family members or other relatives. Postal office box numbers are unacceptable. </div>
+              <h2 className="visa-global-section-title">{tr(resources.SEVIS.section_title)}</h2>
+              <div className="visa-global-section-description">{tr(resources.SEVIS.section_descr)}</div>
             </div>
             {data.point_of_contact.map((contact, index) =>
               <Row gutter={16} key={index}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <Form.Item label="Contact">
                     <VisaInput
-                      label="Surnames"
+                      label={tr(resources.SEVIS.point_of_contact.surname)} 
                       field={`data.point_of_contact[${index}].surname`}
                       initialValue={data.point_of_contact[index].surname}
                       getFieldDecorator={getFieldDecorator}
                       maxLength={33}
+                      tr={tr}
                     />
                     <VisaInput
-                      label="Given Names"
+                      label={tr(resources.SEVIS.point_of_contact.given_name)} 
                       field={`data.point_of_contact[${index}].given_name`}
                       initialValue={data.point_of_contact[index].given_name}
                       getFieldDecorator={getFieldDecorator}
                       maxLength={33}
+                      tr={tr}
                     />
                     <VisaAddress
-                      label="Address"
+                      label={tr(resources.SEVIS.point_of_contact.address)} 
                       field={`data.point_of_contact[${index}].address`}
                       initialValue={data.point_of_contact[index].address}
                       validators={this.props.validators}
                       getFieldDecorator={getFieldDecorator}
                       us_address={false}
-                      
+                      tr={tr}
                     />
                     <VisaInput
-                      label="Telephone Number"
+                      label={tr(resources.SEVIS.point_of_contact.tel_number)} 
                       field={`data.point_of_contact[${index}].tel_number`}
                       initialValue={data.point_of_contact[index].tel_number}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
                       customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", false) }]}
+                      tr={tr}
                     />
                     <VisaInput
-                      label="Email Address"
+                      label={tr(resources.SEVIS.point_of_contact.email)} 
                       extra="(e.g., emailaddress@example.com)"
                       field={`data.point_of_contact[${index}].email`}
                       initialValue={data.point_of_contact[index].email}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
                       customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address") }]}
+                      tr={tr}
                     />
                   </Form.Item>
 
@@ -95,42 +99,45 @@ class MyForm extends Component {
         }
 
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">SEVIS Information</h2>
-          <div className="visa-global-section-description">NOTE: You have indicated that the purpose of your trip to the U.S. is to be a student or exchange visitor. Provide the following information regarding the institution at which you intend to study.</div>
+          <h2 className="visa-global-section-title">{tr(resources.SEVIS.section_title_sevis)}</h2>
+          <div className="visa-global-section-description">{tr(resources.SEVIS.section_descr_sevis)}</div>
         </div>
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
-              label="SEVIS ID"
-              extra="All SEVIS ID numbers start with the letter N. On the Form I-20, the number is on the top right hand side of the first page under the words Student’s Copy and above the barcode. On the DS-2019, the number is on the top right hand side of the page in the box above the barcode. (e.g., N0123456789)"
+              label={tr(resources.SEVIS.id.label)}
+              extra={tr(resources.SEVIS.id.extra)}
               field="data.id"
               initialValue={data.id}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, "SEVIS ID") }]}
               maxLength={11}
+              tr={tr}
             />
             {
               (sevis_type == 'B' || sevis_type == 'D') &&
               <VisaInput
-                label="Principal Applicant SEVIS ID"
+                label={tr(resources.SEVIS.principal_id)}
                 extra="(e.g., N0123456789)"
                 field="data.principal_id"
                 initialValue={data.principal_id}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, "Principal Applicant SEVIS ID") }]}
                 maxLength={11}
+                tr={tr}
               />
             }
             {
               (sevis_type == 'C' || sevis_type == 'D') &&
               <VisaInput
-                label="Program Number"
+                label={tr(resources.SEVIS.program_number)}
                 extra="(e.g., G-7-12345)"
                 field="data.program_number"
                 initialValue={data.program_number}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateProgramNumber(rule, value, callback, "Program Number") }]}
+                tr={tr}
               />
             }
           </Col>
@@ -138,36 +145,40 @@ class MyForm extends Component {
 
         {sevis_type == 'C' &&
           <VisaRadio
-            label="Do you intend to study in the U.S.?"
+            label={tr(resources.SEVIS.b_study_in_US)}
             field="data.b_study_in_US"
             initialValue={data.b_study_in_US}
             getFieldDecorator={getFieldDecorator}
+            tr={tr}
           />
         }
         {((sevis_type == 'C' && this.props.form.getFieldValue('data.b_study_in_US')) || sevis_type == 'A') &&
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
-                label="Name of School"
+                label={tr(resources.SEVIS.school_info.name)}
                 field="data.school_info.name"
                 initialValue={data.school_info.name}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Name of School", true) }]}
+                tr={tr}
               />
               <VisaInput
-                label="Course of Study"
+                label={tr(resources.SEVIS.school_info.course)}
                 field="data.school_info.course"
                 initialValue={data.school_info.course}
                 getFieldDecorator={getFieldDecorator} 
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, "Course of Study") }]}
+                tr={tr}
               />
               <VisaAddress
-                label="Address"
+                label={tr(resources.SEVIS.school_info.address)}
                 field="data.school_info.address"
                 initialValue={data.school_info.address}
                 getFieldDecorator={getFieldDecorator}
                 validators={this.props.validators}
                 hideCountry
+                tr={tr}
               />
             </Col>
           </Row>

@@ -82,6 +82,7 @@ class MyForm extends Component {
                 <VisaSelect
                   combines={constants.purpose_of_trip_advanced_options_func()}
                   onChange={(e) => this.onSelect(e, 'purpose_of_trip')}
+                  tr={tr}
                 />
               )}
             </Form.Item>
@@ -99,6 +100,7 @@ class MyForm extends Component {
                   <VisaSelect
                     combines={constants.purpose_of_trip_advanced_specify_options_func(field.purpose_of_trip)}
                     onChange={(e) => this.onSelect(e, 'other_purpose_of_trip')}
+                    tr={tr}
                   />
                 )}
               </Form.Item>
@@ -167,6 +169,7 @@ class MyForm extends Component {
 
           setFieldsValue={setFieldsValue}
           getFieldValue={getFieldValue}
+          tr={tr}
         />
 
         <Row gutter={16}>
@@ -186,7 +189,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.period),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={(field.purpose_of_trip == 'B' || field.purpose_of_trip == 'C' || field.purpose_of_trip == 'D') ? constants.period_unit_options_v2 : constants.period_unit_options} />
+                <VisaSelect combines={(field.purpose_of_trip == 'B' || field.purpose_of_trip == 'C' || field.purpose_of_trip == 'D') ? constants.period_unit_options_v2 : constants.period_unit_options} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -227,7 +230,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.address_you_will_stay.state),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.state_options_list()} />
+                <VisaSelect combines={constants.state_options_list()} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -252,7 +255,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.paying_person_for_trip),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.paying_person_for_trip_options} />
+                <VisaSelect combines={constants.paying_person_for_trip_options} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -321,7 +324,7 @@ class MyForm extends Component {
                       initialValue: utils.getInitialValue(data.paying_person_info.relationship),
                       rules: [{ required: true, message: tr(resources.validations.required) }],
                     })(
-                      <VisaSelect combines={martial_status == 'M' || martial_status == 'L' ? constants.paying_person_info_relationship_options : constants.paying_person_info_relationship_without_spouse_options} />
+                      <VisaSelect combines={martial_status == 'M' || martial_status == 'L' ? constants.paying_person_info_relationship_options : constants.paying_person_info_relationship_without_spouse_options} tr={tr}/>
                     )}
                   </Form.Item>
                 </Col>
@@ -394,6 +397,7 @@ class MyForm extends Component {
                   getFieldDecorator={getFieldDecorator}
                   validators={this.props.validators}
                   us_address={false}
+                  tr={tr}
                 />
               </Col>
             </Row>

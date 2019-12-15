@@ -11,6 +11,7 @@ import VisaDatePicker from "../../../../components/VisaDatePicker";
 import VisaInputArray from "../../../../components/VisaInputArray";
 import * as utils from '../../../../utils'
 import VisaSelectArray from "../../../../components/VisaSelectArray";
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -40,33 +41,36 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     };
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
+
     getFieldDecorator('data.b_belong_to_clan', { initialValue: utils.getInitialValue(data.b_belong_to_clan) });
     getFieldDecorator('data.b_travel_last_five_years', { initialValue: utils.getInitialValue(data.b_travel_last_five_years) });
     getFieldDecorator('data.b_belong_to_org', { initialValue: utils.getInitialValue(data.b_belong_to_org) });
     getFieldDecorator('data.b_military', { initialValue: utils.getInitialValue(data.b_military) });
     getFieldDecorator('data.b_special_skill', { initialValue: utils.getInitialValue(data.b_special_skill) });
     getFieldDecorator('data.b_rebel_group', { initialValue: utils.getInitialValue(data.b_rebel_group) });
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Additional Work / Education / Training Information</h2>
+          <h2 className="visa-global-section-title">{tr(resources.additional_work.section_title)}</h2>
         </div>
 
         <VisaExplain
-          label="Do you belong to a clan or tribe?"
+          label={tr(resources.additional_work.b_belong_to_clan)}
           radioField="data.b_belong_to_clan"
           radioInitialValue={data.b_belong_to_clan}
           radioValue={this.props.form.getFieldValue('data.b_belong_to_clan')}
           textField="data.clan_name"
-          textLabel="If you answer Yes, please give the name of the clan or tribe"
+          textLabel={tr(resources.additional_work.clan_name)}
           textInitialValue={data.clan_name}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <VisaInputArray 
-          label="Provide a list of languages you speak"
+          label={tr(resources.additional_work.languages.label)}
           getFieldDecorator={getFieldDecorator}
           getFieldValue={getFieldValue}
           setFieldsValue={setFieldsValue}
@@ -75,37 +79,41 @@ class MyForm extends Component {
           keysField="copy.languages"
           validators={this.props.validators}
           customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Language Name", true) }]}
+          tr={tr}
         />
 
         <VisaRadio
-          label="Have you travelled to any countries within the last five years?"
+          label={tr(resources.additional_work.b_travel_last_five_years)}
           field="data.b_travel_last_five_years"
           initialValue={data.b_travel_last_five_years}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {this.props.form.getFieldValue('data.b_travel_last_five_years') &&
           <VisaSelectArray 
-            label="List of Countries"
+            label={tr(resources.additional_work.countries.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
             setFieldsValue={setFieldsValue}
             initialValue={data.countries}
             arrayField="data.countries"
             keysField="copy.countries"
+            tr={tr}
           />
         }
 
         <VisaRadio
-          label="Have you belonged to, contributed to, or worked for any professional, social, or charitable organisation?"
+          label={tr(resources.additional_work.b_belong_to_org)}
           field="data.b_belong_to_org"
           initialValue={data.b_belong_to_org}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {this.props.form.getFieldValue('data.b_belong_to_org') &&
           <VisaInputArray 
-            label="List of Organizations"
+            label={tr(resources.additional_work.organizations.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
             setFieldsValue={setFieldsValue}
@@ -114,14 +122,16 @@ class MyForm extends Component {
             keysField="copy.organizations"
             validators={this.props.validators}
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Organization Name", true) }]}
+            tr={tr}
           />
         }
 
         <VisaRadio
-          label="Have you ever served in the military?"
+          label={tr(resources.additional_work.b_military)}
           field="data.b_military"
           initialValue={data.b_military}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {this.props.form.getFieldValue('data.b_military') &&
@@ -129,7 +139,7 @@ class MyForm extends Component {
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaSelectItem
-                label="Name of Country/Region"
+                label={tr(resources.additional_work.militaries.country)}
                 field="data.militaries[0].country"
                 initialValue={data.militaries[0].country}
                 content={{
@@ -137,34 +147,38 @@ class MyForm extends Component {
                   values: constants.countries_regions_option_value_list,
                 }}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
               <VisaInput
-                label="Branch of Service"
+                label={tr(resources.additional_work.militaries.service)}
                 field="data.militaries[0].service"
                 initialValue={data.militaries[0].service}
                 getFieldDecorator={getFieldDecorator}
                 maxLength={40}
+                tr={tr}
               />
               <VisaInput
-                label="Rank/Position"
+                label={tr(resources.additional_work.militaries.rank)}
                 field="data.militaries[0].rank"
                 initialValue={data.militaries[0].rank}
                 getFieldDecorator={getFieldDecorator}
                 maxLength={40}
+                tr={tr}
               />
               <VisaInput
-                label="Military Speciality"
+                label={tr(resources.additional_work.militaries.speciality)}
                 field="data.militaries[0].speciality"
                 initialValue={data.militaries[0].speciality}
                 getFieldDecorator={getFieldDecorator}
                 maxLength={40}
+                tr={tr}
               />
             </Col>
           </Row>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
-                label="Date of Attendance From"
+                label={tr(resources.additional_work.militaries.date_from)}
                 field="data.militaries[0].date_from"
                 initialValue={data.militaries[0].date_from}
                 getFieldDecorator={getFieldDecorator}
@@ -172,11 +186,12 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaDatePicker 
-                label="Date of Attendance To"
+                label={tr(resources.additional_work.militaries.date_to)}
                 field="data.militaries[0].date_to"
                 initialValue={data.militaries[0].date_to}
                 getFieldDecorator={getFieldDecorator}
@@ -184,6 +199,7 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
             </Col>
           </Row>
@@ -191,7 +207,7 @@ class MyForm extends Component {
         }
 
         <VisaExplain
-          label="Have you ever been a member of the Taliban?"
+          label={tr(resources.additional_work.b_taliban)}
           radioField="data.b_taliban"
           radioInitialValue={data.b_taliban}
           radioValue={this.props.form.getFieldValue('data.b_taliban')}
@@ -199,10 +215,11 @@ class MyForm extends Component {
           textInitialValue={data.taliban_explain}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <VisaExplain
-          label="Do you have any specialized skills or training, such as firearms, explosives, nuclear, biological, or chemical experience?"
+          label={tr(resources.additional_work.b_special_skill)}
           radioField="data.b_special_skill"
           radioInitialValue={data.b_special_skill}
           radioValue={this.props.form.getFieldValue('data.b_special_skill')}
@@ -210,10 +227,11 @@ class MyForm extends Component {
           textInitialValue={data.special_skill_explain}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <VisaExplain
-          label="Have you ever served in, been a member of, or been involved with a paramilitary unit, vigilante unit, rebel group, guerilla group, or insurgent organisation?"
+          label={tr(resources.additional_work.b_rebel_group)}
           radioField="data.b_rebel_group"
           radioInitialValue={data.b_rebel_group}
           radioValue={this.props.form.getFieldValue('data.b_rebel_group')}
@@ -221,6 +239,7 @@ class MyForm extends Component {
           textInitialValue={data.rebel_group_explain}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <div className="visa-form-bottom-btn-group">

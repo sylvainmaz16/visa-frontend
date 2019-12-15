@@ -67,6 +67,7 @@ class MyForm extends Component {
           field="data.b_ever_been_in_US"
           initialValue={data.b_ever_been_in_US}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
         {
           this.props.form.getFieldValue('data.b_ever_been_in_US') &&
@@ -80,6 +81,7 @@ class MyForm extends Component {
             keysField="copy.prev_visit_info"
             validators={this.props.validators}
             birthday={date_birth}
+            tr={tr}
           />
         }
 
@@ -88,6 +90,7 @@ class MyForm extends Component {
           field="data.b_ever_hold_Driver_License"
           initialValue={data.b_ever_hold_Driver_License}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {
@@ -112,7 +115,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.prev_DL_info.state),
                     rules: [{ required: true, message: tr(resources.validations.required) }],
                   })(
-                    <VisaSelect combines={constants.state_options_list()} />
+                    <VisaSelect combines={constants.state_options_list()} tr={tr}/>
                   )}
                 </Form.Item>
               </Col>
@@ -125,6 +128,7 @@ class MyForm extends Component {
           field="data.b_ever_been_issued_US_Visa"
           initialValue={data.b_ever_been_issued_US_Visa}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {
@@ -143,6 +147,7 @@ class MyForm extends Component {
 
                   setFieldsValue={setFieldsValue}
                   getFieldValue={getFieldValue}
+                  tr={tr}
                 />
               </Col>
               <Col xs={{ span: 16 }} md={{ span: 12 }}>
@@ -161,24 +166,28 @@ class MyForm extends Component {
               field="data.US_Visa.b_same_type_visa"
               initialValue={data.US_Visa.b_same_type_visa}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             <VisaRadio
               label={tr(resources.previous_travel.US_Visa.b_same_cntry_visa.label)}
               field="data.US_Visa.b_same_cntry_visa"
               initialValue={data.US_Visa.b_same_cntry_visa}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             <VisaRadio
               label={tr(resources.previous_travel.US_Visa.b_been_ten_printed.label)}
               field="data.US_Visa.b_been_ten_printed"
               initialValue={data.US_Visa.b_been_ten_printed}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             <VisaRadio
               label={tr(resources.previous_travel.US_Visa.b_ever_been_lost.label)}
               field="data.US_Visa.b_ever_been_lost"
               initialValue={data.US_Visa.b_ever_been_lost}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             {
               this.props.form.getFieldValue('data.US_Visa.b_ever_been_lost') &&
@@ -214,6 +223,7 @@ class MyForm extends Component {
               textInitialValue={data.US_Visa.cancel_info.explain}
               getFieldDecorator={getFieldDecorator}
               validators={this.props.validators}
+              tr={tr}
             />
           </>
         }
@@ -227,6 +237,7 @@ class MyForm extends Component {
           textInitialValue={data.refuse_info.explain}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <VisaExplain
@@ -238,6 +249,7 @@ class MyForm extends Component {
           textInitialValue={data.denied_info.explain}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <VisaExplain
@@ -249,6 +261,7 @@ class MyForm extends Component {
           textInitialValue={data.petition_info ? data.petition_info.explain : null}
           getFieldDecorator={getFieldDecorator}
           validators={this.props.validators}
+          tr={tr}
         />
 
         <div className="visa-form-bottom-btn-group">

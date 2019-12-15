@@ -4,7 +4,6 @@ import * as constants from '../../../../utils/constants'
 import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaRadio from "../../../../components/VisaRadio";
-import VisaExplain from "../../../../components/VisaExplain";
 import VisaAddress from "../../../../components/VisaAddress";
 import VisaInput from "../../../../components/VisaInput";
 import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
@@ -15,6 +14,7 @@ import VisaOtherRelatives from '../../../../components/VisaOtherRelatives'
 import VisaFormerSpouses from "../../../../components/VisaFormerSpouses";
 import * as utils from '../../../../utils'
 import VisaDatePickerWithCheckInline from "../../../../components/VisaDatePickerWithCheckInline";
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -59,8 +59,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status } = this.props
-
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr } = this.props
     
     getFieldDecorator('data.father.surname_NA', { initialValue: utils.getInitialValue(data.father.surname_NA) });
     getFieldDecorator('data.father.given_name_NA', { initialValue: utils.getInitialValue(data.father.given_name_NA) });
@@ -85,50 +84,6 @@ class MyForm extends Component {
       ]
     }
 
-    // data.former_spouse = [{
-    //   surname: null,
-    //   given_name: null,
-    //   birthday: null,
-    //   nationality: null,
-    //   place_of_birth: {
-    //     city: null,
-    //     country: null
-    //   },
-    //   marriage_date: null,
-    //   end_date: null,
-    //   end_explain: null,
-    //   end_country: null,
-    //   address: {
-    //     street_addr1: null,
-    //     street_addr2: null,
-    //     city: null,
-    //     state: null,
-    //     zip_code: null,
-    //     country: null
-    //   }
-    // }]
-
-    // if(!data.former_spouse.address) {
-    //   data.former_spouse.address = {
-    //     street_addr1: null,
-    //     street_addr2: null,
-    //     city: null,
-    //     state: null,
-    //     zip_code: null,
-    //     country: null
-    //   }
-    // }
-    
-    // if(data.former_spouse.birthday && (typeof data.former_spouse.birthday != "string")) {
-    //   data.former_spouse.birthday = data.former_spouse.birthday._i
-    // }
-    // if(data.former_spouse.marriage_date && (typeof data.former_spouse.marriage_date != "string")) {
-    //   data.former_spouse.marriage_date = data.former_spouse.marriage_date._i
-    // }
-    // if(data.former_spouse.end_date && (typeof data.former_spouse.end_date != "string")) {
-    //   data.former_spouse.end_date = data.former_spouse.end_date._i
-    // }
-
     const martial_header = {
       'M': 'Spouse',
       'C': 'Spouse',
@@ -141,15 +96,15 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Family Information : Your Parents</h2>
+          <h2 className="visa-global-section-title">{tr(resources.family.section_title)}</h2>
         </div>
 
-        <Form.Item label="List your Father's information here" required>
+        <Form.Item label={tr(resources.family.father.label)} required>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Father's Surname (Last Name)"
-                extra="Please check if you do not know"
+                label={tr(resources.family.father.surname.label)}
+                extra={tr(resources.family.father.surname.extra)}
                 field="data.father.surname"
                 initialValue={data.father.surname}
                 getFieldDecorator={getFieldDecorator}
@@ -159,12 +114,13 @@ class MyForm extends Component {
                 getFieldValue={getFieldValue}
                 checkField="data.father.surname_NA"
                 checkValue={data.father.surname_NA}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Father's Given Name (First Name)"
-                extra="Please check if you do not know"
+                label={tr(resources.family.father.given_name.label)}
+                extra={tr(resources.family.father.given_name.extra)}
                 field="data.father.given_name"
                 initialValue={data.father.given_name}
                 getFieldDecorator={getFieldDecorator}
@@ -173,6 +129,7 @@ class MyForm extends Component {
                 getFieldValue={getFieldValue}
                 checkField="data.father.given_name_NA"
                 checkValue={data.father.given_name_NA}
+                tr={tr}
               />
             </Col>
           </Row>
@@ -182,7 +139,7 @@ class MyForm extends Component {
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaDatePickerWithCheckInline
-                  label="Father's date of birth"
+                  label={tr(resources.family.father.birthday.label)}
                   field="data.father.birthday"
                   initialValue={data.father.birthday}
                   getFieldDecorator={getFieldDecorator}
@@ -191,26 +148,29 @@ class MyForm extends Component {
                   getFieldValue={getFieldValue}
                   checkField="data.father.birthday_NA"
                   checkValue={data.father.birthday_NA}
+                  tr={tr}
                 />
               </Col>
             </Row>
             
             <VisaRadio
-              label="Is your Father in the US?"
+              label={tr(resources.family.father.b_in_US.label)}
               field="data.father.b_in_US"
               initialValue={data.father.b_in_US}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             {
               this.props.form.getFieldValue('data.father.b_in_US') &&
               <VisaSelectItem
-                label="Father's Status"
+                label={tr(resources.family.father.status.label)}
                 field="data.father.status"
                 initialValue={data.father.status}
                 content={{
                   combines: constants.export_list(constants.US_Live_Status)
                 }}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
             }
             </>
@@ -218,12 +178,12 @@ class MyForm extends Component {
           
         </Form.Item>
 
-        <Form.Item label="List your Mother's information here" required>
+        <Form.Item label={tr(resources.family.mother.label)} required>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Mother's Surname (Last Name)"
-                extra="Please check if you do not know"
+                label={tr(resources.family.mother.surname.label)}
+                extra={tr(resources.family.mother.surname.extra)}
                 field="data.mother.surname"
                 initialValue={data.mother.surname}
                 getFieldDecorator={getFieldDecorator}
@@ -233,12 +193,13 @@ class MyForm extends Component {
                 getFieldValue={getFieldValue}
                 checkField="data.mother.surname_NA"
                 checkValue={data.mother.surname_NA}
+                tr={tr}
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInputWithCheck
-                label="Mother's Given Name (First Name)"
-                extra="Please check if you do not know"
+                label={tr(resources.family.mother.given_name.label)}
+                extra={tr(resources.family.mother.given_name.extra)}
                 field="data.mother.given_name"
                 initialValue={data.mother.given_name}
                 getFieldDecorator={getFieldDecorator}
@@ -248,6 +209,7 @@ class MyForm extends Component {
                 getFieldValue={getFieldValue}
                 checkField="data.mother.given_name_NA"
                 checkValue={data.mother.given_name_NA}
+                tr={tr}
               />
             </Col>
           </Row>
@@ -257,7 +219,7 @@ class MyForm extends Component {
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <VisaDatePickerWithCheckInline
-                  label="Mother's date of birth"
+                  label={tr(resources.family.mother.birthday.label)}
                   field="data.mother.birthday"
                   initialValue={data.mother.birthday}
                   getFieldDecorator={getFieldDecorator}
@@ -266,26 +228,29 @@ class MyForm extends Component {
                   getFieldValue={getFieldValue}
                   checkField="data.mother.birthday_NA"
                   checkValue={data.mother.birthday_NA}
+                  tr={tr}
                 />
               </Col>
             </Row>
             
             <VisaRadio
-              label="Is your Mother in the US?"
+              label={tr(resources.family.mother.b_in_US.label)}
               field="data.mother.b_in_US"
               initialValue={data.mother.b_in_US}
               getFieldDecorator={getFieldDecorator}
+              tr={tr}
             />
             {
               this.props.form.getFieldValue('data.mother.b_in_US') &&
               <VisaSelectItem
-                label="Mother's Status"
+                label={tr(resources.family.mother.status.label)}
                 field="data.mother.status"
                 initialValue={data.mother.status}
                 content={{
                   combines: constants.export_list(constants.US_Live_Status)
                 }}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
             }
             </>
@@ -293,20 +258,21 @@ class MyForm extends Component {
         </Form.Item>
 
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Family information : Your Relatives</h2>
+          <h2 className="visa-global-section-title">{tr(resources.family.section_title_relatives)}</h2>
         </div>
 
         <VisaRadio
-          label="Do you have any immediate relatives other than parents living in the United States?"
-          extra="Means fiancé/fiancée, spouse (husband/wife), child (son/daughter) or sibling (brother/sister)"
+          label={tr(resources.family.b_other_relative.label)}
+          extra={tr(resources.family.b_other_relative.extra)}
           field="data.b_other_relative"
           initialValue={data.b_other_relative}
           getFieldDecorator={getFieldDecorator}
+          tr={tr}
         />
 
         {   
           this.props.form.getFieldValue('data.b_other_relative') &&
-          <Form.Item label="Enter Full Name, Relationship to you, Immigration Status">
+          <Form.Item label={tr(resources.family.others.label)}>
             <VisaOtherRelatives 
               getFieldDecorator={getFieldDecorator}
               getFieldValue={getFieldValue}
@@ -316,6 +282,7 @@ class MyForm extends Component {
               keysField="copy.others"
               validators={this.props.validators}
               martial_status={martial_status}
+              tr={tr}
             />
           </Form.Item>
         }
@@ -323,47 +290,48 @@ class MyForm extends Component {
         {
           this.props.form.getFieldValue('data.b_other_relative') == false &&
           <VisaRadio
-            label="Do you have any other relatives in the United States?"
+            label={tr(resources.family.b_more_relatives.label)}
             field="data.b_more_relatives"
             initialValue={data.b_more_relatives}
             getFieldDecorator={getFieldDecorator}
+            tr={tr}
           />
         }
 
         {martial_header[martial_status] && 
           <div className="visa-global-field visa-global-border-bottom">
-            <h2 className="visa-global-section-title">Family Information: {martial_header[martial_status]}</h2>
+            <h2 className="visa-global-section-title">{tr(resources.family.section_title_family_information)}: {martial_header[martial_status]}</h2>
           </div>
         }
         {
           (martial_header[martial_status] == 'Spouse' || martial_header[martial_status] == 'Partner') &&
-            <Form.Item label="List your Spouse/Partner's information here" required>
+            <Form.Item label={tr(resources.family.spouse.label)} required>
               <Row gutter={16}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
-                    label="Spouse/Partner's First Name"
-                    // extra="Leave blank if you do not know"
+                    label={tr(resources.family.spouse.surname.label)}
                     field="data.spouse.surname"
                     initialValue={data.spouse.surname}
                     getFieldDecorator={getFieldDecorator}
                     customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
                     maxLength={33}
+                    tr={tr}
                   />
                 </Col>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
-                    label="Spouse/Partner's Last Name"
-                    // extra="Leave blank if you do not know"
+                    label={tr(resources.family.spouse.given_name.label)}
                     field="data.spouse.given_name"
                     initialValue={data.spouse.given_name}
                     getFieldDecorator={getFieldDecorator}
                     customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
                     maxLength={33}
+                    tr={tr}
                   />
                 </Col>
               </Row>
               <VisaDatePicker 
-                label="Spouse/Partner's date of birth"
+                label={tr(resources.family.spouse.birthday.label)}
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
@@ -371,32 +339,35 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
               <VisaSelectItem
-                label="Nationality"
+                label={tr(resources.family.spouse.nationality.label)}
                 field="data.spouse.nationality"
                 initialValue={data.spouse.nationality}
                 content={{
                   combines: constants.nationality_option_list_func()
                 }}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
-              <Form.Item label="Place of birth">
+              <Form.Item label={tr(resources.family.spouse.place_of_birth.label)}>
                 <Row gutter={16}>
                   <Col xs={{ span: 24 }} md={{ span: 12 }}>
                     <VisaInput
-                      label="City"
-                      extra="Leave blank if you do not know"
+                      label={tr(resources.family.spouse.place_of_birth.city.label)}
+                      extra={tr(resources.family.spouse.place_of_birth.city.extra)}
                       field="data.spouse.place_of_birth.city"
                       initialValue={data.spouse.place_of_birth.city}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
                       maxLength={20}
+                      tr={tr}
                     />
                   </Col>
                   <Col xs={{ span: 24 }} md={{ span: 12 }}>
                     <VisaSelectItem
-                      label="Country"
+                      label={tr(resources.family.spouse.place_of_birth.country.label)}
                       field="data.spouse.place_of_birth.country"
                       initialValue={data.spouse.place_of_birth.country}
                       content={{
@@ -404,28 +375,31 @@ class MyForm extends Component {
                         labels: constants.countries_regions_option_label_list,
                       }}
                       getFieldDecorator={getFieldDecorator}
+                      tr={tr}
                     />
                   </Col>
                 </Row>
               </Form.Item>
               <VisaSelectItem
-                label="Address"
+                label={tr(resources.family.spouse.address_type.label)}
                 field="data.spouse.address_type"
                 initialValue={data.spouse.address_type}
                 content={{
                   combines: constants.export_list(constants.spouse_address_type)
                 }}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
               {
                 this.props.form.getFieldValue('data.spouse.address_type') == 'O' && 
                 <VisaAddress 
-                  label="Specify Address"
+                  label={tr(resources.family.spouse.address.label)}
                   field="data.spouse.address"
                   initialValue={data.spouse.address}
                   getFieldDecorator={getFieldDecorator}
                   validators={this.props.validators}
                   us_address={false}
+                  tr={tr}
                 />
               }
             </Form.Item>
@@ -437,27 +411,27 @@ class MyForm extends Component {
               <Row gutter={16}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
-                    label="First Name"
-                    // extra="Leave blank if you do not know"
+                    label={tr(resources.family.spouse.surname.label)}
                     field="data.spouse.surname"
                     initialValue={data.spouse.surname}
                     getFieldDecorator={getFieldDecorator}
                     customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                    tr={tr}
                   />
                 </Col>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <VisaInput
-                    label="Last Name"
-                    // extra="Leave blank if you do not know"
+                    label={tr(resources.family.spouse.given_name.label)}
                     field="data.spouse.given_name"
                     initialValue={data.spouse.given_name}
                     getFieldDecorator={getFieldDecorator}
                     customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                    tr={tr}
                   />
                 </Col>
               </Row>
               <VisaDatePicker 
-                label="Date of birth"
+                label={tr(resources.family.spouse.birthday.label)}
                 field="data.spouse.birthday"
                 initialValue={data.spouse.birthday}
                 getFieldDecorator={getFieldDecorator}
@@ -465,31 +439,34 @@ class MyForm extends Component {
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
+                tr={tr}
               />
               <VisaSelectItem
-                label="Nationality"
+                label={tr(resources.family.spouse.nationality.label)}
                 field="data.spouse.nationality"
                 initialValue={data.spouse.nationality}
                 content={{
                   combines: constants.nationality_option_list_func()
                 }}
                 getFieldDecorator={getFieldDecorator}
+                tr={tr}
               />
-              <Form.Item label="Place of birth">
+              <Form.Item label={tr(resources.family.spouse.place_of_birth.label)}>
                 <Row gutter={16}>
                   <Col xs={{ span: 24 }} md={{ span: 12 }}>
                     <VisaInput
-                      label="City"
-                      extra="Leave blank if you do not know"
+                      label={tr(resources.family.spouse.place_of_birth.city.label)}
+                      extra={tr(resources.family.spouse.place_of_birth.city.extra)}
                       field="data.spouse.place_of_birth.city"
                       initialValue={data.spouse.place_of_birth.city}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
+                      tr={tr}
                     />
                   </Col>
                   <Col xs={{ span: 24 }} md={{ span: 12 }}>
                     <VisaSelectItem
-                      label="Country"
+                      label={tr(resources.family.spouse.place_of_birth.country.label)}
                       field="data.spouse.place_of_birth.country"
                       initialValue={data.spouse.place_of_birth.country}
                       content={{
@@ -497,6 +474,7 @@ class MyForm extends Component {
                         labels: constants.countries_regions_option_label_list,
                       }}
                       getFieldDecorator={getFieldDecorator}
+                      tr={tr}
                     />
                   </Col>
                 </Row>
@@ -506,7 +484,7 @@ class MyForm extends Component {
         {
           martial_header[martial_status] == 'Former Spouse' &&
           <>
-            <Form.Item label="Number of Former Spouses" labelCol={{md: {span: 6}, sm: {span: 12}}} wrapperCol={{md: {span: 6}, sm: {span: 12}}}>
+            <Form.Item label={tr(resources.family.former_spouse_number.label)} labelCol={{md: {span: 6}, sm: {span: 12}}} wrapperCol={{md: {span: 6}, sm: {span: 12}}}>
               {getFieldDecorator('data.former_spouse_number', {
                 initialValue: utils.getInitialValue(data.former_spouse_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.formerSpouseNumberValidator(rule, value, callback, this.props.form.getFieldValue('data.former_spouse').length) }],
@@ -515,7 +493,7 @@ class MyForm extends Component {
               )}
             </Form.Item>
             <VisaFormerSpouses 
-              label="Former Spouse's Information"
+              label={tr(resources.family.former_spouse.label)}
               getFieldDecorator={getFieldDecorator}
               getFieldValue={getFieldValue}
               setFieldsValue={setFieldsValue}
@@ -523,6 +501,7 @@ class MyForm extends Component {
               arrayField="data.former_spouse"
               keysField="copy.former_spouse"
               validators={this.props.validators}
+              tr={tr}
             />
           </>
         }
