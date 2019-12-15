@@ -49,7 +49,7 @@ class VisaInputArray extends Component {
         {getFieldDecorator(`${arrayField}[${index}]`, {
           validateTrigger: ['onChange', 'onBlur'],
           initialValue: utils.getInitialValue(initialValue[index]),
-          rules: customRule ? customRule : [{ required: required, message: tr(resources.validations.required) }],
+          rules: customRule ? customRule : [{ pattern: /^[A-Za-z0-9#$*%&;!@^?><().',\- ]+$/, message: tr(resources.validations.english) }, { required: required, message: tr(resources.validations.required) }],
         })(<Input style={{ width: '60%', marginRight: 8 }} maxLength={maxLength}/>)}
         {languages.length > 1 ? (
           <Icon

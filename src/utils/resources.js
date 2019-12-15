@@ -92,6 +92,13 @@ const resources = {
         },
     },
     validations: {
+        english: {
+            en: `Only the following characters are valid for this field: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parens (), period (.), apostrophe ('), comma (,), hyphen (-), and space.`,
+            fr: `Seuls les caractères suivants sont valides pour ce domaine: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, les parenthèses (), le point (.), apostrophe ('), la virgule (,), tiret (-), et de l'espace.`,
+            es: `Sólo los siguientes caracteres son válidos para este campo: a-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, paréntesis (), punto (.), el apóstrofo ('), la coma (,), guión (-), y en el espacio.`,
+            de: `Nur die folgenden Zeichen sind gültig für dieses Feld: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parens (), Punkt (.), Apostroph ('), Komma (,), Bindestrich ( - ) und Leerzeichen.`,
+            it: `Solo i seguenti caratteri sono validi per il settore: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parentesi (), il punto (.), apostrofo ('), virgola (,), il trattino (-), e lo spazio.`,
+        },
         required: {
             en: `This field is required`,
             fr: `Ce champ de saisie est obligatoire`,

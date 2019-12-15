@@ -19,7 +19,7 @@ class VisaInput extends Component {
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
           initialValue: utils.getInitialValue(initialValue),
-          rules: customRule ? customRule : [{ required: required, message: tr(resources.validations.required) }],
+          rules: customRule ? customRule : [ { pattern: /^[A-Za-z0-9#$*%&;!@^?><().',\- ]+$/, message: tr(resources.validations.english) }, { required: required, message: tr(resources.validations.required) }],
         })(
           <Input placeholder={placeholder} maxLength={maxLength}/>
         )}

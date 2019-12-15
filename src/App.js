@@ -6,6 +6,8 @@ import Routes from './routes/index'
 import { createBrowserHistory } from 'history'
 import configureStore from './store'
 import { PersistGate } from 'redux-persist/integration/react'
+import { ConfigProvider } from 'antd';
+import frFR from 'antd/es/locale/fr_FR';
 
 const history = createBrowserHistory()
 const { persistor, store } = configureStore()

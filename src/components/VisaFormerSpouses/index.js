@@ -185,7 +185,7 @@ class VisaFormerSpouses extends Component {
         <Form.Item label={tr(resources.components.former_spouses.end_explain)} required>
           {getFieldDecorator(`${arrayField}[${index}].end_explain`, {
             initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].end_explain : null),
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [ { pattern: /^[A-Za-z0-9#$*%&;!@^?><().',\- ]+$/, message: tr(resources.validations.english) }, { required: true, message: 'This field is required' }],
           })(
             <TextArea rows={3}/>
           )}
