@@ -5,6 +5,7 @@ import VisaSelect from "../../../../components/VisaSelect";
 import moment from 'moment'
 import VisaTravellers from '../../../../components/VisaTravellers'
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 
@@ -27,7 +28,7 @@ class MyForm extends Component {
     };
 
 
-    const { showPrev, showNext, onPrev, onNext, data } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
 
     getFieldDecorator('data.b_other_person_travel_with', { initialValue: utils.getInitialValue(data.b_other_person_travel_with) });
     getFieldDecorator('data.b_part_of_group', { initialValue: utils.getInitialValue(data.b_part_of_group) });
@@ -39,29 +40,29 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Information about your travel companions</h2>
+          <h2 className="visa-global-section-title">{tr(resources.travel_companion.section_title)}</h2>
         </div>
 
-        <Form.Item label="Are there other persons traveling with you?">
+        <Form.Item label={tr(resources.travel_companion.b_other_person_travel_with.label)}>
           {getFieldDecorator('data.b_other_person_travel_with', {
             initialValue: utils.getInitialValue(data.b_other_person_travel_with),
-            rules: [{ required: true, message: 'This field is required' }],
+            rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
             <Radio.Group>
-              <Radio value={true}>Yes</Radio>
-              <Radio value={false}>No</Radio>
+              <Radio value={true}>{tr(resources.yes)}</Radio>
+              <Radio value={false}>{tr(resources.no)}</Radio>
             </Radio.Group>
           )}
         </Form.Item>
         {field.b_other_person_travel_with &&
-          <Form.Item label="Are you traveling as part of a group or organization?">
+          <Form.Item label={tr(resources.travel_companion.b_part_of_group.label)}>
             {getFieldDecorator('data.b_part_of_group', {
               initialValue: utils.getInitialValue(data.b_part_of_group),
-              rules: [{ required: true, message: 'This field is required' }],
+              rules: [{ required: true, message: tr(resources.validations.required) }],
             })(
               <Radio.Group>
-                <Radio value={true}>Yes</Radio>
-                <Radio value={false}>No</Radio>
+                <Radio value={true}>{tr(resources.yes)}</Radio>
+                <Radio value={false}>{tr(resources.no)}</Radio>
               </Radio.Group>
             )}
           </Form.Item>
@@ -69,7 +70,7 @@ class MyForm extends Component {
         {field.b_other_person_travel_with && field.b_part_of_group && 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-            <Form.Item label="Name of group or organisation if traveling as part of a group or organization">
+            <Form.Item label={tr(resources.travel_companion.company.label)}>
               {getFieldDecorator('data.company', {
                 initialValue: utils.getInitialValue(data.company),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, "Group Name", true) }],
@@ -82,7 +83,7 @@ class MyForm extends Component {
 
         {field.b_other_person_travel_with && field.b_part_of_group == false && 
         <VisaTravellers 
-          label="List of people traveling with you. (EACH TRAVELLER MUST COMPLETE HIS OWN APPLICATION)"
+          label={tr(resources.travel_companion.people.label)}
           getFieldDecorator={getFieldDecorator}
           getFieldValue={getFieldValue}
           setFieldsValue={setFieldsValue}

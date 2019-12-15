@@ -8,6 +8,7 @@ import VisaExplain from "../../../../components/VisaExplain";
 import VisaDatePicker from '../../../../components/VisaDatePicker'
 import VisaPreviousVisits from '../../../../components/VisaPreviousVisits'
 import * as utils from '../../../../utils'
+import resources from "../../../../utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -43,7 +44,7 @@ class MyForm extends Component {
       },
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
 
     getFieldDecorator('data.b_ever_been_in_US', { initialValue: utils.getInitialValue(data.b_ever_been_in_US) });
     getFieldDecorator('data.b_ever_hold_Driver_License', { initialValue: utils.getInitialValue(data.b_ever_hold_Driver_License) });
@@ -57,12 +58,12 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">Previous US Travel</h2>
+          <h2 className="visa-global-section-title">{tr(resources.previous_travel.section_title)}</h2>
         </div>
 
         <VisaRadio
-          label="Have you ever been to the US before?"
-          extra="Check if you have been in the US before and fill out the details of your last 5 visits below"
+          label={tr(resources.previous_travel.b_ever_been_in_US.label)}
+          extra={tr(resources.previous_travel.b_ever_been_in_US.extra)}
           field="data.b_ever_been_in_US"
           initialValue={data.b_ever_been_in_US}
           getFieldDecorator={getFieldDecorator}
@@ -70,7 +71,7 @@ class MyForm extends Component {
         {
           this.props.form.getFieldValue('data.b_ever_been_in_US') &&
           <VisaPreviousVisits 
-            label="Provide a list of your last 5 visits"
+            label={tr(resources.previous_travel.prev_visit_info.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
             setFieldsValue={setFieldsValue}
@@ -83,7 +84,7 @@ class MyForm extends Component {
         }
 
         <VisaRadio
-          label="Do you or did you ever hold a U.S. Driver’s License?"
+          label={tr(resources.previous_travel.b_ever_hold_Driver_License.label)}
           field="data.b_ever_hold_Driver_License"
           initialValue={data.b_ever_hold_Driver_License}
           getFieldDecorator={getFieldDecorator}
@@ -94,10 +95,10 @@ class MyForm extends Component {
           <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <Form.Item label="Driver's License number" extra="Leave it blank if you do not know">
+                <Form.Item label={tr(resources.previous_travel.prev_DL_info.number.label)} extra={tr(resources.previous_travel.prev_DL_info.number.extra)}>
                   {getFieldDecorator('data.prev_DL_info.number', {
                     initialValue: utils.getInitialValue(data.prev_DL_info.number),
-                    // rules: [{ required: true, message: 'This field is required' }],
+                    // rules: [{ required: true, message: tr(resources.validations.required) }],
                   })(
                     <Input maxLength={20}/>
                   )}
@@ -106,10 +107,10 @@ class MyForm extends Component {
             </Row>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <Form.Item label="State of Driver's License">
+                <Form.Item label={tr(resources.previous_travel.prev_DL_info.state.label)}>
                   {getFieldDecorator('data.prev_DL_info.state', {
                     initialValue: utils.getInitialValue(data.prev_DL_info.state),
-                    rules: [{ required: true, message: 'This field is required' }],
+                    rules: [{ required: true, message: tr(resources.validations.required) }],
                   })(
                     <VisaSelect combines={constants.state_options_list()} />
                   )}
@@ -120,7 +121,7 @@ class MyForm extends Component {
         }
 
         <VisaRadio
-          label="Have you ever been issued a US visa?"
+          label={tr(resources.previous_travel.b_ever_been_issued_US_Visa.label)}
           field="data.b_ever_been_issued_US_Visa"
           initialValue={data.b_ever_been_issued_US_Visa}
           getFieldDecorator={getFieldDecorator}
@@ -132,12 +133,12 @@ class MyForm extends Component {
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 8 }}>
                 <VisaDatePicker 
-                  label="Date Last Visa Was Issued"
+                  label={tr(resources.previous_travel.US_Visa.date.label)}
                   
                   field="data.US_Visa.date"
                   initialValue={data.US_Visa.date}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, "Date Last Visa Was Issued", date_birth) }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLastVisaIssuedDate(rule, value, callback, tr(resources.previous_travel.US_Visa.date.label), date_birth) }]}
                   required={true}
 
                   setFieldsValue={setFieldsValue}
@@ -145,10 +146,10 @@ class MyForm extends Component {
                 />
               </Col>
               <Col xs={{ span: 16 }} md={{ span: 12 }}>
-                <Form.Item label="Visa Number" extra="Enter the 8-digit number that is displayed in red on the lower right hand side of your visa. If your previous visa was a Border Crossing Card enter the last 12-digit number of the first line of the machine readable zone. Leave blank if you do not know">
+                <Form.Item label={tr(resources.previous_travel.US_Visa.number.label)} extra={tr(resources.previous_travel.US_Visa.number.extra)}>
                   {getFieldDecorator('data.US_Visa.number', {
                     initialValue: utils.getInitialValue(data.US_Visa.number),
-                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaNumber(rule, value, callback, "The Visa Number") }],
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaNumber(rule, value, callback, tr(resources.previous_travel.US_Visa.number.label)) }],
                   })(
                     <Input maxLength={12}/>
                   )}
@@ -156,25 +157,25 @@ class MyForm extends Component {
               </Col>
             </Row>
             <VisaRadio
-              label="Are you applying for the same type of visa?"
+              label={tr(resources.previous_travel.US_Visa.b_same_type_visa.label)}
               field="data.US_Visa.b_same_type_visa"
               initialValue={data.US_Visa.b_same_type_visa}
               getFieldDecorator={getFieldDecorator}
             />
             <VisaRadio
-              label="Are you applying in the same country or location where the visa above was issued, and is this country or location your place of principal of residence?"
+              label={tr(resources.previous_travel.US_Visa.b_same_cntry_visa.label)}
               field="data.US_Visa.b_same_cntry_visa"
               initialValue={data.US_Visa.b_same_cntry_visa}
               getFieldDecorator={getFieldDecorator}
             />
             <VisaRadio
-              label="Have you been ten-printed?"
+              label={tr(resources.previous_travel.US_Visa.b_been_ten_printed.label)}
               field="data.US_Visa.b_been_ten_printed"
               initialValue={data.US_Visa.b_been_ten_printed}
               getFieldDecorator={getFieldDecorator}
             />
             <VisaRadio
-              label="Has your US Visa ever been lost or stolen?"
+              label={tr(resources.previous_travel.US_Visa.b_ever_been_lost.label)}
               field="data.US_Visa.b_ever_been_lost"
               initialValue={data.US_Visa.b_ever_been_lost}
               getFieldDecorator={getFieldDecorator}
@@ -184,7 +185,7 @@ class MyForm extends Component {
               <>
                 <Row gutter={16}>
                   <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                    <Form.Item label="Which Year" required>
+                    <Form.Item label={tr(resources.previous_travel.US_Visa.lost_info.year.label)} required>
                       {getFieldDecorator('data.US_Visa.lost_info.year', {
                         initialValue: utils.getInitialValue(data.US_Visa.lost_info.year),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validateVisaLostYear(rule, value, callback, "Year", date_birth) }],
@@ -194,10 +195,10 @@ class MyForm extends Component {
                     </Form.Item>
                   </Col>
                 </Row>
-                <Form.Item label="If you answered yes, give details below.">
+                <Form.Item label={tr(resources.previous_travel.US_Visa.lost_info.explain.label)}>
                   {getFieldDecorator('data.US_Visa.lost_info.explain', {
                     initialValue: utils.getInitialValue(data.US_Visa.lost_info.explain),
-                    rules: [{ required: true, message: 'This field is required' }],
+                    rules: [{ required: true, message: tr(resources.validations.required) }],
                   })(
                     <TextArea rows={7}/>
                   )}
@@ -205,7 +206,7 @@ class MyForm extends Component {
               </>
             }
             <VisaExplain
-              label="Have you ever had a US Visa cancelled or revoked?"
+              label={tr(resources.previous_travel.US_Visa.b_ever_been_cancelled.label)}
               radioField="data.US_Visa.b_ever_been_cancelled"
               radioInitialValue={data.US_Visa.b_ever_been_cancelled}
               radioValue={this.props.form.getFieldValue('data.US_Visa.b_ever_been_cancelled')}
@@ -218,7 +219,7 @@ class MyForm extends Component {
         }
 
         <VisaExplain
-          label="Have you ever been refused a US Visa, or been refused admission to the United States, or withdrawn your application for admission at the port of entry?"
+          label={tr(resources.previous_travel.b_ever_been_refused_US_Visa.label)}
           radioField="data.b_ever_been_refused_US_Visa"
           radioInitialValue={data.b_ever_been_refused_US_Visa}
           radioValue={this.props.form.getFieldValue('data.b_ever_been_refused_US_Visa')}
@@ -229,7 +230,7 @@ class MyForm extends Component {
         />
 
         <VisaExplain
-          label="Have you ever been denied travel authorization by the Department of Homeland Security through the Electronic System fo Travel Authorization (ESTA)?"
+          label={tr(resources.previous_travel.b_ever_been_denied_travel_auth.label)}
           radioField="data.b_ever_been_denied_travel_auth"
           radioInitialValue={data.b_ever_been_denied_travel_auth}
           radioValue={this.props.form.getFieldValue('data.b_ever_been_denied_travel_auth')}
@@ -240,7 +241,7 @@ class MyForm extends Component {
         />
 
         <VisaExplain
-          label="Has anyone ever filled an immigrant petition on your behalf with the US Citizenship and Immigration Services?"
+          label={tr(resources.previous_travel.b_petition.label)}
           radioField="data.b_petition"
           radioInitialValue={data.b_petition}
           radioValue={this.props.form.getFieldValue('data.b_petition')}

@@ -355,7 +355,7 @@ const resources = {
         },
         date_birth: {
             label: {
-                en: `Martial Status Explain`,
+                en: `Date of Birth`,
                 fr: ``,
                 es: ``,
                 de: ``,
@@ -516,6 +516,556 @@ const resources = {
                 it: ``
             },
         },
-    }
+    },
+    travel: {
+        section_title: {
+            en: `Travel Information`,
+            fr: ``,
+            es: ``,
+            de: ``,
+            it: ``
+        },
+        purpose_of_trip: {
+            label: {
+                en: `Purpose of Trip to the U.S.`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            extra: {
+                en: `PLEASE SELECT A VISA CLASS`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            }
+        },
+        other_purpose_of_trip: {
+            label: {
+                en: `Specify (B)`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            }
+        },
+        purpose_info: {
+            label: {
+                en: `Principal Applicant Information`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            surname: {
+                en: `Surname(s) (Last Name)`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            given_name: {
+                en: `Given Name(s) (First Name)`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            petition: {
+                label: {
+                    en: `Application Receipt/Petition Number`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+                extra: {
+                    en: `If you are applying for a petition-based visa, your application receipt/petition number was given to you by the Department of Homeland Security’s U. S. Citizenship and Immigration Services (USCIS) after you filed your petition application at a USCIS Service Center. The application receipt/petition number is 13 characters long and the first three characters are letters.`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            }
+        },
+        section_title_2: {
+            en: `US Travel Information`,
+            fr: ``,
+            es: ``,
+            de: ``,
+            it: ``
+        },
+        section_descr_2: {
+            en: `Give details of the address where you will stay in the US. The address may be that of a hotel or private residence.`,
+            fr: ``,
+            es: ``,
+            de: ``,
+            it: ``
+        },
+        travel_plan: {
+            date_of_arrival: {
+                label: {
+                    en: "Intended date of arrival in the USA",
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                }
+            },
+            length_of_stay: {
+                length: {
+                    label: {
+                        en: `Intended Length of Stay in the USA`,
+                        fr: ``,
+                        es: ``,
+                        de: ``,
+                        it: ``
+                    },
+                    extra: {
+                        en: `Enter the Number of Day(s), Week(s), Month(s), Year(s) ONLY THE NUMBER.`,
+                        fr: ``,
+                        es: ``,
+                        de: ``,
+                        it: ``
+                    },
+                },
+                period: {
+                    label: {
+                        en: "Please Specify",
+                        fr: ``,
+                        es: ``,
+                        de: ``,
+                        it: ``
+                    },
+                }
+            }
+        },
+        address_you_will_stay: {
+            label: {
+                en: `Address Where You Will Stay in the U.S.`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            street_addr1: {
+                en: `Street Address`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            street_addr2: {
+                en: `Address Line 2 (Optional)`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            city: {
+                en: `City`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            state: {
+                en: `State`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            zip_code: {
+                en: `ZIP Code (if known)`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        paying_person_for_trip: {
+            label: {
+                en: `Person/Entity Paying for Your Trip`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        section_title_financial_support: {
+            en: `Financial support for your trip`,
+            fr: ``,
+            es: ``,
+            de: ``,
+            it: ``
+        },
+        paying_person_info: {
+            surname: {
+                label: {
+                    en: `Surnames of Person Paying for Trip`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+                extra: {
+                    en: `(e.g., FERNANDEZ GARCIA)`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+            },
+            given_name: {
+                label: {
+                    en: `Given Names of Person Paying for Trip`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+                extra: {
+                    en: `(e.g., JUAN MIGUEL)`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+            },
+            tel_number: {
+                label: {
+                    en: `Phone number of person paying for your trip`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+            },
+            email: {
+                label: {
+                    en: `Email of person paying for your trip`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+                extra: {
+                    en: `Leave blank if does not apply`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+            },
+            relationship: {
+                label: {
+                    en: `Relationship to You`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+            },
+            b_same_address: {
+                label: {
+                    en: `Is the address of the party paying for your trip the same as your Home or Mailing Address?`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``  
+                },
+            },
+            address: {
+                company: {
+                    en: `Address of Company/Organization Paying`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+                person: {
+                    en: `Address`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                }
+            }
+        },
+        paying_org_info: {
+            name: {
+                label: {
+                    en: `Name of Company/Organization Paying for Trip`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                }
+            },
+            tel_number: {
+                label: {
+                    en: `Telephone Number`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                }
+            },
+            relationship: {
+                label: {
+                    en: `Relationship to You`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                }
+            },
+        }
+    },
+    travel_companion: {
+        section_title: {
+            en: `Information about your travel companions`,
+            fr: ``,
+            es: ``,
+            de: ``,
+            it: ``
+        },
+        b_other_person_travel_with: {
+            label: {
+                en: `Are there other persons traveling with you?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        b_part_of_group: {
+            label: {
+                en: `Are you traveling as part of a group or organization?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        company: {
+            label: {
+                en: `Name of group or organisation if traveling as part of a group or organization`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        people: {
+            label: {
+                en: `List of people traveling with you. (EACH TRAVELLER MUST COMPLETE HIS OWN APPLICATION)`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        }
+    },
+    previous_travel: {
+        section_title: {
+            en: `Previous US Travel`,
+            fr: ``,
+            es: ``,
+            de: ``,
+            it: ``
+        },
+        b_ever_been_in_US: {
+            label: {
+                en: `Have you ever been to the US before?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+            extra: {
+                en: `Check if you have been in the US before and fill out the details of your last 5 visits below`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        prev_visit_info: {
+            label: {
+                en: `Provide a list of your last 5 visits`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        b_ever_hold_Driver_License: {
+            label: {
+                en: `Do you or did you ever hold a U.S. Driver’s License?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        prev_DL_info: {
+            number: {
+                label: {
+                    en: `Driver's License number`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+                extra: {
+                    en: `Leave it blank if you do not know`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            state: {
+                label: {
+                    en: `State of Driver's License`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            }
+        },
+        b_ever_been_issued_US_Visa: {
+            label: {
+                en: `Have you ever been issued a US visa?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            },
+        },
+        US_Visa: {
+            date: {
+                label: {
+                    en: `Date Last Visa Was Issued`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            number: {
+                label: {
+                    en: `Visa Number`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+                extra: {
+                    en: `Enter the 8-digit number that is displayed in red on the lower right hand side of your visa. If your previous visa was a Border Crossing Card enter the last 12-digit number of the first line of the machine readable zone. Leave blank if you do not know`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            b_same_type_visa: {
+                label: {
+                    en: `Are you applying for the same type of visa?`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            b_same_cntry_visa: {
+                label: {
+                    en: `Are you applying in the same country or location where the visa above was issued, and is this country or location your place of principal of residence?`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            b_been_ten_printed: {
+                label: {
+                    en: `Have you been ten-printed?`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            b_ever_been_lost: {
+                label: {
+                    en: `Has your US Visa ever been lost or stolen?`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                },
+            },
+            lost_info: {
+                year: {
+                    label: {
+                        en: `Which Year`,
+                        fr: ``,
+                        es: ``,
+                        de: ``,
+                        it: ``
+                    }
+                },
+                explain: {
+                    label: {
+                        en: `If you answered yes, give details below.`,
+                        fr: ``,
+                        es: ``,
+                        de: ``,
+                        it: ``
+                    }
+                }
+            },
+            b_ever_been_cancelled: {
+                label: {
+                    en: `Have you ever had a US Visa cancelled or revoked?`,
+                    fr: ``,
+                    es: ``,
+                    de: ``,
+                    it: ``
+                }
+            },
+        },
+        b_ever_been_refused_US_Visa: {
+            label: {
+                en: `Have you ever been refused a US Visa, or been refused admission to the United States, or withdrawn your application for admission at the port of entry?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            }
+        },
+        b_ever_been_denied_travel_auth: {
+            label: {
+                en: `Have you ever been denied travel authorization by the Department of Homeland Security through the Electronic System fo Travel Authorization (ESTA)?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            }
+        },
+        b_petition: {
+            label: {
+                en: `Has anyone ever filled an immigrant petition on your behalf with the US Citizenship and Immigration Services?`,
+                fr: ``,
+                es: ``,
+                de: ``,
+                it: ``
+            }
+        },
+    },
 }
 export default resources
