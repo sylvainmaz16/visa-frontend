@@ -77,7 +77,7 @@ class MyForm extends Component {
           field="data.sq_type"
           initialValue={data.sq_type}
           content={{
-            combines: constants.export_list(constants.security_question_options)
+            combines: constants.export_list(tr(constants.security_question_options))
           }}
           getFieldDecorator={getFieldDecorator}
           tr={tr}

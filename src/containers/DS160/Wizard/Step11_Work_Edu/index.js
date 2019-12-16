@@ -50,7 +50,7 @@ class MyForm extends Component {
               field="data.occupation"
               initialValue={data.occupation}
               content={{
-                combines: constants.export_list(constants.occupation_options)
+                combines: constants.export_list(tr(constants.occupation_options))
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}

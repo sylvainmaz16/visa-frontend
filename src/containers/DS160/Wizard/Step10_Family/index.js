@@ -167,7 +167,7 @@ class MyForm extends Component {
                 field="data.father.status"
                 initialValue={data.father.status}
                 content={{
-                  combines: constants.export_list(constants.US_Live_Status)
+                  combines: constants.export_list(tr(constants.US_Live_Status))
                 }}
                 getFieldDecorator={getFieldDecorator}
                 tr={tr}
@@ -247,7 +247,7 @@ class MyForm extends Component {
                 field="data.mother.status"
                 initialValue={data.mother.status}
                 content={{
-                  combines: constants.export_list(constants.US_Live_Status)
+                  combines: constants.export_list(tr(constants.US_Live_Status))
                 }}
                 getFieldDecorator={getFieldDecorator}
                 tr={tr}
@@ -385,7 +385,7 @@ class MyForm extends Component {
                 field="data.spouse.address_type"
                 initialValue={data.spouse.address_type}
                 content={{
-                  combines: constants.export_list(constants.spouse_address_type)
+                  combines: constants.export_list(tr(constants.spouse_address_type))
                 }}
                 getFieldDecorator={getFieldDecorator}
                 tr={tr}

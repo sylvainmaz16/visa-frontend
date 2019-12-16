@@ -212,7 +212,7 @@ class MyForm extends Component {
             rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
             <Radio.Group>
-              {martial_status_options.map((option, index) => <Radio value={option.value} key={index}>{option.label}</Radio>)}
+              {tr(martial_status_options).map((option, index) => <Radio value={option.value} key={index}>{option.label}</Radio>)}
             </Radio.Group>
           )}
         </Form.Item>

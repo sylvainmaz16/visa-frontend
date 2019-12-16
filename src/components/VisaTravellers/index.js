@@ -79,7 +79,7 @@ class VisaTravellers extends Component {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].relationship : null),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.person_travel_with_relationship_options} tr={tr}/>
+                <VisaSelect combines={tr(constants.person_travel_with_relationship_options)} tr={tr}/>
               )}
             </Form.Item>
           </Col>

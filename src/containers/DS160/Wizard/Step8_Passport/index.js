@@ -70,7 +70,7 @@ class MyForm extends Component {
               field="data.doc_type"
               initialValue={data.doc_type}
               content={{
-                combines: constants.export_list(constants.passport_type_options)
+                combines: constants.export_list(tr(constants.passport_type_options))
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}

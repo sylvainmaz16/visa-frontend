@@ -48,7 +48,7 @@ class MyForm extends Component {
               field="data.relationship"
               initialValue={data.relationship}
               content={{
-                combines: constants.export_list( (martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? constants.relationship_options : constants.relationship_options_except_Spouse)
+                combines: constants.export_list( (martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? tr(constants.relationship_options) : tr(constants.relationship_options_except_Spouse))
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}

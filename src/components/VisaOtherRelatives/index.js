@@ -80,7 +80,7 @@ class VisaOtherRelatives extends Component {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].relationship : null),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.export_list( (martial_status == 'M' || martial_status == 'L') ? constants.relative_relationship_options : constants.relative_relationship_options_except_Spouse)} tr={tr}/>
+                <VisaSelect combines={constants.export_list( (martial_status == 'M' || martial_status == 'L') ? tr(constants.relative_relationship_options) : tr(constants.relative_relationship_options_except_Spouse))} tr={tr}/>
               )}
             </Form.Item>
           </Col>
@@ -90,7 +90,7 @@ class VisaOtherRelatives extends Component {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].status : null),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={constants.export_list(constants.US_Live_Status)} tr={tr}/>
+                <VisaSelect combines={constants.export_list(tr(constants.US_Live_Status))} tr={tr}/>
               )}
             </Form.Item>
           </Col>
