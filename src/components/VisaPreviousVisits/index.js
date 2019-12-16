@@ -7,13 +7,7 @@ import VisaDatePicker from '../VisaDatePicker'
 import * as utils from '../../utils'
 import * as constants from '../../utils/constants'
 import resources from "../../utils/resources";
-const unit_options = [
-  { value: 'Y', label: 'Year(s)' },
-  { value: 'M', label: 'Month(s)' },
-  { value: 'W', label: 'Week(s)' },
-  { value: 'D', label: 'Day(s)' },
-  { value: 'H', label: 'Less Than 24 Hours' },
-]
+
 class VisaPreviousVisits extends Component {
   static defaultProps = {
     extra: "",
@@ -102,7 +96,7 @@ class VisaPreviousVisits extends Component {
                 validateTrigger: ['onChange', 'onBlur'],
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={unit_options} tr={tr}/>
+                <VisaSelect combines={tr(constants.period_unit_options_v2)} tr={tr}/>
               )}
             </Form.Item>
           </Col>

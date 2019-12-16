@@ -4,6 +4,7 @@ import VisaSelect from "../VisaSelect";
 import * as utils from '../../utils'
 import moment from "moment";
 import resources from "../../utils/resources";
+import * as constants from '../../utils/constants'
 
 class VisaDateLength extends Component {
   static defaultProps = {
@@ -12,15 +13,7 @@ class VisaDateLength extends Component {
   }
   render() {
 
-    const { date, period, unit, getFieldDecorator, setFieldsValue, getFieldValue, validators, ...rest } = this.props
-
-    const unit_options = [
-      { value: 'Y', label: 'Year(s)' },
-      { value: 'M', label: 'Month(s)' },
-      { value: 'D', label: 'Week(s)' },
-      { value: 'W', label: 'Day(s)' },
-      { value: 'H', label: 'Less Than 24 Hours' },
-    ]
+    const { date, period, unit, getFieldDecorator, setFieldsValue, getFieldValue, validators, tr, ...rest } = this.props
 
     return (
       <Row gutter={16}>
@@ -55,7 +48,7 @@ class VisaDateLength extends Component {
               initialValue: utils.getInitialValue(unit.initialValue),
               rules: [{ required: true, message: tr(resources.validations.required) }],
             })(
-              <VisaSelect combines={unit_options} tr={tr}/>
+              <VisaSelect combines={tr(constants.period_unit_options_v2)} tr={tr}/>
             )}
           </Form.Item>
         </Col>
