@@ -16,7 +16,7 @@ const resources = {
         en: `No`,
         fr: `Non`,
         it: `No`,
-        es: `Nein`,
+        es: `No`,
         de: `No`,
     },
     add_another: {
