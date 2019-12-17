@@ -1,4 +1,4 @@
-import { createActionTypes } from '../utils'
+import { createActionTypes } from 'utils'
 
 export const REST_API = createActionTypes('REST_API', [
   'GET',

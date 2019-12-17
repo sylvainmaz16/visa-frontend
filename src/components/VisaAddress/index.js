@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
-import * as constants from '../../utils/constants'
+import * as constants from 'utils/constants'
 import VisaSelect from '../VisaSelect'
 import validators from '../../containers/DS160/Validators/index'
-import * as utils from '../../utils'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 class VisaAddress extends Component {
   static defaultProps = {

@@ -3,9 +3,9 @@ import { Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker } fro
 import VisaSelect from '../VisaSelect'
 import moment from 'moment'
 import VisaRadio from "../VisaRadio";
-import * as utils from '../../utils'
-import * as constants from '../../utils/constants'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import * as constants from 'utils/constants'
+import resources from "utils/resources";
 class VisaOtherRelatives extends Component {
   static defaultProps = {
     extra: "",

@@ -7,9 +7,9 @@ import VisaInput from '../VisaInput'
 import VisaAddress from "../VisaAddress";
 import VisaSelectItem from "../VisaSelectItem";
 import VisaDatePicker from "../VisaDatePicker";
-import * as utils from '../../utils'
-import * as constants from '../../utils/constants'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import * as constants from 'utils/constants'
+import resources from "utils/resources";
 const { TextArea } = Input;
 class VisaFormerSpouses extends Component {
   static defaultProps = {

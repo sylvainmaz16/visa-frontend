@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Icon, Row, Col } from 'antd';
 import VisaInput from '../VisaInput'
-import * as utils from '../../utils'
-import * as constants from '../../utils/constants'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import * as constants from 'utils/constants'
+import resources from "utils/resources";
 
 class VisaAdditionalSocialMediaArray extends Component {
   static defaultProps = {

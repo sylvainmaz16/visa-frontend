@@ -7,9 +7,9 @@ import VisaInput from '../VisaInput';
 import VisaInputWithCheck from '../VisaInputWithCheck';
 import VisaSelectItem from "../VisaSelectItem";
 import VisaDatePicker from "../VisaDatePicker";
-import * as utils from '../../utils'
-import * as constants from '../../utils/constants'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import * as constants from 'utils/constants'
+import resources from "utils/resources";
 const { TextArea } = Input;
 class VisaLostPassports extends Component {
   static defaultProps = {

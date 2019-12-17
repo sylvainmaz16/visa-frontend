@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon, notification } from 'antd';
-import * as constants from '../../../../utils/constants'
-import * as utils from '../../../../utils'
-import VisaSelect from "../../../../components/VisaSelect";
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaInput from "../../../../components/VisaInput";
+import * as constants from 'utils/constants'
+import * as utils from 'utils'
+import VisaSelect from "components/VisaSelect";
+import VisaRadio from "components/VisaRadio";
+import VisaInput from "components/VisaInput";
 import axios from 'axios'
 
 const { Option } = Select;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Checkbox } from 'antd';
-import * as utils from '../../utils'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 class VisaInputWithCheck extends Component {
   static defaultProps = {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { ADMIN } from '../../../actions/types'
-import * as constants from '../../../utils/constants'
-import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd';
-const { Header, Content, Footer } = Layout;
+import { ADMIN } from 'actions/types'
+import * as constants from 'utils/constants'
+import { Table, Tag, Button, Modal, notification, Input } from 'antd';
+import momentTz from 'moment-timezone'
+import moment from 'moment'
 
 const openNotificationWithIcon = (type, message, description) => {
   notification[type]({
@@ -13,7 +14,7 @@ const openNotificationWithIcon = (type, message, description) => {
   });
 };
 
-import * as utils from '../../../utils/index'
+import * as utils from 'utils/index'
 
 class AdminPageDS160 extends Component {
   static defaultProps = {
@@ -171,6 +172,11 @@ class AdminPageDS160 extends Component {
         title: 'Created At',
         dataIndex: 'createdAt',
         key: 'createdAt',
+        render: (text, record) => {
+          const utcTime = moment(text).utc().format()
+          const gmt5Time = momentTz.tz(utcTime, 'YYYY-MM-DDTHH:mm:ssZ', 'America/New_York')
+          return gmt5Time.format('YYYY-MM-DD HH:mm:ss')
+        }
         // ellipsis: true
       },
       {

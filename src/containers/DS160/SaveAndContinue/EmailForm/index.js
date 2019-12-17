@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Input } from 'antd';
-import * as constants from '../../../../utils/constants'
+import * as constants from 'utils/constants'
 
 class MyForm extends Component {
   handleSubmit = e => {

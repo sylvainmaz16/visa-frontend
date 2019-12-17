@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'antd';
-import * as constants from '../../../../utils/constants'
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaAddress from "../../../../components/VisaAddress";
-import VisaInput from "../../../../components/VisaInput";
-import * as utils from '../../../../utils'
-import resources from "../../../../utils/resources";
+import * as constants from 'utils/constants'
+import VisaRadio from "components/VisaRadio";
+import VisaAddress from "components/VisaAddress";
+import VisaInput from "components/VisaInput";
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;

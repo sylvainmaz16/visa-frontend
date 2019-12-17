@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import VisaSelect from "../VisaSelect";
-import * as utils from '../../utils'
+import * as utils from 'utils'
 import moment from "moment";
-import resources from "../../utils/resources";
-import * as constants from '../../utils/constants'
+import resources from "utils/resources";
+import * as constants from 'utils/constants'
 
 class VisaDateLength extends Component {
   static defaultProps = {

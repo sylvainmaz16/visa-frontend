@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { ADMIN } from '../../../actions/types'
+import { ADMIN } from 'actions/types'
 import MailTemplatesAdd from './MailTemplates/Add'
 import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, Spin } from 'antd';
 import MailTemplatesEdit from './MailTemplates/Edit';

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
 const { TextArea } = Input;
-import * as utils from '../../utils'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 class VisaExplain extends Component {
   static defaultProps = {

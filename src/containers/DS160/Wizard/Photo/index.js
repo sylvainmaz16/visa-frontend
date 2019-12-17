@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Form, Button, Select } from 'antd';
-import * as constants from '../../../../utils/constants'
-import * as utils from '../../../../utils'
-import VisaSelect from "../../../../components/VisaSelect";
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaInput from "../../../../components/VisaInput";
-import VisaAddress from '../../../../components/VisaAddress';
+import * as constants from 'utils/constants'
+import * as utils from 'utils'
+import VisaSelect from "components/VisaSelect";
+import VisaRadio from "components/VisaRadio";
+import VisaInput from "components/VisaInput";
+import VisaAddress from 'components/VisaAddress';
 import { Upload, Icon, message, Checkbox, Row, Col } from 'antd';
 import SignatureCanvas from 'react-signature-canvas'
 import axios from 'axios'
-import resources from "../../../../utils/resources";
+import resources from "utils/resources";
 
 function getBase64(img, callback) {
   const reader = new FileReader();

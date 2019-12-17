@@ -1,6 +1,6 @@
 //import AuthStore from './stores/AuthStore'
 import axios from "axios";
-import * as constants from '../utils/constants'
+import * as constants from 'utils/constants'
 
 //const apiUrl = "http://localhost:4040/api/";
 const apiUrl = constants.apiURL;

@@ -4,9 +4,9 @@ import VisaSelect from '../VisaSelect'
 import moment from 'moment'
 import VisaRadio from "../VisaRadio";
 import VisaDatePicker from '../VisaDatePicker'
-import * as utils from '../../utils'
-import * as constants from '../../utils/constants'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import * as constants from 'utils/constants'
+import resources from "utils/resources";
 
 class VisaPreviousVisits extends Component {
   static defaultProps = {

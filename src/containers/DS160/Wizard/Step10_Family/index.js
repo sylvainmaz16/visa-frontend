@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber } from 'antd';
-import * as constants from '../../../../utils/constants'
-import VisaSelect from "../../../../components/VisaSelect";
+import * as constants from 'utils/constants'
+import VisaSelect from "components/VisaSelect";
 import moment from 'moment'
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaAddress from "../../../../components/VisaAddress";
-import VisaInput from "../../../../components/VisaInput";
-import VisaInputWithCheck from '../../../../components/VisaInputWithCheck';
-import VisaSelectItem from "../../../../components/VisaSelectItem";
-import VisaDatePicker from "../../../../components/VisaDatePicker";
-import VisaDatePickerWithCheck from "../../../../components/VisaDatePickerWithCheck";
-import VisaOtherRelatives from '../../../../components/VisaOtherRelatives'
-import VisaFormerSpouses from "../../../../components/VisaFormerSpouses";
-import * as utils from '../../../../utils'
-import VisaDatePickerWithCheckInline from "../../../../components/VisaDatePickerWithCheckInline";
-import resources from "../../../../utils/resources";
+import VisaRadio from "components/VisaRadio";
+import VisaAddress from "components/VisaAddress";
+import VisaInput from "components/VisaInput";
+import VisaInputWithCheck from 'components/VisaInputWithCheck';
+import VisaSelectItem from "components/VisaSelectItem";
+import VisaDatePicker from "components/VisaDatePicker";
+import VisaDatePickerWithCheck from "components/VisaDatePickerWithCheck";
+import VisaOtherRelatives from 'components/VisaOtherRelatives'
+import VisaFormerSpouses from "components/VisaFormerSpouses";
+import * as utils from 'utils'
+import VisaDatePickerWithCheckInline from "components/VisaDatePickerWithCheckInline";
+import resources from "utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;

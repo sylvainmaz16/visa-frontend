@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Button, Icon, Form, Checkbox, Select } from 'antd';
-import VisaBanner from '../../components/VisaBanner';
-import VisaHeader from '../../components/VisaHeader';
-import { DS160 } from '../../actions/types'
-import resources, { translate } from '../../utils/resources'
+import VisaBanner from 'components/VisaBanner';
+import VisaHeader from 'components/VisaHeader';
+import { DS160 } from 'actions/types'
+import resources, { translate } from 'utils/resources'
 import Welcome from './Welcome'
 
 const { Option } = Select

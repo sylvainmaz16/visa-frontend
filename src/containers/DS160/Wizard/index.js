@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import VisaBanner from '../../../components/VisaBanner';
-import VisaHeader from '../../../components/VisaHeader';
-import { DS160 } from '../../../actions/types'
+import VisaBanner from 'components/VisaBanner';
+import VisaHeader from 'components/VisaHeader';
+import { DS160 } from 'actions/types'
 import Form_DS160_1 from './Step1';
 import Form_DS160_2 from './Step2';
 import Form_DS160_3 from './Step3_Personal_Information';
@@ -31,7 +31,7 @@ import Form_DS160_12_Previous_Work_Edu from './Step12_Previous_Work_Edu';
 import Form_DS160_15_SEVIS from './Step15_SEVIS';
 import Form_Photo from './Photo';
 import { withCookies } from 'react-cookie';
-import { translate } from '../../../utils/resources'
+import { translate } from 'utils/resources'
 
 import moment from 'moment'
 import './index.less'

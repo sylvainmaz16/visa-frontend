@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Form } from 'antd';
 import VisaSelect from '../VisaSelect'
-import * as utils from '../../utils'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 class VisaSelectItem extends Component {
   static defaultProps = {

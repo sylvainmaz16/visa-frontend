@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import VisaBanner from '../../../components/VisaBanner';
-import VisaHeader from '../../../components/VisaHeader';
-import { DS160 } from '../../../actions/types'
+import VisaBanner from 'components/VisaBanner';
+import VisaHeader from 'components/VisaHeader';
+import { DS160 } from 'actions/types'
 import { Spin } from 'antd';
 import Form_DS160_Checkout_Info from './Info';
 import Form_AuthorizeNet from './Authorize.net';

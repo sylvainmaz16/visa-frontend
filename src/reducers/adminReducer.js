@@ -1,4 +1,4 @@
-import { ADMIN } from '../actions/types'
+import { ADMIN } from 'actions/types'
 import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {

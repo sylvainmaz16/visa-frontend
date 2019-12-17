@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import moment from 'moment'
-import * as utils from '../../utils'
+import * as utils from 'utils'
 
 class VisaDatePicker extends Component {
   static defaultProps = {

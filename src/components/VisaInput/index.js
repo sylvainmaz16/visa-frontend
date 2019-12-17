@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input } from 'antd';
-import * as utils from '../../utils'
-import resources from "../../utils/resources";
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 class VisaInput extends Component {
   static defaultProps = {

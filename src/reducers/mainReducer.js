@@ -1,4 +1,4 @@
-import { API_GITHUB, DS160 } from '../actions/types'
+import { API_GITHUB, DS160 } from 'actions/types'
 import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {

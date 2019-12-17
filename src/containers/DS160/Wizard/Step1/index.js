@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Form, Button, Select } from 'antd';
-import * as constants from '../../../../utils/constants'
-import * as utils from '../../../../utils'
-import VisaSelect from "../../../../components/VisaSelect";
-import VisaInput from "../../../../components/VisaInput";
-import VisaSelectItem from "../../../../components/VisaSelectItem";
-import resources from "../../../../utils/resources";
+import * as constants from 'utils/constants'
+import * as utils from 'utils'
+import VisaSelect from "components/VisaSelect";
+import VisaInput from "components/VisaInput";
+import VisaSelectItem from "components/VisaSelectItem";
+import resources from "utils/resources";
 
 const { Option } = Select;
 

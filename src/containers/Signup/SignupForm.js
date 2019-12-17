@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { ADMIN } from '../../actions/types'
+import { ADMIN } from 'actions/types'
 import { Form,
   Input,
   Tooltip,

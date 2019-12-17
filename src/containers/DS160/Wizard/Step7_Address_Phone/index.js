@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
-import * as constants from '../../../../utils/constants'
+import * as constants from 'utils/constants'
 import moment from 'moment'
-import VisaRadio from "../../../../components/VisaRadio";
-import VisaInputArray from '../../../../components/VisaInputArray'
-import VisaAddress from "../../../../components/VisaAddress";
-import VisaSocialMediaArray from '../../../../components/VisaSocialMediaArray'
-import * as utils from '../../../../utils'
-import VisaAdditionalSocialMediaArray from "../../../../components/VisaAdditionalSocialMediaArray";
-import resources from "../../../../utils/resources";
+import VisaRadio from "components/VisaRadio";
+import VisaInputArray from 'components/VisaInputArray'
+import VisaAddress from "components/VisaAddress";
+import VisaSocialMediaArray from 'components/VisaSocialMediaArray'
+import * as utils from 'utils'
+import VisaAdditionalSocialMediaArray from "components/VisaAdditionalSocialMediaArray";
+import resources from "utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import VisaBanner from '../../../components/VisaBanner';
-import VisaHeader from '../../../components/VisaHeader';
-import { DS160 } from '../../../actions/types'
+import VisaBanner from 'components/VisaBanner';
+import VisaHeader from 'components/VisaHeader';
+import { DS160 } from 'actions/types'
 import { Spin, Button, Icon } from 'antd';
 
 import './index.less'

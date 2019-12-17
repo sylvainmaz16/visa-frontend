@@ -1,5 +1,5 @@
 import { call, put, takeLatest, all } from "redux-saga/effects";
-import { types } from "../actions";
+import { types } from "actions";
 import { ApiManager } from "../apis/apimanager";
 const { ADMIN } = types;
 

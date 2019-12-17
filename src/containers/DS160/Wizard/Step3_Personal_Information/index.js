@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
-import * as constants from '../../../../utils/constants'
-import VisaSelect from "../../../../components/VisaSelect";
-import VisaDatePicker from '../../../../components/VisaDatePicker'
-import * as utils from '../../../../utils'
-import resources from "../../../../utils/resources";
+import * as constants from 'utils/constants'
+import VisaSelect from "components/VisaSelect";
+import VisaDatePicker from 'components/VisaDatePicker'
+import * as utils from 'utils'
+import resources from "utils/resources";
 
 const { Option } = Select;
 const { TextArea } = Input;

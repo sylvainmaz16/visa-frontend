@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { ADMIN } from '../../actions/types'
+import { ADMIN } from 'actions/types'
 import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Icon, Dropdown, Avatar, Badge } from 'antd';
 const { Header, Content, Footer } = Layout;
 
@@ -10,7 +10,7 @@ import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
 import AdminPageUsers from './Pages/users'
 import { withCookies } from 'react-cookie';
-import * as constants from '../../utils/constants'
+import * as constants from 'utils/constants'
 
 import './index.less'
 

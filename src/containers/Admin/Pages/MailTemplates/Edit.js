@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Input } from 'antd';
-import * as constants from '../../../../utils/constants'
-import * as utils from '../../../../utils'
-import VisaSelect from "../../../../components/VisaSelect";
+import * as constants from 'utils/constants'
+import * as utils from 'utils'
+import VisaSelect from "components/VisaSelect";
 
 const { TextArea } = Input;
 const { Option } = Select;

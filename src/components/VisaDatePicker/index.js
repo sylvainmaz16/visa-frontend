@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
 import moment from 'moment'
 import VisaSelect from '../VisaSelect'
-import * as utils from '../../utils'
+import * as utils from 'utils'
 
 const DAYS_LIST = [
   '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',

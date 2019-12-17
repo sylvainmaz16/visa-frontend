@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { ADMIN } from '../../../actions/types'
+import { ADMIN } from 'actions/types'
 import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd';
 const { Header, Content, Footer } = Layout;
 
@@ -14,8 +14,8 @@ const openNotificationWithIcon = type => {
   });
 };
 
-import * as utils from '../../../utils/index'
-import * as constants from '../../../utils/constants'
+import * as utils from 'utils/index'
+import * as constants from 'utils/constants'
 
 class AdminPageUsers extends Component {
   static defaultProps = {
