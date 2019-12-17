@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
 import { notification } from 'antd'
 import { withCookies } from 'react-cookie'
+import DS160Logo from 'containers/Animations/Logo/ds160'
+
 import LoginForm from './LoginForm'
 import Background from './Background'
 import LogoGather from './LogoGather'
@@ -62,6 +64,7 @@ class AuthPage extends Component {
     return (
       <div className="visa-admin-auth">
         {/* <Background /> */}
+        <DS160Logo paused={false} style={{ position: 'absolute', zIndex: '2', right: '0', bottom: '0', }} />
         <LogoGather />
         <LoginForm loading={loading} login={this.onLogin} />
       </div>
