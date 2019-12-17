@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import { Link } from "react-router-dom";
-import { connect } from 'react-redux'
-import { ADMIN } from 'actions/types'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import {
+  Form, Icon, Input, Button, Checkbox,
+} from 'antd'
 
 import './LoginForm.less'
 
 class MyForm extends Component {
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    e.preventDefault()
+    const { form, login } = this.props
+    form.validateFields((err, values) => {
       if (!err) {
-        this.props.login(values)
+        login(values)
       }
-    });
+    })
   };
+
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { loading } = this.props
+    const { loading, form } = this.props
+    const { getFieldDecorator } = form
+
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
@@ -48,19 +49,19 @@ class MyForm extends Component {
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true,
-          })(<Checkbox disabled={loading}>Remember me</Checkbox>)}
+          })(<Checkbox disabled={loading} style={{ color: 'white' }}>Remember me</Checkbox>)}
           <a className="login-form-forgot" href="" disabled={loading}>
             Forgot password
           </a>
-          <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
+          <Button type="default" htmlType="submit" className="login-form-button" loading={loading}>
             Log in
           </Button>
           {/* Or <a href="">register now!</a> */}
         </Form.Item>
       </Form>
-    );
+    )
   }
 }
 
 const LoginForm = Form.create()(MyForm)
-export default LoginForm;
+export default LoginForm

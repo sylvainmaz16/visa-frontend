@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
-import { withCookies } from 'react-cookie';
-import LoginForm from './LoginForm';
-import { Button, notification } from 'antd';
+import { notification } from 'antd'
+import { withCookies } from 'react-cookie'
+import LoginForm from './LoginForm'
+import Background from './Background'
+import LogoGather from './LogoGather'
 
 import './index.less'
 
@@ -21,49 +22,52 @@ class AuthPage extends Component {
   static defaultProps = {
   }
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.onLogin = this.onLogin.bind(this)
   }
 
-  onLogin = (values) => {
-    this.props.login(ADMIN.LOGIN_REQUEST, values, (result) => {
-      if(result.error) {
+  onLogin = values => {
+    const { login, history } = this.props
+    login(ADMIN.LOGIN_REQUEST, values, result => {
+      if (result.error) {
         localStorage.removeItem('immigration4us_token')
         localStorage.removeItem('user')
         openNotificationWithIcon('error', result.error)
       } else {
-        const {cookies} = this.props
+        const { cookies } = this.props
         const redirectTo = cookies.get('immigration4us_authRedirectTo')
         openNotificationWithIcon('success', null, result.user.username)
-        if(result.token) {
+        if (result.token) {
           const user = {
             username: result.user.username,
             email: result.user.email,
-            role: result.user.role
+            role: result.user.role,
           }
           localStorage.setItem('immigration4us_token', result.token)
           localStorage.setItem('user', JSON.stringify(user))
           // cookies.set('immigration4us_token', result.token, { path: '/', maxAge: 3600 });
-          this.props.history.push(redirectTo ? redirectTo : '/board')
+          history.push(redirectTo || '/board')
         } else {
           localStorage.removeItem('immigration4us_token')
           localStorage.removeItem('user')
         }
       }
-      
     })
   }
 
   render() {
+    const { loading } = this.props
+
     return (
       <div className="visa-admin-auth">
-        <LoginForm loading={this.props.loading} login={this.onLogin}/>
+        {/* <Background /> */}
+        <LogoGather />
+        <LoginForm loading={loading} login={this.onLogin} />
       </div>
     )
   }
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -77,7 +81,6 @@ const mapStateToProps = state => ({
   data: state.admin.data,
   loading: state.admin.loading,
 })
-
 
 export default withCookies(withRouter(
   connect(
