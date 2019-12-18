@@ -1,40 +1,49 @@
 import React from 'react'
-import { Statistic, Row, Col, Button, Card } from 'antd'
+import {
+  Statistic, Row, Col, Card,
+} from 'antd'
+
+import TotalSaleCard from 'components/Dashboard/TotalSaleCard/index'
+import CustomersCard from 'components/Dashboard/CustomersCard/index'
+
 import TestChart from './Charts/test'
 import TestRing from './Charts/ring'
+
+import './dashboard.less'
+import AutomationStatusGauge from '../../../components/Dashboard/AutomationStatusChart'
+import FailedApplicationsCard from '../../../components/Dashboard/FailedApplicationsCard'
 
 const AdminPageDashboard = ({
   ...props
 }) => {
+  const statisticLayout = {
+    xs: { span: 24 },
+    sm: { span: 24 },
+    md: { span: 12 },
+    lg: { span: 6 },
+  }
+
   return (
     <div className="admin-page-dashboard">
-      <Row gutter={16}>
-        <Col span={6}>
-          <Card>
-            <Statistic title="Total Sales" value={`$ 126,560`} />
-          </Card>
+      <Row gutter={[16, 16]} type="flex" align="top">
+        <Col {...statisticLayout}>
+          <TotalSaleCard total={126560} />
         </Col>
-        <Col span={6}>
-          <Card>
-            <Statistic title="Pending Applications" value={5} />
-          </Card>
+        <Col {...statisticLayout}>
+          <CustomersCard total={8846} />
         </Col>
-        <Col span={6}>
-          <Card>
-            <Statistic title="Failed Applications" value={3} />
-          </Card>
+        <Col {...statisticLayout}>
+          <FailedApplicationsCard total={3} />
         </Col>
-        <Col span={6}>
-          <Card>
-            <Statistic title="Email Template Required" value={1} />
-          </Card>
+        <Col {...statisticLayout}>
+          <AutomationStatusGauge />
         </Col>
       </Row>
-      <Row gutter={16}>
-        <Col span={12}>
+      <Row gutter={[16, 16]}>
+        <Col sm={{ span: 24 }} md={{ span: 24 }} lg={{ span: 12 }}>
           <TestChart />
         </Col>
-        <Col span={12}>
+        <Col sm={{ span: 24 }} md={{ span: 24 }} lg={{ span: 12 }}>
           <TestRing />
         </Col>
       </Row>

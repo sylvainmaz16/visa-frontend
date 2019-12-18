@@ -280,7 +280,8 @@ class AdminPageDS160 extends Component {
           return "-"
         },
       },
-    ];
+    ]
+
     return (
       <div className="admin-page-ds160">
         <div className="admin-page-ds160__top">
@@ -296,12 +297,16 @@ class AdminPageDS160 extends Component {
           pagination={{ pageSize: pagination.pageSize, current: pagination.current, total: total }}
           loading={loading}
           onChange={this.handleTableChange}
+          style={{ overflowX: 'auto' }}
           expandedRowRender={record => {
             if (!record.transaction) {
               return <p style={{ margin: 0 }}>
-                {`_id: ${record._id}`}<br />
-                No transaction</p>
+                {`_id: ${record._id}`}
+                <br />
+                No transaction
+              </p>
             }
+
             return <p style={{ margin: 0 }}>
               {`_id: ${record._id}`}<br />
               {`total: ${record.transaction.total}`}<br />
