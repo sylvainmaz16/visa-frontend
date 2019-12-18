@@ -30,15 +30,15 @@ class Routes extends Component {
         <Switch>
           <Route path="/auth" exact children={() => <AuthPage />} />
           <Route path="/signup" exact children={() => <SignupPage />} />
-          <Route path="/board"  exact children={({ location }) => 
-            <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu='ds160' pattern="" pagination={{ pageSize: 10, current: 1, filters: {}, serach: null}}/>}/>
-          }/>
-          <Route path="/board/:menukey(ds160|mail|users)" exact children={({ match, location }) => {
+          <Route path="/board" exact children={({ location }) =>
+            <AuthRequired redirectTo='/board' orRender={<AdminBoard menu='ds160' pattern="" pagination={{ pageSize: 10, current: 1, filters: {}, serach: null }} />} />
+          } />
+          <Route path="/board/:menukey(dashboard|ds160|mail|users)" exact children={({ match, location }) => {
             let params = new URLSearchParams(location.search);
-            
+
             let filters = {}
             let current = parseInt(params.get("current"))
-            if(!current)
+            if (!current)
               current = 1
             let search = params.get("search")
 
@@ -46,14 +46,14 @@ class Routes extends Component {
 
             filterParams.forEach(param => {
               let pvalue = params.get(param)
-              if(pvalue) {
+              if (pvalue) {
                 filters[param] = pvalue.split(",")
               }
             })
 
             let menu = match.params.menukey
 
-            return <AuthRequired  redirectTo='/board' orRender={<AdminBoard menu={menu} pattern={location.search} pagination={{ pageSize: 10, current, filters, search }}/>}/>
+            return <AuthRequired redirectTo='/board' orRender={<AdminBoard menu={menu} pattern={location.search} pagination={{ pageSize: 10, current, filters, search }} />} />
           }} />
           <Route
             path="/ds-160/application-form/:link"
@@ -62,7 +62,7 @@ class Routes extends Component {
               let link = params[3]
 
               let agency = new URLSearchParams(location.search).get("agency")
-              
+
               let terms = link.split('=');
               let applicationId = terms[terms.length - 1]
 
@@ -70,7 +70,7 @@ class Routes extends Component {
                 console.log('Theme updated successfully');
               });
 
-              return <DS160_Wizard token={applicationId} agency={agency}/>
+              return <DS160_Wizard token={applicationId} agency={agency} />
             }}
           />
 
@@ -96,7 +96,7 @@ class Routes extends Component {
               console.log('Theme updated successfully');
             });
             return <DS160_HOME agency={agency} />
-          }}/>
+          }} />
 
           <Route path="/" exact children={({ location }) => {
             let agency = new URLSearchParams(location.search).get("agency")
@@ -105,8 +105,8 @@ class Routes extends Component {
             });
 
             return <DS160_HOME agency={agency} />
-          }}/>
-          
+          }} />
+
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Router>

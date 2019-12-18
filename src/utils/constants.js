@@ -21,44 +21,7 @@ export const hints_and_help_language = [
     <option value="de-DE">DEUTSCH (GERMAN)</option>,
     <option value="it-IT">ITALIANO (ITALIAN)</option>
 ]
-
-export const USER_ROLE = {
-    NOT: -1,
-    ADMIN: 0,
-    AGENCY: 1,
-}
-
-export const FGMC_countries_list = [
-    "SOMALIA", 
-    "GUINEA", 
-    "DJIBOUTI", 
-    "EGYPT", 
-    "ERITREA", 
-    "MALI", 
-    "SIERRA LEONE", 
-    "SUDAN", 
-    "GAMBIA, THE", 
-    "BURKINA FASO", 
-    "ETHIOPIA",
-    "MAURITANIA",
-    "LIBERIA",
-    "GUINEA - BISSAU",
-    "CHAD",
-    "COTE D`IVOIRE",
-    "KENYA",
-    "NIGERIA",
-    "SENEGAL",
-    "CENTRAL AFRICAN REPUBLIC",
-    "YEMEN",
-    "TANZANIA",
-    "BENIN",
-    "IRAQ",
-    "GHANA",
-    "TOGO",
-    "NIGER",
-    "CAMEROON",
-    "UGANDA"
-]
+// Translation Start
 export const security_question_options = {
     en: [
         <option value="1">What is the given name of your mother's mother?</option>,
@@ -83,94 +46,1090 @@ export const security_question_options = {
         <option value="20">What was the name of your first boyfriend or girlfriend?</option>
     ],
     fr: [
-        <option value = "1"> Quel est le prénom de la mère de votre mère? </option>,
-        <option value = "2"> Quel est le prénom du père de votre père? </option>,
-        <option value = "3"> Quel est le nom de jeune fille de votre grand-mère maternelle? </option>,
-        <option value = "4"> Comment votre famille vous appelait-elle lorsque vous étiez enfant? </option>,
-        <option value = "5"> Dans quelle ville avez-vous rencontré votre conjoint / autre proche? </option>,
-        <option value = "6"> Quel est le nom de votre ami d'enfance préféré? </option>,
-        <option value = "7"> Dans quelle rue viviez-vous quand vous aviez 8 ans? </option>,
-        <option value = "8"> Quels sont le mois et l'année d'anniversaire de votre aîné? (par exemple, janvier 1900) </option>,
-        <option value = "9"> Quel est le deuxième prénom de votre plus jeune enfant? </option>,
-        <option value = "10"> Quel est le deuxième prénom de votre frère aîné? </option>,
-        <option value = "11"> À quelle école avez-vous fréquenté à l'âge de 11 ans? </option>,
-        <option value = "12"> Quel était votre numéro de téléphone à la maison quand vous étiez enfant? </option>,
-        <option value = "13"> Quels sont le prénom et le nom de votre cousin aîné? </option>,
-        <option value = "14"> Quel était le nom de votre animal ou jouet en peluche préféré? </option>,
-        <option value = "15"> Dans quelle ville votre père et votre mère se sont-ils rencontrés? </option>,
-        <option value = "16"> Quel était le nom de famille de votre professeur préféré? </option>,
-        <option value = "17"> Dans quelle ville vit votre frère ou sœur le plus proche? </option>,
-        <option value = "18"> Quels sont le mois et l'année d'anniversaire de votre plus jeune frère? (par exemple, janvier 1900) </option>,
-        <option value = "19"> Dans quelle ville ou ville avez-vous été votre premier emploi? </option>,
-        <option value = "20"> Quel était le nom de votre premier petit ami ou petite amie? </option>
+        <option value="1"> Quel est le prénom de la mère de votre mère? </option>,
+        <option value="2"> Quel est le prénom du père de votre père? </option>,
+        <option value="3"> Quel est le nom de jeune fille de votre grand-mère maternelle? </option>,
+        <option value="4"> Comment votre famille vous appelait-elle lorsque vous étiez enfant? </option>,
+        <option value="5"> Dans quelle ville avez-vous rencontré votre conjoint / autre proche? </option>,
+        <option value="6"> Quel est le nom de votre ami d'enfance préféré? </option>,
+        <option value="7"> Dans quelle rue viviez-vous quand vous aviez 8 ans? </option>,
+        <option value="8"> Quels sont le mois et l'année d'anniversaire de votre aîné? (par exemple, janvier 1900) </option>,
+        <option value="9"> Quel est le deuxième prénom de votre plus jeune enfant? </option>,
+        <option value="10"> Quel est le deuxième prénom de votre frère aîné? </option>,
+        <option value="11"> À quelle école avez-vous fréquenté à l'âge de 11 ans? </option>,
+        <option value="12"> Quel était votre numéro de téléphone à la maison quand vous étiez enfant? </option>,
+        <option value="13"> Quels sont le prénom et le nom de votre cousin aîné? </option>,
+        <option value="14"> Quel était le nom de votre animal ou jouet en peluche préféré? </option>,
+        <option value="15"> Dans quelle ville votre père et votre mère se sont-ils rencontrés? </option>,
+        <option value="16"> Quel était le nom de famille de votre professeur préféré? </option>,
+        <option value="17"> Dans quelle ville vit votre frère ou sœur le plus proche? </option>,
+        <option value="18"> Quels sont le mois et l'année d'anniversaire de votre plus jeune frère? (par exemple, janvier 1900) </option>,
+        <option value="19"> Dans quelle ville ou ville avez-vous été votre premier emploi? </option>,
+        <option value="20"> Quel était le nom de votre premier petit ami ou petite amie? </option>
     ],
     es: [
-        <option value = "1"> ¿Cuál es el nombre de pila de la madre de su madre? </option>,
-        <option value = "2"> ¿Cuál es el nombre de pila del padre de tu padre? </option>,
-        <option value = "3"> ¿Cuál es el apellido de soltera de su abuela materna? </option>,
-        <option value = "4"> ¿Qué nombre solía llamar su familia cuando era niño? </option>,
-        <option value = "5"> ¿En qué ciudad conociste a tu cónyuge / pareja? </option>,
-        <option value = "6"> ¿Cuál es el nombre de tu amigo favorito de la infancia? </option>,
-        <option value = "7"> ¿En qué calle vivías cuando tenías 8 años? </option>,
-        <option value = "8"> ¿Cuál es el mes y año de cumpleaños de su hermano mayor? (por ejemplo, enero de 1900) </option>,
-        <option value = "9"> ¿Cuál es el segundo nombre de su hijo menor? </option>,
-        <option value = "10"> ¿Cuál es el segundo nombre de su hermano mayor? </option>,
-        <option value = "11"> ¿A qué escuela asististe cuando tenías 11 años? </option>,
-        <option value = "12"> ¿Cuál era el número de teléfono de su casa cuando era niño? </option>,
-        <option value = "13"> ¿Cuál es el nombre y apellido de su primo mayor? </option>,
-        <option value = "14"> ¿Cuál era el nombre de su peluche o juguete favorito? </option>,
-        <option value = "15"> ¿En qué ciudad o pueblo se conocieron su madre y su padre? </option>,
-        <option value = "16"> ¿Cuál era el apellido de tu maestro favorito? </option>,
-        <option value = "17"> ¿En qué ciudad vive su hermano más cercano? </option>,
-        <option value = "18"> ¿Cuál es el mes y año de cumpleaños de su hermano menor? (por ejemplo, enero de 1900) </option>,
-        <option value = "19"> ¿En qué ciudad o pueblo fue su primer trabajo? </option>,
-        <option value = "20"> ¿Cuál era el nombre de su primer novio o novia? </option>
+        <option value="1"> ¿Cuál es el nombre de pila de la madre de su madre? </option>,
+        <option value="2"> ¿Cuál es el nombre de pila del padre de tu padre? </option>,
+        <option value="3"> ¿Cuál es el apellido de soltera de su abuela materna? </option>,
+        <option value="4"> ¿Qué nombre solía llamar su familia cuando era niño? </option>,
+        <option value="5"> ¿En qué ciudad conociste a tu cónyuge / pareja? </option>,
+        <option value="6"> ¿Cuál es el nombre de tu amigo favorito de la infancia? </option>,
+        <option value="7"> ¿En qué calle vivías cuando tenías 8 años? </option>,
+        <option value="8"> ¿Cuál es el mes y año de cumpleaños de su hermano mayor? (por ejemplo, enero de 1900) </option>,
+        <option value="9"> ¿Cuál es el segundo nombre de su hijo menor? </option>,
+        <option value="10"> ¿Cuál es el segundo nombre de su hermano mayor? </option>,
+        <option value="11"> ¿A qué escuela asististe cuando tenías 11 años? </option>,
+        <option value="12"> ¿Cuál era el número de teléfono de su casa cuando era niño? </option>,
+        <option value="13"> ¿Cuál es el nombre y apellido de su primo mayor? </option>,
+        <option value="14"> ¿Cuál era el nombre de su peluche o juguete favorito? </option>,
+        <option value="15"> ¿En qué ciudad o pueblo se conocieron su madre y su padre? </option>,
+        <option value="16"> ¿Cuál era el apellido de tu maestro favorito? </option>,
+        <option value="17"> ¿En qué ciudad vive su hermano más cercano? </option>,
+        <option value="18"> ¿Cuál es el mes y año de cumpleaños de su hermano menor? (por ejemplo, enero de 1900) </option>,
+        <option value="19"> ¿En qué ciudad o pueblo fue su primer trabajo? </option>,
+        <option value="20"> ¿Cuál era el nombre de su primer novio o novia? </option>
     ],
     de: [
-        <option value = "1"> Wie lautet der Vorname der Mutter Ihrer Mutter? </ option>,
-        <option value = "2"> Wie lautet der Vorname des Vaters Ihres Vaters? </ option>,
-        <option value = "3"> Wie lautet der Mädchenname Ihrer Großmutter mütterlicherseits? </ option>,
-        <option value = "4"> Mit welchem ​​Namen hat Ihre Familie Sie als Kind angerufen? </ option>,
-        <option value = "5"> In welcher Stadt haben Sie Ihren Ehepartner / Lebensgefährten getroffen? </ option>,
-        <option value = "6"> Wie heißt Ihr Lieblingsfreund aus Kindertagen? </ option>,
-        <option value = "7"> In welcher Straße lebten Sie, als Sie 8 Jahre alt waren? </ option>,
-        <option value = "8"> Was ist der Geburtsmonat und das Geburtsjahr Ihres ältesten Geschwisters? (z. B. Januar 1900) </ option>,
-        <option value = "9"> Wie lautet der zweite Vorname Ihres jüngsten Kindes? </ option>,
-        <option value = "10"> Wie lautet der zweite Vorname Ihres ältesten Geschwisters? </ option>,
-        <option value = "11"> Welche Schule haben Sie mit 11 Jahren besucht? </ option>,
-        <option value = "12"> Wie lautete Ihre private Telefonnummer, als Sie ein Kind waren? </ option>,
-        <option value = "13"> Wie lautet der Vor- und Nachname Ihres ältesten Cousins? </ option>,
-        <option value = "14"> Wie hieß Ihr Lieblingskuscheltier oder -spielzeug? </ option>,
-        <option value = "15"> In welcher Stadt haben sich Ihre Mutter und Ihr Vater getroffen? </ option>,
-        <option value = "16"> Wie war der Nachname Ihres Lieblingslehrers? </ option>,
-        <option value = "17"> In welcher Stadt lebt Ihr nächstgelegenes Geschwister? </ option>,
-        <option value = "18"> Welchen Monat und welches Jahr hat Ihr jüngstes Geschwister Geburtstag? (z. B. Januar 1900) </ option>,
-        <option value = "19"> In welcher Stadt haben Sie zum ersten Mal gearbeitet? </ option>,
-        <option value = "20"> Wie hieß Ihr erster Freund oder Ihre erste Freundin? </ option>
+        <option value="1"> Wie lautet der Vorname der Mutter Ihrer Mutter? </ option>,
+        <option value="2"> Wie lautet der Vorname des Vaters Ihres Vaters? </ option>,
+        <option value="3"> Wie lautet der Mädchenname Ihrer Großmutter mütterlicherseits? </ option>,
+        <option value="4"> Mit welchem ​​Namen hat Ihre Familie Sie als Kind angerufen? </ option>,
+        <option value="5"> In welcher Stadt haben Sie Ihren Ehepartner / Lebensgefährten getroffen? </ option>,
+        <option value="6"> Wie heißt Ihr Lieblingsfreund aus Kindertagen? </ option>,
+        <option value="7"> In welcher Straße lebten Sie, als Sie 8 Jahre alt waren? </ option>,
+        <option value="8"> Was ist der Geburtsmonat und das Geburtsjahr Ihres ältesten Geschwisters? (z. B. Januar 1900) </ option>,
+        <option value="9"> Wie lautet der zweite Vorname Ihres jüngsten Kindes? </ option>,
+        <option value="10"> Wie lautet der zweite Vorname Ihres ältesten Geschwisters? </ option>,
+        <option value="11"> Welche Schule haben Sie mit 11 Jahren besucht? </ option>,
+        <option value="12"> Wie lautete Ihre private Telefonnummer, als Sie ein Kind waren? </ option>,
+        <option value="13"> Wie lautet der Vor- und Nachname Ihres ältesten Cousins? </ option>,
+        <option value="14"> Wie hieß Ihr Lieblingskuscheltier oder -spielzeug? </ option>,
+        <option value="15"> In welcher Stadt haben sich Ihre Mutter und Ihr Vater getroffen? </ option>,
+        <option value="16"> Wie war der Nachname Ihres Lieblingslehrers? </ option>,
+        <option value="17"> In welcher Stadt lebt Ihr nächstgelegenes Geschwister? </ option>,
+        <option value="18"> Welchen Monat und welches Jahr hat Ihr jüngstes Geschwister Geburtstag? (z. B. Januar 1900) </ option>,
+        <option value="19"> In welcher Stadt haben Sie zum ersten Mal gearbeitet? </ option>,
+        <option value="20"> Wie hieß Ihr erster Freund oder Ihre erste Freundin? </ option>
     ],
     it: [
-        <option value = "1"> Qual è il nome della madre di tua madre? </option>,
-        <option value = "2"> Qual è il nome del padre di tuo padre? </option>,
-        <option value = "3"> Qual è il nome da nubile di tua nonna materna? </option>,
-        <option value = "4"> Quale nome ha usato la tua famiglia per chiamarti quando eri bambino? </option>,
-        <option value = "5"> In quale città hai incontrato il coniuge / altro significativo? </option>,
-        <option value = "6"> Qual è il nome del tuo amico d'infanzia preferito? </option>,
-        <option value = "7"> In quale strada hai vissuto quando avevi 8 anni? </option>,
-        <option value = "8"> Qual è il mese e l'anno del compleanno del fratello maggiore? (ad esempio, gennaio 1900) </option>,
-        <option value = "9"> Qual è il secondo nome del tuo bambino più piccolo? </option>,
-        <option value = "10"> Qual è il secondo nome del fratello maggiore? </option>,
-        <option value = "11"> Quale scuola hai frequentato quando avevi 11 anni? </option>,
-        <option value = "12"> Qual era il tuo numero di telefono di casa quando eri un bambino? </option>,
-        <option value = "13"> Qual è il nome e il cognome di tuo cugino più grande? </option>,
-        <option value = "14"> Qual era il nome del tuo animale o giocattolo di peluche preferito? </ option>,
-        <option value = "15"> In quale città o tuo padre si sono incontrati tua madre e tuo padre? </option>,
-        <option value = "16"> Qual era il cognome del tuo insegnante preferito? </option>,
-        <option value = "17"> In quale città vive il fratello più vicino? </option>,
-        <option value = "18"> Qual è il mese e l'anno del compleanno del fratello minore? (ad esempio, gennaio 1900) </option>,
-        <option value = "19"> In quale città è stato il tuo primo lavoro? </option>,
-        <option value = "20"> Qual era il nome del tuo primo ragazzo o ragazza? </option>
+        <option value="1"> Qual è il nome della madre di tua madre? </option>,
+        <option value="2"> Qual è il nome del padre di tuo padre? </option>,
+        <option value="3"> Qual è il nome da nubile di tua nonna materna? </option>,
+        <option value="4"> Quale nome ha usato la tua famiglia per chiamarti quando eri bambino? </option>,
+        <option value="5"> In quale città hai incontrato il coniuge / altro significativo? </option>,
+        <option value="6"> Qual è il nome del tuo amico d'infanzia preferito? </option>,
+        <option value="7"> In quale strada hai vissuto quando avevi 8 anni? </option>,
+        <option value="8"> Qual è il mese e l'anno del compleanno del fratello maggiore? (ad esempio, gennaio 1900) </option>,
+        <option value="9"> Qual è il secondo nome del tuo bambino più piccolo? </option>,
+        <option value="10"> Qual è il secondo nome del fratello maggiore? </option>,
+        <option value="11"> Quale scuola hai frequentato quando avevi 11 anni? </option>,
+        <option value="12"> Qual era il tuo numero di telefono di casa quando eri un bambino? </option>,
+        <option value="13"> Qual è il nome e il cognome di tuo cugino più grande? </option>,
+        <option value="14"> Qual era il nome del tuo animale o giocattolo di peluche preferito? </ option>,
+        <option value="15"> In quale città o tuo padre si sono incontrati tua madre e tuo padre? </option>,
+        <option value="16"> Qual era il cognome del tuo insegnante preferito? </option>,
+        <option value="17"> In quale città vive il fratello più vicino? </option>,
+        <option value="18"> Qual è il mese e l'anno del compleanno del fratello minore? (ad esempio, gennaio 1900) </option>,
+        <option value="19"> In quale città è stato il tuo primo lavoro? </option>,
+        <option value="20"> Qual era il nome del tuo primo ragazzo o ragazza? </option>
     ],
 }
+
+export const spouse_address_type = {
+    en: [
+        <option value="H">Same as Home Address</option>,
+        <option value="M">Same as Mailing Address</option>,
+        <option value="U">Same as U.S. Contact Address</option>,
+        <option value="D">Do Not Know</option>,
+        <option value="O">Other (Specify Address)</option>
+    ],
+    fr: [
+        <option value="H"> Identique à l'adresse personnelle </option>,
+        <option value="M"> Identique à l'adresse postale </option>,
+        <option value="U"> Identique à l'adresse de contact aux États-Unis </option>,
+        <option value="D"> Ne sais pas </option>,
+        <option value="O"> Autre (spécifiez l'adresse) </option>
+    ],
+    es: [
+        <option value="H"> Igual que la dirección particular </option>,
+        <option value="M"> Igual que la dirección de correo </option>,
+        <option value="U"> Igual que la dirección de contacto de EE. UU. </option>,
+        <option value="D"> No sabe </option>,
+        <option value="O"> Otro (especificar dirección) </option>
+    ],
+    de: [
+        <option value="H"> Wie Privatadresse </ option>,
+        <option value="M"> Wie Postanschrift </ option>,
+        <option value="U"> Entspricht der US-Kontaktadresse </ option>,
+        <option value="D"> Weiß nicht </ option>,
+        <option value="O"> Andere (Adresse angeben) </ option>
+    ],
+    it: [
+        <option value="H"> Come l'indirizzo di casa </option>,
+        <option value="M"> Come l'indirizzo postale </option>,
+        <option value="U"> Come l'indirizzo di contatto degli Stati Uniti </option>,
+        <option value="D"> Non lo so </option>,
+        <option value="O"> Altro (Specifica indirizzo) </option>
+    ]
+}
+
+export const occupation_options = {
+    en: [
+        <option value="A">AGRICULTURE</option>,
+        <option value="AP">ARTIST/PERFORMER</option>,
+        <option value="B">BUSINESS</option>,
+        <option value="CM">COMMUNICATIONS</option>,
+        <option value="CS">COMPUTER SCIENCE</option>,
+        <option value="C">CULINARY/FOOD SERVICES</option>,
+        <option value="ED">EDUCATION</option>,
+        <option value="EN">ENGINEERING</option>,
+        <option value="G">GOVERNMENT</option>,
+        <option value="H">HOMEMAKER</option>,
+        <option value="LP">LEGAL PROFESSION</option>,
+        <option value="MH">MEDICAL/HEALTH</option>,
+        <option value="M">MILITARY</option>,
+        <option value="NS">NATURAL SCIENCE</option>,
+        <option value="N">NOT EMPLOYED</option>,
+        <option value="PS">PHYSICAL SCIENCES</option>,
+        <option value="RV">RELIGIOUS VOCATION</option>,
+        <option value="R">RESEARCH</option>,
+        <option value="RT">RETIRED</option>,
+        <option value="SS">SOCIAL SCIENCE</option>,
+        <option value="S">STUDENT</option>,
+        <option value="O">OTHER</option>,
+    ],
+    fr: [
+        <option value="A"> AGRICULTURE </option>,
+        <option value="AP"> ARTISTE / PERFORMER </option>,
+        <option value="B"> BUSINESS </option>,
+        <option value="CM"> COMMUNICATIONS </option>,
+        <option value="CS"> INFORMATIQUE </option>,
+        <option value="C"> SERVICES CULINAIRES / ALIMENTAIRES </option>,
+        <option value="ED"> ÉDUCATION </option>,
+        <option value="EN"> INGÉNIERIE </option>,
+        <option value="G"> GOUVERNEMENT </option>,
+        <option value="H"> HOMEMAKER </option>,
+        <option value="LP"> PROFESSION JURIDIQUE </option>,
+        <option value="MH"> MÉDICAL / SANTÉ </option>,
+        <option value="M"> MILITARY </option>,
+        <option value="NS"> SCIENCE NATURELLE </option>,
+        <option value="N"> NON EMPLOYÉ </option>,
+        <option value="PS"> SCIENCES PHYSIQUES </option>,
+        <option value="RV"> VOCATION RELIGIEUSE </option>,
+        <option value="R"> RECHERCHE </option>,
+        <option value="RT"> RETIREE </option>,
+        <option value="SS"> SCIENCES SOCIALES </option>,
+        <option value="S"> ÉTUDIANT </option>,
+        <option value="O"> OTHER </option>,
+    ],
+    es: [
+        <option value="A"> AGRICULTURA </option>,
+        <option value="AP"> ARTISTA / REALIZADOR </option>,
+        <option value="B"> BUSINESS </option>,
+        <option value="CM"> COMUNICACIONES </option>,
+        <option value="CS"> CIENCIA DE LA COMPUTADORA </option>,
+        <option value="C"> SERVICIOS CULINARIOS / ALIMENTARIOS </option>,
+        <option value="ED"> EDUCACIÓN </option>,
+        <option value="EN"> INGENIERÍA </option>,
+        <option value="G"> GOBIERNO </option>,
+        <option value="H"> HOMEMAKER </option>,
+        <option value="LP"> PROFESIÓN LEGAL </option>,
+        <option value="MH"> MÉDICO / SALUD </option>,
+        <option value="M"> MILITAR </option>,
+        <option value="NS"> CIENCIA NATURAL </option>,
+        <option value="N"> NO EMPLEADO </option>,
+        <option value="PS"> CIENCIAS FÍSICAS </option>,
+        <option value="RV"> VOCACIÓN RELIGIOSA </option>,
+        <option value="R"> INVESTIGACIÓN </option>,
+        <option value="RT"> RETIRED </option>,
+        <option value="SS"> CIENCIA SOCIAL </option>,
+        <option value="S"> ESTUDIANTE </option>,
+        <option value="O"> OTRO </option>,
+    ],
+    de: [
+        <option value="A"> AGRICULTURA </option>,
+        <option value="AP"> ARTISTA / REALIZADOR </option>,
+        <option value="B"> BUSINESS </option>,
+        <option value="CM"> COMUNICACIONES </option>,
+        <option value="CS"> CIENCIA DE LA COMPUTADORA </option>,
+        <option value="C"> SERVICIOS CULINARIOS / ALIMENTARIOS </option>,
+        <option value="ED"> EDUCACIÓN </option>,
+        <option value="EN"> INGENIERÍA </option>,
+        <option value="G"> GOBIERNO </option>,
+        <option value="H"> HOMEMAKER </option>,
+        <option value="LP"> PROFESIÓN LEGAL </option>,
+        <option value="MH"> MÉDICO / SALUD </option>,
+        <option value="M"> MILITAR </option>,
+        <option value="NS"> CIENCIA NATURAL </option>,
+        <option value="N"> NO EMPLEADO </option>,
+        <option value="PS"> CIENCIAS FÍSICAS </option>,
+        <option value="RV"> VOCACIÓN RELIGIOSA </option>,
+        <option value="R"> INVESTIGACIÓN </option>,
+        <option value="RT"> RETIRED </option>,
+        <option value="SS"> CIENCIA SOCIAL </option>,
+        <option value="S"> ESTUDIANTE </option>,
+        <option value="O"> OTRO </option>,
+    ],
+    it: [
+        <option value="A"> AGRICOLTURA </option>,
+        <option value="AP"> ARTIST / PERFORMER </option>,
+        <option value="B"> BUSINESS </option>,
+        <option value="CM"> COMUNICAZIONI </option>,
+        <option value="CS"> COMPUTER SCIENCE </option>,
+        <option value="C"> CULINARY / FOOD SERVICES </option>,
+        <option value="ED"> ISTRUZIONE </option>,
+        <option value="EN"> ENGINEERING </option>,
+        <option value="G"> GOVERNMENT </option>,
+        <option value="H"> HOMEMAKER </option>,
+        <option value="LP"> PROFESSIONE LEGALE </option>,
+        <option value="MH"> MEDICAL / HEALTH </option>,
+        <option value="M"> MILITARY </option>,
+        <option value="NS"> NATURAL SCIENCE </option>,
+        <option value="N"> NON OCCUPATO </option>,
+        <option value="PS"> SCIENZE FISICHE </option>,
+        <option value="RV"> VOCATION RELIGIOSA </option>,
+        <option value="R"> RICERCA </option>,
+        <option value="RT"> RETIRED </option>,
+        <option value="SS"> SCIENZA SOCIALE </option>,
+        <option value="S"> STUDENT </option>,
+        <option value="O"> OTHER </option>,
+    ]
+}
+
+export const US_Live_Status = {
+    en: [
+        <option value="S">U.S. CITIZEN</option>,
+        <option value="C">U.S. LEGAL PERMANENT RESIDENT (LPR)</option>,
+        <option value="P">NONIMMIGRANT</option>,
+        <option value="O">OTHER/I DON'T KNOW</option>,
+    ],
+    fr: [
+        <option value="S"> États-Unis. CITOYEN </option>,
+        <option value="C"> États-Unis. RÉSIDENT PERMANENT JURIDIQUE (LPR) </option>,
+        <option value="P"> NONIMMIGRANT </option>,
+        <option value="O"> AUTRE / JE NE SAIS PAS </option>,
+    ],
+    es: [
+        <option value="S"> Estados Unidos. CIUDADANO </option>,
+        <option value="C"> Estados Unidos. RESIDENTE PERMANENTE LEGAL (LPR) </option>,
+        <option value="P"> NO INMIGRANTE </option>,
+        <option value="O"> OTRO / NO SABO </option>,
+    ],
+    de: [
+        <option value="S"> US. BÜRGER </ option>,
+        <option value="C"> USA. LEGAL PERMANENT RESIDENT (LPR) </ option>,
+        <option value="P"> NICHT-MIGRANT </ option>,
+        <option value="O"> ANDERE / ICH WEISS NICHT </ option>,
+    ],
+    it: [
+        <option value="S"> U.S. CITIZEN </ option>,
+        <option value="C"> U.S. RESIDENTE LEGALE PERMANENTE (LPR) </option>,
+        <option value="P"> NONIMMIGRANT </option>,
+        <option value="O"> ALTRO / NON LO SO </option>,
+    ]
+}
+
+export const relative_relationship_options = {
+    en: [
+        <option value="S">SPOUSE</option>,
+        <option value="F">FIANCÉ/FIANCÉE</option>,
+        <option value="C">CHILD</option>,
+        <option value="B">SIBLING</option>,
+    ],
+    fr: [
+        <option value="S"> ÉPOUSE / ÉPOUX </option>,
+        <option value="F"> FIANCÉ / FIANCÉE </option>,
+        <option value="C"> ENFANT </option>,
+        <option value="B"> ENFANT DE MÊMES PARENTS </option>,
+    ],
+    es: [
+        <option value="S"> ESPOSA / ESPOSO </option>,
+        <option value="F"> PROMETIDO / PROMETIDA </option>,
+        <option value="C"> NIÑO </option>,
+        <option value="B"> HERMANA / HERMANO </option>,
+    ],
+    de: [
+        <option value="S"> EHEPARTNERIN / EHEPARTNER </ option>,
+        <option value="F"> VERLOBTER / VERLOBTE </ option>,
+        <option value="C"> KIND </ option>,
+        <option value="B"> GESCHWISTER </ option>,
+    ],
+    it: [
+        <option value="S"> SPOSA </option>,
+        <option value="F"> FIDANZATO / FIDANZATA </option>,
+        <option value="C"> BAMBINO </option>,
+        <option value="B"> FRATELLO </option>,
+    ]
+}
+
+export const relative_relationship_options_except_Spouse = {
+    en: [
+        <option value="F">FIANCÉ/FIANCÉE</option>,
+        <option value="C">CHILD</option>,
+        <option value="B">SIBLING</option>,
+    ],
+    fr: [
+        <option value="F"> FIANCÉ / FIANCÉE </option>,
+        <option value="C"> ENFANT </option>,
+        <option value="B"> ENFANT DE MÊMES PARENTS </option>,
+    ],
+    es: [
+        <option value="F"> PROMETIDO / PROMETIDA </option>,
+        <option value="C"> NIÑO </option>,
+        <option value="B"> HERMANA / HERMANO </option>,
+    ],
+    de: [
+        <option value="F"> VERLOBTER / VERLOBTE </ option>,
+        <option value="C"> KIND </ option>,
+        <option value="B"> GESCHWISTER </ option>,
+    ],
+    it: [
+        <option value="F"> FIDANZATO / FIDANZATA </option>,
+        <option value="C"> BAMBINO </option>,
+        <option value="B"> FRATELLO </option>,
+    ]
+}
+
+export const relationship_options = {
+    en: [
+        <option value="R">RELATIVE</option>,
+        <option value="S">SPOUSE</option>,
+        <option value="C">FRIEND</option>,
+        <option value="B">BUSINESS ASSOCIATE</option>,
+        <option value="P">EMPLOYER</option>,
+        <option value="H">SCHOOL OFFICIAL</option>,
+        <option value="O">OTHER</option>
+    ],
+    fr: [
+        <option value="R"> RELATIVE </option>,
+        <option value="S"> ÉPOUX / ÉPOUSE </option>,
+        <option value="C"> AMI / AMIE </option>,
+        <option value="B"> ASSOCIÉ D'AFFAIRES </option>,
+        <option value="P"> EMPLOYEUR / EMPLOYEUSE </option>,
+        <option value="H"> ÉCOLE OFFICIELLE </option>,
+        <option value="O"> AUTRE </option>
+    ],
+    es: [
+        <option value="R"> RELATIVO / RELATIVA </option>,
+        <option value="S"> ESPOSO / ESPOSA </option>,
+        <option value="C"> AMIGO / AMIGA </option>,
+        <option value="B"> SOCIO DE NEGOCIOS </option>,
+        <option value="P"> EMPLEADOR / EMPLEADORA </option>,
+        <option value="H"> FUNCIONARIO DE LA ESCUELA </option>,
+        <option value="O"> OTRO / OTRA </option>
+    ],
+    de: [
+        <option value="R"> RELATIV </ option>,
+        <option value="S"> EHEPARTNER / EHEPARTNERIN </ option>,
+        <option value="C"> FREUND / FREUNDIN </ option>,
+        <option value="B"> GESCHÄFTSPARTNER </ option>,
+        <option value="P"> ARBEITGEBER / ARBEITGEBERIN </ option>,
+        <option value="H"> SCHULAMT </ option>,
+        <option value="O"> ANDERE </ option>
+    ],
+    it: [
+        <option value="R"> PARENTE </option>,
+        <option value="S"> SPOSA </option>,
+        <option value="C"> AMICO / AMICA </option>,
+        <option value="B"> SOCIO D'AFFARI </option>,
+        <option value="P"> DATORE DI LAVORO </option>,
+        <option value="H"> SCUOLA UFFICIALE </option>,
+        <option value="O"> ALTRO / ALTRA </option>
+    ]
+}
+
+export const relationship_options_except_Spouse = {
+    en: [
+        <option value="R">RELATIVE</option>,
+        <option value="C">FRIEND</option>,
+        <option value="B">BUSINESS ASSOCIATE</option>,
+        <option value="P">EMPLOYER</option>,
+        <option value="H">SCHOOL OFFICIAL</option>,
+        <option value="O">OTHER</option>
+    ],
+    fr: [
+        <option value="R"> RELATIVE </option>,
+        <option value="C"> AMI / AMIE </option>,
+        <option value="B"> ASSOCIÉ D'AFFAIRES </option>,
+        <option value="P"> EMPLOYEUR / EMPLOYEUSE </option>,
+        <option value="H"> ÉCOLE OFFICIELLE </option>,
+        <option value="O"> AUTRE </option>
+    ],
+    es: [
+        <option value="R"> RELATIVO / RELATIVA </option>,
+        <option value="C"> AMIGO / AMIGA </option>,
+        <option value="B"> SOCIO DE NEGOCIOS </option>,
+        <option value="P"> EMPLEADOR / EMPLEADORA </option>,
+        <option value="H"> FUNCIONARIO DE LA ESCUELA </option>,
+        <option value="O"> OTRO / OTRA </option>
+    ],
+    de: [
+        <option value="R"> RELATIV </ option>,
+        <option value="C"> FREUND / FREUNDIN </ option>,
+        <option value="B"> GESCHÄFTSPARTNER </ option>,
+        <option value="P"> ARBEITGEBER / ARBEITGEBERIN </ option>,
+        <option value="H"> SCHULAMT </ option>,
+        <option value="O"> ANDERE </ option>
+    ],
+    it: [
+        <option value="R"> PARENTE </option>,
+        <option value="C"> AMICO / AMICA </option>,
+        <option value="B"> SOCIO D'AFFARI </option>,
+        <option value="P"> DATORE DI LAVORO </option>,
+        <option value="H"> SCUOLA UFFICIALE </option>,
+        <option value="O"> ALTRO / ALTRA </option>
+    ]
+}
+
+export const passport_type_options = {
+    en: [
+        <option value="R">REGULAR</option>,
+        <option value="O">OFFICIAL</option>,
+        <option value="D">DIPLOMATIC</option>,
+        <option value="L">LAISSEZ-PASSER</option>,
+        <option value="T">OTHER</option>,
+    ],
+    fr: [
+        <option value="R">ORDINAIRE</option>,
+        <option value="O">OFFICIEL</option>,
+        <option value="D">DIPLOMATIQUE</option>,
+        <option value="L">LAISSEZ PASSER</option>,
+        <option value="T">AUTRE</option>,
+    ],
+    es: [
+        <option value="R">REGULAR</option>,
+        <option value="O">OFICIAL</option>,
+        <option value="D">DIPLOMÁTICO</option>,
+        <option value="L">LAISSEZ-PASSER</option>,
+        <option value="T">OTRO</option>,
+    ],
+    de: [
+        <option value="R">REGULÄR</option>,
+        <option value="O">OFFIZIELL</option>,
+        <option value="D">DIPLOMATISCH</option>,
+        <option value="L">LAISSEZ-PASSER</option>,
+        <option value="T">ANDERE</option>,
+    ],
+    it: [
+        <option value="R">REGOLARE</option>,
+        <option value="O">UFFICIALE</option>,
+        <option value="D">DIPLOMATICO</option>,
+        <option value="L">LASCIA PASSARE</option>,
+        <option value="T">ALTRO</option>,
+    ]
+}
+
+
+export const person_travel_with_relationship_options = {
+    en: [
+        { value: 'P', label: 'PARENT' },
+        { value: 'S', label: 'SPOUSE' },
+        { value: 'C', label: 'CHILD' },
+        { value: 'R', label: 'OTHER RELATIVE' },
+        { value: 'F', label: 'FRIEND' },
+        { value: 'B', label: 'BUSINESS ASSOCIATE' },
+        { value: 'O', label: 'OTHER' },
+    ],
+    fr: [
+        { value: 'P', label: 'PARENT' },
+        { value: 'S', label: 'CONJOINT' },
+        { value: 'C', label: 'ENFANT' },
+        { value: 'R', label: 'AUTRE RELATIF' },
+        { value: 'F', label: 'AMI' },
+        { value: 'B', label: `ASSOCIÉ D'AFFAIRES` },
+        { value: 'O', label: 'AUTRE' },
+    ],
+    es: [
+        { value: 'P', label: 'PADRE' },
+        { value: 'S', label: 'ESPOSO' },
+        { value: 'C', label: 'NIÑO' },
+        { value: 'R', label: 'OTRO PARIENTE' },
+        { value: 'F', label: 'AMIGO' },
+        { value: 'B', label: 'SOCIO DE NEGOCIOS' },
+        { value: 'O', label: 'OTRO' },
+    ],
+    de: [
+        { value: 'P', label: 'ELTERNTEIL' },
+        { value: 'S', label: 'EHEPARTNER' },
+        { value: 'C', label: 'KIND' },
+        { value: 'R', label: 'ANDERER VERWANDTER' },
+        { value: 'F', label: 'FREUND' },
+        { value: 'B', label: 'GESCHÄFTSPARTNER' },
+        { value: 'O', label: 'ANDERE' },
+    ],
+    it: [
+        { value: "P", label: "GENITORE" },
+        { value: 'S', label: 'SPOSA' },
+        { value: "C", label: "BAMBINO" },
+        { value: 'R', label: 'ALTRO PARENTE' },
+        { value: 'F', label: 'AMICO' },
+        { value: "B", label: "SOCIO D'AFFARI" },
+        { value: "O", label: "ALTRO" },
+    ]
+}
+
+export const paying_person_info_relationship_options = {
+    en: [
+        { value: 'C', label: 'CHILD' },
+        { value: 'P', label: 'PARENT' },
+        { value: 'S', label: 'SPOUSE' },
+        { value: 'R', label: 'OTHER RELATIVE' },
+        { value: 'F', label: 'FRIEND' },
+        { value: 'O', label: 'OTHER' },
+    ],
+    fr: [
+        { value: 'C', label: 'ENFANT' },
+        { value: 'P', label: 'PARENT' },
+        { value: 'S', label: 'CONJOINT' },
+        { value: 'R', label: 'AUTRE RELATIF' },
+        { value: 'F', label: 'AMI' },
+        { value: 'O', label: 'AUTRE' },
+    ],
+    es: [
+        { value: 'C', label: 'NIÑO' },
+        { value: 'P', label: 'PADRE' },
+        { value: 'S', label: 'ESPOSO' },
+        { value: 'R', label: 'OTRO PARIENTE' },
+        { value: 'F', label: 'AMIGO' },
+        { value: 'O', label: 'OTRO' },
+    ],
+    de: [
+        { value: 'C', label: 'KIND' },
+        { value: 'P', label: 'ELTERNTEIL' },
+        { value: 'S', label: 'EHEPARTNER' },
+        { value: 'R', label: 'ANDERER VERWANDTER' },
+        { value: 'F', label: 'FREUND' },
+        { value: 'O', label: 'ANDERE' },
+    ],
+    it: [
+        { value: "C", label: "BAMBINO" },
+        { value: "P", label: "GENITORE" },
+        { value: 'S', label: 'SPOSA' },
+        { value: 'R', label: 'ALTRO PARENTE' },
+        { value: 'F', label: 'AMICO' },
+        { value: "O", label: "ALTRO" },
+    ]
+}
+
+export const paying_person_info_relationship_without_spouse_options = {
+    en: [
+        { value: 'C', label: 'CHILD' },
+        { value: 'P', label: 'PARENT' },
+        { value: 'R', label: 'OTHER RELATIVE' },
+        { value: 'F', label: 'FRIEND' },
+        { value: 'O', label: 'OTHER' },
+    ],
+    fr: [
+        { value: 'C', label: 'ENFANT' },
+        { value: 'P', label: 'PARENT' },
+        { value: 'R', label: 'AUTRE RELATIF' },
+        { value: 'F', label: 'AMI' },
+        { value: 'O', label: 'AUTRE' },
+    ],
+    es: [
+        { value: 'C', label: 'NIÑO' },
+        { value: 'P', label: 'PADRE' },
+        { value: 'R', label: 'OTRO PARIENTE' },
+        { value: 'F', label: 'AMIGO' },
+        { value: 'O', label: 'OTRO' },
+    ],
+    de: [
+        { value: 'C', label: 'KIND' },
+        { value: 'P', label: 'ELTERNTEIL' },
+        { value: 'R', label: 'ANDERER VERWANDTER' },
+        { value: 'F', label: 'FREUND' },
+        { value: 'O', label: 'ANDERE' },
+    ],
+    it: [
+        { value: "C", label: "BAMBINO" },
+        { value: "P", label: "GENITORE" },
+        { value: 'R', label: 'ALTRO PARENTE' },
+        { value: 'F', label: 'AMICO' },
+        { value: "O", label: "ALTRO" },
+    ]
+}
+
+export const paying_person_for_trip_options = {
+    en: [
+        { value: 'S', label: 'Self' },
+        { value: 'O', label: 'Other Person' },
+        { value: 'C', label: 'Other Company/Organization' },
+    ],
+    fr: [
+        { value: 'S', label: 'Soi' },
+        { value: 'O', label: 'Autre personne' },
+        { value: 'C', label: 'Autre entreprise / organisation' },
+    ],
+    es: [
+        { value: 'S', label: 'Yo' },
+        { value: 'O', label: 'Otra persona' },
+        { value: 'C', label: 'Otra empresa / organización' },
+    ],
+    de: [
+        { value: 'S', label: 'Selbst' },
+        { value: 'O', label: 'Andere Person' },
+        { value: 'C', label: 'Andere Firma / Organisation' },
+    ],
+    it: [
+        { value: 'S', label: 'Se stesso' },
+        { value: 'O', label: 'Altra persona' },
+        { value: 'C', label: 'Altra società / organizzazione' },
+    ]
+}
+
+export const period_unit_options = {
+    en: [
+        { value: 'Y', label: 'YEAR(S)' },
+        { value: 'M', label: 'MONTH(S)' },
+        { value: 'W', label: 'WEEK(S)' },
+        { value: 'D', label: 'DAY(S)' },
+    ],
+    fr: [
+        { value: 'Y', label: 'AN' },
+        { value: 'M', label: 'MOIS' },
+        { value: 'W', label: 'LA SEMAINE' },
+        { value: 'D', label: 'JOURNÉE' },
+    ],
+    es: [
+        { value: 'Y', label: 'AÑO' },
+        { value: 'M', label: 'MES' },
+        { value: 'W', label: 'SEMANA' },
+        { value: 'D', label: 'DÍA' },
+    ],
+    de: [
+        { value: 'Y', label: 'JAHR' },
+        { value: 'M', label: 'MONAT' },
+        { value: 'W', label: 'WOCHE' },
+        { value: 'D', label: 'TAG' },
+    ],
+    it: [
+        { value: 'Y', label: 'ANNO' },
+        { value: 'M', label: 'MESE' },
+        { value: 'W', label: 'SETTIMANA' },
+        { value: 'D', label: 'GIORNO' },
+    ]
+}
+export const period_unit_options_v2 = {
+    en: [
+        { value: 'Y', label: 'YEAR(S)' },
+        { value: 'M', label: 'MONTH(S)' },
+        { value: 'W', label: 'WEEK(S)' },
+        { value: 'D', label: 'DAY(S)' },
+        { value: 'H', label: 'Less Than 24 Hours' },
+    ],
+    fr: [
+        { value: 'Y', label: 'AN' },
+        { value: 'M', label: 'MOIS' },
+        { value: 'W', label: 'LA SEMAINE' },
+        { value: 'D', label: 'JOURNÉE' },
+        { value: 'H', label: 'Moins de 24 heures' },
+    ],
+    es: [
+        { value: 'Y', label: 'AÑO' },
+        { value: 'M', label: 'MES' },
+        { value: 'W', label: 'SEMANA' },
+        { value: 'D', label: 'DÍA' },
+        { value: 'H', label: 'Menos que 24 horas' },
+    ],
+    de: [
+        { value: 'Y', label: 'JAHR' },
+        { value: 'M', label: 'MONAT' },
+        { value: 'W', label: 'WOCHE' },
+        { value: 'D', label: 'TAG' },
+        { value: 'H', label: 'Weniger als 24 Stunden' },
+    ],
+    it: [
+        { value: 'Y', label: 'ANNO' },
+        { value: 'M', label: 'MESE' },
+        { value: 'W', label: 'SETTIMANA' },
+        { value: 'D', label: 'GIORNO' },
+        { value: 'H', label: 'Meno di 24 ore' },
+    ]
+}
+
+
+export const purpose_of_trip_advanced_specify_options = {
+    'B': {
+        en: [
+            <option value="B1-B2">BUSINESS &amp; TOURISM (TEMPORARY VISITOR) (B1/B2)</option>,
+            <option value="B1-CF">BUSINESS/CONFERENCE (B1)</option>,
+            <option value="B2-TM">TOURISM/MEDICAL TREATMENT (B2)</option>,
+        ],
+        fr: [
+            <option value="B1-B2">TOURISME &amp; D'AFFAIRES (VISITEUR TEMPORAIRE) (B1 / B2)</option>,
+            <option value="B1-CF">AFFAIRES/CONFÉRENCE (B1)</option>,
+            <option value="B2-TM">TOURISME/TRAITEMENT MÉDICAL (B2)</option>,
+        ],
+        es: [
+            <option value="B1-B2">TURISMO &amp; EMPRESARIAL (VISITANTE TEMPORAL) (B1 / B2)</option>,
+            <option value="B1-CF">NEGOCIO/CONFERENCIA (B1)</option>,
+            <option value="B2-TM">TURISMO/TRATAMIENTO MÉDICO (B2)</option>,
+        ],
+        de: [
+            <option value="B1-B2">Geschäft &amp; Tourismus (VORÜBERGEHENDER BESUCHER) (B1 / B2)</option>,
+            <option value="B1-CF">GESCHÄFT/KONFERENZ (B1)</option>,
+            <option value="B2-TM">TOURISMUS/MEDIZINISCHE BEHANDLUNG (B2)</option>,
+        ],
+        it: [
+            <option value="B1-B2">TURISMO &amp; COMMERCIALE (VISITATORE TEMPORANEO) (B1 / B2)</option>,
+            <option value="B1-CF">ATTIVITÀ COMMERCIALE/CONFERENZA (B1)</option>,
+            <option value="B2-TM">TURISMO/TRATTAMENTO MEDICO (B2)</option>,
+        ]
+    },
+    'C': {
+        en: [
+            <option value="C1-D">CREWMEMBER IN TRANSIT (C1/D)</option>,
+            <option value="C1-TR">TRANSIT (C1)</option>,
+            <option value="C2-UN">TRANSIT TO U.N. HEADQUARTERS (C2)</option>,
+            <option value="C3-CH">CHILD OF A C3 (C3)</option>,
+            <option value="C3-EM">PERSONAL EMP. OF A C3 (C3)</option>,
+            <option value="C3-FR">FOREIGN OFFICIAL IN TRANSIT (C3)</option>,
+            <option value="C3-SP">SPOUSE OF A C3 (C3)</option>,
+        ],
+        fr: [
+            <option value="C1-D">Membre d'équipage en transit (C1/D)</option>,
+            <option value="C1-TR">TRANSIT (C1)</option>,
+            <option value="C2-UN">TRANSITER AU SIÈGE DES NATIONS UNIES (C2)</option>,
+            <option value="C3-CH">ENFANT D'UN C3 (C3)</option>,
+            <option value="C3-EM">EMP PERSONNEL. D'UNE C3 (C3)</option>,
+            <option value="C3-FR">FONCTIONNAIRE ÉTRANGER EN TRANSIT (C3)</option>,
+            <option value="C3-SP">CONJOINT D'UNE C3 (C3)</option>,
+        ],
+        es: [
+            <option value="C1-D">Miembro de la tripulación en tránsito (C1/D)</option>,
+            <option value="C1-TR">TRÁNSITO (C1)</option>,
+            <option value="C2-UN">TRÁNSITO A LA SEDE DE LA ONU (C2)</option>,
+            <option value="C3-CH">NIÑO DE UN C3 (C3)</option>,
+            <option value="C3-EM">EMP PERSONAL De un C3 (C3)</option>,
+            <option value="C3-FR">OFICIAL EXTRANJERO EN TRÁNSITO (C3)</option>,
+            <option value="C3-SP">ESPOSA DE UN C3 (C3)</option>,
+        ],
+        de: [
+            <option value="C1-D">Besatzungsmitglied auf der Durchreise (C1/D)</option>,
+            <option value="C1-TR">TRANSIT (C1)</option>,
+            <option value="C2-UN">TRANSIT ZUM HAUPTSITZ (C2)</option>,
+            <option value="C3-CH">KIND EINES C3 (C3)</option>,
+            <option value="C3-EM">PERSÖNLICHE EMP. EINES C3 (C3)</option>,
+            <option value="C3-FR">AUSLÄNDISCHER BEAMTER IM TRANSIT (C3)</option>,
+            <option value="C3-SP">Ehefrau eines C3 (C3)</option>,
+        ],
+        it: [
+            <option value="C1-D">Membro dell'equipaggio in transito (C1/D)</option>,
+            <option value="C1-TR">TRANSITO (C1)</option>,
+            <option value="C2-UN">TRANSITO ALLA SEDE U.N. (C2)</option>,
+            <option value="C3-CH">BAMBINO DI UNA C3 (C3)</option>,
+            <option value="C3-EM">EMP PERSONALE. DI A C3 (C3)</option>,
+            <option value="C3-FR">UFFICIALE ESTERO IN TRANSITO (C3)</option>,
+            <option value="C3-SP">SPOSA DI UN C3 (C3)</option>,
+        ],
+    },
+    'D': {
+        en: [
+            <option selected="selected" value="D-D">CREWMEMBER (D)</option>,
+        ],
+        fr: [
+            <option selected="selected" value="D-D">membre d'équipage (D)</option>,
+        ],
+        es: [
+            <option selected="selected" value="D-D">miembro de la tripulación (D)</option>,
+        ],
+        de: [
+            <option selected="selected" value="D-D">Besatzungsmitglied (D)</option>,
+        ],
+        it: [
+            <option selected="selected" value="D-D">membro dell'equipaggio (D)</option>,
+        ],
+    },
+    'F': {
+        en: [
+            <option value="F1-F1">STUDENT (F1)</option>,
+            <option value="F2-CH">CHILD OF AN F1 (F2)</option>,
+            <option value="F2-SP">SPOUSE OF AN F1 (F2)</option>,
+        ],
+        fr: [
+            <option value="F1-F1">ÉTUDIANT (F1)</option>,
+            <option value="F2-CH">ENFANT D'UN F1 (F2)</option>,
+            <option value="F2-SP">CONJOINT D'UN F1 (F2)</option>,
+        ],
+        es: [
+            <option value="F1-F1">ESTUDIANTE (F1)</option>,
+            <option value="F2-CH">NIÑO DE UNA F1 (F2)</option>,
+            <option value="F2-SP">ESPOSA DE UNA F1 (F2)</option>,
+        ],
+        de: [
+            <option value="F1-F1">SCHÜLER (F1)</option>,
+            <option value="F2-CH">KIND EINES F1 (F2)</option>,
+            <option value="F2-SP">EHE EINES F1 (F2)</option>,
+        ],
+        it: [
+            <option value="F1-F1">ALUNNO (F1)</option>,
+            <option value="F2-CH">BAMBINO DI UNA F1 (F2)</option>,
+            <option value="F2-SP">SPOSA DI UNA F1 (F2)</option>,
+        ],
+    },
+    'H': {
+        en: [
+            <option value="H1B-H1B">SPECIALTY OCCUPATION (H1B)</option>,
+            <option value="H1B1-CHL">CHILEAN SPEC. OCCUPATION (H1B1)</option>,
+            <option value="H1B1-SGP">SINGAPOREAN SPEC. OCCUPATION (H1B1)</option>,
+            <option value="H1C-NR">NURSE IN SHORTAGE AREA (H1C)</option>,
+            <option value="H2A-AG">AGRICULTURAL WORKER (H2A)</option>,
+            <option value="H2B-NA">NONAGRICULTURAL WORKER (H2B)</option>,
+            <option value="H3-TR">TRAINEE (H3)</option>,
+            <option value="H4-CH">CHILD OF AN H (H4)</option>,
+            <option value="H4-SP">SPOUSE OF AN H (H4)</option>,
+        ],
+        fr: [
+            <option value="H1B-H1B">occupation spécialisée (H1B)</option>,
+            <option value="H1B1-CHL">Spéc. Chilienne Occupation (H1B1)</option>,
+            <option value="H1B1-SGP">Spéc. Singapourienne Occupation (H1B1)</option>,
+            <option value="H1C-NR">Infirmière dans la zone de pénurie (H1C)</option>,
+            <option value="H2A-AG">Ouvrier agricole (H2A)</option>,
+            <option value="H2B-NA">Ouvrier non agricole (H2B)</option>,
+            <option value="H3-TR">Stagiaire (H3)</option>,
+            <option value="H4-CH">ENFANT D'UN H (H4)</option>,
+            <option value="H4-SP">CONJOINT D'UN H (H4)</option>,
+        ],
+        es: [
+            <option value="H1B-H1B">ocupación especial (H1B)</option>,
+            <option value="H1B1-CHL">Especificación chilena ocupación (H1B1)</option>,
+            <option value="H1B1-SGP">Especificación de Singapur. ocupación (H1B1)</option>,
+            <option value="H1C-NR">Enfermera en área de escasez (H1C)</option>,
+            <option value="H2A-AG">Trabajador agrícola (H2A)</option>,
+            <option value="H2B-NA">Trabajador no agrícola (H2B)</option>,
+            <option value="H3-TR">Aprendiz (H3)</option>,
+            <option value="H4-CH">NIÑO DE UNA H (H4)</option>,
+            <option value="H4-SP">ESPOSA DE UNA H (H4)</option>,
+        ],
+        de: [
+            <option value="H1B-H1B">Fachberuf (H1B)</option>,
+            <option value="H1B1-CHL">Chilenische spez. Besetzung (H1B1)</option>,
+            <option value="H1B1-SGP">Singapurische Spezifikation Besetzung (H1B1)</option>,
+            <option value="H1C-NR">Krankenschwester im Engpassbereich (H1C)</option>,
+            <option value="H2A-AG">Landarbeiter (H2A)</option>,
+            <option value="H2B-NA">Nichtlandarbeiter (H2B)</option>,
+            <option value="H3-TR">Auszubildender (H3)</option>,
+            <option value="H4-CH">KIND EINES H (H4)</option>,
+            <option value="H4-SP">EHE EINES H (H4)</option>,
+        ],
+        it: [
+            <option value="H1B-H1B">occupazione speciale (H1B)</option>,
+            <option value="H1B1-CHL">Spec. Cilena occupazione (H1B1)</option>,
+            <option value="H1B1-SGP">Spec. Singaporiana occupazione (H1B1)</option>,
+            <option value="H1C-NR">Infermiera nella zona di carenza (H1C)</option>,
+            <option value="H2A-AG">Lavoratore agricolo (H2A)</option>,
+            <option value="H2B-NA">Lavoratore non agricolo (H2B)</option>,
+            <option value="H3-TR">Apprendista (H3)</option>,
+            <option value="H4-CH">BAMBINO DI UN H (H4)</option>,
+            <option value="H4-SP">SPOSA DI UN H (H4)</option>,
+        ],
+    },
+    'I': {
+        en: [
+            <option value="I-CH">CHILD OF AN I (I)</option>,
+            <option value="I-FR">FOREIGN MEDIA REPRESENTATIVE (I)</option>,
+            <option value="I-SP">SPOUSE OF AN I (I)</option>,
+        ],
+        fr: [
+            <option value="I-CH">ENFANT D'UN JE (I)</option>,
+            <option value="I-FR">REPRÉSENTANT DES MÉDIAS ÉTRANGERS (I)</option>,
+            <option value="I-SP">CONJOINT D'UN I (I)</option>,
+        ],
+        es: [
+            <option value="I-CH">NIÑO DE UN YO (I)</option>,
+            <option value="I-FR">REPRESENTANTE DE LOS MEDIOS EXTRANJEROS (I)</option>,
+            <option value="I-SP">ESPOSA DE UNA I (I)</option>,
+        ],
+        de: [
+            <option value="I-CH">KIND EINES ICH (I)</option>,
+            <option value="I-FR">AUSLANDSMEDIENVERTRETER (I)</option>,
+            <option value="I-SP">EHE EINES I (I)</option>,
+        ],
+        it: [
+            <option value="I-CH">BAMBINO DI UN I (I)</option>,
+            <option value="I-FR">RAPPRESENTANTE MEDIA ESTERO (I)</option>,
+            <option value="I-SP">SPOSA DI UN I (I)</option>,
+        ],
+    },
+    'J': {
+        en: [
+            <option value="J1-J1">EXCHANGE VISITOR (J1)</option>,
+            <option value="J2-CH">CHILD OF A J1 (J2)</option>,
+            <option value="J2-SP">SPOUSE OF A J1 (J2)</option>,
+        ],
+        fr: [
+            <option value="J1-J1">VISITEUR D'ÉCHANGE (J1)</option>,
+            <option value="J2-CH">ENFANT D'UN J1 (J2)</option>,
+            <option value="J2-SP">CONJOINT D'UN J1 (J2)</option>,
+        ],
+        es: [
+            <option value="J1-J1">VISITANTE DE INTERCAMBIO (J1)</option>,
+            <option value="J2-CH">NIÑO DE UN J1 (J2)</option>,
+            <option value="J2-SP">ESPOSA DE UN J1 (J2)</option>,
+        ],
+        de: [
+            <option value="J1-J1">AUSTAUSCHBESUCHER (J1)</option>,
+            <option value="J2-CH">KIND EINES J1 (J2)</option>,
+            <option value="J2-SP">Ehefrau eines J1 (J2)</option>,
+        ],
+        it: [
+            <option value="J1-J1">VISITATORE DI SCAMBIO (J1)</option>,
+            <option value="J2-CH">BAMBINO DI UN J1 (J2)</option>,
+            <option value="J2-SP">SPOSA DI UN J1 (J2)</option>,
+        ],
+    },
+    'L': {
+        en: [
+            <option value="L1-L1">INTRACOMPANY TRANSFEREE (L1)</option>,
+            <option value="L2-CH">CHILD OF A L1 (L2)</option>,
+            <option value="L2-SP">SPOUSE OF A L1 (L2)</option>,
+        ],
+        fr: [
+            <option value="L1-L1">cessionnaire intragroupe (L1)</option>,
+            <option value="L2-CH">ENFANT D'UN L1 (L2)</option>,
+            <option value="L2-SP">CONJOINT D'UN L1 (L2)</option>,
+        ],
+        es: [
+            <option value="L1-L1">Transferencia dentro de la compañía (L1)</option>,
+            <option value="L2-CH">NIÑO DE UN L1 (L2)</option>,
+            <option value="L2-SP">ESPOSA DE UN L1 (L2)</option>,
+        ],
+        de: [
+            <option value="L1-L1">konzerninterner Erwerber (L1)</option>,
+            <option value="L2-CH">KIND EINES L1 (L2)</option>,
+            <option value="L2-SP">EHE EINES L1 (L2)</option>,
+        ],
+        it: [
+            <option value="L1-L1">cessionario intracompany (L1)</option>,
+            <option value="L2-CH">BAMBINO DI A L1 (L2)</option>,
+            <option value="L2-SP">SPOSA DI UN L1 (L2)</option>,
+        ],
+    },
+    'M': {
+        en: [
+            <option value="M1-M1">STUDENT (M1)</option>,
+            <option value="M2-CH">CHILD OF M1 (M2)</option>,
+            <option value="M2-SP">SPOUSE OF M1 (M2)</option>,
+            <option value="M3-M3">COMMUTER STUDENT (M3)</option>,
+        ],
+        fr: [
+            <option value="M1-M1">ÉTUDIANT (M1)</option>,
+            <option value="M2-CH">ENFANT DE M1 (M2)</option>,
+            <option value="M2-SP">CONJOINT DE M1 (M2)</option>,
+            <option value="M3-M3">étudiants de banlieue (M3)</option>,
+        ],
+        es: [
+            <option value="M1-M1">ESTUDIANTE (M1)</option>,
+            <option value="M2-CH">NIÑO DE M1 (M2)</option>,
+            <option value="M2-SP">ESPOSA DE M1 (M2)</option>,
+            <option value="M3-M3">estudiantes de viaje (M3)</option>,
+        ],
+        de: [
+            <option value="M1-M1">SCHÜLER (M1)</option>,
+            <option value="M2-CH">KIND VON M1 (M2)</option>,
+            <option value="M2-SP">Ehefrau von M1 (M2)</option>,
+            <option value="M3-M3">Pendlerschüler (M3)</option>,
+        ],
+        it: [
+            <option value="M1-M1">ALUNNO (M1)</option>,
+            <option value="M2-CH">BAMBINO DI M1 (M2)</option>,
+            <option value="M2-SP">SPOSA DI M1 (M2)</option>,
+            <option value="M3-M3">studente pendolare (M3)</option>,
+        ],
+    }
+}
+
+export const martial_status_options = {
+    en: [
+        { value: 'M', label: 'MARRIED' },
+        { value: 'C', label: 'COMMON LAW MARRIAGE' },
+        { value: 'P', label: 'CIVIL UNION/DOMESTIC PARTNERSHIP' },
+        { value: 'S', label: 'SINGLE' },
+        { value: 'W', label: 'WIDOWED' },
+        { value: 'D', label: 'DIVORCED' },
+        { value: 'L', label: 'LEGALLY SEPARATED' },
+        { value: 'O', label: 'OTHER' },
+    ],
+    fr: [
+        { value: 'M', label: 'MARIÉ' },
+        { value: 'C', label: 'MARIAGE DE LA COMMON LAW' },
+        { value: 'P', label: `L'UNION CIVILE/PARTENARIAT DOMESTIQUE` },
+        { value: 'S', label: 'UNIQUE' },
+        { value: 'W', label: 'VEUVE' },
+        { value: 'D', label: 'DIVORCÉ' },
+        { value: 'L', label: 'LÉGALEMENT SÉPARÉS' },
+        { value: 'O', label: `AUTRE` },
+    ],
+    es: [
+        { value: 'M', label: 'CASADO' },
+        { value: 'C', label: 'EL MATRIMONIO DE DERECHO COMÚN' },
+        { value: 'P', label: 'UNIÓN CIVIL/ASOCIACIÓN DOMÉSTICA' },
+        { value: 'S', label: 'SOLTERO' },
+        { value: 'W', label: 'VIUDO' },
+        { value: 'D', label: 'DIVORCIADO' },
+        { value: 'L', label: 'LEGALMENTE SEPARADOS' },
+        { value: 'O', label: 'OTROS' },
+    ],
+    de: [
+        { value: 'M', label: 'VERHEIRATET' },
+        { value: 'C', label: 'COMMON-LAW-EHE' },
+        { value: 'P', label: 'CIVIL UNION/LEBENSPARTNERSCHAFTEN' },
+        { value: 'S', label: 'SINGLE' },
+        { value: 'W', label: 'VERWITWET' },
+        { value: 'D', label: 'GESCHIEDEN' },
+        { value: 'L', label: 'RECHTLICH GETRENNT' },
+        { value: 'O', label: 'ANDERE' },
+    ],
+    it: [
+        { value: 'M', label: 'SPOSATO' },
+        { value: 'C', label: 'COMMON LAW MATRIMONIO' },
+        { value: 'P', label: 'UNIONE CIVILE/PARTNERSHIP DOMESTICA' },
+        { value: 'S', label: 'SINGOLO' },
+        { value: 'W', label: 'VEDOVA' },
+        { value: 'D', label: 'DIVORZIATO' },
+        { value: 'L', label: 'LEGALMENTE SEPARATI' },
+        { value: 'O', label: 'ALTRO' },
+    ]
+}
+// Translation End
+export const USER_ROLE = {
+    NOT: -1,
+    ADMIN: 0,
+    AGENCY: 1,
+}
+
+export const FGMC_countries_list = [
+    "SOMALIA",
+    "GUINEA",
+    "DJIBOUTI",
+    "EGYPT",
+    "ERITREA",
+    "MALI",
+    "SIERRA LEONE",
+    "SUDAN",
+    "GAMBIA, THE",
+    "BURKINA FASO",
+    "ETHIOPIA",
+    "MAURITANIA",
+    "LIBERIA",
+    "GUINEA - BISSAU",
+    "CHAD",
+    "COTE D`IVOIRE",
+    "KENYA",
+    "NIGERIA",
+    "SENEGAL",
+    "CENTRAL AFRICAN REPUBLIC",
+    "YEMEN",
+    "TANZANIA",
+    "BENIN",
+    "IRAQ",
+    "GHANA",
+    "TOGO",
+    "NIGER",
+    "CAMEROON",
+    "UGANDA"
+]
+
 export const past_travel_countries_options = [
     <option value="AFGH">AFGHANISTAN</option>,
     <option value="ALB">ALBANIA</option>,
@@ -289,7 +1248,7 @@ export const past_travel_countries_options = [
     <option value="KENY">KENYA</option>,
     <option value="KIRI">KIRIBATI</option>,
     <option value="PRK">KOREA, DEMOCRATIC REPUBLIC OF (NORTH)</option>,
-    <option value="KOR">KOREA, REPUBLIC OF (SOUTH)</option>,,
+    <option value="KOR">KOREA, REPUBLIC OF (SOUTH)</option>, ,
     <option value="KSV">KOSOVO</option>,
     <option value="KUWT">KUWAIT</option>,
     <option value="KGZ">KYRGYZSTAN</option>,
@@ -426,389 +1385,6 @@ export const past_travel_countries_options = [
     <option value="ZIMB">ZIMBABWE</option>,
 ]
 
-export const spouse_address_type = {
-    en: [
-        <option value="H">Same as Home Address</option>,
-        <option value="M">Same as Mailing Address</option>,
-        <option value="U">Same as U.S. Contact Address</option>,
-        <option value="D">Do Not Know</option>,
-        <option value="O">Other (Specify Address)</option>
-    ],
-    fr: [
-        <option value = "H"> Identique à l'adresse personnelle </option>,
-        <option value = "M"> Identique à l'adresse postale </option>,
-        <option value = "U"> Identique à l'adresse de contact aux États-Unis </option>,
-        <option value = "D"> Ne sais pas </option>,
-        <option value = "O"> Autre (spécifiez l'adresse) </option>
-    ],
-    es: [
-        <option value = "H"> Igual que la dirección particular </option>,
-        <option value = "M"> Igual que la dirección de correo </option>,
-        <option value = "U"> Igual que la dirección de contacto de EE. UU. </option>,
-        <option value = "D"> No sabe </option>,
-        <option value = "O"> Otro (especificar dirección) </option>
-    ],
-    de: [
-        <option value = "H"> Wie Privatadresse </ option>,
-        <option value = "M"> Wie Postanschrift </ option>,
-        <option value = "U"> Entspricht der US-Kontaktadresse </ option>,
-        <option value = "D"> Weiß nicht </ option>,
-        <option value = "O"> Andere (Adresse angeben) </ option>
-    ],
-    it: [
-        <option value = "H"> Come l'indirizzo di casa </option>,
-        <option value = "M"> Come l'indirizzo postale </option>,    
-        <option value = "U"> Come l'indirizzo di contatto degli Stati Uniti </option>,
-        <option value = "D"> Non lo so </option>,
-        <option value = "O"> Altro (Specifica indirizzo) </option>
-    ]
-}
-
-export const occupation_options = {
-    en: [
-        <option value="A">AGRICULTURE</option>,
-        <option value="AP">ARTIST/PERFORMER</option>,
-        <option value="B">BUSINESS</option>,
-        <option value="CM">COMMUNICATIONS</option>,
-        <option value="CS">COMPUTER SCIENCE</option>,
-        <option value="C">CULINARY/FOOD SERVICES</option>,
-        <option value="ED">EDUCATION</option>,
-        <option value="EN">ENGINEERING</option>,
-        <option value="G">GOVERNMENT</option>,
-        <option value="H">HOMEMAKER</option>,
-        <option value="LP">LEGAL PROFESSION</option>,
-        <option value="MH">MEDICAL/HEALTH</option>,
-        <option value="M">MILITARY</option>,
-        <option value="NS">NATURAL SCIENCE</option>,
-        <option value="N">NOT EMPLOYED</option>,
-        <option value="PS">PHYSICAL SCIENCES</option>,
-        <option value="RV">RELIGIOUS VOCATION</option>,
-        <option value="R">RESEARCH</option>,
-        <option value="RT">RETIRED</option>,
-        <option value="SS">SOCIAL SCIENCE</option>,
-        <option value="S">STUDENT</option>,
-        <option value="O">OTHER</option>,
-    ],
-    fr: [
-        <option value = "A"> AGRICULTURE </option>,
-        <option value = "AP"> ARTISTE / PERFORMER </option>,
-        <option value = "B"> BUSINESS </option>,
-        <option value = "CM"> COMMUNICATIONS </option>,
-        <option value = "CS"> INFORMATIQUE </option>,
-        <option value = "C"> SERVICES CULINAIRES / ALIMENTAIRES </option>,
-        <option value = "ED"> ÉDUCATION </option>,
-        <option value = "EN"> INGÉNIERIE </option>,
-        <option value = "G"> GOUVERNEMENT </option>,
-        <option value = "H"> HOMEMAKER </option>,
-        <option value = "LP"> PROFESSION JURIDIQUE </option>,
-        <option value = "MH"> MÉDICAL / SANTÉ </option>,
-        <option value = "M"> MILITARY </option>,
-        <option value = "NS"> SCIENCE NATURELLE </option>,
-        <option value = "N"> NON EMPLOYÉ </option>,
-        <option value = "PS"> SCIENCES PHYSIQUES </option>,
-        <option value = "RV"> VOCATION RELIGIEUSE </option>,
-        <option value = "R"> RECHERCHE </option>,
-        <option value = "RT"> RETIREE </option>,
-        <option value = "SS"> SCIENCES SOCIALES </option>,
-        <option value = "S"> ÉTUDIANT </option>,
-        <option value = "O"> OTHER </option>,
-    ],
-    es: [
-        <option value = "A"> AGRICULTURA </option>,
-        <option value = "AP"> ARTISTA / REALIZADOR </option>,
-        <option value = "B"> BUSINESS </option>,
-        <option value = "CM"> COMUNICACIONES </option>,
-        <option value = "CS"> CIENCIA DE LA COMPUTADORA </option>,
-        <option value = "C"> SERVICIOS CULINARIOS / ALIMENTARIOS </option>,
-        <option value = "ED"> EDUCACIÓN </option>,
-        <option value = "EN"> INGENIERÍA </option>,
-        <option value = "G"> GOBIERNO </option>,
-        <option value = "H"> HOMEMAKER </option>,
-        <option value = "LP"> PROFESIÓN LEGAL </option>,
-        <option value = "MH"> MÉDICO / SALUD </option>,
-        <option value = "M"> MILITAR </option>,
-        <option value = "NS"> CIENCIA NATURAL </option>,
-        <option value = "N"> NO EMPLEADO </option>,
-        <option value = "PS"> CIENCIAS FÍSICAS </option>,
-        <option value = "RV"> VOCACIÓN RELIGIOSA </option>,
-        <option value = "R"> INVESTIGACIÓN </option>,
-        <option value = "RT"> RETIRED </option>,
-        <option value = "SS"> CIENCIA SOCIAL </option>,
-        <option value = "S"> ESTUDIANTE </option>,
-        <option value = "O"> OTRO </option>,
-    ],
-    de: [
-        <option value = "A"> AGRICULTURA </option>,
-        <option value = "AP"> ARTISTA / REALIZADOR </option>,
-        <option value = "B"> BUSINESS </option>,
-        <option value = "CM"> COMUNICACIONES </option>,
-        <option value = "CS"> CIENCIA DE LA COMPUTADORA </option>,
-        <option value = "C"> SERVICIOS CULINARIOS / ALIMENTARIOS </option>,
-        <option value = "ED"> EDUCACIÓN </option>,
-        <option value = "EN"> INGENIERÍA </option>,
-        <option value = "G"> GOBIERNO </option>,
-        <option value = "H"> HOMEMAKER </option>,
-        <option value = "LP"> PROFESIÓN LEGAL </option>,
-        <option value = "MH"> MÉDICO / SALUD </option>,
-        <option value = "M"> MILITAR </option>,
-        <option value = "NS"> CIENCIA NATURAL </option>,
-        <option value = "N"> NO EMPLEADO </option>,
-        <option value = "PS"> CIENCIAS FÍSICAS </option>,
-        <option value = "RV"> VOCACIÓN RELIGIOSA </option>,
-        <option value = "R"> INVESTIGACIÓN </option>,
-        <option value = "RT"> RETIRED </option>,
-        <option value = "SS"> CIENCIA SOCIAL </option>,
-        <option value = "S"> ESTUDIANTE </option>,
-        <option value = "O"> OTRO </option>,
-    ],
-    it: [
-        <option value = "A"> AGRICOLTURA </option>,
-        <option value = "AP"> ARTIST / PERFORMER </option>,
-        <option value = "B"> BUSINESS </option>,
-        <option value = "CM"> COMUNICAZIONI </option>,
-        <option value = "CS"> COMPUTER SCIENCE </option>,
-        <option value = "C"> CULINARY / FOOD SERVICES </option>,
-        <option value = "ED"> ISTRUZIONE </option>,
-        <option value = "EN"> ENGINEERING </option>,
-        <option value = "G"> GOVERNMENT </option>,
-        <option value = "H"> HOMEMAKER </option>,
-        <option value = "LP"> PROFESSIONE LEGALE </option>,
-        <option value = "MH"> MEDICAL / HEALTH </option>,
-        <option value = "M"> MILITARY </option>,
-        <option value = "NS"> NATURAL SCIENCE </option>,
-        <option value = "N"> NON OCCUPATO </option>,
-        <option value = "PS"> SCIENZE FISICHE </option>,
-        <option value = "RV"> VOCATION RELIGIOSA </option>,
-        <option value = "R"> RICERCA </option>,
-        <option value = "RT"> RETIRED </option>,
-        <option value = "SS"> SCIENZA SOCIALE </option>,
-        <option value = "S"> STUDENT </option>,
-        <option value = "O"> OTHER </option>,
-    ]
-}
-
-export const US_Live_Status = {
-    en: [
-        <option value="S">U.S. CITIZEN</option>,
-        <option value="C">U.S. LEGAL PERMANENT RESIDENT (LPR)</option>,
-        <option value="P">NONIMMIGRANT</option>,
-        <option value="O">OTHER/I DON'T KNOW</option>,
-    ],
-    fr: [
-        <option value = "S"> États-Unis. CITOYEN </option>,
-        <option value = "C"> États-Unis. RÉSIDENT PERMANENT JURIDIQUE (LPR) </option>,
-        <option value = "P"> NONIMMIGRANT </option>,
-        <option value = "O"> AUTRE / JE NE SAIS PAS </option>,
-    ],
-    es: [
-        <option value = "S"> Estados Unidos. CIUDADANO </option>,
-        <option value = "C"> Estados Unidos. RESIDENTE PERMANENTE LEGAL (LPR) </option>,
-        <option value = "P"> NO INMIGRANTE </option>,
-        <option value = "O"> OTRO / NO SABO </option>,
-    ],
-    de: [
-        <option value = "S"> US. BÜRGER </ option>,
-        <option value = "C"> USA. LEGAL PERMANENT RESIDENT (LPR) </ option>,
-        <option value = "P"> NICHT-MIGRANT </ option>,
-        <option value = "O"> ANDERE / ICH WEISS NICHT </ option>,
-    ],
-    it: [
-        <option value = "S"> U.S. CITIZEN </ option>,
-        <option value = "C"> U.S. RESIDENTE LEGALE PERMANENTE (LPR) </option>,
-        <option value = "P"> NONIMMIGRANT </option>,
-        <option value = "O"> ALTRO / NON LO SO </option>,
-    ]
-}
-
-export const relative_relationship_options = {
-    en: [
-        <option value="S">SPOUSE</option>,
-        <option value="F">FIANCÉ/FIANCÉE</option>,
-        <option value="C">CHILD</option>,
-        <option value="B">SIBLING</option>,
-    ],
-    fr: [
-        <option value = "S"> ÉPOUSE / ÉPOUX </option>,
-        <option value = "F"> FIANCÉ / FIANCÉE </option>,
-        <option value = "C"> ENFANT </option>,
-        <option value = "B"> ENFANT DE MÊMES PARENTS </option>,
-    ],
-    es: [
-        <option value = "S"> ESPOSA / ESPOSO </option>,
-        <option value = "F"> PROMETIDO / PROMETIDA </option>,
-        <option value = "C"> NIÑO </option>,
-        <option value = "B"> HERMANA / HERMANO </option>,
-    ],
-    de: [
-        <option value = "S"> EHEPARTNERIN / EHEPARTNER </ option>,
-        <option value = "F"> VERLOBTER / VERLOBTE </ option>,
-        <option value = "C"> KIND </ option>,
-        <option value = "B"> GESCHWISTER </ option>,
-    ],
-    it: [
-        <option value = "S"> SPOSA </option>,
-        <option value = "F"> FIDANZATO / FIDANZATA </option>,
-        <option value = "C"> BAMBINO </option>,
-        <option value = "B"> FRATELLO </option>,
-    ]
-}
-
-export const relative_relationship_options_except_Spouse = {
-    en: [
-        <option value="F">FIANCÉ/FIANCÉE</option>,
-        <option value="C">CHILD</option>,
-        <option value="B">SIBLING</option>,
-    ],
-    fr: [
-        <option value = "F"> FIANCÉ / FIANCÉE </option>,
-        <option value = "C"> ENFANT </option>,
-        <option value = "B"> ENFANT DE MÊMES PARENTS </option>,
-    ],
-    es: [
-        <option value = "F"> PROMETIDO / PROMETIDA </option>,
-        <option value = "C"> NIÑO </option>,
-        <option value = "B"> HERMANA / HERMANO </option>,
-    ],
-    de: [
-        <option value = "F"> VERLOBTER / VERLOBTE </ option>,
-        <option value = "C"> KIND </ option>,
-        <option value = "B"> GESCHWISTER </ option>,
-    ],
-    it: [
-        <option value = "F"> FIDANZATO / FIDANZATA </option>,
-        <option value = "C"> BAMBINO </option>,
-        <option value = "B"> FRATELLO </option>,
-    ]
-}
-
-export const relationship_options = {
-    en: [
-        <option value="R">RELATIVE</option>,
-        <option value="S">SPOUSE</option>,
-        <option value="C">FRIEND</option>,
-        <option value="B">BUSINESS ASSOCIATE</option>,
-        <option value="P">EMPLOYER</option>,
-        <option value="H">SCHOOL OFFICIAL</option>,
-        <option value="O">OTHER</option>
-    ],
-    fr: [
-        <option value = "R"> RELATIVE </option>,
-        <option value = "S"> ÉPOUX / ÉPOUSE </option>,
-        <option value = "C"> AMI / AMIE </option>,
-        <option value = "B"> ASSOCIÉ D'AFFAIRES </option>,
-        <option value = "P"> EMPLOYEUR / EMPLOYEUSE </option>,
-        <option value = "H"> ÉCOLE OFFICIELLE </option>,
-        <option value = "O"> AUTRE </option>
-    ],
-    es: [
-        <option value = "R"> RELATIVO / RELATIVA </option>,
-        <option value = "S"> ESPOSO / ESPOSA </option>,
-        <option value = "C"> AMIGO / AMIGA </option>,
-        <option value = "B"> SOCIO DE NEGOCIOS </option>,
-        <option value = "P"> EMPLEADOR / EMPLEADORA </option>,
-        <option value = "H"> FUNCIONARIO DE LA ESCUELA </option>,
-        <option value = "O"> OTRO / OTRA </option>
-    ],
-    de: [
-        <option value = "R"> RELATIV </ option>,
-        <option value = "S"> EHEPARTNER / EHEPARTNERIN </ option>,
-        <option value = "C"> FREUND / FREUNDIN </ option>,
-        <option value = "B"> GESCHÄFTSPARTNER </ option>,
-        <option value = "P"> ARBEITGEBER / ARBEITGEBERIN </ option>,
-        <option value = "H"> SCHULAMT </ option>,
-        <option value = "O"> ANDERE </ option>
-    ],
-    it: [
-        <option value = "R"> PARENTE </option>,
-        <option value = "S"> SPOSA </option>,
-        <option value = "C"> AMICO / AMICA </option>,
-        <option value = "B"> SOCIO D'AFFARI </option>,
-        <option value = "P"> DATORE DI LAVORO </option>,
-        <option value = "H"> SCUOLA UFFICIALE </option>,
-        <option value = "O"> ALTRO / ALTRA </option>
-    ]
-}
-
-export const relationship_options_except_Spouse = {
-    en: [
-        <option value="R">RELATIVE</option>,
-        <option value="C">FRIEND</option>,
-        <option value="B">BUSINESS ASSOCIATE</option>,
-        <option value="P">EMPLOYER</option>,
-        <option value="H">SCHOOL OFFICIAL</option>,
-        <option value="O">OTHER</option>
-    ],
-    fr: [
-        <option value = "R"> RELATIVE </option>,
-        <option value = "C"> AMI / AMIE </option>,
-        <option value = "B"> ASSOCIÉ D'AFFAIRES </option>,
-        <option value = "P"> EMPLOYEUR / EMPLOYEUSE </option>,
-        <option value = "H"> ÉCOLE OFFICIELLE </option>,
-        <option value = "O"> AUTRE </option>
-    ],
-    es: [
-        <option value = "R"> RELATIVO / RELATIVA </option>,
-        <option value = "C"> AMIGO / AMIGA </option>,
-        <option value = "B"> SOCIO DE NEGOCIOS </option>,
-        <option value = "P"> EMPLEADOR / EMPLEADORA </option>,
-        <option value = "H"> FUNCIONARIO DE LA ESCUELA </option>,
-        <option value = "O"> OTRO / OTRA </option>
-    ],
-    de: [
-        <option value = "R"> RELATIV </ option>,
-        <option value = "C"> FREUND / FREUNDIN </ option>,
-        <option value = "B"> GESCHÄFTSPARTNER </ option>,
-        <option value = "P"> ARBEITGEBER / ARBEITGEBERIN </ option>,
-        <option value = "H"> SCHULAMT </ option>,
-        <option value = "O"> ANDERE </ option>
-    ],
-    it: [
-        <option value = "R"> PARENTE </option>,
-        <option value = "C"> AMICO / AMICA </option>,
-        <option value = "B"> SOCIO D'AFFARI </option>,
-        <option value = "P"> DATORE DI LAVORO </option>,
-        <option value = "H"> SCUOLA UFFICIALE </option>,
-        <option value = "O"> ALTRO / ALTRA </option>
-    ]
-}
-
-export const passport_type_options = {
-    en: [
-        <option value="R">REGULAR</option>,
-        <option value="O">OFFICIAL</option>,
-        <option value="D">DIPLOMATIC</option>,
-        <option value="L">LAISSEZ-PASSER</option>,
-        <option value="T">OTHER</option>,
-    ],
-    fr: [
-        <option value="R">ORDINAIRE</option>,
-        <option value="O">OFFICIEL</option>,
-        <option value="D">DIPLOMATIQUE</option>,
-        <option value="L">LAISSEZ PASSER</option>,
-        <option value="T">AUTRE</option>,
-    ],
-    es: [
-        <option value="R">REGULAR</option>,
-        <option value="O">OFICIAL</option>,
-        <option value="D">DIPLOMÁTICO</option>,
-        <option value="L">LAISSEZ-PASSER</option>,
-        <option value="T">OTRO</option>,
-    ],
-    de: [
-        <option value="R">REGULÄR</option>,
-        <option value="O">OFFIZIELL</option>,
-        <option value="D">DIPLOMATISCH</option>,
-        <option value="L">LAISSEZ-PASSER</option>,
-        <option value="T">ANDERE</option>,
-    ],
-    it: [
-        <option value="R">REGOLARE</option>,
-        <option value="O">UFFICIALE</option>,
-        <option value="D">DIPLOMATICO</option>,
-        <option value="L">LASCIA PASSARE</option>,
-        <option value="T">ALTRO</option>,
-    ]
-}
 
 export const social_media_options = [
     <option value="ASKF">ASK.FM</option>,
@@ -839,290 +1415,63 @@ export const state_options_list = () => {
 }
 
 export const state_options = [
-        <option value="AL">ALABAMA</option>,
-        <option value="AK">ALASKA</option>,
-        <option value="AS">AMERICAN SAMOA</option>,
-        <option value="AZ">ARIZONA</option>,
-        <option value="AR">ARKANSAS</option>,
-        <option value="CA">CALIFORNIA</option>,
-        <option value="CO">COLORADO</option>,
-        <option value="CT">CONNECTICUT</option>,
-        <option value="DE">DELAWARE</option>,
-        <option value="DC">DISTRICT OF COLUMBIA</option>,
-        <option value="FL">FLORIDA</option>,
-        <option value="GA">GEORGIA</option>,
-        <option value="GU">GUAM</option>,
-        <option value="HI">HAWAII</option>,
-        <option value="ID">IDAHO</option>,
-        <option value="IL">ILLINOIS</option>,
-        <option value="IN">INDIANA</option>,
-        <option value="IA">IOWA</option>,
-        <option value="KS">KANSAS</option>,
-        <option value="KY">KENTUCKY</option>,
-        <option value="LA">LOUISIANA</option>,
-        <option value="ME">MAINE</option>,
-        <option value="MD">MARYLAND</option>,
-        <option value="MA">MASSACHUSETTS</option>,
-        <option value="MI">MICHIGAN</option>,
-        <option value="MN">MINNESOTA</option>,
-        <option value="MS">MISSISSIPPI</option>,
-        <option value="MO">MISSOURI</option>,
-        <option value="MT">MONTANA</option>,
-        <option value="NE">NEBRASKA</option>,
-        <option value="NV">NEVADA</option>,
-        <option value="NH">NEW HAMPSHIRE</option>,
-        <option value="NJ">NEW JERSEY</option>,
-        <option value="NM">NEW MEXICO</option>,
-        <option value="NY">NEW YORK</option>,
-        <option value="NC">NORTH CAROLINA</option>,
-        <option value="ND">NORTH DAKOTA</option>,
-        <option value="MP">NORTHERN MARIANA ISLANDS</option>,
-        <option value="OH">OHIO</option>,
-        <option value="OK">OKLAHOMA</option>,
-        <option value="OR">OREGON</option>,
-        <option value="PA">PENNSYLVANIA</option>,
-        <option value="PR">PUERTO RICO</option>,
-        <option value="RI">RHODE ISLAND</option>,
-        <option value="SC">SOUTH CAROLINA</option>,
-        <option value="SD">SOUTH DAKOTA</option>,
-        <option value="TN">TENNESSEE</option>,
-        <option value="TX">TEXAS</option>,
-        <option value="UT">UTAH</option>,
-        <option value="VT">VERMONT</option>,
-        <option value="VI">VIRGIN ISLANDS</option>,
-        <option value="VA">VIRGINIA</option>,
-        <option value="WA">WASHINGTON</option>,
-        <option value="WV">WEST VIRGINIA</option>,
-        <option value="WI">WISCONSIN</option>,
-        <option value="WY">WYOMING</option>,
+    <option value="AL">ALABAMA</option>,
+    <option value="AK">ALASKA</option>,
+    <option value="AS">AMERICAN SAMOA</option>,
+    <option value="AZ">ARIZONA</option>,
+    <option value="AR">ARKANSAS</option>,
+    <option value="CA">CALIFORNIA</option>,
+    <option value="CO">COLORADO</option>,
+    <option value="CT">CONNECTICUT</option>,
+    <option value="DE">DELAWARE</option>,
+    <option value="DC">DISTRICT OF COLUMBIA</option>,
+    <option value="FL">FLORIDA</option>,
+    <option value="GA">GEORGIA</option>,
+    <option value="GU">GUAM</option>,
+    <option value="HI">HAWAII</option>,
+    <option value="ID">IDAHO</option>,
+    <option value="IL">ILLINOIS</option>,
+    <option value="IN">INDIANA</option>,
+    <option value="IA">IOWA</option>,
+    <option value="KS">KANSAS</option>,
+    <option value="KY">KENTUCKY</option>,
+    <option value="LA">LOUISIANA</option>,
+    <option value="ME">MAINE</option>,
+    <option value="MD">MARYLAND</option>,
+    <option value="MA">MASSACHUSETTS</option>,
+    <option value="MI">MICHIGAN</option>,
+    <option value="MN">MINNESOTA</option>,
+    <option value="MS">MISSISSIPPI</option>,
+    <option value="MO">MISSOURI</option>,
+    <option value="MT">MONTANA</option>,
+    <option value="NE">NEBRASKA</option>,
+    <option value="NV">NEVADA</option>,
+    <option value="NH">NEW HAMPSHIRE</option>,
+    <option value="NJ">NEW JERSEY</option>,
+    <option value="NM">NEW MEXICO</option>,
+    <option value="NY">NEW YORK</option>,
+    <option value="NC">NORTH CAROLINA</option>,
+    <option value="ND">NORTH DAKOTA</option>,
+    <option value="MP">NORTHERN MARIANA ISLANDS</option>,
+    <option value="OH">OHIO</option>,
+    <option value="OK">OKLAHOMA</option>,
+    <option value="OR">OREGON</option>,
+    <option value="PA">PENNSYLVANIA</option>,
+    <option value="PR">PUERTO RICO</option>,
+    <option value="RI">RHODE ISLAND</option>,
+    <option value="SC">SOUTH CAROLINA</option>,
+    <option value="SD">SOUTH DAKOTA</option>,
+    <option value="TN">TENNESSEE</option>,
+    <option value="TX">TEXAS</option>,
+    <option value="UT">UTAH</option>,
+    <option value="VT">VERMONT</option>,
+    <option value="VI">VIRGIN ISLANDS</option>,
+    <option value="VA">VIRGINIA</option>,
+    <option value="WA">WASHINGTON</option>,
+    <option value="WV">WEST VIRGINIA</option>,
+    <option value="WI">WISCONSIN</option>,
+    <option value="WY">WYOMING</option>,
 ]
-
-export const person_travel_with_relationship_options = {
-    en: [
-        { value: 'P', label: 'PARENT'},
-        { value: 'S', label: 'SPOUSE'},
-        { value: 'C', label: 'CHILD'},
-        { value: 'R', label: 'OTHER RELATIVE'},
-        { value: 'F', label: 'FRIEND'},
-        { value: 'B', label: 'BUSINESS ASSOCIATE'},
-        { value: 'O', label: 'OTHER'},
-    ],
-    fr: [
-        {value: 'P', label: 'PARENT'},
-        {value: 'S', label: 'CONJOINT'},
-        {value: 'C', label: 'ENFANT'},
-        {value: 'R', label: 'AUTRE RELATIF'},
-        {value: 'F', label: 'AMI'},
-        {value: 'B', label: `ASSOCIÉ D'AFFAIRES`},
-        {value: 'O', label: 'AUTRE'},
-    ],
-    es: [
-        {value: 'P', label: 'PADRE'},
-        {value: 'S', label: 'ESPOSO'},
-        {value: 'C', label: 'NIÑO'},
-        {value: 'R', label: 'OTRO PARIENTE'},
-        {value: 'F', label: 'AMIGO'},
-        {value: 'B', label: 'SOCIO DE NEGOCIOS'},
-        {value: 'O', label: 'OTRO'},
-    ],
-    de: [
-        { value: 'P', label: 'ELTERNTEIL'},
-        { value: 'S', label: 'EHEPARTNER'},
-        { value: 'C', label: 'KIND'},
-        { value: 'R', label: 'ANDERER VERWANDTER'},
-        { value: 'F', label: 'FREUND'},
-        { value: 'B', label: 'GESCHÄFTSPARTNER'},
-        { value: 'O', label: 'ANDERE'},
-    ],
-    it: [
-        {value: "P", label: "GENITORE"},
-        {value: 'S', label: 'SPOSA'},
-        {value: "C", label: "BAMBINO"},
-        {value: 'R', label: 'ALTRO PARENTE'},
-        {value: 'F', label: 'AMICO'},
-        {value: "B", label: "SOCIO D'AFFARI"},
-        {value: "O", label: "ALTRO"},
-    ]
-}
-
-export const paying_person_info_relationship_options = {
-    en: [
-        { value: 'C', label: 'CHILD'},
-        { value: 'P', label: 'PARENT'},
-        { value: 'S', label: 'SPOUSE'},
-        { value: 'R', label: 'OTHER RELATIVE'},
-        { value: 'F', label: 'FRIEND'},
-        { value: 'O', label: 'OTHER'},
-    ],
-    fr: [
-        {value: 'C', label: 'ENFANT'},
-        {value: 'P', label: 'PARENT'},
-        {value: 'S', label: 'CONJOINT'},
-        {value: 'R', label: 'AUTRE RELATIF'},
-        {value: 'F', label: 'AMI'},
-        {value: 'O', label: 'AUTRE'},
-    ],
-    es: [
-        {value: 'C', label: 'NIÑO'},
-        {value: 'P', label: 'PADRE'},
-        {value: 'S', label: 'ESPOSO'},
-        {value: 'R', label: 'OTRO PARIENTE'},
-        {value: 'F', label: 'AMIGO'},
-        {value: 'O', label: 'OTRO'},
-    ],
-    de: [
-        { value: 'C', label: 'KIND'},
-        { value: 'P', label: 'ELTERNTEIL'},
-        { value: 'S', label: 'EHEPARTNER'},
-        { value: 'R', label: 'ANDERER VERWANDTER'},
-        { value: 'F', label: 'FREUND'},
-        { value: 'O', label: 'ANDERE'},
-    ],
-    it: [
-        {value: "C", label: "BAMBINO"},
-        {value: "P", label: "GENITORE"},
-        {value: 'S', label: 'SPOSA'},
-        {value: 'R', label: 'ALTRO PARENTE'},
-        {value: 'F', label: 'AMICO'},
-        {value: "O", label: "ALTRO"},
-    ]
-}
-
-export const paying_person_info_relationship_without_spouse_options = {
-    en: [
-        { value: 'C', label: 'CHILD'},
-        { value: 'P', label: 'PARENT'},
-        { value: 'R', label: 'OTHER RELATIVE'},
-        { value: 'F', label: 'FRIEND'},
-        { value: 'O', label: 'OTHER'},
-    ],
-    fr: [
-        {value: 'C', label: 'ENFANT'},
-        {value: 'P', label: 'PARENT'},
-        {value: 'R', label: 'AUTRE RELATIF'},
-        {value: 'F', label: 'AMI'},
-        {value: 'O', label: 'AUTRE'},
-    ],
-    es: [
-        {value: 'C', label: 'NIÑO'},
-        {value: 'P', label: 'PADRE'},
-        {value: 'R', label: 'OTRO PARIENTE'},
-        {value: 'F', label: 'AMIGO'},
-        {value: 'O', label: 'OTRO'},
-    ],
-    de: [
-        { value: 'C', label: 'KIND'},
-        { value: 'P', label: 'ELTERNTEIL'},
-        { value: 'R', label: 'ANDERER VERWANDTER'},
-        { value: 'F', label: 'FREUND'},
-        { value: 'O', label: 'ANDERE'},
-    ],
-    it: [
-        {value: "C", label: "BAMBINO"},
-        {value: "P", label: "GENITORE"},
-        {value: 'R', label: 'ALTRO PARENTE'},
-        {value: 'F', label: 'AMICO'},
-        {value: "O", label: "ALTRO"},
-    ]
-}
-
-export const paying_person_for_trip_options = {
-    en: [
-        { value: 'S', label: 'Self' },
-        { value: 'O', label: 'Other Person' },
-        { value: 'C', label: 'Other Company/Organization' },
-    ],
-    fr: [
-        { value: 'S', label: 'Soi' },
-        { value: 'O', label: 'Autre personne' },
-        { value: 'C', label: 'Autre entreprise / organisation' },
-    ],
-    es: [
-        { value: 'S', label: 'Yo' },
-        { value: 'O', label: 'Otra persona' },
-        { value: 'C', label: 'Otra empresa / organización' },
-    ],
-    de: [
-        { value: 'S', label: 'Selbst' },
-        { value: 'O', label: 'Andere Person' },
-        { value: 'C', label: 'Andere Firma / Organisation' },
-    ],
-    it: [
-        { value: 'S', label: 'Se stesso' },
-        { value: 'O', label: 'Altra persona' },
-        { value: 'C', label: 'Altra società / organizzazione' },
-    ]
-}
-
-export const period_unit_options = {
-    en: [
-        { value: 'Y', label: 'YEAR(S)' },
-        { value: 'M', label: 'MONTH(S)' },
-        { value: 'W', label: 'WEEK(S)' },
-        { value: 'D', label: 'DAY(S)' },
-    ],
-    fr: [
-        { value: 'Y', label: 'AN' },
-        { value: 'M', label: 'MOIS' },
-        { value: 'W', label: 'LA SEMAINE' },
-        { value: 'D', label: 'JOURNÉE' },
-    ],
-    es: [
-        { value: 'Y', label: 'AÑO' },
-        { value: 'M', label: 'MES' },
-        { value: 'W', label: 'SEMANA' },
-        { value: 'D', label: 'DÍA' },
-    ],
-    de: [
-        { value: 'Y', label: 'JAHR' },
-        { value: 'M', label: 'MONAT' },
-        { value: 'W', label: 'WOCHE' },
-        { value: 'D', label: 'TAG' },
-    ],
-    it: [
-        { value: 'Y', label: 'ANNO' },
-        { value: 'M', label: 'MESE' },
-        { value: 'W', label: 'SETTIMANA' },
-        { value: 'D', label: 'GIORNO' },
-    ]
-}
-export const period_unit_options_v2 = {
-    en: [
-        { value: 'Y', label: 'YEAR(S)' },
-        { value: 'M', label: 'MONTH(S)' },
-        { value: 'W', label: 'WEEK(S)' },
-        { value: 'D', label: 'DAY(S)' },
-        { value: 'H', label: 'Less Than 24 Hours' },
-    ],
-    fr: [
-        { value: 'Y', label: 'AN' },
-        { value: 'M', label: 'MOIS' },
-        { value: 'W', label: 'LA SEMAINE' },
-        { value: 'D', label: 'JOURNÉE' },
-        { value: 'H', label: 'Moins de 24 heures' },
-    ],
-    es: [
-        { value: 'Y', label: 'AÑO' },
-        { value: 'M', label: 'MES' },
-        { value: 'W', label: 'SEMANA' },
-        { value: 'D', label: 'DÍA' },
-        { value: 'H', label: 'Menos que 24 horas' },
-    ],
-    de: [
-        { value: 'Y', label: 'JAHR' },
-        { value: 'M', label: 'MONAT' },
-        { value: 'W', label: 'WOCHE' },
-        { value: 'D', label: 'TAG' },
-        { value: 'H', label: 'Weniger als 24 Stunden' },
-    ],
-    it: [
-        { value: 'Y', label: 'ANNO' },
-        { value: 'M', label: 'MESE' },
-        { value: 'W', label: 'SETTIMANA' },
-        { value: 'D', label: 'GIORNO' },
-        { value: 'H', label: 'Meno di 24 ore' },
-    ]
-}
 
 export const nationality_option_list_func = () => {
     return export_list(nationality_option_list)
@@ -1145,48 +1494,48 @@ export const purpose_of_trip_advanced_options = {
         <option value="M">VOCATIONAL/NONACADEMIC STUDENT (M)</option>,
     ],
     fr: [
-        <option value = "B"> TEMP. VISITEUR DE PLAISIR D'AFFAIRES (B) </option>,
-        <option value = "C"> ÉTRANGER EN TRANSIT (C) </option>,
-        <option value = "D"> membre d'équipage (D) </option>,
-        <option value = "F"> ÉTUDIANT SCOLAIRE OU LINGUISTIQUE (F) </option>,
-        <option value = "H"> TRAVAILLEUR TEMPORAIRE (H) </option>,
-        <option value = "I"> REPRÉSENTANT DES MÉDIAS ÉTRANGERS (I) </option>,
-        <option value = "J"> VISITEUR D'ÉCHANGE (J) </option>,
-        <option value = "L"> TRANSFEREE INTRACOMPAGNE (L) </option>,
-        <option value = "M"> ÉTUDIANT PROFESSIONNEL / NON ACADÉMIQUE (M) </option>,
+        <option value="B"> TEMP. VISITEUR DE PLAISIR D'AFFAIRES (B) </option>,
+        <option value="C"> ÉTRANGER EN TRANSIT (C) </option>,
+        <option value="D"> membre d'équipage (D) </option>,
+        <option value="F"> ÉTUDIANT SCOLAIRE OU LINGUISTIQUE (F) </option>,
+        <option value="H"> TRAVAILLEUR TEMPORAIRE (H) </option>,
+        <option value="I"> REPRÉSENTANT DES MÉDIAS ÉTRANGERS (I) </option>,
+        <option value="J"> VISITEUR D'ÉCHANGE (J) </option>,
+        <option value="L"> TRANSFEREE INTRACOMPAGNE (L) </option>,
+        <option value="M"> ÉTUDIANT PROFESSIONNEL / NON ACADÉMIQUE (M) </option>,
     ],
     es: [
-        <option value = "B"> TEMP. VISITANTE DE PLACER EMPRESARIAL (B) </option>,
-        <option value = "C"> EXTRANJERO EN TRÁNSITO (C) </option>,
-        <option value = "D"> miembro de la tripulación (D) </option>,
-        <option value = "F"> ESTUDIANTE ACADÉMICO O DE IDIOMA (F) </option>,
-        <option value = "H"> TRABAJADOR TEMPORAL (H) </option>,
-        <option value = "I"> REPRESENTANTE DE LOS MEDIOS EXTRANJEROS (I) </option>,
-        <option value = "J"> VISITANTE DE INTERCAMBIO (J) </option>,
-        <option value = "L"> TRANSFERENCIA DENTRO DE LA COMPAÑÍA (L) </option>,
-        <option value = "M"> ESTUDIANTE PROFESIONAL NO ACADÉMICA (M) </option>,
+        <option value="B"> TEMP. VISITANTE DE PLACER EMPRESARIAL (B) </option>,
+        <option value="C"> EXTRANJERO EN TRÁNSITO (C) </option>,
+        <option value="D"> miembro de la tripulación (D) </option>,
+        <option value="F"> ESTUDIANTE ACADÉMICO O DE IDIOMA (F) </option>,
+        <option value="H"> TRABAJADOR TEMPORAL (H) </option>,
+        <option value="I"> REPRESENTANTE DE LOS MEDIOS EXTRANJEROS (I) </option>,
+        <option value="J"> VISITANTE DE INTERCAMBIO (J) </option>,
+        <option value="L"> TRANSFERENCIA DENTRO DE LA COMPAÑÍA (L) </option>,
+        <option value="M"> ESTUDIANTE PROFESIONAL NO ACADÉMICA (M) </option>,
     ],
     de: [
-        <option value = "B"> TEMP. BUSINESS-GENUSS-BESUCHER (B) </ option>,
-        <option value = "C"> ALIEN IM TRANSIT (C) </ option>,
-        <option value = "D"> Besatzungsmitglied (D) </ option>,
-        <option value = "F"> AKADEMISCHE ODER SPRACHSCHÜLER (F) </ option>,
-        <option value = "H"> HILFSKRAFT (H) </ option>,
-        <option value = "I"> AUSLANDSMEDIENVERTRETER (I) </ option>,
-        <option value = "J"> AUSTAUSCHBESUCHER (J) </ option>,
-        <option value = "L"> konzerninterner Erwerber (L) </ option>,
-        <option value = "M"> BERUFS- / NICHTAKADEMISCHER STUDENT (M) </ option>,
+        <option value="B"> TEMP. BUSINESS-GENUSS-BESUCHER (B) </ option>,
+        <option value="C"> ALIEN IM TRANSIT (C) </ option>,
+        <option value="D"> Besatzungsmitglied (D) </ option>,
+        <option value="F"> AKADEMISCHE ODER SPRACHSCHÜLER (F) </ option>,
+        <option value="H"> HILFSKRAFT (H) </ option>,
+        <option value="I"> AUSLANDSMEDIENVERTRETER (I) </ option>,
+        <option value="J"> AUSTAUSCHBESUCHER (J) </ option>,
+        <option value="L"> konzerninterner Erwerber (L) </ option>,
+        <option value="M"> BERUFS- / NICHTAKADEMISCHER STUDENT (M) </ option>,
     ],
     it: [
-        <option value = "B"> TEMP. VISITATORE DEL PIACERE DEGLI AFFARI (B) </option>,
-        <option value = "C"> ALIEN IN TRANSIT (C) </option>,
-        <option value = "D"> membro dell'equipaggio (D) </option>,
-        <option value = "F"> STUDENTE ACCADEMICO O LINGUISTICO (F) </option>,
-        <option value = "H"> LAVORATORE TEMPORANEO (H) </option>,
-        <option value = "I"> RAPPRESENTANTE MEDIA ESTERO (I) </option>,
-        <option value = "J"> VISITATORE DI SCAMBIO (J) </option>,
-        <option value = "L"> cessionario intracompany (L) </option>,
-        <option value = "M"> STUDENTE PROFESSIONALE / NON ACCADEMICO (M) </option>,
+        <option value="B"> TEMP. VISITATORE DEL PIACERE DEGLI AFFARI (B) </option>,
+        <option value="C"> ALIEN IN TRANSIT (C) </option>,
+        <option value="D"> membro dell'equipaggio (D) </option>,
+        <option value="F"> STUDENTE ACCADEMICO O LINGUISTICO (F) </option>,
+        <option value="H"> LAVORATORE TEMPORANEO (H) </option>,
+        <option value="I"> RAPPRESENTANTE MEDIA ESTERO (I) </option>,
+        <option value="J"> VISITATORE DI SCAMBIO (J) </option>,
+        <option value="L"> cessionario intracompany (L) </option>,
+        <option value="M"> STUDENTE PROFESSIONALE / NON ACCADEMICO (M) </option>,
     ]
 }
 
@@ -1194,305 +1543,15 @@ export const purpose_of_trip_advanced_specify_options_func = (field, tr) => {
     return export_list(tr(purpose_of_trip_advanced_specify_options[field]))
 }
 
-export const purpose_of_trip_advanced_specify_options = {
-    'B': {
-        en: [
-			<option value="B1-B2">BUSINESS &amp; TOURISM (TEMPORARY VISITOR) (B1/B2)</option>,
-			<option value="B1-CF">BUSINESS/CONFERENCE (B1)</option>,
-			<option value="B2-TM">TOURISM/MEDICAL TREATMENT (B2)</option>,
-        ],
-        fr: [
-            <option value="B1-B2">TOURISME &amp; D'AFFAIRES (VISITEUR TEMPORAIRE) (B1 / B2)</option>,
-			<option value="B1-CF">AFFAIRES/CONFÉRENCE (B1)</option>,
-			<option value="B2-TM">TOURISME/TRAITEMENT MÉDICAL (B2)</option>,
-        ],
-        es: [
-            <option value="B1-B2">TURISMO &amp; EMPRESARIAL (VISITANTE TEMPORAL) (B1 / B2)</option>,
-			<option value="B1-CF">NEGOCIO/CONFERENCIA (B1)</option>,
-			<option value="B2-TM">TURISMO/TRATAMIENTO MÉDICO (B2)</option>,
-        ],
-        de: [
-            <option value="B1-B2">Geschäft &amp; Tourismus (VORÜBERGEHENDER BESUCHER) (B1 / B2)</option>,
-			<option value="B1-CF">GESCHÄFT/KONFERENZ (B1)</option>,
-			<option value="B2-TM">TOURISMUS/MEDIZINISCHE BEHANDLUNG (B2)</option>,
-        ],
-        it: [
-            <option value="B1-B2">TURISMO &amp; COMMERCIALE (VISITATORE TEMPORANEO) (B1 / B2)</option>,
-			<option value="B1-CF">ATTIVITÀ COMMERCIALE/CONFERENZA (B1)</option>,
-			<option value="B2-TM">TURISMO/TRATTAMENTO MEDICO (B2)</option>,
-        ]
-    },
-    'C': {
-        en: [
-			<option value="C1-D">CREWMEMBER IN TRANSIT (C1/D)</option>,
-			<option value="C1-TR">TRANSIT (C1)</option>,
-			<option value="C2-UN">TRANSIT TO U.N. HEADQUARTERS (C2)</option>,
-			<option value="C3-CH">CHILD OF A C3 (C3)</option>,
-			<option value="C3-EM">PERSONAL EMP. OF A C3 (C3)</option>,
-			<option value="C3-FR">FOREIGN OFFICIAL IN TRANSIT (C3)</option>,
-			<option value="C3-SP">SPOUSE OF A C3 (C3)</option>,
-        ],
-        fr: [
-			<option value="C1-D">Membre d'équipage en transit (C1/D)</option>,
-			<option value="C1-TR">TRANSIT (C1)</option>,
-			<option value="C2-UN">TRANSITER AU SIÈGE DES NATIONS UNIES (C2)</option>,
-			<option value="C3-CH">ENFANT D'UN C3 (C3)</option>,
-			<option value="C3-EM">EMP PERSONNEL. D'UNE C3 (C3)</option>,
-			<option value="C3-FR">FONCTIONNAIRE ÉTRANGER EN TRANSIT (C3)</option>,
-			<option value="C3-SP">CONJOINT D'UNE C3 (C3)</option>,
-        ],
-        es: [
-			<option value="C1-D">Miembro de la tripulación en tránsito (C1/D)</option>,
-			<option value="C1-TR">TRÁNSITO (C1)</option>,
-			<option value="C2-UN">TRÁNSITO A LA SEDE DE LA ONU (C2)</option>,
-			<option value="C3-CH">NIÑO DE UN C3 (C3)</option>,
-			<option value="C3-EM">EMP PERSONAL De un C3 (C3)</option>,
-			<option value="C3-FR">OFICIAL EXTRANJERO EN TRÁNSITO (C3)</option>,
-			<option value="C3-SP">ESPOSA DE UN C3 (C3)</option>,
-        ],
-        de: [
-			<option value="C1-D">Besatzungsmitglied auf der Durchreise (C1/D)</option>,
-			<option value="C1-TR">TRANSIT (C1)</option>,
-			<option value="C2-UN">TRANSIT ZUM HAUPTSITZ (C2)</option>,
-			<option value="C3-CH">KIND EINES C3 (C3)</option>,
-			<option value="C3-EM">PERSÖNLICHE EMP. EINES C3 (C3)</option>,
-			<option value="C3-FR">AUSLÄNDISCHER BEAMTER IM TRANSIT (C3)</option>,
-			<option value="C3-SP">Ehefrau eines C3 (C3)</option>,
-        ],
-        it: [
-			<option value="C1-D">Membro dell'equipaggio in transito (C1/D)</option>,
-			<option value="C1-TR">TRANSITO (C1)</option>,
-			<option value="C2-UN">TRANSITO ALLA SEDE U.N. (C2)</option>,
-			<option value="C3-CH">BAMBINO DI UNA C3 (C3)</option>,
-			<option value="C3-EM">EMP PERSONALE. DI A C3 (C3)</option>,
-			<option value="C3-FR">UFFICIALE ESTERO IN TRANSITO (C3)</option>,
-			<option value="C3-SP">SPOSA DI UN C3 (C3)</option>,
-        ],
-    },
-    'D': {
-        en: [
-			<option selected="selected" value="D-D">CREWMEMBER (D)</option>,
-        ],
-        fr: [
-			<option selected="selected" value="D-D">membre d'équipage (D)</option>,
-        ],
-        es: [
-			<option selected="selected" value="D-D">miembro de la tripulación (D)</option>,
-        ],
-        de: [
-			<option selected="selected" value="D-D">Besatzungsmitglied (D)</option>,
-        ],
-        it: [
-			<option selected="selected" value="D-D">membro dell'equipaggio (D)</option>,
-        ],
-    },
-    'F': {
-        en: [
-            <option value="F1-F1">STUDENT (F1)</option>,
-            <option value="F2-CH">CHILD OF AN F1 (F2)</option>,
-            <option value="F2-SP">SPOUSE OF AN F1 (F2)</option>,
-        ],
-        fr: [
-            <option value="F1-F1">ÉTUDIANT (F1)</option>,
-            <option value="F2-CH">ENFANT D'UN F1 (F2)</option>,
-            <option value="F2-SP">CONJOINT D'UN F1 (F2)</option>,
-        ],
-        es: [
-            <option value="F1-F1">ESTUDIANTE (F1)</option>,
-            <option value="F2-CH">NIÑO DE UNA F1 (F2)</option>,
-            <option value="F2-SP">ESPOSA DE UNA F1 (F2)</option>,
-        ],
-        de: [
-            <option value="F1-F1">SCHÜLER (F1)</option>,
-            <option value="F2-CH">KIND EINES F1 (F2)</option>,
-            <option value="F2-SP">EHE EINES F1 (F2)</option>,
-        ],
-        it: [
-            <option value="F1-F1">ALUNNO (F1)</option>,
-            <option value="F2-CH">BAMBINO DI UNA F1 (F2)</option>,
-            <option value="F2-SP">SPOSA DI UNA F1 (F2)</option>,
-        ],
-    },
-    'H': {
-        en: [
-            <option value="H1B-H1B">SPECIALTY OCCUPATION (H1B)</option>,
-            <option value="H1B1-CHL">CHILEAN SPEC. OCCUPATION (H1B1)</option>,
-            <option value="H1B1-SGP">SINGAPOREAN SPEC. OCCUPATION (H1B1)</option>,
-            <option value="H1C-NR">NURSE IN SHORTAGE AREA (H1C)</option>,
-            <option value="H2A-AG">AGRICULTURAL WORKER (H2A)</option>,
-            <option value="H2B-NA">NONAGRICULTURAL WORKER (H2B)</option>,
-            <option value="H3-TR">TRAINEE (H3)</option>,
-            <option value="H4-CH">CHILD OF AN H (H4)</option>,
-            <option value="H4-SP">SPOUSE OF AN H (H4)</option>,
-        ],
-        fr: [
-            <option value="H1B-H1B">occupation spécialisée (H1B)</option>,
-            <option value="H1B1-CHL">Spéc. Chilienne Occupation (H1B1)</option>,
-            <option value="H1B1-SGP">Spéc. Singapourienne Occupation (H1B1)</option>,
-            <option value="H1C-NR">Infirmière dans la zone de pénurie (H1C)</option>,
-            <option value="H2A-AG">Ouvrier agricole (H2A)</option>,
-            <option value="H2B-NA">Ouvrier non agricole (H2B)</option>,
-            <option value="H3-TR">Stagiaire (H3)</option>,
-            <option value="H4-CH">ENFANT D'UN H (H4)</option>,
-            <option value="H4-SP">CONJOINT D'UN H (H4)</option>,
-        ],
-        es: [
-            <option value="H1B-H1B">ocupación especial (H1B)</option>,
-            <option value="H1B1-CHL">Especificación chilena ocupación (H1B1)</option>,
-            <option value="H1B1-SGP">Especificación de Singapur. ocupación (H1B1)</option>,
-            <option value="H1C-NR">Enfermera en área de escasez (H1C)</option>,
-            <option value="H2A-AG">Trabajador agrícola (H2A)</option>,
-            <option value="H2B-NA">Trabajador no agrícola (H2B)</option>,
-            <option value="H3-TR">Aprendiz (H3)</option>,
-            <option value="H4-CH">NIÑO DE UNA H (H4)</option>,
-            <option value="H4-SP">ESPOSA DE UNA H (H4)</option>,
-        ],
-        de: [
-            <option value="H1B-H1B">Fachberuf (H1B)</option>,
-            <option value="H1B1-CHL">Chilenische spez. Besetzung (H1B1)</option>,
-            <option value="H1B1-SGP">Singapurische Spezifikation Besetzung (H1B1)</option>,
-            <option value="H1C-NR">Krankenschwester im Engpassbereich (H1C)</option>,
-            <option value="H2A-AG">Landarbeiter (H2A)</option>,
-            <option value="H2B-NA">Nichtlandarbeiter (H2B)</option>,
-            <option value="H3-TR">Auszubildender (H3)</option>,
-            <option value="H4-CH">KIND EINES H (H4)</option>,
-            <option value="H4-SP">EHE EINES H (H4)</option>,
-        ],
-        it: [
-            <option value="H1B-H1B">occupazione speciale (H1B)</option>,
-            <option value="H1B1-CHL">Spec. Cilena occupazione (H1B1)</option>,
-            <option value="H1B1-SGP">Spec. Singaporiana occupazione (H1B1)</option>,
-            <option value="H1C-NR">Infermiera nella zona di carenza (H1C)</option>,
-            <option value="H2A-AG">Lavoratore agricolo (H2A)</option>,
-            <option value="H2B-NA">Lavoratore non agricolo (H2B)</option>,
-            <option value="H3-TR">Apprendista (H3)</option>,
-            <option value="H4-CH">BAMBINO DI UN H (H4)</option>,
-            <option value="H4-SP">SPOSA DI UN H (H4)</option>,
-        ],
-    },
-    'I': {
-        en: [
-            <option value="I-CH">CHILD OF AN I (I)</option>,
-            <option value="I-FR">FOREIGN MEDIA REPRESENTATIVE (I)</option>,
-            <option value="I-SP">SPOUSE OF AN I (I)</option>,
-        ],
-        fr: [
-            <option value="I-CH">ENFANT D'UN JE (I)</option>,
-            <option value="I-FR">REPRÉSENTANT DES MÉDIAS ÉTRANGERS (I)</option>,
-            <option value="I-SP">CONJOINT D'UN I (I)</option>,
-        ],
-        es: [
-            <option value="I-CH">NIÑO DE UN YO (I)</option>,
-            <option value="I-FR">REPRESENTANTE DE LOS MEDIOS EXTRANJEROS (I)</option>,
-            <option value="I-SP">ESPOSA DE UNA I (I)</option>,
-        ],
-        de: [
-            <option value="I-CH">KIND EINES ICH (I)</option>,
-            <option value="I-FR">AUSLANDSMEDIENVERTRETER (I)</option>,
-            <option value="I-SP">EHE EINES I (I)</option>,
-        ],
-        it: [
-            <option value="I-CH">BAMBINO DI UN I (I)</option>,
-            <option value="I-FR">RAPPRESENTANTE MEDIA ESTERO (I)</option>,
-            <option value="I-SP">SPOSA DI UN I (I)</option>,
-        ],
-    },
-    'J': {
-        en: [
-            <option value="J1-J1">EXCHANGE VISITOR (J1)</option>,
-            <option value="J2-CH">CHILD OF A J1 (J2)</option>,
-            <option value="J2-SP">SPOUSE OF A J1 (J2)</option>,
-        ], 
-        fr: [
-            <option value="J1-J1">VISITEUR D'ÉCHANGE (J1)</option>,
-            <option value="J2-CH">ENFANT D'UN J1 (J2)</option>,
-            <option value="J2-SP">CONJOINT D'UN J1 (J2)</option>,
-        ], 
-        es: [
-            <option value="J1-J1">VISITANTE DE INTERCAMBIO (J1)</option>,
-            <option value="J2-CH">NIÑO DE UN J1 (J2)</option>,
-            <option value="J2-SP">ESPOSA DE UN J1 (J2)</option>,
-        ], 
-        de: [
-            <option value="J1-J1">AUSTAUSCHBESUCHER (J1)</option>,
-            <option value="J2-CH">KIND EINES J1 (J2)</option>,
-            <option value="J2-SP">Ehefrau eines J1 (J2)</option>,
-        ], 
-        it: [
-            <option value="J1-J1">VISITATORE DI SCAMBIO (J1)</option>,
-            <option value="J2-CH">BAMBINO DI UN J1 (J2)</option>,
-            <option value="J2-SP">SPOSA DI UN J1 (J2)</option>,
-        ], 
-    },
-    'L': {
-        en: [
-            <option value="L1-L1">INTRACOMPANY TRANSFEREE (L1)</option>,
-            <option value="L2-CH">CHILD OF A L1 (L2)</option>,
-            <option value="L2-SP">SPOUSE OF A L1 (L2)</option>,
-        ],
-        fr: [
-            <option value="L1-L1">cessionnaire intragroupe (L1)</option>,
-            <option value="L2-CH">ENFANT D'UN L1 (L2)</option>,
-            <option value="L2-SP">CONJOINT D'UN L1 (L2)</option>,
-        ],
-        es: [
-            <option value="L1-L1">Transferencia dentro de la compañía (L1)</option>,
-            <option value="L2-CH">NIÑO DE UN L1 (L2)</option>,
-            <option value="L2-SP">ESPOSA DE UN L1 (L2)</option>,
-        ],
-        de: [
-            <option value="L1-L1">konzerninterner Erwerber (L1)</option>,
-            <option value="L2-CH">KIND EINES L1 (L2)</option>,
-            <option value="L2-SP">EHE EINES L1 (L2)</option>,
-        ],
-        it: [
-            <option value="L1-L1">cessionario intracompany (L1)</option>,
-            <option value="L2-CH">BAMBINO DI A L1 (L2)</option>,
-            <option value="L2-SP">SPOSA DI UN L1 (L2)</option>,
-        ],
-    },
-    'M': {
-        en: [
-            <option value="M1-M1">STUDENT (M1)</option>,
-            <option value="M2-CH">CHILD OF M1 (M2)</option>,
-            <option value="M2-SP">SPOUSE OF M1 (M2)</option>,
-            <option value="M3-M3">COMMUTER STUDENT (M3)</option>,
-        ],
-        fr: [
-            <option value="M1-M1">ÉTUDIANT (M1)</option>,
-            <option value="M2-CH">ENFANT DE M1 (M2)</option>,
-            <option value="M2-SP">CONJOINT DE M1 (M2)</option>,
-            <option value="M3-M3">étudiants de banlieue (M3)</option>,
-        ],
-        es: [
-            <option value="M1-M1">ESTUDIANTE (M1)</option>,
-            <option value="M2-CH">NIÑO DE M1 (M2)</option>,
-            <option value="M2-SP">ESPOSA DE M1 (M2)</option>,
-            <option value="M3-M3">estudiantes de viaje (M3)</option>,
-        ],
-        de: [
-            <option value="M1-M1">SCHÜLER (M1)</option>,
-            <option value="M2-CH">KIND VON M1 (M2)</option>,
-            <option value="M2-SP">Ehefrau von M1 (M2)</option>,
-            <option value="M3-M3">Pendlerschüler (M3)</option>,
-        ],
-        it: [
-            <option value="M1-M1">ALUNNO (M1)</option>,
-            <option value="M2-CH">BAMBINO DI M1 (M2)</option>,
-            <option value="M2-SP">SPOSA DI M1 (M2)</option>,
-            <option value="M3-M3">studente pendolare (M3)</option>,
-        ],
-    }
-}
 export const purpose_of_trip_advanced_specify_extra = {
     'B': {},
     'C': { 'C3-CH': 'N', 'C3-SP': 'N' },
     'D': {},
-    'F': { 'F2-CH': 'N', 'F2-SP': 'N'},
-    'H': { 'H1B-H1B': 'P', 'H1C-NR': 'P', 'H2A-AG': 'P', 'H2B-NA': 'P', 'H3-TR': 'P', 'H4-CH': 'NP', 'H4-SP': 'NP'},
-    'I': { 'I-CH': 'N', 'I-SP': 'N'},
-    'J': { 'J2-CH': 'N', 'J2-SP': 'N'},
-    'L': { 'L1-L1': 'P', 'L2-CH': 'NP', 'L2-SP': 'NP'},
+    'F': { 'F2-CH': 'N', 'F2-SP': 'N' },
+    'H': { 'H1B-H1B': 'P', 'H1C-NR': 'P', 'H2A-AG': 'P', 'H2B-NA': 'P', 'H3-TR': 'P', 'H4-CH': 'NP', 'H4-SP': 'NP' },
+    'I': { 'I-CH': 'N', 'I-SP': 'N' },
+    'J': { 'J2-CH': 'N', 'J2-SP': 'N' },
+    'L': { 'L1-L1': 'P', 'L2-CH': 'NP', 'L2-SP': 'NP' },
     'M': { 'M2-CH': 'N', 'M2-SP': 'N' }
 }
 
@@ -1503,59 +1562,6 @@ export const day_options = [
 ]
 
 export const month_options = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-
-export const martial_status_options = {
-    en: [
-        { value: 'M', label: 'MARRIED' },
-        { value: 'C', label: 'COMMON LAW MARRIAGE' },
-        { value: 'P', label: 'CIVIL UNION/DOMESTIC PARTNERSHIP' },
-        { value: 'S', label: 'SINGLE' },
-        { value: 'W', label: 'WIDOWED' },
-        { value: 'D', label: 'DIVORCED' },
-        { value: 'L', label: 'LEGALLY SEPARATED' },
-        { value: 'O', label: 'OTHER' },
-    ],
-    fr: [
-        { value: 'M', label: 'MARIÉ' },
-        { value: 'C', label: 'MARIAGE DE LA COMMON LAW' },
-        { value: 'P', label: `L'UNION CIVILE/PARTENARIAT DOMESTIQUE` },
-        { value: 'S', label: 'UNIQUE' },
-        { value: 'W', label: 'VEUVE' },
-        { value: 'D', label: 'DIVORCÉ' },
-        { value: 'L', label: 'LÉGALEMENT SÉPARÉS' },
-        { value: 'O', label: `AUTRE` },
-    ],
-    es: [
-        { value: 'M', label: 'CASADO' },
-        { value: 'C', label: 'EL MATRIMONIO DE DERECHO COMÚN' },
-        { value: 'P', label: 'UNIÓN CIVIL/ASOCIACIÓN DOMÉSTICA' },
-        { value: 'S', label: 'SOLTERO' },
-        { value: 'W', label: 'VIUDO' },
-        { value: 'D', label: 'DIVORCIADO' },
-        { value: 'L', label: 'LEGALMENTE SEPARADOS' },
-        { value: 'O', label: 'OTROS' },
-    ],
-    de: [
-        { value: 'M', label: 'VERHEIRATET' },
-        { value: 'C', label: 'COMMON-LAW-EHE' },
-        { value: 'P', label: 'CIVIL UNION/LEBENSPARTNERSCHAFTEN' },
-        { value: 'S', label: 'SINGLE' },
-        { value: 'W', label: 'VERWITWET' },
-        { value: 'D', label: 'GESCHIEDEN' },
-        { value: 'L', label: 'RECHTLICH GETRENNT' },
-        { value: 'O', label: 'ANDERE' },
-    ],
-    it: [
-        { value: 'M', label: 'SPOSATO' },
-        { value: 'C', label: 'COMMON LAW MATRIMONIO' },
-        { value: 'P', label: 'UNIONE CIVILE/PARTNERSHIP DOMESTICA' },
-        { value: 'S', label: 'SINGOLO' },
-        { value: 'W', label: 'VEDOVA' },
-        { value: 'D', label: 'DIVORZIATO' },
-        { value: 'L', label: 'LEGALMENTE SEPARATI' },
-        { value: 'O', label: 'ALTRO' },
-    ]
-}
 
 export const countries_option_value_list = ["KBL", "TIA"
     , "ALG"

@@ -1,8 +1,8 @@
 export const translate = (r, lang) => {
-    if(!lang) 
+    if (!lang)
         return r.en ? r.en : ''
-    const pre = lang.split('-')[0]; 
-    return r[pre] ? r[pre] : (r.en ? r.en : '') 
+    const pre = lang.split('-')[0];
+    return r[pre] ? r[pre] : (r.en ? r.en : '')
 }
 const resources = {
     yes: {
@@ -42,7 +42,7 @@ const resources = {
     },
     prev: {
         en: 'Prev',
-        fr: 'Prec',
+        fr: 'Préc',
         es: 'Antes',
         de: 'Bis',
         it: 'Prec',
@@ -85,7 +85,7 @@ const resources = {
         },
         extra: {
             en: `Select language in which you would like the hints, regarding completion of the application form, to be displayed`,
-            fr: `Indiquez la langue des conseils sur le remplissage de votre demande de visa`,
+            fr: `Indiquez la langue de conseils pour le remplissage de votre demande de visa`,
             es: `Indique el idioma de soplos de la lista “Hints and help language”.`,
             de: `Geben Sie bitte die Sprache der Ausfüllhilfen an.`,
             it: `Indicare la lingua delle spiegazioni`,
@@ -94,7 +94,7 @@ const resources = {
     validations: {
         english: {
             en: `Only the following characters are valid for this field: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parens (), period (.), apostrophe ('), comma (,), hyphen (-), and space.`,
-            fr: `Seuls les caractères suivants sont valides pour ce domaine: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, les parenthèses (), le point (.), apostrophe ('), la virgule (,), tiret (-), et de l'espace.`,
+            fr: `Seuls les caractères suivants sont valides pour ce champ: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, les parenthèses (), le point (.), apostrophe ('), la virgule (,), tiret (-), et de l'espace.`,
             es: `Sólo los siguientes caracteres son válidos para este campo: a-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, paréntesis (), punto (.), el apóstrofo ('), la coma (,), guión (-), y en el espacio.`,
             de: `Nur die folgenden Zeichen sind gültig für dieses Feld: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parens (), Punkt (.), Apostroph ('), Komma (,), Bindestrich ( - ) und Leerzeichen.`,
             it: `Solo i seguenti caratteri sono validi per il settore: A-Z, a-z, 0-9, #, $, *, %, &, (;), !, @, ^, ?, >, <, parentesi (), il punto (.), apostrofo ('), virgola (,), il trattino (-), e lo spazio.`,
@@ -122,7 +122,7 @@ const resources = {
         },
         required_sign: {
             en: `Please sign`,
-            fr: `Veuillez vous connecter`,
+            fr: `Veuillez signer`,
             es: `Por favor firme`,
             de: `Bitte melden`,
             it: `Si prega di firmare`,
@@ -131,7 +131,7 @@ const resources = {
     before: {
         start_button: {
             en: `Start Your Application`,
-            fr: `Compléter un nouveau formulaire`,
+            fr: `Commencez votre Application`,
             es: `Rellenar nuevo cuestionario`,
             de: `Neuen Antragsformular ausfüllen`,
             it: `Compila un nuovo modulo`,
@@ -140,7 +140,7 @@ const resources = {
     step_1: {
         section_title: {
             en: `On this website, you can apply through our agency for a U.S. Non-Immigrant Visa. EACH TRAVELER MUST COMPLETE HIS/HER OWN FORM IN ORDER TO GET HIS/HER VISA. The estimated average time to complete this submission is 35 minutes per respondent.`,
-            fr: `Sur ce site Web, vous pouvez demander via notre agence un visa de non-immigrant américain. CHAQUE VOYAGEUR DOIT REMPLIR SON PROPRE FORMULAIRE POUR OBTENIR SON VISA. Le temps moyen estimé pour terminer cette présentation est de 35 minutes par répondant.`,
+            fr: `Sur ce site Web, vous pouvez appliquer pour un visa américain de non-immigrant via notre agence. CHAQUE VOYAGEUR DOIT REMPLIR SON PROPRE FORMULAIRE POUR OBTENIR SON VISA. Le temps moyen estimé pour terminer cette application est de 35 minutes par applicant.`,
             es: `En este sitio web, puede solicitar a través de nuestra agencia una visa de no inmigrante de EE. UU. CADA VIAJERO DEBE COMPLETAR SU PROPIO FORMULARIO PARA OBTENER SU VISA. El tiempo promedio estimado para completar este envío es de 35 minutos por encuestado.`,
             de: `Auf dieser Website können Sie über unsere Agentur ein US-amerikanisches Nichteinwanderungsvisum beantragen. Jeder Reisende muss sein eigenes Formular ausfüllen, um sein Visum zu erhalten. Die geschätzte durchschnittliche Zeit, um diese Einreichung zu vervollständigen, beträgt 35 Minuten pro Befragten.`,
             it: `Su questo sito Web, è possibile richiedere tramite la nostra agenzia un visto per non immigranti negli Stati Uniti. OGNI VIAGGIATORE DEVE COMPLETARE IL SUO / IL SUO PROPRIO MODULO PER OTTENERE IL SUO / IL SUO VISTO. Il tempo medio stimato per completare questa presentazione è di 35 minuti per rispondente.`,
@@ -155,7 +155,7 @@ const resources = {
             },
             extra: {
                 en: `Select preferred US Consulate for your visa interview.`,
-                fr: `Choix du Consulat des états-unis pour votre entretien de visa.`,
+                fr: `Choix du Consulat des États-Unis pour votre entretien de visa.`,
                 es: `Seleccionar la preferencia de Consulado de los estados unidos para su entrevista de visa.`,
                 de: `Wählen Sie das bevorzugte US-Konsulat für das Visum-interview.`,
                 it: `Selezionare preferito Consolato degli stati UNITI per il tuo colloquio per il visto.`,
@@ -171,7 +171,7 @@ const resources = {
             },
             extra: {
                 en: `In order to access your application later, however, you will need: (1) your Application ID, and (2) the answer to the security question that you will choose on this page.`,
-                fr: `Afin d'accéder à votre demande plus tard, cependant, vous aurez besoin de: (1) votre ID d'Application, et (2) la réponse à la question de sécurité que vous choisissez sur cette page.`,
+                fr: `Afin d'accéder à votre demande plus tard, vous aurez besoin de: (1) votre ID d'Application, et (2) la réponse à la question de sécurité que vous avez choisi sur cette page.`,
                 es: `Con el fin de acceder a su solicitud más tarde, sin embargo, será necesario: (1) su ID de la Aplicación, y (2) la respuesta a la pregunta de seguridad que usted elija en esta página.`,
                 de: `Um den Zugriff auf Ihre Anwendung zu einem späteren Zeitpunkt, jedoch, müssen Sie: (1) Ihre Anwendung ID, und (2) die Antwort auf die Sicherheitsfrage, die Sie wählen, wird auf dieser Seite.`,
                 it: `Per accedere alla tua applicazione in un secondo momento, tuttavia, è necessario: (1) il vostro ID di Applicazione, e (2) la risposta alla domanda di sicurezza che si sceglie su questa pagina.`,
@@ -191,21 +191,21 @@ const resources = {
         disclaimer: {
             agency: {
                 en: `Before you begin this application, please read carefully this disclaimer and make sure that you have a valid passport. This application will only accept the following credit cards: MasterCard, VISA and Discover (JCB, Diners Club) or bank transfer. Our agency charges $280 for this premium processing service which includes your MRV fee. This charge does include the Visa Fee of$160 that needs to be paid directly to the Department of State and is NON-REFUNDABLE. All information provided by you, or on your behalf by a designated third party, must be true and correct.`,
-                fr: `Avant de commencer cette demande, veuillez lire attentivement cet avertissement et assurez-vous d'avoir un passeport valide. Cette application n'accepte les cartes de crédit suivantes: MasterCard, VISA et Discover (JCB, Diners Club) ou par virement bancaire. Notre agence de frais de 280 $pour cette prime de service de traitement qui comprend votre MRV frais. Ces frais comprennent les Frais de Visa de$160 qui doit être payé directement au Département d'État et est NON-REMBOURSABLE. Toutes les informations fournies par vous ou en votre nom par un tiers désigné, doit être véridique et correcte.`,
+                fr: `Avant de commencer cette demande, veuillez lire attentivement cet avertissement et assurez-vous d'avoir un passeport valide. Cette application accepte uniquement les cartes de crédit suivantes: MasterCard, VISA et Discover (JCB, Diners Club). Notre agence facture 280$ pour ce service de traitement qui comprend les frais MRV. Ces frais comprennent les Frais de Visa de 160$ qui doivent être payé directement au Département d'État et sont NON-REMBOURSABLE. Toutes les informations fournies par vous ou en votre nom par un tiers désigné doivent être véridiques et correctes.`,
                 es: `Antes de comenzar esta aplicación, por favor lea cuidadosamente este descargo de responsabilidad y asegúrese de que usted tiene un pasaporte válido. Esta aplicación sólo se aceptan las siguientes tarjetas de crédito: MasterCard, VISA y Discover (JCB, Diners Club) o transferencia bancaria. Nuestra agencia cobra $280 para esta prima de servicio de procesamiento que incluye su cargo MRV. Este precio no incluye el costo de la Visa de$160 que debe ser pagado directamente al Departamento de Estado y NO es REEMBOLSABLE. Toda la información proporcionada por usted o en su nombre por un designado de terceros, debe ser verdadera y correcta.`,
                 de: `Bevor Sie beginnen, diese Anwendung, bitte Lesen Sie sorgfältig diesen Haftungsausschluss, sowie stellen Sie sicher, dass Sie einen gültigen Reisepass. Diese Anwendung wird nur akzeptiert die folgende Kredit Karten: MasterCard, VISA und Discover (JCB, Diners Club) oder Banküberweisung. Unsere Agentur erhebt 280 $für das premium processing service die auch Ihren MRV-Gebühr. Diese Gebühr beinhaltet die Visa-Gebühr von$160, die bezahlt werden muss direkt an das Department of State und ist NICHT ERSTATTBAR. Alle Informationen, die von Ihnen oder in Ihrem Auftrag durch eine von Ihnen benannte Dritte, wahrheitsgetreu und richtig sein müssen.`,
                 it: `Prima di iniziare questa applicazione, si prega di leggere attentamente questo disclaimer e assicurarsi che si dispone di un passaporto valido. Questa applicazione si accettano solo i seguenti carte di credito: MasterCard, VISA e Discover (JCB, Diners Club) o bonifico bancario. La nostra agenzia le spese di $280 per questo l'elaborazione di premio di servizio, che comprende la vostra tassa MRV. Questo costo non include la Tassa per il Visto di$160 che deve essere pagato direttamente al Dipartimento di Stato ed è NON-RIMBORSABILE. Tutte le informazioni fornite da voi, o sul vostro conto da parte di un incaricato di terzi, devono essere veritiere e corrette.`,
             },
             default: {
                 en: `DISCLAIMER: Before you begin this application, please read carefully this disclaimer and make sure that you have a valid passport. This application will only accept the following credit cards: MasterCard, VISA and Discover (JCB, Diners Club) or bank transfer. Our agency charges $165 for this premium processing service that offers 100% Refund Guarantee if your visa is denied. This charge does not include the Visa Fee that needs to be paid directly to the Department of State and is NON-REFUNDABLE except if your visa is denied. All information provided by you, or on your behalf by a designated third party, must be true and correct.`,
-                fr: `AVERTISSEMENT: Avant de commencer cette demande, veuillez lire attentivement cet avertissement et assurez-vous d'avoir un passeport valide. Cette application n'accepte les cartes de crédit suivantes: MasterCard, VISA et Discover (JCB, Diners Club) ou par virement bancaire. Notre agence de frais $165 de cette prime de service de traitement qui offre 100% Garantie de Remboursement si votre visa est refusé. Ces frais ne comprennent pas les Frais de Visa qui doit être payé directement au Département d'État et est NON-REMBOURSABLE, sauf si votre visa est refusé. Toutes les informations fournies par vous ou en votre nom par un tiers désigné, doit être véridique et correcte.`,
+                fr: `AVERTISSEMENT: Avant de commencer cette application, veuillez lire attentivement cet avertissement et assurez-vous d'avoir un passeport valide. Cette application accepte uniquement les cartes de crédit suivantes: MasterCard, VISA et Discover (JCB, Diners Club). Notre agence facture 165$ pour ce service de traitement Premium qui offre une garantie de remboursement à 100% si votre visa est refusé. Ces frais sont NON REMBOURSABLES sauf si votre visa est refusé. Toutes les informations fournies par vous ou en votre nom par un tiers désigné doivent être véridiques et correctes.`,
                 es: `DESCARGO de responsabilidad: Antes de comenzar esta aplicación, por favor lea cuidadosamente este descargo de responsabilidad y asegúrese de que usted tiene un pasaporte válido. Esta aplicación sólo se aceptan las siguientes tarjetas de crédito: MasterCard, VISA y Discover (JCB, Diners Club) o transferencia bancaria. Nuestra agencia cobra $165 para esta prima de servicio de procesamiento que ofrece 100% Garantía de Reembolso si su visa es negada. Este precio no incluye el costo de la Visa que necesita ser pagado directamente al Departamento de Estado y NO es REEMBOLSABLE, excepto si su visa es negada. Toda la información proporcionada por usted o en su nombre por un designado de terceros, debe ser verdadera y correcta.`,
                 de: `DISCLAIMER: Bevor Sie beginnen, diese Anwendung, bitte Lesen Sie sorgfältig diesen Haftungsausschluss, sowie stellen Sie sicher, dass Sie einen gültigen Reisepass. Diese Anwendung wird nur akzeptiert die folgende Kredit Karten: MasterCard, VISA und Discover (JCB, Diners Club) oder Banküberweisung. Unsere Agentur Gebühren $165 für das premium processing service, bietet eine 100% Rückerstattung-Garantie, wenn Ihr Visum verweigert wird. Diese Gebühr beinhaltet nicht die Visa-Gebühr, die bezahlt werden muss direkt an das Department of State und ist NICHT RÜCKZAHLBAR, außer wenn Ihr Visum verweigert wird. Alle Informationen, die von Ihnen oder in Ihrem Auftrag durch eine von Ihnen benannte Dritte, wahrheitsgetreu und richtig sein müssen.`,
                 it: `DISCLAIMER: Prima di iniziare questa applicazione, si prega di leggere attentamente questo disclaimer e assicurarsi che si dispone di un passaporto valido. Questa applicazione si accettano solo i seguenti carte di credito: MasterCard, VISA e Discover (JCB, Diners Club) o bonifico bancario. La nostra agenzia le spese di $165 per questo l'elaborazione di premio di servizio che offre il 100% di Garanzia di Rimborso se il visto viene negato. Questo costo non include la Tassa per il Visto che deve essere pagato direttamente al Dipartimento di Stato ed è NON-RIMBORSABILE, tranne se il visto viene negato. Tutte le informazioni fornite da voi, o sul vostro conto da parte di un incaricato di terzi, devono essere veritiere e corrette.`,
             },
             check: {
                 en: `I understand that I may be subject to administrative or criminal penalties if I knowingly and willfully make a materially false, fictitious, or fraudulent statement or representation in a visa application submitted by me or on my behalf.`,
-                fr: `Je comprends que je peux être soumis à des sanctions administratives ou pénales si j'ai sciemment et volontairement faire un matériellement faux, fictif ou frauduleux déclaration ou déclaration dans une demande de visa déposée par moi ou en mon nom.`,
+                fr: `Je comprends que je peux être soumis à des sanctions administratives ou pénales si j'ai sciemment et volontairement fait une déclaration fausse, fictive ou frauduleuse, dans une demande de visa déposée par moi ou en mon nom.`,
                 es: `Entiendo que puedo estar sujeto administrativas o penales, si yo a sabiendas y voluntariamente hacer una falsa, ficticia o declaración falsa en una solicitud de visado presentadas por mí o en mi nombre.`,
                 de: `Ich verstehe, dass ich kann vorbehaltlich Verwaltungs-oder strafrechtlicher Sanktionen, wenn ich wissentlich und vorsätzlich eine sachlich falsche, fiktive oder betrügerische Erklärung oder Darstellung in einem visa-Antrag durch mich oder in meinem Namen.`,
                 it: `Capisco che I può essere soggetta a amministrative o penali se ho consapevolmente e volontariamente fanno un materialmente falsa, fittizia o fraudolenta dichiarazione o rappresentazione in una domanda di visto presentate da me o sul mio conto.`,
@@ -221,7 +221,7 @@ const resources = {
             },
             check: {
                 en: `I have read and understand the Disclaimer above and agree with these terms.`,
-                fr: `J'ai lu et compris l'Avertissement ci-dessus et d'accord avec ces termes.`,
+                fr: `J'ai lu et compris l'Avertissement ci-dessus et j'accepte ces termes.`,
                 es: `He leído y entiendo la Renuncia y de acuerdo con estos términos.`,
                 de: `Ich habe gelesen und verstanden Verzichtserklärung oben und mit diesen Bedingungen einverstanden.`,
                 it: `Ho letto e compreso la dichiarazione di cui sopra e sono d'accordo con questi termini.`,
@@ -238,7 +238,7 @@ const resources = {
         },
         section_descr: {
             en: `Note: Data on this page must match exactly the information in your passport.`,
-            fr: `Note: les Données sur cette page doit correspondre exactement les informations de votre passeport.`,
+            fr: `Note: les Données sur cette page doivent correspondre exactement aux informations de votre passeport.`,
             es: `Nota: los Datos de esta página debe coincidir exactamente con la información de su pasaporte.`,
             de: `Hinweis: die Daten auf dieser Seite müssen exakt mit den Angaben in Ihrem Reisepass.`,
             it: `Nota: i Dati su questa pagina deve corrispondere esattamente le informazioni nel vostro passaporto.`,
@@ -246,14 +246,14 @@ const resources = {
         surname: {
             label: {
                 en: `Surname(s) (Last Name)`,
-                fr: `Prénom(s) (Nom de famille)`,
+                fr: `Nom de Famille`,
                 es: `Apellido(s) (apellido)`,
                 de: `Vorname(N) (Nachname)`,
                 it: `Cognome(i) (cognome)`,
             },
             extra: {
                 en: `Last Name (Family Name)`,
-                fr: `Nom De Famille (Nom De Famille)`,
+                fr: `Nom de Famille`,
                 es: `Apellido (Nombre De Familia)`,
                 de: `Nachname (Familienname)`,
                 it: `Last Name (Nome Di Famiglia)`,
@@ -261,7 +261,7 @@ const resources = {
         },
         section_descr_2: {
             en: `Enter all surnames (or family names) exactly as they are written in your passport. If only one name is written in your passport, enter that as your “Surname” (e.g, FERNANDEZ GARCIA)`,
-            fr: `Entrer tous les noms de famille (ou nom de famille) exactement comme ils sont écrits dans votre passeport. Si un seul nom est écrit dans votre passeport, entrez votre “Nom” e.g, FERNANDEZ GARCIA)`,
+            fr: `Entrer tous les Noms de Famille exactement comme ils sont écrits dans votre passeport. Si un seul nom est écrit dans votre passeport, entrez votre “Nom” e.g, FERNANDEZ GARCIA)`,
             es: `Introduzca todos los apellidos (o nombres de familia) exactamente como aparecen en su pasaporte. Si sólo hay un nombre que está escrito en su pasaporte, introducir como el "Apellido" (e.g, FERNÁNDEZ GARCÍA)`,
             de: `Geben Sie alle Familiennamen (oder Familiennamen), genau so wie Sie im Pass geschrieben. Wenn nur ein name im Pass geschrieben, geben Sie Ihren "Nachnamen" (e.g, FERNANDEZ GARCIA)`,
             it: `Inserire tutti i nomi (o cognomi) esattamente come sono scritti nel vostro passaporto. Se un solo nome è scritto nel passaporto, inserire come “Cognome” (e.g, FERNANDEZ GARCIA)`,
@@ -269,7 +269,7 @@ const resources = {
         given_name: {
             label: {
                 en: `Given Name(s) (First Name(s))`,
-                fr: `Prénom(s) (prénom(s))`,
+                fr: `Prénom(s)`,
                 es: `Nombre(s) (Nombre(s))`,
                 de: `Vorname(N) (First Name(s))`,
                 it: `Nome(i) cognome(i))`,
@@ -284,7 +284,7 @@ const resources = {
         },
         section_descr_3: {
             en: `(e.g., JUAN MIGUEL), If your passport does not include a first or given name, please enter 'FNU' (meaning “first name unknown”) in the space for “Given Names”`,
-            fr: `(par exemple, JUAN MIGUEL), Si votre passeport ne comporte pas de premier ou de prénom, entrez "FNU' (ce qui signifie “nom inconnu”) dans l'espace pour les “prénoms”`,
+            fr: `(par exemple, JUAN MIGUEL), Si votre passeport ne comporte pas de prénom, entrez "FNU' (ce qui signifie “nom inconnu”) dans le champ “prénoms”`,
             es: `(por ejemplo, JUAN MIGUEL), Si su pasaporte no incluye un primero o el nombre, por favor, entrar en "FNU' (que significa "primer nombre desconocido") en el espacio para "Nombres"`,
             de: `(z.B., JUAN MIGUEL), Wenn Sie Ihren Pass nicht in der ersten oder bestimmten Namen, geben Sie bitte 'FNU' (im Sinne von "Erster name unbekannt") in den Raum für einen "Vornamen"`,
             it: `(ad esempio, JUAN MIGUEL), Se il vostro passaporto non includono nome, immettere 'FNU" (nel senso di “primo nome sconosciuto”) lo spazio per i “Nomi”`,
@@ -292,7 +292,7 @@ const resources = {
         b_ever_used_other_names: {
             label: {
                 en: `Have you ever used other names (i.e., maiden, religious, professional, alias, etc.)?`,
-                fr: `Avez-vous déjà utilisé d'autres noms (c'est à dire, jeune fille, religieuse, professionnelle, alias, etc.)?`,
+                fr: `Avez-vous déjà utilisé d'autres noms (c'est à dire, Nom de jeune fille, religieux, professionnel, alias, etc.)?`,
                 es: `¿Alguna vez has usado otros nombres (es decir, de soltera, religiosa, profesional, alias, etc.)?`,
                 de: `Haben Sie jemals andere Namen (D. H., maiden, religiöse, professionelle, alias, etc.)?`,
                 it: `Avete mai usato altri nomi (cioè, fanciulla, religiosa, professionale, alias, etc.)?`,
@@ -302,7 +302,7 @@ const resources = {
             surname: {
                 label: {
                     en: `Other Surnames Used (maiden, religious, professional, aliases, etc.)`,
-                    fr: `Autres Noms Utilisés (maiden, religieux, professionnel, alias, etc.)`,
+                    fr: `Autres Noms Utilisés (jeune fille, religieux, professionnel, alias, etc.)`,
                     es: `Otros Apellidos que se Usan (de soltera, religiosa, profesional, alias, etc.)`,
                     de: `Andere Nachnamen Verwendet (Jungfrau, religiös, Professionell, Aliase, etc.)`,
                     it: `Altri Cognomi Usati (maiden, religiosa, professionale, alias, etc.)`,
@@ -321,14 +321,14 @@ const resources = {
         b_has_telecode_of_name: {
             label: {
                 en: `Do you have a telecode that represents your name?`,
-                fr: `Avez-vous un telecode qui représente votre nom?`,
+                fr: `Avez-vous un télécode qui représente votre nom?`,
                 es: `¿Tienes un telecode que representa su nombre?`,
                 de: `Haben Sie eine telecode für Ihre Namen?`,
                 it: `Hai un telecode che rappresenta il tuo nome?`,
             },
             extra: {
                 en: `Telecodes are 4 digits numbers that represent characters in some non-Roman alphabet names.`,
-                fr: `Telecodes 4 chiffres nombres qui représentent des caractères dans certaines non-alphabet Romain noms.`,
+                fr: `Télécodes 4 chiffres nombres qui représentent des caractères dans certaines non-alphabet Romain noms.`,
                 es: `Telecodes son 4 dígitos de números que representan caracteres en la no-alfabeto Romano nombres.`,
                 de: `Telecodes sind 4-stellige zahlen, die die Zeichen darstellen, die in einigen nicht-lateinischen alphabet Namen.`,
                 it: `Telecodes sono 4 cifre che rappresentano i personaggi non-alfabeto Romano nomi.`,
@@ -338,7 +338,7 @@ const resources = {
             surname: {
                 label: {
                     en: `Please provide your Telecode Surname`,
-                    fr: `Veuillez fournir votre Telecode Nom de famille`,
+                    fr: `Veuillez fournir votre Télécode Nom de famille`,
                     es: `Por favor, proporcione su Telecode Apellido`,
                     de: `Bitte geben Sie Ihre Telecode Familienname`,
                     it: `Si prega di fornire il vostro Telecode Cognome`,
@@ -347,7 +347,7 @@ const resources = {
             given_name: {
                 label: {
                     en: `Please provide your Telecode Given Name`,
-                    fr: `Veuillez fournir votre Telecode prénom`,
+                    fr: `Veuillez fournir votre Télécode Prénom`,
                     es: `Por favor, proporcione su Telecode Nombre`,
                     de: `Bitte geben Sie Ihre Telecode Vorname`,
                     it: `Si prega di fornire il vostro Telecode Nome`,
@@ -380,7 +380,7 @@ const resources = {
         martial_status: {
             label: {
                 en: `Marital Status`,
-                fr: `État Matrimonial`,
+                fr: `Statut Matrimonial`,
                 es: `Estado Civil`,
                 de: `Familienstand`,
                 it: `Stato Civile`,
@@ -388,8 +388,8 @@ const resources = {
         },
         martial_other_explain: {
             label: {
-                en: `Martial Status Explain`,
-                fr: `Martial Statut Expliquer`,
+                en: `Marital Status Explain`,
+                fr: `Expliquer le Statut Matrimonial`,
                 es: `Estado Civil Explicar`,
                 de: `Martial Status Erklären`,
                 it: `Marziali Stato Spiegare`,
@@ -408,7 +408,7 @@ const resources = {
             city: {
                 label: {
                     en: `City of birth`,
-                    fr: `Ville de naissance`,
+                    fr: `Ville de Naissance`,
                     es: `Ciudad de nacimiento`,
                     de: `Stadt der Geburt`,
                     it: `Città di nascita`,
@@ -417,7 +417,7 @@ const resources = {
             state: {
                 label: {
                     en: `Province / State of birth`,
-                    fr: `Province / Etat de naissance`,
+                    fr: `Province / Région de Naissance`,
                     es: `Estado / provincia de nacimiento`,
                     de: `Provinz / Staat der Geburt`,
                     it: `Provincia / Stato di nascita`,
@@ -426,7 +426,7 @@ const resources = {
             country: {
                 label: {
                     en: `Country of birth`,
-                    fr: `Pays de naissance`,
+                    fr: `Pays de Naissance`,
                     es: `País de nacimiento`,
                     de: `Land der Geburt`,
                     it: `Paese di nascita`,
@@ -445,7 +445,7 @@ const resources = {
         b_more_nationality: {
             label: {
                 en: `Do you hold or have you held any nationality other than the one indicated above on nationality?`,
-                fr: `Avez-vous ou avez-vous déjà tenu une autre nationalité que celle indiquée ci-dessus sur la nationalité?`,
+                fr: `Avez-vous actuellement ou dans le passé déjà eu une autre Nationalité que celle indiquée ci-dessus sur le champ Nationalité?`,
                 es: `¿Tiene o ha tenido cualquier nacionalidad distinta a la indicada anteriormente en la nacionalidad?`,
                 de: `Besitzen Sie oder haben Sie gehalten, jede Nationalität eine andere als die oben angegebene Staatsangehörigkeit?`,
                 it: `Non si tiene o ha tenuto in qualsiasi nazionalità diversa da quella sopra indicata, sulla cittadinanza?`,
@@ -454,7 +454,7 @@ const resources = {
         other_nationality: {
             label: {
                 en: `Other Country/Region of Origin (Nationality)`,
-                fr: `D'autres Pays/Région d'Origine (Nationalité)`,
+                fr: `Autres Pays/Région d'Origine (Nationalité)`,
                 es: `Otro País/Región de Origen (Nacionalidad)`,
                 de: `Anderen Land/Region der Herkunft (Nationalität)`,
                 it: `Altro Paese/Regione di Provenienza (Nazionalità)`,
@@ -463,7 +463,7 @@ const resources = {
         b_has_other_nationality_passport: {
             label: {
                 en: `Do you hold a passport for the other country/region of origin (nationality) above?`,
-                fr: `Vous êtes titulaire d'un passeport pour les autres pays/région d'origine (nationalité) ci-dessus?`,
+                fr: `Êtes vous titulaire d'un passeport pour les autres Pays/Région d'origine (Nationalité) ci-dessus?`,
                 es: `¿Tienes un pasaporte de otro país/región de origen (nacionalidad) de arriba?`,
                 de: `Halten Sie einen Pass für das andere Land/die region der Herkunft (Nationalität) vor?`,
                 it: `Non sei in possesso di un passaporto di un altro paese/regione di provenienza (nazionalità) di cui sopra?`,
@@ -490,7 +490,7 @@ const resources = {
         permanent_resident_country: {
             label: {
                 en: `Other Permanent Resident Country/Region`,
-                fr: `D'Autres Résident Permanent Du Pays/De La Région`,
+                fr: `Autres Pays/Région dont vous êtes Résident`,
                 es: `Otro Residente Permanente Del País/Región`,
                 de: `Andere Permanent Resident Land/Region`,
                 it: `Altre Residente Permanente Paese/Regione`,
@@ -505,7 +505,7 @@ const resources = {
         },
         section_descr_4: {
             en: `Your National ID Number is a unique number that your government provides. The U.S Government provides unique numbers to those who seek employment (Social Security Number) or pay taxes (Taxpayer ID). Leave blank if you do not have any of these numbers`,
-            fr: `Votre Numéro d'identification est un numéro unique que votre gouvernement fournit. L'U. S Gouvernement fournit des numéros uniques pour ceux qui cherchent de l'emploi (Numéro de Sécurité Sociale) ou de payer des impôts (son numéro de Contribuable). Laissez vide si vous n'avez pas l'un de ces numéros`,
+            fr: `Votre Numéro de carte d'identité est un numéro unique que votre gouvernement fournit. Le Gouvernement des États-Unis fournit des numéros uniques pour ceux qui cherchent un emploi (Numéro de Sécurité Sociale) ou pour payer des impôts (numéro de Contribuable). Laissez vide si vous n'avez pas l'un de ces numéros`,
             es: `Nacional de identidad Número es un número único que su gobierno ofrece. El U. S Gobierno proporciona números únicos a los que buscan empleo (Número de Seguridad Social) o el pago de impuestos (IDENTIFICACIÓN de Contribuyente). Dejar en blanco si no tiene alguno de estos números`,
             de: `Ihre Nationale ID-Nummer ist eine einzigartige Nummer, die Ihre Regierung stellt. Die U. S Regierung liefert eindeutige zahlen für diejenigen, die eine Beschäftigung suchen (Social Security Number) oder Steuern zahlen (Steuernummer). Lassen Sie das Feld leer, wenn Sie nicht über eine dieser Nummern`,
             it: `Il Numero della carta di identità è un numero univoco che il governo fornisce. U. S Governo fornisce numeri unici per coloro che cercano occupazione (Numero di previdenza Sociale) o pagare le tasse (fiscale). Lasciare vuoto se non si dispone di uno qualsiasi di questi numeri`,
@@ -513,14 +513,14 @@ const resources = {
         national_id_number: {
             label: {
                 en: `National ID Number`,
-                fr: `Numéro National`,
+                fr: `Numéro National d'Identité`,
                 es: `Nacional de identidad Número`,
                 de: `Nationale ID-Nummer`,
                 it: `Numero della carta di identità`,
             },
             extra: {
                 en: `Your National ID Number is a unique number that your government provides. The U.S. Government provides unique numbers to those who seek employment (Social Security Number) or pay taxes (Taxpayer ID). Leave blank if you do not have any of these numbers`,
-                fr: `Votre Numéro d'identification est un numéro unique que votre gouvernement fournit. Le Gouvernement des états-UNIS fournit des numéros uniques pour ceux qui cherchent de l'emploi (Numéro de Sécurité Sociale) ou de payer des impôts (son numéro de Contribuable). Laissez vide si vous n'avez pas l'un de ces numéros`,
+                fr: `Votre Numéro National d'Identité est un numéro unique que votre gouvernement fournit. Le Gouvernement des États-Unis fournit des numéros uniques pour ceux qui cherchent un emploi (Numéro de Sécurité Sociale) ou pour payer des impôts (numéro de Contribuable). Laissez vide si vous n'avez pas l'un de ces numéros`,
                 es: `Nacional de identidad Número es un número único que su gobierno ofrece. El Gobierno de estados UNIDOS proporciona números únicos a los que buscan empleo (Número de Seguridad Social) o el pago de impuestos (IDENTIFICACIÓN de Contribuyente). Dejar en blanco si no tiene alguno de estos números`,
                 de: `Ihre Nationale ID-Nummer ist eine einzigartige Nummer, die Ihre Regierung stellt. Die US-Regierung bietet eine einzigartige Nummern für diejenigen, die eine Beschäftigung suchen (Social Security Number) oder Steuern zahlen (Steuernummer). Lassen Sie das Feld leer, wenn Sie nicht über eine dieser Nummern`,
                 it: `Il Numero della carta di identità è un numero univoco che il governo fornisce. Il Governo degli stati UNITI fornisce numeri unici per coloro che cercano occupazione (Numero di previdenza Sociale) o pagare le tasse (fiscale). Lasciare vuoto se non si dispone di uno qualsiasi di questi numeri`,
@@ -529,7 +529,7 @@ const resources = {
         social_security_number: {
             label: {
                 en: `US Social Security Number`,
-                fr: `NOUS un Numéro de Sécurité Sociale`,
+                fr: `Numéro de Sécurité Sociale US`,
                 es: `Número de seguro Social`,
                 de: `US-Social-Security-Nummer`,
                 it: `Numero di previdenza Sociale`,
@@ -545,7 +545,7 @@ const resources = {
         tax_id_number: {
             label: {
                 en: `US Tax ID Number`,
-                fr: `NOUS un Numéro de Taxe`,
+                fr: `Numéro de Taxe US`,
                 es: `NOSOTROS, Número de IDENTIFICACIÓN Fiscal`,
                 de: `US-Steuer-ID-Nummer`,
                 it: `NOI Tax ID Number`,
@@ -570,7 +570,7 @@ const resources = {
         purpose_of_trip: {
             label: {
                 en: `Purpose of Trip to the U.S.`,
-                fr: `Le but du Voyage aux états-UNIS`,
+                fr: `Le but du Voyage aux États-Unis`,
                 es: `El propósito del Viaje a los estados UNIDOS`,
                 de: `Zweck der Reise in die USA`,
                 it: `Scopo del Viaggio negli stati UNITI`,
@@ -595,21 +595,21 @@ const resources = {
         purpose_info: {
             label: {
                 en: `Principal Applicant Information`,
-                fr: `Demandeur Principal De L'Information`,
+                fr: `Informations de l'Applicant Principal`,
                 es: `Director De Información Del Solicitante`,
                 de: `Hauptbewerber Informationen`,
                 it: `Principali Dati Del Richiedente`,
             },
             surname: {
                 en: `Surname(s) (Last Name)`,
-                fr: `Prénom(s) (Nom de famille)`,
+                fr: `Nom de famille`,
                 es: `Apellido(s) (apellido)`,
                 de: `Vorname(N) (Nachname)`,
                 it: `Cognome(i) (cognome)`,
             },
             given_name: {
                 en: `Given Name(s) (First Name)`,
-                fr: `Prénom(s) (prénom)`,
+                fr: `Prénom(s)`,
                 es: `Nombre(s) (Primer Nombre)`,
                 de: `Vorname(N) (First Name)`,
                 it: `Nome(s) (Nome)`,
@@ -617,14 +617,14 @@ const resources = {
             petition: {
                 label: {
                     en: `Application Receipt/Petition Number`,
-                    fr: `De Réception De La Demande/Requête Numéro`,
+                    fr: `Récépissé de La Demande/Numéro de Pétition`,
                     es: `La Recepción De La Solicitud/Petición Número`,
                     de: `Antrag Eingang/Petition Nummer`,
                     it: `Ricevuta Della Domanda/Petizione Numero`,
                 },
                 extra: {
                     en: `If you are applying for a petition-based visa, your application receipt/petition number was given to you by the Department of Homeland Security’s U. S. Citizenship and Immigration Services (USCIS) after you filed your petition application at a USCIS Service Center. The application receipt/petition number is 13 characters long and the first three characters are letters.`,
-                    fr: `Si vous postulez pour une pétition à base de visa, votre récépissé de demande/requête numéro vous a été donnée par le Ministère de la Sécurité intérieure de l'U. S. Citizenship and Immigration Services (USCIS) après la remise de votre pétition demande à un Centre de Service USCIS. La réception de la demande/requête numéro est de 13 caractères et les trois premiers caractères sont des lettres.`,
+                    fr: `Si vous postulez pour une pétition de visa, votre Récépissé de Demande/Numéro de Pétition vous a été donnée par le Ministère de la Sécurité intérieure de l'U. S. Citizenship and Immigration Services (USCIS). Ce Récépicé est composé de 13 caractères et les trois premiers caractères sont des lettres.`,
                     es: `Si usted está solicitando una petición de visa, su aplicación recibo/número de la petición les fue dado por el Departamento de Seguridad Nacional de estados unidos (U. S. Citizenship and Immigration Services (USCIS) después de haber presentado su petición de la solicitud en un Centro de Servicio de USCIS. La recepción de la solicitud/petición número es de 13 caracteres y los tres primeros caracteres son letras.`,
                     de: `Wenn Sie sich bewerben für eine petition-basierten visa, Ihre Anwendung Erhalt/petition Nummer gegeben wurde durch das Department of Homeland Security U. S. Citizenship and Immigration Services (USCIS) nach der Einreichung Ihrer petition Anwendung in einem USCIS Service-Center. Der Antrag Eingang/petition-Nummer ist 13 Zeichen lang und die ersten drei Zeichen sind Buchstaben.`,
                     it: `Se si sta applicando per una petizione a base di visto, ricevuta della domanda/petizione numero è stato dato a voi dal Dipartimento di Homeland Security degli stati uniti Cittadinanza e Servizi Immigrazione (USCIS) dopo aver archiviato la vostra applicazione petizione presso un Centro di Servizio di USCIS. La ricevuta della domanda/petizione numero è di 13 caratteri, di cui i primi tre caratteri sono lettere.`,
@@ -633,14 +633,14 @@ const resources = {
         },
         section_title_2: {
             en: `US Travel Information`,
-            fr: `NOUS Informations de Voyage`,
+            fr: `Informations de Voyage aux États-Unis`,
             es: `NOSOTROS Información de Viaje`,
             de: `US-Reise-Informationen`,
             it: `NOI di Informazioni di Viaggio`,
         },
         section_descr_2: {
             en: `Give details of the address where you will stay in the US. The address may be that of a hotel or private residence.`,
-            fr: `Donner les détails de l'adresse où vous pourrez séjourner aux états-unis. L'adresse peut être celle d'un hôtel ou une résidence privée.`,
+            fr: `Donner les détails de l'adresse où vous pourrez séjourner aux États-Unis. L'adresse peut être celle d'un hôtel ou d'une résidence privée.`,
             es: `Dar los datos de la dirección donde va a permanecer en los estados unidos. La dirección puede ser la de un hotel o residencia privada.`,
             de: `Geben Sie die details der Adresse, wo Sie in den USA bleiben. Die Adresse kann sein, dass der ein hotel oder privater Wohnsitz.`,
             it: `Dare i dettagli dell'indirizzo a cui si desidera soggiornare negli stati UNITI. L'indirizzo può essere quella di un hotel o residenza privata.`,
@@ -649,7 +649,7 @@ const resources = {
             date_of_arrival: {
                 label: {
                     en: `Intended date of arrival in the USA`,
-                    fr: `Date d'arrivée prévue dans le états-unis`,
+                    fr: `Date d'arrivée prévue aux États-Unis`,
                     es: `La intención de la fecha de llegada a los estados UNIDOS`,
                     de: `Geplantes Ankunftsdatum in den USA`,
                     it: `Data di arrivo negli USA`,
@@ -659,14 +659,14 @@ const resources = {
                 length: {
                     label: {
                         en: `Intended Length of Stay in the USA`,
-                        fr: `Durée de Séjour dans les états-unis`,
+                        fr: `Durée de Séjour aux États-Unis`,
                         es: `La intención de la Duración de la Estancia en los estados UNIDOS`,
                         de: `Beabsichtigte Dauer des Aufenthalts in den USA`,
                         it: `Prevista Durata di Soggiorno negli USA`,
                     },
                     extra: {
                         en: `Enter the Number of Day(s), Week(s), Month(s), Year(s) ONLY THE NUMBER.`,
-                        fr: `Entrez le Nombre de Jour(s), Semaine(s), Mois(s), Année(s) SEULEMENT LE NOMBRE.`,
+                        fr: `Entrez le Nombre de Jour(s), Semaine(s), Mois(s), Année(s) UNIQUEMENT LE NOMBRE.`,
                         es: `Introduzca el Número de Día(s) Semana(s), Mes(es), Año(s) SÓLO EL NÚMERO.`,
                         de: `Geben Sie die Anzahl Tag(en) Woche(N), Monat(E) Jahr(E) NUR DIE ANZAHL.`,
                         it: `Immettere il Numero di Giorni, settimane, Mesi, anni) SOLO IL NUMERO.`,
@@ -686,21 +686,21 @@ const resources = {
         address_you_will_stay: {
             label: {
                 en: `Address Where You Will Stay in the U.S.`,
-                fr: `Adresse Où Vous pourrez Séjourner aux états-UNIS`,
+                fr: `Adresse où vous pourrez séjourner aux États-Unis`,
                 es: `La dirección Donde podrá Permanecer en los estados UNIDOS`,
                 de: `Adresse, Wo Sie in den USA Bleiben`,
                 it: `Indirizzo a Cui Si desidera Stare negli USA`,
             },
             street_addr1: {
                 en: `Street Address`,
-                fr: `L'Adresse De La Rue`,
+                fr: `Adresse`,
                 es: `Dirección De La Calle`,
                 de: `Anschrift`,
                 it: `Indirizzo`,
             },
             street_addr2: {
                 en: `Address Line 2 (Optional)`,
-                fr: `La Ligne D'Adresse 2 (Facultatif)`,
+                fr: `Adresse Ligne 2 (Facultatif)`,
                 es: `La Dirección De La Línea 2 (Opcional)`,
                 de: `Adresse Zeile 2 (Optional)`,
                 it: `Indirizzo 2 (Opzionale)`,
@@ -730,7 +730,7 @@ const resources = {
         paying_person_for_trip: {
             label: {
                 en: `Person/Entity Paying for Your Trip`,
-                fr: `Personne ou de l'Entité Paiement de Votre Voyage`,
+                fr: `Personne ou Entité qui paye votre voyage`,
                 es: `Persona/Entidad a Pagar por Tu Viaje`,
                 de: `Person/Entität, die Bezahlung Ihrer Reise`,
                 it: `Persona/Entità di Pagare per il Vostro Viaggio`,
@@ -738,7 +738,7 @@ const resources = {
         },
         section_title_financial_support: {
             en: `Financial support for your trip`,
-            fr: `Un soutien financier pour votre voyage`,
+            fr: `Soutien financier pour votre voyage`,
             es: `Apoyo financiero para tu viaje`,
             de: `Finanzielle Unterstützung für Ihre Reise`,
             it: `Il sostegno finanziario per il vostro viaggio`,
@@ -747,7 +747,7 @@ const resources = {
             surname: {
                 label: {
                     en: `Surnames of Person Paying for Trip`,
-                    fr: `Les noms de Personne de Payer pour Voyage`,
+                    fr: `Nom de la Personne qui paye votre voyage`,
                     es: `Los apellidos de la Persona que Paga por Viaje`,
                     de: `Die Familiennamen der Person, die die Zahlung für die Reise`,
                     it: `Cognome della Persona che ha pagato per il Viaggio`,
@@ -763,7 +763,7 @@ const resources = {
             given_name: {
                 label: {
                     en: `Given Names of Person Paying for Trip`,
-                    fr: `Les Noms de Personne de Payer pour Voyage`,
+                    fr: `Prénoms de la Personne qui paye votre voyage`,
                     es: `Nombre de la Persona que Paga por Viaje`,
                     de: `Die Namen der Zahlenden Person für die Reise`,
                     it: `Nomi di Persona che ha pagato per il Viaggio`,
@@ -779,7 +779,7 @@ const resources = {
             tel_number: {
                 label: {
                     en: `Phone number of person paying for your trip`,
-                    fr: `Numéro de téléphone de la personne de payer pour votre voyage`,
+                    fr: `Numéro de téléphone de la personne qui paye votre voyage`,
                     es: `Número de teléfono de la persona que paga para tu viaje`,
                     de: `Telefon-Nummer der person, die die Zahlung für Ihre Reise`,
                     it: `Il numero di telefono della persona che ha pagato per il tuo viaggio`,
@@ -788,14 +788,14 @@ const resources = {
             email: {
                 label: {
                     en: `Email of person paying for your trip`,
-                    fr: `E-mail de la personne de payer pour votre voyage`,
+                    fr: `E-mail de la personne qui paye votre voyage`,
                     es: `Correo electrónico de la persona que paga para tu viaje`,
                     de: `E-Mail der person, die die Zahlung für Ihre Reise`,
                     it: `E-mail della persona a pagare per il vostro viaggio`,
                 },
                 extra: {
                     en: `Leave blank if does not apply`,
-                    fr: `Laissez vide si elle ne s'applique pas`,
+                    fr: `Laissez vide si ça s'applique pas`,
                     es: `Dejar en blanco si no se aplica`,
                     de: `Leer lassen, wenn nicht anwendbar`,
                     it: `Lasciare vuoto se non si applica`,
@@ -804,7 +804,7 @@ const resources = {
             relationship: {
                 label: {
                     en: `Relationship to You`,
-                    fr: `Relation pour Vous`,
+                    fr: `Relation`,
                     es: `Relación para que Usted`,
                     de: `Beziehung zu Ihnen`,
                     it: `Rapporto di parentela`,
@@ -813,7 +813,7 @@ const resources = {
             b_same_address: {
                 label: {
                     en: `Is the address of the party paying for your trip the same as your Home or Mailing Address?`,
-                    fr: `L'adresse de la partie à payer votre voyage le même que votre Maison ou votre Adresse Postale?`,
+                    fr: `L'adresse de la partie qui paye votre voyage est-elle la même que votre Habitation ou votre Adresse Postale?`,
                     es: `Es la dirección de la parte que pagar por su viaje en el mismo, como su Dirección de Correo o Casa?`,
                     de: `Die Adresse der Partei die Bezahlung Ihrer Reise die gleiche wie Ihre Haus-oder Postanschrift?`,
                     it: `È l'indirizzo del partito di pagare per il vostro viaggio stesso come la vostra Casa o l'Indirizzo?`,
@@ -822,7 +822,7 @@ const resources = {
             address: {
                 company: {
                     en: `Address of Company/Organization Paying`,
-                    fr: `Adresse de l'Entreprise/Organisation Payer`,
+                    fr: `Adresse de l'Entreprise/Organisation qui paye votre voyage`,
                     es: `La dirección de la Empresa/Organización Pagando`,
                     de: `Adresse der Firma/Organisation Zahlen`,
                     it: `Indirizzo dell'Azienda/Organizzazione Pagare`,
@@ -840,7 +840,7 @@ const resources = {
             name: {
                 label: {
                     en: `Name of Company/Organization Paying for Trip`,
-                    fr: `Nom de l'Entreprise/Organisation Payer pour le Voyage`,
+                    fr: `Nom de l'Entreprise/Organisation qui paye votre voyage`,
                     es: `Nombre de la Empresa/Organización de Pagar por el Viaje`,
                     de: `Name des Unternehmens/der Organisation die Zahlung für die Reise`,
                     it: `Il nome dell'Azienda/Organizzazione Pagare per il Viaggio`,
@@ -858,7 +858,7 @@ const resources = {
             relationship: {
                 label: {
                     en: `Relationship to You`,
-                    fr: `Relation pour Vous`,
+                    fr: `Relation`,
                     es: `Relación para que Usted`,
                     de: `Beziehung zu Ihnen`,
                     it: `Rapporto di parentela`,
@@ -886,7 +886,7 @@ const resources = {
         b_part_of_group: {
             label: {
                 en: `Are you traveling as part of a group or organization?`,
-                fr: `Vous voyagez dans le cadre d'un groupe ou d'une organisation?`,
+                fr: `Voyagez vous dans le cadre d'un groupe ou d'une organisation?`,
                 es: `Viaja como parte de un grupo u organización?`,
                 de: `Sie Reisen als Teil einer Gruppe oder Organisation?`,
                 it: `Viaggi come parte di un gruppo o di un'organizzazione?`,
@@ -895,7 +895,7 @@ const resources = {
         company: {
             label: {
                 en: `Name of group or organisation if traveling as part of a group or organization`,
-                fr: `Le nom du groupe ou de l'organisation si vous faites partie d'un groupe ou d'une organisation`,
+                fr: `Indiquez le nom du groupe ou de l'organisation si vous faites partie d'un groupe ou d'une organisation`,
                 es: `El nombre del grupo o de la organización en caso de que viaje como parte de un grupo u organización`,
                 de: `Name der Gruppe oder organisation, wenn das Reisen als Teil einer Gruppe oder Organisation`,
                 it: `Il nome del gruppo o dell'organizzazione se si viaggia come parte di un gruppo o di un'organizzazione`,
@@ -914,7 +914,7 @@ const resources = {
     previous_travel: {
         section_title: {
             en: `Previous US Travel`,
-            fr: `Les Voyages`,
+            fr: `Les Précédents Voyages aux États-Unis`,
             es: `Anterior Viajar a los EE.UU.`,
             de: `Frühere Reisen in die USA`,
             it: `Precedenti Viaggi negli stati UNITI`,
@@ -922,14 +922,14 @@ const resources = {
         b_ever_been_in_US: {
             label: {
                 en: `Have you ever been to the US before?`,
-                fr: `Avez-vous déjà été aux etats-unis avant?`,
+                fr: `Avez-vous déjà été aux États-Unis?`,
                 es: `Ha sido usted alguna vez a los estados unidos antes?`,
                 de: `Haben Sie schon einmal in den USA vor?`,
                 it: `Sei mai stato a prima?`,
             },
             extra: {
                 en: `Check if you have been in the US before and fill out the details of your last 5 visits below`,
-                fr: `Vérifiez si vous avez été aux états-unis avant et remplissez les détails de vos 5 dernières visites ci-dessous`,
+                fr: `Cochez la case si vous avez été aux États-Unis et fournissez le détail de vos 5 dernières visites ci-dessous`,
                 es: `Compruebe si usted ha estado en los estados unidos antes y rellene los detalles de sus últimas 5 visitas a continuación`,
                 de: `Prüfen Sie, ob Sie in den USA vor und füllen Sie die details Ihrer letzten 5 Besuche unten`,
                 it: `Controllare se vi sono stati negli stati UNITI, prima e compilare i dettagli del tuo ultimo 5 visite al di sotto`,
@@ -947,7 +947,7 @@ const resources = {
         b_ever_hold_Driver_License: {
             label: {
                 en: `Do you or did you ever hold a U.S. Driver’s License?`,
-                fr: `Avez-vous ou avez-vous déjà détenir un permis de conduire AMÉRICAIN?`,
+                fr: `Avez-vous actuellement ou dans le passé détenu un permis de conduire Américain?`,
                 es: `¿O ¿alguna vez mantener una Licencia de conducir de EE.UU.?`,
                 de: `Haben Sie oder haben Sie jemals ein US-Führerschein?`,
                 it: `Avete o avete mai tenere un AMERICANO patente di guida?`,
@@ -957,14 +957,14 @@ const resources = {
             number: {
                 label: {
                     en: `Driver's License number`,
-                    fr: `Numéro de permis de conduire`,
+                    fr: `Numéro du permis de conduire`,
                     es: `Número de Licencia de conducir`,
                     de: `Führerschein-Nummer`,
                     it: `Numero di patente di guida`,
                 },
                 extra: {
                     en: `Leave it blank if you do not know`,
-                    fr: `Laisser vide si vous ne connaissez pas`,
+                    fr: `Laisser vide si vous ne savez pas`,
                     es: `Deje en blanco si no sabe`,
                     de: `Lassen Sie es leer, wenn Sie nicht wissen,`,
                     it: `Lasciare vuoto se non si conosce`,
@@ -973,7 +973,7 @@ const resources = {
             state: {
                 label: {
                     en: `State of Driver's License`,
-                    fr: `L'état du permis de conduire`,
+                    fr: `L'État ayant fourni le permis de conduire`,
                     es: `Estado de la Licencia de conducir`,
                     de: `Zustand der Führerschein`,
                     it: `Stato di patente di guida`,
@@ -983,7 +983,7 @@ const resources = {
         b_ever_been_issued_US_Visa: {
             label: {
                 en: `Have you ever been issued a US visa?`,
-                fr: `Avez-vous déjà été délivré un visa AMÉRICAIN?`,
+                fr: `Avez-vous déjà obtenu un visa Américain?`,
                 es: `¿Alguna vez has sido expedido un visado?`,
                 de: `Haben Sie jemals ausgestellt wurde ein US-Visum?`,
                 it: `Sei mai stato rilasciato un visto di ingresso?`,
@@ -993,7 +993,7 @@ const resources = {
             date: {
                 label: {
                     en: `Date Last Visa Was Issued`,
-                    fr: `La Dernière Date À Laquelle Le Visa A Été Délivré`,
+                    fr: `La dernière Date à laquelle le Visa a été délivré`,
                     es: `Fecha De La Última Visa Fue Emitida`,
                     de: `Datum Letzte Visum Ausgestellt Wurde`,
                     it: `Data Ultimo Visto È Stato Rilasciato`,
@@ -1002,14 +1002,14 @@ const resources = {
             number: {
                 label: {
                     en: `Visa Number`,
-                    fr: `Numéro De Visa`,
+                    fr: `Numéro Du Visa`,
                     es: `Número De Visa`,
                     de: `Visa Nummer`,
                     it: `Numero Di Visto`,
                 },
                 extra: {
                     en: `Enter the 8-digit number that is displayed in red on the lower right hand side of your visa. If your previous visa was a Border Crossing Card enter the last 12-digit number of the first line of the machine readable zone. Leave blank if you do not know`,
-                    fr: `Entrez le numéro à 8 chiffres qui s'affiche en rouge sur le côté droit inférieur de votre visa. Si votre visa précédent était de Passage à la Frontière de la Carte entrée dans le dernier numéro à 12 chiffres de la première ligne de la zone de lecture automatique. Laissez vide si vous ne connaissez pas`,
+                    fr: `Entrez le numéro à 8 chiffres qui s'affiche en rouge sur le côté droit inférieur de votre visa. Si votre visa précédent était une carte de Passage à la Frontière, entrez le dernier numéro à 12 chiffres de la première ligne de la zone de lecture automatique. Laissez vide si vous ne savez pas`,
                     es: `Introduzca los 8 dígitos del número que se muestra en rojo en el lado inferior derecho de su visa. Si su visa anterior era una Tarjeta para Cruzar la Frontera entre el último número de 12 dígitos de la primera línea de la zona legible por máquina. Dejar en blanco si no sabe`,
                     de: `Geben Sie die 8-stellige Nummer, die wird in rot angezeigt, auf der unteren rechten Seite Ihres Visums. Wenn Ihr den vorherigen visa war ein Grenzübergang-Karte geben Sie die letzten 12-stellige Nummer der ersten Zeile der maschinenlesbaren zone. Lassen Sie das Feld leer, wenn Sie nicht wissen,`,
                     it: `Immettere il numero di 8 cifre che viene visualizzato in rosso in basso a destra del vostro visto. Se il precedente visto è stato un valico di Frontiera di Carta di inserire l'ultimo numero a 12 cifre della prima linea della zona a lettura automatica. Lasciare vuoto se non si conosce`,
@@ -1027,7 +1027,7 @@ const resources = {
             b_same_cntry_visa: {
                 label: {
                     en: `Are you applying in the same country or location where the visa above was issued, and is this country or location your place of principal of residence?`,
-                    fr: `Appliquez-vous dans le même pays ou à l'emplacement de visa ci-dessus a été publié, et est de ce pays ou de l'emplacement de votre lieu principal de résidence?`,
+                    fr: `Appliquez-vous dans le même pays où le visa ci-dessus a été obtenu, et est ce que ce pays est votre lieu principal de résidence?`,
                     es: `Se va a solicitar en el mismo país o ubicación donde la visa anterior fue emitido, y es a este país o ubicación de su lugar principal de residencia?`,
                     de: `Bewerben Sie sich im selben Land oder Ort, wo das Visum war ausgestellt, und ist in diesem Land oder Ort Ihr Ort der Rektor der Residenz?`,
                     it: `Sono applicate nello stesso paese o luogo in cui il visto di cui sopra è stato rilasciato, ed è questo il paese o il luogo per il luogo principale di residenza?`,
@@ -1036,7 +1036,7 @@ const resources = {
             b_been_ten_printed: {
                 label: {
                     en: `Have you been ten-printed?`,
-                    fr: `Avez-vous été à dix-imprimé?`,
+                    fr: `Avez vous fait un relevé d'empreintes?`,
                     es: `Han sido diez-impreso?`,
                     de: `Haben Sie schon zehn-gedruckt?`,
                     it: `Sei stato a dieci stampato?`,
@@ -1045,7 +1045,7 @@ const resources = {
             b_ever_been_lost: {
                 label: {
                     en: `Has your US Visa ever been lost or stolen?`,
-                    fr: `A votre Visa AMÉRICAIN jamais été perdu ou volé?`,
+                    fr: `Votre Visa a-t-il été perdu ou volé?`,
                     es: `Tiene su Visa de EE.UU. nunca ha perdido o robado?`,
                     de: `Hat Ihr US-Visum jemals verloren geht oder gestohlen wird?`,
                     it: `Ha il Visto mai stato perso o rubato?`,
@@ -1055,7 +1055,7 @@ const resources = {
                 year: {
                     label: {
                         en: `Which Year`,
-                        fr: `De Quelle Année`,
+                        fr: `En quelle Année`,
                         es: `Que Año`,
                         de: `Das Jahr`,
                         it: `Che Anno`,
@@ -1084,7 +1084,7 @@ const resources = {
         b_ever_been_refused_US_Visa: {
             label: {
                 en: `Have you ever been refused a US Visa, or been refused admission to the United States, or withdrawn your application for admission at the port of entry?`,
-                fr: `Avez-vous déjà refusé un Visa, ou vu refuser l'admission aux États-unis, ou retiré votre demande d'admission au port d'entrée?`,
+                fr: `Vous a-t-on déjà refusé un Visa, ou refuser l'admission aux États-unis, ou retirer votre demande d'admission au port d'entrée?`,
                 es: `¿Alguna vez has sido negado una Visa, o que ha sido denegada la admisión a los Estados unidos, o retirado su solicitud de admisión en el puerto de entrada?`,
                 de: `Haben Sie schon einmal weigerte sich ein US-Visum, oder wurde verweigert Einreise in die Vereinigten Staaten oder Ihre Bewerbung zurückgezogen, die für die Zulassung bei der Einreise?`,
                 it: `Sei mai stato rifiutato un Visto di ingresso o stato negato l'ingresso negli Stati Uniti, o ritirato il ricorso per l'ammissione alla porta di ingresso?`,
@@ -1093,7 +1093,7 @@ const resources = {
         b_ever_been_denied_travel_auth: {
             label: {
                 en: `Have you ever been denied travel authorization by the Department of Homeland Security through the Electronic System fo Travel Authorization (ESTA)?`,
-                fr: `Avez-vous déjà été refusé une autorisation de voyage par le Ministère de la Sécurité intérieure par le biais du Système Électronique d'fo Autorisation de Voyage (ESTA)?`,
+                fr: `AVous a-t-on déjà refusé une autorisation de voyage par le Ministère de la Sécurité intérieure par le biais du Système Électronique d'Autorisation de Voyage (ESTA)?`,
                 es: `¿Alguna vez has sido negada la autorización de viajes por el Departamento de Seguridad Nacional a través del Sistema Electrónico de las fo de la Autorización de Viaje (ESTA)?`,
                 de: `Haben Sie schon einmal die Reise verwehrt Genehmigung durch das Department of Homeland Security über das Elektronische System fo Travel Authorization (ESTA)?`,
                 it: `Sei mai stato negato l'autorizzazione al viaggio da parte del Dipartimento di Homeland Security, attraverso il Sistema Elettronico fo l'Autorizzazione al Viaggio (ESTA)?`,
@@ -1102,7 +1102,7 @@ const resources = {
         b_petition: {
             label: {
                 en: `Has anyone ever filled an immigrant petition on your behalf with the US Citizenship and Immigration Services?`,
-                fr: `Quelqu'un a rempli une pétition immigrant en votre nom avec les états-unis Citizenship and Immigration Services?`,
+                fr: `Quelqu'un a-t-il rempli une pétition d'immigrant en votre nom avec le service d'Immigration des États-Unis?`,
                 es: `¿Alguien ha llenado una petición de inmigrante en su nombre con la Ciudadanía de los EE.UU. y Servicios de Inmigración?`,
                 de: `Hat jemand schon gefüllt, ein immigrant petition in Ihrem Namen mit dem US Citizenship and Immigration Services?`,
                 it: `Qualcuno ha mai compilato una petizione immigrati sul tuo conto con gli stati UNITI Cittadinanza e Servizi Immigrazione?`,
@@ -1112,7 +1112,7 @@ const resources = {
     address_and_phone: {
         section_title: {
             en: `Applicant Contact Information`,
-            fr: `Demandeur Les Informations De Contact`,
+            fr: `Informations de l'Applicant`,
             es: `Información De Contacto Del Solicitante`,
             de: `Bewerber-Kontakt-Informationen`,
             it: `Richiedente Le Informazioni Di Contatto`,
@@ -1120,7 +1120,7 @@ const resources = {
         home_addr: {
             label: {
                 en: `Applicant Home Address`,
-                fr: `Le Demandeur Adresse À La Maison`,
+                fr: `Adresse de résidence de l'Applicant`,
                 es: `Solicitante Domicilio`,
                 de: `Antragsteller Anschrift`,
                 it: `Richiedente Indirizzo Di Casa`,
@@ -1139,14 +1139,14 @@ const resources = {
             mobile: {
                 label: {
                     en: `Secondary Phone number`,
-                    fr: `Secondaire numéro de Téléphone`,
+                    fr: `Numéro de Téléphone Secondaire`,
                     es: `Secundaria número de Teléfono`,
                     de: `Sekundäre Telefonnummer`,
                     it: `Secondaria numero di Telefono`,
                 },
                 extra: {
                     en: `Leave blank if you do not have a secondary phone number.`,
-                    fr: `Laissez vide si vous n'avez pas de secondaire numéro de téléphone.`,
+                    fr: `Laissez vide si vous n'avez pas de numéro de téléphone secondaire.`,
                     es: `Deje en blanco si no tiene un segundo número de teléfono.`,
                     de: `Lassen Sie das Feld leer, wenn Sie nicht über eine sekundäre Telefonnummer ein.`,
                     it: `Lasciare vuoto se non si dispone di un secondario numero di telefono.`,
@@ -1155,7 +1155,7 @@ const resources = {
             work: {
                 label: {
                     en: `Work Phone number`,
-                    fr: `Numéro de Téléphone au travail`,
+                    fr: `Numéro de téléphone du travail`,
                     es: `Número de Teléfono del trabajo`,
                     de: `Telefon-Nummer`,
                     it: `Numero di Telefono dell'ufficio`,
@@ -1179,7 +1179,7 @@ const resources = {
             },
             extra: {
                 en: `Please enter a valid email address. It will be used to contact you about your application.`,
-                fr: `Veuillez entrer une adresse email valide. Il sera utilisé pour vous contacter à propos de votre demande.`,
+                fr: `Veuillez entrer une adresse email valide. Elle sera utilisée pour vous contacter à propos de votre demande.`,
                 es: `Por favor, introduzca una dirección válida de correo electrónico. Será utilizada para contactar con usted acerca de su aplicación.`,
                 de: `Bitte geben Sie eine gültige E-Mail-Adresse. Es wird verwendet, um Kontakt mit Ihnen über Ihre Anwendung.`,
                 it: `Si prega di inserire un indirizzo email valido. Saranno utilizzati per contattare l'utente circa la vostra applicazione.`,
@@ -1224,7 +1224,7 @@ const resources = {
         b_additional_emails: {
             label: {
                 en: `Have you used any other email addresses in the last five years?`,
-                fr: `Avez-vous utilisé d'autres adresses de courriel dans les cinq dernières années?`,
+                fr: `Avez-vous utilisé d'autres adresses e-mail dans les cinq dernières années?`,
                 es: `Han utilizado otras direcciones de correo electrónico en los últimos cinco años?`,
                 de: `Haben Sie eine andere E-Mail-Adressen in den letzten fünf Jahren?`,
                 it: `Hai usato altri indirizzi email negli ultimi cinque anni?`,
@@ -1268,14 +1268,14 @@ const resources = {
         },
         section_title_social_media: {
             en: `Social Media`,
-            fr: `Les Médias Sociaux`,
+            fr: `Médias Sociaux`,
             es: `Medios De Comunicación Social`,
             de: `Social Media`,
             it: `Social Media`,
         },
         section_descr_social_media: {
             en: `Do you have a social media presence? Select from the list below each social media platform you have used within the last five years. In the space next to the platform’s name, enter the username or handle you have used on that platform. Please do not provide your passwords. If you have used more than one platform or more than one username or handle on a single platform, click the 'Add Another' button to list each one separately. If you have not used any of the listed social media platforms in the last five years, select 'None.'`,
-            fr: `Avez-vous une présence sur les médias sociaux? Sélectionnez à partir de la liste ci-dessous chaque plateforme de média social vous avez utilisé au cours des cinq dernières années. Dans l'espace à côté de la plate-forme du nom, entrez le nom d'utilisateur ou de la poignée vous avez utilisé sur cette plate-forme. S'il vous plaît ne donnez pas votre mot de passe. Si vous avez utilisé plus d'une plate-forme ou plus d'un nom d'utilisateur ou une poignée sur une seule plate-forme, cliquez sur " Ajouter un Autre bouton de liste chacun d'eux séparément. Si vous n'avez pas utilisé tout de la liste de plateformes de médias sociaux au cours des cinq dernières années, sélectionnez "None".`,
+            fr: `Avez-vous une présence sur les réseaux sociaux? Sélectionnez dans la liste ci-dessous chaque plateforme de médias sociaux que vous avez utilisée au cours des cinq dernières années. Dans l'espace à côté du nom de la plateforme, entrez le nom d'utilisateur ou le pseudonyme que vous avez utilisé sur cette plateforme. Veuillez ne pas fournir vos mots de passe. Si vous avez utilisé plusieurs plates-formes ou plusieurs noms d'utilisateur ou identifiants sur une seule plate-forme, cliquez sur le bouton «Ajouter un autre» pour les répertorier séparément. Si vous n'avez utilisé aucune des plateformes de réseaux sociaux répertoriées au cours des cinq dernières années, sélectionnez «NONE».`,
             es: `¿Usted tiene una presencia en los medios sociales? Seleccione de la lista debajo de cada plataforma de medios sociales que se han utilizado en los últimos cinco años. En el espacio junto a la plataforma del nombre, introduzca el nombre de usuario o identificador se han utilizado en la plataforma. Por favor, no proporcionar sus contraseñas. Si usted ha utilizado más de una plataforma, o más de un nombre de usuario o identificador en una sola plataforma, haga clic en "Agregar Otro" botón de lista de cada uno de ellos por separado. Si usted no ha usado alguna de las plataformas de medios sociales en los últimos cinco años, seleccione " Ninguno.'`,
             de: `Haben Sie eine social-media-Präsenz? Wählen Sie aus der Liste unten jede social media-Plattform, die Sie verwendet haben innerhalb der letzten fünf Jahre. In dem Raum neben der Plattform-name, geben Sie den Benutzernamen oder einen Griff, den Sie benutzt haben auf, der Plattform. Bitte nicht bieten Sie Ihre Passwörter. Wenn Sie verwendet haben, mehr als eine Plattform oder mehr als einen Benutzernamen oder einen Handgriff auf einer einzigen Plattform klicken Sie bitte auf "Weitere Hinzufügen" - Taste, um die Liste jeweils separat. Wenn Sie eine der aufgeführten social-media-Plattformen in den letzten fünf Jahren, wählen Sie "None".`,
             it: `Hai una presenza sui social media? Selezionare dall'elenco di seguito ogni piattaforma di social media si sono utilizzati negli ultimi cinque anni. Nello spazio accanto alla piattaforma del nome, immettere il nome utente o la maniglia di aver usato su quella piattaforma. Si prega di non fornire la tua password. Se hai utilizzato più di una piattaforma o di più di un nome utente o gestire su un'unica piattaforma, fare clic su " Aggiungi un Altro pulsante per elencare separatamente. Se non hai usato nessuna delle seguenti piattaforme di social media negli ultimi cinque anni, selezionare 'Nessuno.'`,
@@ -1299,7 +1299,7 @@ const resources = {
             },
             extra: {
                 en: `Please provide the name of the platform and the associated unique social media identifier (username or handle) for each social media platform you would like to list. This does not include private messaging on person-to-person messaging services, such as WhatsApp.`,
-                fr: `Veuillez fournir le nom de la plate-forme et de l'associé unique de la social media identifiant (nom d'utilisateur ou de la poignée) pour chaque plateforme de média social vous souhaitez à la liste. Cela ne comprend pas la messagerie privée de la personne-à-personne, des services de messagerie comme WhatsApp.`,
+                fr: `Veuillez fournir le nom de la plate-forme et de l'identifiant (nom d'utilisateur ou pseudonyme) pour chaque plateforme de média social vous souhaitez à la liste. Cela ne comprend pas la messagerie privée de la personne-à-personne, des services de messagerie tel que WhatsApp.`,
                 es: `Por favor, proporcione el nombre de la plataforma y los únicos asociados social media identificador (nombre de usuario o identificador) para cada plataforma de medios sociales que usted desea a la lista. Esto no incluye la mensajería privada en persona-a-persona, servicios de mensajería, como WhatsApp.`,
                 de: `Bitte geben Sie den Namen der Plattform und die damit verbundene einzigartige social media-id (Benutzername oder Griff) für jede social media-Plattform, die Sie möchten, zur Liste. Dies beinhaltet nicht die privaten Nachrichten über die person-to-person-messaging-Dienste wie WhatsApp.`,
                 it: `Si prega di fornire il nome della piattaforma e associati unico social media identificativo (username o manico) per ogni piattaforma di social media che si desidera elenco. Questo non include la messaggistica privata della persona-a-persona servizi di messaggistica come WhatsApp.`,
@@ -1318,7 +1318,7 @@ const resources = {
     passport: {
         section_title: {
             en: `Passport Information`,
-            fr: `Les Renseignements Sur Le Passeport`,
+            fr: `Renseignements sur le Passeport`,
             es: `Información Del Pasaporte`,
             de: `Passport-Informationen`,
             it: `Le Informazioni Del Passaporto`,
@@ -1326,7 +1326,7 @@ const resources = {
         doc_type: {
             label: {
                 en: `Passport/Travel Document Type`,
-                fr: `Passeport Ou Document De Voyage De Type`,
+                fr: `Type de Passeport Ou Document De Voyage`,
                 es: `Pasaporte/Documento De Viaje Tipo`,
                 de: `Passport/Travel Document Art`,
                 it: `Passaporto/Documento Di Viaggio Tipo`,
@@ -1344,7 +1344,7 @@ const resources = {
         doc_number: {
             label: {
                 en: `Passport/Travel Document Number`,
-                fr: `Passeport/Numéro Du Document De Voyage`,
+                fr: `Numéro du Passeport/Document De Voyage`,
                 es: `Pasaporte/Documento De Viaje Número De`,
                 de: `Passport/Travel Document Number`,
                 it: `Passaporto/Documento Di Viaggio In Numero`,
@@ -1353,14 +1353,14 @@ const resources = {
         book_number: {
             label: {
                 en: `Passport Book Number`,
-                fr: `Livre De Passeport Nombre`,
+                fr: `Numéro du Livret`,
                 es: `Libro De Pasaporte Número`,
                 de: `Passport Book Number`,
                 it: `Libro Passaporto Numero`,
             },
             extra: {
                 en: `Leave blank if does not apply`,
-                fr: `Laissez vide si elle ne s'applique pas`,
+                fr: `Laissez vide si ça ne s'applique pas`,
                 es: `Dejar en blanco si no se aplica`,
                 de: `Leer lassen, wenn nicht anwendbar`,
                 it: `Lasciare vuoto se non si applica`,
@@ -1369,7 +1369,7 @@ const resources = {
         doc_authority: {
             label: {
                 en: `Country/Authority that Issued Passport/Travel Document`,
-                fr: `Pays/de l'Autorité qui a Délivré le Passeport ou Document de Voyage`,
+                fr: `Pays/de l'Autorité qui a délivré le Passeport ou Document de Voyage`,
                 es: `País o de la Autoridad que Emitió el Pasaporte/Documento de Viaje`,
                 de: `Land/Behörde Ausgestellten Reisepass/Reisedokument`,
                 it: `Paese/Autorità che ha Emesso il Passaporto/Documento di Viaggio`,
@@ -1378,7 +1378,7 @@ const resources = {
         issued_location: {
             city: {
                 en: `City of Issue`,
-                fr: `Ville de Problème`,
+                fr: `Ville de délivrance`,
                 es: `La ciudad de Problema`,
                 de: `Stadt-Problem`,
                 it: `Città di Edizione`,
@@ -1401,7 +1401,7 @@ const resources = {
         issuance_date: {
             label: {
                 en: `Issuance Date`,
-                fr: `Date De Délivrance De La`,
+                fr: `Date de Délivrance`,
                 es: `Fecha De Emisión De La`,
                 de: `Ausstellungsdatum`,
                 it: `Data Di Emissione`,
@@ -1426,7 +1426,7 @@ const resources = {
         b_ever_lost_passport: {
             label: {
                 en: `Have you ever lost a passport or had one stolen?`,
-                fr: `Avez-vous déjà perdu un passeport ou avait une volée?`,
+                fr: `Avez-vous déjà perdu un passeport ou vous l'a-t-on volé?`,
                 es: `¿Alguna vez has perdido un pasaporte o había una robado?`,
                 de: `Haben Sie schon einmal verloren, ein Pass oder hatte man gestohlen?`,
                 it: `Hai mai perso un passaporto o aveva rubato uno?`,
@@ -1434,7 +1434,7 @@ const resources = {
         },
         section_title_lost_passport: {
             en: `Lost or Stolen Passport Information`,
-            fr: `Passeport perdu ou Volé de l'Information`,
+            fr: `Information du Passeport perdu ou volé`,
             es: `Pasaporte perdido o Robado Información`,
             de: `Verlorene oder Gestohlene Reisepass Informationen`,
             it: `Smarrimento o Furto del Passaporto Informazioni`,
@@ -1452,21 +1452,21 @@ const resources = {
     contact: {
         section_title: {
             en: `US Point of contact`,
-            fr: `NOUS Point de contact`,
+            fr: `Point de contact aux États-Unis`,
             es: `Punto de contacto`,
             de: `UNS Ansprechpartner`,
             it: `Punto di contatto`,
         },
         section_descr: {
             en: `Give the name of a contact person or Hotel or organisation in the US. This may be different from the place or person you intend to stay with.`,
-            fr: `Donner le nom d'une personne de contact ou à l'Hôtel ou de l'organisation dans les états-unis. Ce peut être différent de l'endroit ou la personne que vous l'intention de rester avec.`,
+            fr: `Donnez le nom d'une personne de contact, d'un hôtel ou d'une organisation aux États-Unis. Cela peut être différent de l'endroit ou de la personne avec laquelle vous avez l'intention de rester.`,
             es: `Dar el nombre de la persona de contacto o Hotel o de la organización en los estados unidos. Esto puede ser diferente del lugar o de la persona que tiene la intención de quedarse con.`,
             de: `Geben Sie den Namen eines Ansprechpartners oder Hotel oder einer organisation in den USA. Diese unterscheidet sich möglicherweise von der Stelle oder person, die Sie beabsichtigen zu bleiben.`,
             it: `Dare il nome di un contatto o di un Hotel o di un'organizzazione in stati UNITI. Questo può essere diverso dal luogo o la persona che si ha intenzione di rimanere con.`,
         },
         relationship: {
             en: `Relationship to you`,
-            fr: `Relation pour vous`,
+            fr: `Relation`,
             es: `Relación para que usted`,
             de: `Beziehung zu Ihnen`,
             it: `Rapporto di parentela`,
@@ -1517,7 +1517,7 @@ const resources = {
     family: {
         section_title: {
             en: `Family Information : Your Parents`,
-            fr: `Information De Famille : Vos Parents`,
+            fr: `Information sur la Famille : Vos Parents`,
             es: `Información Para La Familia : Sus Padres`,
             de: `Informationen Zur Familie : Ihre Eltern`,
             it: `Informazioni Sulla Famiglia : I Tuoi Genitori`,
@@ -1525,7 +1525,7 @@ const resources = {
         father: {
             label: {
                 en: `List your Father's information here`,
-                fr: `Liste de votre Père d'informations ici`,
+                fr: `Informations concernant votre Père`,
                 es: `La lista de su Padre de la información aquí`,
                 de: `Liste dein Vater Informationen hier`,
                 it: `Elenco di tuo Padre e informazioni qui`,
@@ -1533,14 +1533,14 @@ const resources = {
             surname: {
                 label: {
                     en: `Father's Surname (Last Name)`,
-                    fr: `Nom de famille du père (Nom de famille)`,
+                    fr: `Nom de famille du Père (Nom de Famille)`,
                     es: `Del padre Apellido (apellido)`,
                     de: `Vater ' s Name (Last Name)`,
                     it: `Cognome del padre (cognome)`,
                 },
                 extra: {
                     en: `Please check if you do not know`,
-                    fr: `Veuillez vérifier si vous ne connaissez pas`,
+                    fr: `Veuillez cocher la case si vous ne savez pas`,
                     es: `Por favor, compruebe si usted no sabe`,
                     de: `Bitte prüfen Sie, ob Sie nicht wissen,`,
                     it: `Si prega di controllare se non si conosce`,
@@ -1549,14 +1549,14 @@ const resources = {
             given_name: {
                 label: {
                     en: `Father's Given Name (First Name)`,
-                    fr: `Nom du pere (Premier Nom)`,
+                    fr: `Prénom du Père`,
                     es: `Del padre Nombre (Primer Nombre)`,
                     de: `Vater Vorname (First Name)`,
                     it: `Padre Nome ()`,
                 },
                 extra: {
                     en: `Please check if you do not know`,
-                    fr: `Veuillez vérifier si vous ne connaissez pas`,
+                    fr: `Veuillez cocher la case si vous ne savez pas`,
                     es: `Por favor, compruebe si usted no sabe`,
                     de: `Bitte prüfen Sie, ob Sie nicht wissen,`,
                     it: `Si prega di controllare se non si conosce`,
@@ -1565,7 +1565,7 @@ const resources = {
             birthday: {
                 label: {
                     en: `Father's date of birth`,
-                    fr: `Le père date de naissance`,
+                    fr: `Date de naissance du Père`,
                     es: `Fecha de nacimiento del padre`,
                     de: `Vaters Geburtsdatum`,
                     it: `Padre data di nascita`,
@@ -1574,7 +1574,7 @@ const resources = {
             b_in_US: {
                 label: {
                     en: `Is your Father in the US?`,
-                    fr: `Votre Père est en NOUS?`,
+                    fr: `Votre Père est-il aux États-Unis?`,
                     es: `Es su Padre en los estados unidos?`,
                     de: `Ist Ihr Vater in den USA?`,
                     it: `È il vostro Padre in NOI?`,
@@ -1583,7 +1583,7 @@ const resources = {
             status: {
                 label: {
                     en: `Father's Status`,
-                    fr: `Le père de l'État`,
+                    fr: `Statut du Père`,
                     es: `El padre del Estado de`,
                     de: `Vater Status`,
                     it: `Padre Stato`,
@@ -1593,7 +1593,7 @@ const resources = {
         mother: {
             label: {
                 en: `List your Mother's information here`,
-                fr: `Liste de votre Mère d'informations ici`,
+                fr: `Informations concernant votre Mère`,
                 es: `Lista de su Madre que la información aquí`,
                 de: `Listen Sie Ihre Mutter Informationen hier`,
                 it: `Elenco di tua Madre informazioni qui`,
@@ -1601,14 +1601,14 @@ const resources = {
             surname: {
                 label: {
                     en: `Mother's Surname (Last Name)`,
-                    fr: `De la mère Nom de famille (Nom de famille)`,
+                    fr: `Nom de famille de la Mère (Nom de famille)`,
                     es: `Apellido de la madre (apellido)`,
                     de: `Mutter Familienname (Last Name)`,
                     it: `Madre Cognome (Last Name)`,
                 },
                 extra: {
                     en: `Please check if you do not know`,
-                    fr: `Veuillez vérifier si vous ne connaissez pas`,
+                    fr: `Veuillez cocher la case si vous ne savez pas`,
                     es: `Por favor, compruebe si usted no sabe`,
                     de: `Bitte prüfen Sie, ob Sie nicht wissen,`,
                     it: `Si prega di controllare se non si conosce`,
@@ -1617,14 +1617,14 @@ const resources = {
             given_name: {
                 label: {
                     en: `Mother's Given Name (First Name)`,
-                    fr: `De la mère prénom)`,
+                    fr: `Prénom(s) de la Mère`,
                     es: `Madre Nombre (Primer Nombre)`,
                     de: `Mutter Vorname (First Name)`,
                     it: `Madre Nome ()`,
                 },
                 extra: {
                     en: `Please check if you do not know`,
-                    fr: `Veuillez vérifier si vous ne connaissez pas`,
+                    fr: `Veuillez cocher la case si vous ne savez pas`,
                     es: `Por favor, compruebe si usted no sabe`,
                     de: `Bitte prüfen Sie, ob Sie nicht wissen,`,
                     it: `Si prega di controllare se non si conosce`,
@@ -1633,7 +1633,7 @@ const resources = {
             birthday: {
                 label: {
                     en: `Mother's date of birth`,
-                    fr: `De la mère date de naissance`,
+                    fr: `Date de naissance de la Mère`,
                     es: `De la madre fecha de nacimiento`,
                     de: `Mutter Geburtsdatum`,
                     it: `Madre data di nascita`,
@@ -1642,7 +1642,7 @@ const resources = {
             b_in_US: {
                 label: {
                     en: `Is your Mother in the US?`,
-                    fr: `Est votre Mère dans les états-unis?`,
+                    fr: `Votre Mère est-elle aux États-Unis?`,
                     es: `Es su Madre en los estados unidos?`,
                     de: `Ist Ihre Mutter in den USA?`,
                     it: `È tua Madre negli stati UNITI?`,
@@ -1651,7 +1651,7 @@ const resources = {
             status: {
                 label: {
                     en: `Mother's Status`,
-                    fr: `La mère d'État`,
+                    fr: `Statut de la Mère`,
                     es: `La madre de Estado`,
                     de: `Mutter Status`,
                     it: `Mamma Stato`,
@@ -1660,7 +1660,7 @@ const resources = {
         },
         section_title_relatives: {
             en: `Family information : Your Relatives`,
-            fr: `Information de famille : Votre famille`,
+            fr: `Information sur votre famille`,
             es: `Información para la familia : Sus Parientes`,
             de: `Informationen zur Familie : Ihren Verwandten`,
             it: `Informazioni sulla famiglia : i Tuoi Parenti`,
@@ -1668,14 +1668,14 @@ const resources = {
         b_other_relative: {
             label: {
                 en: `Do you have any immediate relatives other than parents living in the United States?`,
-                fr: `Avez-vous des proches autres que les parents vivant aux États-unis?`,
+                fr: `Avez-vous des proches autres que les parents vivant aux États-Unis?`,
                 es: `¿Tienes alguna familiares inmediatos otro de los padres que viven en los Estados unidos?`,
                 de: `Sie haben keine unmittelbaren verwandten, ausgenommen die Eltern Leben in den Vereinigten Staaten?`,
                 it: `Avete parenti diversi dai genitori che vivono negli Stati Uniti?`,
             },
             extra: {
                 en: `Means fiancé/fiancée, spouse (husband/wife), child (son/daughter) or sibling (brother/sister)`,
-                fr: `Moyens fiancé/fiancée, de son conjoint (mari/femme), enfant (fils/fille, frère ou sœur (frère/soeur)`,
+                fr: `Signifie fiancé/fiancée, conjoint (mari/femme), enfant (fils/fille, frère ou frère ou soeur`,
                 es: `Significa novio/novia, su cónyuge (esposo/esposa), niño (hijo/hija) o hermano (hermano/hermana)`,
                 de: `Bedeutet Verlobter/Verlobte, Ehepartner (Mann/Frau), Kind (Sohn/Tochter) oder Geschwister (Bruder/Schwester)`,
                 it: `Significa fidanzato/fidanzata, il coniuge (marito/moglie), bambino (figlio/figlia) fratello o sorella (fratello/sorella)`,
@@ -1684,7 +1684,7 @@ const resources = {
         others: {
             label: {
                 en: `Enter Full Name, Relationship to you, Immigration Status`,
-                fr: `Entrez le Nom Complet, la Relation à vous, le Statut d'Immigration`,
+                fr: `Entrez le Nom Complet, la Relation, le Statut d'Immigration`,
                 es: `Ingrese el Nombre Completo, Parentesco, Estatus de Inmigración`,
                 de: `Geben Sie den kompletten Namen, Ihre Beziehung zu Ihnen -, Einwanderungs-Status`,
                 it: `Inserisci il tuo Nome Completo, Rapporto di parentela, di Status di Immigrazione`,
@@ -1693,7 +1693,7 @@ const resources = {
         b_more_relatives: {
             label: {
                 en: `Do you have any other relatives in the United States?`,
-                fr: `Avez-vous d'autres parents aux États-unis?`,
+                fr: `Avez-vous d'autres parents aux États-Unis?`,
                 es: `¿Tiene otros parientes en los Estados unidos?`,
                 de: `Haben Sie andere Verwandte in den Vereinigten Staaten?`,
                 it: `Avete altri parenti negli Stati Uniti?`,
@@ -1701,7 +1701,7 @@ const resources = {
         },
         section_title_family_information: {
             en: `Family Information`,
-            fr: `Information De Famille`,
+            fr: `Information de Famille`,
             es: `Información De La Familia`,
             de: `Familie Informationen`,
             it: `Informazioni Sulla Famiglia`,
@@ -1709,7 +1709,7 @@ const resources = {
         spouse: {
             label: {
                 en: `List your Spouse/Partner's information here`,
-                fr: `La liste de votre Conjoint/Partenaire d'informations ici`,
+                fr: `Informations concernant votre Époux(se)/Partenaire`,
                 es: `La lista de su Cónyuge/Pareja de la información aquí`,
                 de: `Listen Sie Ihre Ehemann/Ehefrau / Partner Informationen hier`,
                 it: `Elenco Coniuge/Partner informazioni qui`,
@@ -1717,7 +1717,7 @@ const resources = {
             surname: {
                 label: {
                     en: `Spouse/Partner's First Name`,
-                    fr: `Conjoint/Partenaire prénom`,
+                    fr: `Prénom du Conjoint/Partenaire`,
                     es: `Cónyuge/Pareja del Primer Nombre`,
                     de: `Ehegatte/Partner Vorname`,
                     it: `Coniuge/Partner, il Primo Nome`,
@@ -1726,7 +1726,7 @@ const resources = {
             given_name: {
                 label: {
                     en: `Spouse/Partner's Last Name`,
-                    fr: `Conjoint/Partenaire Nom de famille`,
+                    fr: `Nom de famille du Conjoint/Partenaire`,
                     es: `Cónyuge/Pareja apellido`,
                     de: `Ehegatte/Partner Nachname`,
                     it: `Coniuge/Partner cognome`,
@@ -1735,7 +1735,7 @@ const resources = {
             birthday: {
                 label: {
                     en: `Spouse/Partner's date of birth`,
-                    fr: `Conjoint/Partenaire date de naissance`,
+                    fr: `Date de naissance du Conjoint/Partenaire`,
                     es: `Cónyuge/Pareja fecha de nacimiento`,
                     de: `Ehegatten/Partners Geburtsdatum`,
                     it: `Coniuge/Partner data di nascita`,
@@ -1768,7 +1768,7 @@ const resources = {
                     },
                     extra: {
                         en: `Leave blank if you do not know`,
-                        fr: `Laissez vide si vous ne connaissez pas`,
+                        fr: `Laissez vide si vous ne savez pas`,
                         es: `Dejar en blanco si no sabe`,
                         de: `Lassen Sie das Feld leer, wenn Sie nicht wissen,`,
                         it: `Lasciare vuoto se non si conosce`,
@@ -1815,7 +1815,7 @@ const resources = {
         former_spouse: {
             label: {
                 en: `Former Spouse's Information`,
-                fr: `L'ancien Conjoint de l'Information`,
+                fr: `Informations concernant l'ex conjoint`,
                 es: `El ex Esposo de la Información`,
                 de: `Ehemalige Ehepartner, die Informationen`,
                 it: `L'ex Coniuge Informazioni`,
@@ -1825,7 +1825,7 @@ const resources = {
     work_or_edu: {
         section_title: {
             en: `Present Work/Education/Training Information`,
-            fr: `Présent Travail/Éducation/D'Information Sur La Formation`,
+            fr: `Informations sur l'actuel Travail/Éducation/Formation`,
             es: `El Presente Trabajo/Educación/Entrenamiento De La Información`,
             de: `Derzeitige Arbeit/Bildung/Ausbildung Informationen`,
             it: `Presente Lavoro/Istruzione/Formazione Informazioni`,
@@ -1833,7 +1833,7 @@ const resources = {
         occupation: {
             label: {
                 en: `Primary Occupation`,
-                fr: `L'Occupation Principale De`,
+                fr: `Occupation Principale`,
                 es: `Ocupación Principal`,
                 de: `Primäre Besetzung`,
                 it: `Occupazione Primaria`,
@@ -1842,7 +1842,7 @@ const resources = {
         specify_other_explain: {
             other: {
                 en: `Specify Other`,
-                fr: `Spécifier D'Autres`,
+                fr: `Spécifier Autres`,
                 es: `Especificar Otros`,
                 de: `Geben Sie Anderen`,
                 it: `Specificare Altri`,
@@ -1858,7 +1858,7 @@ const resources = {
         name: {
             label: {
                 en: `Present Employer or School Name`,
-                fr: `Employeur actuel ou le Nom de l'École`,
+                fr: `Employeur actuel ou Nom de l'École`,
                 es: `El Empleador actual o el Nombre de la Escuela`,
                 de: `Derzeitigen Arbeitgeber oder Name der Schule`,
                 it: `Datore di lavoro attuale o il Nome della Scuola`,
@@ -1867,7 +1867,7 @@ const resources = {
         address: {
             label: {
                 en: `Present employer or school address`,
-                fr: `Employeur actuel ou de l'adresse de l'école`,
+                fr: `Adresse de l'employeur actuel ou de l'école`,
                 es: `El empleador actual o la dirección de la escuela`,
                 de: `Derzeitigen Arbeitgeber oder Schule Adresse`,
                 it: `Datore di lavoro attuale o l'indirizzo della scuola`,
@@ -1876,7 +1876,7 @@ const resources = {
         start_date: {
             label: {
                 en: `Start Date`,
-                fr: `Date De Début De`,
+                fr: `Date De Début`,
                 es: `Fecha De Inicio`,
                 de: `Start Datum`,
                 it: `Data Di Inizio`,
@@ -1894,7 +1894,7 @@ const resources = {
         duty_explain: {
             label: {
                 en: `Briefly describe your duties:`,
-                fr: `Décrivez brièvement vos fonctions:`,
+                fr: `Décrivez brièvement vos fonctions: IMPÉRATIVEMENT EN ANGLAIS`,
                 es: `Describa brevemente sus funciones:`,
                 de: `Beschreiben Sie kurz Ihre Aufgaben:`,
                 it: `Descrivere brevemente il compito di:`,
@@ -1904,7 +1904,7 @@ const resources = {
     prev_work_or_edu: {
         section_title: {
             en: `Previous Work / Education / Training Information`,
-            fr: `De Précédents Travaux / L'Éducation / La Formation Informations`,
+            fr: `Informations sur le prédédent Travail/Éducation/Formation`,
             es: `Anterior Trabajo / Educación / Entrenamiento De La Información`,
             de: `Previous Work / Education / Training Informationen`,
             it: `Il Precedente Lavoro / Istruzione / Formazione Informazioni`,
@@ -1922,7 +1922,7 @@ const resources = {
             name: {
                 label: {
                     en: `Previous Employer Name`,
-                    fr: `Précédent Le Nom De L'Employeur`,
+                    fr: `Nom du Précédent Employeur`,
                     es: `Anterior Nombre Del Empleador`,
                     de: `Vorherigen Arbeitgeber Name`,
                     it: `Precedente Nome Del Datore Di Lavoro`,
@@ -1931,7 +1931,7 @@ const resources = {
             address: {
                 label: {
                     en: `Previous Employer Address`,
-                    fr: `L'Employeur Précédent Adresse`,
+                    fr: `Adresse du Précédent Employeur`,
                     es: `Anterior Dirección Del Empleador`,
                     de: `Vorherigen Arbeitgeber Adresse`,
                     it: `Precedente Datore Di Lavoro Indirizzo`,
@@ -1947,7 +1947,7 @@ const resources = {
             job_title: {
                 label: {
                     en: `Job Title`,
-                    fr: `Titre De L'Emploi`,
+                    fr: `Titre de L'Emploi`,
                     es: `Título Del Trabajo`,
                     de: `Job-Titel`,
                     it: `Titolo Di Lavoro`,
@@ -1957,14 +1957,14 @@ const resources = {
                 surname: {
                     label: {
                         en: `Supervisor's Surname(s) (Last Name)`,
-                        fr: `Superviseur du Prénom(s) (Nom de famille)`,
+                        fr: `Nom de Famille du Superviseur`,
                         es: `Supervisor Apellido(s) (apellido)`,
                         de: `Betreuerin Vorname(N) (Nachname)`,
                         it: `Supervisore Cognome(s) (cognome)`,
                     },
                     extra: {
                         en: `Leave blank if you do not know`,
-                        fr: `Laissez vide si vous ne connaissez pas`,
+                        fr: `Laissez vide si vous ne savez pas`,
                         es: `Dejar en blanco si no sabe`,
                         de: `Lassen Sie das Feld leer, wenn Sie nicht wissen,`,
                         it: `Lasciare vuoto se non si conosce`,
@@ -1973,14 +1973,14 @@ const resources = {
                 given_name: {
                     label: {
                         en: `Supervisor's Given Name(s) (First Name)`,
-                        fr: `Superviseur du prénom(s) (prénom)`,
+                        fr: `Prénom(s) du Superviseur`,
                         es: `Del Supervisor Nombre(s) (Primer Nombre)`,
                         de: `Betreuerin Vorname(N) (First Name)`,
                         it: `Supervisore Nome(s) (Nome)`,
                     },
                     extra: {
                         en: `Leave blank if you do not know`,
-                        fr: `Laissez vide si vous ne connaissez pas`,
+                        fr: `Laissez vide si vous ne savez pas`,
                         es: `Dejar en blanco si no sabe`,
                         de: `Lassen Sie das Feld leer, wenn Sie nicht wissen,`,
                         it: `Lasciare vuoto se non si conosce`,
@@ -1990,7 +1990,7 @@ const resources = {
             date_from: {
                 label: {
                     en: `Employment Date From`,
-                    fr: `L'Emploi De La Date De`,
+                    fr: `Date d'Emploi du`,
                     es: `Empleo Fecha De`,
                     de: `Beschäftigung Datum Aus`,
                     it: `Occupazione Data Da`,
@@ -1999,7 +1999,7 @@ const resources = {
             date_to: {
                 label: {
                     en: `Employment Date To`,
-                    fr: `Date D'Emploi À`,
+                    fr: `Date d'Emploi À`,
                     es: `Empleo Fecha De`,
                     de: `Beschäftigung Datum`,
                     it: `Occupazione Data Di`,
@@ -2008,7 +2008,7 @@ const resources = {
             duty_explain: {
                 label: {
                     en: `Describe your duties IN FEW WORDS (3 lines maximum)`,
-                    fr: `Décrivez vos tâches EN QUELQUES MOTS (3 lignes maximum)`,
+                    fr: `Décrivez vos tâches EN QUELQUES MOTS (3 lignes maximum IMPERATIVEMENT EN ANGLAIS)`,
                     es: `Describir sus funciones EN POCAS PALABRAS (3 líneas máximo)`,
                     de: `Beschreiben Sie Ihre Aufgaben IN WENIGEN WORTEN (3 Zeilen maximal)`,
                     it: `Descrivi il tuo doveri IN POCHE PAROLE (3 righe al massimo)`,
@@ -2025,7 +2025,7 @@ const resources = {
         b_edu_secondary_level: {
             label: {
                 en: `Have you attended any educational institutions at a secondary level or above?`,
-                fr: `Avez-vous assisté à toutes les institutions d'enseignement de niveau secondaire ou supérieur?`,
+                fr: `Avez-vous suivi un enseignement de niveau secondaire ou supérieur?`,
                 es: `Ha asistido a ninguna de las instituciones educativas en el nivel secundario o superior?`,
                 de: `Haben Sie besucht, alle Bildungseinrichtungen auf Sekundar-Niveau oder höher?`,
                 it: `Hai partecipato a qualche istituzioni scolastiche di livello secondario o superiore?`,
@@ -2035,7 +2035,7 @@ const resources = {
             name: {
                 label: {
                     en: `Name of Institution`,
-                    fr: `Nom de l'Établissement`,
+                    fr: `Nom de l'établissement`,
                     es: `Nombre de la Institución`,
                     de: `Name der Institution`,
                     it: `Nome dell'Istituzione che`,
@@ -2053,7 +2053,7 @@ const resources = {
             course: {
                 label: {
                     en: `Course of Study`,
-                    fr: `Cours d'Étude`,
+                    fr: `Cours étudié(s)`,
                     es: `Curso de Estudio`,
                     de: `Studium`,
                     it: `Corso di Studio`,
@@ -2062,7 +2062,7 @@ const resources = {
             date_from: {
                 label: {
                     en: `Date of Attendance From`,
-                    fr: `Date de participation de`,
+                    fr: `Date de participation du:`,
                     es: `Fecha de Asistencia De`,
                     de: `Datum der Teilnahme Von`,
                     it: `Data di Frequenza`,
@@ -2071,7 +2071,7 @@ const resources = {
             date_to: {
                 label: {
                     en: `Date of Attendance To`,
-                    fr: `Date de la Fréquentation`,
+                    fr: `Date de participation au:`,
                     es: `Fecha de Asistencia A`,
                     de: `Datum der Teilnahme An`,
                     it: `Data di Partecipazione Al`,
@@ -2082,14 +2082,14 @@ const resources = {
     additional_work: {
         section_title: {
             en: `Additional Work / Education / Training Information`,
-            fr: `Des Travaux Supplémentaires / L'Éducation / La Formation Informations`,
+            fr: `Informations Supplémentaires sur le Travail/Éducation/Formation`,
             es: `Adicionales De Trabajo / Educación / Entrenamiento De La Información`,
             de: `Zusätzliche Arbeit / Bildung / Ausbildung Informationen`,
             it: `Lavori Supplementari / Educazione / Formazione, Informazione`,
         },
         b_belong_to_clan: {
             en: `Do you belong to a clan or tribe?`,
-            fr: `Ne vous appartenez à un clan ou à la tribu?`,
+            fr: `Appartenez vous à un clan ou à une tribu?`,
             es: `¿Perteneces a un clan o a la tribu?`,
             de: `Gehören Sie einem clan oder Stamm?`,
             it: `Fai parte di un clan o tribù?`,
@@ -2112,7 +2112,7 @@ const resources = {
         },
         b_travel_last_five_years: {
             en: `Have you travelled to any countries within the last five years?`,
-            fr: `Avez-vous voyagé dans tous les pays au cours des cinq dernières années?`,
+            fr: `Avez-vous voyagé dans des pays au cours des cinq dernières années?`,
             es: `Han viajado a los países dentro de los últimos cinco años?`,
             de: `Haben Sie bereist alle Länder, die innerhalb der letzten fünf Jahre?`,
             it: `Hai viaggiato per tutti i paesi negli ultimi cinque anni?`,
@@ -2128,10 +2128,10 @@ const resources = {
         },
         b_belong_to_org: {
             en: `Have you belonged to, contributed to, or worked for any professional, social, or charitable organisation?`,
-            fr: `Avez-vous appartenu à, contribué à, ou ont travaillé pour tout professionnel, social, ou de l'organisme de bienfaisance?`,
-            es: `Ha pertenecido, contribuyó a, o ha trabajado para cualquier profesional, social, o de la organización de caridad?`,
-            de: `Haben Sie gehörte, beigetragen haben, gearbeitet oder für berufliche, soziale oder karitative organisation?`,
-            it: `Hai appartenuto, contribuito, o che hanno lavorato professionali, sociali, di beneficenza o organizzazione?`,
+            fr: `Avez-vous appartenu, contribué ou travaillé pour une organisation professionnelle, sociale ou caritative?`,
+            es: `¿Ha pertenecido, contribuido o trabajado para alguna organización profesional, social o caritativa?`,
+            de: `Haben Sie einer beruflichen, sozialen oder gemeinnützigen Organisation angehört, zu dieser beigetragen oder für diese gearbeitet?`,
+            it: `Hai aderito, contribuito o lavorato a organizzazioni professionali, sociali o di beneficenza?`,
         },
         organizations: {
             label: {
@@ -2173,21 +2173,21 @@ const resources = {
             },
             speciality: {
                 en: `Military Speciality`,
-                fr: `Militaire Spécialité`,
+                fr: `Spécialité Militaire`,
                 es: `Militar De La Especialidad`,
                 de: `Militärische Spezialität`,
                 it: `Militare Specialità`,
             },
             date_from: {
                 en: `Date of Attendance From`,
-                fr: `Date de participation de`,
+                fr: `Date de participation du`,
                 es: `Fecha de Asistencia De`,
                 de: `Datum der Teilnahme Von`,
                 it: `Data di Frequenza`,
             },
             date_to: {
                 en: `Date of Attendance To`,
-                fr: `Date de la Fréquentation`,
+                fr: `Date de participation au`,
                 es: `Fecha de Asistencia A`,
                 de: `Datum der Teilnahme An`,
                 it: `Data di Partecipazione Al`,
@@ -2202,15 +2202,15 @@ const resources = {
         },
         b_special_skill: {
             en: `Do you have any specialized skills or training, such as firearms, explosives, nuclear, biological, or chemical experience?`,
-            fr: `Avez-vous des compétences spécialisées ou de formation, tels que les armes à feu, des explosifs, nucléaire, biologique ou chimique de l'expérience?`,
-            es: `¿Tienes algún habilidades especializadas o de formación, tales como armas de fuego, explosivos, armas nucleares, biológicas, químicas o experiencia?`,
+            fr: `Avez-vous des compétences ou une formation spécialisée, telles que les armes à feu, les explosifs, une expérience nucléaire, biologique ou chimique?`,
+            es: `¿Tiene alguna habilidad o capacitación especializada, como armas de fuego, explosivos, experiencia nuclear, biológica o química?`,
             de: `Haben Sie irgendwelche speziellen Fähigkeiten oder training, wie Feuerwaffen, Sprengstoff, nukleare, biologische oder Chemische Erfahrungen?`,
-            it: `Avete qualche abilità specializzate o di formazione, come le armi da fuoco, esplosivi, armi nucleari, biologiche, chimiche o esperienza?`,
+            it: `Hai qualche competenza o addestramento specializzato, come armi da fuoco, esplosivi, esperienza nucleare, biologica o chimica?`,
         },
         b_rebel_group: {
             en: `Have you ever served in, been a member of, or been involved with a paramilitary unit, vigilante unit, rebel group, guerilla group, or insurgent organisation?`,
-            fr: `Avez-vous déjà servi en, été membre ou partie d'une unité paramilitaire, justicier de l'unité, un groupe rebelle, groupe de guérilla ou d'insurgés de l'organisation?`,
-            es: `Ha servido, o ha sido miembro de, o han estado involucrados con una unidad paramilitar, vigilante de la unidad, el grupo rebelde, el grupo guerrillero, insurgentes o de la organización?`,
+            fr: `Avez-vous déjà servi, été membre ou impliqué dans une unité paramilitaire, une unité de vigilance, un groupe rebelle, un groupe de guérilla ou une organisation d'insurgés?`,
+            es: `¿Alguna vez ha servido, ha sido miembro o ha estado involucrado con una unidad paramilitar, unidad de vigilancia, grupo rebelde, grupo guerrillero u organización insurgente?`,
             de: `Haben Sie jemals serviert, Mitglied oder beteiligten wurde mit einer paramilitärischen Einheit, Bürgerwehr-Einheit, Rebellengruppe, guerilla-Gruppe oder der Aufständischen organisation?`,
             it: `Avete mai servita, stato membro o stato coinvolto con un gruppo paramilitare, vigilante unità, gruppo di ribelli, gruppo di guerriglieri, o insorti organizzazione?`,
         },
@@ -2219,35 +2219,35 @@ const resources = {
         part1: {
             0: {
                 en: `Do you have a communicable disease of public health significance such as tuberculosis (TB)?`,
-                fr: `Avez-vous une maladie transmissible de l'importance pour la santé publique telles que la tuberculose (TB)?`,
+                fr: `Avez-vous une maladie transmissible d'importance pour la santé publique telle que la tuberculose (TB)?`,
                 es: `¿Tiene usted una enfermedad transmisible de importancia para la salud pública, tales como la tuberculosis (TB)?`,
                 de: `Haben Sie eine übertragbare Krankheit, die öffentliche Gesundheit Bedeutung wie Tuberkulose (TB)?`,
                 it: `Avete una malattia trasmissibile rilevanti per la salute pubblica, come la tubercolosi (TB)?`,
             },
             1: {
                 en: `Do you have a mental or physical disorder that poses or is likely to pose a threat to the safety or welfare of yourself or others?`,
-                fr: `Avez-vous un mental ou trouble physique qui constitue ou est susceptible de constituer une menace pour la sécurité ou le bien-être de vous-même ou d'autres personnes?`,
-                es: `¿Tiene un trastorno mental o trastorno físico que represente o pueda representar una amenaza para la seguridad o el bienestar de uno mismo o de los demás?`,
+                fr: `Avez-vous un trouble mental ou physique qui constitue ou est susceptible de menacer la sécurité ou le bien-être de vous-même ou des autres?`,
+                es: `¿Tiene un trastorno mental o físico que plantea o es probable que represente una amenaza para la seguridad o el bienestar de usted u otros?`,
                 de: `Sie haben eine psychische oder physische Störung, die Posen oder wahrscheinlich ist, um eine Bedrohung für die Sicherheit und das Wohlergehen von sich selbst oder andere?`,
                 it: `Hai un fisico o mentale, disturbo che si pone o è probabile che rappresentano una minaccia per la sicurezza o al benessere di se stessi o gli altri?`,
             },
             2: {
                 en: `Are you or have you ever been a drug abuser or addict?`,
                 fr: `Êtes-vous ou avez-vous jamais été un drogué ou un toxicomane?`,
-                es: `Eres o has sido un abusador de la droga o el adicto?`,
+                es: `¿Eres o has sido alguna vez drogadicto o adicto?`,
                 de: `Bist du oder warst du jemals drogenabhängig oder Süchtigen?`,
                 it: `Sei o sei mai stato un farmaco tossicodipendente o dipendente?`,
             },
             section_title: {
                 en: `Security and Background: Part 1`,
-                fr: `De sécurité et d'arrière-plan: Partie 1`,
+                fr: `Sécurité et Historique: Partie 1`,
                 es: `De seguridad y de Fondo: Parte 1`,
                 de: `Sicherheits-und Hintergrund: Teil 1`,
                 it: `Di sicurezza e di Sfondo: Parte 1`,
             },
             section_descr: {
                 en: `NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.`,
-                fr: `REMARQUE: Fournir les éléments suivants de la sécurité et des informations de fond. Fournir des informations exactes et complètes à toutes les questions qui exigent une explication. Un visa ne peut être délivré à des personnes qui sont dans des catégories définies par la loi comme irrecevable pour les États-unis (sauf si une dispense est obtenue à l'avance). Sont une des opérations suivantes s'appliquent à vous? Alors qu'une réponse OUI n'est pas automatiquement signifier la suspension pour un visa, si vous répondez OUI, vous pourriez être tenu de comparaître en personne devant un agent consulaire.`,
+                fr: `REMARQUE: fournissez les informations de sécurité et de base suivantes. Fournissez des informations complètes et précises à toutes les questions qui nécessitent une explication. Un visa ne peut être délivré à des personnes appartenant à des catégories spécifiques définies par la loi comme interdites de territoire aux États-Unis (sauf si une dérogation est obtenue à l'avance). L'un des éléments suivants vous concerne-t-il? Bien qu'une réponse OUI ne signifie pas automatiquement l'inadmissibilité à un visa, si vous répondez OUI, vous devrez peut-être comparaître personnellement devant un agent consulaire.`,
                 es: `NOTA: Proporcione la siguiente seguridad y la información de fondo. Proporcionar información precisa y completa a todas las preguntas que requieren una explicación. Una visa no podrá ser expedido a las personas que están dentro de categorías específicas definidas por la ley como inadmisible a los Estados unidos (excepto cuando la renuncia se obtienen por adelantado). Son alguna de las siguientes es aplicable a usted? Mientras que una respuesta de SÍ no automáticamente significar la pérdida de elegibilidad para una visa, si su respuesta es SÍ, usted puede ser obligado a comparecer personalmente a un oficial consular.`,
                 de: `HINWEIS: Geben Sie die folgenden Sicherheits-und hintergrund-Informationen. Vollständige und genaue Informationen zu allen Fragen, die bedürfen einer Erklärung. Ein Visum darf nicht erteilt werden an Personen, die in bestimmten Kategorien gesetzlich definiert als unzulässig zu den Vereinigten Staaten (außer, wenn eine Befreiung im Voraus). Die folgenden sind auf Sie anwendbar? Während eine JA-Antwort nicht automatisch bedeuten, die Sperre für ein Visum, wenn Sie Antwort JA, Sie können aufgefordert werden, persönlich zu erscheinen vor dem Konsularbeamten.`,
                 it: `NOTA: non forniamo le seguenti sicurezza e informazioni generali. Fornire informazioni complete e accurate a tutte le domande che richiedono una spiegazione. Un visto non può essere rilasciato a persone che sono all'interno di specifiche categorie definite dalla legge come inammissibile per gli Stati Uniti (tranne in caso di rinuncia si ottiene in anticipo). Sono applicabili a voi? Mentre una risposta di SÌ non automaticamente significare ineleggibilità per un visto, se la risposta è SÌ, si può essere tenuti a presentarsi personalmente prima di un funzionario consolare.`,
@@ -2256,22 +2256,22 @@ const resources = {
         part2: {
             0: {
                 en: `Have you ever been arrested or convicted for any offense or crime, even though subject of a pardon, amnesty, or other similar action?`,
-                fr: `Avez-vous déjà été arrêté ou condamné pour n'importe quel délit ou d'un crime, même si l'objet de la grâce, l'amnistie, ou autre action similaire?`,
-                es: `¿Alguna vez ha sido arrestado o condenado por cualquier delito o crimen, aunque sujeto de un indulto, amnistía u otra acción similar?`,
+                fr: `Avez-vous déjà été arrêté ou condamné pour une infraction ou un crime, même s'il a fait l'objet d'une grâce, d'une amnistie ou d'une autre action similaire?`,
+                es: `¿Alguna vez ha sido arrestado o condenado por algún delito o delito, a pesar de ser objeto de perdón, amnistía u otra acción similar?`,
                 de: `Haben Sie jemals verhaftet oder verurteilt für irgendwelche vergehen oder Verbrechen, auch wenn Gegenstand einer Begnadigung, Amnestie oder andere ähnliche Aktion?`,
                 it: `Sei mai stato arrestato o condannato per alcun reato o un crimine, anche se oggetto di un atto di clemenza, amnistia, o altra simile azione?`,
             },
             1: {
                 en: `Have you ever violated, or engaged in a conspiracy to violate, any law related to controlled substances?`,
-                fr: `Avez-vous déjà violé, ou engagé dans un complot en vue de violer toute loi relative aux substances contrôlées?`,
-                es: `¿Alguna vez has violado, o haya participado en una conspiración para violar cualquier ley relacionada con sustancias controladas?`,
+                fr: `Avez-vous déjà violé ou participé à un complot pour violer une loi relative aux substances contrôlées?`,
+                es: `¿Alguna vez ha violado, o ha participado en una conspiración para violar, alguna ley relacionada con sustancias controladas?`,
                 de: `Haben Sie jemals verletzt oder engagiert sich in einer Verschwörung gegen alle Gesetze im Zusammenhang mit kontrollierten Substanzen?`,
                 it: `Avete mai violato, o coinvolto in una cospirazione per violare una qualsiasi legge connessi a sostanze controllate?`,
             },
             2: {
                 en: `Are you coming to the US to engage in prostitution or unlawful commercialized vice or have been engaged in prostitution or procuring prostitutes within the past 10 years?`,
-                fr: `Êtes-vous à venir pour les états-unis à s'engager dans la prostitution ou illicite commercialisé vice ou ont été engagés dans la prostitution ou de l'acquisition de prostituées dans les 10 dernières années?`,
-                es: `Vas a venir a los EE.UU. para participar en la prostitución o ilegal vicio comercializado o han estado involucrados en la prostitución o en la adquisición de las prostitutas en los últimos 10 años?`,
+                fr: `Venez vous aux États-Unis pour vous livrer à la prostitution ou à un vice commercial illégal ou vous êtes livrés à la prostitution ou au recrutement de prostituées au cours des 10 dernières années?`,
+                es: `¿Vienes a los Estados Unidos para ejercer la prostitución o el vicio comercializado ilegalmente o has estado involucrado en la prostitución o la adquisición de prostitutas en los últimos 10 años?`,
                 de: `Kommen Sie zur UNS zu engagieren in der prostitution oder der rechtswidrige Handel Schraubstock oder engagiert haben, in der prostitution oder der Beschaffung von Prostituierten, die innerhalb der letzten 10 Jahre?`,
                 it: `Vieni a NOI, a impegnarsi nella prostituzione o illegale vizio commercializzato o sono stati impegnati nella prostituzione o l'ottenimento prostitute negli ultimi 10 anni?`,
             },
@@ -2284,35 +2284,35 @@ const resources = {
             },
             4: {
                 en: `Have you ever committed or conspired to commit a human trafficking offense in the US or outside of the US?`,
-                fr: `Avez-vous déjà commis ou conspiré pour commettre l'infraction de traite des êtres humains en NOUS ou hors de NOUS?`,
-                es: `¿Alguna vez has cometido o conspiraron para cometer un delito de la trata de seres humanos en los estados unidos o fuera de los estados unidos?`,
+                fr: `Avez-vous déjà commis ou comploté pour commettre une infraction de traite des êtres humains aux États-Unis ou à l'extérieur des États-Unis?`,
+                es: `¿Alguna vez ha cometido o conspirado para cometer un delito de trata de personas en los Estados Unidos o fuera de los Estados Unidos?`,
                 de: `Haben Sie jemals begangen oder eine Verschwörung zur Begehung von Menschenhandel strafbar in den USA oder außerhalb der USA?`,
                 it: `Hai mai commesso, o cospirato per commettere un reato di tratta di esseri umani in NOI o fuori di NOI?`,
             },
             5: {
                 en: `Have you ever knowingly aided, abetted, assisted or colluded with an individual who has committed, or conspired to commit a sever human trafficking offense in the US or outside the US?`,
-                fr: `Avez-vous jamais sciemment aidé, encouragé, aidé ou de connivence avec une personne qui a commis ou conspiré pour commettre un sever le trafic d'êtres humains infraction en NOUS ou hors de NOUS?`,
-                es: `¿Alguna vez has ayudado a sabiendas, con la complicidad, con la asistencia o en connivencia con un individuo que ha cometido, o conspiraron para cometer un sever humanos delito de trata de niños en los estados unidos o fuera de los estados unidos?`,
+                fr: `Avez-vous déjà sciemment aidé, encouragé, aidé ou été complice d'une personne qui a commis ou comploté pour commettre une grave infraction de traite des êtres humains aux États-Unis ou en dehors des États-Unis?`,
+                es: `¿Alguna vez ha ayudado, instigado, asistido o coludido a sabiendas con una persona que cometió o conspiró para cometer un delito grave de trata de personas en los Estados Unidos o fuera de los Estados Unidos?`,
                 de: `Haben Sie jemals wissentlich unterstützt, begünstigt, unterstützt oder in Zusammenarbeit mit einer Person begangen hat, oder eine Verschwörung zur Begehung von sever Menschenhandel strafbar in den USA oder außerhalb der USA?`,
                 it: `Avete mai consapevolmente aiutato, sostenuto, aiutato, o in collusione con un individuo che ha commesso, o cospirato per commettere un sever tratta di esseri umani reato in NOI o fuori di NOI?`,
             },
             6: {
                 en: `Are you the spouse, son or daughter of an individual who has committed or conspired to commit a human trafficking offense in the US or outside or the US and have you within the last five years, knowingly benefited from the trafficking activities?`,
-                fr: `Vous êtes le conjoint, le fils ou la fille d'un individu qui a commis ou conspiré pour commettre l'infraction de traite des êtres humains aux états-unis ou à l'extérieur ou les états-unis et avez-vous au cours des cinq dernières années, sciemment profité de la traite des activités?`,
-                es: `Usted es el cónyuge, hijo o hija de una persona que haya cometido, o conspiraron para cometer un delito de la trata de seres humanos en los estados unidos o en el exterior o de los estados unidos y tiene dentro de los últimos cinco años, a sabiendas que se beneficiaron de las actividades de trata de personas?`,
+                fr: `Êtes-vous le conjoint, le fils ou la fille d'une personne qui a commis ou comploté pour commettre une infraction de traite des êtres humains aux États-Unis ou à l'extérieur ou aux États-Unis et avez-vous, au cours des cinq dernières années, sciemment profité des activités de traite?`,
+                es: `¿Es usted el cónyuge, hijo o hija de una persona que se ha comprometido o conspiró para cometer un delito de trata de personas en los EE. UU. O fuera de los EE. UU. Y lo ha beneficiado a sabiendas de las actividades de trata en los últimos cinco años?`,
                 de: `Sind Sie der Ehepartner, der Sohn oder die Tochter eine Person, die sich verpflichtet hat, oder eine Verschwörung zur Begehung von Menschenhandel strafbar in den USA oder außerhalb oder den USA und haben Sie innerhalb der letzten fünf Jahre, wissentlich profitiert von der Menschenhandels-Aktivitäten?`,
                 it: `Sono il coniuge, il figlio o la figlia di un individuo che ha commesso o cospirato per commettere un reato di tratta di esseri umani in NOI o fuori o in USA e avete negli ultimi cinque anni, consapevolmente tratto beneficio dal traffico di attività?`,
             },
             section_title: {
                 en: `Security and Background: Part 2`,
-                fr: `De sécurité et d'arrière-plan: Partie 2`,
+                fr: `Sécurité et Historique: Partie 2`,
                 es: `De seguridad y de Fondo: Parte 2`,
                 de: `Sicherheits-und Hintergrund: Teil 2`,
                 it: `Di sicurezza e di Sfondo: Parte 2`,
             },
             section_descr: {
                 en: `NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.`,
-                fr: `REMARQUE: Fournir les éléments suivants de la sécurité et des informations de fond. Fournir des informations exactes et complètes à toutes les questions qui exigent une explication. Un visa ne peut être délivré à des personnes qui sont dans des catégories définies par la loi comme irrecevable pour les États-unis (sauf si une dispense est obtenue à l'avance). Sont une des opérations suivantes s'appliquent à vous? Alors qu'une réponse OUI n'est pas automatiquement signifier la suspension pour un visa, si vous répondez OUI, vous pourriez être tenu de comparaître en personne devant un agent consulaire.`,
+                fr: `REMARQUE: fournissez les informations de sécurité et de base suivantes. Fournissez des informations complètes et précises à toutes les questions qui nécessitent une explication. Un visa ne peut être délivré à des personnes appartenant à des catégories spécifiques définies par la loi comme interdites de territoire aux États-Unis (sauf si une dérogation est obtenue à l'avance). L'un des éléments suivants vous concerne-t-il? Bien qu'une réponse OUI ne signifie pas automatiquement l'inadmissibilité à un visa, si vous répondez OUI, vous devrez peut-être comparaître personnellement devant un agent consulaire.`,
                 es: `NOTA: Proporcione la siguiente seguridad y la información de fondo. Proporcionar información precisa y completa a todas las preguntas que requieren una explicación. Una visa no podrá ser expedido a las personas que están dentro de categorías específicas definidas por la ley como inadmisible a los Estados unidos (excepto cuando la renuncia se obtienen por adelantado). Son alguna de las siguientes es aplicable a usted? Mientras que una respuesta de SÍ no automáticamente significar la pérdida de elegibilidad para una visa, si su respuesta es SÍ, usted puede ser obligado a comparecer personalmente a un oficial consular.`,
                 de: `HINWEIS: Geben Sie die folgenden Sicherheits-und hintergrund-Informationen. Vollständige und genaue Informationen zu allen Fragen, die bedürfen einer Erklärung. Ein Visum darf nicht erteilt werden an Personen, die in bestimmten Kategorien gesetzlich definiert als unzulässig zu den Vereinigten Staaten (außer, wenn eine Befreiung im Voraus). Die folgenden sind auf Sie anwendbar? Während eine JA-Antwort nicht automatisch bedeuten, die Sperre für ein Visum, wenn Sie Antwort JA, Sie können aufgefordert werden, persönlich zu erscheinen vor dem Konsularbeamten.`,
                 it: `NOTA: non forniamo le seguenti sicurezza e informazioni generali. Fornire informazioni complete e accurate a tutte le domande che richiedono una spiegazione. Un visto non può essere rilasciato a persone che sono all'interno di specifiche categorie definite dalla legge come inammissibile per gli Stati Uniti (tranne in caso di rinuncia si ottiene in anticipo). Sono applicabili a voi? Mentre una risposta di SÌ non automaticamente significare ineleggibilità per un visto, se la risposta è SÌ, si può essere tenuti a presentarsi personalmente prima di un funzionario consolare.`,
@@ -2321,22 +2321,22 @@ const resources = {
         part3: {
             0: {
                 en: `Do you seek to engage in espionage, sabotage, export control violations, or any other illegal activity while in the US?`,
-                fr: `Cherchez-vous à livrer à l'espionnage, le sabotage, le contrôle de l'exportation des violations, ou toute autre activité illégale, tandis que dans les etats-unis?`,
-                es: `¿Busca usted a participar en el espionaje, el sabotaje, la exportación, el control de las violaciones, o cualquier otra actividad ilegal, mientras que en los estados unidos?`,
+                fr: `Cherchez-vous à vous engager dans l'espionnage, le sabotage, les violations du contrôle des exportations ou toute autre activité illégale aux États-Unis?`,
+                es: `¿Busca participar en espionaje, sabotaje, violaciones del control de exportaciones o cualquier otra actividad ilegal mientras está en los Estados Unidos?`,
                 de: `Sie bemüht sich um Spionage, sabotage, export-Steuern, Verstöße gegen, oder jede andere illegale Aktivität, während in den USA?`,
                 it: `Fare è cercare di impegnarsi in missioni di spionaggio, sabotaggio, di controllo delle esportazioni di violazioni, o qualsiasi altra attività illecita, mentre negli stati UNITI?`,
             },
             1: {
                 en: `Do you seek to engage in terrorist activities while in the united states or have you ever engaged in terrorist activities?`,
-                fr: `Cherchez-vous à participer à des activités terroristes aux états-unis ou avez-vous déjà engagés dans des activités terroristes?`,
-                es: `¿Busca usted a participar en actividades terroristas, mientras que en los estados unidos o que nunca han participado en actividades terroristas?`,
+                fr: `Cherchez-vous à vous engager dans des activités terroristes aux États-Unis ou avez-vous déjà participé à des activités terroristes?`,
+                es: `¿Busca participar en actividades terroristas mientras está en los Estados Unidos o alguna vez ha participado en actividades terroristas?`,
                 de: `Sie bemüht sich um terroristische Aktivitäten in den Vereinigten Staaten oder haben Sie schon einmal engagiert in terroristische Aktivitäten?`,
                 it: `Fare è cercare di impegnarsi in attività terroristiche, mentre negli stati uniti o avete mai impegnato in attività terroristiche?`,
             },
             2: {
                 en: `Have you ever or do you intend to provide financial assistance or other support to terrorists or terrorists organisations?`,
-                fr: `Avez-vous déjà ou avez-vous l'intention de fournir une aide financière ou d'autres formes de soutien à des terroristes ou des organisations terroristes?`,
-                es: `Alguna vez usted o quiere proporcionar asistencia financiera o de otro tipo de apoyo a terroristas u organizaciones terroristas?`,
+                fr: `Avez-vous déjà ou avez-vous l'intention de fournir une aide financière ou un autre soutien à des terroristes ou à des organisations terroristes?`,
+                es: `¿Alguna vez o tiene la intención de proporcionar asistencia financiera u otro tipo de apoyo a terroristas u organizaciones terroristas?`,
                 de: `Haben Sie jemals oder haben Sie die Absicht, finanzielle Hilfe oder andere Unterstützung von Terroristen oder Terroristen-Organisationen?`,
                 it: `Avete mai o si intende fornire assistenza finanziaria o altre forme di sostegno per i terroristi o i terroristi organizzazioni?`,
             },
@@ -2349,8 +2349,8 @@ const resources = {
             },
             4: {
                 en: `Are you the spouse, son, or daughter of an individual who has engaged in terrorist activity, including providing financial assistance or other support to terrorists or terrorist organizations, in the last five years?`,
-                fr: `Vous êtes le conjoint, le fils ou la fille d'un individu qui s'est engagé dans une activité terroriste, y compris en fournissant une aide financière ou d'autres formes de soutien à des terroristes ou des organisations terroristes, au cours des cinq dernières années?`,
-                es: `Usted es el cónyuge, hijo o hija de una persona que ha participado en actividades terroristas, incluyendo la prestación de asistencia financiera o de otro tipo de apoyo a los terroristas o con organizaciones terroristas, en los últimos cinco años?`,
+                fr: `Êtes-vous le conjoint, le fils ou la fille d'une personne qui s'est livrée à des activités terroristes, notamment en fournissant une aide financière ou un autre soutien à des terroristes ou à des organisations terroristes, au cours des cinq dernières années?`,
+                es: `¿Es usted cónyuge, hijo o hija de una persona que ha participado en actividades terroristas, incluida la prestación de asistencia financiera u otro tipo de apoyo a terroristas u organizaciones terroristas, en los últimos cinco años?`,
                 de: `Sind Sie der Ehepartner, der Sohn oder die Tochter eine Person, die sich engagiert hat, die in terroristische Aktivitäten, einschließlich der Bereitstellung von finanzielle Hilfe oder andere Unterstützung von Terroristen oder terroristischen Organisationen, die in den letzten fünf Jahren?`,
                 it: `Sono il coniuge, il figlio o la figlia di un individuo che si è impegnato in attività terroristiche, compresa la fornitura di assistenza finanziaria o altre forme di sostegno per i terroristi o con organizzazioni terroristiche, negli ultimi cinque anni?`,
             },
@@ -2384,8 +2384,8 @@ const resources = {
             },
             9: {
                 en: `Have you, while serving as a government official, been responsible for or directly carried out, at any time, particularly sever violations of religious freedom?`,
-                fr: `Avez-vous, tout en servant en tant que fonctionnaire du gouvernement, été responsable ou directement effectués, à tout moment, notamment en rompre les violations de la liberté religieuse?`,
-                es: `Tiene usted, mientras se desempeñaba como funcionario del gobierno, ha sido responsable o llevado a cabo directamente, en cualquier momento, particularmente severas violaciones de la libertad religiosa?`,
+                fr: `Avez-vous, en tant que fonctionnaire du gouvernement, été responsable ou directement commis, à tout moment, de graves violations de la liberté religieuse?`,
+                es: `¿Alguna vez, mientras se desempeñó como funcionario del gobierno, ha sido responsable o ha llevado a cabo directamente, en algún momento, violaciones graves de la libertad religiosa?`,
                 de: `Haben Sie, während er wie ein Beamter, der verantwortliche für oder direkt durchgeführt, zu jeder Zeit, besonders sever Verletzungen der religiösen Freiheit?`,
                 it: `Hai, mentre prestava servizio come ufficiale del governo, è stato responsabile o direttamente svolte, in qualsiasi momento, in particolare sever violazioni della libertà religiosa?`,
             },
@@ -2398,21 +2398,21 @@ const resources = {
             },
             11: {
                 en: `Have you ever been directly involved in the coercive transplantation of human organs or bodily tissue?`,
-                fr: `Avez-vous jamais été directement impliqué dans la coercitives la transplantation d'organes ou de tissu corporel?`,
-                es: `¿Alguna vez has estado involucrado directamente en la coercitivas trasplante de órganos humanos corporal o tejido?`,
+                fr: `Avez-vous déjà été directement impliqué dans la transplantation coercitive d'organes humains ou de tissus corporels?`,
+                es: `¿Alguna vez ha estado directamente involucrado en el trasplante coercitivo de órganos humanos o tejido corporal?`,
                 de: `Haben Sie schon einmal direkt in der Zwangs transplantation von menschlichen Organen oder körperlichen Gewebe?`,
                 it: `Avete mai stato direttamente coinvolto nella coercitive trapianto di organi o tessuti corporei?`,
             },
             section_title: {
                 en: `Security and Background: Part 3`,
-                fr: `De sécurité et d'arrière-plan: Partie 3`,
+                fr: `Sécurité et Historique: Partie 3`,
                 es: `De seguridad y de Fondo: Parte 3`,
                 de: `Sicherheits-und Hintergrund: Teil 3`,
                 it: `Di sicurezza e di Sfondo: Parte 3`,
             },
             section_descr: {
                 en: `NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.`,
-                fr: `REMARQUE: Fournir les éléments suivants de la sécurité et des informations de fond. Fournir des informations exactes et complètes à toutes les questions qui exigent une explication. Un visa ne peut être délivré à des personnes qui sont dans des catégories définies par la loi comme irrecevable pour les États-unis (sauf si une dispense est obtenue à l'avance). Sont une des opérations suivantes s'appliquent à vous? Alors qu'une réponse OUI n'est pas automatiquement signifier la suspension pour un visa, si vous répondez OUI, vous pourriez être tenu de comparaître en personne devant un agent consulaire.`,
+                fr: `REMARQUE: fournissez les informations de sécurité et de base suivantes. Fournissez des informations complètes et précises à toutes les questions qui nécessitent une explication. Un visa ne peut être délivré à des personnes appartenant à des catégories spécifiques définies par la loi comme interdites de territoire aux États-Unis (sauf si une dérogation est obtenue à l'avance). L'un des éléments suivants vous concerne-t-il? Bien qu'une réponse OUI ne signifie pas automatiquement l'inadmissibilité à un visa, si vous répondez OUI, vous devrez peut-être comparaître personnellement devant un agent consulaire.`,
                 es: `NOTA: Proporcione la siguiente seguridad y la información de fondo. Proporcionar información precisa y completa a todas las preguntas que requieren una explicación. Una visa no podrá ser expedido a las personas que están dentro de categorías específicas definidas por la ley como inadmisible a los Estados unidos (excepto cuando la renuncia se obtienen por adelantado). Son alguna de las siguientes es aplicable a usted? Mientras que una respuesta de SÍ no automáticamente significar la pérdida de elegibilidad para una visa, si su respuesta es SÍ, usted puede ser obligado a comparecer personalmente a un oficial consular.`,
                 de: `HINWEIS: Geben Sie die folgenden Sicherheits-und hintergrund-Informationen. Vollständige und genaue Informationen zu allen Fragen, die bedürfen einer Erklärung. Ein Visum darf nicht erteilt werden an Personen, die in bestimmten Kategorien gesetzlich definiert als unzulässig zu den Vereinigten Staaten (außer, wenn eine Befreiung im Voraus). Die folgenden sind auf Sie anwendbar? Während eine JA-Antwort nicht automatisch bedeuten, die Sperre für ein Visum, wenn Sie Antwort JA, Sie können aufgefordert werden, persönlich zu erscheinen vor dem Konsularbeamten.`,
                 it: `NOTA: non forniamo le seguenti sicurezza e informazioni generali. Fornire informazioni complete e accurate a tutte le domande che richiedono una spiegazione. Un visto non può essere rilasciato a persone che sono all'interno di specifiche categorie definite dalla legge come inammissibile per gli Stati Uniti (tranne in caso di rinuncia si ottiene in anticipo). Sono applicabili a voi? Mentre una risposta di SÌ non automaticamente significare ineleggibilità per un visto, se la risposta è SÌ, si può essere tenuti a presentarsi personalmente prima di un funzionario consolare.`,
@@ -2421,21 +2421,21 @@ const resources = {
         part4: {
             0: {
                 en: `Have you ever been the subject of a removal or deportation hearing?`,
-                fr: `Avez-vous déjà fait l'objet d'un renvoi ou d'expulsion de l'audience?`,
-                es: `¿Alguna vez has sido objeto de una medida de expulsión o deportación de la audiencia?`,
+                fr: `Avez-vous déjà fait l'objet d'une audience de renvoi ou d'expulsion?`,
+                es: `¿Alguna vez ha sido objeto de una audiencia de expulsión o deportación?`,
                 de: `Haben Sie schon einmal den Gegenstand einer Entfernung oder deportation zu hören?`,
                 it: `Sei mai stato oggetto di una rimozione o la deportazione di udito?`,
             },
             1: {
                 en: `Have you ever sought to obtain or assist others to obtain a visa, entry in the US, or any other US immigration benefit by fraud or willful misrepresentation or other unlawful means?`,
-                fr: `Avez-vous déjà cherché à obtenir ou aider les autres à obtenir un visa d'entrée aux états-unis, ou tout autre NOUS demande de prestations d'immigration par fraude ou fausse déclaration intentionnelle ou d'autres moyens illégaux?`,
-                es: `¿Alguna vez has tratado de obtener o ayudar a otros a obtener un visado de entrada en los estados unidos, o cualquier otro que NOS beneficio de inmigración por fraude o tergiversación intencional o de otros medios ilegales?`,
+                fr: `Avez-vous déjà cherché à obtenir ou à aider d'autres personnes à obtenir un visa, une entrée aux États-Unis ou tout autre avantage en matière d'immigration aux États-Unis par fraude ou fausse déclaration volontaire ou par d'autres moyens illégaux?`,
+                es: `¿Alguna vez ha tratado de obtener o ayudar a otros a obtener una visa, ingresar a los Estados Unidos o cualquier otro beneficio de inmigración de los Estados Unidos por fraude o tergiversación intencional u otros medios ilegales?`,
                 de: `Haben Sie jemals versucht, zu erhalten oder zu helfen, andere erhalten ein Visum, die Einreise in die USA, oder alle anderen US-Einwanderung profitieren von Betrug oder vorsätzlicher Täuschung oder andere ungesetzliche Mittel?`,
                 it: `Avete mai cercato di ottenere o di aiutare gli altri, per ottenere un visto d'ingresso negli USA, o qualsiasi altro di NOI beneficio di immigrazione da frode o dolo o altri mezzi illeciti?`,
             },
             2: {
                 en: `Have you failed to attend a hearing on removability or inadmissibility within the last five years?`,
-                fr: `Avez-vous échoué à assister à une audience sur l'amovibilité ou d'irrecevabilité dans les cinq dernières années?`,
+                fr: `Avez-vous échoué à assister à une audience sur l'amovibilité ou l'interdiction de territoire au cours des cinq dernières années?`,
                 es: `Tiene usted no pudo asistir a una audiencia de deportación o de inadmisibilidad en los últimos cinco años?`,
                 de: `Haben Sie nicht zu einer Vernehmung auf die Entfernbarkeit oder Unzulässigkeit innerhalb der letzten fünf Jahre?`,
                 it: `Avete omesso di partecipare a un'udienza della rimovibilità o irricevibilità entro gli ultimi cinque anni?`,
@@ -2449,7 +2449,7 @@ const resources = {
             },
             4: {
                 en: `Have you ever been removed or deported from any country?`,
-                fr: `Avez-vous déjà été supprimés ou déportés à partir de n'importe quel pays?`,
+                fr: `Avez-vous déjà été expulsé ou déportés à partir de n'importe quel pays?`,
                 es: `¿Alguna vez has sido eliminado o deportados desde cualquier país?`,
                 de: `Haben Sie jemals entfernt worden oder deportiert aus jedem Land?`,
                 it: `Sei mai stato rimosso o espulso da qualsiasi paese?`,
@@ -2463,7 +2463,7 @@ const resources = {
             },
             section_descr: {
                 en: `NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.`,
-                fr: `REMARQUE: Fournir les éléments suivants de la sécurité et des informations de fond. Fournir des informations exactes et complètes à toutes les questions qui exigent une explication. Un visa ne peut être délivré à des personnes qui sont dans des catégories définies par la loi comme irrecevable pour les États-unis (sauf si une dispense est obtenue à l'avance). Sont une des opérations suivantes s'appliquent à vous? Alors qu'une réponse OUI n'est pas automatiquement signifier la suspension pour un visa, si vous répondez OUI, vous pourriez être tenu de comparaître en personne devant un agent consulaire.`,
+                fr: `REMARQUE: fournissez les informations de sécurité et de base suivantes. Fournissez des informations complètes et précises à toutes les questions qui nécessitent une explication. Un visa ne peut être délivré à des personnes appartenant à des catégories spécifiques définies par la loi comme interdites de territoire aux États-Unis (sauf si une dérogation est obtenue à l'avance). L'un des éléments suivants vous concerne-t-il? Bien qu'une réponse OUI ne signifie pas automatiquement l'inadmissibilité à un visa, si vous répondez OUI, vous devrez peut-être comparaître personnellement devant un agent consulaire.`,
                 es: `NOTA: Proporcione la siguiente seguridad y la información de fondo. Proporcionar información precisa y completa a todas las preguntas que requieren una explicación. Una visa no podrá ser expedido a las personas que están dentro de categorías específicas definidas por la ley como inadmisible a los Estados unidos (excepto cuando la renuncia se obtienen por adelantado). Son alguna de las siguientes es aplicable a usted? Mientras que una respuesta de SÍ no automáticamente significar la pérdida de elegibilidad para una visa, si su respuesta es SÍ, usted puede ser obligado a comparecer personalmente a un oficial consular.`,
                 de: `HINWEIS: Geben Sie die folgenden Sicherheits-und hintergrund-Informationen. Vollständige und genaue Informationen zu allen Fragen, die bedürfen einer Erklärung. Ein Visum darf nicht erteilt werden an Personen, die in bestimmten Kategorien gesetzlich definiert als unzulässig zu den Vereinigten Staaten (außer, wenn eine Befreiung im Voraus). Die folgenden sind auf Sie anwendbar? Während eine JA-Antwort nicht automatisch bedeuten, die Sperre für ein Visum, wenn Sie Antwort JA, Sie können aufgefordert werden, persönlich zu erscheinen vor dem Konsularbeamten.`,
                 it: `NOTA: non forniamo le seguenti sicurezza e informazioni generali. Fornire informazioni complete e accurate a tutte le domande che richiedono una spiegazione. Un visto non può essere rilasciato a persone che sono all'interno di specifiche categorie definite dalla legge come inammissibile per gli Stati Uniti (tranne in caso di rinuncia si ottiene in anticipo). Sono applicabili a voi? Mentre una risposta di SÌ non automaticamente significare ineleggibilità per un visto, se la risposta è SÌ, si può essere tenuti a presentarsi personalmente prima di un funzionario consolare.`,
@@ -2472,14 +2472,14 @@ const resources = {
         part5: {
             0: {
                 en: `Have you ever withheld custody of a US citizen child outside the US from a person granted legal custody by a US court?`,
-                fr: `Avez-vous déjà refusé la garde d'un citoyen AMÉRICAIN de l'enfant à l'extérieur des états-unis pour une personne qui en a obtenu la garde légale par un tribunal des etats-unis?`,
-                es: `¿Alguna vez has retenido bajo custodia de un ciudadano de los EE.UU. niño fuera de los estados unidos de una persona concede la custodia legal por un tribunal de los estados unidos?`,
+                fr: `Avez-vous déjà refusé la garde d'un enfant citoyen américain en dehors des États-Unis à une personne ayant obtenu la garde légale d'un tribunal américain?`,
+                es: `¿Alguna vez ha retenido la custodia de un niño ciudadano de EE. UU. Fuera de los EE. UU. De una persona a quien un tribunal de EE. UU. Le otorgó la custodia legal?`,
                 de: `Haben Sie sich jemals zurückgehalten Haft von einem US-Bürger Kindes außerhalb der USA von einer person gewährten rechtlichen Haft von einem US-Gericht?`,
                 it: `Hai mai rifiutato la custodia di un cittadino degli stati UNITI bambino al di fuori degli USA da una persona concessa la custodia legale da parte di un giudice statunitense?`,
             },
             1: {
                 en: `Have you voted in the US in violation of any law or regulation?`,
-                fr: `Avez-vous voté aux etats-unis en violation de toute loi ou règlement?`,
+                fr: `Avez-vous voté aux États-Unis en violation de toute loi ou règlement?`,
                 es: `Ha votado en los estados unidos en violación de cualquier ley o regulación?`,
                 de: `Haben Sie abgestimmt in den USA in Verletzung von Gesetz oder Verordnung?`,
                 it: `Avete votato in NOI, in violazione di qualsiasi legge o regolamento?`,
@@ -2493,28 +2493,28 @@ const resources = {
             },
             3: {
                 en: `Have you attended a public elementary school on student (F) status or a public secondary school after November 30,1996 without reimbursing the school?`,
-                fr: `Avez-vous assisté à une école primaire publique de l'élève (F) ou d'une école secondaire publique après le mois de novembre 30,1996 sans remboursement de l'école?`,
-                es: `Ha asistido a una escuela primaria pública en el estudiante (F) estado o de una escuela secundaria pública después de noviembre de 30,1996 sin reembolsar a la escuela?`,
+                fr: `Avez-vous fréquenté une école primaire publique sur le statut d'élève (F) ou une école secondaire publique après le 30 novembre 1996 sans rembourser l'école?`,
+                es: `¿Ha asistido a una escuela primaria pública con estatus de estudiante (F) o una escuela secundaria pública después del 30 de noviembre de 1996 sin reembolsar a la escuela?`,
                 de: `Haben Sie besucht eine öffentliche Grundschule auf Schüler - (F) - status oder ein öffentlich-Gymnasium nach November 30,1996 ohne Erstattung der Kosten von der Schule?`,
                 it: `Hai frequentato una scuola elementare pubblica degli studenti (F) stato o di una scuola secondaria pubblica dopo il mese di novembre 30,1996, senza rimborso della scuola?`,
             },
             4: {
                 en: `Are you a former exchange visitor (J) who has not yet fulfilled the two-year foreign residence requirement?`,
-                fr: `Êtes-vous un ancien visiteur d'échange (J) qui n'a pas encore rempli les deux ans de résidence à l'étranger exigence?`,
-                es: `¿Es usted un ex visitante de intercambio (J) que aún no ha cumplido los dos años de residencia en el extranjero requisito?`,
+                fr: `Êtes-vous un ancien visiteur d'échange (J) qui n'a pas encore satisfait à l'exigence de résidence à l'étranger de deux ans?`,
+                es: `¿Es usted un antiguo visitante de intercambio (J) que aún no ha cumplido el requisito de residencia en el extranjero de dos años?`,
                 de: `Sind Sie ein ehemaliger exchange visitor (J) wer hat noch nicht erfüllt, wird das zwei-Jahres-foreign residence requirement?`,
                 it: `Sono un ex exchange visitor (J) che non ha ancora compiuto i due anni di residenza per stranieri requisito?`,
             },
             section_title: {
                 en: `Security and Background: Part 5`,
-                fr: `De sécurité et d'arrière-plan: Partie 5`,
+                fr: `Sécurité et Historique: Partie 5`,
                 es: `De seguridad y de Fondo: Parte 5`,
                 de: `Sicherheits-und Hintergrund: Teil 5`,
                 it: `Di sicurezza e di Sfondo: Parte 5`,
             },
             section_descr: {
                 en: `NOTE: Provide the following security and background information. Provide complete and accurate information to all questions that require an explanation. A visa may not be issued to persons who are within specific categories defined by law as inadmissible to the United States (except when a waiver is obtained in advance). Are any of the following applicable to you? While a YES answer does not automatically signify ineligibility for a visa, if you answer YES you may be required to personally appear before a consular officer.`,
-                fr: `REMARQUE: Fournir les éléments suivants de la sécurité et des informations de fond. Fournir des informations exactes et complètes à toutes les questions qui exigent une explication. Un visa ne peut être délivré à des personnes qui sont dans des catégories définies par la loi comme irrecevable pour les États-unis (sauf si une dispense est obtenue à l'avance). Sont une des opérations suivantes s'appliquent à vous? Alors qu'une réponse OUI n'est pas automatiquement signifier la suspension pour un visa, si vous répondez OUI, vous pourriez être tenu de comparaître en personne devant un agent consulaire.`,
+                fr: `REMARQUE: fournissez les informations de sécurité et de base suivantes. Fournissez des informations complètes et précises à toutes les questions qui nécessitent une explication. Un visa ne peut être délivré à des personnes appartenant à des catégories spécifiques définies par la loi comme interdites de territoire aux États-Unis (sauf si une dérogation est obtenue à l'avance). L'un des éléments suivants vous concerne-t-il? Bien qu'une réponse OUI ne signifie pas automatiquement l'inadmissibilité à un visa, si vous répondez OUI, vous devrez peut-être comparaître personnellement devant un agent consulaire.`,
                 es: `NOTA: Proporcione la siguiente seguridad y la información de fondo. Proporcionar información precisa y completa a todas las preguntas que requieren una explicación. Una visa no podrá ser expedido a las personas que están dentro de categorías específicas definidas por la ley como inadmisible a los Estados unidos (excepto cuando la renuncia se obtienen por adelantado). Son alguna de las siguientes es aplicable a usted? Mientras que una respuesta de SÍ no automáticamente significar la pérdida de elegibilidad para una visa, si su respuesta es SÍ, usted puede ser obligado a comparecer personalmente a un oficial consular.`,
                 de: `HINWEIS: Geben Sie die folgenden Sicherheits-und hintergrund-Informationen. Vollständige und genaue Informationen zu allen Fragen, die bedürfen einer Erklärung. Ein Visum darf nicht erteilt werden an Personen, die in bestimmten Kategorien gesetzlich definiert als unzulässig zu den Vereinigten Staaten (außer, wenn eine Befreiung im Voraus). Die folgenden sind auf Sie anwendbar? Während eine JA-Antwort nicht automatisch bedeuten, die Sperre für ein Visum, wenn Sie Antwort JA, Sie können aufgefordert werden, persönlich zu erscheinen vor dem Konsularbeamten.`,
                 it: `NOTA: non forniamo le seguenti sicurezza e informazioni generali. Fornire informazioni complete e accurate a tutte le domande che richiedono una spiegazione. Un visto non può essere rilasciato a persone che sono all'interno di specifiche categorie definite dalla legge come inammissibile per gli Stati Uniti (tranne in caso di rinuncia si ottiene in anticipo). Sono applicabili a voi? Mentre una risposta di SÌ non automaticamente significare ineleggibilità per un visto, se la risposta è SÌ, si può essere tenuti a presentarsi personalmente prima di un funzionario consolare.`,
@@ -2524,7 +2524,7 @@ const resources = {
     crew_visa: {
         section_title: {
             en: `Crew Visa Information`,
-            fr: `L'Équipage D'Information Sur Les Visas`,
+            fr: `Informations sur le visa d'Équipage`,
             es: `La Tripulación De Información De Visados`,
             de: `Crew-Visum Informationen`,
             it: `Equipaggio Di Informazione Visti`,

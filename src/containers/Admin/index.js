@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { ADMIN } from 'actions/types'
-import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Icon, Dropdown, Avatar, Badge } from 'antd';
-const { Header, Content, Footer } = Layout;
+import { withCookies } from 'react-cookie'
 
+import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Icon, Dropdown, Avatar, Badge } from 'antd'
+
+import * as constants from 'utils/constants'
+
+import AdminPageDashboard from './Pages/dashboard'
 import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
 import AdminPageUsers from './Pages/users'
-import { withCookies } from 'react-cookie';
-import * as constants from 'utils/constants'
 
 import './index.less'
 
-
+const { Header, Content, Footer } = Layout
 
 class AdminBoard extends Component {
   static defaultProps = {
@@ -25,7 +26,7 @@ class AdminBoard extends Component {
     }
   }
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.logout = this.logout.bind(this)
   }
@@ -34,7 +35,7 @@ class AdminBoard extends Component {
   }
 
   logout() {
-    
+
     this.props.cookies.remove('immigration4us_authRedirectTo')
     // this.props.cookies.remove('immigration4us_token')
     localStorage.removeItem('immigration4us_token')
@@ -51,37 +52,42 @@ class AdminBoard extends Component {
 
     let menus = []
 
-    if(user.role == constants.USER_ROLE.ADMIN) {
+    if (user.role === constants.USER_ROLE.ADMIN) {
+      menus = [
+        { key: 'dashboard', label: 'Dashboard' },
+        { key: 'ds160', label: 'DS-160' },
+        { key: 'mail', label: 'Mail Templates' },
+        { key: 'users', label: 'Agencies' },
+      ]
+    } else if (user.role === constants.USER_ROLE.AGENCY) {
       menus = [
         { key: "ds160", label: 'DS-160' },
-        { key: "mail", label: 'Mail Templates'},
-        { key: "users", label: 'Agencies'},
       ]
-    } else if (user.role == constants.USER_ROLE.AGENCY) {
-      menus = [
-        { key: "ds160", label: 'DS-160' },
-      ]
-    } else if (user.role == constants.USER_ROLE.NOT) {
+    } else if (user.role === constants.USER_ROLE.NOT) {
       menus = [
         { key: "ds160", label: 'DS-160' },
       ]
     }
 
     switch (menu) {
+      case 'dashboard':
+        if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY)
+          renderPage = <AdminPageDashboard pattern={pattern} user={user} />
+        break
       case 'ds160':
-        if(user.role == constants.USER_ROLE.ADMIN || user.role == constants.USER_ROLE.AGENCY)
-          renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern} user={user}/>
-        break;
+        if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY)
+          renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern} user={user} />
+        break
       case 'mail':
-        if(user.role == constants.USER_ROLE.ADMIN)
-          renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern} user={user}/>
-        break;
+        if (user.role === constants.USER_ROLE.ADMIN)
+          renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern} user={user} />
+        break
       case 'users':
-        if(user.role == constants.USER_ROLE.ADMIN)
-          renderPage = <AdminPageUsers pagination={pagination} pattern={pattern} user={user}/>
-        break;
+        if (user.role === constants.USER_ROLE.ADMIN)
+          renderPage = <AdminPageUsers pagination={pagination} pattern={pattern} user={user} />
+        break
       default:
-        break;
+        break
     }
 
     const menuIndex = menus.findIndex(item => item.key == menu)
@@ -103,7 +109,7 @@ class AdminBoard extends Component {
       <Layout className="visa-admin-layout">
         <Header>
           <div className="logo" />
-          <Menu 
+          <Menu
             theme="dark"
             mode="horizontal"
             defaultSelectedKeys={[menu]}
@@ -113,14 +119,14 @@ class AdminBoard extends Component {
             <div style={{ float: 'right', cursor: 'pointer' }}>
               <span style={{ marginRight: '10px' }}>{user ? user.username : 'Your username'}</span>
               <Dropdown
-                overlay={accountMenu} 
+                overlay={accountMenu}
                 trigger={['click']}
               >
                 <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
               </Dropdown>
             </div>
           </Menu>
-          
+
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>

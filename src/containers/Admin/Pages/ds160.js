@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
 import * as constants from 'utils/constants'
-import { Table, Tag, Button, Modal, notification, Input } from 'antd';
+import { Table, Tag, Button, Modal, notification, Input } from 'antd'
 import momentTz from 'moment-timezone'
 import moment from 'moment'
 
@@ -23,7 +23,7 @@ class AdminPageDS160 extends Component {
       pageSize: 10
     }
   }
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       visible_send_email_modal: false,
@@ -74,16 +74,16 @@ class AdminPageDS160 extends Component {
   }
 
   handleSendEmail = () => {
-    const { selected_record } = this.state 
+    const { selected_record } = this.state
     this.setState({
       loading_send_email: true
     })
     this.props.resendEmail(ADMIN.RESEND_EMAIL_REQUEST, selected_record._id, (result) => {
-      if(result.error) {
+      if (result.error) {
         openNotificationWithIcon('error', 'Failed to send an email!', `There isn't such email template based on the interview location.`)
-      } else if( result.data && result.data.status == 404 ) {
+      } else if (result.data && result.data.status == 404) {
         openNotificationWithIcon('error', 'Failed to send an email!', `There isn't such email template based on the interview location.`)
-      } else if( result.data && result.data.status == 500 ) {
+      } else if (result.data && result.data.status == 500) {
         openNotificationWithIcon('error', 'Failed to send an email!', `There isn't such email template based on the interview location.`)
       } else {
         openNotificationWithIcon('success', 'Successfully sent!', 'The email has been sent')
@@ -97,17 +97,17 @@ class AdminPageDS160 extends Component {
   }
 
   handleSearchKeyDown = (event) => {
-    if(event.keyCode == 13)
+    if (event.keyCode == 13)
       this.searchString();
   }
 
   searchString = () => {
     const search = this.refs.search_input.state.value
 
-    const {pagination} = this.props
+    const { pagination } = this.props
     let filterString = utils.getFilterString(pagination.filters)
 
-    if(pagination.search != search)
+    if (pagination.search != search)
       this.props.history.push({
         pathname: '/board/ds160',
         search: `?current=${pagination.current}` + (search && search.length ? `&search=${search}` : '') + filterString
@@ -117,7 +117,7 @@ class AdminPageDS160 extends Component {
   onSubmitWithoutPayment = (record) => {
     this.props.automate(ADMIN.AUTOMATE_REQUEST, record._id, (result) => {
       // openNotificationWithIcon
-      if(result.error) {
+      if (result.error) {
         openNotificationWithIcon('error', 'Failed', 'Failed to submit without payment')
       } else {
         openNotificationWithIcon('success', 'Success', 'Successed to submit without payment. Please wait few mins to complete')
@@ -133,9 +133,9 @@ class AdminPageDS160 extends Component {
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     let agencyFilter = []
-    if(this.props.users) {
+    if (this.props.users) {
       this.props.users.forEach(user => {
-        if( user.approved && user.role == constants.USER_ROLE.AGENCY)
+        if (user.approved && user.role == constants.USER_ROLE.AGENCY)
           agencyFilter.push({ text: user.username, value: user.username })
       })
       agencyFilter.push({ text: 'none', value: 'none' })
@@ -207,8 +207,8 @@ class AdminPageDS160 extends Component {
         filters: [{ text: 'Paid', value: 'paid' }, { text: 'Not paid', value: 'not_paid' }, { text: 'Not completed', value: 'not_completed' }],
         filteredValue: pagination.filters.checkout,
         onFilter: (value, record) => {
-          if(value == 'paid') return record.completed && record.paid
-          if(value == 'not_paid') return record.completed && !record.paid
+          if (value == 'paid') return record.completed && record.paid
+          if (value == 'not_paid') return record.completed && !record.paid
           return !record.completed
         }
       },
@@ -222,20 +222,20 @@ class AdminPageDS160 extends Component {
             return <Tag color="volcano">Pending</Tag>
           if (record.automation_status.result == 'processing')
             return <Tag color="green">In progress</Tag>
-          if(record.automation_status.error || record.automation_status.result == 'fail')
+          if (record.automation_status.error || record.automation_status.result == 'fail')
             return <Tag color="red">Failed</Tag>
-          if(record.automation_status.result == 'success' && record.automation_status.email_status == false)
+          if (record.automation_status.result == 'success' && record.automation_status.email_status == false)
             return <><Tag color="geekblue">Success</Tag><Tag color="magenta">Email not sent</Tag></>
           return <Tag color="geekblue">Success</Tag>
         },
-        filters: [{ text: '-', value: 'not_completed' }, { text: 'Pending', value: 'pending' }, { text: 'In progress', value: 'in_progress' }, { text: 'Failed', value: 'failed' }, { text: 'Incident', value: 'not_sent'}, { text: 'Success', value: 'success'}],
+        filters: [{ text: '-', value: 'not_completed' }, { text: 'Pending', value: 'pending' }, { text: 'In progress', value: 'in_progress' }, { text: 'Failed', value: 'failed' }, { text: 'Incident', value: 'not_sent' }, { text: 'Success', value: 'success' }],
         filteredValue: pagination.filters.automation_status,
         onFilter: (value, record) => {
-          if(value == 'not_completed') return !record.completed || !record.automation_status
-          if(value == 'pending') return record.completed && record.automation_status && record.automation_status.result == 'pending'
-          if(value == 'in_progress') return record.completed && record.automation_status && record.automation_status.result == 'processing'
-          if(value == 'failed') return record.completed && record.automation_status && (record.automation_status.result == 'fail' || record.automation_status.error)
-          if(value == 'not_sent') return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status == false)
+          if (value == 'not_completed') return !record.completed || !record.automation_status
+          if (value == 'pending') return record.completed && record.automation_status && record.automation_status.result == 'pending'
+          if (value == 'in_progress') return record.completed && record.automation_status && record.automation_status.result == 'processing'
+          if (value == 'failed') return record.completed && record.automation_status && (record.automation_status.result == 'fail' || record.automation_status.error)
+          if (value == 'not_sent') return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status == false)
           return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status != false)
         }
       },
@@ -245,8 +245,8 @@ class AdminPageDS160 extends Component {
         render: (text, record) => {
           if (!record.completed)
             return '-'
-          if(user.role != constants.USER_ROLE.ADMIN) {
-            if(!record.automation_status) {
+          if (user.role != constants.USER_ROLE.ADMIN) {
+            if (!record.automation_status) {
               return <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
                 Submit without payment
               </Button>
@@ -257,20 +257,20 @@ class AdminPageDS160 extends Component {
             return '-'
           if (record.automation_status.error) {
             return (<><Button type="danger" shape="round" icon="warning" size="small">
-              { user.role == constants.USER_ROLE.ADMIN 
-                ?<a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
+              {user.role == constants.USER_ROLE.ADMIN
+                ? <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
                 : <a style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
               }
             </Button>
-            {user.role == constants.USER_ROLE.ADMIN && <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
-              Submit without payment
+              {user.role == constants.USER_ROLE.ADMIN && <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
+                Submit without payment
             </Button>}
             </>)
           }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == false) {
             return (<Button type="default" shape="round" icon="mail" size="small" style={{ background: 'blueviolet', color: 'white' }} onClick={() => this.onClickSendEmail(record)}>
               Send Email
-            </Button>)  
+            </Button>)
           }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == true) {
             return (<Button type="primary" shape="round" icon="download" size="small">
@@ -284,7 +284,7 @@ class AdminPageDS160 extends Component {
     return (
       <div className="admin-page-ds160">
         <div className="admin-page-ds160__top">
-          <Input placeholder="Search (ID, Name, Email Address) here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown}/>
+          <Input placeholder="Search (ID, Name, Email Address) here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown} />
           <Button type="primary" icon="search" onClick={this.searchString}>
             Search
           </Button>
@@ -297,7 +297,7 @@ class AdminPageDS160 extends Component {
           loading={loading}
           onChange={this.handleTableChange}
           expandedRowRender={record => {
-            if(!record.transaction) {
+            if (!record.transaction) {
               return <p style={{ margin: 0 }}>
                 {`_id: ${record._id}`}<br />
                 No transaction</p>
@@ -318,7 +318,7 @@ class AdminPageDS160 extends Component {
           confirmLoading={loading_send_email}
           onOk={this.handleSendEmail}
           onCancel={() => {
-            if(!loading_send_email)
+            if (!loading_send_email)
               this.hideSendEmailModal()
           }}
         >
