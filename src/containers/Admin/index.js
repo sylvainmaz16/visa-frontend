@@ -138,7 +138,7 @@ class AdminBoard extends Component {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Copyright here</Footer>
-      </Layout>
+      </Layout >
     )
   }
 }
