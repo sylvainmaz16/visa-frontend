@@ -19,11 +19,11 @@ class Donut extends React.Component {
     const data = [
       {
         item: 'Not Completed',
-        count: 516,
+        count: 18,
       },
       {
         item: 'Pending',
-        count: 12,
+        count: 5,
       },
       {
         item: 'In progress',
@@ -39,7 +39,7 @@ class Donut extends React.Component {
       },
       {
         item: 'Successed',
-        count: 725,
+        count: 12,
       },
     ]
     const dv = new DataView()
@@ -64,7 +64,7 @@ class Donut extends React.Component {
           height={400}
           data={dv}
           scale={cols}
-          padding={[80, 100, 80, 80]}
+          padding={[0, 100, 100, 50]}
           forceFit
         >
           <Coord type="theta" radius={0.75} innerRadius={0.7} />
@@ -81,7 +81,7 @@ class Donut extends React.Component {
           <Guide>
             <Html
               position={["50%", "50%"]}
-              html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>Applications<br><span style=&quot;color:#262626;font-size:2.5em&quot;>1217</span></div>"
+              html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>Applications<br><span style=&quot;color:#262626;font-size:2em&quot;>102</span></div>"
               alignX="middle"
               alignY="middle"
             />
@@ -109,7 +109,8 @@ class Donut extends React.Component {
             <Label
               content="percent"
               formatter={(val, item) => {
-                return item.point.item + ": " + val
+                const floatValue = parseFloat(val.substring(0, val.length - 1))
+                return item.point.item + ": " + floatValue.toPrecision(2) + '%'
               }}
             />
           </Geom>

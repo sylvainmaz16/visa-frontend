@@ -21,7 +21,7 @@ const resources = {
     },
     add_another: {
         en: `Add another`,
-        fr: `Ajouter un autre`,
+        fr: `Ajouter`,
         it: `Agrega otro`,
         es: `Neue hinzufügen`,
         de: `Aggiungi un altro`,
@@ -2524,7 +2524,7 @@ const resources = {
     crew_visa: {
         section_title: {
             en: `Crew Visa Information`,
-            fr: `Informations sur le visa d'Équipage`,
+            fr: `Informations sur le Visa d'Équipage`,
             es: `La Tripulación De Información De Visados`,
             de: `Crew-Visum Informationen`,
             it: `Equipaggio Di Informazione Visti`,
@@ -2538,28 +2538,28 @@ const resources = {
         },
         job_title: {
             en: `Specific job title aboard aircraft or vessel`,
-            fr: `Spécifique titre de l'emploi à bord d'un aéronef ou d'un navire`,
+            fr: `Titre de fonction spécifique à bord d'un aéronef ou d'un navire`,
             es: `Trabajo específico de título a bordo de la aeronave o embarcación`,
             de: `Bestimmten job-Titel an Bord des Flugzeugs oder Schiffes`,
             it: `Specifiche titolo di lavoro a bordo di un aereo o di nave`,
         },
         company_name: {
             en: `Name of company that owns the aircraft or vessel you will be working on`,
-            fr: `Nom de la société qui est propriétaire de l'aéronef ou d'un navire, vous travaillerez sur`,
+            fr: `Nom de l'entreprise propriétaire de l'aéronef ou du navire sur lequel vous travaillerez`,
             es: `Nombre de la empresa propietaria de la aeronave o buque que va a trabajar en`,
             de: `Name der Firma, die besitzt das Flugzeug oder das Schiff in dem Sie arbeiten werden auf`,
             it: `Nome della società che possiede l'aereo o la nave che si dovrà lavorare su`,
         },
         company_tel: {
             en: `Company Telephone Number`,
-            fr: `Société Numéro De Téléphone`,
+            fr: `Numéro de téléphone de l'entreprise`,
             es: `Empresa Número De Teléfono`,
             de: `Unternehmen Telefonnummer`,
             it: `Numero Di Telefono Dell'Azienda`,
         },
         b_position: {
             en: `Did you acquire your position using a recruiting/manning/crewing agency?`,
-            fr: `Avez-vous l'acquisition de votre position à l'aide d'un recrutement/manning/l'effectif de l'équipage de l'agence?`,
+            fr: `Avez-vous acquis votre poste auprès d'une agence de recrutement / recrutement / équipage?`,
             es: `Usted adquirió su posición mediante un reclutamiento/manning/tripulantes de la agencia?`,
             de: `Haben Sie erwerben Sie Ihre position mit Hilfe eines recruiting/manning/Besatzung Agentur?`,
             it: `Ha acquisito la propria posizione utilizzando un reclutamento/manning/equipaggio agenzia?`,
@@ -2591,7 +2591,7 @@ const resources = {
             given_name: {
                 label: {
                     en: `Contact Given Name(s)`,
-                    fr: `Contact prénom(s)`,
+                    fr: `Contact Prénom(s)`,
                     es: `Contacto Nombre(s)`,
                     de: `Kontakt Vorname(N)`,
                     it: `Contatto Nome(s)`,
@@ -2614,7 +2614,7 @@ const resources = {
                 },
                 tel_number: {
                     en: `Telephone Number`,
-                    fr: `Le Numéro De Téléphone`,
+                    fr: `Numéro De Téléphone`,
                     es: `Número De Teléfono`,
                     de: `Telefonnummer`,
                     it: `Il Numero Di Telefono`,
@@ -2623,7 +2623,7 @@ const resources = {
         },
         b_vessel: {
             en: `Are you serving aboard a seagoing ship or vessel?`,
-            fr: `Êtes-vous de servir à bord d'un navire de mer ou d'un navire?`,
+            fr: `Travaillez vous à bord d'un bateau ou d'un navire de mer?`,
             es: `Servir a bordo de un buque de navegación marítima o de los vasos?`,
             de: `Sind Sie auf der portion, die an Bord eines Seeschiffes oder Schiff?`,
             it: `Sei servire a bordo di una nave marittima o nave?`,
@@ -2631,14 +2631,14 @@ const resources = {
         vessel_info: {
             vessel_name: {
                 en: `Seagoing Ship/Vessel Name`,
-                fr: `Navire De Mer/Nom Du Navire`,
+                fr: `Nom du Bateau/Navire De Mer`,
                 es: `Buque De Navegación Marítima/Nombre Del Buque`,
                 de: `See-Schiff/Schiff Name`,
                 it: `Nave Marittima/Nome Della Nave`,
             },
             vessel_id: {
                 en: `Seagoing Ship/Vessel Identification Number`,
-                fr: `Navire De Mer/Bateau Numéro D'Identification`,
+                fr: `Numéro D'Identification du Bateau/Navire De Mer`,
                 es: `Buque De Navegación Marítima/Número De Identificación Del Buque`,
                 de: `See-Schiff/Schiff-Identifikationsnummer`,
                 it: `Nave Marittima/Natanti`,
@@ -2648,14 +2648,14 @@ const resources = {
     intracompany: {
         section_title: {
             en: `Intracompany Transferee Information`,
-            fr: `Intracompany Cessionnaire De L'Information`,
+            fr: `Informations du Transfert Intracompagnie`,
             es: `Dentro De Una Sociedad Adquirente De La Información`,
             de: `Unternehmensinterne Erwerber Informationen`,
             it: `Intraziendale Cessionario Informazioni`,
         },
         petition: {
             en: `Application Receipt/Petition Number`,
-            fr: `De Réception De La Demande/Requête Numéro`,
+            fr: `Numéro du reçu de l'Application/Pétition`,
             es: `La Recepción De La Solicitud/Petición Número`,
             de: `Antrag Eingang/Petition Nummer`,
             it: `Ricevuta Della Domanda/Petizione Numero`,
@@ -2669,7 +2669,7 @@ const resources = {
         },
         employer: {
             en: `Name of Employer where you intend to Work`,
-            fr: `Nom de l'Employeur où vous avez l'intention de Travailler`,
+            fr: `Nom de l'Employeur où vous avez l'intention de travailler`,
             es: `Nombre de la empresa donde va a Trabajar`,
             de: `Name des Arbeitgebers, wo Sie Arbeiten möchten`,
             it: `Nome del Datore di lavoro in cui si desidera Lavorare`,
@@ -2692,7 +2692,7 @@ const resources = {
         },
         income: {
             en: `Enter Monthly Income (In USD)`,
-            fr: `Entrez dans le Revenu Mensuel (En USD)`,
+            fr: `Indiquez le Revenu Mensuel (En USD)`,
             es: `Indique el Ingreso Mensual (En DÓLARES)`,
             de: `Geben Sie das Monatliche Einkommen (In USD)`,
             it: `Inserisci il Reddito Mensile (In USD)`,
@@ -2701,14 +2701,14 @@ const resources = {
     SEVIS: {
         section_title: {
             en: `Additional Point of Contact Information`,
-            fr: `Point de Contact de l'Information`,
+            fr: `Informations du Point de Contact`,
             es: `Punto adicional de la Información de Contacto`,
             de: `Weitere Kontaktmöglichkeiten`,
             it: `Ulteriore Punto di Contatto per Informazioni`,
         },
         section_descr: {
             en: `NOTE: You have indicated that you will be studying in some capacity while in the United States. List at least two contacts in your country of residence who can verify the information that you have provided on this application. Do not list immediate family members or other relatives. Postal office box numbers are unacceptable. `,
-            fr: `REMARQUE: Vous avez indiqué que vous allez étudier dans une certaine mesure aux États-unis. Liste d'au moins deux contacts dans votre pays de résidence qui peut vérifier les renseignements que vous avez fournis sur la présente demande. Ne pas la liste des membres de la famille immédiate ou d'autres parents. Case postale chiffres sont inacceptables. `,
+            fr: `REMARQUE: Vous avez indiqué que vous étudieriez dans une certaine mesure aux États-Unis. Énumérez au moins deux contacts dans votre pays de résidence qui peuvent vérifier les informations que vous avez fournies sur cette demande. Ne mentionnez pas les membres de la famille immédiate ou d'autres proches. Les numéros de boîte postale sont inacceptables. `,
             es: `NOTA: Usted ha indicado que va a estudiar en alguna capacidad, mientras que en los Estados unidos. Lista de al menos dos contactos en su país de residencia y que se pueda verificar la información que usted ha proporcionado en esta aplicación. No lista de miembros de su familia inmediata o de otros familiares. La oficina Postal cuadro cifras son inaceptables. `,
             de: `HINWEIS: Sie haben angegeben, dass Sie studieren werden, die in etwas Kapazität, während in den Vereinigten Staaten. Liste mindestens zwei Kontakte in Ihrem Land des Wohnsitzes, die können überprüfen, die Informationen, die Sie auf diese Anwendung. Nicht Liste mit unmittelbaren Familienangehörigen oder anderen verwandten. Post-office box zahlen sind nicht akzeptabel. `,
             it: `NOTA: Si hanno indicato che si studia in alcune capacità, mentre negli Stati Uniti. Elenco di almeno due contatti nel vostro paese di residenza che può verificare le informazioni fornite su questa applicazione. Non elenco i familiari o altri parenti. Ufficio postale casella di numeri, sono inaccettabili. `,
@@ -2723,14 +2723,14 @@ const resources = {
             },
             surname: {
                 en: `Surnames`,
-                fr: `Noms de famille`,
+                fr: `Nom(s) de famille`,
                 es: `Apellidos`,
                 de: `Familiennamen`,
                 it: `Cognomi`,
             },
             given_name: {
                 en: `Given Names`,
-                fr: `Étant Donné Les Noms De`,
+                fr: `Prénom(s)`,
                 es: `Dado Nombres`,
                 de: `Namen Gegeben`,
                 it: `Nomi`,
@@ -2744,7 +2744,7 @@ const resources = {
             },
             tel_number: {
                 en: `Telephone Number`,
-                fr: `Le Numéro De Téléphone`,
+                fr: `Numéro De Téléphone`,
                 es: `Número De Teléfono`,
                 de: `Telefonnummer`,
                 it: `Il Numero Di Telefono`,
@@ -2759,14 +2759,14 @@ const resources = {
         },
         section_title_sevis: {
             en: `SEVIS Information`,
-            fr: `SEVIS Informations`,
+            fr: `Informations du SEVIS `,
             es: `SEVIS Información`,
             de: `SEVIS-Informationen`,
             it: `SEVIS Informazioni`,
         },
         section_descr_sevis: {
             en: `NOTE: You have indicated that the purpose of your trip to the U.S. is to be a student or exchange visitor. Provide the following information regarding the institution at which you intend to study.`,
-            fr: `REMARQUE: Vous avez indiqué que le but de votre voyage aux états-UNIS est d'être un étudiant ou visiteur d'échange. Fournir les renseignements suivants concernant l'institution à laquelle vous prévoyez d'étude.`,
+            fr: `REMARQUE: Vous avez indiqué que le but de votre voyage aux États-Unis est d'être étudiant ou visiteur d'échange. Fournissez les informations suivantes concernant l'établissement dans lequel vous avez l'intention d'étudier.`,
             es: `NOTA: Usted ha indicado que el propósito de su viaje a los estados UNIDOS es ser un estudiante o visitante de intercambio. Dar la siguiente información sobre la institución en la que desea estudiar.`,
             de: `HINWEIS: Sie haben angegeben, dass Sie den Zweck Ihrer Reise in die USA ist ein Schüler oder Austausch Besucher. Geben Sie die folgenden Informationen über die institution, an der Sie studieren möchten.`,
             it: `NOTA: Si hanno indicato che lo scopo del vostro viaggio negli stati UNITI è quello di essere uno studente o un visitatore. Fornire le seguenti informazioni riguardanti l'ente presso cui si intende studiare.`,
@@ -2774,14 +2774,14 @@ const resources = {
         id: {
             label: {
                 en: `SEVIS ID`,
-                fr: `SEVIS ID`,
+                fr: `Identification SEVIS`,
                 es: `IDENTIFICACIÓN SEVIS`,
                 de: `SEVIS ID`,
                 it: `SEVIS ID`,
             },
             extra: {
                 en: `All SEVIS ID numbers start with the letter N. On the Form I-20, the number is on the top right hand side of the first page under the words Student’s Copy and above the barcode. On the DS-2019, the number is on the top right hand side of the page in the box above the barcode. (e.g., N0123456789)`,
-                fr: `Tous les frais SEVIS numéros d'identification commence par la lettre N. Sur le Formulaire I-20, le numéro est sur le haut à droite de la première page, sous les mots de l'Élève Copie et au-dessus du code à barres. Sur le DS-2019, le numéro se trouve sur la partie supérieure droite de la page dans la case au-dessus du code à barres. (par exemple, N0123456789)`,
+                fr: `Tous les numéros d’identification SEVIS commencent par la lettre N. Sur le formulaire I-20, le numéro se trouve en haut à droite de la première page sous le mot "Copie de l’étudiant" et au-dessus du code-barres. Sur le DS-2019, le numéro est en haut à droite de la page dans la case au-dessus du code-barres. (par exemple, N0123456789)`,
                 es: `Todos los números de IDENTIFICACIÓN SEVIS comienzan con la letra N. En el Formulario I-20, el número está en la parte superior derecha de la primera página, debajo de las palabras del Estudiante, Copia y encima del código de barras. En el formulario DS-2019, el número está en la parte superior derecha de la página en la caja de arriba del código de barras. (por ejemplo, N0123456789)`,
                 de: `Alle SEVIS-ID-Nummern beginnen mit dem Buchstaben N. Auf dem Formular I-20, die Zahl ist auf der oberen rechten Seite der ersten Seite unter den Worten Student ' s Kopieren und über dem barcode. Auf dem DS-2019, wird die Zahl auf der oberen rechten Seite der Seite in dem Kästchen über dem barcode. (z.B., N0123456789)`,
                 it: `Tutti SEVIS numeri di ID iniziano con la lettera N. il Modulo I-20, il numero è sul lato superiore destro della prima pagina, sotto le parole dello Studente Copia e sopra il codice a barre. Il DS-2019, il numero è sul lato superiore destro della pagina nella casella sopra il codice a barre. (ad esempio, N0123456789)`,
@@ -2789,21 +2789,21 @@ const resources = {
         },
         program_number: {
             en: `Program Number`,
-            fr: `Le Numéro De Programme`,
+            fr: `Numéro du Programme`,
             es: `Número De Programa`,
             de: `Programm-Nummer`,
             it: `Il Numero Di Programma`,
         },
         principal_id: {
             en: `Principal Applicant SEVIS ID`,
-            fr: `Demandeur Principal SÉVIS ID`,
+            fr: `Demandeur Principal du SEVIS`,
             es: `Solicitante Principal de IDENTIFICACIÓN SEVIS`,
             de: `Hauptbewerber SEVIS-ID`,
             it: `Candidato principale SEVIS ID`,
         },
         b_study_in_US: {
             en: `Do you intend to study in the U.S?`,
-            fr: `Avez-vous l'intention d'étudier dans le U. S?`,
+            fr: `Avez-vous l'intention d'étudier aux États-Unis?`,
             es: `¿Tienes intención de estudio en la U. S?`,
             de: `Haben Sie die Absicht zu studieren in den U. S?`,
             it: `Avete intenzione di studiare in U. S?`,
@@ -2818,7 +2818,7 @@ const resources = {
             },
             course: {
                 en: `Course of Study`,
-                fr: `Cours d'Étude`,
+                fr: `Type de Cours`,
                 es: `Curso de Estudio`,
                 de: `Studium`,
                 it: `Corso di Studio`,
@@ -2842,7 +2842,7 @@ const resources = {
         },
         b_assist: {
             en: `Did anyone assist you in filling out this application?`,
-            fr: `Quelqu'un vous aider à remplir cette demande?`,
+            fr: `Quelqu'un vous a aider à remplir cette demande?`,
             es: `¿Alguien ayuda para llenar esta solicitud?`,
             de: `Haben jemand unterstützen Sie beim ausfüllen dieser Anwendung?`,
             it: `Qualcuno di aiutarvi nella compilazione di questa applicazione?`,
@@ -2882,7 +2882,7 @@ const resources = {
             },
             relationship: {
                 en: `Relationship to you`,
-                fr: `Relation pour vous`,
+                fr: `Relation avec vous`,
                 es: `Relación para que usted`,
                 de: `Beziehung zu Ihnen`,
                 it: `Rapporto di parentela`,
@@ -2893,7 +2893,7 @@ const resources = {
         section_title: {
             0: {
                 en: `A digital photo is required for each applicant while applying for a US visitor visa.`,
-                fr: `Une photo numérique est nécessaire pour chaque candidat lors de l'application pour un visa de visiteur.`,
+                fr: `Une photo numérique est nécessaire pour chaque candidat lors de l'application pour un visa visiteur.`,
                 es: `Una foto digital es necesaria para cada solicitante, mientras que la aplicación de la visa de visitante.`,
                 de: `Ein digitales Foto erforderlich ist für jeden Antragsteller während der Anwendung für einen US-Besucher-Visum.`,
                 it: `Una foto digitale è necessaria per ogni candidato, mentre la richiesta di visto turistico.`,
@@ -2909,14 +2909,14 @@ const resources = {
         section_descr: {
             0: {
                 en: `Eyes glasses will no longer be allowed in new visa photo.`,
-                fr: `Yeux lunettes ne sont plus admis dans le nouveau visa de photo.`,
+                fr: `Les lunettes ne sont plus admises.`,
                 es: `Ojos gafas ya no será permitido en la nueva visa de fotos.`,
                 de: `Augen Brille wird nicht mehr erlaubt sein, in die neue visa-Foto.`,
                 it: `Occhi occhiali non saranno più ammessi in nuove foto dei visti.`,
             },
             1: {
                 en: `Size of photo: 2 x 2 inches (51 x 51 mm)`,
-                fr: `Taille de la photo: 2 x 2 po (51 x 51 mm)`,
+                fr: `Taille de la photo: 2 x 2 pouces (51 x 51 mm)`,
                 es: `Tamaño de la foto: 2 x 2 pulgadas (51 mm x 51 mm)`,
                 de: `Größe der Fotos: 2 x 2 Zoll (51 x 51 mm)`,
                 it: `Dimensioni della foto: 2 x 2 pollici (51 x 51 mm)`,
@@ -2930,28 +2930,28 @@ const resources = {
             },
             3: {
                 en: `Recent, taken in the last 6 months to reflect current appearance`,
-                fr: `Récentes, prises au cours des 6 derniers mois, afin de refléter l'apparence actuelle`,
+                fr: `Récente, prise au cours des 6 derniers mois, afin de refléter l'apparence actuelle`,
                 es: `Reciente, tomada en los últimos 6 meses para reflejar el aspecto actual`,
                 de: `Die jüngsten, die in den letzten 6 Monaten entsprechend der aktuellen Darstellung`,
                 it: `Recenti, scattate negli ultimi 6 mesi, per riflettere aspetto attuale`,
             },
             4: {
                 en: `Plain white or off-white background`,
-                fr: `De couleur blanche ou blanc cassé arrière-plan`,
+                fr: `Arrière-plan de couleur blanche ou blanc cassé`,
                 es: `Blanco o casi blanco de fondo`,
                 de: `Weißen oder off-weißen hintergrund`,
                 it: `Plain white o off-white background`,
             },
             5: {
                 en: `Head must face the camera directly with full face in view`,
-                fr: `La tête doit faire face à la caméra directement avec masque intégral en vue`,
+                fr: `La visage doit faire face entièrement (Pas de profil)`,
                 es: `La cabeza debe enfrentar directamente a la cámara con cara llena de vista`,
                 de: `Kopf muss in Richtung der Kamera direkt mit vollem Gesicht in Sicht`,
                 it: `La testa deve essere di fronte alla fotocamera con il pieno faccia a vista`,
             },
             6: {
                 en: `Taken with a neutral facial expression or a natural smile, with both eyes open`,
-                fr: `Prises avec une expression faciale neutre ou un sourire naturel, avec les deux yeux ouverts`,
+                fr: `Prise avec une expression faciale neutre ou un sourire naturel, avec les deux yeux ouverts`,
                 es: `Tomado con una expresión facial neutra o una sonrisa natural, con los dos ojos abiertos`,
                 de: `Aufgenommen mit einem neutralen Gesichtsausdruck oder ein natürliches lächeln, mit beiden Augen offen`,
                 it: `Prese con un'espressione neutra del viso o di un sorriso naturale, con entrambi gli occhi aperti`,
@@ -2965,21 +2965,21 @@ const resources = {
             },
             8: {
                 en: `Taken in clothing normally worn on a daily basis`,
-                fr: `Pris dans les vêtements habituellement portés sur une base quotidienne`,
+                fr: `Prise dans les vêtements habituellement portés sur une base quotidienne`,
                 es: `Tomado en la ropa que se usa normalmente sobre una base diaria`,
                 de: `Genommen in der Kleidung, die normalerweise getragen auf einer täglichen basis`,
                 it: `Preso in abbigliamento normalmente indossato su una base quotidiana`,
             },
             9: {
                 en: `No hats or head coverings (Unless worn daily for religious or medical purposes. Submit a signed statement that verifies that the hat or head covering is part of recognized, traditional religious attire that is customarily or required to be worn continuously in public or a signed doctor's statement verifying the item is used daily for medical purposes. Your full face must be visible and your hat or head covering cannot obscure your hairline or cast shadows on your face.)`,
-                fr: `Pas de chapeau ou un couvre-chef (à Moins porté tous les jours pour les religieux ou à des fins médicales. Soumettre une déclaration signée qui vérifie que le chapeau ou de se couvrir la tête est la partie de reconnu, religieuses traditionnelles des vêtements qui est habituellement ou requis pour être portées en public ou un signé la déclaration du médecin. la vérification de l'élément est utilisé au quotidien pour des fins médicales. Votre visage complet doit être visible et votre chapeau ou un couvre-chef ne peuvent pas obscurcir vos cheveux ou de projeter de l'ombre sur votre visage.)`,
+                fr: `Aucun chapeau ni couvre-chef (à moins qu'il ne soit porté quotidiennement à des fins religieuses ou médicales. Soumettez une déclaration signée qui vérifie que le chapeau ou le couvre-chef fait partie d'une tenue religieuse traditionnelle reconnue qui est habituellement ou doit être portée en permanence en public ou par un médecin signé. une déclaration attestant que l'article est utilisé quotidiennement à des fins médicales. Votre visage doit être visible et votre chapeau ou votre couvre-chef ne doivent pas masquer votre ligne de cheveux ou projeter des ombres sur votre visage.`,
                 es: `No hay sombreros o tocados (Menos usado a diario para religiosos o fines médicos. Presentar una declaración firmada en la que se comprueba que el sombrero o el cubrirse la cabeza es parte de reconocidos, de la religión tradicional atuendo que es habitualmente o requiere para ser usado continuamente en público o una firma de la declaración de verificar el elemento que se utiliza diariamente para fines médicos. Su cara completa debe ser visible y su sombrero o cubrirse la cabeza no puede ocultar su nacimiento o sombras en su cara.)`,
                 de: `Keine Hüte oder Kopfbedeckungen (es sei denn, täglich getragen für religiöse oder medizinische Zwecke. Senden Sie eine signierte Anweisung, die überprüft, ob der Hut oder Kopfbedeckung ist Teil der anerkannten, traditionelle religiöse Kleidung, die üblich oder erforderlich ist, um ständig getragen werden, die in öffentlichen oder einer signierten Arzt-Anweisung überprüfung der Artikel, die täglich im Einsatz für medizinische Zwecke. Ihr volles Gesicht muss sichtbar sein und Ihr Hut oder Kopfbedeckung kann nicht darüber hinwegtäuschen Ihr Haaransatz oder Schatten auf Ihr Gesicht.)`,
                 it: `No cappelli o il velo (a Meno che non indossati quotidianamente per motivi religiosi o per scopi medici. Presentare una dichiarazione firmata che verifica che il cappello o copricapo è parte del riconosciuto, religiosa tradizionale abbigliamento abitualmente o che devono essere indossati continuamente in pubblico o sottoscritta la dichiarazione del medico verificare l'elemento viene usato quotidianamente per scopi medici. Il pieno viso deve essere visibile e il suo cappello o copricapo non può nascondere l'attaccatura dei capelli o gettare ombre sul tuo viso.)`,
             },
             10: {
                 en: `No headphones or wireless hands-free devices.`,
-                fr: `Pas de casque ou mains-libres sans fil dispositifs.`,
+                fr: `Pas de casque ou d'appareils mains-libres sans fil.`,
                 es: `Ningún auriculares inalámbricas o dispositivos de manos libres.`,
                 de: `Keine Kopfhörer oder drahtlose Hand-freie Geräte.`,
                 it: `Niente cuffie senza fili o dispositivi hands-free.`,
@@ -3004,14 +3004,14 @@ const resources = {
         avatar: {
             label: {
                 en: `US Passport type photo ID`,
-                fr: `Passeport des états-unis de type photo d'identité`,
+                fr: `Type de photo d'identité pour Passeport américain`,
                 es: `Pasaporte de los estados unidos tipo de IDENTIFICACIÓN con foto`,
                 de: `US-Pass-Foto-ID-Typ`,
                 it: `NOI Passaporto tipo di foto ID`,
             },
             extra: {
                 en: `Upload your US passport type photo here, must be at least 600x600px. It must be a US passport type photo ID.`,
-                fr: `Téléchargez votre passeport des états-unis type de photo ici, doit être d'au moins 600x600px. Il doit être un passeport des états-unis type d'identité avec photo.`,
+                fr: `Téléchargez votre photo de type passeport américain ici, doit être au moins 600x600px. Il doit s'agir d'une pièce d'identité avec photo de type passeport américain.`,
                 es: `Sube tu pasaporte de los estados unidos tipo de fotos aquí, debe ser al menos 600x600px. Debe ser un pasaporte de los estados unidos tipo de IDENTIFICACIÓN con foto.`,
                 de: `Laden Sie Ihre US-Pass-Typ Foto hier, muss mindestens 600x600px. Es muss ein US-Pass-Typ Foto-ID.`,
                 it: `Caricare il passaporto tipo di foto qui, deve essere di almeno 600x600px. Deve essere un tipo di passaporto foto ID.`,
@@ -3020,14 +3020,14 @@ const resources = {
         FGMC: {
             label: {
                 en: `Female Genital Mutilation/Cutting (FGM/C) Prevention`,
-                fr: `La Mutilation Génitale féminine/excision (MGF/e) de Prévention`,
+                fr: `Prévention de la Mutilation Génitale féminine/Excision (MGF/E)`,
                 es: `La Mutilación Genital femenina (MGF/C) Prevención de`,
                 de: `Female Genital Mutilation/Cutting (FGM/C) Prävention`,
                 it: `Escissione/Mutilazione Genitale femminile (FGM/C) Prevenzione`,
             },
             check: {
                 en: `Pursuant to Section 644 the Illegal Immigration Reform and Immigrant Responsibility Act (IIRIRA), Public Law 104-208 (8 U.S.C. 1374), the Department of State is required to provide you with access to copy the information sheet on the severe harm to physical and psychological health caused by female genital mutilation/cutting (FGM/C). Here is the access to the Female Genital Mutilation or Cutting Government Fact Sheet: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital-mutilation-or-cutting.html. I certify that I have received the U.S. Government Fact Sheet on Female Genital Mutilation or Cutting (FGM/C).`,
-                fr: `En vertu de l'Article 644 l'illegal Immigration reform and Immigrant Loi sur la Responsabilité (IIRIRA), Droit Public 104-208 (8 U. S. C. 1374), le Département d'État est nécessaire afin de vous fournir l'accès à une copie de la fiche d'information sur le grave préjudice à la santé physique et psychologique causé par la mutilation génitale féminine/excision (MGF/e). Ici est l'accès à la Mutilation Génitale Féminine ou de la Coupe du Gouvernement, Fiche d'information: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital-mutilation-or-cutting.html. Je certifie que j'ai reçu du Gouvernement des états-UNIS Fiche d'information sur les Mutilations Génitales Féminines et à l'excision (MGF/e).`,
+                fr: `En vertu de l'article 644 de la loi sur la réforme de l'immigration illégale et la responsabilité des immigrants (IIRIRA), loi publique 104-208 (8 USC 1374), le Département d'État est tenu de vous donner accès à la copie de la fiche d'information sur les dommages graves aux santé psychologique causée par les mutilations génitales féminines / excision (MGF / E). Voici l'accès à la fiche d'information du gouvernement sur les mutilations génitales féminines ou les coupures: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital -mutilation-ou-coupe.html. Je certifie avoir reçu la fiche d'information du gouvernement américain sur les mutilations génitales féminines ou l'excision (MGF/E)`,
                 es: `De conformidad con la Sección 644 la Reforma de Inmigración Ilegal y Responsabilidad del Inmigrante (IIRIRA), Ley Pública 104-208 (8 U. S. C. 1374), el Departamento de Estado está obligado a proveer de usted el acceso a la copia de la hoja de información sobre los graves daños a la salud física y psicológica causada por la mutilación genital femenina (MGF/C). Aquí es el acceso a la Mutilación Genital Femenina o el Corte de Gobierno de la Hoja: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital-mutilation-or-cutting.html. Certifico que he recibido el Gobierno de los estados UNIDOS Hoja informativa sobre la Mutilación Genital Femenina o de Corte (M/C).`,
                 de: `Gemäß § 644 der Illegal Immigration Reform and Immigrant Responsibility Act (IIRIRA), Öffentliches Recht 104-208 (8 U. S. C. 1374), dem Department of State ist erforderlich, um Ihnen Zugang zu Kopier-Informationsblatt über die schweren Schaden für die körperliche und psychische Gesundheit, die durch weibliche Genitalverstümmelung/Beschneidung (FGM/C). Hier ist der Zugriff auf die Weibliche Genitalverstümmelung oder-Schneiden Regierung Fact Sheet: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital-mutilation-or-cutting.html. Ich bestätige, dass ich erhalten habe, die US-Regierung Factsheet Weibliche Genitalverstümmelung oder Cutting (FGM/C).`,
                 it: `Ai sensi dell'articolo 644 di Immigrazione Clandestina, di Riforma e di Immigrati Responsabilità Act (IIRIRA), Diritto Pubblico 104-208 (8 U. S. C. 1374), il Dipartimento di Stato è richiesto di fornire l'accesso a copiare il foglio di informazioni sul grave danno per la salute fisica e psicologica causata da escissione/mutilazione genitale femminile (FGM/C). Qui è l'accesso alla Mutilazione Genitale Femminile o il Taglio di Governo Fact Sheet: https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fact-sheet-on-female-genital-mutilation-or-cutting.html. Dichiaro di aver ricevuto il Governo degli stati UNITI Foglio di Fatto contro la Mutilazione Genitale Femminile o di Taglio (FGM/C).`,
@@ -3036,15 +3036,15 @@ const resources = {
         HTP: {
             label: {
                 en: `Human Trafficking Prevention`,
-                fr: `L'Homme De Prévention De La Traite`,
+                fr: `Prévention de la traite des êtres humains`,
                 es: `La Prevención De La Trata De Seres Humanos`,
                 de: `Menschenhandel-Prävention`,
                 it: `Il Traffico Di Esseri Umani Prevenzione`,
             },
             check: {
                 en: `Your application indicates that you are applying for an employment- or education-based nonimmigrant visa. Pursuant to Section 202 of the William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 you are required to receive a copy of an informational pamphlet on the legal rights and resources of aliens applying for employment- or education-based nonimmigrants visas. Please read the pamphlet carefully. We strongly encourage you to print a copy of a pamphlet and keep it with you if your visa is granted and you travel to the United States. William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Pamphlet I certify that I have received, read, and understand the William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Pamphlet.`,
-                fr: `Votre application vous indique que vous postulez pour un emploi ou d'éducation à base de visa de non-immigrant. En vertu de l'Article 202 de la William Wilberforce Victimes de la Traite de la Protection de l'Acte de Reauthorization de 2008 vous sont nécessaires pour recevoir une copie d'une brochure d'information sur les droits et les ressources des étrangers qui demandent à l'emploi ou à l'éducation basée sur les visas non-immigrants. Veuillez lire le dépliant attentivement. Nous vous encourageons fortement à imprimer une copie d'un document et de le garder avec vous si votre visa est accordé et de voyager aux États-unis. William Wilberforce Victimes de la Traite de la Protection de l'Acte de Reauthorization de 2008 Brochure je certifie que j'ai reçu, lu et compris le William Wilberforce Victimes de la Traite de la Protection de l'Acte de Reauthorization de 2008 Brochure.`,
-                es: `La aplicación indica que usted está solicitando un empleo o educación basada en la visa de no inmigrante. Conforme a la Sección 202 de la William Wilberforce las Víctimas de la Trata Reautorización de la Protección de la Ley de 2008 que están obligados a recibir una copia de un folleto informativo sobre los derechos legales y los recursos de los extranjeros que solicitan empleo o la educación basada en visas de no inmigrantes. Por favor, lea el folleto cuidadosamente. Le recomendamos que imprima una copia de un folleto y mantener con usted si su visa es concedida y de viajar a los Estados unidos. William Wilberforce Protección de Víctimas del Tráfico Acto de Reautorización de 2008 Folleto certifico que he recibido, leído y entendido el William Wilberforce Protección de Víctimas del Tráfico Acto de Reautorización de 2008 Folleto.`,
+                fr: `Votre demande indique que vous demandez un visa de non-immigrant basé sur l'emploi ou l'éducation. Conformément à l'article 202 de la loi de 2008 sur la réautorisation de la protection des victimes de la traite des êtres humains William Wilberforce, vous êtes tenu de recevoir une copie d'une brochure d'information sur les droits et les ressources juridiques des étrangers qui demandent un visa de non-immigrant basé sur l'emploi ou l'éducation. Veuillez lire attentivement la brochure. Nous vous encourageons fortement à imprimer une copie d'une brochure et à la garder avec vous si votre visa est accordé et que vous voyagez aux États-Unis. Pamphlet de la loi de 2008 sur la réautorisation de la protection des victimes de la traite de William Wilberforce Je certifie que j'ai reçu, lu et compris la brochure de 2008 de la loi de 2008 de William Wilberforce sur la réautorisation de la protection des victimes de la traite.`,
+                es: `Su solicitud indica que está solicitando una visa de no inmigrante basada en empleo o educación. De conformidad con la Sección 202 de la Ley de Reautorización de Protección de Víctimas de Tráfico de William Wilberforce de 2008, debe recibir una copia de un folleto informativo sobre los derechos y recursos legales de los extranjeros que solicitan visas de no inmigrantes basadas en el empleo o la educación. Por favor lea el folleto cuidadosamente. Le recomendamos encarecidamente que imprima una copia de un folleto y que lo tenga con usted si le otorgan su visa y viaja a los Estados Unidos. William Wilberforce Trafficaut Victims Protection Reauthorization Act of 2008 Panmphlet Certifico que he recibido, leído y entiendo el folleto William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008`,
                 de: `Ihre Anwendung zeigt an, dass Sie die Bewerbung für eine Beschäftigung oder Bildung-basierte nonimmigrant visa. Gemäß Abschnitt 202 des William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Sie sind erforderlich, um zu erhalten eine Kopie der Informations-Broschüre über die Rechte und Ressourcen von aliens Anwendung für die Beschäftigung oder Bildung-basierte nonimmigrants Visa. Bitte Lesen Sie die Broschüre sorgfältig durch. Wir empfehlen Ihnen dringend, eine Kopie drucken einer Broschüre und halten Sie es mit Ihnen, wenn Ihr Visum erteilt wird, und Sie Reisen in die Vereinigten Staaten. William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Broschüre bestätige ich, dass ich erhalten habe, Lesen, und zu verstehen, die William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 Pamphlet.`,
                 it: `L'applicazione indica che si sta applicando per un lavoro o di istruzione a base di visto per non immigranti. Ai sensi dell'articolo 202 del William Wilberforce Vittime di Protezione Reauthorization Act del 2008 si sono tenuti a ricevere una copia di un opuscolo informativo sui diritti legali e risorse di alieni di applicare per l'occupazione - o educativo nonimmigrants visti. Si prega di leggere l'opuscolo con attenzione. Si consiglia di stampare una copia di un opuscolo e la tieni con te se il visto è concesso e si è in viaggio per gli Stati Uniti. William Wilberforce Vittime di Protezione Reauthorization Act del 2008 Opuscolo dichiaro di aver ricevuto, letto e compreso il William Wilberforce Vittime di Protezione Reauthorization Act del 2008 Opuscolo.`,
             },
@@ -3058,7 +3058,7 @@ const resources = {
         },
         section_descr_payment: {
             en: `Note: Please enter the first and last name of the person who makes the payment.`,
-            fr: `Remarque: Veuillez saisir le prénom et le nom de la personne qui effectue le paiement.`,
+            fr: `Remarque: Veuillez saisir le Prénom et le Nom de la personne qui effectue le paiement.`,
             es: `Nota: por Favor, introduzca el nombre y apellido de la persona que realiza el pago.`,
             de: `Hinweis: Bitte geben Sie den ersten und letzten Namen der person, die macht die Zahlung.`,
             it: `Nota: si Prega di inserire il nome e il cognome della persona che effettua il pagamento.`,
@@ -3066,7 +3066,7 @@ const resources = {
         payer: {
             label: {
                 en: `Payer's Name`,
-                fr: `Du payeur Nom`,
+                fr: `Nom du Payeur`,
                 es: `Del ordenante Nombre`,
                 de: `Zahlers Name`,
                 it: `Nome del pagatore`,
@@ -3080,28 +3080,28 @@ const resources = {
             },
             given_name: {
                 en: `Last Name`,
-                fr: `Nom De Famille`,
+                fr: `Nom de Famille`,
                 es: `Apellido`,
                 de: `Nachname`,
                 it: `Cognome`,
             },
             phone: {
                 en: `Payer Phone Number`,
-                fr: `Payeur Numéro De Téléphone`,
+                fr: `Numéro De Téléphone`,
                 es: `Ordenante Número De Teléfono`,
                 de: `Zahler Telefonnummer`,
                 it: `Pagatore Numero Di Telefono`,
             },
             passport: {
                 en: `Payer's Passport Number`,
-                fr: `Du payeur Numéro de Passeport`,
+                fr: `Numéro de Passeport du payeur`,
                 es: `Del ordenante Número de Pasaporte`,
                 de: `Zahlers Pass-Nummer`,
                 it: `Pagatore Numero di Passaporto`,
             },
             email: {
                 en: `Payer's Email`,
-                fr: `Du payeur e-Mail`,
+                fr: `E-Mail du payeur`,
                 es: `Pagador de Correo electrónico`,
                 de: `Zahlers E-Mail`,
                 it: `Del pagatore e-Mail`,
@@ -3124,8 +3124,8 @@ const resources = {
             },
             check: {
                 en: `I confirm that the information provided on this form is correct and accurate to the best of my knowledge. I have read and agreed with the Disclaimer, the Terms and Conditions and the Refund Policy. I understand that this transaction is Non-Refundable. This site is not a US Government entity and is in no way associated with any US Embassy or Consulate and if a cardholder attempts to falsely report that a transaction was fraudulent and requests a chargeback of an application fee, the Embassy will be informed and it may result in cancellation of any visas already scheduled. Your submission of credit card information, or any kind of payment card information, constitutes your authorization for our agency to charge your card for the services ordered and for any related fees or expenses. You further agree to abide by the terms of your card issuer’s agreement. This applies to any fee charged, incurred or paid by our agency for or in any way relating to publication requirements for any document we prepare and/or file at your request whether the filing is ultimately accepted or not.`,
-                fr: `Je confirme que les renseignements fournis sur ce formulaire sont exacts au meilleur de ma connaissance. J'ai lu et accepté la renonciation, les Termes et Conditions et la Politique de Remboursement. Je comprends que cette opération est Non-Remboursable. Ce site n'est pas une entité Gouvernementale et n'est en aucune façon associé avec les états-unis, de l'Ambassade ou du Consulat et si un titulaire de carte tente de signaler à tort qu'une transaction est frauduleuse et demande un remboursement de frais de dossier, l'Ambassade sera informé et il peut entraîner l'annulation de tous les visas d'ores et déjà prévue. L'envoi de vos informations de carte de crédit, ou toute sorte d'informations de carte de paiement, constitue votre autorisation pour notre agence de débiter votre carte de crédit pour les services commandés et les frais connexes ou des dépenses. De plus, vous acceptez de respecter les termes de l'émetteur de votre carte accord. Cela s'applique à tous les frais, engagés ou payés par notre agence de ou en aucune façon liés aux exigences en matière de publication de tout document, nous préparer et/ou le fichier à votre demande, si le dépôt est finalement acceptée ou non.`,
-                es: `Confirmo que la información proporcionada en este formulario es correcta y exacta al mejor de mi conocimiento. He leído y de acuerdo con el Descargo de responsabilidad, los Términos y Condiciones y la Política de Reembolso. Entiendo que esta transacción No es Reembolsable. Este sitio no es el Gobierno de la entidad y no es de ninguna manera asociado con cualquier Embajada o Consulado y si un titular de tarjeta intentos para informar falsamente que una transacción fraudulenta y solicite una devolución de una tasa de solicitud, la Embajada será informado y puede resultar en la cancelación de los visados ya programada. El envío de información de tarjeta de crédito, o cualquier tipo de información de tarjeta de pago, constituye la autorización para nuestro organismo a cargo a su tarjeta por los servicios solicitados y para los relacionados con los honorarios o gastos. Además, usted acepta regirse por los términos de su emisor de la tarjeta del acuerdo. Esto se aplica a cualquier cuota que se cobrará, incurridos o pagados por nuestra agencia de o relacionados de alguna forma con los requisitos de publicación de cualquier documento que se preparan y/o archivo en su solicitud si la presentación es en última instancia, aceptada o no.`,
+                fr: `Je confirme que les renseignements fournis sur ce formulaire sont exacts au meilleur de ma connaissance. J'ai lu et accepté l'Avertissement, les Termes et Conditions et la Politique de Remboursement. Je comprends que cette opération est Non-Remboursable. Ce site n'est pas une entité Gouvernementale et n'est en aucune façon associée avec les États-Unis, l'Ambassade ou le Consulat et si un titulaire de carte de paiement tente de signaler à tort qu'une transaction est frauduleuse et demande un remboursement, l'Ambassade sera informé et celà peut entraîner l'annulation de tous les visas d'ores et déjà prévue. L'envoi de vos informations de carte de crédit, ou toute sorte d'informations de carte de paiement, constitue votre autorisation pour notre agence de débiter votre carte de crédit pour les services commandés et les frais connexes ou des dépenses. De plus, vous acceptez de respecter les termes de l'émetteur de votre carte. Cela s'applique à tous les frais, engagés ou payés par notre agence de ou en aucune façon liés aux exigences en matière de publication de tout document, nous préparer et/ou le fichier à votre demande, si le dépôt est finalement acceptée ou non.`,
+                es: `Confirmo que la información proporcionada en este formulario es correcta y precisa a mi leal saber y entender. He leído y acepto el Descargo de responsabilidad, los Términos y condiciones y la Política de reembolso. Entiendo que esta transacción no es reembolsable. Este sitio no es una entidad del Gobierno de los EE. UU. Y no está asociado de ninguna manera con ninguna Embajada o Consulado de los EE. UU. resultará en la cancelación de cualquier visa ya programada. Su envío de información de tarjeta de crédito, o cualquier tipo de información de tarjeta de pago, constituye su autorización para que nuestra agencia le cobre a su tarjeta los servicios solicitados y cualquier tarifa o gasto relacionado. Además, acepta cumplir con los términos del acuerdo del emisor de su tarjeta. Esto se aplica a cualquier tarifa cobrada, incurrida o pagada por nuestra agencia por o de alguna manera relacionada con los requisitos de publicación de cualquier documento que preparemos y / o archivemos a su solicitud, ya sea que la presentación sea finalmente aceptada o no.`,
                 de: `Ich bestätige, dass die Angaben auf diesem Formular korrekt sind und nach meinem besten wissen. Ich habe gelesen und akzeptiert die Nutzungsbedingungen, die Allgemeinen Geschäftsbedingungen und das Rückgaberecht. Ich verstehe, dass diese Transaktion wird Nicht Zurückerstattet. Diese Website ist nicht eine US-Regierungsbehörde und ist in keiner Weise verbunden mit der US-Botschaft oder einem Konsulat und wenn ein Karteninhaber versucht, die fälschlicherweise melden, dass eine Transaktion betrügerisch und fordert eine Rückbuchung von einer Anwendung Gebühr, die Botschaft informiert werden, und es kann die Annullierung von Visa bereits geplant. Die übermittlung von Kreditkarten-Informationen oder jede Art von Kreditkarte Informationen, stellt Ihre Genehmigung für unsere Agentur, Ihre Karte zu belasten, die für die bestellten Leistungen und für alle damit verbundenen Gebühren oder Aufwendungen. Des weiteren Stimmen Sie der Einhaltung der Bedingungen Ihrer Karte Emittenten Vereinbarung. Dies gilt für etwaige Gebühren, Kosten oder bezahlt durch unsere Agentur oder in irgendeiner Weise im Zusammenhang mit der Veröffentlichung Anforderungen für Dokument-wir bereiten Sie und/oder Datei an Ihre Anfrage, ob die Einreichung ist letztendlich akzeptiert oder nicht.`,
                 it: `Confermo che le informazioni fornite in questo modulo sono corrette e accurate al meglio delle mie conoscenze. Ho letto e accettato il Disclaimer, i Termini e le Condizioni e la Politica di Rimborso. Capisco che questa transazione Non è Rimborsabile. Questo sito non è un ente Governativo e non è in alcun modo associato con qualsiasi Ambasciata o il Consolato e se un titolare tentativi di simulare la relazione che una transazione fraudolenta e le richieste di storno dell'importo di una tassa di iscrizione, l'Ambasciata sarà informato e può comportare la cancellazione di qualsiasi visti già programmate. L'invio di informazioni di carta di credito, o qualsiasi tipo di carta di pagamento informazioni, costituisce autorizzazione per la nostra agenzia a caricare la carta per i servizi ordinati e per le connesse eventuali commissioni o spese. Si accetta di rispettare i termini dell'emittente della carta dell'accordo. Questo vale per qualsiasi pagamento, pagati o la nostra agenzia o in qualsiasi modo connessi a un obbligo di pubblicazione per tutti i documenti prepariamo e/o in file presso la vostra richiesta se il deposito è in definitiva accettata o meno.`,
             },
@@ -3133,14 +3133,14 @@ const resources = {
         b_certify: {
             label: {
                 en: `Digital Signature Acknowledgment`,
-                fr: `Signature Numérique D'Accusé De Réception`,
+                fr: `Accusé de réception de Signature Numérique`,
                 es: `Firma Digital De Reconocimiento`,
                 de: `Digitale Signatur-Bestätigung`,
                 it: `Firma Digitale Di Riconoscimento`,
             },
             check: {
                 en: `I certify under penalty of perjury under the laws of the United States of America that the foregoing is true and correct. I acknowledge and approve that entering my name in the signature field legally replace my physical signature.`,
-                fr: `Je certifie, sous peine de parjure en vertu de la législation des États-unis d'Amérique, que ce qui précède est vrai et correct. Je reconnais et j'approuve que la saisie de mon nom dans le champ de signature juridiquement remplacer ma signature physique.`,
+                fr: `Je certifie, sous peine de parjure en vertu de la législation des États-unis d'Amérique, que ce qui précède est vrai et correct. Je reconnais et j'approuve que la saisie de mon nom dans le champ de signature remplace juridiquement ma signature physique.`,
                 es: `Certifico bajo pena de perjurio bajo las leyes de los Estados unidos de América que lo anterior es verdadero y correcto. Reconozco y aprobar que el ingreso a mi nombre en el campo de firma legalmente reemplazar mi firma física.`,
                 de: `Ich erkläre unter der Strafe des Meineids gemäß den Gesetzen der Vereinigten Staaten von Amerika, dass das vorstehende wahr und korrekt ist. Ich bestätigen und genehmigen Sie, dass die Eintragung meines namens in das Feld Signatur rechtlich ersetzen meine physische Unterschrift.`,
                 it: `Dichiaro sotto pena di spergiuro, secondo le leggi degli Stati Uniti d'America che quanto sopra è vero e corretto. Prendo atto ed approvare che inserendo il mio nome nel campo firma legalmente sostituire la mia firma fisica.`,
@@ -3156,7 +3156,7 @@ const resources = {
             },
             extra: {
                 en: `Enter your full name as a digital signature.`,
-                fr: `Entrez votre nom complet tel qu'une signature numérique.`,
+                fr: `Entrez votre nom complet en tant que signature numérique.`,
                 es: `Escriba su nombre completo como una firma digital.`,
                 de: `Geben Sie Ihren vollständigen Namen als digitale Signatur.`,
                 it: `Inserisci il tuo nome completo, come firma digitale.`,
@@ -3183,14 +3183,14 @@ const resources = {
         additional_social_media: {
             platform: {
                 en: `Additional Social Media Platform`,
-                fr: `Supplémentaires Plateforme De Média Social`,
+                fr: `Plateforme De Média Social Additionelles`,
                 es: `Adicionales De La Plataforma De Medios Sociales`,
                 de: `Zusätzliche Social-Media-Plattform`,
                 it: `Ulteriori Piattaforma Di Social Media`,
             },
             identifier: {
                 en: `Additional Social Media Handle`,
-                fr: `Supplémentaires De Médias Sociaux De La Poignée`,
+                fr: `Pseudonymes Supplémentaires De Médias Sociaux`,
                 es: `Adicional De Medios De Comunicación Social De La Manija`,
                 de: `Zusätzliche Social-Media-Griff`,
                 it: `Social Media Maniglia`,
@@ -3199,14 +3199,14 @@ const resources = {
         address: {
             street_addr1: {
                 en: `Street Address`,
-                fr: `L'Adresse De La Rue`,
+                fr: `Adresse`,
                 es: `Dirección De La Calle`,
                 de: `Anschrift`,
                 it: `Indirizzo`,
             },
             street_addr2: {
                 en: `Address Line 2 (Optional)`,
-                fr: `La Ligne D'Adresse 2 (Facultatif)`,
+                fr: `Adresse Ligne 2 (Facultatif)`,
                 es: `La Dirección De La Línea 2 (Opcional)`,
                 de: `Adresse Zeile 2 (Optional)`,
                 it: `Indirizzo 2 (Opzionale)`,
@@ -3227,7 +3227,7 @@ const resources = {
             },
             zip_code: {
                 en: `ZIP / Postal Code`,
-                fr: `ZIP / Postal Code`,
+                fr: `ZIP / Code Postal`,
                 es: `ZIP / Código Postal`,
                 de: `ZIP / Postal Code`,
                 it: `ZIP / Postal Code`,
@@ -3251,7 +3251,7 @@ const resources = {
             period: {
                 label: {
                     en: `Length of stay`,
-                    fr: `La durée du séjour`,
+                    fr: `Durée du séjour`,
                     es: `La duración de la estancia`,
                     de: `Länge des Aufenthalts`,
                     it: `La durata del soggiorno`,
@@ -3267,7 +3267,7 @@ const resources = {
             unit: {
                 label: {
                     en: `Length of stay`,
-                    fr: `La durée du séjour`,
+                    fr: `Durée du séjour`,
                     es: `La duración de la estancia`,
                     de: `Länge des Aufenthalts`,
                     it: `La durata del soggiorno`,
@@ -3330,7 +3330,7 @@ const resources = {
                     },
                     extra: {
                         en: `Leave blank if you do not know`,
-                        fr: `Laissez vide si vous ne connaissez pas`,
+                        fr: `Laissez vide si vous ne savez pas`,
                         es: `Dejar en blanco si no sabe`,
                         de: `Lassen Sie das Feld leer, wenn Sie nicht wissen,`,
                         it: `Lasciare vuoto se non si conosce`,
@@ -3355,21 +3355,21 @@ const resources = {
             },
             end_date: {
                 en: `Date Marriage End`,
-                fr: `Date De Mariage Fin`,
+                fr: `Date de la fin du Mariage`,
                 es: `Fecha De Matrimonio Final`,
                 de: `Datum Ehe-Ende`,
                 it: `Data Di Fine Del Matrimonio`,
             },
             end_explain: {
                 en: `How the Marriage Ended`,
-                fr: `Comment le Mariage s'est Terminé`,
+                fr: `Comment le Mariage s'est terminé`,
                 es: `Cómo el Matrimonio se Acabó`,
                 de: `Wie die Ehe Endete`,
                 it: `Come il Matrimonio è Finito`,
             },
             end_country: {
                 en: `Country/Region Marriage was Terminated`,
-                fr: `Pays/Région, le Mariage était Résilié`,
+                fr: `Pays/Région où le Mariage a était Résilié`,
                 es: `País/Región Matrimonio estaba Terminado`,
                 de: `Land/Region der Ehe war Beendet`,
                 it: `Paese/Regione Matrimonio è stato Terminato`,
@@ -3386,14 +3386,14 @@ const resources = {
             number: {
                 label: {
                     en: `Lost or stolen Passport/Travel Document Number`,
-                    fr: `Passeport perdu ou volé/Numéro du Document de Voyage`,
+                    fr: `Numéro du Passeport/Document de Voyage perdu ou volé`,
                     es: `Pérdida o robo de Pasaporte/Documento de Viaje Número de`,
                     de: `Verlorene oder gestohlene Reisepass/Travel Document Number`,
                     it: `Smarrimento o furto del Passaporto/Documento di Viaggio in Numero`,
                 },
                 extra: {
                     en: `Please check if you do not know`,
-                    fr: `Veuillez vérifier si vous ne connaissez pas`,
+                    fr: `Veuillez cocher la case si vous ne savez pas`,
                     es: `Por favor, compruebe si usted no sabe`,
                     de: `Bitte prüfen Sie, ob Sie nicht wissen,`,
                     it: `Si prega di controllare se non si conosce`,
@@ -3438,7 +3438,7 @@ const resources = {
             },
             status: {
                 en: `Immigration Status`,
-                fr: `Statut D'Immigration`,
+                fr: `Statut d'Immigration`,
                 es: `Estado De Inmigración`,
                 de: `Einwanderung Status`,
                 it: `Lo Status Di Immigrazione`,
@@ -3447,7 +3447,7 @@ const resources = {
         previous_visits: {
             date: {
                 en: `Date of arrival (last visit to the US)`,
-                fr: `Date d'arrivée (dernière visite le NOUS)`,
+                fr: `Date d'arrivée (dernière visite aux États-Unis)`,
                 es: `Fecha de llegada (última visita a los estados unidos)`,
                 de: `Datum der Ankunft (Letzte Besuch in den USA)`,
                 it: `Data di arrivo (a NOI)`,
@@ -3456,7 +3456,7 @@ const resources = {
                 period: {
                     label: {
                         en: `Length of stay`,
-                        fr: `La durée du séjour`,
+                        fr: `Durée du séjour`,
                         es: `La duración de la estancia`,
                         de: `Länge des Aufenthalts`,
                         it: `La durata del soggiorno`,
@@ -3481,7 +3481,7 @@ const resources = {
         social_media_array: {
             platform: {
                 en: `Social Media Provider/Platform`,
-                fr: `Médias Sociaux/Fournisseur De Plate-Forme`,
+                fr: `Fournisseur/Plate-Forme de Médias Sociaux`,
                 es: `Medios De Comunicación Social Del Proveedor/De La Plataforma`,
                 de: `Social-Media-Anbieter/Plattform`,
                 it: `Social Media Provider/Piattaforma`,
@@ -3489,14 +3489,14 @@ const resources = {
             identifier: {
                 label: {
                     en: `Social Media Identifier`,
-                    fr: `Social Media Identifiant`,
+                    fr: `Identifiant Média Social`,
                     es: `Los Medios Sociales Identificador`,
                     de: `Social Media Identifier`,
                     it: `Social Media Identificatore`,
                 },
                 extra: {
                     en: `Enter the username or handle you have used on that platform. Please do not provide your passwords.`,
-                    fr: `Entrez le nom d'utilisateur ou de la poignée vous avez utilisé sur cette plate-forme. S'il vous plaît ne donnez pas votre mot de passe.`,
+                    fr: `Entrez le nom d'utilisateur ou du pseudonyme que vous avez utilisé sur cette plate-forme. S'il vous plaît ne donnez pas votre mot de passe.`,
                     es: `Introduzca el nombre de usuario o identificador se han utilizado en la plataforma. Por favor, no proporcionar sus contraseñas.`,
                     de: `Geben Sie den Benutzernamen oder einen Griff, den Sie benutzt haben auf, der Plattform. Bitte nicht bieten Sie Ihre Passwörter.`,
                     it: `Immettere il nome utente o la maniglia di aver usato su quella piattaforma. Si prega di non fornire la tua password.`,
@@ -3506,14 +3506,14 @@ const resources = {
         travellers: {
             surname: {
                 en: `Given Name (First Name)`,
-                fr: `Prénom (First Name)`,
+                fr: `Prénom(s)`,
                 es: `Nombre (Primer Nombre)`,
                 de: `Vorname (First Name)`,
                 it: `Nome ()`,
             },
             given_name: {
                 en: `Surname (Last Name)`,
-                fr: `Nom De Famille (Nom De Famille)`,
+                fr: `Nom De Famille`,
                 es: `Apellido (Apellido)`,
                 de: `Familienname (Last Name)`,
                 it: `Cognome (Last Name)`,
@@ -3528,4 +3528,5 @@ const resources = {
         },
     },
 }
+
 export default resources

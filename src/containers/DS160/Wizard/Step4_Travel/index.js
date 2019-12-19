@@ -16,7 +16,7 @@ class MyForm extends Component {
     showNext: true,
   }
   handleDates = (data) => {
-    if(data.travel_plan && data.travel_plan.date_of_arrival)
+    if (data.travel_plan && data.travel_plan.date_of_arrival)
       data.travel_plan.date_of_arrival = data.travel_plan.date_of_arrival.format('DD/MMM/YYYY')
     return data
   }
@@ -31,7 +31,7 @@ class MyForm extends Component {
         other_purpose_of_trip: e,
       }
       if (field.purpose_of_trip && field.other_purpose_of_trip) {
-        
+
         let purpose_info_type = constants.purpose_of_trip_advanced_specify_extra[field.purpose_of_trip][field.other_purpose_of_trip]
         this.props.form.setFieldsValue({ 'data.purpose_info_type': purpose_info_type });
       }
@@ -148,7 +148,7 @@ class MyForm extends Component {
               initialValue: utils.getInitialValue(data.purpose_info.petition),
               rules: [{ validator: (rule, value, callback) => this.props.validators.validatePetitionNumber(rule, value, callback, true) }],
             })(
-              <Input style={{textTransform: 'uppercase'}} maxLength={13}/>
+              <Input style={{ textTransform: 'uppercase' }} maxLength={13} />
             )}
           </Form.Item>
         }
@@ -158,9 +158,9 @@ class MyForm extends Component {
           <div className="visa-global-section-description">{tr(resources.travel.section_descr_2)}</div>
         </div>
 
-        <VisaDatePicker 
+        <VisaDatePicker
           label={tr(resources.travel.travel_plan.date_of_arrival.label)}
-          
+
           field="data.travel_plan.date_of_arrival"
           initialValue={data.travel_plan.date_of_arrival}
           getFieldDecorator={getFieldDecorator}
@@ -179,7 +179,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.length),
                 rules: [{ required: this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') != 'H', message: tr(resources.validations.required) }],
               })(
-                <InputNumber min={1} max={100} maxLength={3} disabled={this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') == 'H'}/>
+                <InputNumber min={1} max={100} maxLength={3} disabled={this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') == 'H'} />
               )}
             </Form.Item>
           </Col>
@@ -189,63 +189,63 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.period),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={(field.purpose_of_trip == 'B' || field.purpose_of_trip == 'C' || field.purpose_of_trip == 'D') ? tr(constants.period_unit_options_v2) : tr(constants.period_unit_options)} tr={tr}/>
+                <VisaSelect combines={(field.purpose_of_trip == 'B' || field.purpose_of_trip == 'C' || field.purpose_of_trip == 'D') ? tr(constants.period_unit_options_v2) : tr(constants.period_unit_options)} tr={tr} />
               )}
             </Form.Item>
           </Col>
         </Row>
 
         {this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') != 'H' &&
-        <Form.Item label={tr(resources.travel.address_you_will_stay.label)}>
-        <Form.Item extra={tr(resources.travel.address_you_will_stay.street_addr1)}>
-          {getFieldDecorator('data.address_you_will_stay.street_addr1', {
-            initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
-            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, "Street Address", true) }]
-          })(
-            <Input maxLength={40}/>
-          )}
-        </Form.Item>
-        <Form.Item extra={tr(resources.travel.address_you_will_stay.street_addr2)}>
-          {getFieldDecorator('data.address_you_will_stay.street_addr2', {
-            initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
-            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, "Address Line 2", false) }]
-          })(
-            <Input maxLength={40}/>
-          )}
-        </Form.Item>
-        <Row gutter={16}>
-          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-            <Form.Item extra={tr(resources.travel.address_you_will_stay.city)}>
-              {getFieldDecorator('data.address_you_will_stay.city', {
-                initialValue: utils.getInitialValue(data.address_you_will_stay.city),
-                rules: [{ required: true, message: tr(resources.validations.required) }],
+          <Form.Item label={tr(resources.travel.address_you_will_stay.label)}>
+            <Form.Item extra={tr(resources.travel.address_you_will_stay.street_addr1)}>
+              {getFieldDecorator('data.address_you_will_stay.street_addr1', {
+                initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, "Street Address", true) }]
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={40} />
               )}
             </Form.Item>
-          </Col>
-          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-            <Form.Item extra={tr(resources.travel.address_you_will_stay.state)}>
-              {getFieldDecorator('data.address_you_will_stay.state', {
-                initialValue: utils.getInitialValue(data.address_you_will_stay.state),
-                rules: [{ required: true, message: tr(resources.validations.required) }],
+            <Form.Item extra={tr(resources.travel.address_you_will_stay.street_addr2)}>
+              {getFieldDecorator('data.address_you_will_stay.street_addr2', {
+                initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, "Address Line 2", false) }]
               })(
-                <VisaSelect combines={constants.state_options_list()} tr={tr}/>
+                <Input maxLength={40} />
               )}
             </Form.Item>
-          </Col>
-          <Col xs={{ span: 24 }} sm={{ span: 12 }}>
-            <Form.Item extra={tr(resources.travel.address_you_will_stay.zip_code)}>
-              {getFieldDecorator('data.address_you_will_stay.zip_code', {
-                initialValue: utils.getInitialValue(data.address_you_will_stay.zip_code),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }],
-              })(
-                <Input maxLength={10}/>
-              )}
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form.Item>
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                <Form.Item extra={tr(resources.travel.address_you_will_stay.city)}>
+                  {getFieldDecorator('data.address_you_will_stay.city', {
+                    initialValue: utils.getInitialValue(data.address_you_will_stay.city),
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, "City", true) }]
+                  })(
+                    <Input maxLength={20} />
+                  )}
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                <Form.Item extra={tr(resources.travel.address_you_will_stay.state)}>
+                  {getFieldDecorator('data.address_you_will_stay.state', {
+                    initialValue: utils.getInitialValue(data.address_you_will_stay.state),
+                    rules: [{ required: true, message: tr(resources.validations.required) }],
+                  })(
+                    <VisaSelect combines={constants.state_options_list()} tr={tr} />
+                  )}
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                <Form.Item extra={tr(resources.travel.address_you_will_stay.zip_code)}>
+                  {getFieldDecorator('data.address_you_will_stay.zip_code', {
+                    initialValue: utils.getInitialValue(data.address_you_will_stay.zip_code),
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, "ZIP Code") }],
+                  })(
+                    <Input maxLength={10} />
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form.Item>
         }
 
         <Row gutter={16}>
@@ -255,7 +255,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.paying_person_for_trip),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={tr(constants.paying_person_for_trip_options)} tr={tr}/>
+                <VisaSelect combines={tr(constants.paying_person_for_trip_options)} tr={tr} />
               )}
             </Form.Item>
           </Col>
@@ -302,7 +302,7 @@ class MyForm extends Component {
                       initialValue: utils.getInitialValue(data.paying_person_info.tel_number),
                       rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", true) }],
                     })(
-                      <Input maxLength={20}/>
+                      <Input maxLength={20} />
                     )}
                   </Form.Item>
                 </Col>
@@ -324,7 +324,7 @@ class MyForm extends Component {
                       initialValue: utils.getInitialValue(data.paying_person_info.relationship),
                       rules: [{ required: true, message: tr(resources.validations.required) }],
                     })(
-                      <VisaSelect combines={martial_status == 'M' || martial_status == 'L' ? tr(constants.paying_person_info_relationship_options) : tr(constants.paying_person_info_relationship_without_spouse_options)} tr={tr}/>
+                      <VisaSelect combines={martial_status == 'M' || martial_status == 'L' ? tr(constants.paying_person_info_relationship_options) : tr(constants.paying_person_info_relationship_without_spouse_options)} tr={tr} />
                     )}
                   </Form.Item>
                 </Col>
@@ -366,7 +366,7 @@ class MyForm extends Component {
                         initialValue: utils.getInitialValue(data.paying_org_info.tel_number),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, tr(resources.travel.paying_org_info.tel_number.label), true) }],
                       })(
-                        <Input maxLength={20}/>
+                        <Input maxLength={20} />
                       )}
                     </Form.Item>
                   </Col>

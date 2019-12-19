@@ -200,26 +200,26 @@ export const occupation_options = {
     ],
     fr: [
         <option value="A"> AGRICULTURE </option>,
-        <option value="AP"> ARTISTE / PERFORMER </option>,
-        <option value="B"> BUSINESS </option>,
+        <option value="AP"> ARTISTE / INTERPRÈTE </option>,
+        <option value="B"> AFFAIRES </option>,
         <option value="CM"> COMMUNICATIONS </option>,
         <option value="CS"> INFORMATIQUE </option>,
         <option value="C"> SERVICES CULINAIRES / ALIMENTAIRES </option>,
         <option value="ED"> ÉDUCATION </option>,
         <option value="EN"> INGÉNIERIE </option>,
         <option value="G"> GOUVERNEMENT </option>,
-        <option value="H"> HOMEMAKER </option>,
+        <option value="H"> MÉNAGER(E) </option>,
         <option value="LP"> PROFESSION JURIDIQUE </option>,
         <option value="MH"> MÉDICAL / SANTÉ </option>,
-        <option value="M"> MILITARY </option>,
-        <option value="NS"> SCIENCE NATURELLE </option>,
-        <option value="N"> NON EMPLOYÉ </option>,
+        <option value="M"> MILITAIRE </option>,
+        <option value="NS"> SCIENCES NATURELLES </option>,
+        <option value="N"> SANS EMPLOI </option>,
         <option value="PS"> SCIENCES PHYSIQUES </option>,
         <option value="RV"> VOCATION RELIGIEUSE </option>,
         <option value="R"> RECHERCHE </option>,
-        <option value="RT"> RETIREE </option>,
+        <option value="RT"> RETRAITE </option>,
         <option value="SS"> SCIENCES SOCIALES </option>,
-        <option value="S"> ÉTUDIANT </option>,
+        <option value="S"> ÉTUDIANT(E) </option>,
         <option value="O"> OTHER </option>,
     ],
     es: [
@@ -304,8 +304,8 @@ export const US_Live_Status = {
         <option value="O">OTHER/I DON'T KNOW</option>,
     ],
     fr: [
-        <option value="S"> États-Unis. CITOYEN </option>,
-        <option value="C"> États-Unis. RÉSIDENT PERMANENT JURIDIQUE (LPR) </option>,
+        <option value="S"> CITOYEN AMÉRICAIN</option>,
+        <option value="C"> RÉSIDENT PERMANENT JURIDIQUE (CARTE VERTE) </option>,
         <option value="P"> NONIMMIGRANT </option>,
         <option value="O"> AUTRE / JE NE SAIS PAS </option>,
     ],
@@ -401,7 +401,7 @@ export const relationship_options = {
         <option value="O">OTHER</option>
     ],
     fr: [
-        <option value="R"> RELATIVE </option>,
+        <option value="R"> PARENT </option>,
         <option value="S"> ÉPOUX / ÉPOUSE </option>,
         <option value="C"> AMI / AMIE </option>,
         <option value="B"> ASSOCIÉ D'AFFAIRES </option>,
@@ -448,7 +448,7 @@ export const relationship_options_except_Spouse = {
         <option value="O">OTHER</option>
     ],
     fr: [
-        <option value="R"> RELATIVE </option>,
+        <option value="R"> RPARENT </option>,
         <option value="C"> AMI / AMIE </option>,
         <option value="B"> ASSOCIÉ D'AFFAIRES </option>,
         <option value="P"> EMPLOYEUR / EMPLOYEUSE </option>,
@@ -534,7 +534,7 @@ export const person_travel_with_relationship_options = {
         { value: 'P', label: 'PARENT' },
         { value: 'S', label: 'CONJOINT' },
         { value: 'C', label: 'ENFANT' },
-        { value: 'R', label: 'AUTRE RELATIF' },
+        { value: 'R', label: 'AUTRE FAMILLE' },
         { value: 'F', label: 'AMI' },
         { value: 'B', label: `ASSOCIÉ D'AFFAIRES` },
         { value: 'O', label: 'AUTRE' },
@@ -581,7 +581,7 @@ export const paying_person_info_relationship_options = {
         { value: 'C', label: 'ENFANT' },
         { value: 'P', label: 'PARENT' },
         { value: 'S', label: 'CONJOINT' },
-        { value: 'R', label: 'AUTRE RELATIF' },
+        { value: 'R', label: 'AUTRE FAMILLE' },
         { value: 'F', label: 'AMI' },
         { value: 'O', label: 'AUTRE' },
     ],
@@ -622,7 +622,7 @@ export const paying_person_info_relationship_without_spouse_options = {
     fr: [
         { value: 'C', label: 'ENFANT' },
         { value: 'P', label: 'PARENT' },
-        { value: 'R', label: 'AUTRE RELATIF' },
+        { value: 'R', label: 'AUTRE FAMILLE' },
         { value: 'F', label: 'AMI' },
         { value: 'O', label: 'AUTRE' },
     ],
@@ -656,7 +656,7 @@ export const paying_person_for_trip_options = {
         { value: 'C', label: 'Other Company/Organization' },
     ],
     fr: [
-        { value: 'S', label: 'Soi' },
+        { value: 'S', label: 'Soi-Même' },
         { value: 'O', label: 'Autre personne' },
         { value: 'C', label: 'Autre entreprise / organisation' },
     ],
@@ -685,10 +685,10 @@ export const period_unit_options = {
         { value: 'D', label: 'DAY(S)' },
     ],
     fr: [
-        { value: 'Y', label: 'AN' },
+        { value: 'Y', label: 'AN(S)' },
         { value: 'M', label: 'MOIS' },
-        { value: 'W', label: 'LA SEMAINE' },
-        { value: 'D', label: 'JOURNÉE' },
+        { value: 'W', label: 'SEMAINE(S)' },
+        { value: 'D', label: 'JOURS' },
     ],
     es: [
         { value: 'Y', label: 'AÑO' },
@@ -718,10 +718,10 @@ export const period_unit_options_v2 = {
         { value: 'H', label: 'Less Than 24 Hours' },
     ],
     fr: [
-        { value: 'Y', label: 'AN' },
+        { value: 'Y', label: 'AN(S)' },
         { value: 'M', label: 'MOIS' },
-        { value: 'W', label: 'LA SEMAINE' },
-        { value: 'D', label: 'JOURNÉE' },
+        { value: 'W', label: 'SEMAINE(S)' },
+        { value: 'D', label: 'JOURS' },
         { value: 'H', label: 'Moins de 24 heures' },
     ],
     es: [
@@ -756,7 +756,7 @@ export const purpose_of_trip_advanced_specify_options = {
             <option value="B2-TM">TOURISM/MEDICAL TREATMENT (B2)</option>,
         ],
         fr: [
-            <option value="B1-B2">TOURISME &amp; D'AFFAIRES (VISITEUR TEMPORAIRE) (B1 / B2)</option>,
+            <option value="B1-B2">TOURISME &amp; AFFAIRES (VISITEUR TEMPORAIRE) (B1 / B2)</option>,
             <option value="B1-CF">AFFAIRES/CONFÉRENCE (B1)</option>,
             <option value="B2-TM">TOURISME/TRAITEMENT MÉDICAL (B2)</option>,
         ],
@@ -789,11 +789,11 @@ export const purpose_of_trip_advanced_specify_options = {
         fr: [
             <option value="C1-D">Membre d'équipage en transit (C1/D)</option>,
             <option value="C1-TR">TRANSIT (C1)</option>,
-            <option value="C2-UN">TRANSITER AU SIÈGE DES NATIONS UNIES (C2)</option>,
+            <option value="C2-UN">TRANSIT AU SIÈGE DES NATIONS UNIES (C2)</option>,
             <option value="C3-CH">ENFANT D'UN C3 (C3)</option>,
-            <option value="C3-EM">EMP PERSONNEL. D'UNE C3 (C3)</option>,
+            <option value="C3-EM">EMP. PERSONNEL D'UN C3 (C3)</option>,
             <option value="C3-FR">FONCTIONNAIRE ÉTRANGER EN TRANSIT (C3)</option>,
-            <option value="C3-SP">CONJOINT D'UNE C3 (C3)</option>,
+            <option value="C3-SP">CONJOINT D'UN C3 (C3)</option>,
         ],
         es: [
             <option value="C1-D">Miembro de la tripulación en tránsito (C1/D)</option>,
@@ -880,10 +880,10 @@ export const purpose_of_trip_advanced_specify_options = {
             <option value="H4-SP">SPOUSE OF AN H (H4)</option>,
         ],
         fr: [
-            <option value="H1B-H1B">occupation spécialisée (H1B)</option>,
-            <option value="H1B1-CHL">Spéc. Chilienne Occupation (H1B1)</option>,
-            <option value="H1B1-SGP">Spéc. Singapourienne Occupation (H1B1)</option>,
-            <option value="H1C-NR">Infirmière dans la zone de pénurie (H1C)</option>,
+            <option value="H1B-H1B">Occupation Spécialisée (H1B)</option>,
+            <option value="H1B1-CHL">Occupation Spécialisée Chilienne (H1B1)</option>,
+            <option value="H1B1-SGP">Occupation Spécialisée Singapourienne (H1B1)</option>,
+            <option value="H1C-NR">Infirmière dans une zone de pénurie (H1C)</option>,
             <option value="H2A-AG">Ouvrier agricole (H2A)</option>,
             <option value="H2B-NA">Ouvrier non agricole (H2B)</option>,
             <option value="H3-TR">Stagiaire (H3)</option>,
@@ -931,17 +931,17 @@ export const purpose_of_trip_advanced_specify_options = {
             <option value="I-SP">SPOUSE OF AN I (I)</option>,
         ],
         fr: [
-            <option value="I-CH">ENFANT D'UN JE (I)</option>,
+            <option value="I-CH">ENFANT D'UN I (I)</option>,
             <option value="I-FR">REPRÉSENTANT DES MÉDIAS ÉTRANGERS (I)</option>,
             <option value="I-SP">CONJOINT D'UN I (I)</option>,
         ],
         es: [
-            <option value="I-CH">NIÑO DE UN YO (I)</option>,
+            <option value="I-CH">NIÑO DE UN I (I)</option>,
             <option value="I-FR">REPRESENTANTE DE LOS MEDIOS EXTRANJEROS (I)</option>,
             <option value="I-SP">ESPOSA DE UNA I (I)</option>,
         ],
         de: [
-            <option value="I-CH">KIND EINES ICH (I)</option>,
+            <option value="I-CH">KIND EINES I (I)</option>,
             <option value="I-FR">AUSLANDSMEDIENVERTRETER (I)</option>,
             <option value="I-SP">EHE EINES I (I)</option>,
         ],
@@ -985,7 +985,7 @@ export const purpose_of_trip_advanced_specify_options = {
             <option value="L2-SP">SPOUSE OF A L1 (L2)</option>,
         ],
         fr: [
-            <option value="L1-L1">cessionnaire intragroupe (L1)</option>,
+            <option value="L1-L1">TRANSFERT INTRACOMPAGNIE (L1)</option>,
             <option value="L2-CH">ENFANT D'UN L1 (L2)</option>,
             <option value="L2-SP">CONJOINT D'UN L1 (L2)</option>,
         ],
@@ -1016,7 +1016,7 @@ export const purpose_of_trip_advanced_specify_options = {
             <option value="M1-M1">ÉTUDIANT (M1)</option>,
             <option value="M2-CH">ENFANT DE M1 (M2)</option>,
             <option value="M2-SP">CONJOINT DE M1 (M2)</option>,
-            <option value="M3-M3">étudiants de banlieue (M3)</option>,
+            <option value="M3-M3">ÉTUDIANT FRONTALIÉ (M3)</option>,
         ],
         es: [
             <option value="M1-M1">ESTUDIANTE (M1)</option>,
@@ -1051,12 +1051,12 @@ export const martial_status_options = {
         { value: 'O', label: 'OTHER' },
     ],
     fr: [
-        { value: 'M', label: 'MARIÉ' },
+        { value: 'M', label: 'MARIÉ(E)' },
         { value: 'C', label: 'MARIAGE DE LA COMMON LAW' },
-        { value: 'P', label: `L'UNION CIVILE/PARTENARIAT DOMESTIQUE` },
-        { value: 'S', label: 'UNIQUE' },
-        { value: 'W', label: 'VEUVE' },
-        { value: 'D', label: 'DIVORCÉ' },
+        { value: 'P', label: `UNION CIVILE/PARTENARIAT DOMESTIQUE` },
+        { value: 'S', label: 'CÉLIBATAIRE' },
+        { value: 'W', label: 'VEUF(VE)' },
+        { value: 'D', label: 'DIVORCÉ(E)' },
         { value: 'L', label: 'LÉGALEMENT SÉPARÉS' },
         { value: 'O', label: `AUTRE` },
     ],
@@ -1092,6 +1092,7 @@ export const martial_status_options = {
     ]
 }
 // Translation End
+
 export const USER_ROLE = {
     NOT: -1,
     ADMIN: 0,
