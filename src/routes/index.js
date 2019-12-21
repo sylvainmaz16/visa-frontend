@@ -83,7 +83,8 @@ const Routes = () => {
                   pagination={{
                     pageSize: 10, current, filters, search,
                   }}
-                />}
+                />
+              }
             />
           }}
         />
