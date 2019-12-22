@@ -4,30 +4,30 @@ import { ApiManager } from "../apis/apimanager";
 const { ADMIN } = types;
 
 function* getRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
 
   try {
     let users = []
-    if(action.isAdmin) {
-      const resUsers = yield call(ApiManager.GetUsersList, headers, action.options);
-      users = resUsers.data;
+    if (action.isAdmin) {
+      const resUsers = yield call(ApiManager.GetUsersList, headers, action.options, action.site)
+      users = resUsers.data
     }
 
-    const res = yield call(ApiManager.GetCustomersList, headers, action.options);
-    const data = res.data;
-    yield put({ type: ADMIN.GET_CUSTOMER_LIST_SUCCESS, data, users });
+    const res = yield call(ApiManager.GetCustomersList, headers, action.options, action.site)
+    const data = res.data
+    yield put({ type: ADMIN.GET_CUSTOMER_LIST_SUCCESS, data, users })
   } catch (e) {
-    const status = e.response.status;
+    const status = e.response.status
 
-    yield put({ type: ADMIN.GET_CUSTOMER_LIST_FAILURE, status });
+    yield put({ type: ADMIN.GET_CUSTOMER_LIST_FAILURE, status })
   }
 }
 
 function* getUsersRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
 
   try {
@@ -68,8 +68,8 @@ function* approveUserRequest(action) {
 }
 
 function* getMailTemplatesRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
 
   try {
@@ -84,8 +84,8 @@ function* getMailTemplatesRequest(action) {
 }
 
 function* createMailTemplateRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
 
   try {
@@ -127,25 +127,25 @@ function* updateMailTemplateRequest(action) {
 }
 
 function* loginRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
   try {
     const res = yield call(ApiManager.AuthLogin, headers, action.data);
     const data = res.data;
     yield put({ type: ADMIN.LOGIN_SUCCESS, data });
-    action.cb( { error: null, token: data.token, user: data } )
+    action.cb({ error: null, token: data.token, user: data })
   } catch (e) {
     const status = e.response.status;
 
     yield put({ type: ADMIN.LOGIN_FAILURE, status });
-    action.cb( { error: e.response.data.message })
+    action.cb({ error: e.response.data.message })
   }
 }
 
 function* logoutRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
   try {
     // const res = yield call(ApiManager.AuthLogout, headers, action.data);
@@ -161,49 +161,64 @@ function* logoutRequest(action) {
 }
 
 function* signupRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
   try {
     const res = yield call(ApiManager.UserRegister, headers, action.data);
     const data = res.data;
     yield put({ type: ADMIN.SIGNUP_SUCCESS, data });
-    action.cb( { error: null, token: data.token } )
+    action.cb({ error: null, token: data.token })
   } catch (e) {
     const status = e.response.status;
 
     yield put({ type: ADMIN.SIGNUP_FAILURE, status });
-    action.cb( { error: status })
+    action.cb({ error: status })
   }
 }
 
 function* resendEmailRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
   try {
     const res = yield call(ApiManager.ResendEmail, headers, action._id);
     const data = res.data;
     yield put({ type: ADMIN.RESEND_EMAIL_SUCCESS, data });
-    action.cb( { error: null, data: data } )
+    action.cb({ error: null, data: data })
   } catch (e) {
     yield put({ type: ADMIN.RESEND_EMAIL_FAILURE });
-    action.cb( { error: 'error' })
+    action.cb({ error: 'error' })
   }
 }
 
 function* automateRequest(action) {
-  let headers = {
-    "Content-Type": "application/json"
+  const headers = {
+    'Content-Type': 'application/json',
   };
   try {
-    const res = yield call(ApiManager.Automate, headers, action._id);
-    const data = res.data;
-    yield put({ type: ADMIN.AUTOMATE_SUCCESS, data });
-    action.cb( { error: null, data: data } )
+    const res = yield call(ApiManager.Automate, headers, action._id, action.site)
+    const data = res.data
+    yield put({ type: ADMIN.AUTOMATE_SUCCESS, data })
+    action.cb({ error: null, data: data })
   } catch (e) {
-    yield put({ type: ADMIN.AUTOMATE_FAILURE });
-    action.cb( { error: 'error' })
+    yield put({ type: ADMIN.AUTOMATE_FAILURE })
+    action.cb({ error: 'error' })
+  }
+}
+
+function* getKdmidStatusRequest(action) {
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+  try {
+    const res = yield call(ApiManager.GetKdmidStatus, headers, action._id, action.site)
+    const data = res.data
+    yield put({ type: ADMIN.GET_KDMID_STATUS_SUCCESS, data })
+    action.cb({ error: null, data: data })
+  } catch (e) {
+    yield put({ type: ADMIN.GET_KDMID_STATUS_FAILURE })
+    action.cb({ error: 'error' })
   }
 }
 
@@ -225,6 +240,7 @@ function* admin_saga() {
 
   yield all([takeLatest(ADMIN.RESEND_EMAIL_REQUEST, resendEmailRequest)]);
   yield all([takeLatest(ADMIN.AUTOMATE_REQUEST, automateRequest)])
+  yield all([takeLatest(ADMIN.GET_KDMID_STATUS_REQUEST, getKdmidStatusRequest)])
 }
 
 export default admin_saga;

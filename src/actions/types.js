@@ -76,6 +76,9 @@ export const ADMIN = createActionTypes('ADMIN', [
   'AUTOMATE_REQUEST',
   'AUTOMATE_SUCCESS',
   'AUTOMATE_FAILURE',
+  'GET_KDMID_STATUS_REQUEST',
+  'GET_KDMID_STATUS_SUCCESS',
+  'GET_KDMID_STATUS_FAILURE',
 ])
 
 export default {

@@ -13,6 +13,7 @@ import AdminPageDashboard from './Pages/dashboard'
 import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
 import AdminPageUsers from './Pages/users'
+import AdminPageNewKdmid from './Pages/new-kdmid'
 
 import './index.less'
 
@@ -57,16 +58,17 @@ class AdminBoard extends Component {
       menus = [
         { key: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
         { key: 'ds160', label: 'DS-160', icon: 'idcard' },
+        { key: 'new-kdmid', label: 'Kdmid', icon: 'trademark' },
         { key: 'mail', label: 'Mail Templates', icon: 'mail' },
         { key: 'users', label: 'Agencies', icon: 'user' },
       ]
     } else if (user.role === constants.USER_ROLE.AGENCY) {
       menus = [
-        { key: 'ds160', label: 'DS-160' },
+        { key: 'ds160', label: 'DS-160', icon: 'idcard' },
       ]
     } else if (user.role === constants.USER_ROLE.NOT) {
       menus = [
-        { key: 'ds160', label: 'DS-160' },
+        { key: 'ds160', label: 'DS-160', icon: 'idcard' },
       ]
     }
 
@@ -79,6 +81,11 @@ class AdminBoard extends Component {
       case 'ds160':
         if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY) {
           renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern} user={user} />
+        }
+        break
+      case 'new-kdmid':
+        if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY) {
+          renderPage = <AdminPageNewKdmid pagination={pagination} pattern={pattern} user={user} />
         }
         break
       case 'mail':

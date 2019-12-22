@@ -47,7 +47,7 @@ class MyForm extends Component {
       formData.append('fileType', 'jpeg')
       await axios
         .post(
-          constants.apiURL + "assets",
+          constants.apiURL.default + "assets",
           formData,
           {
             headers: {
@@ -68,28 +68,28 @@ class MyForm extends Component {
     if (status !== 'uploading') {
       this.setState({ loading: true })
       this.uploadFileToS3(info.file)
-          .then(imageUrl => {
-              this.props.form.setFieldsValue( { data: { url: imageUrl } })
-              this.setState({ loading: false })
-          })
-          .catch(err => {
-              this.setState({ loading: false })
-          })
+        .then(imageUrl => {
+          this.props.form.setFieldsValue({ data: { url: imageUrl } })
+          this.setState({ loading: false })
+        })
+        .catch(err => {
+          this.setState({ loading: false })
+        })
     }
   };
 
   clearSign = () => {
     this.sigCanvas.clear()
-    this.props.form.setFieldsValue({ data: { signature: null}})
+    this.props.form.setFieldsValue({ data: { signature: null } })
   }
 
   handleSign = (e) => {
-    this.props.form.setFieldsValue({ data: { signature: this.sigCanvas.toDataURL('image/png')}})
+    this.props.form.setFieldsValue({ data: { signature: this.sigCanvas.toDataURL('image/png') } })
   }
 
   componentDidMount = () => {
-    const {signature} = this.props.data
-    if(signature)
+    const { signature } = this.props.data
+    if (signature)
       this.sigCanvas.fromDataURL(signature)
   }
 
@@ -128,10 +128,10 @@ class MyForm extends Component {
     getFieldDecorator('data.url', { initialValue: utils.getInitialValue(data.url) });
     getFieldDecorator('data.FGMC', { initialValue: utils.getInitialValue(data.FGMC) });
     getFieldDecorator('data.HTP', { initialValue: utils.getInitialValue(data.HTP) });
-    
+
     const imageUrl = this.props.form.getFieldValue('data.url')
 
-    if(!data.payer.address)
+    if (!data.payer.address)
       data.payer.address = {
         street_addr1: null,
         street_addr2: null,
@@ -143,58 +143,58 @@ class MyForm extends Component {
 
     let section_descr = []
 
-    for(let i = 0; i < 11; i++)
-    section_descr.push(<li key={i}><p><span>{tr(resources.photo.section_descr[i])}</span></p></li>)
-    
+    for (let i = 0; i < 11; i++)
+      section_descr.push(<li key={i}><p><span>{tr(resources.photo.section_descr[i])}</span></p></li>)
+
     return (
       <Form {...formItemLayout}>
 
         {!interview_location_label.startsWith('MEXICO') && !interview_location_label.startsWith('INDIA') &&
-        <>
-          <div className="visa-global-heading-1">
-            {tr(resources.photo.section_title["0"])}<br/>
-            {tr(resources.photo.section_title["1"])}
-          </div>
-          <ul className="visa-global-ul-1">
-            {section_descr}
-          </ul>
+          <>
+            <div className="visa-global-heading-1">
+              {tr(resources.photo.section_title["0"])}<br />
+              {tr(resources.photo.section_title["1"])}
+            </div>
+            <ul className="visa-global-ul-1">
+              {section_descr}
+            </ul>
 
-          <VisaRadio
-            label={tr(resources.photo.b_photo.label)}
-            extra={tr(resources.photo.b_photo.extra)}
-            field="data.b_photo"
-            initialValue={data.b_photo}
-            getFieldDecorator={getFieldDecorator}
-            tr={tr}
-          />
+            <VisaRadio
+              label={tr(resources.photo.b_photo.label)}
+              extra={tr(resources.photo.b_photo.extra)}
+              field="data.b_photo"
+              initialValue={data.b_photo}
+              getFieldDecorator={getFieldDecorator}
+              tr={tr}
+            />
 
-          {
-            this.props.form.getFieldValue('data.b_photo') &&
-            <Form.Item label={tr(resources.photo.avatar.label)} extra={tr(resources.photo.b_photo.extra)} required>
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                beforeUpload={beforeUpload}
-                onChange={this.handleChange}
-                multiple={false}
-                name="file"
-              >
-                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-              </Upload>
-              {
-                getFieldDecorator('data.url', {
-                  initialValue: utils.getInitialValue(data.url),
-                  rules: [{ required: true, message: tr(resources.validations.required_photo) }]
-                })(
-                  <>
-                  </>
-                )
-              }
-            </Form.Item>
-          }
-        </>
+            {
+              this.props.form.getFieldValue('data.b_photo') &&
+              <Form.Item label={tr(resources.photo.avatar.label)} extra={tr(resources.photo.b_photo.extra)} required>
+                <Upload
+                  name="avatar"
+                  listType="picture-card"
+                  className="avatar-uploader"
+                  showUploadList={false}
+                  beforeUpload={beforeUpload}
+                  onChange={this.handleChange}
+                  multiple={false}
+                  name="file"
+                >
+                  {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                </Upload>
+                {
+                  getFieldDecorator('data.url', {
+                    initialValue: utils.getInitialValue(data.url),
+                    rules: [{ required: true, message: tr(resources.validations.required_photo) }]
+                  })(
+                    <>
+                    </>
+                  )
+                }
+              </Form.Item>
+            }
+          </>
         }
 
         {b_FGMC && <Form.Item label={tr(resources.photo.FGMC.label)}>
@@ -202,8 +202,8 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.FGMC),
             valuePropName: "checked",
             rules: [{
-              required: true, 
-              message: tr(resources.validations.required), 
+              required: true,
+              message: tr(resources.validations.required),
               transform: value => (value || undefined),  // Those two lines
               type: 'boolean'
             }],
@@ -219,8 +219,8 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.HTP),
             valuePropName: "checked",
             rules: [{
-              required: true, 
-              message: tr(resources.validations.required), 
+              required: true,
+              message: tr(resources.validations.required),
               transform: value => (value || undefined),  // Those two lines
               type: 'boolean'
             }],
@@ -236,8 +236,8 @@ class MyForm extends Component {
           <div className="visa-global-section-description">{tr(resources.photo.section_descr_payment)}</div>
         </div>
 
-        <Form.Item label={tr(resources.photo.payer.label)} required style={{margin: '0px'}}>
-          <Row gutter={16} style={{margin: '0px'}}>
+        <Form.Item label={tr(resources.photo.payer.label)} required style={{ margin: '0px' }}>
+          <Row gutter={16} style={{ margin: '0px' }}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
                 extra={tr(resources.photo.payer.surname)}
@@ -311,8 +311,8 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.b_info_confirm),
             valuePropName: "checked",
             rules: [{
-              required: true, 
-              message: tr(resources.validations.required), 
+              required: true,
+              message: tr(resources.validations.required),
               transform: value => (value || undefined),  // Those two lines
               type: 'boolean'
             }],
@@ -324,15 +324,15 @@ class MyForm extends Component {
         </Form.Item>
 
         <Form.Item label={tr(resources.photo.signature)}>
-          <SignatureCanvas 
-            penColor='black' 
+          <SignatureCanvas
+            penColor='black'
             canvasProps={{
               width: 500, height: 200, className: 'sigCanvas'
-            }}  
+            }}
             onEnd={this.handleSign}
             ref={(ref) => { this.sigCanvas = ref }}
           />
-          <Button shape="circle" icon="sync" style={{marginLeft: '10px', paddingBottom: '2px'}} onClick={this.clearSign}/>
+          <Button shape="circle" icon="sync" style={{ marginLeft: '10px', paddingBottom: '2px' }} onClick={this.clearSign} />
           {
             getFieldDecorator('data.signature', {
               initialValue: utils.getInitialValue(data.signature),
@@ -343,7 +343,7 @@ class MyForm extends Component {
             )
           }
         </Form.Item>
-        
+
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -365,8 +365,8 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.b_certify),
             valuePropName: "checked",
             rules: [{
-              required: true, 
-              message: tr(resources.validations.required), 
+              required: true,
+              message: tr(resources.validations.required),
               transform: value => (value || undefined),  // Those two lines
               type: 'boolean'
             }],

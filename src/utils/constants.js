@@ -3,7 +3,17 @@ import React from "react";
 // export const myURL = 'http://localhost:3000'
 // export const apiURL = 'http://localhost:4040/api/'
 export const myURL = 'https://ds-160.us'
-export const apiURL = 'https://ds-160.us/v1/api/'
+
+export const sites = {
+    DS160: 'ds160',
+    NewKdmid: 'newKdmid',
+}
+
+export const apiURL = {
+    default: 'https://ds-160.us/v1/api/',
+    ds160: 'https://ds-160.us/v1/api/',
+    newKdmid: 'https://kdmid-evisa.com/v1/api/',
+}
 
 export const export_list = (array) => {
     return array.map(option => {
@@ -13,6 +23,10 @@ export const export_list = (array) => {
         }
     })
 }
+
+export const new_kdmid_citizenCode_list = [
+    <option value="12">Algeria</option>, <option value="20">Andorra</option>, <option value="40">Austria</option>, <option value="48">Bahrain</option>, <option value="56">Belgium</option>, <option value="96">Brunei Darussalam</option>, <option value="100">Bulgaria</option>, <option value="156">China</option>, <option value="191">Croatia</option>, <option value="196">Cyprus</option>, <option value="203">Czech Republic</option>, <option value="208">Denmark</option>, <option value="233">Estonia</option>, <option value="246">Finland</option>, <option value="250">France</option>, <option value="276">Germany</option>, <option value="300">Greece</option>, <option value="348">Hungary</option>, <option value="352">Iceland</option>, <option value="356">India</option>, <option value="360">Indonesia</option>, <option value="364">Iran, Islamic Republic of</option>, <option value="372">Ireland</option>, <option value="380">Italy</option>, <option value="392">Japan</option>, <option value="408">Korea, Democratic People's Republic of</option>, <option value="414">Kuwait</option>, <option value="428">Latvia</option>, <option value="438">Liechtenstein</option>, <option value="440">Lithuania</option>, <option value="442">Luxembourg</option>, <option value="458">Malaysia</option>, <option value="470">Malta</option>, <option value="484">Mexico</option>, <option value="492">Monaco</option>, <option value="504">Morocco</option>, <option value="528">Netherlands</option>, <option value="807">North Macedonia</option>, <option value="578">Norway</option>, <option value="512">Oman</option>, <option value="608">Philippines</option>, <option value="616">Poland</option>, <option value="620">Portugal</option>, <option value="634">Qatar</option>, <option value="642">Romania</option>, <option value="674">San Marino</option>, <option value="682">Saudi Arabia</option>, <option value="688">Serbia</option>, <option value="702">Singapore</option>, <option value="703">Slovakia</option>, <option value="705">Slovenia</option>, <option value="724">Spain</option>, <option value="752">Sweden</option>, <option value="756">Switzerland</option>, <option value="158">Taiwan, China</option>, <option value="788">Tunisia</option>, <option value="792">Turkey</option>, <option value="784">United Arab Emirates</option>, <option value="336">Vatican</option>
+]
 
 export const hints_and_help_language = [
     <option value="en-US">ENGLISH</option>,

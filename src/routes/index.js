@@ -54,7 +54,7 @@ const Routes = () => {
           />
         </Route>
         <Route
-          path="/board/:menukey(dashboard|ds160|mail|users)"
+          path="/board/:menukey(dashboard|ds160|mail|users|new-kdmid)"
           exact
           children={({ match, location }) => {
             const params = new URLSearchParams(location.search)
