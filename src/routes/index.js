@@ -157,6 +157,19 @@ const Routes = () => {
           }}
         />
 
+        <Route
+          path="/"
+          exact
+          children={({ location }) => {
+            const agency = new URLSearchParams(location.search).get('agency')
+            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+              console.log('Theme updated successfully')
+            })
+
+            return <DS160_HOME agency={agency} initLang={languageMap.en} />
+          }}
+        />
+
         <Route render={() => <Redirect to="/en" />} />
       </Switch>
     </Router>
