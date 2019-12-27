@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import './index.less'
+
+import './index.scss'
 
 /* 
 export const ControlTopRight = styled.div`
@@ -25,7 +26,7 @@ class VisaBanner extends Component {
   render() {
     const { backgroundColor, className } = this.props
     return (
-      <div className={"visa-com-banner " + className}>
+      <div className={"visa-com-banner " + className} style={{backgroundColor}}>
         <h2>{this.props.children}</h2>
       </div>
     )

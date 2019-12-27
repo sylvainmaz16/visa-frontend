@@ -14,11 +14,13 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
+
   handleDates = (data) => {
-    if(data.date_birth)
+    if (data.date_birth)
       data.date_birth = data.date_birth.format('DD/MMM/YYYY')
     return data
   }
+
   handleOtherResidentChange = (rule, value, callback) => {
     if (!value) {
       callback(tr(resources.validations.required));
@@ -27,13 +29,15 @@ class MyForm extends Component {
       callback('The Other Country/Region of Origin (Nationality) listed has already been (entered or selected).');
     }
     callback();
-  };
+  }
+
   handleNationalityChange = (rule, value, callback) => {
     if (!value) {
       callback(tr(resources.validations.required));
     }
     callback();
-  };
+  }
+
   handleMoreNationalityChange = (rule, value, callback) => {
     if (!value) {
       callback(tr(resources.validations.required));
@@ -42,7 +46,8 @@ class MyForm extends Component {
       callback('The Other Country/Region of Origin (Nationality) listed has already been (entered or selected)');
     }
     callback();
-  };
+  }
+
   handleUsedOtherName = (rule, value, callback, field) => {
     if (!value) {
       callback(tr(resources.validations.required));
@@ -52,17 +57,18 @@ class MyForm extends Component {
     let currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
     let otherName = this.props.form.getFieldValue('data.used_other_name.surname') + this.props.form.getFieldValue('data.used_other_name.given_name')
 
-    if( currentName === otherName ) {
+    if (currentName === otherName) {
       callback('Alias matches Given Name.')
       return;
     }
 
-    if(/^[A-Za-z\s]+$/.test(value) == false) {
+    if (/^[A-Za-z\s]+$/.test(value) == false) {
       callback(field + ' is invalid. Valid characters include A-Z and single spaces in between names.');
       return;
     }
     callback();
   }
+
   render() {
     const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
@@ -91,7 +97,7 @@ class MyForm extends Component {
     let currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
     let otherName = ""
 
-    if(this.props.form.getFieldValue('data.b_ever_used_other_names')) {
+    if (this.props.form.getFieldValue('data.b_ever_used_other_names')) {
 
       getFieldDecorator('data.used_other_name.surname', { initialValue: utils.getInitialValue(data.used_other_name.surname) });
       getFieldDecorator('data.used_other_name.given_name', { initialValue: utils.getInitialValue(data.used_other_name.given_name) });
@@ -109,7 +115,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.surname),
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.personal.surname.label)) }],
           })(
-            <Input maxLength={33}/>
+            <Input maxLength={33} />
           )}
         </Form.Item>
         <div className="visa-global-field">
@@ -120,7 +126,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.given_name),
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.personal.given_name.label)) }],
           })(
-            <Input maxLength={33}/>
+            <Input maxLength={33} />
           )}
         </Form.Item>
         <div className="visa-global-field">
@@ -145,7 +151,7 @@ class MyForm extends Component {
                   initialValue: utils.getInitialValue(data.used_other_name.surname),
                   rules: [{ validator: (rule, value, callback) => this.handleUsedOtherName(rule, value, callback, tr(resources.personal.used_other_name.surname.label)) }],
                 })(
-                  <Input maxLength={33}/>
+                  <Input maxLength={33} />
                 )}
               </Form.Item>
             </Col>
@@ -155,7 +161,7 @@ class MyForm extends Component {
                   initialValue: utils.getInitialValue(data.used_other_name.given_name),
                   rules: [{ validator: (rule, value, callback) => this.handleUsedOtherName(rule, value, callback, tr(resources.personal.used_other_name.given_name.label)) }],
                 })(
-                  <Input maxLength={33}/>
+                  <Input maxLength={33} />
                 )}
               </Form.Item>
             </Col>
@@ -221,10 +227,10 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.martial_other_explain),
             rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, tr(resources.personal.martial_other_explain.label), true) }]
           })(
-            <TextArea style={{textTransform: 'uppercase'}} rows={4}/>
+            <TextArea style={{ textTransform: 'uppercase' }} rows={4} />
           )}
         </Form.Item>}
-        <VisaDatePicker 
+        <VisaDatePicker
           label={tr(resources.personal.date_birth.label)}
           field="data.date_birth"
           initialValue={data.date_birth}
@@ -243,7 +249,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.place_of_birth.city),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.personal.place_of_birth.city.label), true) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
@@ -253,7 +259,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.place_of_birth.state),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.personal.place_of_birth.state.label), true) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
@@ -263,7 +269,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.place_of_birth.country),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} tr={tr}/>
+                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} tr={tr} />
               )}
             </Form.Item>
           </Col>
@@ -273,7 +279,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.nationality),
                 rules: [{ validator: this.handleNationalityChange }],
               })(
-                <VisaSelect combines={constants.nationality_option_list_func()} tr={tr}/>
+                <VisaSelect combines={constants.nationality_option_list_func()} tr={tr} />
               )}
             </Form.Item>
           </Col>
@@ -296,7 +302,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.other_nationality),
                 rules: [{ validator: this.handleMoreNationalityChange }],
               })(
-                <VisaSelect combines={constants.nationality_option_list_func()} tr={tr}/>
+                <VisaSelect combines={constants.nationality_option_list_func()} tr={tr} />
               )}
             </Form.Item>
             <Form.Item label={tr(resources.personal.b_has_other_nationality_passport.label)}>
@@ -312,14 +318,14 @@ class MyForm extends Component {
             </Form.Item>
             {
               this.props.form.getFieldValue('data.b_has_other_nationality_passport') &&
-                <Form.Item label={tr(resources.personal.other_nationality_passport.label)}>
-                  {getFieldDecorator('data.other_nationality_passport', {
-                    initialValue: utils.getInitialValue(data.other_nationality_passport),
-                    rules: [{ required: true, message: tr(resources.validations.required) }],
-                  })(
-                    <Input maxLength={20}/>
-                  )}
-                </Form.Item>
+              <Form.Item label={tr(resources.personal.other_nationality_passport.label)}>
+                {getFieldDecorator('data.other_nationality_passport', {
+                  initialValue: utils.getInitialValue(data.other_nationality_passport),
+                  rules: [{ required: true, message: tr(resources.validations.required) }],
+                })(
+                  <Input maxLength={20} />
+                )}
+              </Form.Item>
             }
           </>
         }
@@ -336,14 +342,14 @@ class MyForm extends Component {
         </Form.Item>
         {
           this.props.form.getFieldValue('data.b_permanent_resident_other_than_nationality') &&
-            <Form.Item label={tr(resources.personal.permanent_resident_country.label)}>
-              {getFieldDecorator('data.permanent_resident_country', {
-                initialValue: utils.getInitialValue(data.permanent_resident_country),
-                rules: [{ validator: this.handleOtherResidentChange }],
-              })(
-                <VisaSelect values={constants.countries_regions_option_value_list} labels={constants.countries_regions_option_label_list} tr={tr}/>
-              )}
-            </Form.Item>
+          <Form.Item label={tr(resources.personal.permanent_resident_country.label)}>
+            {getFieldDecorator('data.permanent_resident_country', {
+              initialValue: utils.getInitialValue(data.permanent_resident_country),
+              rules: [{ validator: this.handleOtherResidentChange }],
+            })(
+              <VisaSelect combines={constants.nationality_option_list_func()} tr={tr} />
+            )}
+          </Form.Item>
         }
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.personal.section_title_4)}</h2>
@@ -356,7 +362,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.national_id_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNationalID(rule, value, callback, tr(resources.personal.national_id_number.label), false) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
@@ -366,7 +372,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.social_security_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateSSN(rule, value, callback, tr(resources.personal.social_security_number.label)) }],
               })(
-                <Input maxLength={9}/>
+                <Input maxLength={9} />
               )}
             </Form.Item>
           </Col>
@@ -376,7 +382,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.tax_id_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, tr(resources.personal.tax_id_number.label)) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
