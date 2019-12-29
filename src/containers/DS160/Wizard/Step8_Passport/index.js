@@ -21,11 +21,11 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  
+
   handleDates = (data) => {
-    if(data.issuance_date)
+    if (data.issuance_date)
       data.issuance_date = data.issuance_date.format('DD/MMM/YYYY')
-    if(data.expiration_date)
+    if (data.expiration_date)
       data.expiration_date = data.expiration_date.format('DD/MMM/YYYY')
     return data
   }
@@ -44,8 +44,8 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
 
-    if(data.lost_info.constructor != Array)
-      data.lost_info = [{ 
+    if (data.lost_info.constructor != Array)
+      data.lost_info = [{
         number: null,
         number_NA: null,
         country: null,
@@ -56,16 +56,16 @@ class MyForm extends Component {
     getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) });
     getFieldDecorator('data.expiration_date_NA', { initialValue: utils.getInitialValue(data.expiration_date_NA) })
     // getFieldDecorator('data.lost_info.number_NA', { initialValue: utils.getInitialValue(data.lost_info.number_NA) })
-    
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.passport.section_title)}</h2>
         </div>
-        
+
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaSelectItem 
+            <VisaSelectItem
               label={tr(resources.passport.doc_type.label)}
               field="data.doc_type"
               initialValue={data.doc_type}
@@ -85,14 +85,14 @@ class MyForm extends Component {
               initialValue: utils.getInitialValue(data.doc_type_explain),
               rules: [{ required: true, message: tr(resources.validations.required) }],
             })(
-              <TextArea rows={5}/>
+              <TextArea rows={5} />
             )}
           </Form.Item>
         }
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaInput 
+            <VisaInput
               label={tr(resources.passport.doc_number.label)}
               field="data.doc_number"
               initialValue={data.doc_number}
@@ -103,7 +103,7 @@ class MyForm extends Component {
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaInput 
+            <VisaInput
               label={tr(resources.passport.book_number.label)}
               extra={tr(resources.passport.book_number.extra)}
               field="data.book_number"
@@ -119,14 +119,11 @@ class MyForm extends Component {
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaSelectItem 
+            <VisaSelectItem
               label={tr(resources.passport.doc_authority.label)}
               field="data.doc_authority"
               initialValue={data.doc_authority}
-              content={{
-                values: constants.countries_regions_option_value_list,
-                labels: constants.countries_regions_option_label_list,
-              }}
+              content={{ combines: constants.export_list(constants.passport_authority_list) }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
             />
@@ -135,7 +132,7 @@ class MyForm extends Component {
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaInput 
+            <VisaInput
               label={tr(resources.passport.issued_location.city)}
               field="data.issued_location.city"
               initialValue={data.issued_location.city}
@@ -146,7 +143,7 @@ class MyForm extends Component {
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaInput 
+            <VisaInput
               label={tr(resources.passport.issued_location.state)}
               field="data.issued_location.state"
               initialValue={data.issued_location.state}
@@ -157,7 +154,7 @@ class MyForm extends Component {
             />
           </Col>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaSelectItem 
+            <VisaSelectItem
               label={tr(resources.passport.issued_location.country)}
               field="data.issued_location.country"
               initialValue={data.issued_location.country}
@@ -171,9 +168,9 @@ class MyForm extends Component {
           </Col>
         </Row>
 
-        <VisaDatePicker 
+        <VisaDatePicker
           label={tr(resources.passport.issuance_date.label)}
-          
+
           field="data.issuance_date"
           initialValue={data.issuance_date}
           getFieldDecorator={getFieldDecorator}
@@ -185,7 +182,7 @@ class MyForm extends Component {
         />
 
         <Row gutter={16}>
-          <Col xs={{ span: 24 }} md={{ span: 24 }} style={{ display: 'flex', alignItems: 'center'}}>
+          <Col xs={{ span: 24 }} md={{ span: 24 }} style={{ display: 'flex', alignItems: 'center' }}>
             <VisaDatePickerWithCheck
               label={tr(resources.passport.expiration_date.label)}
               field="data.expiration_date"
@@ -213,12 +210,12 @@ class MyForm extends Component {
         />
 
         {
-          this.props.form.getFieldValue('data.b_ever_lost_passport') && 
+          this.props.form.getFieldValue('data.b_ever_lost_passport') &&
           <>
             <div className="visa-global-field visa-global-border-bottom">
               <h2 className="visa-global-section-title">{tr(resources.passport.section_title_lost_passport)}</h2>
             </div>
-            <VisaLostPassports 
+            <VisaLostPassports
               label={tr(resources.passport.lost_info.label)}
               getFieldDecorator={getFieldDecorator}
               getFieldValue={getFieldValue}
