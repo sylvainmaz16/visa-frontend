@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
-import * as constants from 'utils/constants'
-import moment from 'moment'
 import VisaRadio from "components/VisaRadio";
 import VisaInputArray from 'components/VisaInputArray'
 import VisaAddress from "components/VisaAddress";
@@ -19,7 +17,7 @@ class MyForm extends Component {
     showNext: true,
   }
   validateEmailConfirm = (rule, value, callback) => {
-    if(value != this.props.form.getFieldValue('data.email')) {
+    if (value != this.props.form.getFieldValue('data.email')) {
       callback('Please input correctly');
       return;
     }
@@ -28,21 +26,20 @@ class MyForm extends Component {
 
   validatePhoneNumbers = (rule, value, callback, field, required) => {
     if (!value) {
-      if(required)
-          callback('This field is required');
+      if (required)
+        callback('This field is required');
       else
-          callback();
+        callback();
       return;
     }
-    if(/^\d+$/.test(value)== false) {
-        callback(field + ' accepts only numbers (0-9)');
-        return;
+    if (/^\d+$/.test(value) == false) {
+      callback(field + ' accepts only numbers (0-9)');
+      return;
     }
 
-    const numbers = [this.props.form.getFieldValue('data.phone_info.work'),this.props.form.getFieldValue('data.phone_info.home'), this.props.form.getFieldValue('data.phone_info.mobile')]
+    const numbers = [this.props.form.getFieldValue('data.phone_info.work'), this.props.form.getFieldValue('data.phone_info.home'), this.props.form.getFieldValue('data.phone_info.mobile')]
     const conflicts = numbers.filter(number => (number != undefined) && (number == value))
-    if(conflicts && conflicts.length > 1)
-    {
+    if (conflicts && conflicts.length > 1) {
       callback('The given phone number has already been entered.')
       return;
     }
@@ -68,20 +65,20 @@ class MyForm extends Component {
     getFieldDecorator('data.b_additional_phones', { initialValue: utils.getInitialValue(data.b_additional_phones) });
     getFieldDecorator('data.b_additional_emails', { initialValue: utils.getInitialValue(data.b_additional_emails) });
     getFieldDecorator('data.b_additional_social_media', { initialValue: utils.getInitialValue(data.b_additional_social_media) });
-    
+
     // getFieldDecorator('data.social_media_info.platform', { initialValue: utils.getInitialValue(data.social_media_info.platform) });
     // if( typeof(data.social_media_info) != 'Array' ) {
     //   let temp = data.social_media_info
     //   data.social_media_info = []
     // }
-    
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.address_and_phone.section_title)}</h2>
         </div>
 
-        <VisaAddress 
+        <VisaAddress
           label={tr(resources.address_and_phone.home_addr.label)}
           field="data.home_addr"
           initialValue={data.home_addr}
@@ -98,7 +95,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.phone_info.home),
                 rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.home.label), true) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
@@ -108,7 +105,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.phone_info.mobile),
                 rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.mobile.label)) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
@@ -120,7 +117,7 @@ class MyForm extends Component {
                 initialValue: utils.getInitialValue(data.phone_info.work),
                 rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.work.label)) }],
               })(
-                <Input maxLength={20}/>
+                <Input maxLength={20} />
               )}
             </Form.Item>
           </Col>
@@ -132,7 +129,7 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.email),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, tr(resources.address_and_phone.email.label), true) }],
                   })(
-                    <Input maxLength={50}/>
+                    <Input maxLength={50} />
                   )}
                 </Form.Item>
               </Col>
@@ -142,14 +139,14 @@ class MyForm extends Component {
                     initialValue: utils.getInitialValue(data.email_confirm),
                     rules: [{ validator: this.validateEmailConfirm }],
                   })(
-                    <Input maxLength={50}/>
+                    <Input maxLength={50} />
                   )}
                 </Form.Item>
               </Col>
             </Form.Item>
           </Col>
         </Row>
-        
+
         <VisaRadio
           label={tr(resources.address_and_phone.b_additional_phones.label)}
           field="data.b_additional_phones"
@@ -159,7 +156,7 @@ class MyForm extends Component {
         />
         {
           this.props.form.getFieldValue('data.b_additional_phones') &&
-          <VisaInputArray 
+          <VisaInputArray
             label={tr(resources.address_and_phone.additional_phones.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
@@ -183,7 +180,7 @@ class MyForm extends Component {
         />
         {
           this.props.form.getFieldValue('data.b_additional_emails') &&
-          <VisaInputArray 
+          <VisaInputArray
             label={tr(resources.address_and_phone.additional_emails.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
@@ -213,7 +210,7 @@ class MyForm extends Component {
 
         {
           this.props.form.getFieldValue('data.mail_addr.b_diff_with_home') &&
-          <VisaAddress 
+          <VisaAddress
             label={tr(resources.address_and_phone.mail_addr.info.label)}
             field="data.mail_addr.info"
             initialValue={data.mail_addr.info}
@@ -229,7 +226,7 @@ class MyForm extends Component {
           <div className="visa-global-section-description">{tr(resources.address_and_phone.section_descr_social_media)}</div>
         </div>
 
-        <VisaSocialMediaArray 
+        <VisaSocialMediaArray
           label={tr(resources.address_and_phone.social_media_info.label)}
           getFieldDecorator={getFieldDecorator}
           getFieldValue={getFieldValue}

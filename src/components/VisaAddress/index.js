@@ -105,7 +105,7 @@ class VisaAddress extends Component {
                   initialValue: utils.getInitialValue(initialValue.country),
                   rules: [{ required: true, message: tr(resources.validations.required) }],
                 })(
-                  <VisaSelect values={constants.countries_only_option_value_list} labels={constants.countries_only_option_label_list} tr={tr} />
+                  <VisaSelect combines={constants.export_list(constants.countries_only_option_list)} tr={tr} />
                 )}
               </Form.Item>
             </Col>
