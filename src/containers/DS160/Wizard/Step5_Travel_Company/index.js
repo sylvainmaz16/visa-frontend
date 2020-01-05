@@ -13,9 +13,9 @@ class MyForm extends Component {
   }
 
   render() {
-    const { form } = this.props
+    const { form, handlePrev, handleNext, handleSave } = this.props
     const {
-      getFieldDecorator, getFieldValue, setFieldsValue, handlePrev, handleNext, handleSave, validators,
+      getFieldDecorator, getFieldValue, setFieldsValue, validators,
     } = form
     const formItemLayout = {
       layout: 'vertical',

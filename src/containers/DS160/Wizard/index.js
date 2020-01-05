@@ -200,8 +200,8 @@ class DS160_Wizard extends Component {
 
   render() {
     const {
- step_index, ds160, loading, token, agency,
-} = this.props
+      step_index, ds160, loading, token, agency,
+    } = this.props
 
     if (loading) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin" />
@@ -209,7 +209,7 @@ class DS160_Wizard extends Component {
 
     let form_render = ''
     let intracompany_type = ''; let sevis_type = ''; let
-additional_point_of_contact = false
+      additional_point_of_contact = false
 
     let fields_list = [
       null, '', '',
@@ -486,19 +486,19 @@ additional_point_of_contact = false
             break
           case 'form_photo':
             form_render = <Form_Photo
-{...shared_params}
-                            data={ds160.form_photo}
+              {...shared_params}
+              data={ds160.form_photo}
 
-                            interview_location={ds160.interview_location}
-                            sex={ds160.form_personal_info.sex}
-                            country_of_birth={ds160.form_personal_info.place_of_birth.country}
-                            purpose_of_trip={ds160.form_travel.purpose_of_trip}
-                            other_purpose_of_trip={ds160.form_travel.other_purpose_of_trip}
+              interview_location={ds160.interview_location}
+              sex={ds160.form_personal_info.sex}
+              country_of_birth={ds160.form_personal_info.place_of_birth.country}
+              purpose_of_trip={ds160.form_travel.purpose_of_trip}
+              other_purpose_of_trip={ds160.form_travel.other_purpose_of_trip}
             />
             break
           case 'form_final':
             form_render = <Form_Final
-{...shared_params}
+              {...shared_params}
               handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
               handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
             />
@@ -526,27 +526,27 @@ additional_point_of_contact = false
 }
 
 const mapDispatchToProps = dispatch => ({
-    onNextStep: type => {
-      dispatch({ type })
-    },
-    onPrevStep: type => {
-      dispatch({ type })
-    },
-    updateValues: (type, values) => {
-      dispatch({ type, values })
-    },
-    onSaveAndContinueLater: (type, payload, applicationId, cb) => {
-      dispatch({
- type, payload, applicationId, cb,
+  onNextStep: type => {
+    dispatch({ type })
+  },
+  onPrevStep: type => {
+    dispatch({ type })
+  },
+  updateValues: (type, values) => {
+    dispatch({ type, values })
+  },
+  onSaveAndContinueLater: (type, payload, applicationId, cb) => {
+    dispatch({
+      type, payload, applicationId, cb,
+    })
+  },
+  loadApplicationFromDB: (type, applicationId) => {
+    dispatch({ type, applicationId })
+  },
+  changeLanguage: (type, lang) => {
+    dispatch({ type, lang })
+  },
 })
-    },
-    loadApplicationFromDB: (type, applicationId) => {
-      dispatch({ type, applicationId })
-    },
-    changeLanguage: (type, lang) => {
-      dispatch({ type, lang })
-    },
-  })
 
 const mapStateToProps = state => ({
   step_index: state.main.step_index,
