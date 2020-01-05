@@ -31,7 +31,9 @@ class Demo extends React.Component {
       <div style={style}>
         <TweenOne
           animation={this.animation}
-          style={{ margin: 0, width: 5, height: 5, transform: 'translate(-2.5px, -2.5px)' }}
+          style={{
+ margin: 0, width: 5, height: 5, transform: 'translate(-2.5px, -2.5px)',
+}}
           className="code-box-shape"
           paused={paused}
         />

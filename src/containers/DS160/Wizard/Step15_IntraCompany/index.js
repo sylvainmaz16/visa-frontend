@@ -1,23 +1,26 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaSelect from "components/VisaSelect";
+import VisaSelect from 'components/VisaSelect'
 import moment from 'moment'
-import VisaAddress from "components/VisaAddress";
-import VisaInput from "components/VisaInput";
+import VisaAddress from 'components/VisaAddress'
+import VisaInput from 'components/VisaInput'
 import * as utils from 'utils'
-import resources from "utils/resources";
+import resources from 'utils/resources'
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { Option } = Select
+const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
     showPrev: true,
     showNext: true,
   }
+
   render() {
-    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form;
+    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -26,9 +29,11 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
-    const { showPrev, showNext, onPrev, onNext, data, intracompany_type, tr } = this.props
-    
+    }
+    const {
+ showPrev, showNext, onPrev, onNext, data, intracompany_type, tr,
+} = this.props
+
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
@@ -65,7 +70,7 @@ class MyForm extends Component {
           </Col>
         </Row>
 
-        <VisaAddress 
+        <VisaAddress
           label={tr(resources.intracompany.address.label)}
           field="data.address"
           initialValue={data.address}
@@ -82,7 +87,7 @@ class MyForm extends Component {
               field="data.tel_number"
               initialValue={data.tel_number}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone number", true) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone number', true) }]}
               maxLength={12}
               tr={tr}
             />
@@ -91,7 +96,7 @@ class MyForm extends Component {
               field="data.income"
               initialValue={data.income}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Monthly Income", true) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Monthly Income', true) }]}
               maxLength={15}
               tr={tr}
             />
@@ -99,14 +104,14 @@ class MyForm extends Component {
         </Row>
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_15_IntraCompany = Form.create()(MyForm)
-export default Form_DS160_15_IntraCompany;
+export default Form_DS160_15_IntraCompany

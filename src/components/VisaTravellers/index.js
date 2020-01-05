@@ -1,52 +1,56 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker } from 'antd';
-import VisaSelect from '../VisaSelect'
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker,
+} from 'antd'
 import moment from 'moment'
-import VisaRadio from "../VisaRadio";
 import * as utils from 'utils'
 import * as constants from 'utils/constants'
-import resources from "utils/resources";
+import resources from 'utils/resources'
+import VisaSelect from '../VisaSelect'
+import VisaRadio from '../VisaRadio'
+
 class VisaTravellers extends Component {
   static defaultProps = {
-    extra: "",
-    label: "",
+    extra: '',
+    label: '',
     required: true,
   }
 
   remove = (k, keysField, dataField) => {
-    let keys = this.props.getFieldValue(keysField);
-    let data = this.props.getFieldValue(dataField)
+    const keys = this.props.getFieldValue(keysField)
+    const data = this.props.getFieldValue(dataField)
     if (keys.length === 1) {
-      return;
+      return
     }
 
-    keys.splice(k, 1);
-    data.splice(k, 1);
+    keys.splice(k, 1)
+    data.splice(k, 1)
 
     this.props.setFieldsValue({
       [keysField]: keys,
-      [dataField]: data
-    });
+      [dataField]: data,
+    })
   };
 
-  add = (keysField) => {
-    const keys = this.props.getFieldValue(keysField);
+  add = keysField => {
+    const keys = this.props.getFieldValue(keysField)
     const nextKeys = keys.concat({
       surname: null,
       given_name: null,
       relationship: null,
-    });
+    })
     this.props.setFieldsValue({
       [keysField]: nextKeys,
-    });
+    })
   };
 
   render() {
+    const {
+ label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, tr, ...rest
+} = this.props
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, tr, ...rest } = this.props
-
-    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
-    const people = getFieldValue(keysField);
+    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
+    const people = getFieldValue(keysField)
     const formItems = people.map((person, index) => (
       <Form.Item
         label={index === 0 ? label : ''}
@@ -57,9 +61,9 @@ class VisaTravellers extends Component {
             <Form.Item label={tr(resources.components.travellers.surname)} required>
               {getFieldDecorator(`${arrayField}[${index}].surname`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].surname : null),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname') }],
               })(
-                <Input />
+                <Input />,
               )}
             </Form.Item>
           </Col>
@@ -67,9 +71,9 @@ class VisaTravellers extends Component {
             <Form.Item label={tr(resources.components.travellers.given_name)}>
               {getFieldDecorator(`${arrayField}[${index}].given_name`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].given_name : null),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name') }],
               })(
-                <Input />
+                <Input />,
               )}
             </Form.Item>
           </Col>
@@ -79,7 +83,7 @@ class VisaTravellers extends Component {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].relationship : null),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
-                <VisaSelect combines={tr(constants.person_travel_with_relationship_options)} tr={tr}/>
+                <VisaSelect combines={tr(constants.person_travel_with_relationship_options)} tr={tr} />,
               )}
             </Form.Item>
           </Col>
@@ -92,21 +96,23 @@ class VisaTravellers extends Component {
             />
           ) : null}
         </Row>
-        
+
       </Form.Item>
-    ));
+    ))
 
     return (
       <>
         {formItems}
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" /> {tr(resources.add_another)}
+            <Icon type="plus" />
+{' '}
+{tr(resources.add_another)}
           </Button>
-        </Form.Item>}
+                                </Form.Item>}
       </>
-    );
+    )
   }
 }
 
-export default VisaTravellers;
+export default VisaTravellers

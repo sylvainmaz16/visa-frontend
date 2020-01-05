@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react'
 import {
   Chart,
   Geom,
   Axis,
   Tooltip,
-} from "bizcharts"
+} from 'bizcharts'
 
 const Basiccolumn = () => {
   const data = [
@@ -100,8 +100,8 @@ const Basiccolumn = () => {
 
   const cols = {
     count: {
-      tickInterval: 20
-    }
+      tickInterval: 20,
+    },
   }
 
   return (
@@ -109,7 +109,7 @@ const Basiccolumn = () => {
       <Chart height={100} data={data} scale={cols} forceFit padding={[5, 0, 44, 0]}>
         <Tooltip
           crosshairs={{
-            type: "y",
+            type: 'y',
           }}
         />
         <Geom type="interval" position="hour*count" />

@@ -66,7 +66,7 @@ class AdminPageNewKdmid extends Component {
 
     history.push({
       pathname: '/board/new-kdmid',
-      search: `?current=${pagination.current}` + (pagination.search ? `&search=${pagination.search}` : '') + filterString
+      search: `?current=${pagination.current}${pagination.search ? `&search=${pagination.search}` : ''}${filterString}`,
     })
   };
 
@@ -122,7 +122,7 @@ class AdminPageNewKdmid extends Component {
     if (pagination.search !== search) {
       history.push({
         pathname: '/board/new-kdmid',
-        search: `?current=${pagination.current}` + (search && search.length ? `&search=${search}` : '') + filterString,
+        search: `?current=${pagination.current}${search && search.length ? `&search=${search}` : ''}${filterString}`,
       })
     }
   }
@@ -176,7 +176,7 @@ class AdminPageNewKdmid extends Component {
         title: 'ID',
         dataIndex: 'app_id',
         key: 'app_id',
-        render: (text, record) => <a href={`https://kdmid-evisa.com/visa/application-form/token=${record._id}` + (record.agency ? `?agency=${record.agency}` : '')} target="blank">{text}</a>,
+        render: (text, record) => <a href={`https://kdmid-evisa.com/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">{text}</a>,
       },
       {
         title: 'Surname',
@@ -386,7 +386,7 @@ class AdminPageNewKdmid extends Component {
             )
           }}
         />
-        {/*visibleSendEmailModal*/ false &&
+        {/* visibleSendEmailModal */ false &&
           <Modal
             title={`Send Email to ${selectedRecord.email}`}
             visible={visibleSendEmailModal}
@@ -420,7 +420,9 @@ class AdminPageNewKdmid extends Component {
 
 const mapDispatchToProps = dispatch => ({
   getCustomersList: (type, options, isAdmin, site) => {
-    dispatch({ type, options, isAdmin, site })
+    dispatch({
+ type, options, isAdmin, site,
+})
   },
   setPagination: (type, pagination) => {
     dispatch({ type, pagination })
@@ -429,10 +431,14 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type, _id, cb })
   },
   automate: (type, _id, site, cb) => {
-    dispatch({ type, _id, site, cb })
+    dispatch({
+ type, _id, site, cb,
+})
   },
   getKdmidStatus: (type, _id, site, cb) => {
-    dispatch({ type, _id, site, cb })
+    dispatch({
+ type, _id, site, cb,
+})
   },
 })
 

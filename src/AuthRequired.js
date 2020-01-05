@@ -1,11 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withCookies } from 'react-cookie'
 
 export class AuthRequired extends React.Component {
-
     constructor(props) {
         super(props)
 
@@ -15,25 +14,22 @@ export class AuthRequired extends React.Component {
     }
 
     render() {
-
         // const token = this.props.cookies.get('immigration4us_token')
         const token = localStorage.getItem('immigration4us_token')
         const user = JSON.parse(localStorage.getItem('user'))
 
         if (!token) {
-            return (<Redirect to='/auth' />)
-        } else {
-            return (this.props.orRender);
+            return (<Redirect to="/auth" />)
         }
+
+return (this.props.orRender)
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        reset: (type) => {
+const mapDispatchToProps = dispatch => ({
+        reset: type => {
             dispatch({ type })
         },
-    }
-}
+    })
 
 const mapStateToProps = state => ({
     token: state.admin.token,

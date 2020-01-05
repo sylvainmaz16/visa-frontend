@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaRadio from "components/VisaRadio";
-import VisaAddress from "components/VisaAddress";
-import VisaInput from "components/VisaInput";
+import VisaRadio from 'components/VisaRadio'
+import VisaAddress from 'components/VisaAddress'
+import VisaInput from 'components/VisaInput'
 import * as utils from 'utils'
-import resources from "utils/resources";
+import resources from 'utils/resources'
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { Option } = Select
+const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
@@ -17,7 +19,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form;
+    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -26,15 +28,18 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
-    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
-    getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) });
-    if(!data.assist_info.organization) {
+    }
+    const {
+ showPrev, showNext, onPrev, onNext, data, tr,
+} = this.props
+    getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) })
+    if (!data.assist_info.organization) {
       data.assist_info.organization = {
-        name: null
+        name: null,
       }
     }
-    return (
+
+return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.e_sign.section_title)}</h2>
@@ -105,14 +110,14 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_16_Preparer = Form.create()(MyForm)
-export default Form_DS160_16_Preparer;
+export default Form_DS160_16_Preparer

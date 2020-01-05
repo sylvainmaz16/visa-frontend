@@ -2,33 +2,38 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
-import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd';
-const { Header, Content, Footer } = Layout;
+import {
+ Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input,
+} from 'antd'
 
-const { confirm } = Modal;
+import * as utils from 'utils/index'
+import * as constants from 'utils/constants'
+
+const { Header, Content, Footer } = Layout
+
+const { confirm } = Modal
 const openNotificationWithIcon = type => {
   notification[type]({
     message: type == 'success' ? 'Successfully sent!' : 'Failed to send an email!',
     description:
-      type == 'success' ? 'The email has been sent' : `There isn't such email template based on the interview location.`,
-  });
-};
-
-import * as utils from 'utils/index'
-import * as constants from 'utils/constants'
+      type == 'success' ? 'The email has been sent' : 'There isn\'t such email template based on the interview location.',
+  })
+}
 
 class AdminPageUsers extends Component {
   static defaultProps = {
     pagination: {
       current: 1,
-      pageSize: 10
-    }
+      pageSize: 10,
+    },
   }
-  constructor(props){
+
+  constructor(props) {
     super(props)
     this.state = {}
   }
-  loadList = (pagination) => {
+
+  loadList = pagination => {
     this.props.getUsersList(ADMIN.GET_USERS_LIST_REQUEST, {
       limit: pagination.pageSize,
       skip: pagination.pageSize * (pagination.current - 1),
@@ -36,6 +41,7 @@ class AdminPageUsers extends Component {
       filters: utils.getFilterString(pagination.filters),
     })
   }
+
   componentDidMount() {
     this.loadList(this.props.pagination)
   }
@@ -49,34 +55,34 @@ class AdminPageUsers extends Component {
   handleTableChange = (pagination, filters, sorter) => {
     console.log(filters)
 
-    let filterString = utils.getFilterString(filters)
+    const filterString = utils.getFilterString(filters)
 
     this.props.history.push({
       pathname: '/board/users',
-      search: `?current=${pagination.current}` + (pagination.search ? `&search=${pagination.search}` : '') + filterString
+      search: `?current=${pagination.current}${pagination.search ? `&search=${pagination.search}` : ''}${filterString}`,
     })
   };
 
-  handleSearchKeyDown = (event) => {
-    if(event.keyCode == 13)
-      this.searchString();
+  handleSearchKeyDown = event => {
+    if (event.keyCode == 13) { this.searchString() }
   }
 
   searchString = () => {
     const search = this.refs.search_input.state.value
 
-    const {pagination} = this.props
-    let filterString = utils.getFilterString(pagination.filters)
+    const { pagination } = this.props
+    const filterString = utils.getFilterString(pagination.filters)
 
-    if(pagination.search != search)
-      this.props.history.push({
+    if (pagination.search != search) {
+ this.props.history.push({
         pathname: '/board/users',
-        search: `?current=${pagination.current}` + (search && search.length ? `&search=${search}` : '') + filterString
+        search: `?current=${pagination.current}${search && search.length ? `&search=${search}` : ''}${filterString}`,
       })
+}
   }
 
-  approveUser = (record) => {
-    const {pagination, approveUserFunc } = this.props
+  approveUser = record => {
+    const { pagination, approveUserFunc } = this.props
     const options = {
       limit: pagination.pageSize,
       skip: pagination.pageSize * (pagination.current - 1),
@@ -87,16 +93,16 @@ class AdminPageUsers extends Component {
       title: `Do you Want to ${record.approved ? 'suspend' : 'approve'} this agency?`,
       content: `Agency: ${record.username}`,
       onOk() {
-        console.log('OK');
+        console.log('OK')
         approveUserFunc(ADMIN.APPROVE_USER_REQUEST, record._id, !record.approved, options)
       },
       onCancel() {
       },
-    });
+    })
   }
 
-  deleteUser = (record) => {
-    const {pagination, deleteUserFunc } = this.props
+  deleteUser = record => {
+    const { pagination, deleteUserFunc } = this.props
     const options = {
       limit: pagination.pageSize,
       skip: pagination.pageSize * (pagination.current - 1),
@@ -104,23 +110,24 @@ class AdminPageUsers extends Component {
       filters: utils.getFilterString(pagination.filters),
     }
     confirm({
-      title: `Are you sure delete this agency?`,
+      title: 'Are you sure delete this agency?',
       content: `Agency: ${record.username}`,
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        console.log('OK');
+        console.log('OK')
         deleteUserFunc(ADMIN.DELETE_USER_REQUEST, record._id, options)
       },
       onCancel() {
       },
-    });
+    })
   }
 
   render() {
-
-    const { data, pagination, loading, total } = this.props
+    const {
+ data, pagination, loading, total,
+} = this.props
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     const columns = [
@@ -138,49 +145,64 @@ class AdminPageUsers extends Component {
         title: 'Created At',
         dataIndex: 'createdAt',
         key: 'createdAt',
-        ellipsis: true
+        ellipsis: true,
       },
       {
         title: 'Role',
         dataIndex: 'role',
         key: 'role',
         render: (value, record) => {
-          if(value == constants.USER_ROLE.AGENCY)
-            return <Tag color="green">Agency</Tag>
-          return <Tag color="geekblue">Administrator</Tag>
-        }
+          if (value == constants.USER_ROLE.AGENCY) { return <Tag color="green">Agency</Tag> }
+
+return <Tag color="geekblue">Administrator</Tag>
+        },
       },
       {
         title: 'Approved',
         dataIndex: 'approved',
         key: 'approved',
         render: (value, record) => {
-          if(!value)
-            return <Tag color="volcano">Not Approved</Tag>
-          return <Tag color="geekblue">Approved</Tag>
-        }
+          if (!value) { return <Tag color="volcano">Not Approved</Tag> }
+
+return <Tag color="geekblue">Approved</Tag>
+        },
       },
       {
         title: 'Action',
         key: 'action',
-        render: (text, record) => {
-          return (<Button.Group size="small">
-          {!record.approved ? <Button type="primary" icon="check-circle" size="small"
+        render: (text, record) => (<Button.Group size="small">
+          {!record.approved ? <Button
+type="primary"
+icon="check-circle"
+size="small"
             onClick={() => this.approveUser(record, true)}
-          >Approve</Button> : <Button type="danger" icon="stop" size="small"
+          >
+Approve
+                              </Button> : <Button
+type="danger"
+icon="stop"
+size="small"
             onClick={() => this.approveUser(record, false)}
-          >Suspend</Button>}
-          {!record.approved && <Button type="dashed" icon="delete" size="small" style={{ marginLeft: 'auto' }} 
+                              >
+Suspend
+                                          </Button>}
+          {!record.approved && <Button
+type="dashed"
+icon="delete"
+size="small"
+style={{ marginLeft: 'auto' }}
             onClick={() => this.deleteUser(record)}
-          >Delete</Button>}
-        </Button.Group>)
-        },
+          >
+Delete
+                               </Button>}
+                                   </Button.Group>),
       },
-    ];
-    return (
+    ]
+
+return (
       <div className="admin-page-users">
         <div className="admin-page-users__top">
-          <Input placeholder="Search Agency here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown}/>
+          <Input placeholder="Search Agency here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown} />
           <Button type="primary" icon="search" onClick={this.searchString}>
             Search
           </Button>
@@ -189,14 +211,12 @@ class AdminPageUsers extends Component {
           columns={columns}
           rowKey={record => record._id}
           dataSource={data}
-          pagination={{ pageSize: pagination.pageSize, current: pagination.current, total: total }}
+          pagination={{ pageSize: pagination.pageSize, current: pagination.current, total }}
           loading={loading}
           onChange={this.handleTableChange}
-          expandedRowRender={record => {
-            return <p style={{ margin: 0 }}>
+          expandedRowRender={record => <p style={{ margin: 0 }}>
               {`_id: ${record._id}`}
-            </p>
-          }}
+                                       </p>}
         />
         {/* {visible_send_email_modal && <Modal
           title={`Send Email to ${selected_record.email}`}
@@ -223,9 +243,7 @@ class AdminPageUsers extends Component {
   }
 }
 
-
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     getUsersList: (type, options) => {
       dispatch({ type, options })
     },
@@ -233,23 +251,23 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type, _id, options })
     },
     approveUserFunc: (type, _id, approved, options) => {
-      dispatch({ type, _id, approved, options })
+      dispatch({
+ type, _id, approved, options,
+})
     },
     setPagination: (type, pagination) => {
       dispatch({ type, pagination })
     },
     resendEmail: (type, _id, cb) => {
       dispatch({ type, _id, cb })
-    }
-  }
-}
+    },
+  })
 
 const mapStateToProps = state => ({
   data: state.admin.users,
   total: state.admin.totalUserCnt,
   loading: state.admin.loading,
 })
-
 
 export default withRouter(
   connect(

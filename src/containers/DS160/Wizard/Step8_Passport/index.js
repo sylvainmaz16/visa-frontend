@@ -1,20 +1,22 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaSelect from "components/VisaSelect";
+import VisaSelect from 'components/VisaSelect'
 import moment from 'moment'
-import VisaRadio from "components/VisaRadio";
-import VisaInput from "components/VisaInput";
-import VisaInputWithCheck from 'components/VisaInputWithCheck';
-import VisaSelectItem from "components/VisaSelectItem";
-import VisaDatePicker from "components/VisaDatePicker";
-import VisaDatePickerWithCheck from 'components/VisaDatePickerWithCheck';
+import VisaRadio from 'components/VisaRadio'
+import VisaInput from 'components/VisaInput'
+import VisaInputWithCheck from 'components/VisaInputWithCheck'
+import VisaSelectItem from 'components/VisaSelectItem'
+import VisaDatePicker from 'components/VisaDatePicker'
+import VisaDatePickerWithCheck from 'components/VisaDatePickerWithCheck'
 import * as utils from 'utils'
-import VisaLostPassports from "components/VisaLostPassports";
-import resources from "utils/resources";
+import VisaLostPassports from 'components/VisaLostPassports'
+import resources from 'utils/resources'
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { Option } = Select
+const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
@@ -22,16 +24,17 @@ class MyForm extends Component {
     showNext: true,
   }
 
-  handleDates = (data) => {
-    if (data.issuance_date)
-      data.issuance_date = data.issuance_date.format('DD/MMM/YYYY')
-    if (data.expiration_date)
-      data.expiration_date = data.expiration_date.format('DD/MMM/YYYY')
-    return data
+  handleDates = data => {
+    if (data.issuance_date) { data.issuance_date = data.issuance_date.format('DD/MMM/YYYY') }
+    if (data.expiration_date) { data.expiration_date = data.expiration_date.format('DD/MMM/YYYY') }
+
+return data
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
+    const {
+ getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+} = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -40,20 +43,23 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
+    }
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
+    const {
+ showPrev, showNext, onPrev, onNext, data, date_birth, tr,
+} = this.props
 
-    if (data.lost_info.constructor != Array)
-      data.lost_info = [{
+    if (data.lost_info.constructor != Array) {
+ data.lost_info = [{
         number: null,
         number_NA: null,
         country: null,
-        explain: null
+        explain: null,
       }]
+}
 
-    getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) });
-    getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) });
+    getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) })
+    getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) })
     getFieldDecorator('data.expiration_date_NA', { initialValue: utils.getInitialValue(data.expiration_date_NA) })
     // getFieldDecorator('data.lost_info.number_NA', { initialValue: utils.getInitialValue(data.lost_info.number_NA) })
 
@@ -70,7 +76,7 @@ class MyForm extends Component {
               field="data.doc_type"
               initialValue={data.doc_type}
               content={{
-                combines: constants.export_list(tr(constants.passport_type_options))
+                combines: constants.export_list(tr(constants.passport_type_options)),
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
@@ -85,7 +91,7 @@ class MyForm extends Component {
               initialValue: utils.getInitialValue(data.doc_type_explain),
               rules: [{ required: true, message: tr(resources.validations.required) }],
             })(
-              <TextArea rows={5} />
+              <TextArea rows={5} />,
             )}
           </Form.Item>
         }
@@ -230,14 +236,14 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_8_Passport = Form.create()(MyForm)
-export default Form_DS160_8_Passport;
+export default Form_DS160_8_Passport

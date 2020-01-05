@@ -161,13 +161,11 @@ class AdminBoard extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     reset: type => {
       dispatch({ type })
     },
-  }
-}
+  })
 
 const mapStateToProps = state => ({
   // user: state.admin.user,

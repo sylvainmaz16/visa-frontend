@@ -1,25 +1,28 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaSelect from "components/VisaSelect";
+import VisaSelect from 'components/VisaSelect'
 import moment from 'moment'
-import VisaRadio from "components/VisaRadio";
-import VisaAddress from "components/VisaAddress";
-import VisaInput from "components/VisaInput";
-import VisaSelectItem from "components/VisaSelectItem";
+import VisaRadio from 'components/VisaRadio'
+import VisaAddress from 'components/VisaAddress'
+import VisaInput from 'components/VisaInput'
+import VisaSelectItem from 'components/VisaSelectItem'
 import * as utils from 'utils'
-import resources from "utils/resources";
+import resources from 'utils/resources'
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { Option } = Select
+const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
     showPrev: true,
     showNext: true,
   }
+
   render() {
-    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form;
+    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -28,10 +31,12 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
-    const { showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type, tr } = this.props
+    }
+    const {
+ showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type, tr,
+} = this.props
 
-    getFieldDecorator('data.b_study_in_US', { initialValue: utils.getInitialValue(data.b_study_in_US) });
+    getFieldDecorator('data.b_study_in_US', { initialValue: utils.getInitialValue(data.b_study_in_US) })
 
     return (
       <Form {...formItemLayout}>
@@ -42,12 +47,11 @@ class MyForm extends Component {
               <h2 className="visa-global-section-title">{tr(resources.SEVIS.section_title)}</h2>
               <div className="visa-global-section-description">{tr(resources.SEVIS.section_descr)}</div>
             </div>
-            {data.point_of_contact.map((contact, index) =>
-              <Row gutter={16} key={index}>
+            {data.point_of_contact.map((contact, index) => <Row gutter={16} key={index}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
                   <Form.Item label="Contact">
                     <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.surname)} 
+                      label={tr(resources.SEVIS.point_of_contact.surname)}
                       field={`data.point_of_contact[${index}].surname`}
                       initialValue={data.point_of_contact[index].surname}
                       getFieldDecorator={getFieldDecorator}
@@ -55,7 +59,7 @@ class MyForm extends Component {
                       tr={tr}
                     />
                     <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.given_name)} 
+                      label={tr(resources.SEVIS.point_of_contact.given_name)}
                       field={`data.point_of_contact[${index}].given_name`}
                       initialValue={data.point_of_contact[index].given_name}
                       getFieldDecorator={getFieldDecorator}
@@ -63,7 +67,7 @@ class MyForm extends Component {
                       tr={tr}
                     />
                     <VisaAddress
-                      label={tr(resources.SEVIS.point_of_contact.address)} 
+                      label={tr(resources.SEVIS.point_of_contact.address)}
                       field={`data.point_of_contact[${index}].address`}
                       initialValue={data.point_of_contact[index].address}
                       validators={this.props.validators}
@@ -72,29 +76,28 @@ class MyForm extends Component {
                       tr={tr}
                     />
                     <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.tel_number)} 
+                      label={tr(resources.SEVIS.point_of_contact.tel_number)}
                       field={`data.point_of_contact[${index}].tel_number`}
                       initialValue={data.point_of_contact[index].tel_number}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
-                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, "Telephone Number", false) }]}
+                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone Number', false) }]}
                       tr={tr}
                     />
                     <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.email)} 
+                      label={tr(resources.SEVIS.point_of_contact.email)}
                       extra="(e.g., emailaddress@example.com)"
                       field={`data.point_of_contact[${index}].email`}
                       initialValue={data.point_of_contact[index].email}
                       getFieldDecorator={getFieldDecorator}
                       required={false}
-                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, "Email Address") }]}
+                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, 'Email Address') }]}
                       tr={tr}
                     />
                   </Form.Item>
 
                 </Col>
-              </Row>
-            )}
+                                                           </Row>)}
           </>
         }
 
@@ -111,7 +114,7 @@ class MyForm extends Component {
               field="data.id"
               initialValue={data.id}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, "SEVIS ID") }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, 'SEVIS ID') }]}
               maxLength={11}
               tr={tr}
             />
@@ -123,7 +126,7 @@ class MyForm extends Component {
                 field="data.principal_id"
                 initialValue={data.principal_id}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, "Principal Applicant SEVIS ID") }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSEVIS(rule, value, callback, 'Principal Applicant SEVIS ID') }]}
                 maxLength={11}
                 tr={tr}
               />
@@ -136,7 +139,7 @@ class MyForm extends Component {
                 field="data.program_number"
                 initialValue={data.program_number}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateProgramNumber(rule, value, callback, "Program Number") }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateProgramNumber(rule, value, callback, 'Program Number') }]}
                 tr={tr}
               />
             }
@@ -160,15 +163,15 @@ class MyForm extends Component {
                 field="data.school_info.name"
                 initialValue={data.school_info.name}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Name of School", true) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Name of School', true) }]}
                 tr={tr}
               />
               <VisaInput
                 label={tr(resources.SEVIS.school_info.course)}
                 field="data.school_info.course"
                 initialValue={data.school_info.course}
-                getFieldDecorator={getFieldDecorator} 
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, "Course of Study") }]}
+                getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'Course of Study') }]}
                 tr={tr}
               />
               <VisaAddress
@@ -185,14 +188,14 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_15_SEVIS = Form.create()(MyForm)
-export default Form_DS160_15_SEVIS;
+export default Form_DS160_15_SEVIS

@@ -63,7 +63,7 @@ const getPointPos = (width, height, length) => {
   for (let i = 0; i < length; i += 1) {
     let radius
     let pos
-    let j = 0
+    const j = 0
     for (let j = 0; j < num; j += 1) {
       radius = radiusArray[Math.floor(Math.random() * radiusArray.length)]
       pos = { x: Math.random() * (width - radius * 2) + radius, y: Math.random() * (height - radius * 2) + radius, radius }
@@ -74,14 +74,17 @@ const getPointPos = (width, height, length) => {
     posArray.push(pos)
     grid.add(pos)
   }
-  return posArray
+
+return posArray
 }
 
 const getDistance = (t, a) => (Math.sqrt((t.x - a.x) * (t.x - a.x) + (t.y - a.y) * (t.y - a.y)))
 
 class Point extends React.PureComponent {
   render() {
-    const { tx, ty, x, y, opacity, backgroundColor, radius, ...props } = this.props
+    const {
+ tx, ty, x, y, opacity, backgroundColor, radius, ...props
+} = this.props
     let transform
     let zIndex = 0
     let animation = {
@@ -98,7 +101,9 @@ class Point extends React.PureComponent {
         transform = `translate(${g * (x - tx) / distance}px, ${g * (y - ty) / distance}px)`
       } else if (tx === x && ty === y) {
         transform = `scale(${80 / radius})`
-        animation = { y: 0, yoyo: false, repeat: 0, duration: 300 }
+        animation = {
+ y: 0, yoyo: false, repeat: 0, duration: 300,
+}
         zIndex = 1
       }
     }
@@ -155,12 +160,14 @@ class LinkedAnimate extends React.Component {
     const boxRect = this.box.getBoundingClientRect()
     const pos = this.state.data.map(item => {
       const { x, y, radius } = item
-      return { x, y, distance: getDistance({ x: cX - boxRect.x, y: cY - boxRect.y }, { x, y }) - radius }
+
+return { x, y, distance: getDistance({ x: cX - boxRect.x, y: cY - boxRect.y }, { x, y }) - radius }
     }).reduce((a, b) => {
       if (!a.distance || a.distance > b.distance) {
         return b
       }
-      return a
+
+return a
     })
     if (pos.distance < 60) {
       this.setState({

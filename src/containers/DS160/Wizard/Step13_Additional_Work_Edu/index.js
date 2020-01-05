@@ -1,37 +1,38 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaSelect from "components/VisaSelect";
+import VisaSelect from 'components/VisaSelect'
 import moment from 'moment'
-import VisaRadio from "components/VisaRadio";
-import VisaExplain from "components/VisaExplain";
-import VisaInput from "components/VisaInput";
-import VisaSelectItem from "components/VisaSelectItem";
-import VisaDatePicker from "components/VisaDatePicker";
-import VisaInputArray from "components/VisaInputArray";
+import VisaRadio from 'components/VisaRadio'
+import VisaExplain from 'components/VisaExplain'
+import VisaInput from 'components/VisaInput'
+import VisaSelectItem from 'components/VisaSelectItem'
+import VisaDatePicker from 'components/VisaDatePicker'
+import VisaInputArray from 'components/VisaInputArray'
 import * as utils from 'utils'
-import VisaSelectArray from "components/VisaSelectArray";
-import resources from "utils/resources";
+import VisaSelectArray from 'components/VisaSelectArray'
+import resources from 'utils/resources'
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { Option } = Select
+const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
     showPrev: true,
     showNext: true,
   }
-  
-  handleDates = (data) => {
-    if(data.militaries && data.militaries[0] && data.militaries[0].date_from)
-      data.militaries[0].date_from = data.militaries[0].date_from.format('DD/MMM/YYYY')
-    if(data.militaries && data.militaries[0] && data.militaries[0].date_to)
-      data.militaries[0].date_to = data.militaries[0].date_to.format('DD/MMM/YYYY')
-    return data
+
+  handleDates = data => {
+    if (data.militaries && data.militaries[0] && data.militaries[0].date_from) { data.militaries[0].date_from = data.militaries[0].date_from.format('DD/MMM/YYYY') }
+    if (data.militaries && data.militaries[0] && data.militaries[0].date_to) { data.militaries[0].date_to = data.militaries[0].date_to.format('DD/MMM/YYYY') }
+
+return data
   }
 
   render() {
-    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form;
+    const { getFieldDecorator, getFieldValue, setFieldsValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -40,15 +41,17 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
-    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
+    }
+    const {
+ showPrev, showNext, onPrev, onNext, data, tr,
+} = this.props
 
-    getFieldDecorator('data.b_belong_to_clan', { initialValue: utils.getInitialValue(data.b_belong_to_clan) });
-    getFieldDecorator('data.b_travel_last_five_years', { initialValue: utils.getInitialValue(data.b_travel_last_five_years) });
-    getFieldDecorator('data.b_belong_to_org', { initialValue: utils.getInitialValue(data.b_belong_to_org) });
-    getFieldDecorator('data.b_military', { initialValue: utils.getInitialValue(data.b_military) });
-    getFieldDecorator('data.b_special_skill', { initialValue: utils.getInitialValue(data.b_special_skill) });
-    getFieldDecorator('data.b_rebel_group', { initialValue: utils.getInitialValue(data.b_rebel_group) });
+    getFieldDecorator('data.b_belong_to_clan', { initialValue: utils.getInitialValue(data.b_belong_to_clan) })
+    getFieldDecorator('data.b_travel_last_five_years', { initialValue: utils.getInitialValue(data.b_travel_last_five_years) })
+    getFieldDecorator('data.b_belong_to_org', { initialValue: utils.getInitialValue(data.b_belong_to_org) })
+    getFieldDecorator('data.b_military', { initialValue: utils.getInitialValue(data.b_military) })
+    getFieldDecorator('data.b_special_skill', { initialValue: utils.getInitialValue(data.b_special_skill) })
+    getFieldDecorator('data.b_rebel_group', { initialValue: utils.getInitialValue(data.b_rebel_group) })
 
     return (
       <Form {...formItemLayout}>
@@ -69,7 +72,7 @@ class MyForm extends Component {
           tr={tr}
         />
 
-        <VisaInputArray 
+        <VisaInputArray
           label={tr(resources.additional_work.languages.label)}
           getFieldDecorator={getFieldDecorator}
           getFieldValue={getFieldValue}
@@ -78,7 +81,7 @@ class MyForm extends Component {
           arrayField="data.languages"
           keysField="copy.languages"
           validators={this.props.validators}
-          customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Language Name", true) }]}
+          customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, 'Language Name', true) }]}
           tr={tr}
         />
 
@@ -91,7 +94,7 @@ class MyForm extends Component {
         />
 
         {this.props.form.getFieldValue('data.b_travel_last_five_years') &&
-          <VisaSelectArray 
+          <VisaSelectArray
             label={tr(resources.additional_work.countries.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
@@ -112,7 +115,7 @@ class MyForm extends Component {
         />
 
         {this.props.form.getFieldValue('data.b_belong_to_org') &&
-          <VisaInputArray 
+          <VisaInputArray
             label={tr(resources.additional_work.organizations.label)}
             getFieldDecorator={getFieldDecorator}
             getFieldValue={getFieldValue}
@@ -121,7 +124,7 @@ class MyForm extends Component {
             arrayField="data.organizations"
             keysField="copy.organizations"
             validators={this.props.validators}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, "Organization Name", true) }]}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Organization Name', true) }]}
             tr={tr}
           />
         }
@@ -177,12 +180,12 @@ class MyForm extends Component {
           </Row>
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaDatePicker 
+              <VisaDatePicker
                 label={tr(resources.additional_work.militaries.date_from)}
                 field="data.militaries[0].date_from"
                 initialValue={data.militaries[0].date_from}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, "Date of Attendance From", false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, 'Date of Attendance From', false) }]}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
@@ -190,12 +193,12 @@ class MyForm extends Component {
               />
             </Col>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaDatePicker 
+              <VisaDatePicker
                 label={tr(resources.additional_work.militaries.date_to)}
                 field="data.militaries[0].date_to"
                 initialValue={data.militaries[0].date_to}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, "Date of Attendance To", this.props.form.getFieldValue('data.militaries[0].date_from'), false) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.militaries[0].date_from'), false) }]}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
@@ -243,14 +246,14 @@ class MyForm extends Component {
         />
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_13_Additional_Work_Edu = Form.create()(MyForm)
-export default Form_DS160_13_Additional_Work_Edu;
+export default Form_DS160_13_Additional_Work_Edu

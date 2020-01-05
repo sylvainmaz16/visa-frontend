@@ -1,135 +1,135 @@
-import React from "react"
+import React from 'react'
 import {
   Chart,
   Geom,
   Axis,
   Tooltip,
   Legend,
-} from "bizcharts"
+} from 'bizcharts'
 
 const Curved = () => {
   const data = [
     {
-      month: "Jan",
+      month: 'Jan',
       city: 'uva',
-      temperature: 7
+      temperature: 7,
     },
     {
-      month: "Jan",
+      month: 'Jan',
       city: 'default',
       temperature: 0,
     },
     {
-      month: "Feb",
+      month: 'Feb',
       city: 'uva',
-      temperature: 6.9
+      temperature: 6.9,
     },
     {
-      month: "Feb",
+      month: 'Feb',
       city: 'default',
-      temperature: 4.2
+      temperature: 4.2,
     },
     {
-      month: "Mar",
+      month: 'Mar',
       city: 'uva',
-      temperature: 9.5
+      temperature: 9.5,
     },
     {
-      month: "Mar",
+      month: 'Mar',
       city: 'default',
-      temperature: 5.7
+      temperature: 5.7,
     },
     {
-      month: "Apr",
+      month: 'Apr',
       city: 'uva',
-      temperature: 14.5
+      temperature: 14.5,
     },
     {
-      month: "Apr",
+      month: 'Apr',
       city: 'default',
-      temperature: 8.5
+      temperature: 8.5,
     },
     {
-      month: "May",
+      month: 'May',
       city: 'uva',
-      temperature: 18.4
+      temperature: 18.4,
     },
     {
-      month: "May",
+      month: 'May',
       city: 'default',
-      temperature: 11.9
+      temperature: 11.9,
     },
     {
-      month: "Jun",
+      month: 'Jun',
       city: 'uva',
-      temperature: 21.5
+      temperature: 21.5,
     },
     {
-      month: "Jun",
+      month: 'Jun',
       city: 'default',
-      temperature: 15.2
+      temperature: 15.2,
     },
     {
-      month: "Jul",
+      month: 'Jul',
       city: 'uva',
-      temperature: 25.2
+      temperature: 25.2,
     },
     {
-      month: "Jul",
+      month: 'Jul',
       city: 'default',
-      temperature: 17
+      temperature: 17,
     },
     {
-      month: "Aug",
+      month: 'Aug',
       city: 'uva',
-      temperature: 26.5
+      temperature: 26.5,
     },
     {
-      month: "Aug",
+      month: 'Aug',
       city: 'default',
-      temperature: 16.6
+      temperature: 16.6,
     },
     {
-      month: "Sep",
+      month: 'Sep',
       city: 'uva',
-      temperature: 23.3
+      temperature: 23.3,
     },
     {
-      month: "Sep",
+      month: 'Sep',
       city: 'default',
-      temperature: 14.2
+      temperature: 14.2,
     },
     {
-      month: "Oct",
+      month: 'Oct',
       city: 'uva',
-      temperature: 18.3
+      temperature: 18.3,
     },
     {
-      month: "Oct",
+      month: 'Oct',
       city: 'default',
-      temperature: 10.3
+      temperature: 10.3,
     },
     {
-      month: "Nov",
+      month: 'Nov',
       city: 'uva',
-      temperature: 13.9
+      temperature: 13.9,
     },
     {
-      month: "Nov",
+      month: 'Nov',
       city: 'default',
-      temperature: 6.6
+      temperature: 6.6,
     },
     {
-      month: "Dec",
+      month: 'Dec',
       city: 'uva',
-      temperature: 9.6
+      temperature: 9.6,
     },
     {
-      month: "Dec",
+      month: 'Dec',
       city: 'default',
-      temperature: 4.8
+      temperature: 4.8,
     },
-  ];
+  ]
   const cols = {
     month: {
       range: [0, 1],

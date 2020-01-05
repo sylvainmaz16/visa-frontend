@@ -84,5 +84,5 @@ export const ADMIN = createActionTypes('ADMIN', [
 export default {
   REST_API,
   DS160,
-  ADMIN
+  ADMIN,
 }

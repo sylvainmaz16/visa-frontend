@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, Row, Col,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaAddress from "components/VisaAddress";
-import VisaInput from "components/VisaInput";
-import VisaSelectItem from "components/VisaSelectItem";
+import VisaAddress from 'components/VisaAddress'
+import VisaInput from 'components/VisaInput'
+import VisaSelectItem from 'components/VisaSelectItem'
 import * as utils from 'utils'
-import resources from "utils/resources";
+import resources from 'utils/resources'
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { Option } = Select
+const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
@@ -17,7 +19,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -26,15 +28,18 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
+    }
 
-    const { showPrev, showNext, onPrev, onNext, data, martial_status, tr } = this.props
+    const {
+ showPrev, showNext, onPrev, onNext, data, martial_status, tr,
+} = this.props
 
-    getFieldDecorator('data.relationship', { initialValue: data.relationship });
+    getFieldDecorator('data.relationship', { initialValue: data.relationship })
     const field = {
       relationship: this.props.form.getFieldValue('data.relationship'),
     }
-    return (
+
+return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.contact.section_title)}</h2>
@@ -48,7 +53,7 @@ class MyForm extends Component {
               field="data.relationship"
               initialValue={data.relationship}
               content={{
-                combines: constants.export_list( (martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? tr(constants.relationship_options) : tr(constants.relationship_options_except_Spouse))
+                combines: constants.export_list((martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? tr(constants.relationship_options) : tr(constants.relationship_options_except_Spouse)),
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
@@ -87,7 +92,7 @@ class MyForm extends Component {
           </Col>
         </Row>
 
-        <VisaAddress 
+        <VisaAddress
           label={tr(resources.contact.address)}
           field="data.address"
           initialValue={data.address}
@@ -123,14 +128,14 @@ class MyForm extends Component {
         </Row>
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_9_Contact = Form.create()(MyForm)
-export default Form_DS160_9_Contact;
+export default Form_DS160_9_Contact

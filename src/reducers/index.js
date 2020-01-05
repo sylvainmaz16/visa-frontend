@@ -1,24 +1,24 @@
 import { combineReducers } from 'redux'
+import storage from 'redux-persist/lib/storage'
+import { persistStore, persistReducer } from 'redux-persist'
 import adminReducer from './adminReducer'
 import mainReducer from './mainReducer'
-import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
 
 const persistConfig = {
-    key: `root`,
-    storage: storage,
-    blacklist: ['admin']
-};
+    key: 'root',
+    storage,
+    blacklist: ['admin'],
+}
 const mainPersistConfig = {
-    key: `main`,
-    storage: storage,
-    whitelist: []
-};
+    key: 'main',
+    storage,
+    whitelist: [],
+}
 
 const appReducer = asyncReducers => persistReducer(persistConfig, combineReducers({
     admin: adminReducer,
     main: persistReducer(mainPersistConfig, mainReducer),
-    ...asyncReducers
+    ...asyncReducers,
 }))
 
 function rootReducer(asyncReducers) {

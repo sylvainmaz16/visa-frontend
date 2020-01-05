@@ -1,20 +1,15 @@
-import React, { Component } from "react";
-import { Form, Button, Select } from 'antd';
-import * as constants from 'utils/constants'
-import * as utils from 'utils'
-import VisaSelect from "components/VisaSelect";
-import { withCookies } from 'react-cookie';
-import resources from "utils/resources";
-
-const { Option } = Select;
+import React, { Component } from 'react'
+import { Form, Button } from 'antd'
+import { withCookies } from 'react-cookie'
+import resources from 'utils/resources'
 
 class MyForm extends Component {
   static defaultProps = {
     showPrev: true,
     showNext: true,
   }
+
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -22,14 +17,15 @@ class MyForm extends Component {
       },
       wrapperCol: {
         sm: { span: 24 },
-        md: { span: 12 }
+        md: { span: 12 },
       },
-    };
+    }
 
-    const { showPrev, showNext, data, agency, tr } = this.props
+    const {
+      showPrev, showNext, agency, tr, handlePrev, handleSubmit, handleSubmitWithoutPayment, form,
+    } = this.props
 
     const token = localStorage.getItem('immigration4us_token')
-    const user = JSON.parse(localStorage.getItem('user'))
 
     return (
       <Form {...formItemLayout}>
@@ -39,14 +35,15 @@ class MyForm extends Component {
           </h2>
         </div>
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleSubmit(e, this.props.form, this.handleDates)}>{agency ? tr(resources.continue_to_appointment): tr(resources.submit_with_payment)}</Button>}
-          {token && user.role == constants.USER_ROLE.ADMIN && <Button type="danger" style={{marginLeft: '10px'}} onClick={(e) => this.props.handleSubmitWithoutPayment(e, this.props.form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>}
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => handleSubmit(e, form, this.handleDates)}>{agency ? tr(resources.continue_to_appointment) : tr(resources.submit_with_payment)}</Button>}
+          {token && <Button type="danger" style={{ marginLeft: '10px' }} onClick={e => handleSubmitWithoutPayment(e, form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>}
         </div>
       </Form>
 
-    );
+    )
   }
 }
-const Form_Final = withCookies(Form.create()(MyForm))
-export default Form_Final;
+const FormFinal = withCookies(Form.create()(MyForm))
+export default FormFinal
+

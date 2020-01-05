@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { CookiesProvider } from 'react-cookie';
+import { CookiesProvider } from 'react-cookie'
 import { Router } from 'react-router-dom'
-import Routes from './routes/index'
 import { createBrowserHistory } from 'history'
-import configureStore from './store'
 import { PersistGate } from 'redux-persist/integration/react'
-import { ConfigProvider } from 'antd';
-import frFR from 'antd/es/locale/fr_FR';
+import { ConfigProvider } from 'antd'
+import frFR from 'antd/es/locale/fr_FR'
+import configureStore from './store'
+import Routes from './routes/index'
 
 const history = createBrowserHistory()
 const { persistor, store } = configureStore()

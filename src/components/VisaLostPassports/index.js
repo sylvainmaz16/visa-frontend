@@ -1,61 +1,64 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker } from 'antd';
-import VisaSelect from '../VisaSelect'
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker,
+} from 'antd'
 import moment from 'moment'
-import VisaRadio from "../VisaRadio";
-import VisaInput from '../VisaInput';
-import VisaInputWithCheck from '../VisaInputWithCheck';
-import VisaSelectItem from "../VisaSelectItem";
-import VisaDatePicker from "../VisaDatePicker";
 import * as utils from 'utils'
 import * as constants from 'utils/constants'
-import resources from "utils/resources";
-const { TextArea } = Input;
+import resources from 'utils/resources'
+import VisaSelect from '../VisaSelect'
+import VisaRadio from '../VisaRadio'
+import VisaInput from '../VisaInput'
+import VisaInputWithCheck from '../VisaInputWithCheck'
+import VisaSelectItem from '../VisaSelectItem'
+import VisaDatePicker from '../VisaDatePicker'
+
+const { TextArea } = Input
 class VisaLostPassports extends Component {
   static defaultProps = {
-    extra: "",
-    label: "",
+    extra: '',
+    label: '',
     required: true,
   }
 
   remove = (k, keysField, dataField) => {
-    let keys = this.props.getFieldValue(keysField);
-    let data = this.props.getFieldValue(dataField)
+    const keys = this.props.getFieldValue(keysField)
+    const data = this.props.getFieldValue(dataField)
     if (keys.length === 1) {
-      return;
+      return
     }
 
-    keys.splice(k, 1);
-    data.splice(k, 1);
+    keys.splice(k, 1)
+    data.splice(k, 1)
 
     this.props.setFieldsValue({
       [keysField]: keys,
-      [dataField]: data
-    });
+      [dataField]: data,
+    })
   };
 
-  add = (keysField) => {
-    const keys = this.props.getFieldValue(keysField);
+  add = keysField => {
+    const keys = this.props.getFieldValue(keysField)
     const nextKeys = keys.concat({
       number: null,
       number_NA: null,
       country: null,
-      explain: null
-    });
+      explain: null,
+    })
     this.props.setFieldsValue({
       [keysField]: nextKeys,
-    });
+    })
   };
 
   render() {
+    const {
+ label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest
+} = this.props
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest } = this.props
+    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
+    const people = getFieldValue(keysField)
 
-    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
-    const people = getFieldValue(keysField);
-
-    const formItems = people.map((person, index) => { 
-      return (
+    const formItems = people.map((person, index) => (
       <Form.Item
         label={index === 0 ? label : ''}
         key={index}
@@ -69,8 +72,8 @@ class VisaLostPassports extends Component {
               field={`${arrayField}[${index}].number`}
               initialValue={initialValue[index] ? initialValue[index].number : null}
               getFieldDecorator={getFieldDecorator}
-              
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, "Passport/Travel Document Number", !getFieldValue(`${arrayField}[${index}].number_NA`)) }]}
+
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, 'Passport/Travel Document Number', !getFieldValue(`${arrayField}[${index}].number_NA`)) }]}
               setFieldsValue={setFieldsValue}
               getFieldValue={getFieldValue}
               checkField={`${arrayField}[${index}].number_NA`}
@@ -82,7 +85,7 @@ class VisaLostPassports extends Component {
         </Row>
         <Row>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaSelectItem 
+            <VisaSelectItem
               label={tr(resources.components.lost_pssports.country)}
               field={`${arrayField}[${index}].country`}
               initialValue={initialValue[index] ? initialValue[index].country : null}
@@ -98,35 +101,39 @@ class VisaLostPassports extends Component {
             <Form.Item label={tr(resources.components.lost_pssports.explain)} required>
               {getFieldDecorator(`${arrayField}[${index}].explain`, {
                 initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].explain : null),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }],
               })(
-                <TextArea style={{textTransform: 'uppercase'}} rows={3} />
+                <TextArea style={{ textTransform: 'uppercase' }} rows={3} />,
               )}
             </Form.Item>
           </Col>
         </Row>
         <Row>
           {people.length > 1 ? (
-            <Button type="danger" onClick={() => this.remove(index, keysField, arrayField)} >
-              <Icon type="minus-circle-o" /> {tr(resources.remove)}
+            <Button type="danger" onClick={() => this.remove(index, keysField, arrayField)}>
+              <Icon type="minus-circle-o" />
+{' '}
+{tr(resources.remove)}
             </Button>
           ) : null}
         </Row>
-        
+
       </Form.Item>
-    )});
+    ))
 
     return (
       <>
         {formItems}
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%', marginLeft: '15%' }}>
-            <Icon type="plus" /> {tr(resources.add_another)}
+            <Icon type="plus" />
+{' '}
+{tr(resources.add_another)}
           </Button>
-        </Form.Item>}
+                                </Form.Item>}
       </>
-    );
+    )
   }
 }
 
-export default VisaLostPassports;
+export default VisaLostPassports

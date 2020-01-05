@@ -6,8 +6,7 @@ export default function KdmidStatus({ loading, data }) {
   console.log(loading, data)
 
   if (loading) {
-    return <Spin tip="Please wait..." className="admin-page-ds160-check-status-modal-spin">
-    </Spin>
+    return <Spin tip="Please wait..." className="admin-page-ds160-check-status-modal-spin" />
   }
 
   if (!data) {
@@ -18,7 +17,7 @@ export default function KdmidStatus({ loading, data }) {
         extra={
           <Button type="primary" key="console">
             Try Again
-                    </Button>
+          </Button>
         }
       />
     )
@@ -33,7 +32,7 @@ export default function KdmidStatus({ loading, data }) {
         extra={[
           <Button type="primary" key="console">
             Download File
-                    </Button>,
+          </Button>,
           <Button key="buy">Check Again</Button>,
         ]}
       />
@@ -47,7 +46,7 @@ export default function KdmidStatus({ loading, data }) {
       extra={[
         <Button type="primary" key="console">
           Check Again
-                </Button>
+        </Button>,
       ]}
     />
   )

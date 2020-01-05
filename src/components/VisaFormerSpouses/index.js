@@ -1,41 +1,44 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker } from 'antd';
-import VisaSelect from '../VisaSelect'
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker,
+} from 'antd'
 import moment from 'moment'
-import VisaRadio from "../VisaRadio";
-import VisaInput from '../VisaInput'
-import VisaAddress from "../VisaAddress";
-import VisaSelectItem from "../VisaSelectItem";
-import VisaDatePicker from "../VisaDatePicker";
 import * as utils from 'utils'
 import * as constants from 'utils/constants'
-import resources from "utils/resources";
-const { TextArea } = Input;
+import resources from 'utils/resources'
+import VisaSelect from '../VisaSelect'
+import VisaRadio from '../VisaRadio'
+import VisaInput from '../VisaInput'
+import VisaAddress from '../VisaAddress'
+import VisaSelectItem from '../VisaSelectItem'
+import VisaDatePicker from '../VisaDatePicker'
+
+const { TextArea } = Input
 class VisaFormerSpouses extends Component {
   static defaultProps = {
-    extra: "",
-    label: "",
+    extra: '',
+    label: '',
     required: true,
   }
 
   remove = (k, keysField, dataField) => {
-    let keys = this.props.getFieldValue(keysField);
-    let data = this.props.getFieldValue(dataField)
+    const keys = this.props.getFieldValue(keysField)
+    const data = this.props.getFieldValue(dataField)
     if (keys.length === 1) {
-      return;
+      return
     }
 
-    keys.splice(k, 1);
-    data.splice(k, 1);
+    keys.splice(k, 1)
+    data.splice(k, 1)
 
     this.props.setFieldsValue({
       [keysField]: keys,
-      [dataField]: data
-    });
+      [dataField]: data,
+    })
   };
 
   add = keysField => {
-    const keys = this.props.getFieldValue(keysField);
+    const keys = this.props.getFieldValue(keysField)
     const nextKeys = keys.concat({
       surname: null,
       given_name: null,
@@ -43,7 +46,7 @@ class VisaFormerSpouses extends Component {
       nationality: null,
       place_of_birth: {
         city: null,
-        country: null
+        country: null,
       },
       marriage_date: null,
       end_date: null,
@@ -55,23 +58,23 @@ class VisaFormerSpouses extends Component {
         city: null,
         state: null,
         zip_code: null,
-        country: null
-      }
-    });
+        country: null,
+      },
+    })
     this.props.setFieldsValue({
       [keysField]: nextKeys,
-    });
+    })
   };
 
   render() {
+    const {
+ label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest
+} = this.props
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest } = this.props
+    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
+    const people = getFieldValue(keysField)
 
-    getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
-    const people = getFieldValue(keysField);
-
-    const formItems = people.map((person, index) => {
-      return (
+    const formItems = people.map((person, index) => (
         <Form.Item
           label={index === 0 ? label : ''}
           key={index}
@@ -84,7 +87,7 @@ class VisaFormerSpouses extends Component {
                 field={`${arrayField}[${index}].surname`}
                 initialValue={initialValue[index] ? initialValue[index].surname : null}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname') }]}
                 tr={tr}
               />
             </Col>
@@ -94,7 +97,7 @@ class VisaFormerSpouses extends Component {
                 field={`${arrayField}[${index}].given_name`}
                 initialValue={initialValue[index] ? initialValue[index].given_name : null}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name') }]}
                 tr={tr}
               />
             </Col>
@@ -116,7 +119,7 @@ class VisaFormerSpouses extends Component {
             field={`${arrayField}[${index}].nationality`}
             initialValue={initialValue[index] ? initialValue[index].nationality : null}
             content={{
-              combines: constants.nationality_option_list_func()
+              combines: constants.nationality_option_list_func(),
             }}
             getFieldDecorator={getFieldDecorator}
             tr={tr}
@@ -187,7 +190,7 @@ class VisaFormerSpouses extends Component {
               initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].end_explain : null),
               rules: [{ pattern: /^[A-Za-z0-9#$*%&;!@^?><().',\- ]+$/, message: tr(resources.validations.english) }, { required: true, message: 'This field is required' }],
             })(
-              <TextArea rows={3} />
+              <TextArea rows={3} />,
             )}
           </Form.Item>
           <VisaSelectItem
@@ -203,27 +206,30 @@ class VisaFormerSpouses extends Component {
           />
           <Row>
             {people.length > 1 ? (
-              <Button type="danger" onClick={() => this.remove(index, keysField, arrayField)} >
-                <Icon type="minus-circle-o" /> {tr(resources.remove)}
+              <Button type="danger" onClick={() => this.remove(index, keysField, arrayField)}>
+                <Icon type="minus-circle-o" />
+{' '}
+{tr(resources.remove)}
               </Button>
             ) : null}
           </Row>
 
         </Form.Item>
-      )
-    });
+      ))
 
     return (
       <>
         {formItems}
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%', marginLeft: '15%' }}>
-            <Icon type="plus" /> {tr(resources.add_another)}
+            <Icon type="plus" />
+{' '}
+{tr(resources.add_another)}
           </Button>
-        </Form.Item>}
+                                </Form.Item>}
       </>
-    );
+    )
   }
 }
 
-export default VisaFormerSpouses;
+export default VisaFormerSpouses

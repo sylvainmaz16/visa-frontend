@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import './index.scss'
 
-/* 
+/*
 export const ControlTopRight = styled.div`
   position: absolute;
   top: ${props => (props.top ? `${props.top}px` : `20px`)};
@@ -17,20 +17,22 @@ export const ControlTopRight = styled.div`
 class VisaBanner extends Component {
   static defaultProps = {
     backgroundColor: 'rgba(81, 156, 255, 1)',
-    className: ''
+    className: '',
   }
+
   constructor(props) {
     super(props)
   }
 
   render() {
     const { backgroundColor, className } = this.props
-    return (
-      <div className={"visa-com-banner " + className}>
+
+return (
+      <div className={`visa-com-banner ${className}`}>
         <h2>{this.props.children}</h2>
       </div>
     )
   }
 }
 
-export default VisaBanner;
+export default VisaBanner

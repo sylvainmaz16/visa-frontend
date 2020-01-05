@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import VisaBanner from 'components/VisaBanner';
-import VisaHeader from 'components/VisaHeader';
+import VisaBanner from 'components/VisaBanner'
+import VisaHeader from 'components/VisaHeader'
 import { DS160 } from 'actions/types'
-import { Spin, Button, Icon } from 'antd';
+import { Spin, Button, Icon } from 'antd'
 
 import './index.less'
+
 class DS160_AutoOnlineFill extends Component {
   static defaultProps = {
-    token: null
+    token: null,
   }
+
   constructor(props) {
     super(props)
   }
@@ -20,8 +22,8 @@ class DS160_AutoOnlineFill extends Component {
   }
 
   onStart = () => {
-    let iframe = document.getElementById('ds-160-online-form');
-    let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const iframe = document.getElementById('ds-160-online-form')
+    const innerDoc = iframe.contentDocument || iframe.contentWindow.document
   }
 
   render() {
@@ -33,25 +35,21 @@ class DS160_AutoOnlineFill extends Component {
           AutoFill
           <Icon type="right" />
         </Button>
-        <iframe id="ds-160-online-form" className="ds-160-online-form" src="https://ceac.state.gov/GenNIV/Default.aspx"/>
+        <iframe id="ds-160-online-form" className="ds-160-online-form" src="https://ceac.state.gov/GenNIV/Default.aspx" />
       </div>
-      
+
     )
   }
 }
 
-
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     loadApplicationFromDB: (type, applicationId) => {
       dispatch({ type, applicationId })
-    }
-  }
-}
+    },
+  })
 
 const mapStateToProps = state => ({
 })
-
 
 export default withRouter(
   connect(

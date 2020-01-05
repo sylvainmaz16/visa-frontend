@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import { Link } from "react-router-dom";
+import { withRouter, Link } from 'react-router-dom'
+
 import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
-import { Form,
+import {
+ Form,
   Input,
   Tooltip,
   Icon,
@@ -13,65 +14,64 @@ import { Form,
   Col,
   Checkbox,
   Button,
-  AutoComplete
-} from 'antd';
-
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+  AutoComplete,
+} from 'antd'
 
 import './Signup.less'
 
-class MyForm extends Component {
+const { Option } = Select
+const AutoCompleteOption = AutoComplete.Option
 
+class MyForm extends Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
   };
 
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.signup(values)
       }
-    });
+    })
   };
 
   handleConfirmBlur = e => {
-    const { value } = e.target;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+    const { value } = e.target
+    this.setState({ confirmDirty: this.state.confirmDirty || !!value })
   };
 
   compareToFirstPassword = (rule, value, callback) => {
-    const { form } = this.props;
+    const { form } = this.props
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
+      callback('Two passwords that you enter is inconsistent!')
     } else {
-      callback();
+      callback()
     }
   };
 
   validateToNextPassword = (rule, value, callback) => {
-    const { form } = this.props;
+    const { form } = this.props
     if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
+      form.validateFields(['confirm'], { force: true })
     }
-    callback();
+    callback()
   };
 
   handleWebsiteChange = value => {
-    let autoCompleteResult;
+    let autoCompleteResult
     if (!value) {
-      autoCompleteResult = [];
+      autoCompleteResult = []
     } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
+      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`)
     }
-    this.setState({ autoCompleteResult });
+    this.setState({ autoCompleteResult })
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
+    const { getFieldDecorator } = this.props.form
+    const { autoCompleteResult } = this.state
     const { loading } = this.props
 
     const formItemLayout = {
@@ -83,7 +83,7 @@ class MyForm extends Component {
         xs: { span: 24 },
         sm: { span: 16 },
       },
-    };
+    }
     const tailFormItemLayout = {
       wrapperCol: {
         xs: {
@@ -95,18 +95,18 @@ class MyForm extends Component {
           offset: 8,
         },
       },
-    };
+    }
     const prefixSelector = getFieldDecorator('prefix', {
       initialValue: '1',
     })(
       <Select style={{ width: 70 }}>
         <Option value="1">+1</Option>
       </Select>,
-    );
+    )
 
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
+    ))
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit} className="signup-form">
@@ -164,7 +164,7 @@ class MyForm extends Component {
             ],
           })(<Input.Password onBlur={this.handleConfirmBlur} />)}
         </Form.Item>
-        
+
         {/* <Form.Item label="Phone Number">
           {getFieldDecorator('phone', {
             rules: [{ required: true, message: 'Please input your phone number!' }],
@@ -185,16 +185,18 @@ class MyForm extends Component {
         </Form.Item> */}
         <Form.Item {...tailFormItemLayout}>
           {getFieldDecorator('agreement', {
-            valuePropName: "checked",
+            valuePropName: 'checked',
             rules: [{
-              required: true, 
-              message: 'This field is required', 
-              transform: value => (value || undefined),  // Those two lines
-              type: 'boolean'
+              required: true,
+              message: 'This field is required',
+              transform: value => (value || undefined), // Those two lines
+              type: 'boolean',
             }],
           })(
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              I have read the
+{' '}
+<a href="">agreement</a>
             </Checkbox>,
           )}
         </Form.Item>
@@ -204,9 +206,9 @@ class MyForm extends Component {
           </Button>
         </Form.Item>
       </Form>
-    );
+    )
   }
 }
 
 const SignupForm = Form.create()(MyForm)
-export default SignupForm;
+export default SignupForm

@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { Form, Button, Select } from 'antd';
+import React, { Component } from 'react'
+import { Form, Button, Select } from 'antd'
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
-import VisaSelect from "components/VisaSelect";
-import VisaInput from "components/VisaInput";
-import VisaSelectItem from "components/VisaSelectItem";
-import resources from "utils/resources";
-
-const { Option } = Select;
+import VisaSelect from 'components/VisaSelect'
+import VisaInput from 'components/VisaInput'
+import VisaSelectItem from 'components/VisaSelectItem'
+import resources from 'utils/resources'
 
 class MyForm extends Component {
   static defaultProps = {
@@ -16,7 +14,8 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { form } = this.props
+    const { getFieldDecorator } = form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -24,19 +23,22 @@ class MyForm extends Component {
       },
       wrapperCol: {
         sm: { span: 24 },
-        md: { span: 12 }
+        md: { span: 12 },
       },
-    };
+    }
 
-    const { showPrev, showNext, data, agency, tr } = this.props
-    const { countries_option_value_list, countries_option_label_list, agency_support_countries_list} = constants
+    const {
+      showPrev, showNext, data, agency, tr,
+    } = this.props
+    const { countries_option_value_list, countries_option_label_list, agency_support_countries_list } = constants
 
-    let values = [], labels = []
+    let values = []; let
+      labels = []
 
-    if(agency) {
+    if (agency) {
       countries_option_label_list.map((label, cntry_index) => {
         const index = agency_support_countries_list.findIndex(support => label.toLowerCase().startsWith(support.toLowerCase()))
-        if(index >= 0) {
+        if (index >= 0) {
           values.push(countries_option_value_list[cntry_index])
           labels.push(countries_option_label_list[cntry_index])
         }
@@ -58,7 +60,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.language),
             rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
-            <VisaSelect combines={constants.export_list(constants.hints_and_help_language)} onChange={this.props.handleLanguageChange}/>
+            <VisaSelect combines={constants.export_list(constants.hints_and_help_language)} onChange={this.props.handleLanguageChange} />,
           )}
         </Form.Item>
 
@@ -67,38 +69,38 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.interview_location),
             rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
-            <VisaSelect values={values} labels={labels} />
+            <VisaSelect values={values} labels={labels} />,
           )}
         </Form.Item>
-        
+
         <VisaSelectItem
           label={tr(resources.step_1.sq_type.label)}
           extra={tr(resources.step_1.sq_type.extra)}
           field="data.sq_type"
           initialValue={data.sq_type}
           content={{
-            combines: constants.export_list(tr(constants.security_question_options))
+            combines: constants.export_list(tr(constants.security_question_options)),
           }}
           getFieldDecorator={getFieldDecorator}
           tr={tr}
         />
-        <VisaInput 
+        <VisaInput
           label={tr(resources.step_1.sq_answer.label)}
           field="data.sq_answer"
           initialValue={data.sq_answer}
           getFieldDecorator={getFieldDecorator}
           tr={tr}
-          
+
         />
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_1 = Form.create()(MyForm)
-export default Form_DS160_1;
+export default Form_DS160_1

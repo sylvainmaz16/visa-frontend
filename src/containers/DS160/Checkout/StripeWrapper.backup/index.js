@@ -1,35 +1,33 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon, notification } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon, notification,
+} from 'antd'
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
-import VisaSelect from "components/VisaSelect";
-import VisaRadio from "components/VisaRadio";
-import VisaInput from "components/VisaInput";
+import VisaSelect from 'components/VisaSelect'
+import VisaRadio from 'components/VisaRadio'
+import VisaInput from 'components/VisaInput'
 import axios from 'axios'
 
-const { Option } = Select;
+const { Option } = Select
 
 const openNotificationWithIcon = type => {
   notification[type]({
     message: 'Checkout Result',
     description:
       type == 'success' ? 'Successfully placed order' : 'Failed to place order',
-  });
-};
+  })
+}
 
 class MyForm extends Component {
-
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if(this.props.checkout_result != nextProps.checkout_result) {
-      if(nextProps.checkout_result == true)
-        openNotificationWithIcon('success')
-      else
-        openNotificationWithIcon('error')
+    if (this.props.checkout_result != nextProps.checkout_result) {
+      if (nextProps.checkout_result == true) { openNotificationWithIcon('success') } else { openNotificationWithIcon('error') }
     }
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form;
+    const { getFieldDecorator, isFieldTouched } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -37,9 +35,9 @@ class MyForm extends Component {
       },
       wrapperCol: {
         sm: { span: 24 },
-        md: { span: 24 }
+        md: { span: 24 },
       },
-    };
+    }
 
     const { data, loading_pay } = this.props
 
@@ -128,18 +126,38 @@ class MyForm extends Component {
         <div id="order_review" className="checkout-review-order">
           <table>
             <thead>
-              <tr><th className="product-name">Product</th><th className="product-total">Total</th></tr>
+              <tr>
+<th className="product-name">Product</th>
+<th className="product-total">Total</th>
+              </tr>
             </thead>
             <tbody>
-              <tr className="cart_item"><td className="product-name">Non-Refundable US Visa Application DS160 Service Fee    <strong className="product-quantity">× 1</strong></td><td className="product-total">$165.00</td></tr>
+              <tr className="cart_item">
+<td className="product-name">
+Non-Refundable US Visa Application DS160 Service Fee
+<strong className="product-quantity">× 1</strong>
+</td>
+<td className="product-total">$165.00</td>
+              </tr>
             </tbody>
             <tfoot>
-              <tr className="cart_item"><td className="product-name"><strong>Subtotal</strong></td><td className="product-total">$165.00</td></tr>
-              <tr className="cart_item"><td className="product-name"><strong>Total</strong></td><td className="product-total"><strong>$165.00</strong></td></tr>
+              <tr className="cart_item">
+<td className="product-name"><strong>Subtotal</strong></td>
+<td className="product-total">$165.00</td>
+              </tr>
+              <tr className="cart_item">
+<td className="product-name"><strong>Total</strong></td>
+<td className="product-total"><strong>$165.00</strong></td>
+              </tr>
             </tfoot>
           </table>
         </div>
-        <label style={{fontWeight: 'bold', marginBottom: '20px'}}>Payment with Credit or Debit Cards <img src="https://visasforms.com/wp-content/plugins/woonmipay/includes/images/card-visa.png" alt="visa" /><img src="https://visasforms.com/wp-content/plugins/woonmipay/includes/images/card-mc.png" alt="mc" />	</label>
+        <label style={{ fontWeight: 'bold', marginBottom: '20px' }}>
+Payment with Credit or Debit Cards
+<img src="https://visasforms.com/wp-content/plugins/woonmipay/includes/images/card-visa.png" alt="visa" />
+<img src="https://visasforms.com/wp-content/plugins/woonmipay/includes/images/card-mc.png" alt="mc" />
+{' '}
+        </label>
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <VisaInput
@@ -167,11 +185,11 @@ class MyForm extends Component {
           </Col>
         </Row>
         <div className="payButtonRow">
-          <Button type="primary" icon="dollar" loading={loading_pay} style={{marginLeft: 'auto'}} onClick={(e) => this.props.placeOrder(e, this.props.form)}>PLACE ORDER</Button>
+          <Button type="primary" icon="dollar" loading={loading_pay} style={{ marginLeft: 'auto' }} onClick={e => this.props.placeOrder(e, this.props.form)}>PLACE ORDER</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 

@@ -47,13 +47,14 @@ class Donut extends React.Component {
       type: 'percent',
       field: 'count',
       dimension: 'item',
-      as: 'percent'
+      as: 'percent',
     })
     const cols = {
       percent: {
         formatter: val => {
-          val = val * 100 + "%"
-          return val
+          val = `${val * 100}%`
+
+return val
         },
       },
     }
@@ -80,7 +81,7 @@ class Donut extends React.Component {
           />
           <Guide>
             <Html
-              position={["50%", "50%"]}
+              position={['50%', '50%']}
               html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>Applications<br><span style=&quot;color:#262626;font-size:2em&quot;>102</span></div>"
               alignX="middle"
               alignY="middle"
@@ -91,9 +92,9 @@ class Donut extends React.Component {
             position="percent"
             color="item"
             tooltip={[
-              "item*percent",
+              'item*percent',
               (item, percent) => {
-                percent = percent * 100 + "%"
+                percent = `${percent * 100}%`
 
                 return {
                   name: item,
@@ -103,14 +104,15 @@ class Donut extends React.Component {
             ]}
             style={{
               lineWidth: 1,
-              stroke: "#fff",
+              stroke: '#fff',
             }}
           >
             <Label
               content="percent"
               formatter={(val, item) => {
                 const floatValue = parseFloat(val.substring(0, val.length - 1))
-                return item.point.item + ": " + floatValue.toPrecision(2) + '%'
+
+return `${item.point.item}: ${floatValue.toPrecision(2)}%`
               }}
             />
           </Geom>

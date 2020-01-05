@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   G2,
   Chart,
@@ -12,440 +12,440 @@ import {
   Guide,
   Shape,
   Facet,
-  Util
-} from "bizcharts"
-import DataSet from "@antv/data-set"
+  Util,
+} from 'bizcharts'
+import DataSet from '@antv/data-set'
 
-import Brush from "@antv/g2-brush"
-import { Card } from "antd";
+import Brush from '@antv/g2-brush'
+import { Card } from 'antd'
 
-let data = [{
-  "date": "Jan 1 2000",
-  "price": 1394.46
+const data = [{
+  date: 'Jan 1 2000',
+  price: 1394.46,
 }, {
-  "date": "Feb 1 2000",
-  "price": 1366.42
+  date: 'Feb 1 2000',
+  price: 1366.42,
 }, {
-  "date": "Mar 1 2000",
-  "price": 1498.58
+  date: 'Mar 1 2000',
+  price: 1498.58,
 }, {
-  "date": "Apr 1 2000",
-  "price": 1452.43
+  date: 'Apr 1 2000',
+  price: 1452.43,
 }, {
-  "date": "May 1 2000",
-  "price": 1420.6
+  date: 'May 1 2000',
+  price: 1420.6,
 }, {
-  "date": "Jun 1 2000",
-  "price": 1454.6
+  date: 'Jun 1 2000',
+  price: 1454.6,
 }, {
-  "date": "Jul 1 2000",
-  "price": 1430.83
+  date: 'Jul 1 2000',
+  price: 1430.83,
 }, {
-  "date": "Aug 1 2000",
-  "price": 1517.68
+  date: 'Aug 1 2000',
+  price: 1517.68,
 }, {
-  "date": "Sep 1 2000",
-  "price": 1436.51
+  date: 'Sep 1 2000',
+  price: 1436.51,
 }, {
-  "date": "Oct 1 2000",
-  "price": 1429.4
+  date: 'Oct 1 2000',
+  price: 1429.4,
 }, {
-  "date": "Nov 1 2000",
-  "price": 1314.95
+  date: 'Nov 1 2000',
+  price: 1314.95,
 }, {
-  "date": "Dec 1 2000",
-  "price": 1320.28
+  date: 'Dec 1 2000',
+  price: 1320.28,
 }, {
-  "date": "Jan 1 2001",
-  "price": 1366.01
+  date: 'Jan 1 2001',
+  price: 1366.01,
 }, {
-  "date": "Feb 1 2001",
-  "price": 1239.94
+  date: 'Feb 1 2001',
+  price: 1239.94,
 }, {
-  "date": "Mar 1 2001",
-  "price": 1160.33
+  date: 'Mar 1 2001',
+  price: 1160.33,
 }, {
-  "date": "Apr 1 2001",
-  "price": 1249.46
+  date: 'Apr 1 2001',
+  price: 1249.46,
 }, {
-  "date": "May 1 2001",
-  "price": 1255.82
+  date: 'May 1 2001',
+  price: 1255.82,
 }, {
-  "date": "Jun 1 2001",
-  "price": 1224.38
+  date: 'Jun 1 2001',
+  price: 1224.38,
 }, {
-  "date": "Jul 1 2001",
-  "price": 1211.23
+  date: 'Jul 1 2001',
+  price: 1211.23,
 }, {
-  "date": "Aug 1 2001",
-  "price": 1133.58
+  date: 'Aug 1 2001',
+  price: 1133.58,
 }, {
-  "date": "Sep 1 2001",
-  "price": 1040.94
+  date: 'Sep 1 2001',
+  price: 1040.94,
 }, {
-  "date": "Oct 1 2001",
-  "price": 1059.78
+  date: 'Oct 1 2001',
+  price: 1059.78,
 }, {
-  "date": "Nov 1 2001",
-  "price": 1139.45
+  date: 'Nov 1 2001',
+  price: 1139.45,
 }, {
-  "date": "Dec 1 2001",
-  "price": 1148.08
+  date: 'Dec 1 2001',
+  price: 1148.08,
 }, {
-  "date": "Jan 1 2002",
-  "price": 1130.2
+  date: 'Jan 1 2002',
+  price: 1130.2,
 }, {
-  "date": "Feb 1 2002",
-  "price": 1106.73
+  date: 'Feb 1 2002',
+  price: 1106.73,
 }, {
-  "date": "Mar 1 2002",
-  "price": 1147.39
+  date: 'Mar 1 2002',
+  price: 1147.39,
 }, {
-  "date": "Apr 1 2002",
-  "price": 1076.92
+  date: 'Apr 1 2002',
+  price: 1076.92,
 }, {
-  "date": "May 1 2002",
-  "price": 1067.14
+  date: 'May 1 2002',
+  price: 1067.14,
 }, {
-  "date": "Jun 1 2002",
-  "price": 989.82
+  date: 'Jun 1 2002',
+  price: 989.82,
 }, {
-  "date": "Jul 1 2002",
-  "price": 911.62
+  date: 'Jul 1 2002',
+  price: 911.62,
 }, {
-  "date": "Aug 1 2002",
-  "price": 916.07
+  date: 'Aug 1 2002',
+  price: 916.07,
 }, {
-  "date": "Sep 1 2002",
-  "price": 815.28
+  date: 'Sep 1 2002',
+  price: 815.28,
 }, {
-  "date": "Oct 1 2002",
-  "price": 885.76
+  date: 'Oct 1 2002',
+  price: 885.76,
 }, {
-  "date": "Nov 1 2002",
-  "price": 936.31
+  date: 'Nov 1 2002',
+  price: 936.31,
 }, {
-  "date": "Dec 1 2002",
-  "price": 879.82
+  date: 'Dec 1 2002',
+  price: 879.82,
 }, {
-  "date": "Jan 1 2003",
-  "price": 855.7
+  date: 'Jan 1 2003',
+  price: 855.7,
 }, {
-  "date": "Feb 1 2003",
-  "price": 841.15
+  date: 'Feb 1 2003',
+  price: 841.15,
 }, {
-  "date": "Mar 1 2003",
-  "price": 848.18
+  date: 'Mar 1 2003',
+  price: 848.18,
 }, {
-  "date": "Apr 1 2003",
-  "price": 916.92
+  date: 'Apr 1 2003',
+  price: 916.92,
 }, {
-  "date": "May 1 2003",
-  "price": 963.59
+  date: 'May 1 2003',
+  price: 963.59,
 }, {
-  "date": "Jun 1 2003",
-  "price": 974.5
+  date: 'Jun 1 2003',
+  price: 974.5,
 }, {
-  "date": "Jul 1 2003",
-  "price": 990.31
+  date: 'Jul 1 2003',
+  price: 990.31,
 }, {
-  "date": "Aug 1 2003",
-  "price": 1008.01
+  date: 'Aug 1 2003',
+  price: 1008.01,
 }, {
-  "date": "Sep 1 2003",
-  "price": 995.97
+  date: 'Sep 1 2003',
+  price: 995.97,
 }, {
-  "date": "Oct 1 2003",
-  "price": 1050.71
+  date: 'Oct 1 2003',
+  price: 1050.71,
 }, {
-  "date": "Nov 1 2003",
-  "price": 1058.2
+  date: 'Nov 1 2003',
+  price: 1058.2,
 }, {
-  "date": "Dec 1 2003",
-  "price": 1111.92
+  date: 'Dec 1 2003',
+  price: 1111.92,
 }, {
-  "date": "Jan 1 2004",
-  "price": 1131.13
+  date: 'Jan 1 2004',
+  price: 1131.13,
 }, {
-  "date": "Feb 1 2004",
-  "price": 1144.94
+  date: 'Feb 1 2004',
+  price: 1144.94,
 }, {
-  "date": "Mar 1 2004",
-  "price": 1126.21
+  date: 'Mar 1 2004',
+  price: 1126.21,
 }, {
-  "date": "Apr 1 2004",
-  "price": 1107.3
+  date: 'Apr 1 2004',
+  price: 1107.3,
 }, {
-  "date": "May 1 2004",
-  "price": 1120.68
+  date: 'May 1 2004',
+  price: 1120.68,
 }, {
-  "date": "Jun 1 2004",
-  "price": 1140.84
+  date: 'Jun 1 2004',
+  price: 1140.84,
 }, {
-  "date": "Jul 1 2004",
-  "price": 1101.72
+  date: 'Jul 1 2004',
+  price: 1101.72,
 }, {
-  "date": "Aug 1 2004",
-  "price": 1104.24
+  date: 'Aug 1 2004',
+  price: 1104.24,
 }, {
-  "date": "Sep 1 2004",
-  "price": 1114.58
+  date: 'Sep 1 2004',
+  price: 1114.58,
 }, {
-  "date": "Oct 1 2004",
-  "price": 1130.2
+  date: 'Oct 1 2004',
+  price: 1130.2,
 }, {
-  "date": "Nov 1 2004",
-  "price": 1173.82
+  date: 'Nov 1 2004',
+  price: 1173.82,
 }, {
-  "date": "Dec 1 2004",
-  "price": 1211.92
+  date: 'Dec 1 2004',
+  price: 1211.92,
 }, {
-  "date": "Jan 1 2005",
-  "price": 1181.27
+  date: 'Jan 1 2005',
+  price: 1181.27,
 }, {
-  "date": "Feb 1 2005",
-  "price": 1203.6
+  date: 'Feb 1 2005',
+  price: 1203.6,
 }, {
-  "date": "Mar 1 2005",
-  "price": 1180.59
+  date: 'Mar 1 2005',
+  price: 1180.59,
 }, {
-  "date": "Apr 1 2005",
-  "price": 1156.85
+  date: 'Apr 1 2005',
+  price: 1156.85,
 }, {
-  "date": "May 1 2005",
-  "price": 1191.5
+  date: 'May 1 2005',
+  price: 1191.5,
 }, {
-  "date": "Jun 1 2005",
-  "price": 1191.33
+  date: 'Jun 1 2005',
+  price: 1191.33,
 }, {
-  "date": "Jul 1 2005",
-  "price": 1234.18
+  date: 'Jul 1 2005',
+  price: 1234.18,
 }, {
-  "date": "Aug 1 2005",
-  "price": 1220.33
+  date: 'Aug 1 2005',
+  price: 1220.33,
 }, {
-  "date": "Sep 1 2005",
-  "price": 1228.81
+  date: 'Sep 1 2005',
+  price: 1228.81,
 }, {
-  "date": "Oct 1 2005",
-  "price": 1207.01
+  date: 'Oct 1 2005',
+  price: 1207.01,
 }, {
-  "date": "Nov 1 2005",
-  "price": 1249.48
+  date: 'Nov 1 2005',
+  price: 1249.48,
 }, {
-  "date": "Dec 1 2005",
-  "price": 1248.29
+  date: 'Dec 1 2005',
+  price: 1248.29,
 }, {
-  "date": "Jan 1 2006",
-  "price": 1280.08
+  date: 'Jan 1 2006',
+  price: 1280.08,
 }, {
-  "date": "Feb 1 2006",
-  "price": 1280.66
+  date: 'Feb 1 2006',
+  price: 1280.66,
 }, {
-  "date": "Mar 1 2006",
-  "price": 1294.87
+  date: 'Mar 1 2006',
+  price: 1294.87,
 }, {
-  "date": "Apr 1 2006",
-  "price": 1310.61
+  date: 'Apr 1 2006',
+  price: 1310.61,
 }, {
-  "date": "May 1 2006",
-  "price": 1270.09
+  date: 'May 1 2006',
+  price: 1270.09,
 }, {
-  "date": "Jun 1 2006",
-  "price": 1270.2
+  date: 'Jun 1 2006',
+  price: 1270.2,
 }, {
-  "date": "Jul 1 2006",
-  "price": 1276.66
+  date: 'Jul 1 2006',
+  price: 1276.66,
 }, {
-  "date": "Aug 1 2006",
-  "price": 1303.82
+  date: 'Aug 1 2006',
+  price: 1303.82,
 }, {
-  "date": "Sep 1 2006",
-  "price": 1335.85
+  date: 'Sep 1 2006',
+  price: 1335.85,
 }, {
-  "date": "Oct 1 2006",
-  "price": 1377.94
+  date: 'Oct 1 2006',
+  price: 1377.94,
 }, {
-  "date": "Nov 1 2006",
-  "price": 1400.63
+  date: 'Nov 1 2006',
+  price: 1400.63,
 }, {
-  "date": "Dec 1 2006",
-  "price": 1418.3
+  date: 'Dec 1 2006',
+  price: 1418.3,
 }, {
-  "date": "Jan 1 2007",
-  "price": 1438.24
+  date: 'Jan 1 2007',
+  price: 1438.24,
 }, {
-  "date": "Feb 1 2007",
-  "price": 1406.82
+  date: 'Feb 1 2007',
+  price: 1406.82,
 }, {
-  "date": "Mar 1 2007",
-  "price": 1420.86
+  date: 'Mar 1 2007',
+  price: 1420.86,
 }, {
-  "date": "Apr 1 2007",
-  "price": 1482.37
+  date: 'Apr 1 2007',
+  price: 1482.37,
 }, {
-  "date": "May 1 2007",
-  "price": 1530.62
+  date: 'May 1 2007',
+  price: 1530.62,
 }, {
-  "date": "Jun 1 2007",
-  "price": 1503.35
+  date: 'Jun 1 2007',
+  price: 1503.35,
 }, {
-  "date": "Jul 1 2007",
-  "price": 1455.27
+  date: 'Jul 1 2007',
+  price: 1455.27,
 }, {
-  "date": "Aug 1 2007",
-  "price": 1473.99
+  date: 'Aug 1 2007',
+  price: 1473.99,
 }, {
-  "date": "Sep 1 2007",
-  "price": 1526.75
+  date: 'Sep 1 2007',
+  price: 1526.75,
 }, {
-  "date": "Oct 1 2007",
-  "price": 1549.38
+  date: 'Oct 1 2007',
+  price: 1549.38,
 }, {
-  "date": "Nov 1 2007",
-  "price": 1481.14
+  date: 'Nov 1 2007',
+  price: 1481.14,
 }, {
-  "date": "Dec 1 2007",
-  "price": 1468.36
+  date: 'Dec 1 2007',
+  price: 1468.36,
 }, {
-  "date": "Jan 1 2008",
-  "price": 1378.55
+  date: 'Jan 1 2008',
+  price: 1378.55,
 }, {
-  "date": "Feb 1 2008",
-  "price": 1330.63
+  date: 'Feb 1 2008',
+  price: 1330.63,
 }, {
-  "date": "Mar 1 2008",
-  "price": 1322.7
+  date: 'Mar 1 2008',
+  price: 1322.7,
 }, {
-  "date": "Apr 1 2008",
-  "price": 1385.59
+  date: 'Apr 1 2008',
+  price: 1385.59,
 }, {
-  "date": "May 1 2008",
-  "price": 1400.38
+  date: 'May 1 2008',
+  price: 1400.38,
 }, {
-  "date": "Jun 1 2008",
-  "price": 1280
+  date: 'Jun 1 2008',
+  price: 1280,
 }, {
-  "date": "Jul 1 2008",
-  "price": 1267.38
+  date: 'Jul 1 2008',
+  price: 1267.38,
 }, {
-  "date": "Aug 1 2008",
-  "price": 1282.83
+  date: 'Aug 1 2008',
+  price: 1282.83,
 }, {
-  "date": "Sep 1 2008",
-  "price": 1166.36
+  date: 'Sep 1 2008',
+  price: 1166.36,
 }, {
-  "date": "Oct 1 2008",
-  "price": 968.75
+  date: 'Oct 1 2008',
+  price: 968.75,
 }, {
-  "date": "Nov 1 2008",
-  "price": 896.24
+  date: 'Nov 1 2008',
+  price: 896.24,
 }, {
-  "date": "Dec 1 2008",
-  "price": 903.25
+  date: 'Dec 1 2008',
+  price: 903.25,
 }, {
-  "date": "Jan 1 2009",
-  "price": 825.88
+  date: 'Jan 1 2009',
+  price: 825.88,
 }, {
-  "date": "Feb 1 2009",
-  "price": 735.09
+  date: 'Feb 1 2009',
+  price: 735.09,
 }, {
-  "date": "Mar 1 2009",
-  "price": 797.87
+  date: 'Mar 1 2009',
+  price: 797.87,
 }, {
-  "date": "Apr 1 2009",
-  "price": 872.81
+  date: 'Apr 1 2009',
+  price: 872.81,
 }, {
-  "date": "May 1 2009",
-  "price": 919.14
+  date: 'May 1 2009',
+  price: 919.14,
 }, {
-  "date": "Jun 1 2009",
-  "price": 919.32
+  date: 'Jun 1 2009',
+  price: 919.32,
 }, {
-  "date": "Jul 1 2009",
-  "price": 987.48
+  date: 'Jul 1 2009',
+  price: 987.48,
 }, {
-  "date": "Aug 1 2009",
-  "price": 1020.62
+  date: 'Aug 1 2009',
+  price: 1020.62,
 }, {
-  "date": "Sep 1 2009",
-  "price": 1057.08
+  date: 'Sep 1 2009',
+  price: 1057.08,
 }, {
-  "date": "Oct 1 2009",
-  "price": 1036.19
+  date: 'Oct 1 2009',
+  price: 1036.19,
 }, {
-  "date": "Nov 1 2009",
-  "price": 1095.63
+  date: 'Nov 1 2009',
+  price: 1095.63,
 }, {
-  "date": "Dec 1 2009",
-  "price": 1115.1
+  date: 'Dec 1 2009',
+  price: 1115.1,
 }, {
-  "date": "Jan 1 2010",
-  "price": 1073.87
+  date: 'Jan 1 2010',
+  price: 1073.87,
 }, {
-  "date": "Feb 1 2010",
-  "price": 1104.49
+  date: 'Feb 1 2010',
+  price: 1104.49,
 }, {
-  "date": "Mar 1 2010",
-  "price": 1140.45
+  date: 'Mar 1 2010',
+  price: 1140.45,
 }]
 
 function getComponent(data) {
   const ds = new DataSet({
     state: {
-      dates: null
-    }
-  });
-  const totalDv = ds.createView().source(data);
-  const dv = ds.createView();
+      dates: null,
+    },
+  })
+  const totalDv = ds.createView().source(data)
+  const dv = ds.createView()
   dv.source(data).transform({
-    type: "filter",
+    type: 'filter',
     callback: obj => {
       if (ds.state.dates) {
-        return ds.state.dates.indexOf(obj.date) > -1;
+        return ds.state.dates.indexOf(obj.date) > -1
       }
 
-      return obj;
-    }
-  });
+      return obj
+    },
+  })
   const scale1 = {
     date: {
       tickCount: 10,
-      type: "time",
-      mask: "MMM D YYYY"
+      type: 'time',
+      mask: 'MMM D YYYY',
     },
     price: {
-      min: totalDv.min("price"),
-      max: totalDv.max("price")
-    }
-  };
+      min: totalDv.min('price'),
+      max: totalDv.max('price'),
+    },
+  }
   const scale2 = {
     date: {
       tickCount: 10,
-      type: "time",
-      mask: "YYYY"
-    }
-  };
-  let chart2;
+      type: 'time',
+      mask: 'YYYY',
+    },
+  }
+  let chart2
 
   class DoubleChart extends React.Component {
     componentDidMount() {
       new Brush({
-        canvas: chart2.get("canvas"),
+        canvas: chart2.get('canvas'),
         chart: chart2,
-        type: "X",
+        type: 'X',
         dragable: true,
 
         onBrushmove(ev) {
-          const { date } = ev;
-          ds.setState("dates", date);
+          const { date } = ev
+          ds.setState('dates', date)
         },
 
         onDragmove(ev) {
-          const { date } = ev;
-          ds.setState("dates", date);
-        }
-      });
+          const { date } = ev
+          ds.setState('dates', date)
+        },
+      })
     }
 
     render() {
@@ -474,7 +474,7 @@ function getComponent(data) {
             padding={[5, 40, 60, 50]}
             scale={scale2}
             onGetG2Instance={g2Chart => {
-              chart2 = g2Chart;
+              chart2 = g2Chart
             }}
             forceFit
           >
@@ -488,18 +488,20 @@ function getComponent(data) {
             />
           </Chart>
         </Card>
-      );
+      )
     }
   }
-  return DoubleChart;
+
+return DoubleChart
 }
 
 class Brushdsstate extends React.Component {
   render() {
-    const DoubleChart = getComponent(data);
-    return (
+    const DoubleChart = getComponent(data)
+
+return (
       <DoubleChart />
-    );
+    )
   }
 }
 export default Brushdsstate

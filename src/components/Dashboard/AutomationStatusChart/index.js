@@ -1,5 +1,7 @@
 import React from 'react'
-import { Chart, Axis, Coord, Geom, Guide, Shape } from 'bizcharts'
+import {
+ Chart, Axis, Coord, Geom, Guide, Shape,
+} from 'bizcharts'
 
 const { Html, Arc, Line } = Guide
 
@@ -50,7 +52,7 @@ const cols = {
 }
 
 const AutomationStatusGauge = ({
-  props
+  props,
 }) => (
     <Chart height={180} data={data} scale={cols} padding={[0, 0, 0, 0]} forceFit>
       <Coord type="polar" startAngle={-9 / 8 * Math.PI} endAngle={1 / 8 * Math.PI} radius={0.75} />
@@ -60,10 +62,7 @@ const AutomationStatusGauge = ({
         line={null}
         label={{
           offset: -12,
-          formatter: val => {
-
-            return ''
-          },
+          formatter: val => '',
           textStyle: {
             fontSize: 18,
             fill: 'rgba(0, 0, 0, 0.65)',

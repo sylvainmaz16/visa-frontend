@@ -16,9 +16,9 @@ const openNotificationWithIcon = (type, descr, username = 'Customer') => {
   notification[type]({
     message: `Hello, ${username}!`,
     description:
-      type == 'success' ? 'Successfully logged in. Please remember to log out after your work!' : descr ? descr : 'Failed to log in. Please input your username or password correctly.',
-  });
-};
+      type == 'success' ? 'Successfully logged in. Please remember to log out after your work!' : descr || 'Failed to log in. Please input your username or password correctly.',
+  })
+}
 
 class AuthPage extends Component {
   static defaultProps = {
@@ -64,7 +64,12 @@ class AuthPage extends Component {
     return (
       <div className="visa-admin-auth">
         {/* <Background /> */}
-        <DS160Logo paused={false} style={{ position: 'absolute', zIndex: '2', right: '0', bottom: '0', }} />
+        <DS160Logo
+paused={false}
+style={{
+ position: 'absolute', zIndex: '2', right: '0', bottom: '0',
+}}
+        />
         <LogoGather />
         <LoginForm loading={loading} login={this.onLogin} />
       </div>
@@ -72,13 +77,11 @@ class AuthPage extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     login: (type, data, cb) => {
       dispatch({ type, data, cb })
     },
-  }
-}
+  })
 
 const mapStateToProps = state => ({
   data: state.admin.data,

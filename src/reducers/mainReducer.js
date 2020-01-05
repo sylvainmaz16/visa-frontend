@@ -30,17 +30,17 @@ const initialState = {
       b_ever_used_other_names: null,
       used_other_name: {
         surname: null,
-        given_name: null
+        given_name: null,
       },
       b_has_telecode_of_name: null,
       telecode_of_name: {
         surname: null,
-        given_name: null
+        given_name: null,
       },
       sex: null,
       martial_status: null,
       martial_other_explain: null,
-      date_birth: null,  //not
+      date_birth: null, // not
       place_of_birth: {
         city: null,
         state: null,
@@ -66,7 +66,7 @@ const initialState = {
         surname: null,
         given_name: null,
         company: null,
-        petition: null
+        petition: null,
       },
       b_specific_travel_plan: false,
 
@@ -74,7 +74,7 @@ const initialState = {
         date_of_arrival: null,
         length_of_stay: {
           length: null,
-          period: null
+          period: null,
         },
       },
 
@@ -93,7 +93,7 @@ const initialState = {
         street_addr2: null,
         city: null,
         state: null,
-        zip_code: null
+        zip_code: null,
       },
 
       paying_person_for_trip: null,
@@ -115,7 +115,7 @@ const initialState = {
           city: null,
           state: null,
           zip_code: null,
-          country: null
+          country: null,
         },
       },
     },
@@ -128,7 +128,7 @@ const initialState = {
         given_name: null,
         relationship: null,
       }],
-      company: null
+      company: null,
     },
 
     form_prev_travel_info: {
@@ -137,13 +137,13 @@ const initialState = {
         date: null,
         length_of_stay: {
           period: null,
-          unit: null
-        }
+          unit: null,
+        },
       }],
       b_ever_hold_Driver_License: null,
       prev_DL_info: {
         number: null,
-        state: null
+        state: null,
       },
       b_ever_been_issued_US_Visa: null,
       US_Visa: {
@@ -155,25 +155,25 @@ const initialState = {
         b_ever_been_lost: null,
         lost_info: {
           year: null,
-          explain: null
+          explain: null,
         },
         b_ever_been_cancelled: null,
         cancel_info: {
-          explain: null
-        }
+          explain: null,
+        },
       },
       b_ever_been_refused_US_Visa: null,
       refuse_info: {
-        explain: null
+        explain: null,
       },
       b_ever_been_denied_travel_auth: null,
       denied_info: {
-        explain: null
+        explain: null,
       },
       b_petition: null,
       petition_info: {
-        explain: null
-      }
+        explain: null,
+      },
     },
 
     form_addr_and_phone: {
@@ -183,7 +183,7 @@ const initialState = {
         city: null,
         state: null,
         zip_code: null,
-        country: null
+        country: null,
       },
       mail_addr: {
         b_diff_with_home: false,
@@ -193,7 +193,7 @@ const initialState = {
           city: null,
           state: null,
           zip_code: null,
-          country: null
+          country: null,
         },
       },
       phone_info: {
@@ -208,13 +208,13 @@ const initialState = {
       additional_emails: [null],
       social_media_info: [{
         platform: null,
-        identifier: null
+        identifier: null,
       }],
       b_additional_social_media: null,
       additional_social_media: [{
         platform: null,
-        identifier: null
-      }]
+        identifier: null,
+      }],
     },
 
     form_passport: {
@@ -226,7 +226,7 @@ const initialState = {
       issued_location: {
         city: null,
         state: null,
-        country: null
+        country: null,
       },
       issuance_date: null,
       expiration_date: null,
@@ -234,8 +234,8 @@ const initialState = {
       lost_info: {
         number: null,
         country: null,
-        explain: null
-      }
+        explain: null,
+      },
     },
 
     form_contact: {
@@ -263,7 +263,7 @@ const initialState = {
         birthday: null,
         birthday_NA: false,
         b_in_US: null,
-        status: null
+        status: null,
       },
       mother: {
         surname: null,
@@ -273,14 +273,14 @@ const initialState = {
         birthday: null,
         birthday_NA: null,
         b_in_US: null,
-        status: null
+        status: null,
       },
       b_other_relative: null,
       others: [{
         surname: null,
         given_name: null,
         relationship: null,
-        status: null
+        status: null,
       }],
       b_more_relatives: null,
 
@@ -291,7 +291,7 @@ const initialState = {
         nationality: null,
         place_of_birth: {
           city: null,
-          country: null
+          country: null,
         },
         address_type: null,
         address: {
@@ -300,8 +300,8 @@ const initialState = {
           city: null,
           state: null,
           zip_code: null,
-          country: null
-        }
+          country: null,
+        },
       },
       former_spouse_number: null,
       former_spouse: [{
@@ -311,7 +311,7 @@ const initialState = {
         nationality: null,
         place_of_birth: {
           city: null,
-          country: null
+          country: null,
         },
         marriage_date: null,
         end_date: null,
@@ -323,9 +323,9 @@ const initialState = {
           city: null,
           state: null,
           zip_code: null,
-          country: null
-        }
-      }]
+          country: null,
+        },
+      }],
     },
 
     form_work_or_edu: {
@@ -339,11 +339,11 @@ const initialState = {
         state: null,
         zip_code: null,
         tel_number: null,
-        country: null
+        country: null,
       },
       start_date: null,
       monthly_income: null,
-      duty_explain: null
+      duty_explain: null,
     },
 
     form_prev_work_or_edu: {
@@ -357,7 +357,7 @@ const initialState = {
           state: null,
           zip_code: null,
           tel_number: null,
-          country: null
+          country: null,
         },
         job_title: null,
         supervisor: {
@@ -366,7 +366,7 @@ const initialState = {
         },
         date_from: null,
         date_to: null,
-        duty_explain: null
+        duty_explain: null,
       },
       b_edu_secondary_level: null,
       edu_info: {
@@ -378,22 +378,22 @@ const initialState = {
           state: null,
           zip_code: null,
           tel_number: null,
-          country: null
+          country: null,
         },
         course: null,
         date_from: null,
         date_to: null,
-      }
+      },
     },
 
     form_additional_work: {
       b_belong_to_clan: null,
       clan_name: null,
-      languages: [""],
+      languages: [''],
       b_travel_last_five_years: null,
-      countries: [""],
+      countries: [''],
       b_belong_to_org: null,
-      organizations: [""],
+      organizations: [''],
       b_taliban: null,
       taliban_explain: null,
       b_special_skill: null,
@@ -410,7 +410,7 @@ const initialState = {
         },
       ],
       b_rebel_group: null,
-      rebel_group_explain: null
+      rebel_group_explain: null,
     },
 
     form_security: {
@@ -452,7 +452,7 @@ const initialState = {
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
-        ]
+        ],
       },
       part4: {
         array: [
@@ -461,7 +461,7 @@ const initialState = {
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
-        ]
+        ],
       },
       part5: {
         array: [
@@ -470,8 +470,8 @@ const initialState = {
           { radio: null, text: null },
           { radio: null, text: null },
           { radio: null, text: null },
-        ]
-      }
+        ],
+      },
     },
     form_SEVIS: {
 
@@ -483,10 +483,10 @@ const initialState = {
           street_addr2: null,
           city: null,
           state: null,
-          zip_code: null
+          zip_code: null,
         },
         tel_number: null,
-        email: null
+        email: null,
       }, {
         surname: null,
         given_name: null,
@@ -495,10 +495,10 @@ const initialState = {
           street_addr2: null,
           city: null,
           state: null,
-          zip_code: null
+          zip_code: null,
         },
         tel_number: null,
-        email: null
+        email: null,
       }],
 
       id: null,
@@ -513,9 +513,9 @@ const initialState = {
           street_addr2: null,
           city: null,
           state: null,
-          zip_code: null
-        }
-      }
+          zip_code: null,
+        },
+      },
     },
     form_intracompany: {
       petition: null,
@@ -528,10 +528,10 @@ const initialState = {
         state: null,
         zip_code: null,
         country: null,
-        tel_number: null
+        tel_number: null,
       },
       tel_number: null,
-      income: null
+      income: null,
     },
     form_crew_visa: {
       job_title: null,
@@ -550,15 +550,15 @@ const initialState = {
           state: null,
           zip_code: null,
           country: null,
-          tel_number: null
-        }
+          tel_number: null,
+        },
       },
 
       b_vessel: null,
       vessel_info: {
         vessel_name: null,
-        vessel_id: null
-      }
+        vessel_id: null,
+      },
     },
     form_photo: {
       b_photo: null,
@@ -578,8 +578,8 @@ const initialState = {
           state: null,
           zip_code: null,
           tel_number: null,
-          country: null
-        }
+          country: null,
+        },
       },
       b_info_confirm: null,
       b_certify: null,
@@ -602,21 +602,21 @@ const initialState = {
           city: null,
           state: null,
           zip_code: null,
-          country: null
+          country: null,
         },
-        relationship: null
+        relationship: null,
       },
-      passport_number: null
-    }
-  }
+      passport_number: null,
+    },
+  },
 }
 function mainReducer(state = initialState, action) {
   switch (action.type) {
     case DS160.DS160_GET_REQUEST: {
       return {
         ...state,
-        loading: true
-      };
+        loading: true,
+      }
     }
     case DS160.DS160_GET_SUCCESS: {
       return {
@@ -624,51 +624,51 @@ function mainReducer(state = initialState, action) {
         loading: false,
         step_index: action.data.step_index,
         applicationId: action.applicationId,
-        ds160: action.data.data
-      };
+        ds160: action.data.data,
+      }
     }
     case DS160.DS160_GET_FAILURE: {
       return {
         ...initialState,
-        loading: false
-      };
+        loading: false,
+      }
     }
     case DS160.DS160_SAVE_REQUEST: {
       return {
         ...state,
         loading: true,
-        completed: action.payload.completed
-      };
+        completed: action.payload.completed,
+      }
     }
     case DS160.DS160_SAVE_SUCCESS: {
       return {
         ...state,
         loading: false,
-        applicationId: action.data._id
-      };
+        applicationId: action.data._id,
+      }
     }
     case DS160.DS160_SAVE_FAILURE: {
       return {
         ...state,
-        loading: false
-      };
+        loading: false,
+      }
     }
     case DS160.DS160_NEXT_STEP: {
       return {
         ...state,
-        step_index: state.step_index + 1
+        step_index: state.step_index + 1,
       }
     }
     case DS160.DS160_PREV_STEP: {
       return {
         ...state,
-        step_index: state.step_index - 1
+        step_index: state.step_index - 1,
       }
     }
     case DS160.DS160_UPDATE_VALUES: {
       return {
         ...state,
-        ds160: objectAssignDeep(state.ds160, action.values)
+        ds160: objectAssignDeep(state.ds160, action.values),
       }
     }
     case DS160.DS160_CHANGE_LANGUAGE: {
@@ -676,34 +676,34 @@ function mainReducer(state = initialState, action) {
         ...state,
         ds160: {
           ...state.ds160,
-          language: action.lang
-        }
+          language: action.lang,
+        },
       }
     }
     case DS160.DS160_INIT_STATE: {
       console.log(action.initValue)
-      return {
+
+return {
         ...initialState,
         ...action.initValue,
         ds160: {
           ...initialState.ds160,
-          ...action.initValue.ds160
-        }
+          ...action.initValue.ds160,
+        },
       }
     }
     case DS160.DS160_CHECKOUT_REQUEST: {
       return {
         ...state,
-        loading_pay: true
+        loading_pay: true,
       }
     }
     case DS160.DS160_CHECKOUT_SUCCESS: {
-      
       return {
         ...state,
         loading_pay: false,
-        paid: action.data.response == 1 ? true : false,
-        checkout_result: action.data.response == 1 ? true : false,
+        paid: action.data.response == 1,
+        checkout_result: action.data.response == 1,
       }
     }
     case DS160.DS160_CHECKOUT_FAILURE: {
@@ -711,14 +711,14 @@ function mainReducer(state = initialState, action) {
         ...state,
         loading_pay: false,
         paid: false,
-        checkout_result: false
+        checkout_result: false,
       }
     }
 
     case DS160.RESET_CHECKOUT_RESULT: {
       return {
         ...state,
-        checkout_result: null
+        checkout_result: null,
       }
     }
     default: {

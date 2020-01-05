@@ -1,17 +1,19 @@
-import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber } from 'antd';
+import React, { Component } from 'react'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaRadio from "components/VisaRadio"
-import VisaAddress from "components/VisaAddress"
-import VisaInput from "components/VisaInput"
+import VisaRadio from 'components/VisaRadio'
+import VisaAddress from 'components/VisaAddress'
+import VisaInput from 'components/VisaInput'
 import VisaInputWithCheck from 'components/VisaInputWithCheck'
-import VisaSelectItem from "components/VisaSelectItem"
-import VisaDatePicker from "components/VisaDatePicker"
+import VisaSelectItem from 'components/VisaSelectItem'
+import VisaDatePicker from 'components/VisaDatePicker'
 import VisaOtherRelatives from 'components/VisaOtherRelatives'
-import VisaFormerSpouses from "components/VisaFormerSpouses"
+import VisaFormerSpouses from 'components/VisaFormerSpouses'
 import * as utils from 'utils'
-import VisaDatePickerWithCheckInline from "components/VisaDatePickerWithCheckInline"
-import resources from "utils/resources"
+import VisaDatePickerWithCheckInline from 'components/VisaDatePickerWithCheckInline'
+import resources from 'utils/resources'
 
 class MyForm extends Component {
   static defaultProps = {
@@ -20,29 +22,24 @@ class MyForm extends Component {
   }
 
   handleDates = data => {
-    if (data.father && data.father.birthday)
-      data.father.birthday = data.father.birthday.format('DD/MMM/YYYY')
-    if (data.mother && data.mother.birthday)
-      data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY')
-    if (data.spouse && data.spouse.birthday)
-      data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY')
+    if (data.father && data.father.birthday) { data.father.birthday = data.father.birthday.format('DD/MMM/YYYY') }
+    if (data.mother && data.mother.birthday) { data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY') }
+    if (data.spouse && data.spouse.birthday) { data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY') }
     if (data.former_spouse) {
       for (let i = 0; i < data.former_spouse.length; i++) {
-        if (data.former_spouse[i] && data.former_spouse[i].birthday)
-          data.former_spouse[i].birthday = data.former_spouse[i].birthday.format('DD/MMM/YYYY')
-        if (data.former_spouse[i] && data.former_spouse[i].marriage_date)
-          data.former_spouse[i].marriage_date = data.former_spouse[i].marriage_date.format('DD/MMM/YYYY')
-        if (data.former_spouse[i] && data.former_spouse[i].end_date)
-          data.former_spouse[i].end_date = data.former_spouse[i].end_date.format('DD/MMM/YYYY')
+        if (data.former_spouse[i] && data.former_spouse[i].birthday) { data.former_spouse[i].birthday = data.former_spouse[i].birthday.format('DD/MMM/YYYY') }
+        if (data.former_spouse[i] && data.former_spouse[i].marriage_date) { data.former_spouse[i].marriage_date = data.former_spouse[i].marriage_date.format('DD/MMM/YYYY') }
+        if (data.former_spouse[i] && data.former_spouse[i].end_date) { data.former_spouse[i].end_date = data.former_spouse[i].end_date.format('DD/MMM/YYYY') }
       }
     }
-
 
     return data
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
+    const {
+ getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+} = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -51,21 +48,23 @@ class MyForm extends Component {
       wrapperCol: {
         sm: { span: 24 },
       },
-    };
+    }
 
-    const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr } = this.props
+    const {
+ showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr,
+} = this.props
 
-    getFieldDecorator('data.father.surname_NA', { initialValue: utils.getInitialValue(data.father.surname_NA) });
-    getFieldDecorator('data.father.given_name_NA', { initialValue: utils.getInitialValue(data.father.given_name_NA) });
-    getFieldDecorator('data.father.birthday_NA', { initialValue: utils.getInitialValue(data.father.birthday_NA) });
-    getFieldDecorator('data.father.b_in_US', { initialValue: utils.getInitialValue(data.father.b_in_US) });
-    getFieldDecorator('data.mother.surname_NA', { initialValue: utils.getInitialValue(data.mother.surname_NA) });
-    getFieldDecorator('data.mother.given_name_NA', { initialValue: utils.getInitialValue(data.mother.given_name_NA) });
-    getFieldDecorator('data.mother.birthday_NA', { initialValue: utils.getInitialValue(data.mother.birthday_NA) });
-    getFieldDecorator('data.mother.b_in_US', { initialValue: utils.getInitialValue(data.mother.b_in_US) });
-    getFieldDecorator('data.b_other_relative', { initialValue: utils.getInitialValue(data.b_other_relative) });
-    getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) });
-    getFieldDecorator('data.spouse.address_type', { initialValue: utils.getInitialValue(data.spouse.address_type) });
+    getFieldDecorator('data.father.surname_NA', { initialValue: utils.getInitialValue(data.father.surname_NA) })
+    getFieldDecorator('data.father.given_name_NA', { initialValue: utils.getInitialValue(data.father.given_name_NA) })
+    getFieldDecorator('data.father.birthday_NA', { initialValue: utils.getInitialValue(data.father.birthday_NA) })
+    getFieldDecorator('data.father.b_in_US', { initialValue: utils.getInitialValue(data.father.b_in_US) })
+    getFieldDecorator('data.mother.surname_NA', { initialValue: utils.getInitialValue(data.mother.surname_NA) })
+    getFieldDecorator('data.mother.given_name_NA', { initialValue: utils.getInitialValue(data.mother.given_name_NA) })
+    getFieldDecorator('data.mother.birthday_NA', { initialValue: utils.getInitialValue(data.mother.birthday_NA) })
+    getFieldDecorator('data.mother.b_in_US', { initialValue: utils.getInitialValue(data.mother.b_in_US) })
+    getFieldDecorator('data.b_other_relative', { initialValue: utils.getInitialValue(data.b_other_relative) })
+    getFieldDecorator('data.b_more_relatives', { initialValue: utils.getInitialValue(data.b_more_relatives) })
+    getFieldDecorator('data.spouse.address_type', { initialValue: utils.getInitialValue(data.spouse.address_type) })
 
     if (!data.others) {
       data.others = [
@@ -73,18 +72,18 @@ class MyForm extends Component {
           surname: null,
           given_name: null,
           relationship: null,
-          status: null
-        }
+          status: null,
+        },
       ]
     }
 
     const martial_header = {
-      'M': 'Spouse',
-      'C': 'Spouse',
-      'P': 'Partner',
-      'W': 'Deceased Spouse',
-      'D': 'Former Spouse',
-      'L': 'Spouse',
+      M: 'Spouse',
+      C: 'Spouse',
+      P: 'Partner',
+      W: 'Deceased Spouse',
+      D: 'Former Spouse',
+      L: 'Spouse',
     }
 
     return (
@@ -103,7 +102,7 @@ class MyForm extends Component {
                 initialValue={data.father.surname}
                 getFieldDecorator={getFieldDecorator}
 
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", !this.props.form.getFieldValue('data.father.surname_NA')) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname', !this.props.form.getFieldValue('data.father.surname_NA')) }]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
                 checkField="data.father.surname_NA"
@@ -118,7 +117,7 @@ class MyForm extends Component {
                 field="data.father.given_name"
                 initialValue={data.father.given_name}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", !this.props.form.getFieldValue('data.father.given_name_NA')) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', !this.props.form.getFieldValue('data.father.given_name_NA')) }]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
                 checkField="data.father.given_name_NA"
@@ -161,7 +160,7 @@ class MyForm extends Component {
                   field="data.father.status"
                   initialValue={data.father.status}
                   content={{
-                    combines: constants.export_list(tr(constants.US_Live_Status))
+                    combines: constants.export_list(tr(constants.US_Live_Status)),
                   }}
                   getFieldDecorator={getFieldDecorator}
                   tr={tr}
@@ -182,7 +181,7 @@ class MyForm extends Component {
                 initialValue={data.mother.surname}
                 getFieldDecorator={getFieldDecorator}
 
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname", !this.props.form.getFieldValue('data.mother.surname_NA')) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname', !this.props.form.getFieldValue('data.mother.surname_NA')) }]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
                 checkField="data.mother.surname_NA"
@@ -198,7 +197,7 @@ class MyForm extends Component {
                 initialValue={data.mother.given_name}
                 getFieldDecorator={getFieldDecorator}
 
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name", !this.props.form.getFieldValue('data.mother.given_name_NA')) }]}
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', !this.props.form.getFieldValue('data.mother.given_name_NA')) }]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
                 checkField="data.mother.given_name_NA"
@@ -241,7 +240,7 @@ class MyForm extends Component {
                   field="data.mother.status"
                   initialValue={data.mother.status}
                   content={{
-                    combines: constants.export_list(tr(constants.US_Live_Status))
+                    combines: constants.export_list(tr(constants.US_Live_Status)),
                   }}
                   getFieldDecorator={getFieldDecorator}
                   tr={tr}
@@ -294,7 +293,12 @@ class MyForm extends Component {
 
         {martial_header[martial_status] &&
           <div className="visa-global-field visa-global-border-bottom">
-            <h2 className="visa-global-section-title">{tr(resources.family.section_title_family_information)}: {martial_header[martial_status]}</h2>
+            <h2 className="visa-global-section-title">
+{tr(resources.family.section_title_family_information)}
+:
+{' '}
+{martial_header[martial_status]}
+            </h2>
           </div>
         }
         {
@@ -307,7 +311,7 @@ class MyForm extends Component {
                   field="data.spouse.surname"
                   initialValue={data.spouse.surname}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname') }]}
                   maxLength={33}
                   tr={tr}
                 />
@@ -318,7 +322,7 @@ class MyForm extends Component {
                   field="data.spouse.given_name"
                   initialValue={data.spouse.given_name}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name') }]}
                   maxLength={33}
                   tr={tr}
                 />
@@ -340,7 +344,7 @@ class MyForm extends Component {
               field="data.spouse.nationality"
               initialValue={data.spouse.nationality}
               content={{
-                combines: constants.nationality_option_list_func()
+                combines: constants.nationality_option_list_func(),
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
@@ -379,7 +383,7 @@ class MyForm extends Component {
               field="data.spouse.address_type"
               initialValue={data.spouse.address_type}
               content={{
-                combines: constants.export_list(tr(constants.spouse_address_type))
+                combines: constants.export_list(tr(constants.spouse_address_type)),
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
@@ -409,7 +413,7 @@ class MyForm extends Component {
                   field="data.spouse.surname"
                   initialValue={data.spouse.surname}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Surname") }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname') }]}
                   tr={tr}
                 />
               </Col>
@@ -419,7 +423,7 @@ class MyForm extends Component {
                   field="data.spouse.given_name"
                   initialValue={data.spouse.given_name}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, "Given Name") }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name') }]}
                   tr={tr}
                 />
               </Col>
@@ -440,7 +444,7 @@ class MyForm extends Component {
               field="data.spouse.nationality"
               initialValue={data.spouse.nationality}
               content={{
-                combines: constants.nationality_option_list_func()
+                combines: constants.nationality_option_list_func(),
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
@@ -501,14 +505,14 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
         </div>
       </Form>
 
-    );
+    )
   }
 }
 const Form_DS160_10_Family = Form.create()(MyForm)
-export default Form_DS160_10_Family;
+export default Form_DS160_10_Family

@@ -49,7 +49,7 @@ export const ApiManager = {
   UserRegister: (headers, data, site = 'default') => requests.post('users/register', headers, data, site),
   GetUsersList: (headers, options, site = 'default') => requests.get(`users/?limit=${options.limit}&skip=${options.skip}${options.search ? `&search=${options.search}` : ''}${options.filters}`, headers, site),
   DeleteUser: (_id, site = 'default') => requests.del(`users/${_id}`, site),
-  ApproveUser: (_id, approved, site = 'default') => approved ? requests.put(`users/approve/${_id}`, site) : requests.put(`users/suspend/${_id}`, site),
+  ApproveUser: (_id, approved, site = 'default') => (approved ? requests.put(`users/approve/${_id}`, site) : requests.put(`users/suspend/${_id}`, site)),
   ResendEmail: (headers, applicationId, site = 'default') => requests.get(`ds-160/sendEmail/${applicationId}`, headers, site),
   Automate: (headers, applicationId, site = 'default') => requests.get(`ds-160/automate/${applicationId}`, headers, site),
   SendLinkEmail: (headers, data, site = 'default') => requests.post(`ds-160/sendEmail/sendLink/${data.applicationId}`, headers, data, site),
