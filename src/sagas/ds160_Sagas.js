@@ -1,5 +1,5 @@
 import {
- call, put, takeLatest, all, retry,
+  call, put, takeLatest, all, retry,
 } from 'redux-saga/effects'
 import { types } from 'actions'
 import { ApiManager } from '../apis/apimanager'
@@ -14,10 +14,11 @@ function* getRequest(action) {
   try {
     const res = yield call(ApiManager.GetDS160Application, headers, action.applicationId)
     const { data } = res
+    action.cb({ success: true, data })
     yield put({ type: DS160.DS160_GET_SUCCESS, data, applicationId: action.applicationId })
   } catch (e) {
     const { status } = e.response
-
+    action.cb({ success: false })
     yield put({ type: DS160.DS160_GET_FAILURE, status })
   }
 }
@@ -44,10 +45,10 @@ function* saveRequest(action) {
 }
 
 const getNonceFromAuthorizeNet = secureData => new Promise((resolve, reject) => {
-    Accept.dispatchData(secureData, (opaqueData, error) => {
-      resolve(opaqueData)
-    })
+  Accept.dispatchData(secureData, (opaqueData, error) => {
+    resolve(opaqueData)
   })
+})
 
 function* checkoutRequest(action) {
   const headers = {

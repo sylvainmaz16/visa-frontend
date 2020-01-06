@@ -49,18 +49,33 @@ class DS160_Wizard extends Component {
     token: null,
   }
 
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
-    const { token } = this.props
-    if (token) { this.props.loadApplicationFromDB(DS160.DS160_GET_REQUEST, token) }
+    const { token, loadApplicationFromDB } = this.props
+    if (token) {
+      loadApplicationFromDB(DS160.DS160_GET_REQUEST, token, this.cbGetRequest)
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.token != nextProps.token) {
-      if (nextProps.token) { this.props.loadApplicationFromDB(DS160.DS160_GET_REQUEST, token) }
+    const { token, loadApplicationFromDB } = this.props
+    if (token != nextProps.token) {
+      if (nextProps.token) {
+        loadApplicationFromDB(DS160.DS160_GET_REQUEST, token, this.cbGetRequest)
+      }
+    }
+  }
+
+  cbGetRequest = result => {
+    const { history, agency } = this.props
+    const adminToken = localStorage.getItem('immigration4us_token')
+
+    if (result.success === false || (!adminToken && result.data && result.data.automation_status && result.data.automation_status.result === 'success')) {
+      history.push(agency ? {
+        pathname: '/',
+        search: `?agency=${agency}`,
+      } : {
+          pathname: '/',
+        })
     }
   }
 
@@ -207,11 +222,12 @@ class DS160_Wizard extends Component {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin" />
     }
 
-    let form_render = ''
-    let intracompany_type = ''; let sevis_type = ''; let
-      additional_point_of_contact = false
+    let formRender = ''
+    let intracompanyType = ''
+    let sevisType = ''
+    let additionalPointOfContact = false
 
-    let fields_list = [
+    let fieldsList = [
       null, '', '',
       'form_personal_info',
       'form_travel',
@@ -244,7 +260,7 @@ class DS160_Wizard extends Component {
       (purpose_of_trip == 'I' && other_purpose_of_trip == 'I-FR') ||
       (purpose_of_trip == 'J' && other_purpose_of_trip == 'J1-J1')
     ) {
-      fields_list = [
+      fieldsList = [
         null, '', '',
         'form_personal_info',
         'form_travel',
@@ -268,7 +284,7 @@ class DS160_Wizard extends Component {
         'form_final',
       ]
     } else {
-      fields_list = [
+      fieldsList = [
         null, '', '',
         'form_personal_info',
         'form_travel',
@@ -297,11 +313,11 @@ class DS160_Wizard extends Component {
     if (step_index > 3) {
       age = moment().diff(moment(ds160.form_personal_info.date_birth, 'DD/MMM/YYYY'), 'years', true)
       if (age <= 14) {
-        fields_list = fields_list.filter(field => field != 'form_work_or_edu' && field != 'form_prev_work_or_edu' && field != 'form_additional_work')
+        fieldsList = fieldsList.filter(field => field != 'form_work_or_edu' && field != 'form_prev_work_or_edu' && field != 'form_additional_work')
       }
     }
 
-    const extra_index = fields_list.findIndex(field => field == 'extra')
+    const extraIndex = fieldsList.findIndex(field => field == 'extra')
 
     if (step_index > 4) {
       switch (purpose_of_trip) {
@@ -310,22 +326,24 @@ class DS160_Wizard extends Component {
           break
         case 'C':
           if (other_purpose_of_trip == 'C1-D') {
-            fields_list[extra_index] = 'form_crew_visa'
+            fieldsList[extraIndex] = 'form_crew_visa'
           }
           break
         case 'D':
-          fields_list[extra_index] = 'form_crew_visa'
+          fieldsList[extraIndex] = 'form_crew_visa'
           break
         case 'F':
-          fields_list[extra_index] = 'form_SEVIS'
+          fieldsList[extraIndex] = 'form_SEVIS'
           switch (other_purpose_of_trip) {
             case 'F1-F1':
-              additional_point_of_contact = true
-              sevis_type = 'A'
+              additionalPointOfContact = true
+              sevisType = 'A'
               break
             case 'F2-CH':
             case 'F2-SP':
-              sevis_type = 'B'
+              sevisType = 'B'
+              break
+            default:
               break
           }
           break
@@ -336,64 +354,72 @@ class DS160_Wizard extends Component {
             case 'H2A-AG':
             case 'H2B-NA':
             case 'H3-TR':
-              fields_list[extra_index] = 'form_intracompany'
-              intracompany_type = 'A'
+              fieldsList[extraIndex] = 'form_intracompany'
+              intracompanyType = 'A'
               break
             case 'H1B1-CHL':
             case 'H1B1-SGP':
-              fields_list[extra_index] = 'form_intracompany'
-              intracompany_type = 'B'
+              fieldsList[extraIndex] = 'form_intracompany'
+              intracompanyType = 'B'
               break
             case 'H4-CH':
             case 'H4-SP':
               break
+            default:
+              break
           }
           break
         case 'J':
-          fields_list[extra_index] = 'form_SEVIS'
+          fieldsList[extraIndex] = 'form_SEVIS'
           switch (other_purpose_of_trip) {
             case 'J1-J1':
-              additional_point_of_contact = true
-              sevis_type = 'C'
+              additionalPointOfContact = true
+              sevisType = 'C'
               break
             case 'J2-CH':
             case 'J2-SP':
-              sevis_type = 'D'
+              sevisType = 'D'
+              break
+            default:
               break
           }
           break
         case 'L':
           if (other_purpose_of_trip == 'L1-L1') {
-            fields_list[extra_index] = 'form_intracompany'
-            intracompany_type = 'A'
+            fieldsList[extraIndex] = 'form_intracompany'
+            intracompanyType = 'A'
           }
           break
         case 'M':
-          fields_list[extra_index] = 'form_SEVIS'
+          fieldsList[extraIndex] = 'form_SEVIS'
           switch (other_purpose_of_trip) {
             case 'M1-M1':
-              additional_point_of_contact = true
-              sevis_type = 'A'
+              additionalPointOfContact = true
+              sevisType = 'A'
               break
             case 'M2-CH':
             case 'M2-SP':
-              sevis_type = 'B'
+              sevisType = 'B'
               break
             case 'M3-M3':
-              sevis_type = 'A'
+              sevisType = 'A'
+              break
+            default:
               break
           }
+          break
+        default:
           break
       }
     }
 
-    if (fields_list[extra_index] == 'extra') {
-      fields_list.splice(extra_index, 1)
+    if (fieldsList[extraIndex] === 'extra') {
+      fieldsList.splice(extraIndex, 1)
     }
 
-    const field = fields_list[step_index]
+    const field = fieldsList[step_index]
 
-    let shared_params = {
+    let sharedParams = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
       handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
@@ -404,7 +430,7 @@ class DS160_Wizard extends Component {
     }
 
     if (field.startsWith('form_security')) {
-      shared_params = {
+      sharedParams = {
         handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, 'form_security'),
         handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, 'form_security'),
         handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, 'form_security'),
@@ -417,76 +443,76 @@ class DS160_Wizard extends Component {
 
     switch (step_index) {
       case 1:
-        form_render = <Form_DS160_1 showPrev={false} {...shared_params} data={ds160} />
+        formRender = <Form_DS160_1 showPrev={false} {...sharedParams} data={ds160} />
         break
       case 2:
-        form_render = <Form_DS160_2 {...shared_params} data={ds160} />
+        formRender = <Form_DS160_2 {...sharedParams} data={ds160} />
         break
       case 3:
-        form_render = <Form_DS160_3 {...shared_params} data={ds160.form_personal_info} />
+        formRender = <Form_DS160_3 {...sharedParams} data={ds160.form_personal_info} />
         break
       case 4:
-        form_render = <Form_DS160_4_Travel {...shared_params} data={ds160.form_travel} martial_status={ds160.form_personal_info.martial_status} />
+        formRender = <Form_DS160_4_Travel {...sharedParams} data={ds160.form_travel} martial_status={ds160.form_personal_info.martial_status} />
         break
       case 5:
-        form_render = <Form_DS160_5_Travel_Company {...shared_params} data={ds160.form_travel_company} />
+        formRender = <Form_DS160_5_Travel_Company {...sharedParams} data={ds160.form_travel_company} />
         break
       case 6:
-        form_render = <Form_DS160_6_Previous_Travel {...shared_params} data={ds160.form_prev_travel_info} date_birth={ds160.form_personal_info.date_birth} />
+        formRender = <Form_DS160_6_Previous_Travel {...sharedParams} data={ds160.form_prev_travel_info} date_birth={ds160.form_personal_info.date_birth} />
         break
       case 7:
-        form_render = <Form_DS160_7_Address_Phone {...shared_params} data={ds160.form_addr_and_phone} />
+        formRender = <Form_DS160_7_Address_Phone {...sharedParams} data={ds160.form_addr_and_phone} />
         break
       case 8:
-        form_render = <Form_DS160_8_Passport {...shared_params} data={ds160.form_passport} date_birth={ds160.form_personal_info.date_birth} />
+        formRender = <Form_DS160_8_Passport {...sharedParams} data={ds160.form_passport} date_birth={ds160.form_personal_info.date_birth} />
         break
       case 9:
-        form_render = <Form_DS160_9_Contact {...shared_params} data={ds160.form_contact} martial_status={ds160.form_personal_info.martial_status} />
+        formRender = <Form_DS160_9_Contact {...sharedParams} data={ds160.form_contact} martial_status={ds160.form_personal_info.martial_status} />
         break
       case 10:
-        form_render = <Form_DS160_10_Family {...shared_params} data={ds160.form_family} date_birth={ds160.form_personal_info.date_birth} martial_status={ds160.form_personal_info.martial_status} />
+        formRender = <Form_DS160_10_Family {...sharedParams} data={ds160.form_family} date_birth={ds160.form_personal_info.date_birth} martial_status={ds160.form_personal_info.martial_status} />
         break
       default:
         switch (field) {
           case 'form_work_or_edu':
-            form_render = <Form_DS160_11_Work_Edu {...shared_params} data={ds160.form_work_or_edu} date_birth={ds160.form_personal_info.date_birth} />
+            formRender = <Form_DS160_11_Work_Edu {...sharedParams} data={ds160.form_work_or_edu} date_birth={ds160.form_personal_info.date_birth} />
             break
           case 'form_prev_work_or_edu':
-            form_render = <Form_DS160_12_Previous_Work_Edu {...shared_params} data={ds160.form_prev_work_or_edu} date_birth={ds160.form_personal_info.date_birth} />
+            formRender = <Form_DS160_12_Previous_Work_Edu {...sharedParams} data={ds160.form_prev_work_or_edu} date_birth={ds160.form_personal_info.date_birth} />
             break
           case 'form_additional_work':
-            form_render = <Form_DS160_13_Additional_Work_Edu {...shared_params} data={ds160.form_additional_work} />
+            formRender = <Form_DS160_13_Additional_Work_Edu {...sharedParams} data={ds160.form_additional_work} />
             break
           case 'form_security_0':
-            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={0} />
+            formRender = <Form_DS160_14_Security {...sharedParams} data={ds160.form_security} SQIndex={0} />
             break
           case 'form_security_1':
-            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={1} />
+            formRender = <Form_DS160_14_Security {...sharedParams} data={ds160.form_security} SQIndex={1} />
             break
           case 'form_security_2':
-            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={2} />
+            formRender = <Form_DS160_14_Security {...sharedParams} data={ds160.form_security} SQIndex={2} />
             break
           case 'form_security_3':
-            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={3} />
+            formRender = <Form_DS160_14_Security {...sharedParams} data={ds160.form_security} SQIndex={3} />
             break
           case 'form_security_4':
-            form_render = <Form_DS160_14_Security {...shared_params} data={ds160.form_security} SQIndex={4} />
+            formRender = <Form_DS160_14_Security {...sharedParams} data={ds160.form_security} SQIndex={4} />
             break
           case 'form_crew_visa':
-            form_render = <Form_DS160_15_Crew_Job {...shared_params} data={ds160.form_crew_visa} />
+            formRender = <Form_DS160_15_Crew_Job {...sharedParams} data={ds160.form_crew_visa} />
             break
           case 'form_SEVIS':
-            form_render = <Form_DS160_15_SEVIS {...shared_params} data={ds160.form_SEVIS} additional_point_of_contact={additional_point_of_contact} sevis_type={sevis_type} />
+            formRender = <Form_DS160_15_SEVIS {...sharedParams} data={ds160.form_SEVIS} additionalPointOfContact={additionalPointOfContact} sevisType={sevisType} />
             break
           case 'form_intracompany':
-            form_render = <Form_DS160_15_IntraCompany {...shared_params} data={ds160.form_intracompany} intracompany_type={intracompany_type} />
+            formRender = <Form_DS160_15_IntraCompany {...sharedParams} data={ds160.form_intracompany} intracompanyType={intracompanyType} />
             break
           case 'form_e_sign':
-            form_render = <Form_DS160_16_Preparer {...shared_params} data={ds160.form_e_sign} />
+            formRender = <Form_DS160_16_Preparer {...sharedParams} data={ds160.form_e_sign} />
             break
           case 'form_photo':
-            form_render = <Form_Photo
-              {...shared_params}
+            formRender = <Form_Photo
+              {...sharedParams}
               data={ds160.form_photo}
 
               interview_location={ds160.interview_location}
@@ -497,8 +523,8 @@ class DS160_Wizard extends Component {
             />
             break
           case 'form_final':
-            form_render = <Form_Final
-              {...shared_params}
+            formRender = <Form_Final
+              {...sharedParams}
               handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
               handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
             />
@@ -515,9 +541,9 @@ class DS160_Wizard extends Component {
         <VisaBanner className={step_index == 1 ? 'visa-com-banner-first' : 'visa-com-banner-not-first'}>
           DS 160 US Visa Online Application
         </VisaBanner>
-        <Progress strokeColor={{ '0%': agency ? '#239aac' : '#3668A9'/* '#108ee9' */, '100%': '#87d068' }} percent={parseInt(step_index * 100.0 / (fields_list.length - 1))} status="active" style={{ width: '80%', left: '10%' }} />
+        <Progress strokeColor={{ '0%': agency ? '#239aac' : '#3668A9'/* '#108ee9' */, '100%': '#87d068' }} percent={parseInt(step_index * 100.0 / (fieldsList.length - 1))} status="active" style={{ width: '80%', left: '10%' }} />
         <div className="visa-ds160__content container">
-          {form_render}
+          {formRender}
         </div>
 
       </div>
@@ -540,8 +566,8 @@ const mapDispatchToProps = dispatch => ({
       type, payload, applicationId, cb,
     })
   },
-  loadApplicationFromDB: (type, applicationId) => {
-    dispatch({ type, applicationId })
+  loadApplicationFromDB: (type, applicationId, cb) => {
+    dispatch({ type, applicationId, cb })
   },
   changeLanguage: (type, lang) => {
     dispatch({ type, lang })
