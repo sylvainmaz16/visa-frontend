@@ -223,9 +223,9 @@ class DS160_Wizard extends Component {
     }
 
     let formRender = ''
-    let intracompanyType = ''
-    let sevisType = ''
-    let additionalPointOfContact = false
+    let intracompany_type = ''
+    let sevis_type = ''
+    let additional_point_of_contact = false
 
     let fieldsList = [
       null, '', '',
@@ -336,12 +336,12 @@ class DS160_Wizard extends Component {
           fieldsList[extraIndex] = 'form_SEVIS'
           switch (other_purpose_of_trip) {
             case 'F1-F1':
-              additionalPointOfContact = true
-              sevisType = 'A'
+              additional_point_of_contact = true
+              sevis_type = 'A'
               break
             case 'F2-CH':
             case 'F2-SP':
-              sevisType = 'B'
+              sevis_type = 'B'
               break
             default:
               break
@@ -355,12 +355,12 @@ class DS160_Wizard extends Component {
             case 'H2B-NA':
             case 'H3-TR':
               fieldsList[extraIndex] = 'form_intracompany'
-              intracompanyType = 'A'
+              intracompany_type = 'A'
               break
             case 'H1B1-CHL':
             case 'H1B1-SGP':
               fieldsList[extraIndex] = 'form_intracompany'
-              intracompanyType = 'B'
+              intracompany_type = 'B'
               break
             case 'H4-CH':
             case 'H4-SP':
@@ -373,12 +373,12 @@ class DS160_Wizard extends Component {
           fieldsList[extraIndex] = 'form_SEVIS'
           switch (other_purpose_of_trip) {
             case 'J1-J1':
-              additionalPointOfContact = true
-              sevisType = 'C'
+              additional_point_of_contact = true
+              sevis_type = 'C'
               break
             case 'J2-CH':
             case 'J2-SP':
-              sevisType = 'D'
+              sevis_type = 'D'
               break
             default:
               break
@@ -387,22 +387,22 @@ class DS160_Wizard extends Component {
         case 'L':
           if (other_purpose_of_trip == 'L1-L1') {
             fieldsList[extraIndex] = 'form_intracompany'
-            intracompanyType = 'A'
+            intracompany_type = 'A'
           }
           break
         case 'M':
           fieldsList[extraIndex] = 'form_SEVIS'
           switch (other_purpose_of_trip) {
             case 'M1-M1':
-              additionalPointOfContact = true
-              sevisType = 'A'
+              additional_point_of_contact = true
+              sevis_type = 'A'
               break
             case 'M2-CH':
             case 'M2-SP':
-              sevisType = 'B'
+              sevis_type = 'B'
               break
             case 'M3-M3':
-              sevisType = 'A'
+              sevis_type = 'A'
               break
             default:
               break
@@ -502,10 +502,10 @@ class DS160_Wizard extends Component {
             formRender = <Form_DS160_15_Crew_Job {...sharedParams} data={ds160.form_crew_visa} />
             break
           case 'form_SEVIS':
-            formRender = <Form_DS160_15_SEVIS {...sharedParams} data={ds160.form_SEVIS} additionalPointOfContact={additionalPointOfContact} sevisType={sevisType} />
+            formRender = <Form_DS160_15_SEVIS {...sharedParams} data={ds160.form_SEVIS} additional_point_of_contact={additional_point_of_contact} sevis_type={sevis_type} />
             break
           case 'form_intracompany':
-            formRender = <Form_DS160_15_IntraCompany {...sharedParams} data={ds160.form_intracompany} intracompanyType={intracompanyType} />
+            formRender = <Form_DS160_15_IntraCompany {...sharedParams} data={ds160.form_intracompany} intracompany_type={intracompany_type} />
             break
           case 'form_e_sign':
             formRender = <Form_DS160_16_Preparer {...sharedParams} data={ds160.form_e_sign} />
