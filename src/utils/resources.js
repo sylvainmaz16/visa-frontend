@@ -2,7 +2,7 @@ export const translate = (r, lang) => {
     if (!lang) { return r.en ? r.en : '' }
     const pre = lang.split('-')[0]
 
-return r[pre] ? r[pre] : (r.en ? r.en : '')
+    return r[pre] ? r[pre] : (r.en ? r.en : '')
 }
 const resources = {
     yes: {

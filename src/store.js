@@ -1,26 +1,20 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import promise from 'redux-promise'
 import createSagaMiddleware, { END } from 'redux-saga'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore } from 'redux-persist'
 import rootReducer from './reducers/index'
 import rootSaga from './sagas/index'
 
 const sagaMiddleware = createSagaMiddleware()
 
-// const persistConfig = {
-//   key: `root`,
-//   storage: storage
-// };
-// const persistedReducer = persistReducer(persistConfig, rootReducer());
-
 const configureStore = (initialState = {}) => {
   const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      typeof window === 'object' &&
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-          shouldHotReload: false,
-        })
+        shouldHotReload: false,
+      })
       : compose
 
   const middlewares = [sagaMiddleware, promise]

@@ -1,4 +1,4 @@
-import { API_GITHUB, DS160 } from 'actions/types'
+import { DS160 } from 'actions/types'
 import objectAssignDeep from 'object-assign-deep'
 
 const initialState = {
@@ -683,7 +683,7 @@ function mainReducer(state = initialState, action) {
     case DS160.DS160_INIT_STATE: {
       console.log(action.initValue)
 
-return {
+      return {
         ...initialState,
         ...action.initValue,
         ds160: {

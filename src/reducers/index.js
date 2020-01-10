@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import storage from 'redux-persist/lib/storage'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistReducer } from 'redux-persist'
 import adminReducer from './adminReducer'
 import mainReducer from './mainReducer'
 
@@ -22,7 +22,7 @@ const appReducer = asyncReducers => persistReducer(persistConfig, combineReducer
 }))
 
 function rootReducer(asyncReducers) {
-  return appReducer(asyncReducers)
+    return appReducer(asyncReducers)
 }
 
 export default rootReducer
