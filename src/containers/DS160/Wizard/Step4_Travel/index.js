@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
+  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -21,14 +21,14 @@ class MyForm extends Component {
   handleDates = data => {
     if (data.travel_plan && data.travel_plan.date_of_arrival) { data.travel_plan.date_of_arrival = data.travel_plan.date_of_arrival.format('DD/MMM/YYYY') }
 
-return data
+    return data
   }
 
   onSelect = (e, field) => {
     if (field == 'purpose_of_trip') {
       this.props.form.setFieldsValue({
- 'data.other_purpose_of_trip': undefined, 'data.purpose_info_type': undefined, 'data.travel_plan.length_of_stay.length': undefined, 'data.travel_plan.length_of_stay.period': undefined,
-})
+        'data.other_purpose_of_trip': undefined, 'data.purpose_info_type': undefined, 'data.travel_plan.length_of_stay.length': undefined, 'data.travel_plan.length_of_stay.period': undefined,
+      })
     } else if (field == 'other_purpose_of_trip') {
       const field = {
         purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
@@ -43,8 +43,8 @@ return data
 
   render() {
     const {
- getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-} = this.props.form
+      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+    } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -56,8 +56,8 @@ return data
     }
 
     const {
- showPrev, showNext, onPrev, onNext, data, martial_status, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, martial_status, tr,
+    } = this.props
 
     getFieldDecorator('data.purpose_of_trip', { initialValue: utils.getInitialValue(data.purpose_of_trip) })
     getFieldDecorator('data.other_purpose_of_trip', { initialValue: utils.getInitialValue(data.other_purpose_of_trip) })
