@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
+  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaRadio from 'components/VisaRadio'
@@ -9,6 +9,7 @@ import VisaInput from 'components/VisaInput'
 import VisaDatePicker from 'components/VisaDatePicker'
 import * as utils from 'utils'
 import resources from 'utils/resources'
+import _ from 'lodash'
 
 const { Option } = Select
 const { TextArea } = Input
@@ -25,13 +26,13 @@ class MyForm extends Component {
     if (data.edu_info && data.edu_info.date_from) { data.edu_info.date_from = data.edu_info.date_from.format('DD/MMM/YYYY') }
     if (data.edu_info && data.edu_info.date_to) { data.edu_info.date_to = data.edu_info.date_to.format('DD/MMM/YYYY') }
 
-return data
+    return data
   }
 
   render() {
     const {
- getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-} = this.props.form
+      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+    } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -43,17 +44,17 @@ return data
     }
 
     const {
- showPrev, showNext, onPrev, onNext, data, date_birth, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, date_birth, tr,
+    } = this.props
     getFieldDecorator('data.b_previously_employed', { initialValue: utils.getInitialValue(data.b_previously_employed) })
     getFieldDecorator('data.b_edu_secondary_level', { initialValue: utils.getInitialValue(data.b_edu_secondary_level) })
 
     if (this.props.form.getFieldValue('data.b_previously_employed') && data.emp_info.supervisor == null) {
- data.emp_info.supervisor = {
+      data.emp_info.supervisor = {
         surname: null,
         given_name: null,
       }
-}
+    }
 
     return (
       <Form {...formItemLayout}>
@@ -70,117 +71,117 @@ return data
         />
 
         {this.props.form.getFieldValue('data.b_previously_employed') &&
-        <>
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.prev_work_or_edu.emp_info.name.label)}
-                field="data.emp_info.name"
-                initialValue={data.emp_info.name}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Employer Name', true) }]}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaAddress
-                label={tr(resources.prev_work_or_edu.emp_info.address.label)}
-                field="data.emp_info.address"
-                initialValue={data.emp_info.address}
-                getFieldDecorator={getFieldDecorator}
-                validators={this.props.validators}
-                us_address={false}
-                tr={tr}
-              />
-            </Col>
-          </Row>
+          <>
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.prev_work_or_edu.emp_info.name.label)}
+                  field="data.emp_info.name"
+                  initialValue={data.emp_info.name}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Employer Name', true) }]}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaAddress
+                  label={tr(resources.prev_work_or_edu.emp_info.address.label)}
+                  field="data.emp_info.address"
+                  initialValue={data.emp_info.address}
+                  getFieldDecorator={getFieldDecorator}
+                  validators={this.props.validators}
+                  us_address={false}
+                  tr={tr}
+                />
+              </Col>
+            </Row>
 
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.prev_work_or_edu.emp_info.address.tel_number)}
-                field="data.emp_info.address.tel_number"
-                initialValue={data.emp_info.address.tel_number}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone number', true) }]}
-                maxLength={20}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.prev_work_or_edu.emp_info.job_title.label)}
-                field="data.emp_info.job_title"
-                initialValue={data.emp_info.job_title}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Job Title', true) }]}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.prev_work_or_edu.emp_info.supervisor.surname.label)}
-                extra={tr(resources.prev_work_or_edu.emp_info.supervisor.surname.extra)}
-                field="data.emp_info.supervisor.surname"
-                initialValue={data.emp_info.supervisor.surname}
-                getFieldDecorator={getFieldDecorator}
-                required={false}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname', false) }]}
-                maxLength={33}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.prev_work_or_edu.emp_info.supervisor.given_name.label)}
-                extra={tr(resources.prev_work_or_edu.emp_info.supervisor.given_name.extra)}
-                field="data.emp_info.supervisor.given_name"
-                initialValue={data.emp_info.supervisor.given_name}
-                getFieldDecorator={getFieldDecorator}
-                required={false}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', false) }]}
-                maxLength={33}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaDatePicker
-                label={tr(resources.prev_work_or_edu.emp_info.date_from.label)}
-                field="data.emp_info.date_from"
-                initialValue={data.emp_info.date_from}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, 'Employment Date From', date_birth) }]}
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.prev_work_or_edu.emp_info.address.tel_number)}
+                  field="data.emp_info.address.tel_number"
+                  initialValue={_.get(data, 'emp_info.address.tel_number')}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone number', true) }]}
+                  maxLength={20}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.prev_work_or_edu.emp_info.job_title.label)}
+                  field="data.emp_info.job_title"
+                  initialValue={data.emp_info.job_title}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Job Title', true) }]}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.prev_work_or_edu.emp_info.supervisor.surname.label)}
+                  extra={tr(resources.prev_work_or_edu.emp_info.supervisor.surname.extra)}
+                  field="data.emp_info.supervisor.surname"
+                  initialValue={data.emp_info.supervisor.surname}
+                  getFieldDecorator={getFieldDecorator}
+                  required={false}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname', false) }]}
+                  maxLength={33}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.prev_work_or_edu.emp_info.supervisor.given_name.label)}
+                  extra={tr(resources.prev_work_or_edu.emp_info.supervisor.given_name.extra)}
+                  field="data.emp_info.supervisor.given_name"
+                  initialValue={data.emp_info.supervisor.given_name}
+                  getFieldDecorator={getFieldDecorator}
+                  required={false}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', false) }]}
+                  maxLength={33}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaDatePicker
+                  label={tr(resources.prev_work_or_edu.emp_info.date_from.label)}
+                  field="data.emp_info.date_from"
+                  initialValue={data.emp_info.date_from}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, 'Employment Date From', date_birth) }]}
 
-                setFieldsValue={setFieldsValue}
-                getFieldValue={getFieldValue}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaDatePicker
-                label={tr(resources.prev_work_or_edu.emp_info.date_to.label)}
-                field="data.emp_info.date_to"
-                initialValue={data.emp_info.date_to}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, 'Employment Date To', this.props.form.getFieldValue('data.emp_info.date_from'), true) }]}
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaDatePicker
+                  label={tr(resources.prev_work_or_edu.emp_info.date_to.label)}
+                  field="data.emp_info.date_to"
+                  initialValue={data.emp_info.date_to}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, 'Employment Date To', this.props.form.getFieldValue('data.emp_info.date_from'), true) }]}
 
-                setFieldsValue={setFieldsValue}
-                getFieldValue={getFieldValue}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <Form.Item label={tr(resources.prev_work_or_edu.emp_info.duty_explain.label)} extra={tr(resources.prev_work_or_edu.emp_info.duty_explain.extra)}>
-                {getFieldDecorator('data.emp_info.duty_explain', {
-                  initialValue: utils.getInitialValue(data.emp_info.duty_explain),
-                  rules: [{ required: true, message: tr(resources.validations.required) }],
-                })(
-                  <TextArea style={{ textTransform: 'uppercase' }} rows={3} />,
-                )}
-              </Form.Item>
-            </Col>
-          </Row>
-        </>
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <Form.Item label={tr(resources.prev_work_or_edu.emp_info.duty_explain.label)} extra={tr(resources.prev_work_or_edu.emp_info.duty_explain.extra)}>
+                  {getFieldDecorator('data.emp_info.duty_explain', {
+                    initialValue: utils.getInitialValue(data.emp_info.duty_explain),
+                    rules: [{ required: true, message: tr(resources.validations.required) }],
+                  })(
+                    <TextArea style={{ textTransform: 'uppercase' }} rows={3} />,
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+          </>
         }
 
         <VisaRadio
@@ -191,63 +192,63 @@ return data
           tr={tr}
         />
         {this.props.form.getFieldValue('data.b_edu_secondary_level') &&
-        <>
-          <VisaInput
-            label={tr(resources.prev_work_or_edu.edu_info.name.label)}
-            field="data.edu_info.name"
-            initialValue={data.edu_info.name}
-            getFieldDecorator={getFieldDecorator}
-            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Name of Institution', true) }]}
-            tr={tr}
-          />
+          <>
+            <VisaInput
+              label={tr(resources.prev_work_or_edu.edu_info.name.label)}
+              field="data.edu_info.name"
+              initialValue={data.edu_info.name}
+              getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Name of Institution', true) }]}
+              tr={tr}
+            />
 
-          <VisaAddress
-            label={tr(resources.prev_work_or_edu.edu_info.address.label)}
-            field="data.edu_info.address"
-            initialValue={data.edu_info.address}
-            getFieldDecorator={getFieldDecorator}
-            validators={this.props.validators}
-            us_address={false}
-            tr={tr}
-          />
+            <VisaAddress
+              label={tr(resources.prev_work_or_edu.edu_info.address.label)}
+              field="data.edu_info.address"
+              initialValue={data.edu_info.address}
+              getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
+              us_address={false}
+              tr={tr}
+            />
 
-          <VisaInput
-            label={tr(resources.prev_work_or_edu.edu_info.course.label)}
-            field="data.edu_info.course"
-            initialValue={data.edu_info.course}
-            getFieldDecorator={getFieldDecorator}
-            tr={tr}
-          />
+            <VisaInput
+              label={tr(resources.prev_work_or_edu.edu_info.course.label)}
+              field="data.edu_info.course"
+              initialValue={data.edu_info.course}
+              getFieldDecorator={getFieldDecorator}
+              tr={tr}
+            />
 
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaDatePicker
-                label={tr(resources.prev_work_or_edu.edu_info.date_from.label)}
-                field="data.edu_info.date_from"
-                initialValue={data.edu_info.date_from}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, 'Date of Attendance From', false) }]}
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaDatePicker
+                  label={tr(resources.prev_work_or_edu.edu_info.date_from.label)}
+                  field="data.edu_info.date_from"
+                  initialValue={data.edu_info.date_from}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, 'Date of Attendance From', false) }]}
 
-                setFieldsValue={setFieldsValue}
-                getFieldValue={getFieldValue}
-                tr={tr}
-              />
-            </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaDatePicker
-                label={tr(resources.prev_work_or_edu.edu_info.date_to.label)}
-                field="data.edu_info.date_to"
-                initialValue={data.edu_info.date_to}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateAttendanceTo(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.edu_info.date_from'), false) }]}
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                  tr={tr}
+                />
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaDatePicker
+                  label={tr(resources.prev_work_or_edu.edu_info.date_to.label)}
+                  field="data.edu_info.date_to"
+                  initialValue={data.edu_info.date_to}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateAttendanceTo(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.edu_info.date_from'), false) }]}
 
-                setFieldsValue={setFieldsValue}
-                getFieldValue={getFieldValue}
-                tr={tr}
-              />
-            </Col>
-          </Row>
-        </>
+                  setFieldsValue={setFieldsValue}
+                  getFieldValue={getFieldValue}
+                  tr={tr}
+                />
+              </Col>
+            </Row>
+          </>
         }
 
         <div className="visa-form-bottom-btn-group">

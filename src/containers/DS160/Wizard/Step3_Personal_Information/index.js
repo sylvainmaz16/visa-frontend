@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
+  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -20,7 +20,7 @@ class MyForm extends Component {
   handleDates = data => {
     if (data.date_birth) { data.date_birth = data.date_birth.format('DD/MMM/YYYY') }
 
-return data
+    return data
   }
 
   handleOtherResidentChange = (rule, value, callback) => {
@@ -54,7 +54,7 @@ return data
     if (!value) {
       callback(tr(resources.validations.required))
 
-return
+      return
     }
 
     const currentName = this.props.form.getFieldValue('data.surname') + this.props.form.getFieldValue('data.given_name')
@@ -63,21 +63,21 @@ return
     if (currentName === otherName) {
       callback('Alias matches Given Name.')
 
-return
+      return
     }
 
     if (/^[A-Za-z\s]+$/.test(value) == false) {
       callback(`${field} is invalid. Valid characters include A-Z and single spaces in between names.`)
 
-return
+      return
     }
     callback()
   }
 
   render() {
     const {
- getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-} = this.props.form
+      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+    } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -91,8 +91,8 @@ return
     const { martial_status_options } = constants
 
     const {
- showPrev, showNext, onPrev, onNext, data, validators, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, validators, tr,
+    } = this.props
 
     getFieldDecorator('data.b_ever_used_other_names', { initialValue: utils.getInitialValue(data.b_ever_used_other_names) })
     getFieldDecorator('data.b_has_telecode_of_name', { initialValue: utils.getInitialValue(data.b_has_telecode_of_name) })
@@ -237,7 +237,7 @@ return
           })(
             <TextArea style={{ textTransform: 'uppercase' }} rows={4} />,
           )}
-                                                                        </Form.Item>}
+        </Form.Item>}
         <VisaDatePicker
           label={tr(resources.personal.date_birth.label)}
           field="data.date_birth"
