@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+  Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaRadio from 'components/VisaRadio'
@@ -30,8 +30,8 @@ class MyForm extends Component {
       },
     }
     const {
- showPrev, showNext, onPrev, onNext, data, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, tr,
+    } = this.props
     getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) })
     if (!data.assist_info.organization) {
       data.assist_info.organization = {
@@ -39,7 +39,7 @@ class MyForm extends Component {
       }
     }
 
-return (
+    return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.e_sign.section_title)}</h2>
@@ -110,6 +110,13 @@ return (
         }
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>

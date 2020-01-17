@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Upload, Icon, message, Checkbox, Row, Col,
+  Form, Button, Select, Upload, Icon, message, Checkbox, Row, Col,
 } from 'antd'
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
@@ -24,18 +24,17 @@ function beforeUpload(file) {
   if (!isJpgOrPng) {
     message.error('You can only upload JPEG file!')
 
-return true
+    return true
   }
   const isLt2M = file.size / 1024 / 1024 < 0.24
   if (!isLt2M) {
     message.error('Image must smaller than 240KB!')
 
-return true
+    return true
   }
 
-return false
+  return false
 }
-const { Option } = Select
 
 class MyForm extends Component {
   static defaultProps = {
@@ -48,27 +47,27 @@ class MyForm extends Component {
   };
 
   uploadFileToS3 = file => new Promise(async (resolve, reject) => {
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('fileType', 'jpeg')
-      await axios
-        .post(
-          `${constants.apiURL.default}assets`,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('fileType', 'jpeg')
+    await axios
+      .post(
+        `${constants.apiURL.default}assets`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
           },
-        )
-        .then(response => {
-          resolve(response.data.Location)
-        })
-        .catch(error => {
-          message.error('Failed to upload photo')
-          reject(error)
-        })
-    })
+        },
+      )
+      .then(response => {
+        resolve(response.data.Location)
+      })
+      .catch(error => {
+        message.error('Failed to upload photo')
+        reject(error)
+      })
+  })
 
   handleChange = info => {
     if (status !== 'uploading') {
@@ -112,8 +111,8 @@ class MyForm extends Component {
     }
 
     const {
- showPrev, showNext, data, interview_location, country_of_birth, purpose_of_trip, other_purpose_of_trip, sex, tr,
-} = this.props
+      showPrev, showNext, data, interview_location, country_of_birth, purpose_of_trip, other_purpose_of_trip, sex, tr,
+    } = this.props
     const { countries_option_value_list, countries_option_label_list } = constants
 
     const interview_location_label_index = countries_option_value_list.findIndex(value => value == interview_location)
@@ -139,7 +138,7 @@ class MyForm extends Component {
     const imageUrl = this.props.form.getFieldValue('data.url')
 
     if (!data.payer.address) {
- data.payer.address = {
+      data.payer.address = {
         street_addr1: null,
         street_addr2: null,
         city: null,
@@ -147,7 +146,7 @@ class MyForm extends Component {
         zip_code: null,
         country: null,
       }
-}
+    }
 
     const section_descr = []
 
@@ -160,7 +159,7 @@ class MyForm extends Component {
           <>
             <div className="visa-global-heading-1">
               {tr(resources.photo.section_title['0'])}
-<br />
+              <br />
               {tr(resources.photo.section_title['1'])}
             </div>
             <ul className="visa-global-ul-1">
@@ -220,7 +219,7 @@ class MyForm extends Component {
               {tr(resources.photo.FGMC.check)}
             </Checkbox>,
           )}
-                   </Form.Item>}
+        </Form.Item>}
 
         {purpose_of_trip == 'J' && other_purpose_of_trip == 'J1-J1' && <Form.Item label={tr(resources.photo.HTP.label)}>
           {getFieldDecorator('data.HTP', {
@@ -237,7 +236,7 @@ class MyForm extends Component {
               {tr(resources.photo.HTP.check)}
             </Checkbox>,
           )}
-                                                                       </Form.Item>}
+        </Form.Item>}
 
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.photo.section_title_payment)}</h2>
@@ -385,6 +384,13 @@ class MyForm extends Component {
         </Form.Item>
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} disabled={loading} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" disabled={loading} onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} disabled={loading} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" disabled={loading} onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           {/* <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button> */}

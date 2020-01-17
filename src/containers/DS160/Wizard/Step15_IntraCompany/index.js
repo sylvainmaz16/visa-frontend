@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+  Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -31,8 +31,8 @@ class MyForm extends Component {
       },
     }
     const {
- showPrev, showNext, onPrev, onNext, data, intracompany_type, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, intracompany_type, tr,
+    } = this.props
 
     return (
       <Form {...formItemLayout}>
@@ -43,22 +43,22 @@ class MyForm extends Component {
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             {intracompany_type == 'A' &&
-            <>
-              <VisaInput
-                label={tr(resources.intracompany.petition)}
-                field="data.petition"
-                initialValue={data.petition}
-                getFieldDecorator={getFieldDecorator}
-                tr={tr}
-              />
-              <VisaInput
-                label={tr(resources.intracompany.name_filed_petition)}
-                field="data.name_filed_petition"
-                initialValue={data.name_filed_petition}
-                getFieldDecorator={getFieldDecorator}
-                tr={tr}
-              />
-            </>
+              <>
+                <VisaInput
+                  label={tr(resources.intracompany.petition)}
+                  field="data.petition"
+                  initialValue={data.petition}
+                  getFieldDecorator={getFieldDecorator}
+                  tr={tr}
+                />
+                <VisaInput
+                  label={tr(resources.intracompany.name_filed_petition)}
+                  field="data.name_filed_petition"
+                  initialValue={data.name_filed_petition}
+                  getFieldDecorator={getFieldDecorator}
+                  tr={tr}
+                />
+              </>
             }
             <VisaInput
               label={tr(resources.intracompany.employer)}
@@ -104,6 +104,13 @@ class MyForm extends Component {
         </Row>
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>

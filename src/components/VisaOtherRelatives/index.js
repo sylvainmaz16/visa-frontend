@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker,
+  Form, Button, Select, Checkbox, Input, Icon, Row, Col, DatePicker,
 } from 'antd'
 import moment from 'moment'
 import * as utils from 'utils'
@@ -47,8 +47,8 @@ class VisaOtherRelatives extends Component {
 
   render() {
     const {
- label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest
-} = this.props
+      label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, martial_status, arrayField, tr, ...rest
+    } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
     const people = getFieldValue(keysField)
@@ -117,10 +117,10 @@ class VisaOtherRelatives extends Component {
         {(people.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
             <Icon type="plus" />
-{' '}
-{tr(resources.add_another)}
+            {' '}
+            {tr(resources.add_another)}
           </Button>
-                                </Form.Item>}
+        </Form.Item>}
       </>
     )
   }

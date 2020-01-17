@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
+  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -28,13 +28,13 @@ class MyForm extends Component {
     if (data.issuance_date) { data.issuance_date = data.issuance_date.format('DD/MMM/YYYY') }
     if (data.expiration_date) { data.expiration_date = data.expiration_date.format('DD/MMM/YYYY') }
 
-return data
+    return data
   }
 
   render() {
     const {
- getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-} = this.props.form
+      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+    } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -46,17 +46,17 @@ return data
     }
 
     const {
- showPrev, showNext, onPrev, onNext, data, date_birth, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, date_birth, tr,
+    } = this.props
 
     if (data.lost_info.constructor != Array) {
- data.lost_info = [{
+      data.lost_info = [{
         number: null,
         number_NA: null,
         country: null,
         explain: null,
       }]
-}
+    }
 
     getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) })
     getFieldDecorator('data.b_ever_lost_passport', { initialValue: utils.getInitialValue(data.b_ever_lost_passport) })
@@ -236,6 +236,13 @@ return data
         }
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>

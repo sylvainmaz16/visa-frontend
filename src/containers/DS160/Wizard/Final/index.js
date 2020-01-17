@@ -35,6 +35,12 @@ class MyForm extends Component {
           </h2>
         </div>
         <div className="visa-form-bottom-btn-group">
+          {token && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              <Button type="default" style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>PREV</Button>
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => handleSubmit(e, form, this.handleDates)}>{agency ? tr(resources.continue_to_appointment) : tr(resources.submit_with_payment)}</Button>}
           {token && <Button type="danger" style={{ marginLeft: '10px' }} onClick={e => handleSubmitWithoutPayment(e, form, this.handleDates)}>SUBMIT WITHOUT PAYMENT</Button>}

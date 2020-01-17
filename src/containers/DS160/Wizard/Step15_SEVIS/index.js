@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+  Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -33,8 +33,8 @@ class MyForm extends Component {
       },
     }
     const {
- showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, additional_point_of_contact, sevis_type, tr,
+    } = this.props
 
     getFieldDecorator('data.b_study_in_US', { initialValue: utils.getInitialValue(data.b_study_in_US) })
 
@@ -48,56 +48,56 @@ class MyForm extends Component {
               <div className="visa-global-section-description">{tr(resources.SEVIS.section_descr)}</div>
             </div>
             {data.point_of_contact.map((contact, index) => <Row gutter={16} key={index}>
-                <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                  <Form.Item label="Contact">
-                    <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.surname)}
-                      field={`data.point_of_contact[${index}].surname`}
-                      initialValue={data.point_of_contact[index].surname}
-                      getFieldDecorator={getFieldDecorator}
-                      maxLength={33}
-                      tr={tr}
-                    />
-                    <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.given_name)}
-                      field={`data.point_of_contact[${index}].given_name`}
-                      initialValue={data.point_of_contact[index].given_name}
-                      getFieldDecorator={getFieldDecorator}
-                      maxLength={33}
-                      tr={tr}
-                    />
-                    <VisaAddress
-                      label={tr(resources.SEVIS.point_of_contact.address)}
-                      field={`data.point_of_contact[${index}].address`}
-                      initialValue={data.point_of_contact[index].address}
-                      validators={this.props.validators}
-                      getFieldDecorator={getFieldDecorator}
-                      us_address={false}
-                      tr={tr}
-                    />
-                    <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.tel_number)}
-                      field={`data.point_of_contact[${index}].tel_number`}
-                      initialValue={data.point_of_contact[index].tel_number}
-                      getFieldDecorator={getFieldDecorator}
-                      required={false}
-                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone Number', false) }]}
-                      tr={tr}
-                    />
-                    <VisaInput
-                      label={tr(resources.SEVIS.point_of_contact.email)}
-                      extra="(e.g., emailaddress@example.com)"
-                      field={`data.point_of_contact[${index}].email`}
-                      initialValue={data.point_of_contact[index].email}
-                      getFieldDecorator={getFieldDecorator}
-                      required={false}
-                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, 'Email Address') }]}
-                      tr={tr}
-                    />
-                  </Form.Item>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <Form.Item label="Contact">
+                  <VisaInput
+                    label={tr(resources.SEVIS.point_of_contact.surname)}
+                    field={`data.point_of_contact[${index}].surname`}
+                    initialValue={data.point_of_contact[index].surname}
+                    getFieldDecorator={getFieldDecorator}
+                    maxLength={33}
+                    tr={tr}
+                  />
+                  <VisaInput
+                    label={tr(resources.SEVIS.point_of_contact.given_name)}
+                    field={`data.point_of_contact[${index}].given_name`}
+                    initialValue={data.point_of_contact[index].given_name}
+                    getFieldDecorator={getFieldDecorator}
+                    maxLength={33}
+                    tr={tr}
+                  />
+                  <VisaAddress
+                    label={tr(resources.SEVIS.point_of_contact.address)}
+                    field={`data.point_of_contact[${index}].address`}
+                    initialValue={data.point_of_contact[index].address}
+                    validators={this.props.validators}
+                    getFieldDecorator={getFieldDecorator}
+                    us_address={false}
+                    tr={tr}
+                  />
+                  <VisaInput
+                    label={tr(resources.SEVIS.point_of_contact.tel_number)}
+                    field={`data.point_of_contact[${index}].tel_number`}
+                    initialValue={data.point_of_contact[index].tel_number}
+                    getFieldDecorator={getFieldDecorator}
+                    required={false}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone Number', false) }]}
+                    tr={tr}
+                  />
+                  <VisaInput
+                    label={tr(resources.SEVIS.point_of_contact.email)}
+                    extra="(e.g., emailaddress@example.com)"
+                    field={`data.point_of_contact[${index}].email`}
+                    initialValue={data.point_of_contact[index].email}
+                    getFieldDecorator={getFieldDecorator}
+                    required={false}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, 'Email Address') }]}
+                    tr={tr}
+                  />
+                </Form.Item>
 
-                </Col>
-                                                           </Row>)}
+              </Col>
+            </Row>)}
           </>
         }
 
@@ -188,6 +188,13 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>

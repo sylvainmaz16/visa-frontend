@@ -665,6 +665,12 @@ function mainReducer(state = initialState, action) {
         step_index: state.step_index - 1,
       }
     }
+    case DS160.DS160_FIRST_STEP: {
+      return {
+        ...state,
+        step_index: 1,
+      }
+    }
     case DS160.DS160_UPDATE_VALUES: {
       return {
         ...state,

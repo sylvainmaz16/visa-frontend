@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+  Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -32,8 +32,8 @@ class MyForm extends Component {
       },
     }
     const {
- showPrev, showNext, onPrev, onNext, data, SQIndex, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, SQIndex, tr,
+    } = this.props
 
     const explain = {
       part1: [
@@ -150,13 +150,13 @@ class MyForm extends Component {
       <Form {...formItemLayout}>
 
         {SQIndex == 0 && <>
-        <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.security.part1.section_title)}</h2>
-          <div className="visa-global-section-description">{tr(resources.security.part1.section_descr)}</div>
-        </div>
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">{tr(resources.security.part1.section_title)}</h2>
+            <div className="visa-global-section-description">{tr(resources.security.part1.section_descr)}</div>
+          </div>
 
-        <>
-          {explain.part1.map((exp, index) => <VisaExplain
+          <>
+            {explain.part1.map((exp, index) => <VisaExplain
               label={tr(resources.security.part1[index])}
               radioField={`data.part1.${exp.radio}`}
               radioInitialValue={data.part1[exp.radio]}
@@ -167,17 +167,17 @@ class MyForm extends Component {
               validators={this.props.validators}
               key={index}
               tr={tr}
-          />)}
-        </>
-                         </>}
+            />)}
+          </>
+        </>}
 
         {SQIndex == 1 && <>
-<div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.security.part2.section_title)}</h2>
-          <div className="visa-global-section-description">{tr(resources.security.part2.section_descr)}</div>
-</div>
-        <>
-          {explain.part2.map((exp, index) => <VisaExplain
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">{tr(resources.security.part2.section_title)}</h2>
+            <div className="visa-global-section-description">{tr(resources.security.part2.section_descr)}</div>
+          </div>
+          <>
+            {explain.part2.map((exp, index) => <VisaExplain
               label={tr(resources.security.part2[index])}
               radioField={`data.part2.${exp.radio}`}
               radioInitialValue={data.part2[exp.radio]}
@@ -188,18 +188,18 @@ class MyForm extends Component {
               validators={this.props.validators}
               key={index}
               tr={tr}
-          />)}
-        </>
-                         </>}
+            />)}
+          </>
+        </>}
 
         {SQIndex == 2 && <>
-<div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.security.part3.section_title)}</h2>
-          <div className="visa-global-section-description">{tr(resources.security.part3.section_descr)}</div>
-</div>
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">{tr(resources.security.part3.section_title)}</h2>
+            <div className="visa-global-section-description">{tr(resources.security.part3.section_descr)}</div>
+          </div>
 
-        <>
-          {explain.part3.map((exp, index) => <VisaExplain
+          <>
+            {explain.part3.map((exp, index) => <VisaExplain
               label={tr(resources.security.part3[index])}
               radioField={`data.part3.array[${index}].radio`}
               radioInitialValue={data.part3.array[index].radio}
@@ -210,18 +210,18 @@ class MyForm extends Component {
               validators={this.props.validators}
               key={index}
               tr={tr}
-          />)}
-        </>
-                         </>}
+            />)}
+          </>
+        </>}
 
         {SQIndex == 3 && <>
-<div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.security.part4.section_title)}</h2>
-          <div className="visa-global-section-description">{tr(resources.security.part4.section_descr)}</div>
-</div>
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">{tr(resources.security.part4.section_title)}</h2>
+            <div className="visa-global-section-description">{tr(resources.security.part4.section_descr)}</div>
+          </div>
 
-        <>
-          {explain.part4.map((exp, index) => <VisaExplain
+          <>
+            {explain.part4.map((exp, index) => <VisaExplain
               label={tr(resources.security.part4[index])}
               radioField={`data.part4.array[${index}].radio`}
               radioInitialValue={data.part4.array[index].radio}
@@ -232,18 +232,18 @@ class MyForm extends Component {
               validators={this.props.validators}
               key={index}
               tr={tr}
-          />)}
-        </>
-                         </>}
+            />)}
+          </>
+        </>}
 
         {SQIndex == 4 && <>
-<div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.security.part5.section_title)}</h2>
-          <div className="visa-global-section-description">{tr(resources.security.part5.section_descr)}</div>
-</div>
+          <div className="visa-global-field visa-global-border-bottom">
+            <h2 className="visa-global-section-title">{tr(resources.security.part5.section_title)}</h2>
+            <div className="visa-global-section-description">{tr(resources.security.part5.section_descr)}</div>
+          </div>
 
-        <>
-          {explain.part5.map((exp, index) => <VisaExplain
+          <>
+            {explain.part5.map((exp, index) => <VisaExplain
               label={tr(resources.security.part5[index])}
               radioField={`data.part5.array[${index}].radio`}
               radioInitialValue={data.part5.array[index].radio}
@@ -254,11 +254,18 @@ class MyForm extends Component {
               validators={this.props.validators}
               key={index}
               tr={tr}
-          />)}
-        </>
-                         </>}
+            />)}
+          </>
+        </>}
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>

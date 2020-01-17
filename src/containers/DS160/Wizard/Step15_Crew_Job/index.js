@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
+  Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
@@ -32,8 +32,8 @@ class MyForm extends Component {
       },
     }
     const {
- showPrev, showNext, onPrev, onNext, data, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, tr,
+    } = this.props
     getFieldDecorator('data.b_position', { initialValue: utils.getInitialValue(data.b_position) })
     getFieldDecorator('data.b_vessel', { initialValue: utils.getInitialValue(data.b_vessel) })
 
@@ -81,59 +81,59 @@ class MyForm extends Component {
         />
 
         {this.props.form.getFieldValue('data.b_position') &&
-        <>
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.crew_visa.position_info.agency_name)}
-                field="data.position_info.agency_name"
-                initialValue={data.position_info.agency_name}
-                getFieldDecorator={getFieldDecorator}
-                tr={tr}
-              />
-              <VisaInput
-                label={tr(resources.crew_visa.position_info.surname.label)}
-                extra={tr(resources.crew_visa.position_info.surname.extra)}
-                field="data.position_info.surname"
-                initialValue={data.position_info.surname}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Contact Surname(s)', true) }]}
-                tr={tr}
-              />
-              <VisaInput
-                label={tr(resources.crew_visa.position_info.given_name.label)}
-                extra={tr(resources.crew_visa.position_info.given_name.extra)}
-                field="data.position_info.given_name"
-                initialValue={data.position_info.given_name}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Contact Given Name(s)', true) }]}
-                tr={tr}
-              />
-            </Col>
-          </Row>
-          <VisaAddress
-            label={tr(resources.crew_visa.position_info.address.label)}
-            field="data.position_info.address"
-            initialValue={data.position_info.address}
-            getFieldDecorator={getFieldDecorator}
-            validators={this.props.validators}
-            us_address={false}
-            tr={tr}
-          />
-          <Row gutter={16}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }}>
-              <VisaInput
-                label={tr(resources.crew_visa.position_info.address.tel_number)}
-                field="data.position_info.address.tel_number"
-                initialValue={data.position_info.address.tel_number}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone number', true) }]}
-                maxLength={20}
-                tr={tr}
-              />
-            </Col>
-          </Row>
-        </>
+          <>
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.crew_visa.position_info.agency_name)}
+                  field="data.position_info.agency_name"
+                  initialValue={data.position_info.agency_name}
+                  getFieldDecorator={getFieldDecorator}
+                  tr={tr}
+                />
+                <VisaInput
+                  label={tr(resources.crew_visa.position_info.surname.label)}
+                  extra={tr(resources.crew_visa.position_info.surname.extra)}
+                  field="data.position_info.surname"
+                  initialValue={data.position_info.surname}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Contact Surname(s)', true) }]}
+                  tr={tr}
+                />
+                <VisaInput
+                  label={tr(resources.crew_visa.position_info.given_name.label)}
+                  extra={tr(resources.crew_visa.position_info.given_name.extra)}
+                  field="data.position_info.given_name"
+                  initialValue={data.position_info.given_name}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Contact Given Name(s)', true) }]}
+                  tr={tr}
+                />
+              </Col>
+            </Row>
+            <VisaAddress
+              label={tr(resources.crew_visa.position_info.address.label)}
+              field="data.position_info.address"
+              initialValue={data.position_info.address}
+              getFieldDecorator={getFieldDecorator}
+              validators={this.props.validators}
+              us_address={false}
+              tr={tr}
+            />
+            <Row gutter={16}>
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <VisaInput
+                  label={tr(resources.crew_visa.position_info.address.tel_number)}
+                  field="data.position_info.address.tel_number"
+                  initialValue={data.position_info.address.tel_number}
+                  getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone number', true) }]}
+                  maxLength={20}
+                  tr={tr}
+                />
+              </Col>
+            </Row>
+          </>
         }
 
         <VisaRadio
@@ -145,29 +145,36 @@ class MyForm extends Component {
         />
 
         {this.props.form.getFieldValue('data.b_vessel') &&
-        <Row gutter={16}>
-          <Col xs={{ span: 24 }} md={{ span: 12 }}>
-            <VisaInput
-              label={tr(resources.crew_visa.vessel_info.vessel_name)}
-              field="data.vessel_info.vessel_name"
-              initialValue={data.vessel_info.vessel_name}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={40}
-              tr={tr}
-            />
-            <VisaInput
-              label={tr(resources.crew_visa.vessel_info.vessel_id)}
-              field="data.vessel_info.vessel_id"
-              initialValue={data.vessel_info.vessel_id}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={20}
-              tr={tr}
-            />
-          </Col>
-        </Row>
+          <Row gutter={16}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }}>
+              <VisaInput
+                label={tr(resources.crew_visa.vessel_info.vessel_name)}
+                field="data.vessel_info.vessel_name"
+                initialValue={data.vessel_info.vessel_name}
+                getFieldDecorator={getFieldDecorator}
+                maxLength={40}
+                tr={tr}
+              />
+              <VisaInput
+                label={tr(resources.crew_visa.vessel_info.vessel_id)}
+                field="data.vessel_info.vessel_id"
+                initialValue={data.vessel_info.vessel_id}
+                getFieldDecorator={getFieldDecorator}
+                maxLength={20}
+                tr={tr}
+              />
+            </Col>
+          </Row>
         }
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>

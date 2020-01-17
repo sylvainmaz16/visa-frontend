@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import VisaBanner from 'components/VisaBanner'
 import VisaHeader from 'components/VisaHeader'
 import { DS160 } from 'actions/types'
-import { Spin, notification, Progress } from 'antd'
+import { Spin, notification, Progress, Button } from 'antd'
 import objectAssignDeep from 'object-assign-deep'
 import { withCookies } from 'react-cookie'
 import { translate } from 'utils/resources'
@@ -82,6 +82,23 @@ class DS160_Wizard extends Component {
   onPrev = (data, field) => {
     if (field != '') { this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data })) } else { this.props.updateValues(DS160.DS160_UPDATE_VALUES, data) }
     this.props.onPrevStep(DS160.DS160_PREV_STEP)
+
+    const { agency } = this.props
+    if (agency) {
+      this.props.history.push({
+        pathname: '/ds-160/application-form',
+        search: `?agency=${agency}`,
+      })
+    } else {
+      this.props.history.push('/ds-160/application-form')
+    }
+
+    window.scrollTo(0, 0)
+  }
+
+  onFirst = (data, field) => {
+    if (field != '') { this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data })) } else { this.props.updateValues(DS160.DS160_UPDATE_VALUES, data) }
+    this.props.onFirstStep(DS160.DS160_FIRST_STEP)
 
     const { agency } = this.props
     if (agency) {
@@ -191,6 +208,12 @@ class DS160_Wizard extends Component {
     if (handleDates) { this.onPrev(handleDates(values.data), field) } else { this.onPrev(values.data, field) }
   }
 
+  handleFirst = (e, form, handleDates, field) => {
+    e.preventDefault()
+    const values = form.getFieldsValue()
+    if (handleDates) { this.onFirst(handleDates(values.data), field) } else { this.onFirst(values.data, field) }
+  }
+
   handleSave = (e, form, handleDates, field) => {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
@@ -226,6 +249,8 @@ class DS160_Wizard extends Component {
     let intracompany_type = ''
     let sevis_type = ''
     let additional_point_of_contact = false
+
+    const adminToken = localStorage.getItem('immigration4us_token')
 
     let fieldsList = [
       null, '', '',
@@ -421,23 +446,27 @@ class DS160_Wizard extends Component {
 
     let sharedParams = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
+      handleFirst: (e, form, handleDates) => this.handleFirst(e, form, handleDates, field),
       handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
       validators: ds160_validators,
       agency,
       handleLanguageChange: this.handleLanguageChange,
       tr: r => translate(r, ds160.language),
+      adminToken,
     }
 
     if (field.startsWith('form_security')) {
       sharedParams = {
         handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, 'form_security'),
+        handleFirst: (e, form, handleDates) => this.handleFirst(e, form, handleDates, 'form_security'),
         handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, 'form_security'),
         handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, 'form_security'),
         validators: ds160_validators,
         agency,
         handleLanguageChange: this.handleLanguageChange,
         tr: r => translate(r, ds160.language),
+        adminToken,
       }
     }
 
@@ -556,6 +585,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type })
   },
   onPrevStep: type => {
+    dispatch({ type })
+  },
+  onFirstStep: type => {
     dispatch({ type })
   },
   updateValues: (type, values) => {

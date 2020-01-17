@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
+  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaRadio from 'components/VisaRadio'
@@ -38,8 +38,8 @@ class MyForm extends Component {
 
   render() {
     const {
- getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-} = this.props.form
+      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
+    } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -51,8 +51,8 @@ class MyForm extends Component {
     }
 
     const {
- showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr,
-} = this.props
+      showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr,
+    } = this.props
 
     getFieldDecorator('data.father.surname_NA', { initialValue: utils.getInitialValue(data.father.surname_NA) })
     getFieldDecorator('data.father.given_name_NA', { initialValue: utils.getInitialValue(data.father.given_name_NA) })
@@ -294,10 +294,10 @@ class MyForm extends Component {
         {martial_header[martial_status] &&
           <div className="visa-global-field visa-global-border-bottom">
             <h2 className="visa-global-section-title">
-{tr(resources.family.section_title_family_information)}
-:
+              {tr(resources.family.section_title_family_information)}
+              :
 {' '}
-{martial_header[martial_status]}
+              {martial_header[martial_status]}
             </h2>
           </div>
         }
@@ -505,6 +505,13 @@ class MyForm extends Component {
         }
 
         <div className="visa-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
+              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
+              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+            </div>
+          )}
           {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
           {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
