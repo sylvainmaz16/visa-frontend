@@ -65,10 +65,10 @@ class AuthPage extends Component {
       <div className="visa-admin-auth">
         {/* <Background /> */}
         <DS160Logo
-paused={false}
-style={{
- position: 'absolute', zIndex: '2', right: '0', bottom: '0',
-}}
+          paused={false}
+          style={{
+            position: 'absolute', zIndex: '2', right: '0', bottom: '0',
+          }}
         />
         <LogoGather />
         <LoginForm loading={loading} login={this.onLogin} />
@@ -78,10 +78,10 @@ style={{
 }
 
 const mapDispatchToProps = dispatch => ({
-    login: (type, data, cb) => {
-      dispatch({ type, data, cb })
-    },
-  })
+  login: (type, data, cb) => {
+    dispatch({ type, data, cb })
+  },
+})
 
 const mapStateToProps = state => ({
   data: state.admin.data,

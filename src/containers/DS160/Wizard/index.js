@@ -158,14 +158,9 @@ class DS160_Wizard extends Component {
       completed: true,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
-      agency,
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
-      if (agency) {
-        window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
-      } else {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
-      }
+
     })
   }
 

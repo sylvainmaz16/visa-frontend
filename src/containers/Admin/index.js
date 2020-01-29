@@ -14,6 +14,7 @@ import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
 import AdminPageUsers from './Pages/users'
 import AdminPageNewKdmid from './Pages/new-kdmid'
+import AdminPageCaETA from './Pages/ca-eTA'
 
 import './index.less'
 
@@ -72,6 +73,7 @@ class AdminBoard extends Component {
         { key: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
         { key: 'ds160', label: 'DS-160', icon: 'idcard' },
         { key: 'new-kdmid', label: 'Kdmid', icon: 'trademark' },
+        { key: 'canada', label: 'CA eTA', icon: 'copyright' },
         { key: 'mail', label: 'Mail Templates', icon: 'mail' },
         { key: 'users', label: 'Agencies', icon: 'user' },
       ]
@@ -132,8 +134,13 @@ class AdminBoard extends Component {
         }
         break
       case 'new-kdmid':
-        if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY) {
+        if (user.role === constants.USER_ROLE.ADMIN) {
           renderPage = <AdminPageNewKdmid pagination={pagination} pattern={pattern} user={user} />
+        }
+        break
+      case 'canada':
+        if (user.role === constants.USER_ROLE.ADMIN) {
+          renderPage = <AdminPageCaETA pagination={pagination} pattern={pattern} user={user} />
         }
         break
       case 'mail':

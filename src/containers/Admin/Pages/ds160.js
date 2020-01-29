@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
 import * as constants from 'utils/constants'
 import {
- Table, Tag, Button, Modal, notification, Input,
+  Table, Tag, Button, Modal, notification, Input,
 } from 'antd'
 import momentTz from 'moment-timezone'
 import moment from 'moment'
@@ -111,11 +111,11 @@ class AdminPageDS160 extends Component {
     const filterString = utils.getFilterString(pagination.filters)
 
     if (pagination.search != search) {
- this.props.history.push({
+      this.props.history.push({
         pathname: '/board/ds160',
         search: `?current=${pagination.current}${search && search.length ? `&search=${search}` : ''}${filterString}`,
       })
-}
+    }
   }
 
   onSubmitWithoutPayment = record => {
@@ -133,8 +133,8 @@ class AdminPageDS160 extends Component {
 
   render() {
     const {
- data, pagination, loading, total, user,
-} = this.props
+      data, pagination, loading, total, user,
+    } = this.props
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     const agencyFilter = []
@@ -180,7 +180,7 @@ class AdminPageDS160 extends Component {
           const utcTime = moment(text).utc().format()
           const gmt5Time = momentTz.tz(utcTime, 'YYYY-MM-DDTHH:mm:ssZ', 'America/New_York')
 
-return gmt5Time.format('YYYY-MM-DD HH:mm:ss')
+          return gmt5Time.format('YYYY-MM-DD HH:mm:ss')
         },
         // ellipsis: true
       },
@@ -206,7 +206,7 @@ return gmt5Time.format('YYYY-MM-DD HH:mm:ss')
           if (!record.completed) { return <Tag color="red">Not completed</Tag> }
           if (!record.paid) { return <Tag color="volcano">Not paid</Tag> }
 
-return <Tag color="geekblue">Paid</Tag>
+          return <Tag color="geekblue">Paid</Tag>
         },
         filters: [{ text: 'Paid', value: 'paid' }, { text: 'Not paid', value: 'not_paid' }, { text: 'Not completed', value: 'not_completed' }],
         filteredValue: pagination.filters.checkout,
@@ -214,7 +214,7 @@ return <Tag color="geekblue">Paid</Tag>
           if (value == 'paid') return record.completed && record.paid
           if (value == 'not_paid') return record.completed && !record.paid
 
-return !record.completed
+          return !record.completed
         },
       },
       {
@@ -226,13 +226,13 @@ return !record.completed
           if (record.automation_status.result == 'processing') { return <Tag color="green">In progress</Tag> }
           if (record.automation_status.error || record.automation_status.result == 'fail') { return <Tag color="red">Failed</Tag> }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == false) {
- return <>
-<Tag color="geekblue">Success</Tag>
-<Tag color="magenta">Email not sent</Tag>
-        </>
-}
+            return <>
+              <Tag color="geekblue">Success</Tag>
+              <Tag color="magenta">Email not sent</Tag>
+            </>
+          }
 
-return <Tag color="geekblue">Success</Tag>
+          return <Tag color="geekblue">Success</Tag>
         },
         filters: [{ text: '-', value: 'not_completed' }, { text: 'Pending', value: 'pending' }, { text: 'In progress', value: 'in_progress' }, { text: 'Failed', value: 'failed' }, { text: 'Incident', value: 'not_sent' }, { text: 'Success', value: 'success' }],
         filteredValue: pagination.filters.automation_status,
@@ -243,7 +243,7 @@ return <Tag color="geekblue">Success</Tag>
           if (value == 'failed') return record.completed && record.automation_status && (record.automation_status.result == 'fail' || record.automation_status.error)
           if (value == 'not_sent') return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status == false)
 
-return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status != false)
+          return record.completed && record.automation_status && (record.automation_status.result == 'success' && record.automation_status.email_status != false)
         },
       },
       {
@@ -258,21 +258,21 @@ return record.completed && record.automation_status && (record.automation_status
                      </Button>
             }
 
-return '-'
+            return '-'
           }
           if (!record.automation_status) { return '-' }
           if (record.automation_status.error) {
             return (<>
-<Button type="danger" shape="round" icon="warning" size="small">
-              {user.role == constants.USER_ROLE.ADMIN
-                ? <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
-                : <a style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
-              }
-</Button>
+              <Button type="danger" shape="round" icon="warning" size="small">
+                {user.role == constants.USER_ROLE.ADMIN
+                  ? <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
+                  : <a style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
+                }
+              </Button>
               {user.role == constants.USER_ROLE.ADMIN && <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
                 Submit without payment
                                                          </Button>}
-                    </>)
+            </>)
           }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == false) {
             return (<Button type="default" shape="round" icon="mail" size="small" style={{ background: 'blueviolet', color: 'white' }} onClick={() => this.onClickSendEmail(record)}>
@@ -282,10 +282,10 @@ return '-'
           if (record.automation_status.result == 'success' && record.automation_status.email_status == true) {
             return (<Button type="primary" shape="round" icon="download" size="small">
               <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Download PDF</a>
-                    </Button>)
+            </Button>)
           }
 
-return '-'
+          return '-'
         },
       },
     ]
@@ -317,18 +317,18 @@ return '-'
 
             return <p style={{ margin: 0 }}>
               {`_id: ${record._id}`}
-<br />
+              <br />
               {`total: ${record.transaction.total}`}
-<br />
+              <br />
               {`order_key: ${record.transaction.order_key}`}
-<br />
+              <br />
               {`customer_id: ${record.transaction.customer_id}`}
-<br />
+              <br />
               {`payment_method: ${record.transaction.payment_method}`}
-<br />
+              <br />
               {`cart_hash: ${record.transaction.cart_hash}`}
-<br />
-                   </p>
+              <br />
+            </p>
           }}
         />
         {visible_send_email_modal && <Modal
@@ -342,40 +342,40 @@ return '-'
         >
           <div className="ds160-send-email-modal">
             {`Application ID: ${selected_record.app_id}`}
-<br />
+            <br />
             {`Surname: ${selected_record.surname}`}
-<br />
+            <br />
             {`Given Name: ${selected_record.given_name}`}
-<br />
+            <br />
             {`Interview Location: ${selected_record.location}`}
-<br />
+            <br />
             {`Created At: ${selected_record.createdAt}`}
-<br />
+            <br />
             <br />
             There was no such email template based on
 {' '}
-<Tag color="geekblue">{`${selected_record.location.split(',')[0]}`}</Tag>
+            <Tag color="geekblue">{`${selected_record.location.split(',')[0]}`}</Tag>
           </div>
-                                     </Modal>}
+        </Modal>}
       </div>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-    getCustomersList: (type, options, isAdmin) => {
-      dispatch({ type, options, isAdmin })
-    },
-    setPagination: (type, pagination) => {
-      dispatch({ type, pagination })
-    },
-    resendEmail: (type, _id, cb) => {
-      dispatch({ type, _id, cb })
-    },
-    automate: (type, _id, cb) => {
-      dispatch({ type, _id, cb })
-    },
-  })
+  getCustomersList: (type, options, isAdmin) => {
+    dispatch({ type, options, isAdmin })
+  },
+  setPagination: (type, pagination) => {
+    dispatch({ type, pagination })
+  },
+  resendEmail: (type, _id, cb) => {
+    dispatch({ type, _id, cb })
+  },
+  automate: (type, _id, cb) => {
+    dispatch({ type, _id, cb })
+  },
+})
 
 const mapStateToProps = state => ({
   data: state.admin.data,

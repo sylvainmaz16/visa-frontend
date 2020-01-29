@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
- Form, Button, Select, Checkbox, Input, Icon,
+  Form, Button, Select, Checkbox, Input, Icon,
 } from 'antd'
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
@@ -40,8 +40,8 @@ class VisaSelectArray extends Component {
 
   render() {
     const {
- label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest
-} = this.props
+      label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest
+    } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
     const languages = getFieldValue(keysField)
@@ -78,8 +78,8 @@ class VisaSelectArray extends Component {
         <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
             <Icon type="plus" />
-{' '}
-{tr(resources.add_another)}
+            {' '}
+            {tr(resources.add_another)}
           </Button>
         </Form.Item>
       </>
