@@ -38,11 +38,11 @@ class MyForm extends Component {
             <br />
             <a href={link}>{link}</a>
             <br />
-{' '}
-This link will expire after 30 days.
+            {' '}
+            This link will expire after 30 days.
 <br />
-{' '}
-Enter your email address to send the link by email.
+            {' '}
+            Enter your email address to send the link by email.
           </h2>
         </div>
         <Form.Item>

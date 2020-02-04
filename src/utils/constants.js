@@ -17,7 +17,7 @@ export const apiURL = {
     default: 'https://ds-160.us/v1/api/',
     ds160: 'https://ds-160.us/v1/api/',
     newKdmid: 'https://kdmid-evisa.com/v1/api/',
-    canada: 'http://3.20.59.254/v1/api/',
+    canada: 'https://eta-evisa-canada.com/v1/api/',
 }
 
 export const export_list = array => array.map(option => ({ value: option.props.value, label: option.props.children }))

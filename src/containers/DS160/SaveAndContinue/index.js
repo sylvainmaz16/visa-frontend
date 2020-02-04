@@ -42,8 +42,8 @@ class DS160_Checkout extends Component {
 
   render() {
     const {
- loading, applicationId, cookies, agency,
-} = this.props
+      loading, applicationId, cookies, agency,
+    } = this.props
     const { sending } = this.state
 
     if (loading) {
@@ -60,12 +60,12 @@ class DS160_Checkout extends Component {
         </VisaBanner>
         <div className="container visa-ds160-save-and-continue__content">
           {sentAddr && <div className="visa-global-field">
-          <h2 className="visa-global-section-title-customized-by-ds-160" style={{ fontSize: '1.5em' }}>
-            The link was sent to the following email address:
+            <h2 className="visa-global-section-title-customized-by-ds-160" style={{ fontSize: '1.5em' }}>
+              The link was sent to the following email address:
 {' '}
-{sentAddr}
-          </h2>
-                       </div>}
+              {sentAddr}
+            </h2>
+          </div>}
           {!sentAddr && <Form_DS160_SaveAndContinue onSendLink={this.onSendLink} applicationId={applicationId} sending={sending} agency={agency} />}
         </div>
       </div>
@@ -74,10 +74,10 @@ class DS160_Checkout extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    sendLinkEmail: (type, payload, cb) => {
-      dispatch({ type, payload, cb })
-    },
-  })
+  sendLinkEmail: (type, payload, cb) => {
+    dispatch({ type, payload, cb })
+  },
+})
 
 const mapStateToProps = state => ({
   loading: state.main.loading,
