@@ -176,7 +176,7 @@ class AdminPageCaETA extends Component {
         title: 'ID',
         dataIndex: 'app_id',
         key: 'app_id',
-        render: (text, record) => <a href={`https://kdmid-evisa.com/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">{text}</a>,
+        render: (text, record) => <a href={`https://eta-evisa-canada.com/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">{text}</a>,
       },
       {
         title: 'Surname',
@@ -300,7 +300,7 @@ class AdminPageCaETA extends Component {
               <>
                 <Button type="danger" shape="round" icon="warning" size="small">
                   {user.role === constants.USER_ROLE.ADMIN
-                    ? <a href={`https://s3.us-east-2.amazonaws.com/assets.new-kdmid/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
+                    ? <a href={`https://s3.us-east-2.amazonaws.com/assets.canada/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
                     : <a href style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
                   }
                 </Button>
