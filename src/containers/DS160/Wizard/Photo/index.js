@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import {
-  Form, Button, Select, Upload, Icon, message, Checkbox, Row, Col,
+  Form, Button, Upload, Icon, message, Checkbox, Row, Col,
 } from 'antd'
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
-import VisaSelect from 'components/VisaSelect'
 import VisaRadio from 'components/VisaRadio'
 import VisaInput from 'components/VisaInput'
 import VisaAddress from 'components/VisaAddress'

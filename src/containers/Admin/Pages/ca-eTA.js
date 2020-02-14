@@ -313,8 +313,8 @@ class AdminPageCaETA extends Component {
           }
           if (record.automation_status.result === 'success') {
             return (
-              <Button type="primary" shape="round" size="small" onClick={() => this.onCheckKdmidStatus(record)}>
-                Check Kdmid Status
+              <Button type="primary" shape="round" size="small">
+                Successed
               </Button>
             )
           }
