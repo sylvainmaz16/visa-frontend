@@ -2024,6 +2024,7 @@ export const agency_support_countries_list = [
     'Macedonia',
     'Kosovo',
     'Netherlands',
+    'Northern Ireland',
     'Jamaica',
     'Turkey',
     'United Arab Emirates',
