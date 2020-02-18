@@ -68,6 +68,43 @@ class AdminBoard extends Component {
       </Menu>
     )
 
+    if (!user) {
+      return (
+        <Layout className="visa-admin-layout">
+          <Header>
+            <div className="logo" />
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              style={{ lineHeight: '64px' }}
+            >
+              <Menu.Item>
+                Please logout and try again
+              </Menu.Item>
+              <div style={{ float: 'right', cursor: 'pointer' }}>
+                <span style={{ marginRight: '10px' }}>{user ? user.username : 'Your username'}</span>
+                <Dropdown
+                  overlay={accountMenu}
+                  trigger={['click']}
+                >
+                  <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+                </Dropdown>
+              </div>
+            </Menu>
+          </Header>
+          <Content style={{ padding: '0 50px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="admin-page-wrapper">
+              {renderPage}
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Copyright here</Footer>
+        </Layout>
+      )
+    }
+
     if (user.role === constants.USER_ROLE.ADMIN) {
       menus = [
         { key: 'dashboard', label: 'Dashboard', icon: 'dashboard' },

@@ -173,6 +173,11 @@ class AdminPageDS160 extends Component {
         key: 'location',
       },
       {
+        title: 'Passport',
+        dataIndex: 'doc_number',
+        key: 'doc_number',
+      },
+      {
         title: 'Created At',
         dataIndex: 'createdAt',
         key: 'createdAt',
@@ -229,7 +234,7 @@ class AdminPageDS160 extends Component {
             return <>
               <Tag color="geekblue">Success</Tag>
               <Tag color="magenta">Email not sent</Tag>
-            </>
+                   </>
           }
 
           return <Tag color="geekblue">Success</Tag>
@@ -272,7 +277,7 @@ class AdminPageDS160 extends Component {
               {user.role == constants.USER_ROLE.ADMIN && <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
                 Submit without payment
                                                          </Button>}
-            </>)
+                    </>)
           }
           if (record.automation_status.result == 'success' && record.automation_status.email_status == false) {
             return (<Button type="default" shape="round" icon="mail" size="small" style={{ background: 'blueviolet', color: 'white' }} onClick={() => this.onClickSendEmail(record)}>
@@ -282,7 +287,7 @@ class AdminPageDS160 extends Component {
           if (record.automation_status.result == 'success' && record.automation_status.email_status == true) {
             return (<Button type="primary" shape="round" icon="download" size="small">
               <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Download PDF</a>
-            </Button>)
+                    </Button>)
           }
 
           return '-'
@@ -328,7 +333,7 @@ class AdminPageDS160 extends Component {
               <br />
               {`cart_hash: ${record.transaction.cart_hash}`}
               <br />
-            </p>
+                   </p>
           }}
         />
         {visible_send_email_modal && <Modal
@@ -356,7 +361,7 @@ class AdminPageDS160 extends Component {
 {' '}
             <Tag color="geekblue">{`${selected_record.location.split(',')[0]}`}</Tag>
           </div>
-        </Modal>}
+                                     </Modal>}
       </div>
     )
   }
