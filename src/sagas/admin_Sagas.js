@@ -210,6 +210,21 @@ function* automateRequest(action) {
   }
 }
 
+function* getETAStatusRequest(action) {
+  const headers = {
+    'Content-Type': 'application/json',
+  }
+  try {
+    const res = yield call(ApiManager.GetETAStatus, headers, action._id, action.site)
+    const { data } = res
+    yield put({ type: ADMIN.GET_ETA_STATUS_SUCCESS, data })
+    action.cb({ error: null, data })
+  } catch (e) {
+    yield put({ type: ADMIN.GET_ETA_STATUS_FAILURE })
+    action.cb({ error: 'error' })
+  }
+}
+
 function* getKdmidStatusRequest(action) {
   const headers = {
     'Content-Type': 'application/json',
@@ -244,6 +259,7 @@ function* admin_saga() {
   yield all([takeLatest(ADMIN.RESEND_EMAIL_REQUEST, resendEmailRequest)])
   yield all([takeLatest(ADMIN.AUTOMATE_REQUEST, automateRequest)])
   yield all([takeLatest(ADMIN.GET_KDMID_STATUS_REQUEST, getKdmidStatusRequest)])
+  yield all([takeLatest(ADMIN.GET_ETA_STATUS_REQUEST, getETAStatusRequest)])
 }
 
 export default admin_saga

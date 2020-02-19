@@ -54,6 +54,7 @@ export const ApiManager = {
   Automate: (headers, applicationId, site = 'default') => requests.get(`ds-160/automate/${applicationId}`, headers, site),
   SendLinkEmail: (headers, data, site = 'default') => requests.post(`ds-160/sendEmail/sendLink/${data.applicationId}`, headers, data, site),
   GetKdmidStatus: (headers, applicationId, site = 'default') => requests.get(`ds-160/kdmid-status/${applicationId}`, headers, site),
+  GetETAStatus: (headers, applicationId, site = 'default') => requests.get(`ds-160/eta-status/${applicationId}`, headers, site),
 }
 
 export default ApiManager

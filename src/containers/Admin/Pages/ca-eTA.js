@@ -10,7 +10,7 @@ import moment from 'moment'
 import { ADMIN } from 'actions/types'
 import * as constants from 'utils/constants'
 import * as utils from 'utils/index'
-import KdmidStatus from './NewKdmidStatus'
+import ETAStatus from './NewETAStatus'
 
 const openNotificationWithIcon = (type, message, description) => {
   notification[type]({
@@ -33,9 +33,10 @@ class AdminPageCaETA extends Component {
       visibleSendEmailModal: false,
       loadingSendEmail: false,
       selectedRecord: null,
-      visibleKdmidStatusModal: false,
-      loadingKdmidStatus: false,
-      kdmidStatus: {},
+      visibleETAStatusModal: false,
+      loadingETAStatus: false,
+      etaStatus: {},
+      additionalInfo: {},
     }
   }
 
@@ -65,7 +66,7 @@ class AdminPageCaETA extends Component {
     const filterString = utils.getFilterString(filters)
 
     history.push({
-      pathname: '/board/new-kdmid',
+      pathname: '/board/canada',
       search: `?current=${pagination.current}${pagination.search ? `&search=${pagination.search}` : ''}${filterString}`,
     })
   };
@@ -121,7 +122,7 @@ class AdminPageCaETA extends Component {
 
     if (pagination.search !== search) {
       history.push({
-        pathname: '/board/new-kdmid',
+        pathname: '/board/canada',
         search: `?current=${pagination.current}${search && search.length ? `&search=${search}` : ''}${filterString}`,
       })
     }
@@ -141,16 +142,18 @@ class AdminPageCaETA extends Component {
     })
   }
 
-  onCheckKdmidStatus = record => {
-    const { getKdmidStatus } = this.props
-    this.setState({ visibleKdmidStatusModal: true, loadingKdmidStatus: true, kdmidStatus: {} })
-    getKdmidStatus(ADMIN.GET_KDMID_STATUS_REQUEST, record._id, constants.sites.Canada, result => {
-      this.setState({ loadingKdmidStatus: false, kdmidStatus: result })
+  onCheckETAStatus = record => {
+    const { getETAStatus } = this.props
+    this.setState({
+      visibleETAStatusModal: true, loadingETAStatus: true, etaStatus: {}, additionalInfo: record.additionalInfo,
+    })
+    getETAStatus(ADMIN.GET_ETA_STATUS_REQUEST, record._id, constants.sites.Canada, result => {
+      this.setState({ loadingETAStatus: false, etaStatus: result })
     })
   }
 
   hideModal = () => {
-    this.setState({ visibleKdmidStatusModal: false, kdmidStatus: {} })
+    this.setState({ visibleETAStatusModal: false, etaStatus: {} })
   }
 
   render() {
@@ -158,7 +161,7 @@ class AdminPageCaETA extends Component {
       data, pagination, loading, total, user, users,
     } = this.props
     const {
-      visibleSendEmailModal, loadingSendEmail, selectedRecord, loadingKdmidStatus, visibleKdmidStatusModal, kdmidStatus,
+      visibleSendEmailModal, loadingSendEmail, selectedRecord, loadingETAStatus, visibleETAStatusModal, etaStatus, additionalInfo,
     } = this.state
 
     const agencyFilter = []
@@ -313,8 +316,8 @@ class AdminPageCaETA extends Component {
           }
           if (record.automation_status.result === 'success') {
             return (
-              <Button type="primary" shape="round" size="small">
-                Successed
+              <Button type="primary" shape="round" size="small" onClick={() => this.onCheckETAStatus(record)}>
+                Check ETA Status
               </Button>
             )
           }
@@ -325,21 +328,21 @@ class AdminPageCaETA extends Component {
     ]
 
     return (
-      <div className="admin-page-new-kdmid">
-        {visibleKdmidStatusModal &&
+      <div className="admin-page-canada">
+        {visibleETAStatusModal &&
           <Modal
-            title="Check Kdmid Status"
-            visible={visibleKdmidStatusModal}
+            title="Check ETA Status"
+            visible={visibleETAStatusModal}
             footer={null}
             onCancel={this.hideModal}
             width="80%"
           >
-            <div className="admin-page-new-kdmid-check-status" style={{ minHeight: '300px' }}>
-              <KdmidStatus loading={loadingKdmidStatus} data={kdmidStatus.data} />
+            <div className="admin-page-canada-check-status" style={{ minHeight: '300px' }}>
+              <ETAStatus loading={loadingETAStatus} data={etaStatus.data} additionalInfo={additionalInfo} />
             </div>
           </Modal>
         }
-        <div className="admin-page-new-kdmid__top">
+        <div className="admin-page-canada__top">
           <Input placeholder="Search (ID, Name, Email Address) here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown} />
           <Button type="primary" icon="search" onClick={this.searchString}>
             Search
@@ -431,7 +434,7 @@ const mapDispatchToProps = dispatch => ({
       type, _id, site, cb,
     })
   },
-  getKdmidStatus: (type, _id, site, cb) => {
+  getETAStatus: (type, _id, site, cb) => {
     dispatch({
       type, _id, site, cb,
     })
