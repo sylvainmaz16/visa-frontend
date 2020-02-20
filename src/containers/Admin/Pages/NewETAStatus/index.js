@@ -26,12 +26,28 @@ export default function ETAStatus({ loading, data, additionalInfo }) {
     )
   }
 
+  const extraRender = (
+    <Descriptions title={_.get(data, 'applicationStatus')} bordered key="description">
+      <Descriptions.Item label="eTA Number">{_.get(data, 'etaNumber')}</Descriptions.Item>
+      <Descriptions.Item label="Expiry date">{_.get(data, 'expirationDateString')}</Descriptions.Item>
+      <Descriptions.Item label="Application Number">{_.get(additionalInfo, 'applicationNumber')}</Descriptions.Item>
+      <Descriptions.Item label="Email Subject" span={3}>
+        {_.get(additionalInfo, 'subject') || ''}
+      </Descriptions.Item>
+      <Descriptions.Item label="Email Body">
+        <div style={{ textAlign: 'left' }} dangerouslySetInnerHTML={{ __html: _.get(additionalInfo, 'textAsHtml') || '' }} />
+      </Descriptions.Item>
+    </Descriptions>
+  )
+
   if (data.finalDecisionReason === 'Not Started') {
     return (
       <Result
         status="warning"
         title="Pending"
-        subTitle={data.applicationStatus}
+        extra={[
+          extraRender,
+        ]}
       />
     )
   }
@@ -41,19 +57,8 @@ export default function ETAStatus({ loading, data, additionalInfo }) {
       <Result
         status="success"
         title={data.finalDecisionReason}
-        // subTitle={data.applicationStatus}
         extra={[
-          <Descriptions title="A final decision has been made. Please see the final decision below." bordered key="description">
-            <Descriptions.Item label="eTA Number">{data.etaNumber}</Descriptions.Item>
-            <Descriptions.Item label="Expiry date">{data.expirationDateString}</Descriptions.Item>
-            <Descriptions.Item label="Application Number">{_.get(additionalInfo, 'applicationNumber')}</Descriptions.Item>
-            <Descriptions.Item label="Email Subject" span={3}>
-              {_.get(additionalInfo, 'subject') || ''}
-            </Descriptions.Item>
-            <Descriptions.Item label="Email Body">
-              <div style={{ textAlign: 'left' }} dangerouslySetInnerHTML={{ __html: _.get(additionalInfo, 'textAsHtml') || '' }} />
-            </Descriptions.Item>
-          </Descriptions>,
+          extraRender,
         ]}
       />
     )
@@ -61,12 +66,10 @@ export default function ETAStatus({ loading, data, additionalInfo }) {
 
   return (
     <Result
+      status="error"
       title={data.finalDecisionReason}
-      subTitle={data.applicationStatus}
       extra={[
-        <Button type="primary" key="console">
-          Check Again
-        </Button>,
+        extraRender,
       ]}
     />
   )
