@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import {
-  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
+  Form, Button, Input, Row, Col,
 } from 'antd'
 import * as constants from 'utils/constants'
-import VisaSelect from 'components/VisaSelect'
-import moment from 'moment'
 import VisaRadio from 'components/VisaRadio'
 import VisaInput from 'components/VisaInput'
-import VisaInputWithCheck from 'components/VisaInputWithCheck'
 import VisaSelectItem from 'components/VisaSelectItem'
 import VisaDatePicker from 'components/VisaDatePicker'
 import VisaDatePickerWithCheck from 'components/VisaDatePickerWithCheck'
@@ -15,7 +12,6 @@ import * as utils from 'utils'
 import VisaLostPassports from 'components/VisaLostPassports'
 import resources from 'utils/resources'
 
-const { Option } = Select
 const { TextArea } = Input
 
 class MyForm extends Component {
@@ -141,7 +137,7 @@ class MyForm extends Component {
             <VisaInput
               label={tr(resources.passport.issued_location.city)}
               field="data.issued_location.city"
-              initialValue={data.issued_location.city}
+              initialValue={_.get(data, 'issued_location.city')}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.passport.issued_location.city), true) }]}
               maxLength={25}
@@ -152,7 +148,7 @@ class MyForm extends Component {
             <VisaInput
               label={tr(resources.passport.issued_location.state)}
               field="data.issued_location.state"
-              initialValue={data.issued_location.state}
+              initialValue={_.get(data, 'issued_location.state')}
               required={false}
               getFieldDecorator={getFieldDecorator}
               maxLength={25}
@@ -163,7 +159,7 @@ class MyForm extends Component {
             <VisaSelectItem
               label={tr(resources.passport.issued_location.country)}
               field="data.issued_location.country"
-              initialValue={data.issued_location.country}
+              initialValue={_.get(data, 'issued_location.country')}
               content={{
                 values: constants.countries_regions_option_value_list,
                 labels: constants.countries_regions_option_label_list,
