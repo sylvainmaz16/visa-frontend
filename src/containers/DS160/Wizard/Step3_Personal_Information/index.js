@@ -24,6 +24,7 @@ class MyForm extends Component {
   }
 
   handleOtherResidentChange = (rule, value, callback) => {
+    const { tr } = this.props
     if (!value) {
       callback(tr(resources.validations.required))
     }
@@ -34,6 +35,7 @@ class MyForm extends Component {
   }
 
   handleNationalityChange = (rule, value, callback) => {
+    const { tr } = this.props
     if (!value) {
       callback(tr(resources.validations.required))
     }
@@ -41,6 +43,7 @@ class MyForm extends Component {
   }
 
   handleMoreNationalityChange = (rule, value, callback) => {
+    const { tr } = this.props
     if (!value) {
       callback(tr(resources.validations.required))
     }
@@ -51,6 +54,7 @@ class MyForm extends Component {
   }
 
   handleUsedOtherName = (rule, value, callback, field) => {
+    const { tr } = this.props
     if (!value) {
       callback(tr(resources.validations.required))
 
@@ -237,7 +241,7 @@ class MyForm extends Component {
           })(
             <TextArea style={{ textTransform: 'uppercase' }} rows={4} />,
           )}
-        </Form.Item>}
+                                                                        </Form.Item>}
         <VisaDatePicker
           label={tr(resources.personal.date_birth.label)}
           field="data.date_birth"
