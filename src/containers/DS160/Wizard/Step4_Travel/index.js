@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import {
-  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
+  Form, Button, Select, Input, Radio, Row, Col, InputNumber,
 } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
-import moment from 'moment'
 import VisaAddress from 'components/VisaAddress'
 import VisaDatePicker from 'components/VisaDatePicker'
 import * as utils from 'utils'
 import resources from 'utils/resources'
-
-const { Option } = Select
+import _ from 'lodash'
 
 class MyForm extends Component {
   static defaultProps = {
@@ -56,15 +54,15 @@ class MyForm extends Component {
     }
 
     const {
-      showPrev, showNext, onPrev, onNext, data, martial_status, tr,
+      showPrev, showNext, data, tr,
     } = this.props
 
     getFieldDecorator('data.purpose_of_trip', { initialValue: utils.getInitialValue(data.purpose_of_trip) })
     getFieldDecorator('data.other_purpose_of_trip', { initialValue: utils.getInitialValue(data.other_purpose_of_trip) })
     getFieldDecorator('data.paying_person_for_trip', { initialValue: utils.getInitialValue(data.paying_person_for_trip) })
-    getFieldDecorator('data.paying_person_info.b_same_address', { initialValue: utils.getInitialValue(data.paying_person_info.b_same_address) })
+    getFieldDecorator('data.paying_person_info.b_same_address', { initialValue: utils.getInitialValue(_.get(data, 'paying_person_info.b_same_address')) })
     getFieldDecorator('data.purpose_info_type', { initialValue: utils.getInitialValue(data.purpose_info_type) })
-    getFieldDecorator('data.travel_plan.length_of_stay.period', { initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.period) })
+    getFieldDecorator('data.travel_plan.length_of_stay.period', { initialValue: utils.getInitialValue(_.get(data, 'travel_plan.length_of_stay.period')) })
 
     const field = {
       purpose_of_trip: this.props.form.getFieldValue('data.purpose_of_trip'),
@@ -128,7 +126,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                 <Form.Item label={tr(resources.travel.purpose_info.surname)} required>
                   {getFieldDecorator('data.purpose_info.surname', {
-                    initialValue: utils.getInitialValue(data.purpose_info.surname),
+                    initialValue: _.get(data, 'purpose_info.surname'),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surnames') }],
                   })(
                     <Input />,
@@ -138,7 +136,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                 <Form.Item label={tr(resources.travel.purpose_info.given_name)} required>
                   {getFieldDecorator('data.purpose_info.given_name', {
-                    initialValue: utils.getInitialValue(data.purpose_info.given_name),
+                    initialValue: _.get(data, 'purpose_info.given_name'),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name') }],
                   })(
                     <Input />,
@@ -152,7 +150,7 @@ class MyForm extends Component {
           field.purpose_info_type && field.purpose_info_type.includes('P') &&
           <Form.Item label={tr(resources.travel.purpose_info.petition.label)} extra={tr(resources.travel.purpose_info.petition.extra)} required>
             {getFieldDecorator('data.purpose_info.petition', {
-              initialValue: utils.getInitialValue(data.purpose_info.petition),
+              initialValue: _.get(data, 'purpose_info.petition'),
               rules: [{ validator: (rule, value, callback) => this.props.validators.validatePetitionNumber(rule, value, callback, true) }],
             })(
               <Input style={{ textTransform: 'uppercase' }} maxLength={13} />,
@@ -169,7 +167,7 @@ class MyForm extends Component {
           label={tr(resources.travel.travel_plan.date_of_arrival.label)}
 
           field="data.travel_plan.date_of_arrival"
-          initialValue={data.travel_plan.date_of_arrival}
+          initialValue={_.get(data, 'travel_plan.date_of_arrival')}
           getFieldDecorator={getFieldDecorator}
           customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLaterDate(rule, value, callback, 'Intended Date of Arrival') }]}
           required
@@ -183,7 +181,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} sm={{ span: 8 }}>
             <Form.Item label={tr(resources.travel.travel_plan.length_of_stay.length.label)} extra={tr(resources.travel.travel_plan.length_of_stay.length.extra)} required>
               {getFieldDecorator('data.travel_plan.length_of_stay.length', {
-                initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.length),
+                initialValue: _.get(data, 'travel_plan.length_of_stay.length'),
                 rules: [{ required: this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') != 'H', message: tr(resources.validations.required) }],
               })(
                 <InputNumber min={1} max={100} maxLength={3} disabled={this.props.form.getFieldValue('data.travel_plan.length_of_stay.period') == 'H'} />,
@@ -193,7 +191,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} sm={{ span: 8, offset: 4 }}>
             <Form.Item label={tr(resources.travel.travel_plan.length_of_stay.period.label)}>
               {getFieldDecorator('data.travel_plan.length_of_stay.period', {
-                initialValue: utils.getInitialValue(data.travel_plan.length_of_stay.period),
+                initialValue: _.get(data, 'travel_plan.length_of_stay.period'),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
                 <VisaSelect combines={(field.purpose_of_trip == 'B' || field.purpose_of_trip == 'C' || field.purpose_of_trip == 'D') ? tr(constants.period_unit_options_v2) : tr(constants.period_unit_options)} tr={tr} />,
@@ -206,7 +204,7 @@ class MyForm extends Component {
           <Form.Item label={tr(resources.travel.address_you_will_stay.label)}>
             <Form.Item extra={tr(resources.travel.address_you_will_stay.street_addr1)}>
               {getFieldDecorator('data.address_you_will_stay.street_addr1', {
-                initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr1),
+                initialValue: _.get(data, 'address_you_will_stay.street_addr1'),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, 'Street Address', true) }],
               })(
                 <Input maxLength={40} />,
@@ -214,7 +212,7 @@ class MyForm extends Component {
             </Form.Item>
             <Form.Item extra={tr(resources.travel.address_you_will_stay.street_addr2)}>
               {getFieldDecorator('data.address_you_will_stay.street_addr2', {
-                initialValue: utils.getInitialValue(data.address_you_will_stay.street_addr2),
+                initialValue: _.get(data, 'address_you_will_stay.street_addr2'),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, 'Address Line 2', false) }],
               })(
                 <Input maxLength={40} />,
@@ -224,7 +222,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                 <Form.Item extra={tr(resources.travel.address_you_will_stay.city)}>
                   {getFieldDecorator('data.address_you_will_stay.city', {
-                    initialValue: utils.getInitialValue(data.address_you_will_stay.city),
+                    initialValue: _.get(data, 'address_you_will_stay.city'),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'City', true) }],
                   })(
                     <Input maxLength={20} />,
@@ -234,7 +232,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                 <Form.Item extra={tr(resources.travel.address_you_will_stay.state)}>
                   {getFieldDecorator('data.address_you_will_stay.state', {
-                    initialValue: utils.getInitialValue(data.address_you_will_stay.state),
+                    initialValue: _.get(data, 'address_you_will_stay.state'),
                     rules: [{ required: true, message: tr(resources.validations.required) }],
                   })(
                     <VisaSelect combines={constants.state_options_list()} tr={tr} />,
@@ -244,7 +242,7 @@ class MyForm extends Component {
               <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                 <Form.Item extra={tr(resources.travel.address_you_will_stay.zip_code)}>
                   {getFieldDecorator('data.address_you_will_stay.zip_code', {
-                    initialValue: utils.getInitialValue(data.address_you_will_stay.zip_code),
+                    initialValue: _.get(data, 'address_you_will_stay.zip_code'),
                     rules: [{ validator: (rule, value, callback) => this.props.validators.validateUSZipCode(rule, value, callback, 'ZIP Code') }],
                   })(
                     <Input maxLength={10} />,
@@ -259,7 +257,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} sm={{ span: 12 }}>
             <Form.Item label={tr(resources.travel.paying_person_for_trip.label)}>
               {getFieldDecorator('data.paying_person_for_trip', {
-                initialValue: utils.getInitialValue(data.paying_person_for_trip),
+                initialValue: _.get(data, 'paying_person_for_trip'),
                 rules: [{ required: true, message: tr(resources.validations.required) }],
               })(
                 <VisaSelect combines={tr(constants.paying_person_for_trip_options)} tr={tr} />,
@@ -282,7 +280,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                   <Form.Item label={tr(resources.travel.paying_person_info.surname.label)} extra={tr(resources.travel.paying_person_info.surname.extra)}>
                     {getFieldDecorator('data.paying_person_info.surname', {
-                      initialValue: utils.getInitialValue(data.paying_person_info.surname),
+                      initialValue: _.get(data, 'paying_person_info.surname'),
                       rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surnames') }],
                     })(
                       <Input />,
@@ -294,7 +292,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                   <Form.Item label={tr(resources.travel.paying_person_info.given_name.label)} extra={tr(resources.travel.paying_person_info.given_name.extra)}>
                     {getFieldDecorator('data.paying_person_info.given_name', {
-                      initialValue: utils.getInitialValue(data.paying_person_info.given_name),
+                      initialValue: _.get(data, 'paying_person_info.given_name'),
                       rules: [{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name') }],
                     })(
                       <Input />,
@@ -306,7 +304,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                   <Form.Item label={tr(resources.travel.paying_person_info.tel_number.label)}>
                     {getFieldDecorator('data.paying_person_info.tel_number', {
-                      initialValue: utils.getInitialValue(data.paying_person_info.tel_number),
+                      initialValue: _.get(data, 'paying_person_info.tel_number'),
                       rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Telephone Number', true) }],
                     })(
                       <Input maxLength={20} />,
@@ -316,7 +314,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                   <Form.Item label={tr(resources.travel.paying_person_info.email.label)} extra={tr(resources.travel.paying_person_info.email.extra)}>
                     {getFieldDecorator('data.paying_person_info.email', {
-                      initialValue: utils.getInitialValue(data.paying_person_info.email),
+                      initialValue: _.get(data, 'paying_person_info.email'),
                       rules: [{ validator: (rule, value, callback) => this.props.validators.validateEmail(rule, value, callback, 'Email Address') }],
                     })(
                       <Input />,
@@ -328,7 +326,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                   <Form.Item label={tr(resources.travel.paying_person_info.relationship.label)}>
                     {getFieldDecorator('data.paying_person_info.relationship', {
-                      initialValue: utils.getInitialValue(data.paying_person_info.relationship),
+                      initialValue: _.get(data, 'paying_person_info.relationship'),
                       rules: [{ required: true, message: tr(resources.validations.required) }],
                     })(
                       <VisaSelect combines={martial_status == 'M' || martial_status == 'L' ? tr(constants.paying_person_info_relationship_options) : tr(constants.paying_person_info_relationship_without_spouse_options)} tr={tr} />,
@@ -340,7 +338,7 @@ class MyForm extends Component {
                 <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                   <Form.Item label={tr(resources.travel.paying_person_info.b_same_address.label)}>
                     {getFieldDecorator('data.paying_person_info.b_same_address', {
-                      initialValue: utils.getInitialValue(data.paying_person_info.b_same_address),
+                      initialValue: _.get(data, 'paying_person_info.b_same_address'),
                       rules: [{ required: true, message: tr(resources.validations.required) }],
                     })(
                       <Radio.Group>
@@ -358,7 +356,7 @@ class MyForm extends Component {
                   <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                     <Form.Item label={tr(resources.travel.paying_org_info.name.label)}>
                       {getFieldDecorator('data.paying_org_info.name', {
-                        initialValue: utils.getInitialValue(data.paying_org_info.name),
+                        initialValue: _.get(data, 'paying_org_info.name'),
                         rules: [{ required: true, message: tr(resources.validations.required) }],
                       })(
                         <Input />,
@@ -370,7 +368,7 @@ class MyForm extends Component {
                   <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                     <Form.Item label={tr(resources.travel.paying_org_info.tel_number.label)}>
                       {getFieldDecorator('data.paying_org_info.tel_number', {
-                        initialValue: utils.getInitialValue(data.paying_org_info.tel_number),
+                        initialValue: _.get(data, 'paying_org_info.tel_number'),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, tr(resources.travel.paying_org_info.tel_number.label), true) }],
                       })(
                         <Input maxLength={20} />,
@@ -382,7 +380,7 @@ class MyForm extends Component {
                   <Col xs={{ span: 24 }} sm={{ span: 12 }}>
                     <Form.Item label={tr(resources.travel.paying_org_info.relationship.label)}>
                       {getFieldDecorator('data.paying_org_info.relationship', {
-                        initialValue: utils.getInitialValue(data.paying_org_info.relationship),
+                        initialValue: _.get(data, 'paying_org_info.relationship'),
                         rules: [{ validator: (rule, value, callback) => this.props.validators.validatePassport(rule, value, callback, tr(resources.travel.paying_org_info.relationship.label), true) }],
                       })(
                         <Input />,
@@ -400,7 +398,7 @@ class MyForm extends Component {
                 <VisaAddress
                   label={field.paying_person_for_trip == 'C' ? tr(resources.travel.paying_person_info.address.company) : tr(resources.travel.paying_person_info.address.person)}
                   field="data.paying_person_info.address"
-                  initialValue={data.paying_person_info.address}
+                  initialValue={_.get(data, 'paying_person_info.address')}
                   getFieldDecorator={getFieldDecorator}
                   validators={this.props.validators}
                   us_address={false}
