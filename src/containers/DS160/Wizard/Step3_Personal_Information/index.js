@@ -359,7 +359,7 @@ class MyForm extends Component {
               initialValue: utils.getInitialValue(data.permanent_resident_country),
               rules: [{ validator: this.handleOtherResidentChange }],
             })(
-              <VisaSelect combines={constants.nationality_option_list_func()} tr={tr} />,
+              <VisaSelect combines={constants.resident_country_list_func()} tr={tr} />,
             )}
           </Form.Item>
         }
