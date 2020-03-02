@@ -2023,6 +2023,7 @@ export const agency_support_countries_list = [
     'Ireland',
     'Israel',
     'Italy',
+    'Jerusalem',
     'Macedonia',
     'Kosovo',
     'Netherlands',
