@@ -303,7 +303,7 @@ class MyForm extends Component {
                 <Form.Item label={tr(resources.travel.paying_org_info.name.label)}>
                   {getFieldDecorator("data.paying_org_info.name", {
                     initialValue: _.get(data, "paying_org_info.name"),
-                    rules: [{ required: true, message: tr(resources.validations.required) }]
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, tr(resources.travel.paying_org_info.name.label), true) }]
                   })(<Input />)}
                 </Form.Item>
               </Col>
@@ -332,11 +332,11 @@ class MyForm extends Component {
         ) : (
           ""
         )}
-        {(field.paying_person_for_trip == "O" && field.paying_person_info_same_addr == false) || field.paying_person_for_trip == "C" ? (
+        {(field.paying_person_for_trip === "O" && field.paying_person_info_same_addr === false) || field.paying_person_for_trip === "C" ? (
           <Row gutter={16}>
             <Col xs={{ span: 24 }} sm={{ span: 12 }}>
               <VisaAddress
-                label={field.paying_person_for_trip == "C" ? tr(resources.travel.paying_person_info.address.company) : tr(resources.travel.paying_person_info.address.person)}
+                label={field.paying_person_for_trip === "C" ? tr(resources.travel.paying_person_info.address.company) : tr(resources.travel.paying_person_info.address.person)}
                 field="data.paying_person_info.address"
                 initialValue={_.get(data, "paying_person_info.address")}
                 getFieldDecorator={getFieldDecorator}
