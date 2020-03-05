@@ -250,10 +250,13 @@ class AdminPageDS160 extends Component {
           if (record.automation_status.result === 'pending') {
             return <Tag color="volcano">Pending</Tag>
           }
-          if (record.automation_status.result === 'processing') {
+          if (record.automation_status.result === 'processing' || record.automation_status.automation_status.result === 'processing') {
             return <Tag color="green">In progress</Tag>
           }
-          if (record.automation_status.error || record.automation_status.result === 'fail') {
+          if (record.automation_status.result === 'timeout' || record.automation_status.automation_status.result === 'timeout') {
+            return <Tag color="red">Timeout</Tag>
+          }
+          if (record.automation_status.error || record.automation_status.result === 'fail' || record.automation_status.automation_status.result === 'fail') {
             return <Tag color="red">Failed</Tag>
           }
           if (record.automation_status.result === 'success' && record.automation_status.email_status === false) {
@@ -272,14 +275,17 @@ class AdminPageDS160 extends Component {
           { text: 'Pending', value: 'pending' },
           { text: 'In progress', value: 'in_progress' },
           { text: 'Failed', value: 'failed' },
+          { text: 'Timeout', value: 'timeout' },
           { text: 'Incident', value: 'not_sent' },
           { text: 'Success', value: 'success' },
         ],
         filteredValue: pagination.filters.automation_status,
         onFilter: (value, record) => {
+          return true
           if (value === 'not_completed') return !record.completed || !record.automation_status
           if (value === 'pending') return record.completed && record.automation_status && record.automation_status.result === 'pending'
           if (value === 'in_progress') return record.completed && record.automation_status && record.automation_status.result === 'processing'
+          if (value === 'timeout') return record.completed && record.automation_status && record.automation_status.result === 'timeout'
           if (value === 'failed') return record.completed && record.automation_status && (record.automation_status.result === 'fail' || record.automation_status.error)
           if (value === 'not_sent') return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status === false
 
@@ -307,8 +313,9 @@ class AdminPageDS160 extends Component {
           if (!record.automation_status) {
             return '-'
           }
-          if (record.automation_status.error) {
-            if (record.automation_status.result === 'timeout') {
+          console.log(record.automation_status.result)
+          if (!['success', 'pending', 'processing'].includes(record.automation_status.result)) {
+            if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
               return (
                 <>
                   <Button type="danger" shape="round" icon="warning" size="small">
