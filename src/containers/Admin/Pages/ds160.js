@@ -250,13 +250,17 @@ class AdminPageDS160 extends Component {
           if (record.automation_status.result === 'pending') {
             return <Tag color="volcano">Pending</Tag>
           }
-          if (record.automation_status.result === 'processing' || record.automation_status.automation_status.result === 'processing') {
+          if (record.automation_status.result === 'processing' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'processing')) {
             return <Tag color="green">In progress</Tag>
           }
-          if (record.automation_status.result === 'timeout' || record.automation_status.automation_status.result === 'timeout') {
+          if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
             return <Tag color="red">Timeout</Tag>
           }
-          if (record.automation_status.error || record.automation_status.result === 'fail' || record.automation_status.automation_status.result === 'fail') {
+          if (
+            record.automation_status.error ||
+            record.automation_status.result === 'fail' ||
+            (record.automation_status.automation_status && record.automation_status.automation_status.result === 'fail')
+          ) {
             return <Tag color="red">Failed</Tag>
           }
           if (record.automation_status.result === 'success' && record.automation_status.email_status === false) {
@@ -313,7 +317,6 @@ class AdminPageDS160 extends Component {
           if (!record.automation_status) {
             return '-'
           }
-          console.log(record.automation_status.result)
           if (!['success', 'pending', 'processing'].includes(record.automation_status.result)) {
             if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
               return (
