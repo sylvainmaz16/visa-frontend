@@ -39,8 +39,7 @@ import './index.less'
 const openNotificationWithIcon = type => {
   notification[type]({
     message: 'Submit without payment',
-    description:
-      type == 'success' ? 'Successfully submitted. It may take few minutes to process' : 'Failed to submit',
+    description: type == 'success' ? 'Successfully submitted. It may take few minutes to process' : 'Failed to submit',
   })
 }
 
@@ -70,17 +69,25 @@ class DS160_Wizard extends Component {
     const adminToken = localStorage.getItem('immigration4us_token')
 
     if (result.success === false || (!adminToken && result.data && result.data.automation_status && result.data.automation_status.result === 'success')) {
-      history.push(agency ? {
-        pathname: '/',
-        search: `?agency=${agency}`,
-      } : {
-          pathname: '/',
-        })
+      history.push(
+        agency
+          ? {
+              pathname: '/',
+              search: `?agency=${agency}`,
+            }
+          : {
+              pathname: '/',
+            },
+      )
     }
   }
 
   onPrev = (data, field) => {
-    if (field != '') { this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data })) } else { this.props.updateValues(DS160.DS160_UPDATE_VALUES, data) }
+    if (field != '') {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data }))
+    } else {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, data)
+    }
     this.props.onPrevStep(DS160.DS160_PREV_STEP)
 
     const { agency } = this.props
@@ -97,7 +104,11 @@ class DS160_Wizard extends Component {
   }
 
   onFirst = (data, field) => {
-    if (field != '') { this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data })) } else { this.props.updateValues(DS160.DS160_UPDATE_VALUES, data) }
+    if (field != '') {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data }))
+    } else {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, data)
+    }
     this.props.onFirstStep(DS160.DS160_FIRST_STEP)
 
     const { agency } = this.props
@@ -114,7 +125,11 @@ class DS160_Wizard extends Component {
   }
 
   onNext = (data, field) => {
-    if (field != '') { this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data })) } else { this.props.updateValues(DS160.DS160_UPDATE_VALUES, data) }
+    if (field != '') {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data }))
+    } else {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, data)
+    }
     this.props.onNextStep(DS160.DS160_NEXT_STEP)
 
     const { agency } = this.props
@@ -188,7 +203,11 @@ class DS160_Wizard extends Component {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        if (handleDates) { this.onSubmitWithoutPayment(handleDates(values.data), field) } else { this.onSubmitWithoutPayment(values.data, field) }
+        if (handleDates) {
+          this.onSubmitWithoutPayment(handleDates(values.data), field)
+        } else {
+          this.onSubmitWithoutPayment(values.data, field)
+        }
       }
     })
   }
@@ -197,7 +216,11 @@ class DS160_Wizard extends Component {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        if (handleDates) { this.onSubmit(handleDates(values.data), field) } else { this.onSubmit(values.data, field) }
+        if (handleDates) {
+          this.onSubmit(handleDates(values.data), field)
+        } else {
+          this.onSubmit(values.data, field)
+        }
       }
     })
   }
@@ -205,20 +228,32 @@ class DS160_Wizard extends Component {
   handlePrev = (e, form, handleDates, field) => {
     e.preventDefault()
     const values = form.getFieldsValue()
-    if (handleDates) { this.onPrev(handleDates(values.data), field) } else { this.onPrev(values.data, field) }
+    if (handleDates) {
+      this.onPrev(handleDates(values.data), field)
+    } else {
+      this.onPrev(values.data, field)
+    }
   }
 
   handleFirst = (e, form, handleDates, field) => {
     e.preventDefault()
     const values = form.getFieldsValue()
-    if (handleDates) { this.onFirst(handleDates(values.data), field) } else { this.onFirst(values.data, field) }
+    if (handleDates) {
+      this.onFirst(handleDates(values.data), field)
+    } else {
+      this.onFirst(values.data, field)
+    }
   }
 
   handleSave = (e, form, handleDates, field) => {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        if (handleDates) { this.onSaveAndContinue(handleDates(values.data), field) } else { this.onSaveAndContinue(values.data, field) }
+        if (handleDates) {
+          this.onSaveAndContinue(handleDates(values.data), field)
+        } else {
+          this.onSaveAndContinue(values.data, field)
+        }
       }
     })
   }
@@ -227,19 +262,21 @@ class DS160_Wizard extends Component {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        if (handleDates) { this.onNext(handleDates(values.data), field) } else { this.onNext(values.data, field) }
+        if (handleDates) {
+          this.onNext(handleDates(values.data), field)
+        } else {
+          this.onNext(values.data, field)
+        }
       }
     })
-  };
+  }
 
   handleLanguageChange = lang => {
     this.props.changeLanguage(DS160.DS160_CHANGE_LANGUAGE, lang)
   }
 
   render() {
-    const {
-      step_index, ds160, loading, token, agency,
-    } = this.props
+    const { step_index, ds160, loading, token, agency } = this.props
 
     if (loading) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin" />
@@ -253,7 +290,9 @@ class DS160_Wizard extends Component {
     const adminToken = localStorage.getItem('immigration4us_token')
 
     let fieldsList = [
-      null, '', '',
+      null,
+      '',
+      '',
       'form_personal_info',
       'form_travel',
       'form_travel_company',
@@ -286,7 +325,9 @@ class DS160_Wizard extends Component {
       (purpose_of_trip == 'J' && other_purpose_of_trip == 'J1-J1')
     ) {
       fieldsList = [
-        null, '', '',
+        null,
+        '',
+        '',
         'form_personal_info',
         'form_travel',
         'form_travel_company',
@@ -310,7 +351,9 @@ class DS160_Wizard extends Component {
       ]
     } else {
       fieldsList = [
-        null, '', '',
+        null,
+        '',
+        '',
         'form_personal_info',
         'form_travel',
         'form_travel_company',
@@ -540,23 +583,26 @@ class DS160_Wizard extends Component {
             formRender = <Form_DS160_16_Preparer {...sharedParams} data={ds160.form_e_sign} />
             break
           case 'form_photo':
-            formRender = <Form_Photo
-              {...sharedParams}
-              data={ds160.form_photo}
-
-              interview_location={ds160.interview_location}
-              sex={ds160.form_personal_info.sex}
-              country_of_birth={ds160.form_personal_info.place_of_birth.country}
-              purpose_of_trip={ds160.form_travel.purpose_of_trip}
-              other_purpose_of_trip={ds160.form_travel.other_purpose_of_trip}
-            />
+            formRender = (
+              <Form_Photo
+                {...sharedParams}
+                data={ds160.form_photo}
+                interview_location={ds160.interview_location}
+                sex={ds160.form_personal_info.sex}
+                country_of_birth={ds160.form_personal_info.place_of_birth.country}
+                purpose_of_trip={ds160.form_travel.purpose_of_trip}
+                other_purpose_of_trip={ds160.form_travel.other_purpose_of_trip}
+              />
+            )
             break
           case 'form_final':
-            formRender = <Form_Final
-              {...sharedParams}
-              handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
-              handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
-            />
+            formRender = (
+              <Form_Final
+                {...sharedParams}
+                handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
+                handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
+              />
+            )
             break
           default:
             break
@@ -567,14 +613,14 @@ class DS160_Wizard extends Component {
     return (
       <div className={agency ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
         <VisaHeader className={step_index == 1 ? 'visa-com-header-first' : 'visa-com-header-not-first'} />
-        <VisaBanner className={step_index == 1 ? 'visa-com-banner-first' : 'visa-com-banner-not-first'}>
-          DS 160 US Visa Online Application
-        </VisaBanner>
-        <Progress strokeColor={{ '0%': agency ? '#239aac' : '#3668A9'/* '#108ee9' */, '100%': '#87d068' }} percent={parseInt(step_index * 100.0 / (fieldsList.length - 1))} status="active" style={{ width: '80%', left: '10%' }} />
-        <div className="visa-ds160__content container">
-          {formRender}
-        </div>
-
+        <VisaBanner className={step_index == 1 ? 'visa-com-banner-first' : 'visa-com-banner-not-first'}>DS 160 US Visa Online Application</VisaBanner>
+        <Progress
+          strokeColor={{ '0%': agency ? '#239aac' : '#3668A9' /* '#108ee9' */, '100%': '#87d068' }}
+          percent={parseInt((step_index * 100.0) / (fieldsList.length - 1))}
+          status="active"
+          style={{ width: '80%', left: '10%' }}
+        />
+        <div className="visa-ds160__content container">{formRender}</div>
       </div>
     )
   }
@@ -595,7 +641,10 @@ const mapDispatchToProps = dispatch => ({
   },
   onSaveAndContinueLater: (type, payload, applicationId, cb) => {
     dispatch({
-      type, payload, applicationId, cb,
+      type,
+      payload,
+      applicationId,
+      cb,
     })
   },
   loadApplicationFromDB: (type, applicationId, cb) => {
@@ -613,9 +662,4 @@ const mapStateToProps = state => ({
   applicationId: state.main.applicationId,
 })
 
-export default withCookies(withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(DS160_Wizard),
-))
+export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(DS160_Wizard)))

@@ -320,26 +320,19 @@ class AdminPageDS160 extends Component {
           if (!['success', 'pending', 'processing'].includes(record.automation_status.result)) {
             if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
               return (
-                <>
-                  <Button type="danger" shape="round" icon="warning" size="small">
-                    {user.role === constants.USER_ROLE.ADMIN ? (
-                      <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
-                        {' '}
-                        Timeout
-                      </a>
-                    ) : (
-                      <a style={{ textDecoration: 'none', color: 'white' }} disabled>
-                        {' '}
-                        Timeout
-                      </a>
-                    )}
-                  </Button>
-                  {user.role === constants.USER_ROLE.ADMIN && (
-                    <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
-                      Submit without payment
-                    </Button>
+                <Button type="warning" shape="round" icon="warning" size="small">
+                  {user.role === constants.USER_ROLE.ADMIN ? (
+                    <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
+                      {' '}
+                      Timeout
+                    </a>
+                  ) : (
+                    <a style={{ textDecoration: 'none', color: 'white' }} disabled>
+                      {' '}
+                      Timeout
+                    </a>
                   )}
-                </>
+                </Button>
               )
             }
 
