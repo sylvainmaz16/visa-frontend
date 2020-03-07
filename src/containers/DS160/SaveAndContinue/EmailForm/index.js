@@ -10,7 +10,7 @@ class MyForm extends Component {
         this.props.onSendLink(values)
       }
     })
-  };
+  }
 
   render() {
     const { getFieldDecorator, isFieldTouched } = this.props.form
@@ -28,7 +28,9 @@ class MyForm extends Component {
 
     let link = `${constants.myURL}/ds-160/application-form/token=${applicationId}`
 
-    if (agency) { link = `${link}?agency=${agency}` }
+    if (agency) {
+      link = `${link}?agency=${agency}`
+    }
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -37,27 +39,22 @@ class MyForm extends Component {
             Please use the following link to return to your form from any computer.
             <br />
             <a href={link}>{link}</a>
-            <br />
-            {' '}
-            This link will expire after 30 days.
-<br />
-            {' '}
-            Enter your email address to send the link by email.
+            <br /> This link will expire after 30 days.
+            <br /> Enter your email address to send the link by email.
           </h2>
         </div>
         <Form.Item>
           {getFieldDecorator('email', {
             initialValue: '',
             rules: [{ type: 'email', required: true, message: 'Please input valid email address' }],
-          })(
-            <Input disabled={sending} />,
-          )}
+          })(<Input disabled={sending} />)}
         </Form.Item>
         <div style={{ textAlign: 'center' }}>
-          <Button type="primary" htmlType="submit" loading={sending}>SEND LINK</Button>
+          <Button type="primary" htmlType="submit" loading={sending}>
+            SEND LINK
+          </Button>
         </div>
       </Form>
-
     )
   }
 }

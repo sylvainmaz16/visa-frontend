@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Form, Button, Input, Row, Col,
-} from 'antd'
+import { Form, Button, Input, Row, Col } from 'antd'
 import * as constants from 'utils/constants'
 import VisaRadio from 'components/VisaRadio'
 import VisaInput from 'components/VisaInput'
@@ -11,6 +9,7 @@ import VisaDatePickerWithCheck from 'components/VisaDatePickerWithCheck'
 import * as utils from 'utils'
 import VisaLostPassports from 'components/VisaLostPassports'
 import resources from 'utils/resources'
+import _ from 'lodash'
 
 const { TextArea } = Input
 
@@ -21,16 +20,18 @@ class MyForm extends Component {
   }
 
   handleDates = data => {
-    if (data.issuance_date) { data.issuance_date = data.issuance_date.format('DD/MMM/YYYY') }
-    if (data.expiration_date) { data.expiration_date = data.expiration_date.format('DD/MMM/YYYY') }
+    if (data.issuance_date) {
+      data.issuance_date = data.issuance_date.format('DD/MMM/YYYY')
+    }
+    if (data.expiration_date) {
+      data.expiration_date = data.expiration_date.format('DD/MMM/YYYY')
+    }
 
     return data
   }
 
   render() {
-    const {
-      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-    } = this.props.form
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -41,17 +42,17 @@ class MyForm extends Component {
       },
     }
 
-    const {
-      showPrev, showNext, onPrev, onNext, data, date_birth, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
 
     if (data.lost_info.constructor != Array) {
-      data.lost_info = [{
-        number: null,
-        number_NA: null,
-        country: null,
-        explain: null,
-      }]
+      data.lost_info = [
+        {
+          number: null,
+          number_NA: null,
+          country: null,
+          explain: null,
+        },
+      ]
     }
 
     getFieldDecorator('data.doc_type', { initialValue: utils.getInitialValue(data.doc_type) })
@@ -80,17 +81,14 @@ class MyForm extends Component {
           </Col>
         </Row>
 
-        {
-          this.props.form.getFieldValue('data.doc_type') == 'T' &&
+        {this.props.form.getFieldValue('data.doc_type') == 'T' && (
           <Form.Item label={tr(resources.passport.doc_type_explain.label)}>
             {getFieldDecorator('data.doc_type_explain', {
               initialValue: utils.getInitialValue(data.doc_type_explain),
               rules: [{ required: true, message: tr(resources.validations.required) }],
-            })(
-              <TextArea rows={5} />,
-            )}
+            })(<TextArea rows={5} />)}
           </Form.Item>
-        }
+        )}
 
         <Row gutter={16}>
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -151,6 +149,7 @@ class MyForm extends Component {
               initialValue={_.get(data, 'issued_location.state')}
               required={false}
               getFieldDecorator={getFieldDecorator}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.passport.issued_location.state), true) }]}
               maxLength={25}
               tr={tr}
             />
@@ -172,12 +171,10 @@ class MyForm extends Component {
 
         <VisaDatePicker
           label={tr(resources.passport.issuance_date.label)}
-
           field="data.issuance_date"
           initialValue={data.issuance_date}
           getFieldDecorator={getFieldDecorator}
           customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, tr(resources.passport.issuance_date.label), date_birth) }]}
-
           setFieldsValue={setFieldsValue}
           getFieldValue={getFieldValue}
           tr={tr}
@@ -190,29 +187,25 @@ class MyForm extends Component {
               field="data.expiration_date"
               initialValue={data.expiration_date}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateExpirationDate(rule, value, callback, tr(resources.passport.expiration_date.label), this.props.form.getFieldValue('data.issuance_date')) }]}
+              customRule={[
+                {
+                  validator: (rule, value, callback) =>
+                    this.props.validators.validateExpirationDate(rule, value, callback, tr(resources.passport.expiration_date.label), this.props.form.getFieldValue('data.issuance_date')),
+                },
+              ]}
               setFieldsValue={setFieldsValue}
               getFieldValue={getFieldValue}
-
               checkField="data.expiration_date_NA"
               checkValue={data.expiration_date_NA}
               checkLabel={tr(resources.passport.expiration_date.check)}
               tr={tr}
-
             />
           </Col>
         </Row>
 
-        <VisaRadio
-          label={tr(resources.passport.b_ever_lost_passport.label)}
-          field="data.b_ever_lost_passport"
-          initialValue={data.b_ever_lost_passport}
-          getFieldDecorator={getFieldDecorator}
-          tr={tr}
-        />
+        <VisaRadio label={tr(resources.passport.b_ever_lost_passport.label)} field="data.b_ever_lost_passport" initialValue={data.b_ever_lost_passport} getFieldDecorator={getFieldDecorator} tr={tr} />
 
-        {
-          this.props.form.getFieldValue('data.b_ever_lost_passport') &&
+        {this.props.form.getFieldValue('data.b_ever_lost_passport') && (
           <>
             <div className="visa-global-field visa-global-border-bottom">
               <h2 className="visa-global-section-title">{tr(resources.passport.section_title_lost_passport)}</h2>
@@ -229,22 +222,41 @@ class MyForm extends Component {
               tr={tr}
             />
           </>
-        }
+        )}
 
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }

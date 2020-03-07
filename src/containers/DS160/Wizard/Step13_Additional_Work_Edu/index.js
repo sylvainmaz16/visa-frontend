@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon,
-} from 'antd'
+import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon } from 'antd'
 import * as constants from 'utils/constants'
 import VisaSelect from 'components/VisaSelect'
 import moment from 'moment'
@@ -25,8 +23,12 @@ class MyForm extends Component {
   }
 
   handleDates = data => {
-    if (data.militaries && data.militaries[0] && data.militaries[0].date_from) { data.militaries[0].date_from = data.militaries[0].date_from.format('DD/MMM/YYYY') }
-    if (data.militaries && data.militaries[0] && data.militaries[0].date_to) { data.militaries[0].date_to = data.militaries[0].date_to.format('DD/MMM/YYYY') }
+    if (data.militaries && data.militaries[0] && data.militaries[0].date_from) {
+      data.militaries[0].date_from = data.militaries[0].date_from.format('DD/MMM/YYYY')
+    }
+    if (data.militaries && data.militaries[0] && data.militaries[0].date_to) {
+      data.militaries[0].date_to = data.militaries[0].date_to.format('DD/MMM/YYYY')
+    }
 
     return data
   }
@@ -42,9 +44,7 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     }
-    const {
-      showPrev, showNext, onPrev, onNext, data, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
 
     getFieldDecorator('data.b_belong_to_clan', { initialValue: utils.getInitialValue(data.b_belong_to_clan) })
     getFieldDecorator('data.b_travel_last_five_years', { initialValue: utils.getInitialValue(data.b_travel_last_five_years) })
@@ -59,18 +59,19 @@ class MyForm extends Component {
           <h2 className="visa-global-section-title">{tr(resources.additional_work.section_title)}</h2>
         </div>
 
-        <VisaExplain
-          label={tr(resources.additional_work.b_belong_to_clan)}
-          radioField="data.b_belong_to_clan"
-          radioInitialValue={data.b_belong_to_clan}
-          radioValue={this.props.form.getFieldValue('data.b_belong_to_clan')}
-          textField="data.clan_name"
-          textLabel={tr(resources.additional_work.clan_name)}
-          textInitialValue={data.clan_name}
-          getFieldDecorator={getFieldDecorator}
-          validators={this.props.validators}
-          tr={tr}
-        />
+        <VisaRadio label={tr(resources.additional_work.b_belong_to_clan)} field="data.b_belong_to_clan" initialValue={data.b_belong_to_clan} getFieldDecorator={getFieldDecorator} tr={tr} />
+
+        {getFieldValue('data.b_belong_to_clan') && (
+          <VisaInput
+            label={tr(resources.additional_work.clan_name)}
+            field="data.clan_name"
+            initialValue={data.clan_name}
+            getFieldDecorator={getFieldDecorator}
+            maxLength={40}
+            tr={tr}
+            customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, tr(resources.additional_work.clan_name), true) }]}
+          />
+        )}
 
         <VisaInputArray
           label={tr(resources.additional_work.languages.label)}
@@ -93,7 +94,7 @@ class MyForm extends Component {
           tr={tr}
         />
 
-        {this.props.form.getFieldValue('data.b_travel_last_five_years') &&
+        {this.props.form.getFieldValue('data.b_travel_last_five_years') && (
           <VisaSelectArray
             label={tr(resources.additional_work.countries.label)}
             getFieldDecorator={getFieldDecorator}
@@ -104,17 +105,11 @@ class MyForm extends Component {
             keysField="copy.countries"
             tr={tr}
           />
-        }
+        )}
 
-        <VisaRadio
-          label={tr(resources.additional_work.b_belong_to_org)}
-          field="data.b_belong_to_org"
-          initialValue={data.b_belong_to_org}
-          getFieldDecorator={getFieldDecorator}
-          tr={tr}
-        />
+        <VisaRadio label={tr(resources.additional_work.b_belong_to_org)} field="data.b_belong_to_org" initialValue={data.b_belong_to_org} getFieldDecorator={getFieldDecorator} tr={tr} />
 
-        {this.props.form.getFieldValue('data.b_belong_to_org') &&
+        {this.props.form.getFieldValue('data.b_belong_to_org') && (
           <VisaInputArray
             label={tr(resources.additional_work.organizations.label)}
             getFieldDecorator={getFieldDecorator}
@@ -127,17 +122,11 @@ class MyForm extends Component {
             customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Organization Name', true) }]}
             tr={tr}
           />
-        }
+        )}
 
-        <VisaRadio
-          label={tr(resources.additional_work.b_military)}
-          field="data.b_military"
-          initialValue={data.b_military}
-          getFieldDecorator={getFieldDecorator}
-          tr={tr}
-        />
+        <VisaRadio label={tr(resources.additional_work.b_military)} field="data.b_military" initialValue={data.b_military} getFieldDecorator={getFieldDecorator} tr={tr} />
 
-        {this.props.form.getFieldValue('data.b_military') &&
+        {this.props.form.getFieldValue('data.b_military') && (
           <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -186,7 +175,6 @@ class MyForm extends Component {
                   initialValue={data.militaries[0].date_from}
                   getFieldDecorator={getFieldDecorator}
                   customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, 'Date of Attendance From', false) }]}
-
                   setFieldsValue={setFieldsValue}
                   getFieldValue={getFieldValue}
                   tr={tr}
@@ -198,8 +186,12 @@ class MyForm extends Component {
                   field="data.militaries[0].date_to"
                   initialValue={data.militaries[0].date_to}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.militaries[0].date_from'), false) }]}
-
+                  customRule={[
+                    {
+                      validator: (rule, value, callback) =>
+                        this.props.validators.validateBetweenDate(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.militaries[0].date_from'), false),
+                    },
+                  ]}
                   setFieldsValue={setFieldsValue}
                   getFieldValue={getFieldValue}
                   tr={tr}
@@ -207,7 +199,7 @@ class MyForm extends Component {
               </Col>
             </Row>
           </>
-        }
+        )}
 
         <VisaExplain
           label={tr(resources.additional_work.b_taliban)}
@@ -248,17 +240,36 @@ class MyForm extends Component {
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }
