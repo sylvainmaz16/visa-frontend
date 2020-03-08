@@ -149,7 +149,7 @@ class MyForm extends Component {
               initialValue={_.get(data, 'issued_location.state')}
               required={false}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.passport.issued_location.state), true) }]}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.passport.issued_location.state), false) }]}
               maxLength={25}
               tr={tr}
             />

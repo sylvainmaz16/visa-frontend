@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber,
-} from 'antd'
+import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, InputNumber } from 'antd'
 import * as constants from 'utils/constants'
 import VisaRadio from 'components/VisaRadio'
 import VisaAddress from 'components/VisaAddress'
@@ -22,14 +20,26 @@ class MyForm extends Component {
   }
 
   handleDates = data => {
-    if (data.father && data.father.birthday) { data.father.birthday = data.father.birthday.format('DD/MMM/YYYY') }
-    if (data.mother && data.mother.birthday) { data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY') }
-    if (data.spouse && data.spouse.birthday) { data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY') }
+    if (data.father && data.father.birthday) {
+      data.father.birthday = data.father.birthday.format('DD/MMM/YYYY')
+    }
+    if (data.mother && data.mother.birthday) {
+      data.mother.birthday = data.mother.birthday.format('DD/MMM/YYYY')
+    }
+    if (data.spouse && data.spouse.birthday) {
+      data.spouse.birthday = data.spouse.birthday.format('DD/MMM/YYYY')
+    }
     if (data.former_spouse) {
       for (let i = 0; i < data.former_spouse.length; i++) {
-        if (data.former_spouse[i] && data.former_spouse[i].birthday) { data.former_spouse[i].birthday = data.former_spouse[i].birthday.format('DD/MMM/YYYY') }
-        if (data.former_spouse[i] && data.former_spouse[i].marriage_date) { data.former_spouse[i].marriage_date = data.former_spouse[i].marriage_date.format('DD/MMM/YYYY') }
-        if (data.former_spouse[i] && data.former_spouse[i].end_date) { data.former_spouse[i].end_date = data.former_spouse[i].end_date.format('DD/MMM/YYYY') }
+        if (data.former_spouse[i] && data.former_spouse[i].birthday) {
+          data.former_spouse[i].birthday = data.former_spouse[i].birthday.format('DD/MMM/YYYY')
+        }
+        if (data.former_spouse[i] && data.former_spouse[i].marriage_date) {
+          data.former_spouse[i].marriage_date = data.former_spouse[i].marriage_date.format('DD/MMM/YYYY')
+        }
+        if (data.former_spouse[i] && data.former_spouse[i].end_date) {
+          data.former_spouse[i].end_date = data.former_spouse[i].end_date.format('DD/MMM/YYYY')
+        }
       }
     }
 
@@ -37,9 +47,7 @@ class MyForm extends Component {
   }
 
   render() {
-    const {
-      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-    } = this.props.form
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -50,9 +58,7 @@ class MyForm extends Component {
       },
     }
 
-    const {
-      showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, martial_status, tr } = this.props
 
     getFieldDecorator('data.father.surname_NA', { initialValue: utils.getInitialValue(data.father.surname_NA) })
     getFieldDecorator('data.father.given_name_NA', { initialValue: utils.getInitialValue(data.father.given_name_NA) })
@@ -101,7 +107,6 @@ class MyForm extends Component {
                 field="data.father.surname"
                 initialValue={data.father.surname}
                 getFieldDecorator={getFieldDecorator}
-
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname', !this.props.form.getFieldValue('data.father.surname_NA')) }]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
@@ -117,7 +122,9 @@ class MyForm extends Component {
                 field="data.father.given_name"
                 initialValue={data.father.given_name}
                 getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', !this.props.form.getFieldValue('data.father.given_name_NA')) }]}
+                customRule={[
+                  { validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', !this.props.form.getFieldValue('data.father.given_name_NA')) },
+                ]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
                 checkField="data.father.given_name_NA"
@@ -126,8 +133,7 @@ class MyForm extends Component {
               />
             </Col>
           </Row>
-          {
-            (!this.props.form.getFieldValue('data.father.surname_NA') || !this.props.form.getFieldValue('data.father.given_name_NA')) &&
+          {(!this.props.form.getFieldValue('data.father.surname_NA') || !this.props.form.getFieldValue('data.father.given_name_NA')) && (
             <>
               <Row gutter={16}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -136,7 +142,12 @@ class MyForm extends Component {
                     field="data.father.birthday"
                     initialValue={data.father.birthday}
                     getFieldDecorator={getFieldDecorator}
-                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Father's date of birth", date_birth, !this.props.form.getFieldValue('data.father.birthday_NA')) }]}
+                    customRule={[
+                      {
+                        validator: (rule, value, callback) =>
+                          this.props.validators.validateParentBirthDate(rule, value, callback, "Father's date of birth", date_birth, !this.props.form.getFieldValue('data.father.birthday_NA')),
+                      },
+                    ]}
                     setFieldsValue={setFieldsValue}
                     getFieldValue={getFieldValue}
                     checkField="data.father.birthday_NA"
@@ -146,15 +157,8 @@ class MyForm extends Component {
                 </Col>
               </Row>
 
-              <VisaRadio
-                label={tr(resources.family.father.b_in_US.label)}
-                field="data.father.b_in_US"
-                initialValue={data.father.b_in_US}
-                getFieldDecorator={getFieldDecorator}
-                tr={tr}
-              />
-              {
-                this.props.form.getFieldValue('data.father.b_in_US') &&
+              <VisaRadio label={tr(resources.family.father.b_in_US.label)} field="data.father.b_in_US" initialValue={data.father.b_in_US} getFieldDecorator={getFieldDecorator} tr={tr} />
+              {this.props.form.getFieldValue('data.father.b_in_US') && (
                 <VisaSelectItem
                   label={tr(resources.family.father.status.label)}
                   field="data.father.status"
@@ -165,10 +169,9 @@ class MyForm extends Component {
                   getFieldDecorator={getFieldDecorator}
                   tr={tr}
                 />
-              }
+              )}
             </>
-          }
-
+          )}
         </Form.Item>
 
         <Form.Item label={tr(resources.family.mother.label)} required>
@@ -180,7 +183,6 @@ class MyForm extends Component {
                 field="data.mother.surname"
                 initialValue={data.mother.surname}
                 getFieldDecorator={getFieldDecorator}
-
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Surname', !this.props.form.getFieldValue('data.mother.surname_NA')) }]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
@@ -196,8 +198,9 @@ class MyForm extends Component {
                 field="data.mother.given_name"
                 initialValue={data.mother.given_name}
                 getFieldDecorator={getFieldDecorator}
-
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', !this.props.form.getFieldValue('data.mother.given_name_NA')) }]}
+                customRule={[
+                  { validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Given Name', !this.props.form.getFieldValue('data.mother.given_name_NA')) },
+                ]}
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
                 checkField="data.mother.given_name_NA"
@@ -206,8 +209,7 @@ class MyForm extends Component {
               />
             </Col>
           </Row>
-          {
-            (!this.props.form.getFieldValue('data.mother.surname_NA') || !this.props.form.getFieldValue('data.mother.given_name_NA')) &&
+          {(!this.props.form.getFieldValue('data.mother.surname_NA') || !this.props.form.getFieldValue('data.mother.given_name_NA')) && (
             <>
               <Row gutter={16}>
                 <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -216,7 +218,12 @@ class MyForm extends Component {
                     field="data.mother.birthday"
                     initialValue={data.mother.birthday}
                     getFieldDecorator={getFieldDecorator}
-                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateParentBirthDate(rule, value, callback, "Mother's date of birth", date_birth, !this.props.form.getFieldValue('data.mother.birthday_NA')) }]}
+                    customRule={[
+                      {
+                        validator: (rule, value, callback) =>
+                          this.props.validators.validateParentBirthDate(rule, value, callback, "Mother's date of birth", date_birth, !this.props.form.getFieldValue('data.mother.birthday_NA')),
+                      },
+                    ]}
                     setFieldsValue={setFieldsValue}
                     getFieldValue={getFieldValue}
                     checkField="data.mother.birthday_NA"
@@ -226,15 +233,8 @@ class MyForm extends Component {
                 </Col>
               </Row>
 
-              <VisaRadio
-                label={tr(resources.family.mother.b_in_US.label)}
-                field="data.mother.b_in_US"
-                initialValue={data.mother.b_in_US}
-                getFieldDecorator={getFieldDecorator}
-                tr={tr}
-              />
-              {
-                this.props.form.getFieldValue('data.mother.b_in_US') &&
+              <VisaRadio label={tr(resources.family.mother.b_in_US.label)} field="data.mother.b_in_US" initialValue={data.mother.b_in_US} getFieldDecorator={getFieldDecorator} tr={tr} />
+              {this.props.form.getFieldValue('data.mother.b_in_US') && (
                 <VisaSelectItem
                   label={tr(resources.family.mother.status.label)}
                   field="data.mother.status"
@@ -245,9 +245,9 @@ class MyForm extends Component {
                   getFieldDecorator={getFieldDecorator}
                   tr={tr}
                 />
-              }
+              )}
             </>
-          }
+          )}
         </Form.Item>
 
         <div className="visa-global-field visa-global-border-bottom">
@@ -263,8 +263,7 @@ class MyForm extends Component {
           tr={tr}
         />
 
-        {
-          this.props.form.getFieldValue('data.b_other_relative') &&
+        {this.props.form.getFieldValue('data.b_other_relative') && (
           <Form.Item label={tr(resources.family.others.label)}>
             <VisaOtherRelatives
               getFieldDecorator={getFieldDecorator}
@@ -278,31 +277,20 @@ class MyForm extends Component {
               tr={tr}
             />
           </Form.Item>
-        }
+        )}
 
-        {
-          this.props.form.getFieldValue('data.b_other_relative') == false &&
-          <VisaRadio
-            label={tr(resources.family.b_more_relatives.label)}
-            field="data.b_more_relatives"
-            initialValue={data.b_more_relatives}
-            getFieldDecorator={getFieldDecorator}
-            tr={tr}
-          />
-        }
+        {this.props.form.getFieldValue('data.b_other_relative') == false && (
+          <VisaRadio label={tr(resources.family.b_more_relatives.label)} field="data.b_more_relatives" initialValue={data.b_more_relatives} getFieldDecorator={getFieldDecorator} tr={tr} />
+        )}
 
-        {martial_header[martial_status] &&
+        {martial_header[martial_status] && (
           <div className="visa-global-field visa-global-border-bottom">
             <h2 className="visa-global-section-title">
-              {tr(resources.family.section_title_family_information)}
-              :
-{' '}
-              {martial_header[martial_status]}
+              {tr(resources.family.section_title_family_information)}: {martial_header[martial_status]}
             </h2>
           </div>
-        }
-        {
-          (martial_header[martial_status] == 'Spouse' || martial_header[martial_status] == 'Partner') &&
+        )}
+        {(martial_header[martial_status] == 'Spouse' || martial_header[martial_status] == 'Partner') && (
           <Form.Item label={tr(resources.family.spouse.label)} required>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -334,7 +322,6 @@ class MyForm extends Component {
               initialValue={data.spouse.birthday}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, true) }]}
-
               setFieldsValue={setFieldsValue}
               getFieldValue={getFieldValue}
               tr={tr}
@@ -356,6 +343,7 @@ class MyForm extends Component {
                     label={tr(resources.family.spouse.place_of_birth.city.label)}
                     extra={tr(resources.family.spouse.place_of_birth.city.extra)}
                     field="data.spouse.place_of_birth.city"
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.family.spouse.place_of_birth.city.label)) }]}
                     initialValue={data.spouse.place_of_birth.city}
                     getFieldDecorator={getFieldDecorator}
                     required={false}
@@ -388,8 +376,7 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               tr={tr}
             />
-            {
-              this.props.form.getFieldValue('data.spouse.address_type') == 'O' &&
+            {this.props.form.getFieldValue('data.spouse.address_type') == 'O' && (
               <VisaAddress
                 label={tr(resources.family.spouse.address.label)}
                 field="data.spouse.address"
@@ -399,12 +386,11 @@ class MyForm extends Component {
                 us_address={false}
                 tr={tr}
               />
-            }
+            )}
           </Form.Item>
-        }
+        )}
 
-        {
-          (martial_header[martial_status] == 'Deceased Spouse') &&
+        {martial_header[martial_status] == 'Deceased Spouse' && (
           <Form.Item required>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -434,7 +420,6 @@ class MyForm extends Component {
               initialValue={data.spouse.birthday}
               getFieldDecorator={getFieldDecorator}
               customRule={[{ validator: (rule, value, callback) => this.props.validators.validateEarlierDate(rule, value, callback, true) }]}
-
               setFieldsValue={setFieldsValue}
               getFieldValue={getFieldValue}
               tr={tr}
@@ -478,17 +463,14 @@ class MyForm extends Component {
               </Row>
             </Form.Item>
           </Form.Item>
-        }
-        {
-          martial_header[martial_status] == 'Former Spouse' &&
+        )}
+        {martial_header[martial_status] == 'Former Spouse' && (
           <>
             <Form.Item label={tr(resources.family.former_spouse_number.label)} labelCol={{ md: { span: 6 }, sm: { span: 12 } }} wrapperCol={{ md: { span: 6 }, sm: { span: 12 } }}>
               {getFieldDecorator('data.former_spouse_number', {
                 initialValue: utils.getInitialValue(data.former_spouse_number),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.formerSpouseNumberValidator(rule, value, callback, this.props.form.getFieldValue('data.former_spouse').length) }],
-              })(
-                <InputNumber min={1} max={10} maxLength={1} />,
-              )}
+              })(<InputNumber min={1} max={10} maxLength={1} />)}
             </Form.Item>
             <VisaFormerSpouses
               label={tr(resources.family.former_spouse.label)}
@@ -502,22 +484,41 @@ class MyForm extends Component {
               tr={tr}
             />
           </>
-        }
+        )}
 
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }
