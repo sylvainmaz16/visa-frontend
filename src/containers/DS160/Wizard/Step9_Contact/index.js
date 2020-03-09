@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Form, Button, Select, Checkbox, Input, Radio, Row, Col,
-} from 'antd'
+import { Form, Button, Row, Col } from 'antd'
 import * as constants from 'utils/constants'
 import VisaAddress from 'components/VisaAddress'
 import VisaInput from 'components/VisaInput'
 import VisaSelectItem from 'components/VisaSelectItem'
-import * as utils from 'utils'
 import resources from 'utils/resources'
-
-const { Option } = Select
-const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
@@ -19,7 +13,8 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, isFieldTouched } = this.props.form
+    const { form } = this.props
+    const { getFieldDecorator, getFieldValue } = form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -30,13 +25,11 @@ class MyForm extends Component {
       },
     }
 
-    const {
-      showPrev, showNext, onPrev, onNext, data, martial_status, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, martial_status, tr } = this.props
 
     getFieldDecorator('data.relationship', { initialValue: data.relationship })
     const field = {
-      relationship: this.props.form.getFieldValue('data.relationship'),
+      relationship: getFieldValue('data.relationship'),
     }
 
     return (
@@ -53,42 +46,49 @@ class MyForm extends Component {
               field="data.relationship"
               initialValue={data.relationship}
               content={{
-                combines: constants.export_list((martial_status == 'M' || martial_status == 'C' || martial_status == 'L') ? tr(constants.relationship_options) : tr(constants.relationship_options_except_Spouse)),
+                combines: constants.export_list(
+                  martial_status === 'M' || martial_status === 'C' || martial_status === 'L' ? tr(constants.relationship_options) : tr(constants.relationship_options_except_Spouse),
+                ),
               }}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
             />
-            {field.relationship ? ((field.relationship == 'R' || field.relationship == 'S' || field.relationship == 'C') ?
-              <>
+            {field.relationship ? (
+              field.relationship === 'R' || field.relationship === 'S' || field.relationship === 'C' ? (
+                <>
+                  <VisaInput
+                    label={tr(resources.contact.surname)}
+                    field="data.surname"
+                    initialValue={data.surname}
+                    getFieldDecorator={getFieldDecorator}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.contact.surname)) }]}
+                    maxLength={33}
+                    tr={tr}
+                  />
+                  <VisaInput
+                    label={tr(resources.contact.given_name)}
+                    field="data.given_name"
+                    initialValue={data.given_name}
+                    getFieldDecorator={getFieldDecorator}
+                    customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.contact.given_name)) }]}
+                    maxLength={33}
+                    tr={tr}
+                  />
+                </>
+              ) : (
                 <VisaInput
-                  label={tr(resources.contact.surname)}
-                  field="data.surname"
-                  initialValue={data.surname}
+                  label={tr(resources.contact.organization)}
+                  field="data.organization"
+                  initialValue={data.organization}
                   getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.contact.surname)) }]}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, tr(resources.contact.organization)) }]}
                   maxLength={33}
                   tr={tr}
                 />
-                <VisaInput
-                  label={tr(resources.contact.given_name)}
-                  field="data.given_name"
-                  initialValue={data.given_name}
-                  getFieldDecorator={getFieldDecorator}
-                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.contact.given_name)) }]}
-                  maxLength={33}
-                  tr={tr}
-                />
-              </> :
-              <VisaInput
-                label={tr(resources.contact.organization)}
-                field="data.organization"
-                initialValue={data.organization}
-                getFieldDecorator={getFieldDecorator}
-                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, tr(resources.contact.organization)) }]}
-                maxLength={33}
-                tr={tr}
-              />) : ''
-            }
+              )
+            ) : (
+              ''
+            )}
           </Col>
         </Row>
 
@@ -130,19 +130,38 @@ class MyForm extends Component {
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }
-const Form_DS160_9_Contact = Form.create()(MyForm)
-export default Form_DS160_9_Contact
+const FormContact = Form.create()(MyForm)
+export default FormContact
