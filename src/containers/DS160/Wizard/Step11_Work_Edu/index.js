@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
-} from 'antd'
+import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd'
 import * as constants from 'utils/constants'
 import VisaAddress from 'components/VisaAddress'
 import VisaInput from 'components/VisaInput'
@@ -20,15 +18,15 @@ class MyForm extends Component {
   }
 
   handleDates = data => {
-    if (data.start_date) { data.start_date = data.start_date.format('DD/MMM/YYYY') }
+    if (data.start_date) {
+      data.start_date = data.start_date.format('DD/MMM/YYYY')
+    }
 
     return data
   }
 
   render() {
-    const {
-      getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue,
-    } = this.props.form
+    const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -39,9 +37,7 @@ class MyForm extends Component {
       },
     }
 
-    const {
-      showPrev, showNext, onPrev, onNext, data, date_birth, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, date_birth, tr } = this.props
     getFieldDecorator('data.occupation', { initialValue: utils.getInitialValue(data.occupation) })
 
     const occupation = this.props.form.getFieldValue('data.occupation')
@@ -63,27 +59,23 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               tr={tr}
             />
-            {occupation == 'O' &&
+            {occupation == 'O' && (
               <Form.Item label={tr(resources.work_or_edu.specify_other_explain.other)}>
                 {getFieldDecorator('data.specify_other_explain', {
                   initialValue: utils.getInitialValue(data.specify_other_explain),
                   rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, 'Specify Other', true) }],
-                })(
-                  <TextArea rows={3} />,
-                )}
+                })(<TextArea rows={3} />)}
               </Form.Item>
-            }
-            {occupation == 'N' &&
+            )}
+            {occupation == 'N' && (
               <Form.Item label={tr(resources.work_or_edu.specify_other_explain.explain)}>
                 {getFieldDecorator('data.specify_other_explain', {
                   initialValue: utils.getInitialValue(data.specify_other_explain),
                   rules: [{ required: true, message: tr(resources.validations.required) }],
-                })(
-                  <TextArea rows={3} />,
-                )}
+                })(<TextArea rows={3} />)}
               </Form.Item>
-            }
-            {(occupation != 'N' && occupation != 'RT' && occupation != 'H') &&
+            )}
+            {occupation != 'N' && occupation != 'RT' && occupation != 'H' && (
               <>
                 <VisaInput
                   label={tr(resources.work_or_edu.name.label)}
@@ -111,7 +103,6 @@ class MyForm extends Component {
                   field="data.start_date"
                   initialValue={data.start_date}
                   getFieldDecorator={getFieldDecorator}
-
                   setFieldsValue={setFieldsValue}
                   getFieldValue={getFieldValue}
                   customRule={[{ validator: (rule, value, callback) => this.props.validators.validatePreviousVisitdDate(rule, value, callback, 'Start Date', date_birth) }]}
@@ -132,30 +123,47 @@ class MyForm extends Component {
                 <Form.Item label={tr(resources.work_or_edu.duty_explain.label)}>
                   {getFieldDecorator('data.duty_explain', {
                     initialValue: utils.getInitialValue(data.duty_explain),
-                    rules: [{ required: true, message: tr(resources.validations.required) }],
-                  })(
-                    <TextArea rows={3} />,
-                  )}
+                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, tr(resources.work_or_edu.duty_explain.label), true) }],
+                  })(<TextArea rows={3} />)}
                 </Form.Item>
               </>
-            }
+            )}
           </Col>
         </Row>
 
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }
