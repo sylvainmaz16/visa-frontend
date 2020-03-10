@@ -154,6 +154,7 @@ class MyForm extends Component {
                   field="data.militaries[0].rank"
                   initialValue={data.militaries[0].rank}
                   getFieldDecorator={getFieldDecorator}
+                  customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLeadingSpace(rule, value, callback, tr(resources.additional_work.militaries.rank), true) }]}
                   maxLength={40}
                   tr={tr}
                 />

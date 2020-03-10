@@ -166,6 +166,7 @@ const isValidDate = value => {
   const day = terms[0]
   const month = terms[1]
   const year = terms[2]
+  if (d.year() < 1910) return false
 
   if (d.year() == year && d.month() == MONTH_LIST[month] && d.date() == parseInt(day)) {
     return true
@@ -488,6 +489,13 @@ const validatePassport = (rule, value, callback, field, required = false) => {
   }
   if (/^[a-zA-Z0-9 ]+$/.test(value) == false) {
     callback(`${field} is invalid. Only the following characters are valid for this field: A-Z, 0-9 and single spaces in between letters/numbers`)
+
+    return
+  }
+  const tripped = value.replace(/ {1,}/g, ' ')
+
+  if (tripped != value) {
+    callback(`${field} is invalid because it contains two or more spaces in between names.`)
 
     return
   }
