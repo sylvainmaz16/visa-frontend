@@ -5,9 +5,9 @@ import {
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
 import resources from 'utils/resources'
+import _ from 'lodash'
 import VisaSelect from '../VisaSelect'
 import validators from '../../containers/DS160/Validators/index'
-import _ from 'lodash'
 
 class VisaAddress extends Component {
   static defaultProps = {
@@ -65,7 +65,7 @@ class VisaAddress extends Component {
                 <VisaSelect combines={constants.state_options_list()} tr={tr} />,
               )}
             </Form.Item>
-          </Col> : <Col xs={{ span: 24 }} sm={{ span: 12 }}>
+                        </Col> : <Col xs={{ span: 24 }} sm={{ span: 12 }}>
               <Form.Item extra={tr(resources.components.address.state)}>
                 {getFieldDecorator(`${field}.state`, {
                   initialValue: _.get(initialValue, 'state') || undefined,
@@ -74,7 +74,7 @@ class VisaAddress extends Component {
                   <Input maxLength={20} />,
                 )}
               </Form.Item>
-            </Col>}
+                                 </Col>}
 
         </Row>
 

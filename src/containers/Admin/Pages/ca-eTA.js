@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {
-  Table, Tag, Button, Modal, notification, Input,
-} from 'antd'
+import { Table, Tag, Button, Modal, notification, Input } from 'antd'
 
 import momentTz from 'moment-timezone'
 import moment from 'moment'
@@ -46,19 +44,24 @@ class AdminPageCaETA extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if ((nextProps.pattern != this.props.pattern)) {
+    if (nextProps.pattern != this.props.pattern) {
       this.loadList(nextProps.pagination, false)
     }
   }
 
   loadList = (pagination, isAdmin) => {
     const { getCustomersList } = this.props
-    getCustomersList(ADMIN.GET_CUSTOMER_LIST_REQUEST, {
-      limit: pagination.pageSize,
-      skip: pagination.pageSize * (pagination.current - 1),
-      search: pagination.search,
-      filters: utils.getFilterString(pagination.filters),
-    }, isAdmin, constants.sites.Canada)
+    getCustomersList(
+      ADMIN.GET_CUSTOMER_LIST_REQUEST,
+      {
+        limit: pagination.pageSize,
+        skip: pagination.pageSize * (pagination.current - 1),
+        search: pagination.search,
+        filters: utils.getFilterString(pagination.filters),
+      },
+      isAdmin,
+      constants.sites.Canada,
+    )
   }
 
   handleTableChange = (pagination, filters) => {
@@ -69,7 +72,7 @@ class AdminPageCaETA extends Component {
       pathname: '/board/canada',
       search: `?current=${pagination.current}${pagination.search ? `&search=${pagination.search}` : ''}${filterString}`,
     })
-  };
+  }
 
   onClickSendEmail = record => {
     this.setState({
@@ -145,7 +148,10 @@ class AdminPageCaETA extends Component {
   onCheckETAStatus = record => {
     const { getETAStatus } = this.props
     this.setState({
-      visibleETAStatusModal: true, loadingETAStatus: true, etaStatus: {}, additionalInfo: record.additionalInfo,
+      visibleETAStatusModal: true,
+      loadingETAStatus: true,
+      etaStatus: {},
+      additionalInfo: record.additionalInfo,
     })
     getETAStatus(ADMIN.GET_ETA_STATUS_REQUEST, record._id, constants.sites.Canada, result => {
       this.setState({ loadingETAStatus: false, etaStatus: result })
@@ -157,12 +163,8 @@ class AdminPageCaETA extends Component {
   }
 
   render() {
-    const {
-      data, pagination, loading, total, user, users,
-    } = this.props
-    const {
-      visibleSendEmailModal, loadingSendEmail, selectedRecord, loadingETAStatus, visibleETAStatusModal, etaStatus, additionalInfo,
-    } = this.state
+    const { data, pagination, loading, total, user, users } = this.props
+    const { visibleSendEmailModal, loadingSendEmail, selectedRecord, loadingETAStatus, visibleETAStatusModal, etaStatus, additionalInfo } = this.state
 
     const agencyFilter = []
     if (users) {
@@ -179,7 +181,11 @@ class AdminPageCaETA extends Component {
         title: 'ID',
         dataIndex: 'app_id',
         key: 'app_id',
-        render: (text, record) => <a href={`https://eta-evisa-canada.com/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">{text}</a>,
+        render: (text, record) => (
+          <a href={`https://eta-evisa-canada.com/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">
+            {text}
+          </a>
+        ),
       },
       {
         title: 'Surname',
@@ -214,7 +220,9 @@ class AdminPageCaETA extends Component {
         dataIndex: 'createdAt',
         key: 'createdAt',
         render: text => {
-          const utcTime = moment(text).utc().format()
+          const utcTime = moment(text)
+            .utc()
+            .format()
           const gmt5Time = momentTz.tz(utcTime, 'YYYY-MM-DDTHH:mm:ssZ', 'America/New_York')
 
           return gmt5Time.format('YYYY-MM-DD HH:mm:ss')
@@ -241,7 +249,11 @@ class AdminPageCaETA extends Component {
 
           return <Tag color="geekblue">Paid</Tag>
         },
-        filters: [{ text: 'Paid', value: 'paid' }, { text: 'Not paid', value: 'not_paid' }, { text: 'Not completed', value: 'not_completed' }],
+        filters: [
+          { text: 'Paid', value: 'paid' },
+          { text: 'Not paid', value: 'not_paid' },
+          { text: 'Not completed', value: 'not_completed' },
+        ],
         filteredValue: pagination.filters.checkout,
         onFilter: (value, record) => {
           if (value === 'paid') return record.completed && record.paid
@@ -269,16 +281,22 @@ class AdminPageCaETA extends Component {
 
           return <Tag color="geekblue">Success</Tag>
         },
-        filters: [{ text: '-', value: 'not_completed' }, { text: 'Pending', value: 'pending' }, { text: 'In progress', value: 'in_progress' }, { text: 'Failed', value: 'failed' }, { text: 'Success', value: 'success' }],
+        filters: [
+          { text: '-', value: 'not_completed' },
+          { text: 'Pending', value: 'pending' },
+          { text: 'In progress', value: 'in_progress' },
+          { text: 'Failed', value: 'failed' },
+          { text: 'Success', value: 'success' },
+        ],
         filteredValue: pagination.filters.automation_status,
         onFilter: (value, record) => {
           if (value === 'not_completed') return !record.completed
           if (value === 'pending') return record.completed && !record.automation_status
           if (value === 'in_progress') return record.completed && record.automation_status && record.automation_status.result === 'processing'
           if (value === 'failed') return record.completed && record.automation_status && (record.automation_status.result === 'fail' || record.automation_status.error)
-          if (value === 'not_sent') return record.completed && record.automation_status && (record.automation_status.result === 'success' && record.automation_status.email_status === false)
+          if (value === 'not_sent') return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status === false
 
-          return record.completed && record.automation_status && (record.automation_status.result === 'success' && record.automation_status.email_status !== false)
+          return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status !== false
         },
       },
       {
@@ -302,23 +320,39 @@ class AdminPageCaETA extends Component {
             return (
               <>
                 <Button type="danger" shape="round" icon="warning" size="small">
-                  {user.role === constants.USER_ROLE.ADMIN
-                    ? <a href={`https://s3.us-east-2.amazonaws.com/assets.canada/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}> Check Errors</a>
-                    : <a href style={{ textDecoration: 'none', color: 'white' }} disabled> Check Errors</a>
-                  }
+                  {user.role === constants.USER_ROLE.ADMIN ? (
+                    <a href={`https://s3.us-east-2.amazonaws.com/assets.canada/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
+                      {' '}
+                      Check Errors
+                    </a>
+                  ) : (
+                    <a href style={{ textDecoration: 'none', color: 'white' }} disabled>
+                      {' '}
+                      Check Errors
+                    </a>
+                  )}
                 </Button>
                 {user.role === constants.USER_ROLE.ADMIN && (
                   <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
                     Submit without payment
                   </Button>
                 )}
-              </>)
+              </>
+            )
           }
           if (record.automation_status.result === 'success') {
             return (
-              <Button type="primary" shape="round" size="small" onClick={() => this.onCheckETAStatus(record)}>
-                Check ETA Status
-              </Button>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', height: '60px', alignItems: 'center' }}>
+                <Button type="primary" shape="round" size="small" onClick={() => this.onCheckETAStatus(record)}>
+                  Check ETA Status
+                </Button>
+                <Button type="primary" shape="round" icon="download" size="small">
+                  <a href={`https://s3.us-east-2.amazonaws.com/assets.canada/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
+                    {' '}
+                    Download PDF
+                  </a>
+                </Button>
+              </div>
             )
           }
 
@@ -329,21 +363,22 @@ class AdminPageCaETA extends Component {
 
     return (
       <div className="admin-page-canada">
-        {visibleETAStatusModal &&
-          <Modal
-            title="Check ETA Status"
-            visible={visibleETAStatusModal}
-            footer={null}
-            onCancel={this.hideModal}
-            width="80%"
-          >
+        {visibleETAStatusModal && (
+          <Modal title="Check ETA Status" visible={visibleETAStatusModal} footer={null} onCancel={this.hideModal} width="80%">
             <div className="admin-page-canada-check-status" style={{ minHeight: '300px' }}>
               <ETAStatus loading={loadingETAStatus} data={etaStatus.data} additionalInfo={additionalInfo} />
             </div>
           </Modal>
-        }
+        )}
         <div className="admin-page-canada__top">
-          <Input placeholder="Search (ID, Name, Email Address) here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown} />
+          <Input
+            placeholder="Search (ID, Name, Email Address) here"
+            defaultValue={pagination.search}
+            name="search_input"
+            ref="search_input"
+            style={{ width: '300px', marginRight: '10px' }}
+            onKeyDown={this.handleSearchKeyDown}
+          />
           <Button type="primary" icon="search" onClick={this.searchString}>
             Search
           </Button>
@@ -385,7 +420,7 @@ class AdminPageCaETA extends Component {
             )
           }}
         />
-        {/* visibleSendEmailModal */ false &&
+        {/* visibleSendEmailModal */ false && (
           <Modal
             title={`Send Email to ${selectedRecord.email}`}
             visible={visibleSendEmailModal}
@@ -411,7 +446,7 @@ class AdminPageCaETA extends Component {
               <Tag color="geekblue">{`${selectedRecord.location.split(',')[0]}`}</Tag>
             </div>
           </Modal>
-        }
+        )}
       </div>
     )
   }
@@ -420,7 +455,10 @@ class AdminPageCaETA extends Component {
 const mapDispatchToProps = dispatch => ({
   getCustomersList: (type, options, isAdmin, site) => {
     dispatch({
-      type, options, isAdmin, site,
+      type,
+      options,
+      isAdmin,
+      site,
     })
   },
   setPagination: (type, pagination) => {
@@ -431,12 +469,18 @@ const mapDispatchToProps = dispatch => ({
   },
   automate: (type, _id, site, cb) => {
     dispatch({
-      type, _id, site, cb,
+      type,
+      _id,
+      site,
+      cb,
     })
   },
   getETAStatus: (type, _id, site, cb) => {
     dispatch({
-      type, _id, site, cb,
+      type,
+      _id,
+      site,
+      cb,
     })
   },
 })
@@ -449,9 +493,4 @@ const mapStateToProps = state => ({
   totalUserCnt: state.admin.totalUserCnt,
 })
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AdminPageCaETA),
-)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminPageCaETA))
