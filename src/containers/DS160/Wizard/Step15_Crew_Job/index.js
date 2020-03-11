@@ -150,6 +150,7 @@ class MyForm extends Component {
               <VisaInput
                 label={tr(resources.crew_visa.vessel_info.vessel_name)}
                 field="data.vessel_info.vessel_name"
+                customRule={[{ validator: (rule, value, callback) => this.props.validators.validateLeadingSpace(rule, value, callback, tr(resources.crew_visa.vessel_info.vessel_name), true) }]}
                 initialValue={data.vessel_info.vessel_name}
                 getFieldDecorator={getFieldDecorator}
                 maxLength={40}

@@ -60,6 +60,19 @@ class VisaSelectArray extends Component {
               whitespace: true,
               message: tr(resources.validations.required_input_or_delete),
             },
+            {
+              validator: (rule, value, callback) => {
+                const prevs = []
+                for (let i = 0; i < index - 1; i++) { prevs.push(getFieldValue(`${arrayField}[${i}]`)) }
+                if (prevs.includes(value)) {
+                  callback('The given country has already been listed.')
+
+                  return
+                }
+
+                callback()
+              },
+            },
           ],
         })(<VisaSelect combines={constants.export_list(constants.past_travel_countries_options)} style={{ width: '60%', marginRight: 8 }} tr={tr} />)}
         {languages.length > 1 ? (

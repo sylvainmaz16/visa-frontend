@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon } from 'antd'
+import {
+ Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col, Icon,
+} from 'antd'
 import * as constants from 'utils/constants'
-import VisaSelect from 'components/VisaSelect'
-import moment from 'moment'
 import VisaRadio from 'components/VisaRadio'
 import VisaExplain from 'components/VisaExplain'
 import VisaInput from 'components/VisaInput'
@@ -12,9 +12,6 @@ import VisaInputArray from 'components/VisaInputArray'
 import * as utils from 'utils'
 import VisaSelectArray from 'components/VisaSelectArray'
 import resources from 'utils/resources'
-
-const { Option } = Select
-const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
@@ -44,7 +41,9 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     }
-    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
+    const {
+ showPrev, showNext, onPrev, onNext, data, tr,
+} = this.props
 
     getFieldDecorator('data.b_belong_to_clan', { initialValue: utils.getInitialValue(data.b_belong_to_clan) })
     getFieldDecorator('data.b_travel_last_five_years', { initialValue: utils.getInitialValue(data.b_travel_last_five_years) })
@@ -189,8 +188,7 @@ class MyForm extends Component {
                   getFieldDecorator={getFieldDecorator}
                   customRule={[
                     {
-                      validator: (rule, value, callback) =>
-                        this.props.validators.validateBetweenDate(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.militaries[0].date_from'), false),
+                      validator: (rule, value, callback) => this.props.validators.validateBetweenDate(rule, value, callback, 'Date of Attendance To', this.props.form.getFieldValue('data.militaries[0].date_from'), false),
                     },
                   ]}
                   setFieldsValue={setFieldsValue}
