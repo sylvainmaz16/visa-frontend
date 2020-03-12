@@ -13,7 +13,8 @@ class MyForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form
+    const { form } = this.props
+    const { getFieldDecorator, getFieldValue } = form
     const formItemLayout = {
       layout: 'vertical',
       labelCol: {
@@ -44,7 +45,27 @@ class MyForm extends Component {
                       field={`data.point_of_contact[${index}].surname`}
                       initialValue={data.point_of_contact[index].surname}
                       getFieldDecorator={getFieldDecorator}
-                      customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.SEVIS.point_of_contact.surname), true) }]}
+                      customRule={[
+                        {
+                          validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, tr(resources.SEVIS.point_of_contact.surname), true),
+                        },
+                        {
+                          validator: (rule, value, callback) => {
+                            const names = []
+                            const name = `${getFieldValue(`data.point_of_contact[${index}].surname`)} ${getFieldValue(`data.point_of_contact[${index}].given_name`)}`
+
+                            for (let i = 0; i < index; i += 1) {
+                              names.push(`${getFieldValue(`data.point_of_contact[${i}].surname`)} ${getFieldValue(`data.point_of_contact[${i}].given_name`)}`)
+                            }
+                            if (names.includes(name)) {
+                              callback('Contact has already been entered')
+
+                              return
+                            }
+                            callback()
+                          },
+                        },
+                      ]}
                       maxLength={33}
                       tr={tr}
                     />
