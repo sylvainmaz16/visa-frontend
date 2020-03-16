@@ -1,18 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
-} from 'antd'
-import * as constants from 'utils/constants'
-import VisaSelect from 'components/VisaSelect'
-import moment from 'moment'
+import { Form, Button, Row, Col } from 'antd'
 import VisaRadio from 'components/VisaRadio'
 import VisaAddress from 'components/VisaAddress'
 import VisaInput from 'components/VisaInput'
 import * as utils from 'utils'
 import resources from 'utils/resources'
-
-const { Option } = Select
-const { TextArea } = Input
 
 class MyForm extends Component {
   static defaultProps = {
@@ -31,9 +23,7 @@ class MyForm extends Component {
         sm: { span: 24 },
       },
     }
-    const {
-      showPrev, showNext, onPrev, onNext, data, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, tr } = this.props
     getFieldDecorator('data.b_position', { initialValue: utils.getInitialValue(data.b_position) })
     getFieldDecorator('data.b_vessel', { initialValue: utils.getInitialValue(data.b_vessel) })
 
@@ -52,13 +42,16 @@ class MyForm extends Component {
               initialValue={data.job_title}
               getFieldDecorator={getFieldDecorator}
               tr={tr}
+              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.crew_visa.job_title), true) }]}
             />
             <VisaInput
               label={tr(resources.crew_visa.company_name)}
               field="data.company_name"
               initialValue={data.company_name}
               getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Name of company that owns the aircraft or vessel you will be working on', true) }]}
+              customRule={[
+                { validator: (rule, value, callback) => this.props.validators.validateName(rule, value, callback, 'Name of company that owns the aircraft or vessel you will be working on', true) },
+              ]}
               tr={tr}
             />
             <VisaInput
@@ -72,15 +65,9 @@ class MyForm extends Component {
           </Col>
         </Row>
 
-        <VisaRadio
-          label={tr(resources.crew_visa.b_position)}
-          field="data.b_position"
-          initialValue={data.b_position}
-          getFieldDecorator={getFieldDecorator}
-          tr={tr}
-        />
+        <VisaRadio label={tr(resources.crew_visa.b_position)} field="data.b_position" initialValue={data.b_position} getFieldDecorator={getFieldDecorator} tr={tr} />
 
-        {this.props.form.getFieldValue('data.b_position') &&
+        {this.props.form.getFieldValue('data.b_position') && (
           <>
             <Row gutter={16}>
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
@@ -134,17 +121,11 @@ class MyForm extends Component {
               </Col>
             </Row>
           </>
-        }
+        )}
 
-        <VisaRadio
-          label={tr(resources.crew_visa.b_vessel)}
-          field="data.b_vessel"
-          initialValue={data.b_vessel}
-          getFieldDecorator={getFieldDecorator}
-          tr={tr}
-        />
+        <VisaRadio label={tr(resources.crew_visa.b_vessel)} field="data.b_vessel" initialValue={data.b_vessel} getFieldDecorator={getFieldDecorator} tr={tr} />
 
-        {this.props.form.getFieldValue('data.b_vessel') &&
+        {this.props.form.getFieldValue('data.b_vessel') && (
           <Row gutter={16}>
             <Col xs={{ span: 24 }} md={{ span: 12 }}>
               <VisaInput
@@ -166,22 +147,41 @@ class MyForm extends Component {
               />
             </Col>
           </Row>
-        }
+        )}
 
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }
