@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {
-  Button, Icon, Form, Select,
-} from 'antd'
+import { Button, Icon, Form, Select } from 'antd'
 import VisaBanner from 'components/VisaBanner'
 import VisaHeader from 'components/VisaHeader'
 import { DS160 } from 'actions/types'
@@ -14,9 +12,7 @@ import './index.less'
 
 const { Option } = Select
 
-const DS160_HOME = ({
-  agency, history, resetState, initLang = 'en-US',
-}) => {
+const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
   const [lang, setLanguage] = useState('en-US')
   const tr = r => translate(r, lang)
 
@@ -44,7 +40,9 @@ const DS160_HOME = ({
     <div className={agency ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
       <VisaHeader />
       <VisaBanner>
-        Important: Before You Start
+        DS-160 US Visa Online Application for the following Categories:
+        <br />
+        B1 - B2 – C – D – F – H – I – J - L
       </VisaBanner>
       <div className="visa-ds160__content container">
         <Form.Item label={tr(resources.language.label)} extra={tr(resources.language.extra)}>
@@ -76,9 +74,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps,
-  )(DS160_HOME),
-)
+export default withRouter(connect(null, mapDispatchToProps)(DS160_HOME))
