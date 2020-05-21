@@ -40,9 +40,9 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
     <div className={agency ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
       <VisaHeader />
       <VisaBanner>
-        DS-160 US Visa Online Application for the following Categories:
+        DS-160 US Visa Online Application <span className="following">for the following Categories:</span>
         <br />
-        B1 - B2 – C – D – F – H – I – J - L
+        <span className="categories">B1 - B2 – C – D – F – H – I – J - L</span>
       </VisaBanner>
       <div className="visa-ds160__content container">
         <Form.Item label={tr(resources.language.label)} extra={tr(resources.language.extra)}>

@@ -1,9 +1,41 @@
 .visa-com-banner {
-    width: 100%;
-    background-color: rgba(81, 156, 255, 1);
-    padding: 30px 100px;
-    h2 {
-        font: normal normal normal 32px/1.1em 'Open Sans',sans-serif;
-        color: #ffffff;
+  width: 100%;
+  background-color: rgba(81, 156, 255, 1);
+  padding: 30px 100px;
+  h2 {
+    font: normal normal normal 32px/1.1em 'Open Sans', sans-serif;
+    color: #ffffff;
+    margin: 0;
+
+    .categories {
+      font-size: 28px;
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 50px;
+    h2 {
+      font-size: 28px;
+      .following {
+        display: none;
+      }
+      .categories {
+        font-size: 24px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 525px) {
+    padding: 20px 20px;
+
+    h2 {
+      font-size: 24px;
+      .following {
+        display: none;
+      }
+      .categories {
+        font-size: 20px;
+      }
+    }
+  }
 }
