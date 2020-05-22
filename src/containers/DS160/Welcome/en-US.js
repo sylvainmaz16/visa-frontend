@@ -19,7 +19,7 @@ function welcome({ agency }) {
           <p>
             <span>
               Dates of your last five visits or trips to the United States, if you have previously travelled to the United States. You may also be asked for your international travel history for the
-              past five years.{' '}
+              past five years.
             </span>
           </p>
         </li>
@@ -53,7 +53,7 @@ function welcome({ agency }) {
           <p>
             <span>
               Students and Exchange Visitors (F, J, and M): You will be asked to provide your SEVIS ID, which is printed on your I-20 or DS-2019, so you should have this form available when completing
-              your DS-160. You also will be asked to provide the address of the school/program at which you intend to study. This information should also be on your I-20 or DS-2019 form.{' '}
+              your DS-160. You also will be asked to provide the address of the school/program at which you intend to study. This information should also be on your I-20 or DS-2019 form.
             </span>
           </p>
         </li>
