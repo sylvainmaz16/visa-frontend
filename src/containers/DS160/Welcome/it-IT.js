@@ -3,6 +3,31 @@ import React from 'react'
 function welcome({ agency }) {
   return (
     <>
+      <div className="visa-global-heading-1">Come Applicare?</div>
+      <ul className="visa-global-ul-1">
+        <li>
+          <p>
+            <span>
+              1. Completa l'<a href="https://ds-160.us/ds-160/application-form">Applicazione Elettronica DS160</a> ed effettua il pagamento.
+            </span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>2. Una volta inviata la domanda, riceverai via e-mail la pagina di conferma del DS-160 con le istruzioni.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>3. Rivedi le istruzioni specifiche sul sito web dell'Ambasciata o del Consolato degli Stati Uniti del tuo paese e paga le tasse governative di conseguenza.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>4. Pianifica l'appuntamento per il colloquio con il visto.</span>
+          </p>
+        </li>
+      </ul>
       <div className="visa-global-heading-1"> Dovresti avere i seguenti documenti disponibili mentre completi DS-160: </div>
       <ul className="visa-global-ul-1">
         <li>

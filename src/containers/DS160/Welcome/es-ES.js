@@ -3,6 +3,31 @@ import React from 'react'
 function welcome({ agency }) {
   return (
     <>
+      <div className="visa-global-heading-1">Cómo Aplicar ?</div>
+      <ul className="visa-global-ul-1">
+        <li>
+          <p>
+            <span>
+              1. Complete la <a href="https://ds-160.us/ds-160/application-form">Solicitud Electrónica DS160</a> y realice su pago.
+            </span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>2. Una vez que se envíe su solicitud, recibirá por correo electrónico su página de confirmación DS-160 con las instrucciones.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>3. Revise las instrucciones específicas en el sitio web de la Embajada o el Consulado de los EE. UU. De su país y pague la tarifa gubernamental correspondiente.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>4. Programe su cita de entrevista de visa.</span>
+          </p>
+        </li>
+      </ul>
       <div className="visa-global-heading-1"> Debe tener los siguientes documentos disponibles mientras completa su DS-160: </div>
       <ul className="visa-global-ul-1">
         <li>

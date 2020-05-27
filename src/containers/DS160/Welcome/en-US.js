@@ -3,6 +3,31 @@ import React from 'react'
 function welcome({ agency }) {
   return (
     <>
+      <div className="visa-global-heading-1">How to Apply?</div>
+      <ul className="visa-global-ul-1">
+        <li>
+          <p>
+            <span>
+              1. Complete the <a href="https://ds-160.us/ds-160/application-form">DS160</a> Electronic Application and make your payment.
+            </span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>2. Once your application is submitted, you will receive by email your DS-160 confirmation page with the instructions.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>3. Review specific instructions on the U.S. Embassy or Consulate website of your country and pay the Government fee accordingly.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>4. Schedule your visa interview appointment.</span>
+          </p>
+        </li>
+      </ul>
       <div className="visa-global-heading-1">You should have the following documents available while you complete your DS-160:</div>
       <ul className="visa-global-ul-1">
         <li>

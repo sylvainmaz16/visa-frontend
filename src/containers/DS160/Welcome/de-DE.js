@@ -3,6 +3,31 @@ import React from 'react'
 function welcome({ agency }) {
   return (
     <>
+      <div className="visa-global-heading-1">Wie bewerbe ich mich?</div>
+      <ul className="visa-global-ul-1">
+        <li>
+          <p>
+            <span>
+              1. Füllen Sie den <a href="https://ds-160.us/ds-160/application-form">Elektronischen DS160-Antrag</a> aus und leisten Sie Ihre Zahlung.
+            </span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>2. Sobald Ihre Bewerbung eingereicht wurde, erhalten Sie per E-Mail Ihre DS-160-Bestätigungsseite mit den Anweisungen.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>3. Lesen Sie die spezifischen Anweisungen auf der Website der US-Botschaft oder des US-Konsulats Ihres Landes und zahlen Sie die Regierungsgebühr entsprechend.</span>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>4. Planen Sie Ihren Termin für ein Visuminterview.</span>
+          </p>
+        </li>
+      </ul>
       <div className="visa-global-heading-1"> Während Sie Ihren DS-160 fertigstellen, sollten die folgenden Dokumente verfügbar sein: </div>
       <ul className="visa-global-ul-1">
         <li>
