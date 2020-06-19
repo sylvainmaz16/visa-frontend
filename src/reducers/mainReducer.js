@@ -21,6 +21,7 @@ const initialState = {
     b_agreement_2_2: false,
     sq_type: null,
     sq_answer: null,
+    privacy: null,
     purpose_of_trip: null,
 
     form_personal_info: {
@@ -123,23 +124,27 @@ const initialState = {
     form_travel_company: {
       b_other_person_travel_with: null,
       b_part_of_group: null,
-      people: [{
-        surname: null,
-        given_name: null,
-        relationship: null,
-      }],
+      people: [
+        {
+          surname: null,
+          given_name: null,
+          relationship: null,
+        },
+      ],
       company: null,
     },
 
     form_prev_travel_info: {
       b_ever_been_in_US: null,
-      prev_visit_info: [{
-        date: null,
-        length_of_stay: {
-          period: null,
-          unit: null,
+      prev_visit_info: [
+        {
+          date: null,
+          length_of_stay: {
+            period: null,
+            unit: null,
+          },
         },
-      }],
+      ],
       b_ever_hold_Driver_License: null,
       prev_DL_info: {
         number: null,
@@ -206,15 +211,19 @@ const initialState = {
       email: null,
       b_additional_emails: null,
       additional_emails: [null],
-      social_media_info: [{
-        platform: null,
-        identifier: null,
-      }],
+      social_media_info: [
+        {
+          platform: null,
+          identifier: null,
+        },
+      ],
       b_additional_social_media: null,
-      additional_social_media: [{
-        platform: null,
-        identifier: null,
-      }],
+      additional_social_media: [
+        {
+          platform: null,
+          identifier: null,
+        },
+      ],
     },
 
     form_passport: {
@@ -276,12 +285,14 @@ const initialState = {
         status: null,
       },
       b_other_relative: null,
-      others: [{
-        surname: null,
-        given_name: null,
-        relationship: null,
-        status: null,
-      }],
+      others: [
+        {
+          surname: null,
+          given_name: null,
+          relationship: null,
+          status: null,
+        },
+      ],
       b_more_relatives: null,
 
       spouse: {
@@ -304,28 +315,30 @@ const initialState = {
         },
       },
       former_spouse_number: null,
-      former_spouse: [{
-        surname: null,
-        given_name: null,
-        birthday: null,
-        nationality: null,
-        place_of_birth: {
-          city: null,
-          country: null,
+      former_spouse: [
+        {
+          surname: null,
+          given_name: null,
+          birthday: null,
+          nationality: null,
+          place_of_birth: {
+            city: null,
+            country: null,
+          },
+          marriage_date: null,
+          end_date: null,
+          end_explain: null,
+          end_country: null,
+          address: {
+            street_addr1: null,
+            street_addr2: null,
+            city: null,
+            state: null,
+            zip_code: null,
+            country: null,
+          },
         },
-        marriage_date: null,
-        end_date: null,
-        end_explain: null,
-        end_country: null,
-        address: {
-          street_addr1: null,
-          street_addr2: null,
-          city: null,
-          state: null,
-          zip_code: null,
-          country: null,
-        },
-      }],
+      ],
     },
 
     form_work_or_edu: {
@@ -474,32 +487,34 @@ const initialState = {
       },
     },
     form_SEVIS: {
-
-      point_of_contact: [{
-        surname: null,
-        given_name: null,
-        address: {
-          street_addr1: null,
-          street_addr2: null,
-          city: null,
-          state: null,
-          zip_code: null,
+      point_of_contact: [
+        {
+          surname: null,
+          given_name: null,
+          address: {
+            street_addr1: null,
+            street_addr2: null,
+            city: null,
+            state: null,
+            zip_code: null,
+          },
+          tel_number: null,
+          email: null,
         },
-        tel_number: null,
-        email: null,
-      }, {
-        surname: null,
-        given_name: null,
-        address: {
-          street_addr1: null,
-          street_addr2: null,
-          city: null,
-          state: null,
-          zip_code: null,
+        {
+          surname: null,
+          given_name: null,
+          address: {
+            street_addr1: null,
+            street_addr2: null,
+            city: null,
+            state: null,
+            zip_code: null,
+          },
+          tel_number: null,
+          email: null,
         },
-        tel_number: null,
-        email: null,
-      }],
+      ],
 
       id: null,
       program_number: null,

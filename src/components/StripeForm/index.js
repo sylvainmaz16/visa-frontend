@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { CardElement, injectStripe } from 'react-stripe-elements'
-import {
- Form, Button, Select, Checkbox, Input, Radio, Row, Col, Icon,
-} from 'antd'
+import { Button } from 'antd'
 
 class StripeForm extends Component {
   constructor(props) {
@@ -27,7 +25,9 @@ class StripeForm extends Component {
       <div className="checkout">
         <p>Would you like to complete the purchase?</p>
         <CardElement />
-        <Button type="primary" onClick={this.submit}>PLACE ORDER</Button>
+        <Button type="primary" onClick={this.submit}>
+          PLACE ORDER
+        </Button>
       </div>
     )
   }

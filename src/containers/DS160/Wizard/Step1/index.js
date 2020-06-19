@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Select } from 'antd'
+import { Form, Button, Checkbox } from 'antd'
 import * as constants from 'utils/constants'
 import * as utils from 'utils'
 import VisaSelect from 'components/VisaSelect'
@@ -27,13 +27,11 @@ class MyForm extends Component {
       },
     }
 
-    const {
-      showPrev, showNext, data, agency, tr,
-    } = this.props
+    const { showPrev, showNext, data, agency, tr } = this.props
     const { countries_option_value_list, countries_option_label_list, agency_support_countries_list } = constants
 
-    let values = []; let
-      labels = []
+    let values = []
+    let labels = []
 
     if (agency) {
       countries_option_label_list.map((label, cntry_index) => {
@@ -51,26 +49,41 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">
-            {tr(resources.step_1.section_title)}
-          </h2>
+          <h2 className="visa-global-section-title">{tr(resources.step_1.section_title)}</h2>
         </div>
         <Form.Item label={tr(resources.language.label)} extra={tr(resources.language.extra)}>
           {getFieldDecorator('data.language', {
             initialValue: utils.getInitialValue(data.language),
             rules: [{ required: true, message: tr(resources.validations.required) }],
-          })(
-            <VisaSelect combines={constants.export_list(constants.hints_and_help_language)} onChange={this.props.handleLanguageChange} />,
-          )}
+          })(<VisaSelect combines={constants.export_list(constants.hints_and_help_language)} onChange={this.props.handleLanguageChange} />)}
         </Form.Item>
 
         <Form.Item label={tr(resources.step_1.interview_location.label)} extra={tr(resources.step_1.interview_location.extra)}>
           {getFieldDecorator('data.interview_location', {
             initialValue: utils.getInitialValue(data.interview_location),
             rules: [{ required: true, message: tr(resources.validations.required) }],
-          })(
-            <VisaSelect values={values} labels={labels} />,
-          )}
+          })(<VisaSelect values={values} labels={labels} />)}
+        </Form.Item>
+
+        <Form.Item label={tr(resources.step_1.privacy.label)} required>
+          <ul>
+            <li>{tr(resources.step_1.privacy.extra.authorities)}</li>
+            <li>{tr(resources.step_1.privacy.extra.purpose)}</li>
+            <li>{tr(resources.step_1.privacy.extra.routine)}</li>
+            <li>{tr(resources.step_1.privacy.extra.disclosure)}</li>
+          </ul>
+          {getFieldDecorator('data.privacy', {
+            initialValue: data.privacy,
+            valuePropName: 'checked',
+            rules: [
+              {
+                required: true,
+                message: tr(resources.validations.required),
+                transform: value => value || undefined, // Those two lines
+                type: 'boolean',
+              },
+            ],
+          })(<Checkbox>{tr(resources.step_1.privacy.check)}</Checkbox>)}
         </Form.Item>
 
         <VisaSelectItem
@@ -84,27 +97,37 @@ class MyForm extends Component {
           getFieldDecorator={getFieldDecorator}
           tr={tr}
         />
-        <VisaInput
-          label={tr(resources.step_1.sq_answer.label)}
-          field="data.sq_answer"
-          initialValue={data.sq_answer}
-          getFieldDecorator={getFieldDecorator}
-          tr={tr}
-
-        />
+        <VisaInput label={tr(resources.step_1.sq_answer.label)} field="data.sq_answer" initialValue={data.sq_answer} getFieldDecorator={getFieldDecorator} tr={tr} />
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }

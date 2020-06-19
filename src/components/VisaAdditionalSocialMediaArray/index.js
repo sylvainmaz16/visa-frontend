@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import {
- Form, Button, Select, Checkbox, Input, Icon, Row, Col,
-} from 'antd'
+import { Form, Button, Icon, Row, Col } from 'antd'
 import * as utils from 'utils'
-import * as constants from 'utils/constants'
 import resources from 'utils/resources'
 import VisaInput from '../VisaInput'
 
@@ -28,7 +25,7 @@ class VisaAdditionalSocialMediaArray extends Component {
       [keysField]: keys,
       [dataField]: data,
     })
-  };
+  }
 
   add = keysField => {
     const keys = this.props.getFieldValue(keysField)
@@ -39,20 +36,15 @@ class VisaAdditionalSocialMediaArray extends Component {
     this.props.setFieldsValue({
       [keysField]: nextKeys,
     })
-  };
+  }
 
   render() {
-    const {
- label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest
-} = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, tr, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
     const platforms = getFieldValue(keysField)
     const formItems = platforms.map((platform, index) => (
-      <Form.Item
-        label={index === 0 ? label : ''}
-        key={index}
-      >
+      <Form.Item label={index === 0 ? label : ''} key={index}>
         <Row gutter={16}>
           <Col xs={{ span: 20 }} sm={{ span: 8 }}>
             <VisaInput
@@ -86,7 +78,6 @@ class VisaAdditionalSocialMediaArray extends Component {
             />
           ) : null}
         </Row>
-
       </Form.Item>
     ))
 
@@ -95,9 +86,7 @@ class VisaAdditionalSocialMediaArray extends Component {
         {formItems}
         <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
-            <Icon type="plus" />
-{' '}
-{tr(resources.add_another)}
+            <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>
       </>

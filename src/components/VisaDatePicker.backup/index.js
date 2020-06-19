@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import {
- Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col,
-} from 'antd'
+import { Form, DatePicker } from 'antd'
 import moment from 'moment'
-import * as utils from 'utils'
 
 class VisaDatePicker extends Component {
   static defaultProps = {
@@ -14,18 +11,14 @@ class VisaDatePicker extends Component {
   }
 
   render() {
-    const {
- label, extra, initialValue, field, getFieldDecorator, required, customRule, readOnly, ...rest
-} = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, required, customRule, readOnly, ...rest } = this.props
 
-return (
+    return (
       <Form.Item label={label} extra={extra} required={required}>
         {getFieldDecorator(field, {
           initialValue: initialValue ? moment(initialValue, 'DD/MMM/YYYY') : null,
           rules: customRule || [{ required, message: 'This field is required' }],
-        })(
-          <DatePicker disabled={readOnly} />,
-        )}
+        })(<DatePicker disabled={readOnly} />)}
       </Form.Item>
     )
   }
