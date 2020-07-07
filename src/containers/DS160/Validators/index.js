@@ -143,7 +143,7 @@ const validateVisaNumber = (rule, value, callback, field) => {
   }
   callback()
 }
-const isValidDate = value => {
+const isValidDate = (value) => {
   const d = value
   const MONTH_LIST = {
     Jan: 0,
@@ -484,6 +484,11 @@ const validatePassport = (rule, value, callback, field, required = false) => {
     } else {
       callback()
     }
+
+    return
+  }
+  if (value[0] == ' ' || value[value.length - 1] == ' ') {
+    callback(`${field} - leading/trailing spaces found in your entry.`)
 
     return
   }
