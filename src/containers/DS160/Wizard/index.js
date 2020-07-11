@@ -515,10 +515,10 @@ class DS160_Wizard extends Component {
 
     switch (step_index) {
       case 1:
-        formRender = <Form_DS160_1 showPrev={false} {...sharedParams} data={ds160} />
+        formRender = <Form_DS160_2 showPrev={false} {...sharedParams} data={ds160} />
         break
       case 2:
-        formRender = <Form_DS160_2 {...sharedParams} data={ds160} />
+        formRender = <Form_DS160_1 {...sharedParams} data={ds160} />
         break
       case 3:
         formRender = <Form_DS160_3 {...sharedParams} data={ds160.form_personal_info} />
