@@ -19,7 +19,7 @@ class VisaAddress extends Component {
   }
 
   render() {
-    const { label, extra, initialValue, field, getFieldDecorator, maxTelLength, hideCountry, us_address, hidePhone, tr, ...rest } = this.props
+    const { label, extra, initialValue, field, getFieldDecorator, maxTelLength, minTelLength, hideCountry, us_address, hidePhone, tr, ...rest } = this.props
 
     return (
       <Form.Item label={label} extra={extra} required>
