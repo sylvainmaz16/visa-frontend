@@ -87,7 +87,7 @@ class VisaAddress extends Component {
                 {getFieldDecorator(`${field}.tel_number`, {
                   initialValue: _.get(initialValue, 'tel_number') || undefined,
                   rules: [{ validator: (rule, value, callback) => this.props.validators.validateNumber(rule, value, callback, 'Phone Number', true) }],
-                })(<Input maxLength={maxTelLength} minTelLength={minTelLength} />)}
+                })(<Input maxLength={maxTelLength} minLength={minTelLength} />)}
               </Form.Item>
             </Col>
           )}
