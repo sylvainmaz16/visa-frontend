@@ -58,16 +58,10 @@ function welcome({ agency }) {
             <span>Other Information - Some applicants, depending on the intended purpose of travel, will be asked to provide additional information when completing the DS-160.</span>
           </p>
         </li>
-        {agency ? (
+        {agency && (
           <li>
             <p>
               <span>This Us Visa Appointment Premium Service will cost you $280. This includes the MRV Fee that needs to be paid the Department of State and the DS-160 Application Review.</span>
-            </p>
-          </li>
-        ) : (
-          <li>
-            <p>
-              <span>Our agency charges $165 + Government fee.</span>
             </p>
           </li>
         )}

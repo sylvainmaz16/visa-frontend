@@ -58,19 +58,13 @@ function welcome({ agency }) {
             <span> Altre informazioni - Ad alcuni candidati, a seconda dello scopo previsto del viaggio, verrà chiesto di fornire ulteriori informazioni al completamento del DS-160. </span>
           </p>
         </li>
-        {agency ? (
+        {agency && (
           <li>
             <p>
               <span>
                 Questo servizio premium di appuntamenti Visa per gli Stati Uniti ti costerà $ 280. Ciò include la Commissione MRV che deve essere pagata dal Dipartimento di Stato e la Revisione
                 dell'applicazione DS-160.
               </span>
-            </p>
-          </li>
-        ) : (
-          <li>
-            <p>
-              <span> La nostra agenzia addebita $ 165 + spese governative. </span>
             </p>
           </li>
         )}

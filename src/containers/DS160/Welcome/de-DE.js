@@ -58,18 +58,12 @@ function welcome({ agency }) {
             <span> Weitere Informationen - Je nach dem beabsichtigten Reisezweck werden einige Antragsteller gebeten, beim Ausfüllen des DS-160 zusätzliche Informationen anzugeben. </span>
           </p>
         </li>
-        {agency ? (
+        {agency && (
           <li>
             <p>
               <span>
                 Dieser Premium-Service für US-Visa-Termine kostet Sie 280 USD. Dies beinhaltet die MRV-Gebühr, die an das Außenministerium gezahlt werden muss, und die DS-160-Antragsprüfung.
               </span>
-            </p>
-          </li>
-        ) : (
-          <li>
-            <p>
-              <span> Unsere Agentur berechnet 165 USD + Regierungsgebühr. </span>
             </p>
           </li>
         )}

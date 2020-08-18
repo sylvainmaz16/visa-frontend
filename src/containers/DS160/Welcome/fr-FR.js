@@ -58,18 +58,12 @@ function welcome({ agency }) {
             <span> Autres informations - Certains candidats, en fonction du but du voyage, seront invités à fournir des informations supplémentaires lors de la rédaction du DS-160. </span>
           </p>
         </li>
-        {agency ? (
+        {agency && (
           <li>
             <p>
               <span>
                 Ce service premium de rendez-vous de visa américain vous coûtera 280 $. Cela comprend les frais MRV qui doivent être payés par le Département d'État et l'examen de la demande DS-160.
               </span>
-            </p>
-          </li>
-        ) : (
-          <li>
-            <p>
-              <span> Notre agence facture 165 $ + frais gouvernementaux. </span>
             </p>
           </li>
         )}

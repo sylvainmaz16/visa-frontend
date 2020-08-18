@@ -58,18 +58,12 @@ function welcome({ agency }) {
             <span> Otra información - A algunos solicitantes, dependiendo del propósito del viaje, se les pedirá que proporcionen información adicional al completar el DS-160. </span>
           </p>
         </li>
-        {agency ? (
+        {agency && (
           <li>
             <p>
               <span>
                 Este servicio premium de cita con nosotros Visa le costará $ 280. Esto incluye la tarifa de MRV que debe pagarse al Departamento de Estado y la revisión de la solicitud DS-160.
               </span>
-            </p>
-          </li>
-        ) : (
-          <li>
-            <p>
-              <span> Nuestra agencia cobra $ 165 + tarifa gubernamental. </span>
             </p>
           </li>
         )}
