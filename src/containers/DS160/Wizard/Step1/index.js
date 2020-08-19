@@ -48,7 +48,7 @@ class MyForm extends Component {
 
     return (
       <Form {...formItemLayout}>
-        <div className="visa-global-field visa-global-border-bottom">
+        {/* <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.step_1.section_title)}</h2>
         </div>
         <Form.Item label={tr(resources.language.label)} extra={tr(resources.language.extra)}>
@@ -56,7 +56,7 @@ class MyForm extends Component {
             initialValue: utils.getInitialValue(data.language),
             rules: [{ required: true, message: tr(resources.validations.required) }],
           })(<VisaSelect combines={constants.export_list(constants.hints_and_help_language)} onChange={this.props.handleLanguageChange} />)}
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item label={tr(resources.step_1.interview_location.label)} extra={tr(resources.step_1.interview_location.extra)}>
           {getFieldDecorator('data.interview_location', {
