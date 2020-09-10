@@ -19,7 +19,7 @@ function welcome({ agency }) {
         </li>
         <li>
           <p>
-            <span>3. Consultez les instructions spécifiques sur le site Web de l'ambassade ou du consulat américain de votre pays et payez les frais gouvernementaux en conséquence.</span>
+            <span>3. Consultez les instructions spécifiques sur le site Web de l'ambassade ou du consulat américain de votre pays et payez les frais MRV en conséquence.</span>
           </p>
         </li>
         <li>

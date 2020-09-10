@@ -19,7 +19,7 @@ function welcome({ agency }) {
         </li>
         <li>
           <p>
-            <span>3. Review specific instructions on the U.S. Embassy or Consulate website of your country and pay the Government fee accordingly.</span>
+            <span>3. Review specific instructions on the U.S. Embassy or Consulate website of your country and pay the MRV fee accordingly.</span>
           </p>
         </li>
         <li>

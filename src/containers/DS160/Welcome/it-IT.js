@@ -19,7 +19,7 @@ function welcome({ agency }) {
         </li>
         <li>
           <p>
-            <span>3. Rivedi le istruzioni specifiche sul sito web dell'Ambasciata o del Consolato degli Stati Uniti del tuo paese e paga le tasse governative di conseguenza.</span>
+            <span>3. Rivedi le istruzioni specifiche sul sito web dell'Ambasciata o del Consolato degli Stati Uniti del tuo paese e paga le tasse MRV di conseguenza.</span>
           </p>
         </li>
         <li>

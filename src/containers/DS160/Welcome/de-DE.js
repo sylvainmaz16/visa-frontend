@@ -19,7 +19,7 @@ function welcome({ agency }) {
         </li>
         <li>
           <p>
-            <span>3. Lesen Sie die spezifischen Anweisungen auf der Website der US-Botschaft oder des US-Konsulats Ihres Landes und zahlen Sie die Regierungsgebühr entsprechend.</span>
+            <span>3. Lesen Sie die spezifischen Anweisungen auf der Website der US-Botschaft oder des US-Konsulats Ihres Landes und zahlen Sie die MRV entsprechend.</span>
           </p>
         </li>
         <li>

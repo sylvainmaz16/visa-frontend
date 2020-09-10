@@ -19,7 +19,7 @@ function welcome({ agency }) {
         </li>
         <li>
           <p>
-            <span>3. Revise las instrucciones específicas en el sitio web de la Embajada o el Consulado de los EE. UU. De su país y pague la tarifa gubernamental correspondiente.</span>
+            <span>3. Revise las instrucciones específicas en el sitio web de la Embajada o el Consulado de los EE. UU. De su país y pague la tarifa de MRV correspondiente.</span>
           </p>
         </li>
         <li>
