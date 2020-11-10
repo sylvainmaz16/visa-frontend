@@ -136,17 +136,21 @@ class AdminPageDS160 extends Component {
   }
 
   render() {
-    const { data, pagination, loading, total, user } = this.props
+    const { data, pagination, loading, total, user, users } = this.props
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     const agencyFilter = []
-    if (this.props.users) {
-      this.props.users.forEach(user => {
+    if (users && users.length) {
+      users.forEach(user => {
         if (user.approved && user.role === constants.USER_ROLE.AGENCY) {
           agencyFilter.push({ text: user.username, value: user.username })
         }
       })
       agencyFilter.push({ text: 'none', value: 'none' })
+    } else {
+      if (user && user.username) {
+        agencyFilter.push({ text: user.username, value: user.username.toLowerCase() })
+      }
     }
 
     const columns = [
@@ -205,9 +209,9 @@ class AdminPageDS160 extends Component {
         key: 'agency',
         filters: agencyFilter,
         filteredValue: pagination.filters.agency,
-        // onFilter: (value, record) => {
-        //   return value === record.agency
-        // }
+        onFilter: (value, record) => {
+          return value === record.agency ? record.agency.toLowerCase() : ''
+        }
       },
       {
         title: 'Transaction ID',
