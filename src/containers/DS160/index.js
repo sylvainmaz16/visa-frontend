@@ -37,7 +37,7 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
   }
 
   return (
-    <div className={agency ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
+    <div className={agency === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
       <VisaHeader />
       <VisaBanner>
         DS-160 US Visa Online Application <span className="following">for the following Categories:</span>

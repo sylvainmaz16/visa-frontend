@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  Route,
-  Switch,
-  Redirect,
-  BrowserRouter as Router,
-} from 'react-router-dom'
+import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom'
 import 'antd/dist/antd.less'
 import DS160_HOME from '../containers/DS160'
 import DS160Wizard from '../containers/DS160/Wizard'
@@ -13,6 +8,7 @@ import AdminBoard from '../containers/Admin'
 import { AuthRequired } from '../AuthRequired'
 import AuthPage from '../containers/Auth'
 import SignupPage from '../containers/Signup'
+import { getTheme } from '../utils/themes'
 
 const languageMap = {
   en: 'en-US',
@@ -23,14 +19,6 @@ const languageMap = {
 }
 
 const Routes = () => {
-  const defaultVars = {
-    '@primary-color': '#3668A9',
-  }
-
-  const agencyVars = {
-    '@primary-color': '#239aac',
-  }
-
   return (
     <Router>
       <Switch>
@@ -48,9 +36,13 @@ const Routes = () => {
                 menu="ds160"
                 pattern=""
                 pagination={{
-                  pageSize: 10, current: 1, filters: {}, serach: null,
+                  pageSize: 10,
+                  current: 1,
+                  filters: {},
+                  serach: null,
                 }}
-              />}
+              />
+            }
           />
         </Route>
         <Route
@@ -74,18 +66,23 @@ const Routes = () => {
             })
             const menu = match.params.menukey
 
-            return <AuthRequired
-              redirectTo="/board"
-              orRender={
-                <AdminBoard
-                  menu={menu}
-                  pattern={location.search}
-                  pagination={{
-                    pageSize: 10, current, filters, search,
-                  }}
-                />
-              }
-            />
+            return (
+              <AuthRequired
+                redirectTo="/board"
+                orRender={
+                  <AdminBoard
+                    menu={menu}
+                    pattern={location.search}
+                    pagination={{
+                      pageSize: 10,
+                      current,
+                      filters,
+                      search,
+                    }}
+                  />
+                }
+              />
+            )
           }}
         />
         <Route
@@ -97,7 +94,7 @@ const Routes = () => {
             const terms = link.split('=')
             const applicationId = terms[terms.length - 1]
 
-            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+            window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 
@@ -110,7 +107,7 @@ const Routes = () => {
           exact
           children={({ location }) => {
             const agency = new URLSearchParams(location.search).get('agency')
-            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+            window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 
@@ -123,7 +120,7 @@ const Routes = () => {
           exact
           children={({ location }) => {
             const agency = new URLSearchParams(location.search).get('agency')
-            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+            window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 
@@ -136,7 +133,7 @@ const Routes = () => {
           exact
           children={({ location }) => {
             const agency = new URLSearchParams(location.search).get('agency')
-            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+            window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 
@@ -149,7 +146,7 @@ const Routes = () => {
           exact
           children={({ location, match }) => {
             const agency = new URLSearchParams(location.search).get('agency')
-            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+            window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 
@@ -162,7 +159,8 @@ const Routes = () => {
           exact
           children={({ location }) => {
             const agency = new URLSearchParams(location.search).get('agency')
-            window.less.modifyVars(agency ? agencyVars : defaultVars).then(() => {
+
+            window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 

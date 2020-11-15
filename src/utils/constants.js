@@ -1231,6 +1231,7 @@ export const USER_ROLE = {
   NOT: -1,
   ADMIN: 0,
   AGENCY: 1,
+  PARTNER: 2,
 }
 
 export const FGMC_countries_list = [

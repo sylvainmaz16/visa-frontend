@@ -3,9 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withCookies } from 'react-cookie'
 
-import {
-  Layout, Menu, Breadcrumb, Icon, Dropdown, Avatar,
-} from 'antd'
+import { Layout, Menu, Breadcrumb, Icon, Dropdown, Avatar } from 'antd'
 
 import * as constants from 'utils/constants'
 
@@ -35,8 +33,7 @@ class AdminBoard extends Component {
     this.logout = this.logout.bind(this)
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   logout() {
     const { cookies, history } = this.props
@@ -73,20 +70,11 @@ class AdminBoard extends Component {
         <Layout className="visa-admin-layout">
           <Header>
             <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              style={{ lineHeight: '64px' }}
-            >
-              <Menu.Item>
-                Please logout and try again
-              </Menu.Item>
+            <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
+              <Menu.Item>Please logout and try again</Menu.Item>
               <div style={{ float: 'right', cursor: 'pointer' }}>
                 <span style={{ marginRight: '10px' }}>{user ? user.username : 'Your username'}</span>
-                <Dropdown
-                  overlay={accountMenu}
-                  trigger={['click']}
-                >
+                <Dropdown overlay={accountMenu} trigger={['click']}>
                   <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
                 </Dropdown>
               </div>
@@ -96,9 +84,7 @@ class AdminBoard extends Component {
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
             </Breadcrumb>
-            <div className="admin-page-wrapper">
-              {renderPage}
-            </div>
+            <div className="admin-page-wrapper">{renderPage}</div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Copyright here</Footer>
         </Layout>
@@ -114,33 +100,22 @@ class AdminBoard extends Component {
         { key: 'mail', label: 'Mail Templates', icon: 'mail' },
         { key: 'users', label: 'Agencies', icon: 'user' },
       ]
+    } else if (user.role === constants.USER_ROLE.PARTNER) {
+      menus = [{ key: 'ds160', label: 'DS-160', icon: 'idcard' }]
     } else if (user.role === constants.USER_ROLE.AGENCY) {
-      menus = [
-        { key: 'ds160', label: 'DS-160', icon: 'idcard' },
-      ]
+      menus = [{ key: 'ds160', label: 'DS-160', icon: 'idcard' }]
     } else if (user.role === constants.USER_ROLE.NOT) {
-      menus = [
-        { key: 'ds160', label: 'DS-160', icon: 'idcard' },
-      ]
+      menus = [{ key: 'ds160', label: 'DS-160', icon: 'idcard' }]
     } else {
       return (
         <Layout className="visa-admin-layout">
           <Header>
             <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              style={{ lineHeight: '64px' }}
-            >
-              <Menu.Item>
-                ABC
-              </Menu.Item>
+            <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
+              <Menu.Item>ABC</Menu.Item>
               <div style={{ float: 'right', cursor: 'pointer' }}>
                 <span style={{ marginRight: '10px' }}>{user ? user.username : 'Your username'}</span>
-                <Dropdown
-                  overlay={accountMenu}
-                  trigger={['click']}
-                >
+                <Dropdown overlay={accountMenu} trigger={['click']}>
                   <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
                 </Dropdown>
               </div>
@@ -150,9 +125,7 @@ class AdminBoard extends Component {
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
             </Breadcrumb>
-            <div className="admin-page-wrapper">
-              {renderPage}
-            </div>
+            <div className="admin-page-wrapper">{renderPage}</div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Copyright here</Footer>
         </Layout>
@@ -161,12 +134,12 @@ class AdminBoard extends Component {
 
     switch (menu) {
       case 'dashboard':
-        if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY) {
+        if (user.role !== constants.USER_ROLE.NOT) {
           renderPage = <AdminPageDashboard pattern={pattern} user={user} />
         }
         break
       case 'ds160':
-        if (user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.AGENCY) {
+        if (user.role !== constants.USER_ROLE.NOT) {
           renderPage = <AdminPageDS160 pagination={pagination} pattern={pattern} user={user} />
         }
         break
@@ -200,39 +173,29 @@ class AdminBoard extends Component {
       <Layout className="visa-admin-layout">
         <Header>
           <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={[menu]}
-            style={{ lineHeight: '64px' }}
-          >
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[menu]} style={{ lineHeight: '64px' }}>
             {menus.map(item => (
               <Menu.Item key={item.key}>
                 <Link to={{ pathname: `/board/${item.key}` }}>
                   <Icon type={item.icon} />
                   {item.label}
                 </Link>
-              </Menu.Item>))}
+              </Menu.Item>
+            ))}
             <div style={{ float: 'right', cursor: 'pointer' }}>
               <span style={{ marginRight: '10px' }}>{user ? user.username : 'Your username'}</span>
-              <Dropdown
-                overlay={accountMenu}
-                trigger={['click']}
-              >
+              <Dropdown overlay={accountMenu} trigger={['click']}>
                 <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
               </Dropdown>
             </div>
           </Menu>
-
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             {menuIndex >= 0 && <Breadcrumb.Item>{menus[menuIndex].label}</Breadcrumb.Item>}
           </Breadcrumb>
-          <div className="admin-page-wrapper">
-            {renderPage}
-          </div>
+          <div className="admin-page-wrapper">{renderPage}</div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Copyright here</Footer>
       </Layout>
@@ -252,9 +215,4 @@ const mapStateToProps = state => ({
   loading: state.admin.loading,
 })
 
-export default withCookies(withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AdminBoard),
-))
+export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminBoard)))

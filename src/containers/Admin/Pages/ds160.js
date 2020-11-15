@@ -211,7 +211,7 @@ class AdminPageDS160 extends Component {
         filteredValue: pagination.filters.agency,
         onFilter: (value, record) => {
           return value === record.agency ? record.agency.toLowerCase() : ''
-        }
+        },
       },
       {
         title: 'Transaction ID',
@@ -307,7 +307,7 @@ class AdminPageDS160 extends Component {
           if (!record.completed) {
             return '-'
           }
-          if (user.role != constants.USER_ROLE.ADMIN) {
+          if (user.role === constants.USER_ROLE.AGENCY) {
             if (!record.automation_status) {
               return (
                 <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
@@ -325,7 +325,7 @@ class AdminPageDS160 extends Component {
             if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
               return (
                 <Button type="warning" shape="round" icon="warning" size="small">
-                  {user.role === constants.USER_ROLE.ADMIN ? (
+                  {user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.PARTNER ? (
                     <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
                       {' '}
                       Timeout
@@ -343,7 +343,7 @@ class AdminPageDS160 extends Component {
             return (
               <>
                 <Button type="danger" shape="round" icon="warning" size="small">
-                  {user.role === constants.USER_ROLE.ADMIN ? (
+                  {user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.PARTNER ? (
                     <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
                       {' '}
                       Check Errors
@@ -355,11 +355,12 @@ class AdminPageDS160 extends Component {
                     </a>
                   )}
                 </Button>
-                {user.role === constants.USER_ROLE.ADMIN && (
-                  <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
-                    Submit without payment
-                  </Button>
-                )}
+                {user.role === constants.USER_ROLE.ADMIN ||
+                  (user.role == constants.USER_ROLE.PARTNER && (
+                    <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
+                      Submit without payment
+                    </Button>
+                  ))}
               </>
             )
           }
@@ -423,11 +424,12 @@ class AdminPageDS160 extends Component {
             return (
               <p style={{ margin: 0 }}>
                 {`_id: ${record._id}`}
-                {user.role === constants.USER_ROLE.ADMIN && (
-                  <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
-                    Submit without payment
-                  </Button>
-                )}
+                {user.role === constants.USER_ROLE.ADMIN ||
+                  (user.role === constants.USER_ROLE.PARTNER && (
+                    <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
+                      Submit without payment
+                    </Button>
+                  ))}
                 <br />
                 {`total: ${record.transaction.total}`}
                 <br />

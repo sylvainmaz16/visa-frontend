@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADMIN } from 'actions/types'
-import {
- Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input,
-} from 'antd'
+import { Layout, Menu, Breadcrumb, Table, Divider, Tag, Button, Modal, notification, Input } from 'antd'
 
 import * as utils from 'utils/index'
 import * as constants from 'utils/constants'
@@ -15,8 +13,7 @@ const { confirm } = Modal
 const openNotificationWithIcon = type => {
   notification[type]({
     message: type == 'success' ? 'Successfully sent!' : 'Failed to send an email!',
-    description:
-      type == 'success' ? 'The email has been sent' : 'There isn\'t such email template based on the interview location.',
+    description: type == 'success' ? 'The email has been sent' : "There isn't such email template based on the interview location.",
   })
 }
 
@@ -47,7 +44,7 @@ class AdminPageUsers extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if ((nextProps.pattern != this.props.pattern)) {
+    if (nextProps.pattern != this.props.pattern) {
       this.loadList(nextProps.pagination)
     }
   }
@@ -61,10 +58,12 @@ class AdminPageUsers extends Component {
       pathname: '/board/users',
       search: `?current=${pagination.current}${pagination.search ? `&search=${pagination.search}` : ''}${filterString}`,
     })
-  };
+  }
 
   handleSearchKeyDown = event => {
-    if (event.keyCode == 13) { this.searchString() }
+    if (event.keyCode == 13) {
+      this.searchString()
+    }
   }
 
   searchString = () => {
@@ -74,11 +73,11 @@ class AdminPageUsers extends Component {
     const filterString = utils.getFilterString(pagination.filters)
 
     if (pagination.search != search) {
- this.props.history.push({
+      this.props.history.push({
         pathname: '/board/users',
         search: `?current=${pagination.current}${search && search.length ? `&search=${search}` : ''}${filterString}`,
       })
-}
+    }
   }
 
   approveUser = record => {
@@ -96,8 +95,7 @@ class AdminPageUsers extends Component {
         console.log('OK')
         approveUserFunc(ADMIN.APPROVE_USER_REQUEST, record._id, !record.approved, options)
       },
-      onCancel() {
-      },
+      onCancel() {},
     })
   }
 
@@ -119,15 +117,12 @@ class AdminPageUsers extends Component {
         console.log('OK')
         deleteUserFunc(ADMIN.DELETE_USER_REQUEST, record._id, options)
       },
-      onCancel() {
-      },
+      onCancel() {},
     })
   }
 
   render() {
-    const {
- data, pagination, loading, total,
-} = this.props
+    const { data, pagination, loading, total } = this.props
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     const columns = [
@@ -152,9 +147,15 @@ class AdminPageUsers extends Component {
         dataIndex: 'role',
         key: 'role',
         render: (value, record) => {
-          if (value == constants.USER_ROLE.AGENCY) { return <Tag color="green">Agency</Tag> }
+          if (value == constants.USER_ROLE.AGENCY) {
+            return <Tag color="green">Agency</Tag>
+          }
 
-return <Tag color="geekblue">Administrator</Tag>
+          if (value == constants.USER_ROLE.PARTNER) {
+            return <Tag color="purple">Partner</Tag>
+          }
+
+          return <Tag color="geekblue">Administrator</Tag>
         },
       },
       {
@@ -162,47 +163,48 @@ return <Tag color="geekblue">Administrator</Tag>
         dataIndex: 'approved',
         key: 'approved',
         render: (value, record) => {
-          if (!value) { return <Tag color="volcano">Not Approved</Tag> }
+          if (!value) {
+            return <Tag color="volcano">Not Approved</Tag>
+          }
 
-return <Tag color="geekblue">Approved</Tag>
+          return <Tag color="geekblue">Approved</Tag>
         },
       },
       {
         title: 'Action',
         key: 'action',
-        render: (text, record) => (<Button.Group size="small">
-          {!record.approved ? <Button
-type="primary"
-icon="check-circle"
-size="small"
-            onClick={() => this.approveUser(record, true)}
-          >
-Approve
-                              </Button> : <Button
-type="danger"
-icon="stop"
-size="small"
-            onClick={() => this.approveUser(record, false)}
-                              >
-Suspend
-                                          </Button>}
-          {!record.approved && <Button
-type="dashed"
-icon="delete"
-size="small"
-style={{ marginLeft: 'auto' }}
-            onClick={() => this.deleteUser(record)}
-          >
-Delete
-                               </Button>}
-                                   </Button.Group>),
+        render: (text, record) => (
+          <Button.Group size="small">
+            {!record.approved ? (
+              <Button type="primary" icon="check-circle" size="small" onClick={() => this.approveUser(record, true)}>
+                Approve
+              </Button>
+            ) : (
+              <Button type="danger" icon="stop" size="small" onClick={() => this.approveUser(record, false)}>
+                Suspend
+              </Button>
+            )}
+            {!record.approved && (
+              <Button type="dashed" icon="delete" size="small" style={{ marginLeft: 'auto' }} onClick={() => this.deleteUser(record)}>
+                Delete
+              </Button>
+            )}
+          </Button.Group>
+        ),
       },
     ]
 
-return (
+    return (
       <div className="admin-page-users">
         <div className="admin-page-users__top">
-          <Input placeholder="Search Agency here" defaultValue={pagination.search} name="search_input" ref="search_input" style={{ width: '300px', marginRight: '10px' }} onKeyDown={this.handleSearchKeyDown} />
+          <Input
+            placeholder="Search Agency here"
+            defaultValue={pagination.search}
+            name="search_input"
+            ref="search_input"
+            style={{ width: '300px', marginRight: '10px' }}
+            onKeyDown={this.handleSearchKeyDown}
+          />
           <Button type="primary" icon="search" onClick={this.searchString}>
             Search
           </Button>
@@ -214,9 +216,7 @@ return (
           pagination={{ pageSize: pagination.pageSize, current: pagination.current, total }}
           loading={loading}
           onChange={this.handleTableChange}
-          expandedRowRender={record => <p style={{ margin: 0 }}>
-              {`_id: ${record._id}`}
-                                       </p>}
+          expandedRowRender={record => <p style={{ margin: 0 }}>{`_id: ${record._id}`}</p>}
         />
         {/* {visible_send_email_modal && <Modal
           title={`Send Email to ${selected_record.email}`}
@@ -244,24 +244,27 @@ return (
 }
 
 const mapDispatchToProps = dispatch => ({
-    getUsersList: (type, options) => {
-      dispatch({ type, options })
-    },
-    deleteUserFunc: (type, _id, options) => {
-      dispatch({ type, _id, options })
-    },
-    approveUserFunc: (type, _id, approved, options) => {
-      dispatch({
- type, _id, approved, options,
+  getUsersList: (type, options) => {
+    dispatch({ type, options })
+  },
+  deleteUserFunc: (type, _id, options) => {
+    dispatch({ type, _id, options })
+  },
+  approveUserFunc: (type, _id, approved, options) => {
+    dispatch({
+      type,
+      _id,
+      approved,
+      options,
+    })
+  },
+  setPagination: (type, pagination) => {
+    dispatch({ type, pagination })
+  },
+  resendEmail: (type, _id, cb) => {
+    dispatch({ type, _id, cb })
+  },
 })
-    },
-    setPagination: (type, pagination) => {
-      dispatch({ type, pagination })
-    },
-    resendEmail: (type, _id, cb) => {
-      dispatch({ type, _id, cb })
-    },
-  })
 
 const mapStateToProps = state => ({
   data: state.admin.users,
@@ -269,9 +272,4 @@ const mapStateToProps = state => ({
   loading: state.admin.loading,
 })
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AdminPageUsers),
-)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminPageUsers))

@@ -176,10 +176,13 @@ class DS160_Wizard extends Component {
       agency,
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
-      if (agency) {
-        window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
-      } else {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+      switch (agency) {
+        case 'uva':
+          window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
+          break
+        default:
+          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+          break
       }
     })
   }
@@ -611,11 +614,11 @@ class DS160_Wizard extends Component {
     }
 
     return (
-      <div className={agency ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
+      <div className={agency === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
         <VisaHeader className={step_index == 1 ? 'visa-com-header-first' : 'visa-com-header-not-first'} />
         <VisaBanner className={step_index == 1 ? 'visa-com-banner-first' : 'visa-com-banner-not-first'}>DS 160 US Visa Online Application</VisaBanner>
         <Progress
-          strokeColor={{ '0%': agency ? '#239aac' : '#3668A9' /* '#108ee9' */, '100%': '#87d068' }}
+          strokeColor={{ '0%': agency === 'uva' ? '#239aac' : '#3668A9' /* '#108ee9' */, '100%': '#87d068' }}
           percent={parseInt((step_index * 100.0) / (fieldsList.length - 1))}
           status="active"
           style={{ width: '80%', left: '10%' }}
