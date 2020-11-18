@@ -21,60 +21,73 @@ class MyForm extends Component {
       },
     }
 
-    const {
-      showPrev, showNext, onPrev, onNext, data, agency, tr,
-    } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, agency, tr } = this.props
 
     return (
       <Form {...formItemLayout}>
-        <Form.Item label={agency ? tr(resources.step_2.disclaimer.agency) : tr(resources.step_2.disclaimer.default)}>
+        <Form.Item label={agency === 'uva' ? tr(resources.step_2.disclaimer.uva) : tr(resources.step_2.disclaimer.default)}>
           {getFieldDecorator('data.b_agreement_2_1', {
             initialValue: utils.getInitialValue(data.b_agreement_2_1),
             valuePropName: 'checked',
-            rules: [{
-              required: true,
-              message: tr(resources.validations.required),
-              transform: value => (value || undefined), // Those two lines
-              type: 'boolean',
-            }],
-          })(
-            <Checkbox>
-              {tr(resources.step_2.disclaimer.check)}
-            </Checkbox>,
-          )}
+            rules: [
+              {
+                required: true,
+                message: tr(resources.validations.required),
+                transform: value => value || undefined, // Those two lines
+                type: 'boolean',
+              },
+            ],
+          })(<Checkbox>{tr(resources.step_2.disclaimer.check)}</Checkbox>)}
         </Form.Item>
 
         <Form.Item label={tr(resources.step_2.confirm.label)}>
           {getFieldDecorator('data.b_agreement_2_2', {
             initialValue: utils.getInitialValue(data.b_agreement_2_2),
             valuePropName: 'checked',
-            rules: [{
-              required: true,
-              message: tr(resources.validations.required),
-              transform: value => (value || undefined), // Those two lines
-              type: 'boolean',
-            }],
-          })(
-            <Checkbox>
-              {tr(resources.step_2.confirm.check)}
-            </Checkbox>,
-          )}
+            rules: [
+              {
+                required: true,
+                message: tr(resources.validations.required),
+                transform: value => value || undefined, // Those two lines
+                type: 'boolean',
+              },
+            ],
+          })(<Checkbox>{tr(resources.step_2.confirm.check)}</Checkbox>)}
         </Form.Item>
 
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
-              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>FIRST</Button>
-              {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-              {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                FIRST
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  Prev
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  Next
+                </Button>
+              )}
             </div>
           )}
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>Prev</Button>}
-          {showNext && <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>Next</Button>}
-          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>Save and Continue Later</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              Prev
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              Next
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            Save and Continue Later
+          </Button>
         </div>
       </Form>
-
     )
   }
 }

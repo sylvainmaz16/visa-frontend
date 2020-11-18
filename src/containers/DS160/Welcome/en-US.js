@@ -8,8 +8,8 @@ function welcome({ agency }) {
         <li>
           <p>
             <span>
-              1. Complete the <a href={agency ? 'https://ds-160.us/ds-160/application-form?agency=uva' : 'https://ds-160.us/ds-160/application-form'}>DS160</a> Electronic Application and make your
-              payment.
+              1. Complete the <a href={agency ? `https://ds-160.us/ds-160/application-form?agency=${agency}` : 'https://ds-160.us/ds-160/application-form'}>DS160</a> Electronic Application and make
+              your payment.
             </span>
           </p>
         </li>
@@ -59,7 +59,7 @@ function welcome({ agency }) {
             <span>Other Information - Some applicants, depending on the intended purpose of travel, will be asked to provide additional information when completing the DS-160.</span>
           </p>
         </li>
-        {agency && (
+        {agency === 'uva' && (
           <li>
             <p>
               <span>This Us Visa Appointment Premium Service will cost you $280. This includes the MRV Fee that needs to be paid the Department of State and the DS-160 Application Review.</span>

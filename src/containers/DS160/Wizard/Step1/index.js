@@ -33,7 +33,7 @@ class MyForm extends Component {
     let values = []
     let labels = []
 
-    if (agency) {
+    if (agency === 'uva') {
       countries_option_label_list.map((label, cntry_index) => {
         const index = agency_support_countries_list.findIndex(support => label.toLowerCase().startsWith(support.toLowerCase()))
         if (index >= 0) {
