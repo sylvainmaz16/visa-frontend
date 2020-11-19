@@ -23,9 +23,14 @@ class MyForm extends Component {
 
     const { showPrev, showNext, onPrev, onNext, data, agency, tr } = this.props
 
+    let label = tr(resources.step_2.disclaimer.default)
+
+    if (agency === 'uva') label = tr(resources.step_2.disclaimer.uva)
+    else label = tr(resources.step_2.disclaimer.AES)
+
     return (
       <Form {...formItemLayout}>
-        <Form.Item label={agency === 'uva' ? tr(resources.step_2.disclaimer.uva) : tr(resources.step_2.disclaimer.default)}>
+        <Form.Item label={label}>
           {getFieldDecorator('data.b_agreement_2_1', {
             initialValue: utils.getInitialValue(data.b_agreement_2_1),
             valuePropName: 'checked',
