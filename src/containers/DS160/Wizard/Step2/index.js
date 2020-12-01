@@ -26,7 +26,8 @@ class MyForm extends Component {
     let label = tr(resources.step_2.disclaimer.default)
 
     if (agency === 'uva') label = tr(resources.step_2.disclaimer.uva)
-    else label = tr(resources.step_2.disclaimer.AES)
+    else if (agency === 'AES') label = tr(resources.step_2.disclaimer.AES)
+    else label = tr(resources.step_2.disclaimer.default)
 
     return (
       <Form {...formItemLayout}>
