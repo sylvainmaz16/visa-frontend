@@ -269,7 +269,7 @@ const resources = {
       },
       AES: {
         en:
-          'DISCLAIMER: Before you begin this application, please read carefully this disclaimer and make sure that you have a valid passport. This application will only accept the following credit cards: MasterCard, VISA and Discover (JCB, Diners Club) or bank transfer. This premium processing service of $79 is NON-REFUNDABLE except if your visa is denied. All information provided by you, or on your behalf by a designated third party, must be true and correct.',
+          'DISCLAIMER: Before you begin this application, please read carefully this disclaimer and make sure that you have a valid passport. This application will only accept the following credit cards: MasterCard, VISA and Discover (JCB, Diners Club) or bank transfer. This premium processing service of $95 is NON-REFUNDABLE except if your visa is denied. All information provided by you, or on your behalf by a designated third party, must be true and correct.',
         fr:
           "AVERTISSEMENT: Avant de commencer cette application, veuillez lire attentivement cet avertissement et assurez-vous d'avoir un passeport valide. Cette application accepte uniquement les cartes de crédit suivantes: MasterCard, VISA et Discover (JCB, Diners Club). Ce service de traitement premium de $79 n'est PAS REMBOURSABLE sauf si votre visa est refusé. Toutes les informations fournies par vous ou en votre nom par un tiers désigné doivent être véridiques et correctes.",
         es:
