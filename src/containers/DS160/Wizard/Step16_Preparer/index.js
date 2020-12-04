@@ -33,6 +33,26 @@ class MyForm extends Component {
       showPrev, showNext, onPrev, onNext, data, tr,
     } = this.props
     getFieldDecorator('data.b_assist', { initialValue: utils.getInitialValue(data.b_assist) })
+    if (!data.assist_info) {
+      data.assist_info = {
+        preparer: {
+          surname: null,
+          given_name: null,
+        },
+        organization: {
+          name: null,
+        },
+        address: {
+          street_addr1: null,
+          street_addr2: null,
+          city: null,
+          state: null,
+          zip_code: null,
+          country: null,
+        },
+        relationship: null,
+      }
+    }
     if (!data.assist_info.organization) {
       data.assist_info.organization = {
         name: null,
