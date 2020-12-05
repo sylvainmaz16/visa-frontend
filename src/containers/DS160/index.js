@@ -36,8 +36,15 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
     setLanguage(lang)
   }
 
+  var customTheme = 'visa-ds160';
+  if (agency && agency.toLowerCase() === 'uva') 
+    customTheme = 'visa-ds160 visa-ds160-agency visa-uva'
+  if (agency && agency.toLowerCase() === 'aes') 
+    customTheme = 'visa-ds160 visa-ds160-agency visa-aes'
+
+  {/*<div className={agency.toLowerCase() === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>*/}
   return (
-    <div className={agency === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
+    <div className={customTheme}>
       <VisaHeader />
       <VisaBanner>
         DS-160 US Visa Online Application <span className="following">for the following Categories:</span>

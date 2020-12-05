@@ -51,9 +51,14 @@ class DS160_Checkout extends Component {
     }
 
     const sentAddr = cookies.get('sendLinkEmailSuccess')
+    var customTheme = 'visa-ds160-save-and-continue';
+    if (agency && agency.toLowerCase() === 'uva') 
+      customTheme = 'visa-ds160-save-and-continue visa-uva'
+    if (agency && agency.toLowerCase() === 'aes') 
+      customTheme = 'visa-ds160-save-and-continue visa-aes'
 
     return (
-      <div className="visa-ds160-save-and-continue">
+      <div className={customTheme}>
         <VisaHeader />
         <VisaBanner backgroundColor="#428bca">
           DS 160 US Visa Online Application

@@ -620,8 +620,15 @@ class DS160_Wizard extends Component {
         break
     }
 
-    return (
-      <div className={agency === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>
+  var customTheme = 'visa-ds160';
+  if (agency && agency.toLowerCase() === 'uva') 
+    customTheme = 'visa-ds160 visa-ds160-agency visa-uva'
+  if (agency && agency.toLowerCase() === 'aes') 
+    customTheme = 'visa-ds160 visa-ds160-agency visa-aes'
+
+  {/*<div className={agency.toLowerCase() === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>*/}
+  return (
+    <div className={customTheme}>
         <VisaHeader className={step_index == 1 ? 'visa-com-header-first' : 'visa-com-header-not-first'} />
         <VisaBanner className={step_index == 1 ? 'visa-com-banner-first' : 'visa-com-banner-not-first'}>DS 160 US Visa Online Application</VisaBanner>
         <Progress

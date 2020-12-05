@@ -439,7 +439,7 @@ module.exports = function(webpackEnv) {
                   loader: 'less-loader',
                   options: {
                     modifyVars: {
-                      // 'primary-color': '#AA6E56',
+                      // '@primary-color': 'red', 
                     },
                     javascriptEnabled: true
                   },
