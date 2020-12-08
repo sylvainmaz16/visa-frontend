@@ -142,8 +142,8 @@ class AdminPageDS160 extends Component {
     const agencyFilter = []
     if (users && users.length) {
       users.forEach(user => {
-        if (user.approved && user.role === constants.USER_ROLE.AGENCY) {
-          agencyFilter.push({ text: user.username, value: user.username })
+        if (user.approved && user.role === constants.USER_ROLE.AGENCY || user.role === constants.USER_ROLE.PARTNER ) {
+          agencyFilter.push({ text: user.username, value: user.username })  
         }
       })
       agencyFilter.push({ text: 'none', value: 'none' })
