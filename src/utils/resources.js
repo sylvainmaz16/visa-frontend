@@ -57,7 +57,7 @@ const resources = {
     it: 'Seguente',
   },
   save_and_continue_later: {
-    en: 'Save an Continue Later',
+    en: 'Save and Continue Later',
     fr: 'Enregistrer un continuer plus tard',
     es: 'Guardar y continuar más tarde',
     de: 'Speichern und später fortsetzen',

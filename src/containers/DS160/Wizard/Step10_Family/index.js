@@ -83,6 +83,13 @@ class MyForm extends Component {
       ]
     }
 
+    if (!data.spouse.place_of_birth) {
+      data.spouse.place_of_birth = {
+          city: null,
+          country: null,
+        }      
+    }
+
     const martial_header = {
       M: 'Spouse',
       C: 'Spouse',
