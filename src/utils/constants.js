@@ -16,6 +16,8 @@ export const sites = {
 export const apiURL = {
   default: 'https://ds-160.us/v1/api/',
   ds160: 'https://ds-160.us/v1/api/',
+  // default: 'http://localhost:4040/api/',
+  // ds160: 'http://localhost:4040/api/',
   newKdmid: 'https://kdmid-evisa.com/v1/api/',
   canada: 'https://eta-evisa-canada.com/v1/api/',
 }

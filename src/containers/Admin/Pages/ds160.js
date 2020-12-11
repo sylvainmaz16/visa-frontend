@@ -140,7 +140,7 @@ class AdminPageDS160 extends Component {
     const { visible_send_email_modal, loading_send_email, selected_record } = this.state
 
     const agencyFilter = []
-    if (users && users.length) {
+    if (users && users.length) {      
       users.forEach(user => {
         if (user.approved && user.role === constants.USER_ROLE.AGENCY || user.role === constants.USER_ROLE.PARTNER ) {
           agencyFilter.push({ text: user.username, value: user.username })  
@@ -210,7 +210,11 @@ class AdminPageDS160 extends Component {
         filters: agencyFilter,
         filteredValue: pagination.filters.agency,
         onFilter: (value, record) => {
-          return value === record.agency ? record.agency.toLowerCase() : ''
+          // return value === record.agency ? record.agency.toLowerCase() : ''
+          if (value === 'uva') return record.agency
+          if (value === 'AES') return record.agency
+          
+          return record.agency === null
         },
       },
       {
