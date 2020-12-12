@@ -30,6 +30,7 @@ class MyForm extends Component {
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.final.section_title)}</h2>
         </div>
+        
         <div className="visa-form-bottom-btn-group">
           {token && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>

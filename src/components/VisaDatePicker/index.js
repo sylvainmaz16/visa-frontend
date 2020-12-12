@@ -62,7 +62,7 @@ class VisaDatePicker extends Component {
 
     return (
       <Form.Item label={label} extra={extra} required={required}>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ display: 'inline-flex', flexDirection: 'row',position: 'relative', top: '-9px'}}>
           <Form.Item>
             {getFieldDecorator(`${field}_v2.DD`, {
               initialValue: utils.getInitialValue(initialValue ? initialValue.split('/')[0] : null),

@@ -64,8 +64,8 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
 
         <Welcome lang={lang} agency={agency} />
 
-        <div className="visa-global-btn-group" style={{ textAlign: 'center', margin: '40px 0px' }}>
-          <Button type="primary" onClick={onStartApplication}>
+        <div className="visa-global-btn-group" style={{ textAlign: 'center', padding: '40px 0' }}>
+          <Button type="primary" onClick={onStartApplication} style={{ marginRight: 0 }}>
             {tr(resources.before.start_button)}
             <Icon type="right" />
           </Button>

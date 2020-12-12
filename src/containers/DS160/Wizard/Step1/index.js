@@ -65,26 +65,26 @@ class MyForm extends Component {
           })(<VisaSelect values={values} labels={labels} />)}
         </Form.Item>
 
-        <Form.Item label={tr(resources.step_1.privacy.label)} required>
-          <ul>
-            <li>{tr(resources.step_1.privacy.extra.authorities)}</li>
-            <li>{tr(resources.step_1.privacy.extra.purpose)}</li>
-            <li>{tr(resources.step_1.privacy.extra.routine)}</li>
-            <li>{tr(resources.step_1.privacy.extra.disclosure)}</li>
-          </ul>
-          {getFieldDecorator('data.privacy', {
-            initialValue: data.privacy,
-            valuePropName: 'checked',
-            rules: [
-              {
-                required: true,
-                message: tr(resources.validations.required),
-                transform: value => value || undefined, // Those two lines
-                type: 'boolean',
-              },
-            ],
-          })(<Checkbox>{tr(resources.step_1.privacy.check)}</Checkbox>)}
-        </Form.Item>
+        {/*<Form.Item label={tr(resources.step_1.privacy.label)} required>
+                  <ul>
+                    <li>{tr(resources.step_1.privacy.extra.authorities)}</li>
+                    <li>{tr(resources.step_1.privacy.extra.purpose)}</li>
+                    <li>{tr(resources.step_1.privacy.extra.routine)}</li>
+                    <li>{tr(resources.step_1.privacy.extra.disclosure)}</li>
+                  </ul>
+                  {getFieldDecorator('data.privacy', {
+                    initialValue: data.privacy,
+                    valuePropName: 'checked',
+                    rules: [
+                      {
+                        required: true,
+                        message: tr(resources.validations.required),
+                        transform: value => value || undefined, // Those two lines
+                        type: 'boolean',
+                      },
+                    ],
+                  })(<Checkbox>{tr(resources.step_1.privacy.check)}</Checkbox>)}
+                </Form.Item>*/}
 
         <VisaSelectItem
           label={tr(resources.step_1.sq_type.label)}
@@ -98,6 +98,13 @@ class MyForm extends Component {
           tr={tr}
         />
         <VisaInput label={tr(resources.step_1.sq_answer.label)} field="data.sq_answer" initialValue={data.sq_answer} getFieldDecorator={getFieldDecorator} tr={tr} />
+
+        <Form.Item>
+          <p className="visa-global-border-top">{tr(resources.statement.line_1)}</p>
+          <span><b>{tr(resources.statement.line_2)}</b></span>
+          <p>{tr(resources.statement.line_3)}</p>
+        </Form.Item>
+                
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
