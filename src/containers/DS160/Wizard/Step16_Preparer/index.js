@@ -128,12 +128,6 @@ class MyForm extends Component {
             </Row>
           </>
         }
-
-        <Form.Item className="visa-global-border-top">
-          <p>{tr(resources.statement.line_1)}</p>
-          <span><b>{tr(resources.statement.line_2)}</b></span>
-          <p>{tr(resources.statement.line_3)}</p>
-        </Form.Item>
         
         <div className="visa-form-bottom-btn-group">
           {this.props.adminToken && (
