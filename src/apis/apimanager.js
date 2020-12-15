@@ -38,6 +38,7 @@ export const ApiManager = {
   SaveDS160Application: (headers, data, site = 'default') => requests.post('ds-160', headers, data, site),
   UpdateDS160Application: (applicationId, data, site = 'default') => requests.put(`ds-160/${applicationId}`, data, site),
   GetDS160Application: (headers, applicationId, site = 'default') => requests.get(`ds-160/${applicationId}`, headers, site),
+  DeleteDS160Application: (applicationId, site = 'default') => requests.del(`ds-160/${applicationId}`, site),
   CheckoutDS160: (headers, data, site = 'default') => requests.post(`ds-160/checkout/${data.applicationId}`, headers, data, site),
   GetCustomersList: (headers, options, site = 'default') => requests.get(`ds-160/smlist?limit=${options.limit}&skip=${options.skip}${options.search ? `&search=${options.search}` : ''}${options.filters}`, headers, site),
   GetMailTemplatesList: (headers, options, site = 'default') => requests.get(`mail?limit=${options.limit}&skip=${options.skip}`, headers, site),

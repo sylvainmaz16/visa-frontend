@@ -233,6 +233,24 @@ return {
         visibleEdit: false,
       }
     }
+    case ADMIN.DS160_DELETE_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ADMIN.DS160_DELETE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+      }
+    }
+    case ADMIN.DS160_DELETE_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      }
+    }
     default: {
       return state
     }

@@ -241,7 +241,7 @@ class MyForm extends Component {
           })(
             <TextArea style={{ textTransform: 'uppercase' }} rows={4} />,
           )}
-                                                                        </Form.Item>}
+        </Form.Item>}
         <VisaDatePicker
           label={tr(resources.personal.date_birth.label)}
           field="data.date_birth"
@@ -256,7 +256,7 @@ class MyForm extends Component {
         />
         <Row gutter={16}>
           <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-            <Form.Item label={tr(resources.personal.place_of_birth.city.label)}>
+            <Form.Item label={tr(resources.personal.place_of_birth.city.label)} required>
               {getFieldDecorator('data.place_of_birth.city', {
                 initialValue: _.get(data, 'place_of_birth.city'),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.personal.place_of_birth.city.label), true) }],
@@ -266,7 +266,7 @@ class MyForm extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-            <Form.Item label={tr(resources.personal.place_of_birth.state.label)}>
+            <Form.Item label={tr(resources.personal.place_of_birth.state.label)} required>
               {getFieldDecorator('data.place_of_birth.state', {
                 initialValue: _.get(data, 'place_of_birth.state'),
                 rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.personal.place_of_birth.state.label), true) }],

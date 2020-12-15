@@ -30,6 +30,7 @@ class AdminPageDS160 extends Component {
       visible_send_email_modal: false,
       loading_send_email: false,
       selected_record: null,
+      visible_delete_application_modal: false
     }
   }
 
@@ -70,7 +71,7 @@ class AdminPageDS160 extends Component {
       visible_send_email_modal: true,
       selected_record: record,
     })
-  }
+  }  
 
   hideSendEmailModal = () => {
     this.setState({
@@ -135,10 +136,33 @@ class AdminPageDS160 extends Component {
     })
   }
 
+  onDeleteApplication = record => {
+    this.setState({
+      visible_delete_application_modal: true,
+      selected_record: record,
+    })
+  }
+
+  handleDeleteApplication = record => {
+    const { selected_record } = this.state
+    this.props.deleteApplication(ADMIN.DS160_DELETE_REQUEST, selected_record._id, result => {
+      // openNotificationWithIcon
+      if (result.error) {
+        openNotificationWithIcon('error', 'Failed', 'Failed to delete an application')
+      } else {
+        openNotificationWithIcon('success', 'Success', 'Successed to delete an application.')
+        this.loadList(this.props.pagination)
+      }
+      console.log('deleted');
+      this.setState({
+        visible_delete_application_modal: false,
+      })
+    })
+  }
+
   render() {
     const { data, pagination, loading, total, user, users } = this.props
-    const { visible_send_email_modal, loading_send_email, selected_record } = this.state
-
+    const { visible_send_email_modal, loading_send_email, selected_record, visible_delete_application_modal } = this.state
     const agencyFilter = []
     if (users && users.length) {      
       users.forEach(user => {
@@ -345,7 +369,7 @@ class AdminPageDS160 extends Component {
             }
 
             return (
-              <>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', height: '60px', alignItems: 'center' }}>
                 <Button type="danger" shape="round" icon="warning" size="small">
                   {user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.PARTNER ? (
                     <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
@@ -365,7 +389,10 @@ class AdminPageDS160 extends Component {
                       Submit without payment
                     </Button>
                   ))}
-              </>
+                <Button shape="round" size="small" icon="delete" onClick={() => this.onDeleteApplication(record)}>
+                  Archive
+                </Button>
+              </div>
             )
           }
           if (record.automation_status.result === 'success' && record.automation_status.email_status === false) {
@@ -377,7 +404,7 @@ class AdminPageDS160 extends Component {
           }
           if (record.automation_status.result === 'success' && record.automation_status.email_status === true) {
             return (
-              <Button type="primary" shape="round" icon="download" size="small">
+             <Button type="primary" shape="round" icon="download" size="small">
                 <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_customer.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
                   {' '}
                   Download PDF
@@ -477,6 +504,18 @@ class AdminPageDS160 extends Component {
             </div>
           </Modal>
         )}
+        {visible_delete_application_modal && (
+          <Modal
+            title={`Delete ${selected_record.app_id}`}
+            visible={visible_delete_application_modal}
+            onOk={this.handleDeleteApplication}
+            onCancel={() => this.setState({ visible_delete_application_modal: false})}
+          >
+            <div className="ds160-delete-application">
+              Are you sure?
+            </div>
+          </Modal>
+        )}
       </div>
     )
   }
@@ -493,6 +532,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type, _id, cb })
   },
   automate: (type, _id, cb) => {
+    dispatch({ type, _id, cb })
+  },
+  deleteApplication: (type, _id, cb) => {
     dispatch({ type, _id, cb })
   },
 })

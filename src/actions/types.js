@@ -35,6 +35,9 @@ export const DS160 = createActionTypes('DS160', [
 
 export const ADMIN = createActionTypes('ADMIN', [
   'RESET',
+  'DS160_DELETE_REQUEST',
+  'DS160_DELETE_SUCCESS',
+  'DS160_DELETE_FAILURE',
   'GET_CUSTOMER_LIST_REQUEST',
   'GET_CUSTOMER_LIST_SUCCESS',
   'GET_CUSTOMER_LIST_FAILURE',

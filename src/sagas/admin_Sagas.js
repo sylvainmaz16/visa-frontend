@@ -240,6 +240,19 @@ function* getKdmidStatusRequest(action) {
   }
 }
 
+function* deleteApplicationRequest(action) {
+  try {
+    const res = yield call(ApiManager.DeleteDS160Application, action._id)    
+    const { data } = res    
+    action.cb({ success: true, data })
+    yield put({ type: ADMIN.DS160_DELETE_SUCCESS, data })
+  } catch (e) {
+    const { status } = e.response
+    action.cb({ success: false })
+    yield put({ type: ADMIN.DS160_DELETE_FAILURE, status })
+  }
+}
+
 function* admin_saga() {
   yield all([takeLatest(ADMIN.GET_CUSTOMER_LIST_REQUEST, getRequest)])
   yield all([takeLatest(ADMIN.GET_MAIL_TEMPATES_LIST_REQUEST, getMailTemplatesRequest)])
@@ -260,6 +273,7 @@ function* admin_saga() {
   yield all([takeLatest(ADMIN.AUTOMATE_REQUEST, automateRequest)])
   yield all([takeLatest(ADMIN.GET_KDMID_STATUS_REQUEST, getKdmidStatusRequest)])
   yield all([takeLatest(ADMIN.GET_ETA_STATUS_REQUEST, getETAStatusRequest)])
+  yield all([takeLatest(ADMIN.DS160_DELETE_REQUEST, deleteApplicationRequest)])
 }
 
 export default admin_saga
