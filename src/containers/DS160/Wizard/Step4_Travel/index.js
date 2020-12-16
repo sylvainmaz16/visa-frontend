@@ -157,7 +157,7 @@ class MyForm extends Component {
               {getFieldDecorator("data.travel_plan.length_of_stay.length", {
                 initialValue: _.get(data, "travel_plan.length_of_stay.length"),
                 rules: [{ required: this.props.form.getFieldValue("data.travel_plan.length_of_stay.period") != "H", message: tr(resources.validations.required) }]
-              })(<InputNumber min={1} max={100} maxLength={3} disabled={this.props.form.getFieldValue("data.travel_plan.length_of_stay.period") == "H"} />)}
+              })(<InputNumber min={1} max={100} maxLength={3} parser={value => value.replace('.', '')} disabled={this.props.form.getFieldValue("data.travel_plan.length_of_stay.period") == "H"} />)}
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 8, offset: 4 }}>
