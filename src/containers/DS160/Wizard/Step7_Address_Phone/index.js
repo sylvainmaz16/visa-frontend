@@ -102,7 +102,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label={tr(resources.address_and_phone.phone_info.home.label)} required>
               {getFieldDecorator('data.phone_info.home', {
-                initialValue: utils.getInitialValue(data.phone_info.home),
+                initialValue: utils.getInitialValue(data.phone_info && data.phone_info.home),
                 rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.home.label), true) }],
               })(<Input maxLength={20} />)}
             </Form.Item>
@@ -110,7 +110,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label={tr(resources.address_and_phone.phone_info.mobile.label)} extra={tr(resources.address_and_phone.phone_info.mobile.extra)}>
               {getFieldDecorator('data.phone_info.mobile', {
-                initialValue: utils.getInitialValue(data.phone_info.mobile),
+                initialValue: utils.getInitialValue(data.phone_info && data.phone_info.mobile),
                 rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.mobile.label)) }],
               })(<Input maxLength={20} />)}
             </Form.Item>
@@ -120,7 +120,7 @@ class MyForm extends Component {
           <Col xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item label={tr(resources.address_and_phone.phone_info.work.label)} extra={tr(resources.address_and_phone.phone_info.work.extra)}>
               {getFieldDecorator('data.phone_info.work', {
-                initialValue: utils.getInitialValue(data.phone_info.work),
+                initialValue: utils.getInitialValue(data.phone_info && data.phone_info.work),
                 rules: [{ validator: (rule, value, callback) => this.validatePhoneNumbers(rule, value, callback, tr(resources.address_and_phone.phone_info.work.label)) }],
               })(<Input maxLength={20} />)}
             </Form.Item>

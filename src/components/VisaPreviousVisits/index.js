@@ -49,74 +49,72 @@ class VisaPreviousVisits extends Component {
 
   render() {
     const {
- label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, birthday, tr, ...rest
-} = this.props
+     label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, validators, arrayField, birthday, tr, ...rest
+    } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
     const visits = getFieldValue(keysField)
     const formItems = visits.map((visit, index) => {
-      getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, { initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.unit : null) })
+      getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, { initialValue: utils.getInitialValue(initialValue[index] && initialValue[index].length_of_stay ? initialValue[index].length_of_stay.unit : null) })
+      return (
+        <Form.Item
+          label={index === 0 ? label : ''}
+          key={index}
+        >
+          <Row gutter={16}>
+            <Col xs={{ span: 20 }} sm={{ span: 8 }}>
+              <VisaDatePicker
+                label={tr(resources.components.previous_visits.date)}
 
-return (
-      <Form.Item
-        label={index === 0 ? label : ''}
-        key={index}
-      >
-        <Row gutter={16}>
-          <Col xs={{ span: 20 }} sm={{ span: 8 }}>
-            <VisaDatePicker
-              label={tr(resources.components.previous_visits.date)}
+                field={`${arrayField}[${index}].date`}
+                initialValue={initialValue[index] ? initialValue[index].date : null}
+                getFieldDecorator={getFieldDecorator}
+                customRule={[{ validator: (rule, value, callback) => validators.validatePreviousVisitdDate(rule, value, callback, 'Date Arrived', birthday) }]}
+                required
 
-              field={`${arrayField}[${index}].date`}
-              initialValue={initialValue[index] ? initialValue[index].date : null}
-              getFieldDecorator={getFieldDecorator}
-              customRule={[{ validator: (rule, value, callback) => validators.validatePreviousVisitdDate(rule, value, callback, 'Date Arrived', birthday) }]}
-              required
-
-              setFieldsValue={setFieldsValue}
-              getFieldValue={getFieldValue}
-              tr={tr}
-            />
-          </Col>
-          <Col xs={{ span: 24 }} md={{ span: 6 }}>
-            <Form.Item
-              label={tr(resources.components.previous_visits.length_of_stay.period.label)}
-              extra={tr(resources.components.previous_visits.length_of_stay.period.extra)}
-              required
-            >
-              {getFieldDecorator(`${arrayField}[${index}].length_of_stay.period`, {
-                initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.period : null),
-                // validateTrigger: ['onChange', 'onBlur'],
-                rules: [{ validator: (rule, value, callback) => validators.validateLengthOfStay(rule, value, callback, 'Length of Stay', getFieldValue(`${arrayField}[${index}].length_of_stay.unit`) != 'H') }],
-              })(
-                <Input maxLength={3} disabled={getFieldValue(`${arrayField}[${index}].length_of_stay.unit`) == 'H'} />,
-              )}
-            </Form.Item>
-          </Col>
-          <Col xs={{ span: 24 }} md={{ span: 6 }}>
-            <Form.Item label={tr(resources.components.previous_visits.length_of_stay.unit)}>
-              {getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, {
-                initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].length_of_stay.unit : null),
-                validateTrigger: ['onChange', 'onBlur'],
-                rules: [{ required: true, message: tr(resources.validations.required) }],
-              })(
-                <VisaSelect combines={tr(constants.period_unit_options_v2)} tr={tr} />,
-              )}
-            </Form.Item>
-          </Col>
-          {visits.length > 1 ? (
-            <Icon
-              className="dynamic-delete-button"
-              type="minus-circle-o"
-              style={{ fontSize: '24px', marginTop: '40px', marginLeft: '10px' }}
-              onClick={() => this.remove(index, keysField, arrayField)}
-            />
-          ) : null}
-        </Row>
-
-      </Form.Item>
-    )
-})
+                setFieldsValue={setFieldsValue}
+                getFieldValue={getFieldValue}
+                tr={tr}
+              />
+            </Col>
+            <Col xs={{ span: 24 }} md={{ span: 6 }}>
+              <Form.Item
+                label={tr(resources.components.previous_visits.length_of_stay.period.label)}
+                extra={tr(resources.components.previous_visits.length_of_stay.period.extra)}
+                required
+              >
+                {getFieldDecorator(`${arrayField}[${index}].length_of_stay.period`, {
+                  initialValue: utils.getInitialValue(initialValue[index] && initialValue[index].length_of_stay? initialValue[index].length_of_stay.period : null),
+                  // validateTrigger: ['onChange', 'onBlur'],
+                  rules: [{ validator: (rule, value, callback) => validators.validateLengthOfStay(rule, value, callback, 'Length of Stay', getFieldValue(`${arrayField}[${index}].length_of_stay.unit`) != 'H') }],
+                })(
+                  <Input maxLength={3} disabled={getFieldValue(`${arrayField}[${index}].length_of_stay.unit`) == 'H'} />,
+                )}
+              </Form.Item>
+            </Col>
+            <Col xs={{ span: 24 }} md={{ span: 6 }}>
+              <Form.Item label={tr(resources.components.previous_visits.length_of_stay.unit)}>
+                {getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, {
+                  initialValue: utils.getInitialValue(initialValue[index] && initialValue[index].length_of_stay ? initialValue[index].length_of_stay.unit : null),
+                  validateTrigger: ['onChange', 'onBlur'],
+                  rules: [{ required: true, message: tr(resources.validations.required) }],
+                })(
+                  <VisaSelect combines={tr(constants.period_unit_options_v2)} tr={tr} />,
+                )}
+              </Form.Item>
+            </Col>
+            {visits.length > 1 ? (
+              <Icon
+                className="dynamic-delete-button"
+                type="minus-circle-o"
+                style={{ fontSize: '24px', marginTop: '40px', marginLeft: '10px' }}
+                onClick={() => this.remove(index, keysField, arrayField)}
+              />
+            ) : null}
+          </Row>
+        </Form.Item>
+      )
+    })
 
     return (
       <>
@@ -124,10 +122,10 @@ return (
         {(visits.length < 5) && <Form.Item>
           <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
             <Icon type="plus" />
-{' '}
-{tr(resources.add_another)}
+            {' '}
+            {tr(resources.add_another)}
           </Button>
-                                </Form.Item>}
+        </Form.Item>}
       </>
     )
   }
