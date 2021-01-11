@@ -67,7 +67,7 @@ class DS160_Checkout extends Component {
           {sentAddr && <div className="visa-global-field">
             <h2 className="visa-global-section-title-customized-by-ds-160" style={{ fontSize: '1.5em' }}>
               The link was sent to the following email address:
-{' '}
+              {' '}
               {sentAddr}
             </h2>
           </div>}

@@ -35,16 +35,16 @@ class MyForm extends Component {
           {token && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
               <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
-                FIRST
+                {tr(resources.first)}
               </Button>
               <Button type="default" style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>
-                PREV
+                {tr(resources.prev)}
               </Button>
             </div>
           )}
           {showPrev && (
             <Button style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>
-              Prev
+              {tr(resources.prev)}
             </Button>
           )}
           {showNext && (
