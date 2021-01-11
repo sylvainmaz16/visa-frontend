@@ -59,10 +59,22 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
             <Option value="es-ES">ESPAÑOL (SPANISH)</Option>
             <Option value="de-DE">DEUTSCH (GERMAN)</Option>
             <Option value="it-IT">ITALIANO (ITALIAN)</Option>
+            
+            <Option value="zh-Hans-CN">中文 (CHINESE)</Option>
+            <Option value="pt-PT">PORTUGUÊS (PORTUGUESE)</Option>
+            <Option value="ar-">عربى (ARABIC)</Option>
+            <Option value="jp-JP">日本語 (JAPANESE)</Option>
+            <Option value="ko-KR">한국어 (KOREAN)</Option>
+
+            <Option value="hi-IN">हिंदी (HINDI)</Option>
+            <Option value="bn-BD">বাংলা (BENGALI)</Option>
+            <Option value="ru-RU">русский (RUSSIAN)</Option>
+            <Option value="nl-NL">Netherland (NETHERLAND)</Option>
+            <Option value="he-IL">עִברִית (HEBREW)</Option>
           </Select>
         </Form.Item>
 
-        <Welcome lang={lang} agency={agency} />
+        <Welcome lang={lang} agency={agency} tr={tr}/>
 
         <div className="visa-global-btn-group" style={{ textAlign: 'center', padding: '40px 0' }}>
           <Button type="primary" onClick={onStartApplication}s>

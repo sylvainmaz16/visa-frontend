@@ -75,28 +75,28 @@ class MyForm extends Component {
               </Button>
               {showPrev && (
                 <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
-                  Prev
+                  {tr(resources.prev)}
                 </Button>
               )}
               {showNext && (
                 <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
-                  Next
+                  {tr(resources.next)}
                 </Button>
               )}
             </div>
           )}
           {showPrev && (
             <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
-              Prev
+              {tr(resources.prev)}
             </Button>
           )}
           {showNext && (
             <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
-              Next
+              {tr(resources.next)}
             </Button>
           )}
           <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
-            Save and Continue Later
+            {tr(resources.save_and_continue_later)}
           </Button>
         </div>
       </Form>
