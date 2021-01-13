@@ -12,7 +12,7 @@ import './index.less'
 
 const { Option } = Select
 
-const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
+const DS160_HOME = ({ agency, history, resetState, changeLanguage, initLang = 'en-US' }) => {
   const [lang, setLanguage] = useState('en-US')
   const tr = r => translate(r, lang)
 
@@ -33,6 +33,7 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
   }
 
   function onChangeLang(lang) {
+    changeLanguage(DS160.DS160_CHANGE_LANGUAGE, lang)
     setLanguage(lang)
   }
 
@@ -61,8 +62,8 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
             <Option value="it-IT">ITALIANO (ITALIAN)</Option>
             
             <Option value="pt-PT">PORTUGUÊS (PORTUGUESE)</Option>
-            <Option value="nl-NL">Netherland (NETHERLAND)</Option>
-            <Option value="ru-RU">русский (RUSSIAN)</Option>
+            <Option value="nl-NL">DUTCH (NETHERLAND)</Option>
+            <Option value="ru-RU">РУССКИЙ (RUSSIAN)</Option>
             <Option value="zh-Hans-CN">中文 (CHINESE)</Option>
             <Option value="ko-KR">한국어 (KOREAN)</Option>
 
@@ -90,6 +91,9 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
 const mapDispatchToProps = dispatch => ({
   resetState: (type, initValue) => {
     dispatch({ type, initValue })
+  },
+  changeLanguage: (type, lang) => {
+    dispatch({ type, lang })
   },
 })
 
