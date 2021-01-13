@@ -33,7 +33,6 @@ const DS160_HOME = ({ agency, history, resetState, changeLanguage, initLang = 'e
   }
 
   function onChangeLang(lang) {
-    changeLanguage(DS160.DS160_CHANGE_LANGUAGE, lang)
     setLanguage(lang)
   }
 

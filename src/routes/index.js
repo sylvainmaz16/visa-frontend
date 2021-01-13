@@ -120,11 +120,12 @@ const Routes = () => {
           exact
           children={({ location }) => {
             const agency = new URLSearchParams(location.search).get('agency')
+            const lang = new URLSearchParams(location.search).get('lang')
             window.less.modifyVars(getTheme(agency)).then(() => {
               console.log('Theme updated successfully')
             })
 
-            return <DS160Wizard agency={agency} />
+            return <DS160Wizard agency={agency} lang={lang} />
           }}
         />
 

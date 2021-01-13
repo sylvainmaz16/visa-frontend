@@ -49,9 +49,12 @@ class DS160_Wizard extends Component {
   }
 
   componentDidMount() {
-    const { token, loadApplicationFromDB } = this.props
+    const { token, loadApplicationFromDB, lang, changeLanguage } = this.props
     if (token) {
       loadApplicationFromDB(DS160.DS160_GET_REQUEST, token, this.cbGetRequest)
+    }
+    if (lang) {
+      changeLanguage(DS160.DS160_CHANGE_LANGUAGE, lang)
     }
   }
 
