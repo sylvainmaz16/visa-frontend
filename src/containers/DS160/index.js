@@ -66,11 +66,11 @@ const DS160_HOME = ({ agency, history, resetState, initLang = 'en-US' }) => {
             <Option value="zh-Hans-CN">中文 (CHINESE)</Option>
             <Option value="ko-KR">한국어 (KOREAN)</Option>
 
-            // <Option value="ar-">عربى (ARABIC)</Option>
-            // <Option value="jp-JP">日本語 (JAPANESE)</Option>
-            // <Option value="hi-IN">हिंदी (HINDI)</Option>
-            // <Option value="bn-BD">বাংলা (BENGALI)</Option>
-            // <Option value="he-IL">עִברִית (HEBREW)</Option>
+            {/*<Option value="ar-">عربى (ARABIC)</Option>
+                        <Option value="jp-JP">日本語 (JAPANESE)</Option>
+                        <Option value="hi-IN">हिंदी (HINDI)</Option>
+                        <Option value="bn-BD">বাংলা (BENGALI)</Option>
+                        <Option value="he-IL">עִברִית (HEBREW)</Option>*/}
           </Select>
         </Form.Item>
 
