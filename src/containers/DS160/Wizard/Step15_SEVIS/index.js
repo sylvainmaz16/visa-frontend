@@ -196,7 +196,7 @@ class MyForm extends Component {
                 {tr(resources.first)}
               </Button>
               {showPrev && (
-                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                <Button id="Prev" style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
                   {tr(resources.prev)}
                 </Button>
               )}
@@ -208,7 +208,7 @@ class MyForm extends Component {
             </div>
           )}
           {showPrev && (
-            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+            <Button id="Prev" style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
               {tr(resources.prev)}
             </Button>
           )}

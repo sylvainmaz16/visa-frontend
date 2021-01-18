@@ -37,13 +37,13 @@ class MyForm extends Component {
               <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
                 {tr(resources.first)}
               </Button>
-              <Button type="default" style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>
+              <Button type="default" id="Prev" style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>
                 {tr(resources.prev)}
               </Button>
             </div>
           )}
           {showPrev && (
-            <Button style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>
+            <Button id="Prev" style={{ marginRight: 8 }} onClick={e => handlePrev(e, form, this.handleDates)}>
               {tr(resources.prev)}
             </Button>
           )}

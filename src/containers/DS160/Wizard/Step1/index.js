@@ -109,7 +109,7 @@ class MyForm extends Component {
           {this.props.adminToken && (
             <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
               {showPrev && (
-                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)} id="Prev">
                   {tr(resources.prev)}
                 </Button>
               )}
@@ -121,7 +121,7 @@ class MyForm extends Component {
             </div>
           )}
           {showPrev && (
-            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)} id="Prev">
               {tr(resources.prev)}
             </Button>
           )}
