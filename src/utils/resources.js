@@ -509,7 +509,7 @@ const resources = {
         nl: "Veiligheidsvraag",
         he: "שאלת בטחון",
         ko: "보안 질문",
-        jp: "вопрос безопасности",
+        jp: "秘密の質問",
         ru: "вопрос безопасности",
         hi: "सुरक्षा प्रश्न",
         pt: "Pergunta de Segurança",

@@ -619,7 +619,7 @@ export const security_question_options = {
     <option value="19"> आपका पहला काम किस शहर या शहर में था? </option>,
     <option value="20"> आपके पहले प्रेमी या प्रेमिका का नाम क्या था? </option>,
   ],
-  pr: [
+  pt: [
     <option value="1"> Qual é o nome de batismo da mãe de sua mãe? </option>, 
     <option value="2"> Qual é o nome do pai de seu pai? </option>, 
     <option value="3"> Qual é o nome de solteira da sua avó materna? </option>, 
