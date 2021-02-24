@@ -63,8 +63,14 @@ class MyForm extends Component {
 
         <Form.Item className="visa-global-border-top">
           <p>{tr(resources.statement.line_1)}</p>
-          <span><b>{tr(resources.statement.line_2)}</b></span>
+          <p>{tr(resources.statement.line_2)}</p>
           <p>{tr(resources.statement.line_3)}</p>
+          <p>{tr(resources.statement.line_4)}</p>
+          <ul>
+            <li>{tr(resources.statement.line_5)}</li>
+            <li>{tr(resources.statement.line_6)}</li>
+          </ul>
+
         </Form.Item>
         
         <div className="visa-form-bottom-btn-group">
