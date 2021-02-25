@@ -70,7 +70,30 @@ class MyForm extends Component {
             <li>{tr(resources.statement.line_5)}</li>
             <li>{tr(resources.statement.line_6)}</li>
           </ul>
+          <br />
+          <p><b>{tr(resources.statement.line_7)}</b></p>
+          <span style={{ fontStyle: "italic" }}>
+            Public Communication Division <br />
+            PA/PL, Room 2206 <br />
+            U.S. Department of State <br />
+            Washington, D.C. 20520 <br />
+            202-647-6575
+          </span>
+        </Form.Item>
 
+        <Form.Item>
+          {getFieldDecorator('data.b_agreement_2_3', {
+            initialValue: utils.getInitialValue(data.b_agreement_2_3),
+            valuePropName: 'checked',
+            rules: [
+              {
+                required: true,
+                message: tr(resources.validations.required),
+                transform: value => value || undefined, // Those two lines
+                type: 'boolean',
+              },
+            ],
+          })(<Checkbox>{tr(resources.statement.line_8)}</Checkbox>)}
         </Form.Item>
         
         <div className="visa-form-bottom-btn-group">
