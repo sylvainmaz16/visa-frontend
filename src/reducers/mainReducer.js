@@ -19,7 +19,6 @@ const initialState = {
     // step-2
     b_agreement_2_1: false,
     b_agreement_2_2: false,
-    b_agreement_2_3: false,
     sq_type: null,
     sq_answer: null,
     privacy: null,

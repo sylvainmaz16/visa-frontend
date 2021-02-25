@@ -46,21 +46,6 @@ class MyForm extends Component {
           })(<Checkbox>{tr(resources.step_2.disclaimer.check)}</Checkbox>)}
         </Form.Item>
 
-        <Form.Item label={tr(resources.step_2.confirm.label)}>
-          {getFieldDecorator('data.b_agreement_2_2', {
-            initialValue: utils.getInitialValue(data.b_agreement_2_2),
-            valuePropName: 'checked',
-            rules: [
-              {
-                required: true,
-                message: tr(resources.validations.required),
-                transform: value => value || undefined, // Those two lines
-                type: 'boolean',
-              },
-            ],
-          })(<Checkbox>{tr(resources.step_2.confirm.check)}</Checkbox>)}
-        </Form.Item>
-
         <Form.Item className="visa-global-border-top">
           <p>{tr(resources.statement.line_1)}</p>
           <p>{tr(resources.statement.line_2)}</p>
@@ -81,9 +66,9 @@ class MyForm extends Component {
           </span>
         </Form.Item>
 
-        <Form.Item>
-          {getFieldDecorator('data.b_agreement_2_3', {
-            initialValue: utils.getInitialValue(data.b_agreement_2_3),
+        <Form.Item label={tr(resources.step_2.confirm.label)}>
+          {getFieldDecorator('data.b_agreement_2_2', {
+            initialValue: utils.getInitialValue(data.b_agreement_2_2),
             valuePropName: 'checked',
             rules: [
               {
@@ -93,7 +78,7 @@ class MyForm extends Component {
                 type: 'boolean',
               },
             ],
-          })(<Checkbox>{tr(resources.statement.line_8)}</Checkbox>)}
+          })(<Checkbox>{tr(resources.step_2.confirm.check)}</Checkbox>)}
         </Form.Item>
         
         <div className="visa-form-bottom-btn-group">
