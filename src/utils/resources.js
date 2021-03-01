@@ -2169,7 +2169,7 @@ const resources = {
       ko: '이전 미국 여행',
       hi: 'पिछली अमेरिकी यात्रा',
       pt: 'Viagem anterior nos EUA',
-      ru: 'Viagem anterior nos EUA',
+      ru: 'Предыдущее путешествие в США',
     },
     b_ever_been_in_US: {
       label: {
@@ -2187,7 +2187,7 @@ const resources = {
         ko: '전에 미국에 가본 적이 있습니까?',
         hi: 'क्या आप पहले कभी अमेरिका गए हैं?',
         pt: 'Você já esteve nos EUA antes?',
-        ru: 'Você já esteve nos EUA antes?',
+        ru: 'Вы когда-нибудь были в США?',
       },
       extra: {
         en: 'Check if you have been in the US before and fill out the details of your last 5 visits below',
