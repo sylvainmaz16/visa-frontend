@@ -212,30 +212,94 @@ class DS160_Wizard extends Component {
     })
   }
 
-  handleSubmitWithoutPayment = (e, form, handleDates, field) => {
-    e.preventDefault()
-    form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        if (handleDates) {
-          this.onSubmitWithoutPayment(handleDates(values.data), field)
-        } else {
-          this.onSubmitWithoutPayment(values.data, field)
+  validateForms = () => {
+    const ds160 = this.props.ds160;
+    var spouse = null;
+    if (ds160.form_travel.paying_person_info && ds160.form_travel.paying_person_info.relationship === "S") {
+        spouse = ds160.form_travel.paying_person_info;
+    }
+    var flag = true;    
+    ds160.form_travel_company.people.map(person => {
+      if (person.relationship === "S") {
+        if (spouse) {
+          if (spouse.surname !== person.surname || spouse.given_name !== person.given_name){
+            flag = false;
+            return
+          }
+        }
+        else {
+          spouse = person;
+        }
+        return
+      }
+    })    
+    if (ds160.form_contact && ds160.form_contact.relationship === "S") {
+      if (spouse) {
+        if (spouse.surname !== ds160.form_contact.surname || spouse.given_name !== ds160.form_contact.given_name){
+          flag = false;          
         }
       }
-    })
+      else {
+        spouse = person;
+      }
+    }    
+    if (ds160.form_family && ds160.form_family.spouse) {
+      if (spouse) {
+        if (spouse.surname !== ds160.form_family.spouse.surname || spouse.given_name !== ds160.form_family.spouse.given_name){
+          flag = false;          
+        }
+      }
+      else {
+        spouse = person;
+      }
+    }
+    ds160.form_family.others.map(person => {
+      if (person.relationship === "S") {
+        if (spouse) {
+          if (spouse.surname !== person.surname || spouse.given_name !== person.given_name){
+            flag = false;
+            return
+          }
+        }
+        else {
+          spouse = person;
+        }
+      }
+    });
+
+    return flag;
+  }
+
+  handleSubmitWithoutPayment = (e, form, handleDates, field) => {
+    e.preventDefault();
+    if(this.validateForms())
+      form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          if (handleDates) {
+            this.onSubmitWithoutPayment(handleDates(values.data), field)
+          } else {
+            this.onSubmitWithoutPayment(values.data, field)
+          }
+        }
+      })
+    else
+      alert('Please make sure you have provided same information for all the spouse fields')
   }
 
   handleSubmit = (e, form, handleDates, field) => {
     e.preventDefault()
-    form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        if (handleDates) {
-          this.onSubmit(handleDates(values.data), field)
-        } else {
-          this.onSubmit(values.data, field)
+    if(this.validateForms)
+      form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          if (handleDates) {
+            this.onSubmit(handleDates(values.data), field)
+          } else {
+            this.onSubmit(values.data, field)
+          }
         }
-      }
-    })
+      })
+    else
+      alert('Please make sure you have provided same information for all the spouse fields')
   }
 
   handlePrev = (e, form, handleDates, field) => {
@@ -272,7 +336,7 @@ class DS160_Wizard extends Component {
   }
 
   handleNext = (e, form, handleDates, field) => {
-    e.preventDefault()
+    e.preventDefault()    
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         if (handleDates) {
