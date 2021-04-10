@@ -240,7 +240,7 @@ class DS160_Wizard extends Component {
         }
       }
       else {
-        spouse = person;
+        spouse = ds160.form_contact;
       }
     }    
     if (ds160.form_family && ds160.form_family.spouse) {
@@ -250,7 +250,7 @@ class DS160_Wizard extends Component {
         }
       }
       else {
-        spouse = person;
+        spouse = ds160.form_family.spouse;
       }
     }
     ds160.form_family.others.map(person => {
