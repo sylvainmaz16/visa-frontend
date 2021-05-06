@@ -214,6 +214,7 @@ class DS160_Wizard extends Component {
 
   validateForms = () => {
     const ds160 = this.props.ds160;
+    debugger;
     var spouse = null;
     if (ds160.form_travel.paying_person_info && ds160.form_travel.paying_person_info.relationship === "S") {
         spouse = ds160.form_travel.paying_person_info;
@@ -222,7 +223,7 @@ class DS160_Wizard extends Component {
     ds160.form_travel_company.people.map(person => {
       if (person.relationship === "S") {
         if (spouse) {
-          if (spouse.surname !== person.surname || spouse.given_name !== person.given_name){
+          if (spouse.surname.toLowerCase() !== person.surname.toLowerCase() || spouse.given_name.toLowerCase() !== person.given_name.toLowerCase()){
             flag = false;
             return
           }
@@ -235,7 +236,7 @@ class DS160_Wizard extends Component {
     })    
     if (ds160.form_contact && ds160.form_contact.relationship === "S") {
       if (spouse) {
-        if (spouse.surname !== ds160.form_contact.surname || spouse.given_name !== ds160.form_contact.given_name){
+        if (spouse.surname.toLowerCase() !== ds160.form_contact.surname.toLowerCase() || spouse.given_name.toLowerCase() !== ds160.form_contact.given_name.toLowerCase()){
           flag = false;          
         }
       }
@@ -245,7 +246,7 @@ class DS160_Wizard extends Component {
     }    
     if (ds160.form_family && ds160.form_family.spouse) {
       if (spouse) {
-        if (spouse.surname !== ds160.form_family.spouse.surname || spouse.given_name !== ds160.form_family.spouse.given_name){
+        if (spouse.surname.toLowerCase() !== ds160.form_family.spouse.surname.toLowerCase() || spouse.given_name.toLowerCase() !== ds160.form_family.spouse.given_name.toLowerCase()){
           flag = false;          
         }
       }
@@ -256,7 +257,7 @@ class DS160_Wizard extends Component {
     ds160.form_family.others.map(person => {
       if (person.relationship === "S") {
         if (spouse) {
-          if (spouse.surname !== person.surname || spouse.given_name !== person.given_name){
+          if (spouse.surname.toLowerCase() !== person.surname.toLowerCase() || spouse.given_name.toLowerCase() !== person.given_name.toLowerCase()){
             flag = false;
             return
           }
@@ -266,7 +267,6 @@ class DS160_Wizard extends Component {
         }
       }
     });
-
     return flag;
   }
 
