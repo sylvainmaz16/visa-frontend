@@ -35,6 +35,8 @@ class AdminPageCaETA extends Component {
       loadingETAStatus: false,
       etaStatus: {},
       additionalInfo: {},
+      selectedRecord: null,
+      visibleDeleteApplicationModal: false
     }
   }
 
@@ -162,9 +164,33 @@ class AdminPageCaETA extends Component {
     this.setState({ visibleETAStatusModal: false, etaStatus: {} })
   }
 
+  onDeleteApplication = record => {
+    this.setState({
+      visibleDeleteApplicationModal: true,
+      selectedRecord: record,
+    })
+  }
+
+  handleDeleteApplication = record => {
+    const { selectedRecord } = this.state
+    this.props.deleteApplication(ADMIN.CAETA_DELETE_REQUEST, selectedRecord._id, result => {
+      // openNotificationWithIcon
+      if (!result.success) {
+        openNotificationWithIcon('error', 'Failed', 'Failed to delete an application')
+      } else {
+        openNotificationWithIcon('success', 'Success', 'Successed to delete an application.')
+        this.loadList(this.props.pagination)
+      }
+      console.log('deleted');
+      this.setState({
+        visibleDeleteApplicationModal: false,
+      })
+    })
+  }
+
   render() {
     const { data, pagination, loading, total, user, users } = this.props
-    const { visibleSendEmailModal, loadingSendEmail, selectedRecord, loadingETAStatus, visibleETAStatusModal, etaStatus, additionalInfo } = this.state
+    const { visibleSendEmailModal, loadingSendEmail, selectedRecord, loadingETAStatus, visibleETAStatusModal, etaStatus, additionalInfo, visibleDeleteApplicationModal } = this.state
 
     const agencyFilter = []
     if (users) {
@@ -211,7 +237,6 @@ class AdminPageCaETA extends Component {
           if (citizenCodeIndex >= 0) {
             return citizenList[citizenCodeIndex].label
           }
-
           return ''
         },
       },
@@ -318,7 +343,7 @@ class AdminPageCaETA extends Component {
           if (!record.automation_status) return '-'
           if (record.automation_status.error) {
             return (
-              <>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', height: '90px', alignItems: 'center' }}>
                 <Button type="danger" shape="round" icon="warning" size="small">
                   {user.role === constants.USER_ROLE.ADMIN ? (
                     <a href={`https://s3.us-east-2.amazonaws.com/assets.canada/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
@@ -333,11 +358,16 @@ class AdminPageCaETA extends Component {
                   )}
                 </Button>
                 {user.role === constants.USER_ROLE.ADMIN && (
-                  <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
-                    Submit without payment
-                  </Button>
+                  <>
+                    <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
+                      Submit without payment
+                    </Button>
+                    <Button shape="round" size="small" icon="delete" onClick={() => this.onDeleteApplication(record)}>
+                      Archive
+                    </Button>
+                  </>
                 )}
-              </>
+              </div>
             )
           }
           if (record.automation_status.result === 'success') {
@@ -447,6 +477,18 @@ class AdminPageCaETA extends Component {
             </div>
           </Modal>
         )}
+        {visibleDeleteApplicationModal && (
+          <Modal
+            title={`Delete ${selectedRecord.app_id}`}
+            visible={visibleDeleteApplicationModal}
+            onOk={this.handleDeleteApplication}
+            onCancel={() => this.setState({ visibleDeleteApplicationModal: false})}
+          >
+            <div className="ds160-delete-application">
+              Are you sure?
+            </div>
+          </Modal>
+        )}
       </div>
     )
   }
@@ -482,6 +524,9 @@ const mapDispatchToProps = dispatch => ({
       site,
       cb,
     })
+  },
+  deleteApplication: (type, _id, cb) => {
+    dispatch({ type, _id, cb })
   },
 })
 
