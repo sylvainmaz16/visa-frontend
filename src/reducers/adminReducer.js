@@ -251,6 +251,24 @@ return {
         loading: false,
       }
     }
+    case ADMIN.CAETA_DELETE_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ADMIN.CAETA_DELETE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+      }
+    }
+    case ADMIN.CAETA_DELETE_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      }
+    }
     default: {
       return state
     }
