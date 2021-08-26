@@ -70,18 +70,12 @@ class DS160_Wizard extends Component {
   cbGetRequest = result => {
     const { history, agency } = this.props
     const adminToken = localStorage.getItem('immigration4us_token')
-
+    const family = new URLSearchParams(location.search).get('family')
     if (result.success === false || (!adminToken && result.data && result.data.automation_status && result.data.automation_status.result === 'success')) {
-      history.push(
-        agency
-          ? {
-              pathname: '/',
-              search: `?agency=${agency}`,
-            }
-          : {
-              pathname: '/',
-            },
-      )
+      history.push({
+        pathname: '/',
+        search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+      })
     }
   }
 
@@ -94,14 +88,11 @@ class DS160_Wizard extends Component {
     this.props.onPrevStep(DS160.DS160_PREV_STEP)
 
     const { agency } = this.props
-    if (agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      this.props.history.push('/ds-160/application-form')
-    }
+    const family = new URLSearchParams(location.search).get('family')
+    this.props.history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
 
     window.scrollTo(0, 0)
   }
@@ -115,14 +106,11 @@ class DS160_Wizard extends Component {
     this.props.onFirstStep(DS160.DS160_FIRST_STEP)
 
     const { agency } = this.props
-    if (agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      this.props.history.push('/ds-160/application-form')
-    }
+    const family = new URLSearchParams(location.search).get('family')
+    this.props.history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
 
     window.scrollTo(0, 0)
   }
@@ -136,36 +124,38 @@ class DS160_Wizard extends Component {
     this.props.onNextStep(DS160.DS160_NEXT_STEP)
 
     const { agency } = this.props
-    if (agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      this.props.history.push('/ds-160/application-form')
-    }
-
+    const family = new URLSearchParams(location.search).get('family')
+    this.props.history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
     window.scrollTo(0, 0)
   }
 
-  onSaveAndContinue = (data, field) => {
+  onSaveAndContinue = (data, field, newAdd) => {
     const { agency } = this.props
+    const family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
       completed: false,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
+      family
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
-      if (agency) {
+      if (!family)
+        family = this.props.applicationId;
+      if (newAdd)
+        this.props.history.push({
+          pathname: '/',
+          search: `?${agency ? `agency=${agency}` : ''}&family=${family}`,
+        })
+      else
         this.props.history.push({
           pathname: '/ds-160/application-form-later',
-          search: `?agency=${agency}`,
+          search: agency ? `?agency=${agency}` : '',
         })
-      } else {
-        this.props.history.push('/ds-160/application-form-later')
-      }
     })
   }
 
@@ -322,14 +312,14 @@ class DS160_Wizard extends Component {
     }
   }
 
-  handleSave = (e, form, handleDates, field) => {
+  handleSave = (e, form, handleDates, field, newAdd=false) => {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         if (handleDates) {
-          this.onSaveAndContinue(handleDates(values.data), field)
+          this.onSaveAndContinue(handleDates(values.data), field, newAdd)
         } else {
-          this.onSaveAndContinue(values.data, field)
+          this.onSaveAndContinue(values.data, field, newAdd)
         }
       }
     })
@@ -678,6 +668,7 @@ class DS160_Wizard extends Component {
                 {...sharedParams}
                 handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
                 handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
+                handleNewApplicant={(e, form, handleDates) => this.handleSave(e, form, handleDates, field, true)}
               />
             )
             break
