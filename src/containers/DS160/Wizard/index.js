@@ -204,7 +204,6 @@ class DS160_Wizard extends Component {
 
   validateForms = () => {
     const ds160 = this.props.ds160;
-    debugger;
     var spouse = null;
     if (ds160.form_travel.paying_person_info && ds160.form_travel.paying_person_info.relationship === "S") {
         spouse = ds160.form_travel.paying_person_info;
