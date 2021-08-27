@@ -137,7 +137,7 @@ class DS160_Wizard extends Component {
     const family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
-      completed: false,
+      completed: newAdd? true: false,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
@@ -169,8 +169,14 @@ class DS160_Wizard extends Component {
       agency,
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
+      if (this.props.quantity == 0)
+        notification['warning']({
+          message: 'Information',
+          description: "It's already submitted with the payment",
+        })
+      return
       if (!agency) {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${this.props.quantity}`
         return
       }
       switch (agency.toLowerCase()) {
@@ -178,10 +184,10 @@ class DS160_Wizard extends Component {
           window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
           break
         case 'aes':
-          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}`
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${this.props.quantity}`
           break
         default:
-          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${this.props.quantity}`
           break
       }
     })
@@ -342,7 +348,7 @@ class DS160_Wizard extends Component {
   }
 
   render() {
-    const { step_index, ds160, loading, token, agency } = this.props
+    const { step_index, ds160, loading, token, agency } = this.props    
 
     if (loading) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin" />
@@ -734,6 +740,7 @@ const mapStateToProps = state => ({
   ds160: state.main.ds160,
   loading: state.main.loading,
   applicationId: state.main.applicationId,
+  quantity: state.main.quantity
 })
 
 export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(DS160_Wizard)))
