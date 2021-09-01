@@ -48,7 +48,7 @@ class MyForm extends Component {
             </Button>
           )}
           {showNext && (
-            <Button type="primary" onClick={e => handleSubmit(e, form, this.handleDates)}>
+            <Button type="primary" onClick={e => handleSubmit(e, form, this.handleDates, false)}>
               {agency === 'uva' ? tr(resources.continue_to_appointment) : tr(resources.submit_with_payment)}
             </Button>
           )}
@@ -58,7 +58,7 @@ class MyForm extends Component {
             </Button>
           )}
           {showNext && (
-            <Button type="primary" style={{ margin: '10px', background: 'lightseagreen', border: 'lightseagreen' }} onClick={e => handleSubmit(e, form, this.handleDates)}>
+            <Button type="primary" style={{ float: 'right', marginRight: 15, background: 'lightseagreen', border: 'lightseagreen' }} onClick={e => handleSubmit(e, form, this.handleDates, true)}>
               SUBMIT ALL
             </Button>
           )}

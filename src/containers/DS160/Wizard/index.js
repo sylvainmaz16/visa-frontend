@@ -134,7 +134,7 @@ class DS160_Wizard extends Component {
 
   onSaveAndContinue = (data, field, newAdd) => {
     const { agency } = this.props
-    const family = new URLSearchParams(location.search).get('family')
+    let family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
       completed: newAdd? true: false,
@@ -159,7 +159,7 @@ class DS160_Wizard extends Component {
     })
   }
 
-  onSubmit = (data, field) => {
+  onSubmit = (data, field, bulk) => {
     const { agency } = this.props
     const payload = {
       email: '',
@@ -169,14 +169,15 @@ class DS160_Wizard extends Component {
       agency,
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
-      if (this.props.quantity == 0)
+      if (bulk && this.props.quantity == 0){
         notification['warning']({
           message: 'Information',
-          description: "It's already submitted with the payment",
+          description: "There is no application completed or unpaid",
         })
-      return
+        return
+      }
       if (!agency) {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${this.props.quantity}`
+        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.quantity: 1}&bulk=${bulk}`
         return
       }
       switch (agency.toLowerCase()) {
@@ -184,10 +185,10 @@ class DS160_Wizard extends Component {
           window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
           break
         case 'aes':
-          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${this.props.quantity}`
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.quantity: 1}&bulk=${bulk}`
           break
         default:
-          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${this.props.quantity}`
+          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.quantity: 1}&bulk=${bulk}`
           break
       }
     })
@@ -281,15 +282,15 @@ class DS160_Wizard extends Component {
       alert('Please make sure you have provided same information for all the spouse fields')
   }
 
-  handleSubmit = (e, form, handleDates, field) => {
+  handleSubmit = (e, form, handleDates, field, bulk) => {
     e.preventDefault()
     if(this.validateForms)
       form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           if (handleDates) {
-            this.onSubmit(handleDates(values.data), field)
+            this.onSubmit(handleDates(values.data), field, bulk)
           } else {
-            this.onSubmit(values.data, field)
+            this.onSubmit(values.data, field, bulk)
           }
         }
       })
@@ -671,7 +672,7 @@ class DS160_Wizard extends Component {
             formRender = (
               <Form_Final
                 {...sharedParams}
-                handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
+                handleSubmit={(e, form, handleDates, bulk) => this.handleSubmit(e, form, handleDates, field, bulk)}
                 handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
                 handleNewApplicant={(e, form, handleDates) => this.handleSave(e, form, handleDates, field, true)}
               />

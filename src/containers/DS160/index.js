@@ -24,7 +24,7 @@ const DS160_HOME = ({ agency, history, resetState, changeLanguage, initLang = 'e
   function onStartApplication() {    
     history.push({
       pathname: '/ds-160/application-form',
-      search: `?agency=${agency}&family=${family}`
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
     })
     resetState(DS160.DS160_INIT_STATE, { ds160: { language: lang } })
   }
