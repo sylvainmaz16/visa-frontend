@@ -183,7 +183,7 @@ class AdminPageDS160 extends Component {
         dataIndex: 'app_id',
         key: 'app_id',
         render: (text, record) => (
-          <a href={`http://localhost:3000/ds-160/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : record.family? '?' : ''}${record.family ? `&family=${record.family}` : ''}`} target="blank">
+          <a href={`https://ds-160.us/ds-160/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : record.family? '?' : ''}${record.family ? `&family=${record.family}` : ''}`} target="blank">
             {text}
           </a>
         ),
