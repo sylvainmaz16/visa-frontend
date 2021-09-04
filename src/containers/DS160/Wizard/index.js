@@ -168,8 +168,17 @@ class DS160_Wizard extends Component {
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
     }
+    let numbers = [];
+    let fullnames = [];
+    let passports = [];
+    for(let i=0;i<this.props.siblings.length;i++){
+      let sibling = this.props.siblings[i];
+      numbers.push(sibling.app_id)
+      fullnames.push(`${sibling.data.form_personal_info.given_name} ${sibling.data.form_personal_info.surname}`)
+      passports.push(sibling.data.form_passport.doc_number)
+    }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
-      if (bulk && this.props.quantity == 0){
+      if (bulk && this.props.siblings.length == 0){
         notification['warning']({
           message: 'Information',
           description: "There is no application completed or unpaid",
@@ -177,7 +186,7 @@ class DS160_Wizard extends Component {
         return
       }
       if (!agency) {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.quantity: 1}&bulk=${bulk}`
+        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.siblings.length: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
         return
       }
       switch (agency.toLowerCase()) {
@@ -185,10 +194,10 @@ class DS160_Wizard extends Component {
           window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
           break
         case 'aes':
-          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.quantity: 1}&bulk=${bulk}`
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.siblings.length: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
         default:
-          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.quantity: 1}&bulk=${bulk}`
+          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? this.props.siblings.length: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
       }
     })
@@ -741,7 +750,7 @@ const mapStateToProps = state => ({
   ds160: state.main.ds160,
   loading: state.main.loading,
   applicationId: state.main.applicationId,
-  quantity: state.main.quantity
+  siblings: state.main.siblings
 })
 
 export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(DS160_Wizard)))
