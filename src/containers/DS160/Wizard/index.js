@@ -179,15 +179,19 @@ class DS160_Wizard extends Component {
       let numbers = [];
       let fullnames = [];
       let passports = [];
-      for(let i=0;i<result.siblings.length;i++){
-        let sibling = result.siblings[i];
-        numbers.push(sibling.app_id)
-        fullnames.push(sibling.fullname)
-        passports.push(sibling.passport)
+      let quantity = 1;
+      if (result.siblings) {
+        quantity = result.siblings.length;
+        for(let i=0;i<result.siblings.length;i++){
+          let sibling = result.siblings[i];
+          numbers.push(sibling.app_id)
+          fullnames.push(sibling.fullname)
+          passports.push(sibling.passport)
+        }
       }
       console.log('payment gateway:', result.gateway)
       if (!agency) {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? result.siblings.length: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
+        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
         return
       }
       switch (agency.toLowerCase()) {
@@ -195,10 +199,10 @@ class DS160_Wizard extends Component {
           window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
           break
         case 'aes':
-          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? result.siblings.length: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
         default:
-          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? result.siblings.length: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
+          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
       }
     })
