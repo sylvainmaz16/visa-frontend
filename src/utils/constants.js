@@ -22,6 +22,11 @@ export const apiURL = {
   canada: 'https://eta-evisa-canada.com/v1/api/',
 }
 
+export const gateways = [
+  'authorize.net',
+  'planet'
+]
+
 export const export_list = array => array.map(option => ({ value: option.props.value, label: option.props.children }))
 
 export const new_kdmid_citizenCode_list = [

@@ -8,7 +8,6 @@ const initialState = {
 
   email: '',
   step_index: 1,
-  siblings: [],
   loading_pay: false,
   paid: false,
   checkout_result: null,
@@ -639,7 +638,6 @@ function mainReducer(state = initialState, action) {
         ...state,
         loading: false,
         step_index: action.data.step_index,
-        siblings: action.data.siblings,
         applicationId: action.applicationId,
         ds160: action.data.data,
       }

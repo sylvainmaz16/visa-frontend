@@ -129,6 +129,65 @@ function* updateMailTemplateRequest(action) {
   }
 }
 
+function* getPaymentTemplatesRequest(action) {
+  const headers = {
+    'Content-Type': 'application/json',
+  }
+
+  try {
+    const res = yield call(ApiManager.GetPaymentTemplatesList, headers, action.options)
+    const { data } = res
+    yield put({ type: ADMIN.GET_PAYMENT_TEMPATES_LIST_SUCCESS, data })
+  } catch (e) {
+    const { status } = e.response
+
+    yield put({ type: ADMIN.GET_PAYMENT_TEMPATES_LIST_FAILURE, status })
+  }
+}
+
+function* createPaymentTemplateRequest(action) {
+  const headers = {
+    'Content-Type': 'application/json',
+  }
+
+  try {
+    const res = yield call(ApiManager.CreatePaymentTemplate, headers, action.data)
+    const { data } = res
+    yield put({ type: ADMIN.CREATE_PAYMENT_TEMPLATE_SUCCESS, data })
+    yield put({ type: ADMIN.GET_PAYMENT_TEMPATES_LIST_REQUEST, options: action.options })
+  } catch (e) {
+    const { status } = e.response
+
+    yield put({ type: ADMIN.CREATE_PAYMENT_TEMPLATE_FAILURE, status })
+  }
+}
+
+function* deletePaymentTemplateRequest(action) {
+  try {
+    const res = yield call(ApiManager.DeletePaymentTemplate, action.country)
+    const { data } = res
+    yield put({ type: ADMIN.DELETE_PAYMENT_TEMPLATE_SUCCESS, data })
+    yield put({ type: ADMIN.GET_PAYMENT_TEMPATES_LIST_REQUEST, options: action.options })
+  } catch (e) {
+    const { status } = e.response
+
+    yield put({ type: ADMIN.DELETE_PAYMENT_TEMPLATE_FAILURE, status })
+  }
+}
+
+function* updatePaymentTemplateRequest(action) {
+  try {
+    const res = yield call(ApiManager.UpdatePaymentTemplate, action.payment)
+    const { data } = res
+    yield put({ type: ADMIN.UPDATE_PAYMENT_TEMPLATE_SUCCESS, data })
+    yield put({ type: ADMIN.GET_PAYMENT_TEMPATES_LIST_REQUEST, options: action.options })
+  } catch (e) {
+    const { status } = e.response
+
+    yield put({ type: ADMIN.UPDATE_PAYMENT_TEMPLATE_FAILURE, status })
+  }
+}
+
 function* loginRequest(action) {
   const headers = {
     'Content-Type': 'application/json',
@@ -273,6 +332,11 @@ function* admin_saga() {
   yield all([takeLatest(ADMIN.CREATE_MAIL_TEMPLATE_REQUEST, createMailTemplateRequest)])
   yield all([takeLatest(ADMIN.DELETE_MAIL_TEMPLATE_REQUEST, deleteMailTemplateRequest)])
   yield all([takeLatest(ADMIN.UPDATE_MAIL_TEMPLATE_REQUEST, updateMailTemplateRequest)])
+
+  yield all([takeLatest(ADMIN.GET_PAYMENT_TEMPATES_LIST_REQUEST, getPaymentTemplatesRequest)])
+  yield all([takeLatest(ADMIN.CREATE_PAYMENT_TEMPLATE_REQUEST, createPaymentTemplateRequest)])
+  yield all([takeLatest(ADMIN.DELETE_PAYMENT_TEMPLATE_REQUEST, deletePaymentTemplateRequest)])
+  yield all([takeLatest(ADMIN.UPDATE_PAYMENT_TEMPLATE_REQUEST, updatePaymentTemplateRequest)])
 
   yield all([takeLatest(ADMIN.LOGIN_REQUEST, loginRequest)])
   yield all([takeLatest(ADMIN.LOGOUT_REQUEST, logoutRequest)])

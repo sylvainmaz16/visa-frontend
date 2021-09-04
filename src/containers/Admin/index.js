@@ -10,6 +10,7 @@ import * as constants from 'utils/constants'
 import AdminPageDashboard from './Pages/dashboard'
 import AdminPageDS160 from './Pages/ds160'
 import AdminPageMailTemplates from './Pages/mail_templates'
+import AdminPagePayment from './Pages/payment'
 import AdminPageUsers from './Pages/users'
 import AdminPageNewKdmid from './Pages/new-kdmid'
 import AdminPageCaETA from './Pages/ca-eTA'
@@ -99,6 +100,7 @@ class AdminBoard extends Component {
         { key: 'canada', label: 'CA eTA', icon: 'copyright' },
         { key: 'mail', label: 'Mail Templates', icon: 'mail' },
         { key: 'users', label: 'Agencies', icon: 'user' },
+        { key: 'payment', label: 'Payment Gateways', icon: 'bank' },
       ]
     } else if (user.role === constants.USER_ROLE.PARTNER) {
       menus = [{ key: 'ds160', label: 'DS-160', icon: 'idcard' }]
@@ -156,6 +158,11 @@ class AdminBoard extends Component {
       case 'mail':
         if (user.role === constants.USER_ROLE.ADMIN) {
           renderPage = <AdminPageMailTemplates pagination={pagination} pattern={pattern} user={user} />
+        }
+        break
+      case 'payment':
+        if (user.role === constants.USER_ROLE.ADMIN) {
+          renderPage = <AdminPagePayment pagination={pagination} pattern={pattern} user={user} />
         }
         break
       case 'users':
