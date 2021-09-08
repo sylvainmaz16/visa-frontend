@@ -41,7 +41,7 @@ class MyForm extends Component {
             rules: [{ required: true, message: 'This field is required' }],
           })(
             <Select placeholder="Select A Country" showSearch optionFilterProp="children">
-              {constants.countries_option_label_list.map((item, index) => <Option value={item} key={index}>{item}</Option>)}
+              {constants.countries_only_option_label_list.map((item, index) => <Option value={item} key={index}>{item}</Option>)}
             </Select>
           )}
         </Form.Item>
