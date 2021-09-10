@@ -145,7 +145,10 @@ class AdminPageDS160 extends Component {
 
   handleDeleteApplication = record => {
     const { selected_record } = this.state
-    this.props.deleteApplication(ADMIN.DS160_DELETE_REQUEST, selected_record._id, result => {
+    const data = {
+      archived: !selected_record.archived
+    }
+    this.props.deleteApplication(ADMIN.DS160_DELETE_REQUEST, selected_record._id, data, result => {
       // openNotificationWithIcon
       if (result.error) {
         openNotificationWithIcon('error', 'Failed', 'Failed to delete an application')
@@ -183,7 +186,7 @@ class AdminPageDS160 extends Component {
         dataIndex: 'app_id',
         key: 'app_id',
         render: (text, record) => (
-          <a href={`http://ds-160.us/ds-160/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">
+          <a href={`https://ds-160.us/ds-160/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : record.family? '?' : ''}${record.family ? `&family=${record.family}` : ''}`} target="blank">
             {text}
           </a>
         ),
@@ -280,31 +283,57 @@ class AdminPageDS160 extends Component {
             return '-'
           }
           if (record.automation_status.result === 'pending') {
-            return <Tag color="volcano">Pending</Tag>
+            return (
+              <div className="automation-status">
+                <Tag color="volcano">Pending</Tag>
+                {record.archived && <Tag color="red">Archived</Tag>}
+              </div>
+            )
           }
           if (record.automation_status.result === 'processing' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'processing')) {
-            return <Tag color="green">In progress</Tag>
+            return (
+              <div className="automation-status">
+                <Tag color="green">In progress</Tag>
+                {record.archived && <Tag color="red">Archived</Tag>}
+              </div>
+            )
           }
           if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
-            return <Tag color="red">Timeout</Tag>
+            return (
+              <div className="automation-status">
+                <Tag color="red">Timeout</Tag>
+                {record.archived && <Tag color="red">Archived</Tag>}
+              </div>
+            )
           }
           if (
             record.automation_status.error ||
             record.automation_status.result === 'fail' ||
             (record.automation_status.automation_status && record.automation_status.automation_status.result === 'fail')
           ) {
-            return <Tag color="red">Failed</Tag>
+            return (
+              <div className="automation-status">
+                <Tag color="red">Failed</Tag>
+                {record.archived && <Tag color="red">Archived</Tag>}
+              </div>
+            )
           }
           if (record.automation_status.result === 'success' && record.automation_status.email_status === false) {
             return (
-              <>
+              <div className="automation-status">
                 <Tag color="geekblue">Success</Tag>
                 <Tag color="magenta">Email not sent</Tag>
-              </>
+                {record.archived && <Tag color="red">Archived</Tag>}
+              </div>
             )
           }
 
-          return <Tag color="geekblue">Success</Tag>
+          return (
+            <div className="automation-status">
+              <Tag color="geekblue">Success</Tag>
+              {record.archived && <Tag color="red">Archived</Tag>}
+            </div>
+          )
         },
         filters: [
           { text: '-', value: 'not_completed' },
@@ -314,6 +343,7 @@ class AdminPageDS160 extends Component {
           { text: 'Timeout', value: 'timeout' },
           { text: 'Incident', value: 'not_sent' },
           { text: 'Success', value: 'success' },
+          { text: 'Archived', value: 'archived' },
         ],
         filteredValue: pagination.filters.automation_status,
         onFilter: (value, record) => {
@@ -324,6 +354,7 @@ class AdminPageDS160 extends Component {
           if (value === 'timeout') return record.completed && record.automation_status && record.automation_status.result === 'timeout'
           if (value === 'failed') return record.completed && record.automation_status && (record.automation_status.result === 'fail' || record.automation_status.error)
           if (value === 'not_sent') return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status === false
+          if (value === 'archived') return record.archived
 
           return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status != false
         },
@@ -352,24 +383,29 @@ class AdminPageDS160 extends Component {
           if (!['success', 'pending', 'processing'].includes(record.automation_status.result)) {
             if (record.automation_status.result === 'timeout' || (record.automation_status.automation_status && record.automation_status.automation_status.result === 'timeout')) {
               return (
-                <Button type="warning" shape="round" icon="warning" size="small">
-                  {user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.PARTNER ? (
-                    <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
-                      {' '}
-                      Timeout
-                    </a>
-                  ) : (
-                    <a style={{ textDecoration: 'none', color: 'white' }} disabled>
-                      {' '}
-                      Timeout
-                    </a>
-                  )}
-                </Button>
+                <div className="automation-status">
+                  <Button type="danger" shape="round" icon="warning" size="small">
+                    {user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.PARTNER ? (
+                      <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
+                        {' '}
+                        Timeout
+                      </a>
+                    ) : (
+                      <a style={{ textDecoration: 'none', color: 'white' }} disabled>
+                        {' '}
+                        Timeout
+                      </a>
+                    )}
+                  </Button>
+                  <Button shape="round" size="small" icon={record.archived? "reload": "delete"} onClick={() => this.onDeleteApplication(record)}>
+                    {record.archived? "Retrieve": "Archive"}
+                  </Button>
+                </div>
               )
             }
 
             return (
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', height: '60px', alignItems: 'center' }}>
+              <div className="automation-status">
                 <Button type="danger" shape="round" icon="warning" size="small">
                   {user.role === constants.USER_ROLE.ADMIN || user.role === constants.USER_ROLE.PARTNER ? (
                     <a href={`https://s3.us-east-2.amazonaws.com/assets.immigration4us/PDF/${record._id}_error.pdf`} style={{ textDecoration: 'none', color: 'white' }}>
@@ -389,8 +425,8 @@ class AdminPageDS160 extends Component {
                       Submit without payment
                     </Button>
                   ))}
-                <Button shape="round" size="small" icon="delete" onClick={() => this.onDeleteApplication(record)}>
-                  Archive
+                <Button shape="round" size="small" icon={record.archived? "reload": "delete"} onClick={() => this.onDeleteApplication(record)}>
+                  {record.archived? "Retrieve": "Archive"}
                 </Button>
               </div>
             )
@@ -506,7 +542,7 @@ class AdminPageDS160 extends Component {
         )}
         {visible_delete_application_modal && (
           <Modal
-            title={`Delete ${selected_record.app_id}`}
+            title={`${selected_record.archived? "Retrieve": "Archive"} ${selected_record.app_id}`}
             visible={visible_delete_application_modal}
             onOk={this.handleDeleteApplication}
             onCancel={() => this.setState({ visible_delete_application_modal: false})}
@@ -534,8 +570,8 @@ const mapDispatchToProps = dispatch => ({
   automate: (type, _id, cb) => {
     dispatch({ type, _id, cb })
   },
-  deleteApplication: (type, _id, cb) => {
-    dispatch({ type, _id, cb })
+  deleteApplication: (type, _id, data, cb) => {
+    dispatch({ type, _id, data, cb })
   },
 })
 
