@@ -23,8 +23,9 @@ export const apiURL = {
 }
 
 export const gateways = [
-  'authorize.net',
-  'planet'
+  'Authorize.Net',
+  'Planet',
+  'slim CD'
 ]
 
 export const export_list = array => array.map(option => ({ value: option.props.value, label: option.props.children }))
