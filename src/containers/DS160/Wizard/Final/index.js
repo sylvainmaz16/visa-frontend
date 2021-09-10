@@ -59,14 +59,14 @@ class MyForm extends Component {
           )}
           {showNext && (
             <Button type="primary" style={{ float: 'right', marginRight: 15, background: 'lightseagreen', border: 'lightseagreen' }} onClick={e => handleSubmit(e, form, this.handleDates, true)}>
-              SUBMIT ALL
+              {tr(resources.submit_all)}
             </Button>
           )}
         </div>
 
         <div className="visa-global-btn-group" style={{ textAlign: 'center', padding: '40px 0' }}>
           <Button type="primary" onClick={(e) => handleNewApplicant(e, form, this.handleDates)}>
-            Add a new applicant
+            {tr(resources.add_new)}
             <Icon type="right" />
           </Button>
         </div>
