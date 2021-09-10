@@ -161,12 +161,14 @@ class DS160_Wizard extends Component {
 
   onSubmit = (data, field, bulk) => {
     const { agency } = this.props
+    let family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
       completed: true,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
+      family
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
       if (bulk && result.siblings.length == 0){
@@ -199,7 +201,7 @@ class DS160_Wizard extends Component {
           window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
           break
         case 'aes':
-          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=1&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
         default:
           window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
@@ -210,6 +212,7 @@ class DS160_Wizard extends Component {
 
   onSubmitWithoutPayment = (data, field) => {
     const { agency } = this.props
+    let family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
       completed: true,
@@ -217,6 +220,7 @@ class DS160_Wizard extends Component {
       withoutPayment: true,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
+      family
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
       openNotificationWithIcon('success')

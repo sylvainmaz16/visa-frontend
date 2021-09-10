@@ -22,6 +22,7 @@ class MyForm extends Component {
     }
 
     const { showPrev, showNext, agency, tr, handlePrev, handleNewApplicant, handleSubmit, handleSubmitWithoutPayment, form } = this.props
+    const family = new URLSearchParams(location.search).get('family');
 
     const token = localStorage.getItem('immigration4us_token')
 
@@ -57,19 +58,21 @@ class MyForm extends Component {
               SUBMIT WITHOUT PAYMENT
             </Button>
           )}
-          {showNext && (
+          {showNext && (agency === '' || agency === null) && family && (
             <Button type="primary" style={{ float: 'right', marginRight: 15, background: 'lightseagreen', border: 'lightseagreen' }} onClick={e => handleSubmit(e, form, this.handleDates, true)}>
               {tr(resources.submit_all)}
             </Button>
           )}
         </div>
 
-        <div className="visa-global-btn-group" style={{ textAlign: 'center', padding: '40px 0' }}>
-          <Button type="primary" onClick={(e) => handleNewApplicant(e, form, this.handleDates)}>
-            {tr(resources.add_new)}
-            <Icon type="right" />
-          </Button>
-        </div>
+        {(agency === '' || agency === null) &&
+          <div className="visa-global-btn-group" style={{ textAlign: 'center', padding: '40px 0' }}>
+            <Button type="primary" onClick={(e) => handleNewApplicant(e, form, this.handleDates)}>
+              {tr(resources.add_new)}
+              <Icon type="right" />
+            </Button>
+          </div>
+        }
       </Form>
     )
   }
