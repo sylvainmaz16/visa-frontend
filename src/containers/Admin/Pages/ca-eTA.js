@@ -176,9 +176,9 @@ class AdminPageCaETA extends Component {
     this.props.deleteApplication(ADMIN.CAETA_DELETE_REQUEST, selectedRecord._id, result => {
       // openNotificationWithIcon
       if (!result.success) {
-        openNotificationWithIcon('error', 'Failed', 'Failed to delete an application')
+        openNotificationWithIcon('error', 'Failed', `Failed to ${result.data.archived? 'archive': 'retrieve'} an application`)
       } else {
-        openNotificationWithIcon('success', 'Success', 'Successed to delete an application.')
+        openNotificationWithIcon('success', 'Success', `Successed to ${result.data.archived? 'archive': 'retrieve'} an application.`)
         this.loadList(this.props.pagination)
       }
       console.log('deleted');
@@ -294,7 +294,15 @@ class AdminPageCaETA extends Component {
           if (!record.completed) return '-'
           if (!record.automation_status) return <Tag color="volcano">Pending</Tag>
           if (record.automation_status.result === 'processing') return <Tag color="green">In progress</Tag>
-          if (record.automation_status.error || record.automation_status.result === 'fail') return <Tag color="red">Failed</Tag>
+          if (record.automation_status.error || record.automation_status.result === 'fail') {
+            return (
+              <div className="automation-status">
+                <Tag color="red">Failed</Tag>
+                {record.archived && <Tag color="red">Archived</Tag>}
+              </div>
+            )
+
+          }
           if (record.automation_status.result === 'success' && record.automation_status.email_status === false) {
             return (
               <>
@@ -312,6 +320,7 @@ class AdminPageCaETA extends Component {
           { text: 'In progress', value: 'in_progress' },
           { text: 'Failed', value: 'failed' },
           { text: 'Success', value: 'success' },
+          { text: 'Archived', value: 'archived' },
         ],
         filteredValue: pagination.filters.automation_status,
         onFilter: (value, record) => {
@@ -320,6 +329,7 @@ class AdminPageCaETA extends Component {
           if (value === 'in_progress') return record.completed && record.automation_status && record.automation_status.result === 'processing'
           if (value === 'failed') return record.completed && record.automation_status && (record.automation_status.result === 'fail' || record.automation_status.error)
           if (value === 'not_sent') return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status === false
+          if (value === 'archived') return record.archived
 
           return record.completed && record.automation_status && record.automation_status.result === 'success' && record.automation_status.email_status !== false
         },
@@ -362,8 +372,8 @@ class AdminPageCaETA extends Component {
                     <Button type="primary" shape="round" size="small" icon="credit-card" onClick={() => this.onSubmitWithoutPayment(record)}>
                       Submit without payment
                     </Button>
-                    <Button shape="round" size="small" icon="delete" onClick={() => this.onDeleteApplication(record)}>
-                      Archive
+                    <Button shape="round" size="small" icon={record.archived? "reload": "delete"} onClick={() => this.onDeleteApplication(record)}>
+                      {record.archived? "Retrieve": "Archive"}
                     </Button>
                   </>
                 )}
@@ -479,7 +489,7 @@ class AdminPageCaETA extends Component {
         )}
         {visibleDeleteApplicationModal && (
           <Modal
-            title={`Delete ${selectedRecord.app_id}`}
+            title={`${selectedRecord.archived? "Retrieve": "Archive"} ${selectedRecord.app_id}`}
             visible={visibleDeleteApplicationModal}
             onOk={this.handleDeleteApplication}
             onCancel={() => this.setState({ visibleDeleteApplicationModal: false})}

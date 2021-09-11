@@ -145,18 +145,14 @@ class AdminPageDS160 extends Component {
 
   handleDeleteApplication = record => {
     const { selected_record } = this.state
-    const data = {
-      archived: !selected_record.archived
-    }
-    this.props.deleteApplication(ADMIN.DS160_DELETE_REQUEST, selected_record._id, data, result => {
+    this.props.deleteApplication(ADMIN.DS160_DELETE_REQUEST, selected_record._id, result => {
       // openNotificationWithIcon
-      if (result.error) {
-        openNotificationWithIcon('error', 'Failed', 'Failed to delete an application')
+      if (!result.success) {
+        openNotificationWithIcon('error', 'Failed', `Failed to ${result.data.archived? 'archive': 'retrieve'} an application`)
       } else {
-        openNotificationWithIcon('success', 'Success', 'Successed to delete an application.')
+        openNotificationWithIcon('success', 'Success', `Successed to ${result.data.archived? 'archive': 'retrieve'} an application.`)
         this.loadList(this.props.pagination)
       }
-      console.log('deleted');
       this.setState({
         visible_delete_application_modal: false,
       })
@@ -570,8 +566,8 @@ const mapDispatchToProps = dispatch => ({
   automate: (type, _id, cb) => {
     dispatch({ type, _id, cb })
   },
-  deleteApplication: (type, _id, data, cb) => {
-    dispatch({ type, _id, data, cb })
+  deleteApplication: (type, _id, cb) => {
+    dispatch({ type, _id, cb })
   },
 })
 
