@@ -242,7 +242,7 @@ function* getKdmidStatusRequest(action) {
 
 function* deleteApplicationRequest(action) {
   try {
-    const res = yield call(ApiManager.DeleteDS160Application, action._id, action.data)
+    const res = yield call(ApiManager.DeleteDS160Application, action._id)
     const { data } = res    
     action.cb({ success: true, data })
     yield put({ type: ADMIN.DS160_DELETE_SUCCESS, data })
