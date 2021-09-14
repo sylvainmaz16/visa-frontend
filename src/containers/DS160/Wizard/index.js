@@ -184,14 +184,22 @@ class DS160_Wizard extends Component {
       let quantity = 1;
       if (result.siblings) {
         quantity = result.siblings.length;
-        for(let i=0;i<result.siblings.length;i++){
+        for(let i=0;i<quantity;i++){
           let sibling = result.siblings[i];
-          numbers.push(sibling.app_id)
-          fullnames.push(sibling.fullname)
-          passports.push(sibling.passport)
+          if (bulk) {
+            numbers.push(sibling.app_id)
+            fullnames.push(sibling.fullname)
+            passports.push(sibling.passport)
+          }
+          else {
+            if (sibling.id === result._id) {
+              numbers.push(sibling.app_id)
+              fullnames.push(sibling.fullname)
+              passports.push(sibling.passport)
+            }
+          }
         }
       }
-      console.log('payment gateway:', result.gateway)
       if (!agency) {
         window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
         return
