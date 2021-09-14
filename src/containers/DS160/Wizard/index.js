@@ -70,18 +70,12 @@ class DS160_Wizard extends Component {
   cbGetRequest = result => {
     const { history, agency } = this.props
     const adminToken = localStorage.getItem('immigration4us_token')
-
+    const family = new URLSearchParams(location.search).get('family')
     if (result.success === false || (!adminToken && result.data && result.data.automation_status && result.data.automation_status.result === 'success')) {
-      history.push(
-        agency
-          ? {
-              pathname: '/',
-              search: `?agency=${agency}`,
-            }
-          : {
-              pathname: '/',
-            },
-      )
+      history.push({
+        pathname: '/',
+        search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+      })
     }
   }
 
@@ -94,14 +88,11 @@ class DS160_Wizard extends Component {
     this.props.onPrevStep(DS160.DS160_PREV_STEP)
 
     const { agency } = this.props
-    if (agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      this.props.history.push('/ds-160/application-form')
-    }
+    const family = new URLSearchParams(location.search).get('family')
+    this.props.history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
 
     window.scrollTo(0, 0)
   }
@@ -115,14 +106,11 @@ class DS160_Wizard extends Component {
     this.props.onFirstStep(DS160.DS160_FIRST_STEP)
 
     const { agency } = this.props
-    if (agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      this.props.history.push('/ds-160/application-form')
-    }
+    const family = new URLSearchParams(location.search).get('family')
+    this.props.history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
 
     window.scrollTo(0, 0)
   }
@@ -136,51 +124,84 @@ class DS160_Wizard extends Component {
     this.props.onNextStep(DS160.DS160_NEXT_STEP)
 
     const { agency } = this.props
-    if (agency) {
-      this.props.history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      this.props.history.push('/ds-160/application-form')
-    }
-
+    const family = new URLSearchParams(location.search).get('family')
+    this.props.history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
     window.scrollTo(0, 0)
   }
 
-  onSaveAndContinue = (data, field) => {
+  onSaveAndContinue = (data, field, newAdd) => {
     const { agency } = this.props
+    let family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
-      completed: false,
+      completed: newAdd? true: false,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
+      family
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
-      if (agency) {
+      if (!family)
+        family = this.props.applicationId;
+      if (newAdd)
+        this.props.history.push({
+          pathname: '/',
+          search: `?${agency ? `agency=${agency}` : ''}&family=${family}`,
+        })
+      else
         this.props.history.push({
           pathname: '/ds-160/application-form-later',
-          search: `?agency=${agency}`,
+          search: agency ? `?agency=${agency}` : '',
         })
-      } else {
-        this.props.history.push('/ds-160/application-form-later')
-      }
     })
   }
 
-  onSubmit = (data, field) => {
+  onSubmit = (data, field, bulk) => {
     const { agency } = this.props
+    let family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
       completed: true,
       step_index: this.props.step_index,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
+      family
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
+      if (bulk && result.siblings.length == 0){
+        notification['warning']({
+          message: 'Information',
+          description: "There is no application completed or unpaid",
+        })
+        return
+      }
+      let numbers = [];
+      let fullnames = [];
+      let passports = [];
+      let quantity = 1;
+      if (result.siblings) {
+        quantity = result.siblings.length;
+        for(let i=0;i<quantity;i++){
+          let sibling = result.siblings[i];
+          if (bulk) {
+            numbers.push(sibling.app_id)
+            fullnames.push(sibling.fullname)
+            passports.push(sibling.passport)
+          }
+          else {
+            if (sibling.id === result._id) {
+              numbers.push(sibling.app_id)
+              fullnames.push(sibling.fullname)
+              passports.push(sibling.passport)
+            }
+          }
+        }
+      }
       if (!agency) {
-        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+        window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
         return
       }
       switch (agency.toLowerCase()) {
@@ -188,10 +209,10 @@ class DS160_Wizard extends Component {
           window.location.href = 'https://apply.usvisaappointments.com/us-visa-interview/'
           break
         case 'aes':
-          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}`
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=1&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
         default:
-          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
+          window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
           break
       }
     })
@@ -199,6 +220,7 @@ class DS160_Wizard extends Component {
 
   onSubmitWithoutPayment = (data, field) => {
     const { agency } = this.props
+    let family = new URLSearchParams(location.search).get('family')
     const payload = {
       email: '',
       completed: true,
@@ -206,6 +228,7 @@ class DS160_Wizard extends Component {
       withoutPayment: true,
       data: field != '' ? objectAssignDeep(this.props.ds160, { [field]: data }) : objectAssignDeep(this.props.ds160, data),
       agency,
+      family
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, result => {
       openNotificationWithIcon('success')
@@ -214,7 +237,6 @@ class DS160_Wizard extends Component {
 
   validateForms = () => {
     const ds160 = this.props.ds160;
-    debugger;
     var spouse = null;
     if (ds160.form_travel.paying_person_info && ds160.form_travel.paying_person_info.relationship === "S") {
         spouse = ds160.form_travel.paying_person_info;
@@ -286,15 +308,15 @@ class DS160_Wizard extends Component {
       alert('Please make sure you have provided same information for all the spouse fields')
   }
 
-  handleSubmit = (e, form, handleDates, field) => {
+  handleSubmit = (e, form, handleDates, field, bulk) => {
     e.preventDefault()
     if(this.validateForms)
       form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           if (handleDates) {
-            this.onSubmit(handleDates(values.data), field)
+            this.onSubmit(handleDates(values.data), field, bulk)
           } else {
-            this.onSubmit(values.data, field)
+            this.onSubmit(values.data, field, bulk)
           }
         }
       })
@@ -322,14 +344,14 @@ class DS160_Wizard extends Component {
     }
   }
 
-  handleSave = (e, form, handleDates, field) => {
+  handleSave = (e, form, handleDates, field, newAdd=false) => {
     e.preventDefault()
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         if (handleDates) {
-          this.onSaveAndContinue(handleDates(values.data), field)
+          this.onSaveAndContinue(handleDates(values.data), field, newAdd)
         } else {
-          this.onSaveAndContinue(values.data, field)
+          this.onSaveAndContinue(values.data, field, newAdd)
         }
       }
     })
@@ -353,7 +375,7 @@ class DS160_Wizard extends Component {
   }
 
   render() {
-    const { step_index, ds160, loading, token, agency } = this.props
+    const { step_index, ds160, loading, token, agency } = this.props    
 
     if (loading) {
       return <Spin tip="Please wait..." id="visa-ds160-save-and-continue-spin" />
@@ -676,8 +698,9 @@ class DS160_Wizard extends Component {
             formRender = (
               <Form_Final
                 {...sharedParams}
-                handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)}
+                handleSubmit={(e, form, handleDates, bulk) => this.handleSubmit(e, form, handleDates, field, bulk)}
                 handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}
+                handleNewApplicant={(e, form, handleDates) => this.handleSave(e, form, handleDates, field, true)}
               />
             )
             break

@@ -15,20 +15,17 @@ const { Option } = Select
 const DS160_HOME = ({ agency, history, resetState, changeLanguage, initLang = 'en-US' }) => {
   const [lang, setLanguage] = useState('en-US')
   const tr = r => translate(r, lang)
+  const family = new URLSearchParams(location.search).get('family')
 
   useEffect(() => {
     setLanguage(initLang)
   }, [initLang])
 
-  function onStartApplication() {
-    if (agency) {
-      history.push({
-        pathname: '/ds-160/application-form',
-        search: `?agency=${agency}`,
-      })
-    } else {
-      history.push('/ds-160/application-form')
-    }
+  function onStartApplication() {    
+    history.push({
+      pathname: '/ds-160/application-form',
+      search: `${agency ? `?agency=${agency}` : '?'}${family ? `&family=${family}` : ''}`,
+    })
     resetState(DS160.DS160_INIT_STATE, { ds160: { language: lang } })
   }
 

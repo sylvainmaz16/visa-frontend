@@ -9,6 +9,8 @@ const initialState = {
   totalUserCnt: 0,
   mailTemplates: [],
   mailTotalCount: 0,
+  paymentTemplates: [],
+  paymentTotalCount: 0,
   loading: false,
   visibleAdd: false,
   visibleDel: false,
@@ -233,6 +235,88 @@ return {
         visibleEdit: false,
       }
     }
+
+    case ADMIN.GET_PAYMENT_TEMPATES_LIST_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ADMIN.GET_PAYMENT_TEMPATES_LIST_SUCCESS: {
+      return {
+        ...state,
+        paymentTemplates: [...action.data.list],
+        paymentTotalCount: action.data.total,
+        loading: false,
+      }
+    }
+    case ADMIN.GET_PAYMENT_TEMPATES_LIST_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+      }
+    }
+    case ADMIN.CREATE_PAYMENT_TEMPLATE_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ADMIN.CREATE_PAYMENT_TEMPLATE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        visibleAdd: false,
+      }
+    }
+    case ADMIN.CREATE_PAYMENT_TEMPLATE_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        visibleAdd: false,
+      }
+    }
+    case ADMIN.DELETE_PAYMENT_TEMPLATE_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ADMIN.DELETE_PAYMENT_TEMPLATE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        visibleDel: false,
+      }
+    }
+    case ADMIN.DELETE_PAYMENT_TEMPLATE_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        visibleDel: false,
+      }
+    }
+    case ADMIN.UPDATE_PAYMENT_TEMPLATE_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ADMIN.UPDATE_PAYMENT_TEMPLATE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        visibleEdit: false,
+      }
+    }
+    case ADMIN.UPDATE_PAYMENT_TEMPLATE_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        visibleEdit: false,
+      }
+    }
+
     case ADMIN.DS160_DELETE_REQUEST: {
       return {
         ...state,

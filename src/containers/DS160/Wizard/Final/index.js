@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'antd'
+import { Form, Button, Icon } from 'antd'
 import { withCookies } from 'react-cookie'
 import resources from 'utils/resources'
 
@@ -21,7 +21,8 @@ class MyForm extends Component {
       },
     }
 
-    const { showPrev, showNext, agency, tr, handlePrev, handleSubmit, handleSubmitWithoutPayment, form } = this.props
+    const { showPrev, showNext, agency, tr, handlePrev, handleNewApplicant, handleSubmit, handleSubmitWithoutPayment, form } = this.props
+    const family = new URLSearchParams(location.search).get('family');
 
     const token = localStorage.getItem('immigration4us_token')
 
@@ -48,7 +49,7 @@ class MyForm extends Component {
             </Button>
           )}
           {showNext && (
-            <Button type="primary" onClick={e => handleSubmit(e, form, this.handleDates)}>
+            <Button type="primary" onClick={e => handleSubmit(e, form, this.handleDates, false)}>
               {agency === 'uva' ? tr(resources.continue_to_appointment) : tr(resources.submit_with_payment)}
             </Button>
           )}
@@ -57,7 +58,21 @@ class MyForm extends Component {
               SUBMIT WITHOUT PAYMENT
             </Button>
           )}
+          {showNext && (agency === '' || agency === null) && family && (
+            <Button type="primary" style={{ float: 'right', marginRight: 15, background: 'lightseagreen', border: 'lightseagreen' }} onClick={e => handleSubmit(e, form, this.handleDates, true)}>
+              {tr(resources.submit_all)}
+            </Button>
+          )}
         </div>
+
+        {(agency === '' || agency === null) &&
+          <div className="visa-global-btn-group" style={{ textAlign: 'center', padding: '40px 0' }}>
+            <Button type="primary" onClick={(e) => handleNewApplicant(e, form, this.handleDates)}>
+              {tr(resources.add_new)}
+              <Icon type="right" />
+            </Button>
+          </div>
+        }
       </Form>
     )
   }
