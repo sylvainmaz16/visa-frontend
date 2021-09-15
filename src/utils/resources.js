@@ -44,9 +44,9 @@ const resources = {
   add_another: {
     en: 'Add another',
     fr: 'Ajouter',
-    it: 'Agrega otro',
-    es: 'Neue hinzufügen',
-    de: 'Aggiungi un altro',
+    it: 'Aggiungi un altro',
+    es: 'Agrega otro',
+    de: 'Neue hinzufügen',
     ar: 'أضف آخر',
     zh: '加上另一个',
     jp: '別の追加',
@@ -178,7 +178,7 @@ const resources = {
     hi: 'सभी आवेदन जमा करें',
   },
   add_new: {
-    en: 'Add a New Applicantion',
+    en: 'Add a New Application',
     fr: 'Ajouter une nouvelle application',
     es: 'Agregar una nueva aplicación',
     de: 'Eine neue Anwendung hinzufügen',
