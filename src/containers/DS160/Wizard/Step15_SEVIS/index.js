@@ -163,7 +163,7 @@ class MyForm extends Component {
               <VisaInput
                 label={tr(resources.SEVIS.school_info.name)}
                 field="data.school_info.name"
-                initialValue={data.school_info.name}
+                initialValue={data.school_info && data.school_info.name}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateSchoolName(rule, value, callback, 'Name of School', true) }]}
                 tr={tr}
@@ -171,7 +171,7 @@ class MyForm extends Component {
               <VisaInput
                 label={tr(resources.SEVIS.school_info.course)}
                 field="data.school_info.course"
-                initialValue={data.school_info.course}
+                initialValue={data.school_info && data.school_info.course}
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, 'Course of Study') }]}
                 tr={tr}
@@ -179,7 +179,7 @@ class MyForm extends Component {
               <VisaAddress
                 label={tr(resources.SEVIS.school_info.address)}
                 field="data.school_info.address"
-                initialValue={data.school_info.address}
+                initialValue={data.school_info && data.school_info.address}
                 getFieldDecorator={getFieldDecorator}
                 validators={this.props.validators}
                 hideCountry
