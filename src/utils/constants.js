@@ -19,7 +19,7 @@ export const apiURL = {
   // default: 'http://localhost:4040/api/',
   // ds160: 'http://localhost:4040/api/',
   newKdmid: 'https://kdmid-evisa.com/v1/api/',
-  canada: 'https://eta-evisa-canada.com/v1/api/',
+  canada: 'https://eta-canada.org/v1/api/',
 }
 
 export const gateways = [

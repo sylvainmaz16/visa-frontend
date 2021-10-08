@@ -208,7 +208,7 @@ class AdminPageCaETA extends Component {
         dataIndex: 'app_id',
         key: 'app_id',
         render: (text, record) => (
-          <a href={`https://eta-evisa-canada.com/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">
+          <a href={`https://eta-canada.org/visa/application-form/token=${record._id}${record.agency ? `?agency=${record.agency}` : ''}`} target="blank">
             {text}
           </a>
         ),
