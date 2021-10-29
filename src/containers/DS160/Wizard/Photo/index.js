@@ -342,7 +342,15 @@ class MyForm extends Component {
           {
             getFieldDecorator('data.signature', {
               initialValue: utils.getInitialValue(data.signature),
-              rules: [{ required: true, message: tr(resources.validations.required_sign) }],
+              rules: [{ 
+                required: true, 
+                message: tr(resources.validations.required_sign),
+                validator: (rule, value, callback) => {
+                  if (this.sigCanvas.getTrimmedCanvas().width < 30 && this.sigCanvas.getTrimmedCanvas().height < 30)
+                    callback('invalid')
+                  callback()
+                }
+              }],
             })(
               <>
               </>,
