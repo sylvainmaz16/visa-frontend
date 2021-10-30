@@ -346,7 +346,9 @@ class MyForm extends Component {
                 required: true, 
                 message: tr(resources.validations.required_sign),
                 validator: (rule, value, callback) => {
-                  if (this.sigCanvas.getTrimmedCanvas().width < 30 && this.sigCanvas.getTrimmedCanvas().height < 30)
+                  let size = 4 * Math.ceil((this.sigCanvas.toDataURL('image/png').length / 3)) * 0.5624896334383812 / 1000                  
+                  if ((this.sigCanvas.getTrimmedCanvas().width < 40 && this.sigCanvas.getTrimmedCanvas().height < 40 )||
+                    size < 3.1)
                     callback('invalid')
                   callback()
                 }
