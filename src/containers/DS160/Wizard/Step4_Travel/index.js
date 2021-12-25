@@ -9,6 +9,7 @@ import resources from "utils/resources";
 import _ from "lodash";
 
 class MyForm extends Component {
+
   static defaultProps = {
     showPrev: true,
     showNext: true
@@ -133,7 +134,6 @@ class MyForm extends Component {
             })(<Input style={{ textTransform: "uppercase" }} maxLength={13} />)}
           </Form.Item>
         )}
-
         <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.travel.section_title_2)}</h2>
           <div className="visa-global-section-description">{tr(resources.travel.section_descr_2)}</div>

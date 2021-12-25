@@ -266,10 +266,10 @@ class MyForm extends Component {
             </Form.Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-            <Form.Item label={tr(resources.personal.place_of_birth.state.label)} required>
+            <Form.Item label={tr(resources.personal.place_of_birth.state.label)}>
               {getFieldDecorator('data.place_of_birth.state', {
                 initialValue: _.get(data, 'place_of_birth.state'),
-                rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.personal.place_of_birth.state.label), true) }],
+                rules: [{ validator: (rule, value, callback) => this.props.validators.validateStudyCourse(rule, value, callback, tr(resources.personal.place_of_birth.state.label), false) }],
               })(
                 <Input maxLength={20} />,
               )}
