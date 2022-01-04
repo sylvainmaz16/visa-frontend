@@ -49,12 +49,16 @@ class VisaDatePicker extends Component {
   }
 
   onChange = (s, t) => {
-    const { field, getFieldValue, setFieldsValue } = this.props
+    const { field, getFieldValue, setFieldsValue, visitDates } = this.props
     const DD = s == 'DD' ? t : getFieldValue(`${field}_v2.DD`)
     const MMM = s == 'MMM' ? t : getFieldValue(`${field}_v2.MMM`)
     const YYYY = s == 'YYYY' ? t : getFieldValue(`${field}_v2.YYYY`)
     const date = `${DD}/${MMM}/${YYYY}`
-    setFieldsValue({ [field]: moment(date, 'DD/MMM/YYYY') })
+    if (visitDates.indexOf(date) > -1) {
+      setFieldsValue({ [`${field}_v2.YYYY`]: '' })
+    }
+    else
+      setFieldsValue({ [field]: moment(date, 'DD/MMM/YYYY') })
   }
 
   render() {

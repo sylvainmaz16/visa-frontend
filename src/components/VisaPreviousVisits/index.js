@@ -54,6 +54,7 @@ class VisaPreviousVisits extends Component {
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
     const visits = getFieldValue(keysField)
+    const visitDates = visits.map(visit => visit.date)
     const formItems = visits.map((visit, index) => {
       getFieldDecorator(`${arrayField}[${index}].length_of_stay.unit`, { initialValue: utils.getInitialValue(initialValue[index] && initialValue[index].length_of_stay ? initialValue[index].length_of_stay.unit : null) })
       return (
@@ -71,6 +72,7 @@ class VisaPreviousVisits extends Component {
                 getFieldDecorator={getFieldDecorator}
                 customRule={[{ validator: (rule, value, callback) => validators.validatePreviousVisitdDate(rule, value, callback, 'Date Arrived', birthday) }]}
                 required
+                visitDates={visitDates}
 
                 setFieldsValue={setFieldsValue}
                 getFieldValue={getFieldValue}
