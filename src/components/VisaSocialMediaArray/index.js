@@ -48,64 +48,72 @@ class VisaSocialMediaArray extends Component {
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) })
     const platforms = getFieldValue(keysField)
-    const formItems = platforms.map((platform, index) => (
-      <Form.Item
-        label={index === 0 ? label : ''}
-        key={index}
-      >
-        <Row gutter={16}>
-          <Col xs={{ span: 20 }} sm={{ span: 8 }}>
-            <Form.Item label={tr(resources.components.social_media_array.platform)}>
-              {getFieldDecorator(`${arrayField}[${index}].platform`, {
-                initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].platform : null),
-                validateTrigger: ['onChange', 'onBlur'],
-                rules: [
-                  {
-                    required: true,
-                    message: tr(resources.validations.required_input_or_delete),
-                  },
-                ],
-              })(
-                <VisaSelect combines={constants.export_list(constants.social_media_options)} tr={tr} />,
-              )}
-            </Form.Item>
-          </Col>
+    const platArr = platforms.map(plat => plat.platform)
 
-          {
-            getFieldValue(`${arrayField}[${index}].platform`) && (getFieldValue(`${arrayField}[${index}].platform`) != 'NONE') &&
-            <Col xs={{ span: 20 }} sm={{ span: 12 }}>
-              <Form.Item
-                label={tr(resources.components.social_media_array.identifier.label)}
-                extra={tr(resources.components.social_media_array.identifier.extra)}
-              >
-                {getFieldDecorator(`${arrayField}[${index}].identifier`, {
-                  initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].identifier : null),
+    const formItems = platforms.map((platform, index) => {
+      let subPlatArr = platArr.filter(plat => plat !== platform.platform)
+      let filteredOptions = constants.export_list(constants.social_media_options)
+        .filter(option => subPlatArr.indexOf(option.value) === -1)
+      
+      return (
+        <Form.Item
+          label={index === 0 ? label : ''}
+          key={index}
+        >
+          <Row gutter={16}>
+            <Col xs={{ span: 20 }} sm={{ span: 8 }}>
+              <Form.Item label={tr(resources.components.social_media_array.platform)}>
+                {getFieldDecorator(`${arrayField}[${index}].platform`, {
+                  initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].platform : null),
                   validateTrigger: ['onChange', 'onBlur'],
                   rules: [
                     {
                       required: true,
-                      whitespace: true,
                       message: tr(resources.validations.required_input_or_delete),
                     },
                   ],
                 })(
-                  <Input maxLength={50} />,
+                  <VisaSelect combines={filteredOptions} tr={tr} />,
                 )}
               </Form.Item>
             </Col>
-          }
-          {platforms.length > 1 ? (
-            <Icon
-              className="dynamic-delete-button"
-              type="minus-circle-o"
-              style={{ fontSize: '24px', marginTop: '40px', marginLeft: '10px' }}
-              onClick={() => this.remove(index, keysField, arrayField)}
-            />
-          ) : null}
-        </Row>
 
-      </Form.Item>
-    ))
+            {
+              getFieldValue(`${arrayField}[${index}].platform`) && (getFieldValue(`${arrayField}[${index}].platform`) != 'NONE') &&
+              <Col xs={{ span: 20 }} sm={{ span: 12 }}>
+                <Form.Item
+                  label={tr(resources.components.social_media_array.identifier.label)}
+                  extra={tr(resources.components.social_media_array.identifier.extra)}
+                >
+                  {getFieldDecorator(`${arrayField}[${index}].identifier`, {
+                    initialValue: utils.getInitialValue(initialValue[index] ? initialValue[index].identifier : null),
+                    validateTrigger: ['onChange', 'onBlur'],
+                    rules: [
+                      {
+                        required: true,
+                        whitespace: true,
+                        message: tr(resources.validations.required_input_or_delete),
+                      },
+                    ],
+                  })(
+                    <Input maxLength={50} />,
+                  )}
+                </Form.Item>
+              </Col>
+            }
+            {platforms.length > 1 ? (
+              <Icon
+                className="dynamic-delete-button"
+                type="minus-circle-o"
+                style={{ fontSize: '24px', marginTop: '40px', marginLeft: '10px' }}
+                onClick={() => this.remove(index, keysField, arrayField)}
+              />
+            ) : null}
+          </Row>
+
+        </Form.Item>
+      )
+    })
 
     return (
       <>
