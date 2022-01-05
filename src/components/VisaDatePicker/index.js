@@ -54,7 +54,7 @@ class VisaDatePicker extends Component {
     const MMM = s == 'MMM' ? t : getFieldValue(`${field}_v2.MMM`)
     const YYYY = s == 'YYYY' ? t : getFieldValue(`${field}_v2.YYYY`)
     const date = `${DD}/${MMM}/${YYYY}`
-    if (visitDates.indexOf(date) > -1) {
+    if (visitDates && visitDates.indexOf(date) > -1) {
       setFieldsValue({ [`${field}_v2.YYYY`]: '' })
     }
     else
