@@ -613,6 +613,30 @@ const validateUSZipCode = (rule, value, callback, field, required) => {
   callback()
 }
 
+const validatePhoneNumber = (rule, value, callback, field, required = false) => {
+  if (!value) {
+    if (required) {
+      callback('This field is required')
+    } else {
+      callback()
+    }
+
+    return
+  }
+
+  if (value.length < 9) {
+    callback(`${field} is invalid`)
+    return
+  }
+
+  if (/^\d+$/.test(value) == false) {
+    callback(`${field} accepts only numbers (0-9)`)
+
+    return
+  }
+  callback()
+}
+
 const ds160_validators = {
   validateName,
   validateTelecodeName,
@@ -643,6 +667,7 @@ const ds160_validators = {
   validateStudyCourse,
   validateNationalID,
   validateAttendanceTo,
+  validatePhoneNumber
 }
 
 export default ds160_validators
