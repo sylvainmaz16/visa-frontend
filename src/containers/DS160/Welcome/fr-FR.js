@@ -8,7 +8,7 @@ function welcome({ agency }) {
         <li>
           <p>
             <span>
-              1. Remplissez la <a href="https://ds-160.us/ds-160/application-form">Demande Électronique DS160</a> et effectuez votre paiement.
+              1. Remplissez la <a href="https://ds160-us.com/ds-160/application-form">Demande Électronique DS160</a> et effectuez votre paiement.
             </span>
           </p>
         </li>

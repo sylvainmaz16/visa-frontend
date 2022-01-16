@@ -8,7 +8,7 @@ function welcome({ agency }) {
         <li>
           <p>
             <span>
-              1. Complete the <a href={agency ? `https://ds-160.us/ds-160/application-form?agency=${agency}` : 'https://ds-160.us/ds-160/application-form'}>DS160</a> Electronic Application and make
+              1. Complete the <a href={agency ? `https://ds160-us.com/ds-160/application-form?agency=${agency}` : 'https://ds160-us.com/ds-160/application-form'}>DS160</a> Electronic Application and make
               your payment.
             </span>
           </p>

@@ -5,7 +5,7 @@ import React from 'react'
 //     default: 'http://localhost:4040/api/',
 //     ds160: 'http://localhost:4040/api/',
 // }
-export const myURL = 'https://ds-160.us'
+export const myURL = 'https://ds160-us.com'
 
 export const sites = {
   DS160: 'ds160',
@@ -14,8 +14,8 @@ export const sites = {
 }
 
 export const apiURL = {
-  default: 'https://ds-160.us/v1/api/',
-  ds160: 'https://ds-160.us/v1/api/',
+  default: 'https://ds160-us.com/v1/api/',
+  ds160: 'https://ds160-us.com/v1/api/',
   // default: 'http://localhost:4040/api/',
   // ds160: 'http://localhost:4040/api/',
   newKdmid: 'https://kdmid-evisa.com/v1/api/',
