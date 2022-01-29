@@ -16,6 +16,16 @@ const languageMap = {
   es: 'es-ES',
   de: 'de-DE',
   it: 'it-IT',
+  pt: 'pt-PT',
+  nl: 'nl-NL',
+  ru: 'ru-RU',
+  zh: 'zh-Hans-CN',
+  ko: 'ko-KR',
+  jp: 'jp-JP',
+  ar: 'ar-',
+  hi: 'hi-IN',
+  bn: 'bn-BD',
+  he: 'he-IL',
 }
 
 const Routes = () => {
@@ -141,9 +151,8 @@ const Routes = () => {
             return <DS160_HOME agency={agency} />
           }}
         />
-
         <Route
-          path="/:language(en|fr|es|de|it)"
+          path="/:language(en|fr|es|de|it|pt|nl|ru|zh|ko|jp|ar|hi|bn|he)"
           exact
           children={({ location, match }) => {
             const agency = new URLSearchParams(location.search).get('agency')
