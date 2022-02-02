@@ -1,17 +1,14 @@
 import React from 'react'
 
-// export const myURL = 'http://localhost:3000'
-// export const apiURL = {
-//     default: 'http://localhost:4040/api/',
-//     ds160: 'http://localhost:4040/api/',
-// }
-export const myURL = 'https://ds160-us.com'
-
 export const sites = {
   DS160: 'ds160',
   NewKdmid: 'newKdmid',
   Canada: 'canada',
 }
+
+
+// export const myURL = 'http://localhost:3000'
+export const myURL = 'https://ds160-us.com'
 
 export const apiURL = {
   default: 'https://ds160-us.com/v1/api/',

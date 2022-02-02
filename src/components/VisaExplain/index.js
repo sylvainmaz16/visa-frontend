@@ -32,7 +32,8 @@ class VisaExplain extends Component {
           <Form.Item label={textLabel} required>
             {getFieldDecorator(textField, {
               initialValue: utils.getInitialValue(textInitialValue),
-              rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
+              // rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
+              rules: [{ required: true }]
             })(<TextArea style={{ textTransform: "uppercase" }} rows={7} />)}
           </Form.Item>
         )}

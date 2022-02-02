@@ -123,7 +123,7 @@ class MyForm extends Component {
                 <Form.Item label={tr(resources.work_or_edu.duty_explain.label)}>
                   {getFieldDecorator('data.duty_explain', {
                     initialValue: utils.getInitialValue(data.duty_explain),
-                    rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, tr(resources.work_or_edu.duty_explain.label), true) }],
+                    rules: [{ required: true }],
                   })(<TextArea rows={3} />)}
                 </Form.Item>
               </>
