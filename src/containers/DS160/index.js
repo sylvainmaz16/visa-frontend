@@ -38,6 +38,8 @@ const DS160_HOME = ({ agency, history, resetState, changeLanguage, initLang = 'e
     customTheme = 'visa-ds160 visa-ds160-agency visa-uva'
   if (agency && agency.toLowerCase() === 'aes') 
     customTheme = 'visa-ds160 visa-ds160-agency visa-aes'
+  if (agency && agency.toLowerCase() === 'ues') 
+    customTheme = 'visa-ds160 visa-ds160-agency visa-ues'
 
   {/*<div className={agency.toLowerCase() === 'uva' ? 'visa-ds160 visa-ds160-agency' : 'visa-ds160'}>*/}
   return (

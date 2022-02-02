@@ -56,6 +56,8 @@ class DS160_Checkout extends Component {
       customTheme = 'visa-ds160-save-and-continue visa-uva'
     if (agency && agency.toLowerCase() === 'aes') 
       customTheme = 'visa-ds160-save-and-continue visa-aes'
+    if (agency && agency.toLowerCase() === 'ues') 
+      customTheme = 'visa-ds160-save-and-continue visa-ues'
 
     return (
       <div className={customTheme}>
