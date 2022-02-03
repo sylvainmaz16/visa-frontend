@@ -183,6 +183,9 @@ class DS160_Wizard extends Component {
         case 'aes':
           window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}`
           break
+        case 'ues':
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=19572&application_number=${result.app_id}&token=${result._id}`
+          break
         default:
           window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}`
           break
@@ -231,6 +234,9 @@ class DS160_Wizard extends Component {
           break
         case 'aes':
           window.location.href = `http://eforms-online.com/checkout/?add-to-cart=3023&application_number=${result.app_id}&token=${result._id}&quantity=1&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
+          break
+        case 'ues':
+          window.location.href = `http://eforms-online.com/checkout/?add-to-cart=19572&application_number=${result.app_id}&token=${result._id}`
           break
         default:
           window.location.href = `https://evisa-forms.com/checkout/?add-to-cart=291&application_number=${result.app_id}&token=${result._id}&quantity=${bulk? quantity: 1}&bulk=${bulk}&numbers=${numbers.join(',')}&fullnames=${fullnames.join(',')}&passports=${passports.join(',')}`
