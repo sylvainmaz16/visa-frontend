@@ -27,7 +27,7 @@ class MyForm extends Component {
 
     if (agency === 'uva') label = tr(resources.step_2.disclaimer.uva)
     else if (agency === 'AES') label = tr(resources.step_2.disclaimer.AES)
-    else if (agency.toLowerCase() === 'ues') label = tr(resources.step_2.disclaimer.UES)
+    else if (agency && agency.toLowerCase() === 'ues') label = tr(resources.step_2.disclaimer.UES)
     else label = tr(resources.step_2.disclaimer.default)
 
     return (
